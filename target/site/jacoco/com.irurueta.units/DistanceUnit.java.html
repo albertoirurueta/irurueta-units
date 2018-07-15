@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DistanceUnit.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">DistanceUnit.java</span></div><h1>DistanceUnit.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2018 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.units;
+
+/**
+ * Enumerator containing recognized typical distance units.
+ */
+<span class="pc" id="L21">public enum DistanceUnit {</span>
+    /**
+     * Millimeter distance unit.
+     */
+<span class="fc" id="L25">    MILLIMETER,</span>
+
+    /**
+     * Centimeter distance unit.
+     */
+<span class="fc" id="L30">    CENTIMETER,</span>
+
+    /**
+     * Meter distance unit.
+     */
+<span class="fc" id="L35">    METER,</span>
+
+    /**
+     * Kilometer distance unit.
+     */
+<span class="fc" id="L40">    KILOMETER,</span>
+
+    /**
+     * Inch distance unit.
+     */
+<span class="fc" id="L45">    INCH,</span>
+
+    /**
+     * Foot distance unit.
+     */
+<span class="fc" id="L50">    FOOT,</span>
+
+    /**
+     * Yard distance unit.
+     */
+<span class="fc" id="L55">    YARD,</span>
+
+    /**
+     * Mile distance unit.
+     */
+<span class="fc" id="L60">    MILE;</span>
+
+    /**
+     * Returns unit system for provided distance unit.
+     * @param unit distance unit to be checked.
+     * @return unit system (metric or imperial).
+     * @throws IllegalArgumentException if unit is null or not supported.
+     */
+    public static UnitSystem getUnitSystem(DistanceUnit unit) throws IllegalArgumentException {
+<span class="fc bfc" id="L69" title="All 2 branches covered.">        if (unit == null) {</span>
+<span class="fc" id="L70">            throw new IllegalArgumentException();</span>
+        }
+
+<span class="pc bfc" id="L73" title="All 2 branches covered.">        switch (unit) {</span>
+            case INCH:
+            case FOOT:
+            case YARD:
+            case MILE:
+<span class="fc" id="L78">                return UnitSystem.IMPERIAL;</span>
+            case MILLIMETER:
+            case CENTIMETER:
+            case METER:
+            case KILOMETER:
+            default:
+<span class="fc" id="L84">                return UnitSystem.METRIC;</span>
+        }
+    }
+
+    /**
+     * Gets all supported metric distance units.
+     * @return all supported metric distance units.
+     */
+    public static DistanceUnit[] getMetricUnits() {
+<span class="fc" id="L93">        return new DistanceUnit[] {</span>
+                MILLIMETER,
+                CENTIMETER,
+                METER,
+                KILOMETER
+        };
+    }
+
+    /**
+     * Gets all supported imperial distance units.
+     * @return all supported imperial distance units.
+     */
+    public static DistanceUnit[] getImperialUnits() {
+<span class="fc" id="L106">        return new DistanceUnit[] {</span>
+                INCH,
+                FOOT,
+                YARD,
+                MILE
+        };
+    }
+
+    /**
+     * Indicates whether provided unit belongs to the metric unit system.
+     * @param unit distance unit to be checked.
+     * @return true if unit belongs to metric unit system.
+     * @throws IllegalArgumentException if unit is null or not supported.
+     */
+    public static boolean isMetric(DistanceUnit unit) throws IllegalArgumentException {
+<span class="fc bfc" id="L121" title="All 2 branches covered.">        return getUnitSystem(unit) == UnitSystem.METRIC;</span>
+    }
+
+    /**
+     * Indicates whether provided unit belongs to the imperial unit system.
+     * @param unit distance unit to be checked.
+     * @return true if unit belongs to imperial unit system.
+     * @throws IllegalArgumentException if unit is null or not supported.
+     */
+    public static boolean isImperial(DistanceUnit unit) throws IllegalArgumentException {
+<span class="fc bfc" id="L131" title="All 2 branches covered.">        return getUnitSystem(unit) == UnitSystem.IMPERIAL;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

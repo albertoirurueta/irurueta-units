@@ -1,0 +1,29 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+com.irurueta:irurueta-units,com.irurueta.units,TimeFormatter,1,1968,14,317,0,487,14,190,0,34
+com.irurueta:irurueta-units,com.irurueta.units,MeasureFormatter,7,411,7,29,0,95,7,51,0,40
+com.irurueta:irurueta-units,com.irurueta.units,BuildInfo,39,113,6,4,5,30,4,11,0,10
+com.irurueta:irurueta-units,com.irurueta.units,SurfaceConverter.new Object() {...},13,83,0,0,0,1,0,1,0,1
+com.irurueta:irurueta-units,com.irurueta.units,Time,0,327,0,6,0,70,0,28,0,25
+com.irurueta:irurueta-units,com.irurueta.units,TimeUnit,6,219,1,11,0,27,2,13,1,8
+com.irurueta:irurueta-units,com.irurueta.units,UnknownUnitException,0,16,0,0,0,8,0,4,0,4
+com.irurueta:irurueta-units,com.irurueta.units,DistanceConverter.new Object() {...},8,53,0,0,0,1,0,1,0,1
+com.irurueta:irurueta-units,com.irurueta.units,SurfaceConverter,0,243,0,26,0,77,0,55,0,31
+com.irurueta:irurueta-units,com.irurueta.units,TimeConverter.new Object() {...},11,71,0,0,0,1,0,1,0,1
+com.irurueta:irurueta-units,com.irurueta.units,UnitLocale,0,29,0,6,0,10,0,6,0,3
+com.irurueta:irurueta-units,com.irurueta.units,SurfaceUnit.new Object() {...},13,83,0,0,0,1,0,1,0,1
+com.irurueta:irurueta-units,com.irurueta.units,TimeFormatter.new Object() {...},11,71,0,0,0,1,0,1,0,1
+com.irurueta:irurueta-units,com.irurueta.units,UnitsException,0,16,0,0,0,8,0,4,0,4
+com.irurueta:irurueta-units,com.irurueta.units,SurfaceFormatter,0,357,3,84,0,92,3,57,0,11
+com.irurueta:irurueta-units,com.irurueta.units,SurfaceUnit,5,232,0,8,0,23,1,12,1,8
+com.irurueta:irurueta-units,com.irurueta.units,DistanceFormatter,0,292,1,61,0,72,1,44,0,11
+com.irurueta:irurueta-units,com.irurueta.units,TimeUnit.new Object() {...},4,29,0,0,0,1,0,1,0,1
+com.irurueta:irurueta-units,com.irurueta.units,DistanceFormatter.new Object() {...},10,69,0,0,0,2,0,1,0,1
+com.irurueta:irurueta-units,com.irurueta.units,DistanceConverter,0,168,0,16,0,52,0,35,0,21
+com.irurueta:irurueta-units,com.irurueta.units,Distance,0,327,0,6,0,70,0,28,0,25
+com.irurueta:irurueta-units,com.irurueta.units,TimeConverter,0,213,0,22,0,67,0,47,0,27
+com.irurueta:irurueta-units,com.irurueta.units,SurfaceFormatter.new Object() {...},15,99,0,0,0,2,0,1,0,1
+com.irurueta:irurueta-units,com.irurueta.units,UnitSystem,5,33,0,0,0,3,1,3,1,3
+com.irurueta:irurueta-units,com.irurueta.units,DistanceUnit.new Object() {...},8,53,0,0,0,1,0,1,0,1
+com.irurueta:irurueta-units,com.irurueta.units,Surface,0,327,0,6,0,70,0,28,0,25
+com.irurueta:irurueta-units,com.irurueta.units,Measurement,2,152,10,34,0,32,10,21,0,9
+com.irurueta:irurueta-units,com.irurueta.units,DistanceUnit,5,162,0,8,0,18,1,12,1,8

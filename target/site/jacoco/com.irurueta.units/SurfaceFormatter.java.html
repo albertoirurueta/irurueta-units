@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SurfaceFormatter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">SurfaceFormatter.java</span></div><h1>SurfaceFormatter.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2018 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.units;
+
+import java.text.ParseException;
+import java.util.Locale;
+
+public class SurfaceFormatter extends MeasureFormatter&lt;Surface, SurfaceUnit&gt; {
+    /**
+     * Square millimeter symbol.
+     */
+    public static final String SQUARE_MILLIMETER = &quot;mm²&quot;;
+
+    /**
+     * Square centimeter symbol.
+     */
+    public static final String SQUARE_CENTIMETER = &quot;cm²&quot;;
+
+    /**
+     * Square meter symbol.
+     */
+    public static final String SQUARE_METER = &quot;m²&quot;;
+
+    /**
+     * Square kilometer symbol.
+     */
+    public static final String SQUARE_KILOMETER = &quot;Km²&quot;;
+
+    /**
+     * Square inch symbol.
+     */
+    public static final String SQUARE_INCH = &quot;sq in&quot;;
+
+    /**
+     * Square foot symbol.
+     */
+    public static final String SQUARE_FOOT = &quot;sq ft&quot;;
+
+    /**
+     * Square yard symbol.
+     */
+    public static final String SQUARE_YARD = &quot;sq yd&quot;;
+
+    /**
+     * Square mile symbol.
+     */
+    public static final String SQUARE_MILE = &quot;sq mi&quot;;
+
+    /**
+     * Centiare symbol.
+     */
+    public static final String CENTIARE = &quot;ca&quot;;
+
+    /**
+     * Are symbol.
+     */
+    public static final String ARE = &quot;a&quot;;
+
+    /**
+     * Decare symbol.
+     */
+    public static final String DECARE = &quot;daa&quot;;
+
+    /**
+     * Hectare symbol.
+     */
+    public static final String HECTARE = &quot;ha&quot;;
+
+    /**
+     * Acre symbol.
+     */
+    public static final String ACRE = &quot;acre&quot;;
+
+    /**
+     * Constructor.
+     */
+    @SuppressWarnings(&quot;WeakerAccess&quot;)
+    public SurfaceFormatter() {
+<span class="fc" id="L92">        super();</span>
+<span class="fc" id="L93">    }</span>
+
+    /**
+     * Constructor with locale.
+     * @param locale locale.
+     * @throws IllegalArgumentException if locale is null.
+     */
+    @SuppressWarnings(&quot;WeakerAccess&quot;)
+    public SurfaceFormatter(Locale locale) throws IllegalArgumentException {
+<span class="fc" id="L102">        super(locale);</span>
+<span class="fc" id="L103">    }</span>
+
+    /**
+     * Clones this surface formatter.
+     * @return a copy of this surface formatter.
+     */
+    @Override
+    public Object clone() {
+<span class="fc" id="L111">        SurfaceFormatter copy = new SurfaceFormatter();</span>
+<span class="fc" id="L112">        return internalClone(copy);</span>
+    }
+
+    /**
+     * Determines if two distance formatters are equal by comparing all of its
+     * internal parameters.
+     * @param obj another object to compare.
+     * @return true if provided object is assumed to be equal to this instance.
+     */
+    @Override
+    public boolean equals(Object obj) {
+<span class="fc" id="L123">        boolean equals = super.equals(obj);</span>
+<span class="pc bpc" id="L124" title="1 of 6 branches missed.">        return (!equals || obj instanceof SurfaceFormatter) &amp;&amp; equals;</span>
+    }
+
+    /**
+     * Gets unit system for detected unit into provided string representation
+     * of a measurement.
+     * @param source a measurement string representation to be checked.
+     * @return a unit system (either metric or imperial) or null if unit
+     * cannot be determined.
+     */
+    @Override
+    public UnitSystem getUnitSystem(String source) {
+<span class="fc" id="L136">        SurfaceUnit unit = findUnit(source);</span>
+<span class="fc bfc" id="L137" title="All 2 branches covered.">        return unit != null ? SurfaceUnit.getUnitSystem(unit) : null;</span>
+    }
+
+    /**
+     * Parses provided string and tries to determine a surface value and unit.
+     * @param source text to be parsed.
+     * @return a surface containing a value and unit.
+     * @throws ParseException if provided string cannot be parsed.
+     * @throws UnknownUnitException if unit cannot be determined.
+     */
+    @Override
+    public Surface parse(String source) throws ParseException,
+            UnknownUnitException {
+<span class="fc" id="L150">        return internalParse(source, new Surface());</span>
+    }
+
+    /**
+     * Attempts to determine a surface unit within a measurement string
+     * representation.
+     * @param source a surface measurement string representation.
+     * @return a surface unit, or null if none can be determined.
+     */
+    @Override
+    public SurfaceUnit findUnit(String source) {
+<span class="fc bfc" id="L161" title="All 4 branches covered.">        if (source.contains(SQUARE_MILLIMETER + &quot; &quot;) || source.endsWith(SQUARE_MILLIMETER)) {</span>
+<span class="fc" id="L162">            return SurfaceUnit.SQUARE_MILLIMETER;</span>
+        }
+<span class="fc bfc" id="L164" title="All 4 branches covered.">        if (source.contains(SQUARE_CENTIMETER + &quot; &quot;) || source.endsWith(SQUARE_CENTIMETER)) {</span>
+<span class="fc" id="L165">            return SurfaceUnit.SQUARE_CENTIMETER;</span>
+        }
+<span class="fc bfc" id="L167" title="All 4 branches covered.">        if (source.contains(SQUARE_KILOMETER + &quot; &quot;) || source.endsWith(SQUARE_KILOMETER)) {</span>
+<span class="fc" id="L168">            return SurfaceUnit.SQUARE_KILOMETER;</span>
+        }
+<span class="pc bpc" id="L170" title="1 of 4 branches missed.">        if (source.contains(SQUARE_INCH + &quot; &quot;) || source.endsWith(SQUARE_INCH)) {</span>
+<span class="fc" id="L171">            return SurfaceUnit.SQUARE_INCH;</span>
+        }
+<span class="fc bfc" id="L173" title="All 4 branches covered.">        if (source.contains(SQUARE_FOOT + &quot; &quot;) || source.endsWith(SQUARE_FOOT)) {</span>
+<span class="fc" id="L174">            return SurfaceUnit.SQUARE_FOOT;</span>
+        }
+<span class="pc bpc" id="L176" title="1 of 4 branches missed.">        if (source.contains(SQUARE_YARD + &quot; &quot;) || source.endsWith(SQUARE_YARD)) {</span>
+<span class="fc" id="L177">            return SurfaceUnit.SQUARE_YARD;</span>
+        }
+<span class="fc bfc" id="L179" title="All 4 branches covered.">        if (source.contains(SQUARE_MILE + &quot; &quot;) || source.endsWith(SQUARE_MILE)) {</span>
+<span class="fc" id="L180">            return SurfaceUnit.SQUARE_MILE;</span>
+        }
+<span class="fc bfc" id="L182" title="All 4 branches covered.">        if (source.contains(CENTIARE + &quot; &quot;) || source.endsWith(CENTIARE)) {</span>
+<span class="fc" id="L183">            return SurfaceUnit.CENTIARE;</span>
+        }
+<span class="fc bfc" id="L185" title="All 4 branches covered.">        if (source.contains(DECARE + &quot; &quot;) || source.endsWith(DECARE)) {</span>
+<span class="fc" id="L186">            return SurfaceUnit.DECARE;</span>
+        }
+<span class="fc bfc" id="L188" title="All 4 branches covered.">        if (source.contains(HECTARE + &quot; &quot;) || source.endsWith(HECTARE)) {</span>
+<span class="fc" id="L189">            return SurfaceUnit.HECTARE;</span>
+        }
+<span class="fc bfc" id="L191" title="All 4 branches covered.">        if (source.contains(ACRE + &quot; &quot;) || source.endsWith(ACRE)) {</span>
+<span class="fc" id="L192">            return SurfaceUnit.ACRE;</span>
+        }
+
+<span class="fc bfc" id="L195" title="All 4 branches covered.">        if (source.contains(ARE + &quot; &quot;) || source.endsWith(ARE)) {</span>
+<span class="fc" id="L196">            return SurfaceUnit.ARE;</span>
+        }
+<span class="fc bfc" id="L198" title="All 4 branches covered.">        if (source.contains(SQUARE_METER + &quot; &quot;) || source.endsWith(SQUARE_METER)) {</span>
+<span class="fc" id="L199">            return SurfaceUnit.SQUARE_METER;</span>
+        }
+<span class="fc" id="L201">        return null;</span>
+    }
+
+    /**
+     * Formats and converts provided surface value and unit using provided
+     * unit system.
+     * If provided value is too large for provided unit, this method will
+     * convert it to a more appropriate unit using provided unit system (either
+     * metric or imperial).
+     * @param value a surface value.
+     * @param unit a surface unit.
+     * @param system system unit to convert surface to.
+     * @return a string representation of surface value and unit.
+     */
+    @Override
+    public String formatAndConvert(Number value, SurfaceUnit unit, UnitSystem system) {
+<span class="pc bfc" id="L217" title="All 2 branches covered.">        switch (system) {</span>
+            case IMPERIAL:
+<span class="fc" id="L219">                return formatAndConvertImperial(value, unit);</span>
+            case METRIC:
+            default:
+<span class="fc" id="L222">                return formatAndConvertMetric(value, unit);</span>
+        }
+    }
+
+    /**
+     * Formats and converts provided surface value and unit using metric unit
+     * system.
+     * If provided surface value is too large for provided surface unit,
+     * this method will convert it to a more appropriate unit.
+     * @param value a surface value.
+     * @param unit a surface unit.
+     * @return a string representation of surface value and unit using metric
+     * unit system.
+     */
+    public String formatAndConvertMetric(Number value, SurfaceUnit unit) {
+<span class="fc" id="L237">        double v = value.doubleValue();</span>
+
+<span class="fc" id="L239">        double squareMillimeters = SurfaceConverter.convert(v, unit,</span>
+                SurfaceUnit.SQUARE_MILLIMETER);
+<span class="fc bfc" id="L241" title="All 2 branches covered.">        if (Math.abs(squareMillimeters) &lt; (SurfaceConverter.SQUARE_METERS_PER_SQUARE_CENTIMETER /</span>
+                SurfaceConverter.SQUARE_METERS_PER_SQUARE_MILLIMETER)) {
+<span class="fc" id="L243">            return format(squareMillimeters, SurfaceUnit.SQUARE_MILLIMETER);</span>
+        }
+
+<span class="fc" id="L246">        double squareCentimeters = SurfaceConverter.convert(v, unit,</span>
+                SurfaceUnit.SQUARE_CENTIMETER);
+<span class="fc bfc" id="L248" title="All 2 branches covered.">        if (Math.abs(squareCentimeters) &lt;</span>
+                (1.0 / SurfaceConverter.SQUARE_METERS_PER_SQUARE_CENTIMETER)) {
+<span class="fc" id="L250">            return format(squareCentimeters, SurfaceUnit.SQUARE_CENTIMETER);</span>
+        }
+
+<span class="fc" id="L253">        double squareMeters = SurfaceConverter.convert(v, unit,</span>
+                SurfaceUnit.SQUARE_METER);
+<span class="fc bfc" id="L255" title="All 2 branches covered.">        if (Math.abs(squareMeters) &lt; SurfaceConverter.SQUARE_METERS_PER_SQUARE_KILOMETER) {</span>
+<span class="fc" id="L256">            return format(squareMeters, SurfaceUnit.SQUARE_METER);</span>
+        }
+
+<span class="fc" id="L259">        double squareKilometers = SurfaceConverter.convert(v, unit,</span>
+                SurfaceUnit.SQUARE_KILOMETER);
+<span class="fc" id="L261">        return format(squareKilometers, SurfaceUnit.SQUARE_KILOMETER);</span>
+    }
+
+    /**
+     * Formats and converts provided surface value and unit using imperial unit
+     * system.
+     * If provided surface value is too large for provided surface unit,
+     * this method will convert it to a more appropriate unit.
+     * @param value a surface value.
+     * @param unit a surface unit.
+     * @return a string representation of surface value and unit using imperial
+     * unit system.
+     */
+    public String formatAndConvertImperial(Number value, SurfaceUnit unit) {
+<span class="fc" id="L275">        double v = value.doubleValue();</span>
+
+<span class="fc" id="L277">        double squareInches = SurfaceConverter.convert(v, unit,</span>
+                SurfaceUnit.SQUARE_INCH);
+<span class="fc bfc" id="L279" title="All 2 branches covered.">        if (Math.abs(squareInches) &lt; (SurfaceConverter.SQUARE_METERS_PER_SQUARE_FOOT /</span>
+                SurfaceConverter.SQUARE_METERS_PER_SQUARE_INCH)) {
+<span class="fc" id="L281">            return format(squareInches, SurfaceUnit.SQUARE_INCH);</span>
+        }
+
+<span class="fc" id="L284">        double squareFeet = SurfaceConverter.convert(v, unit,</span>
+                SurfaceUnit.SQUARE_FOOT);
+<span class="fc bfc" id="L286" title="All 2 branches covered.">        if (Math.abs(squareFeet) &lt; (SurfaceConverter.SQUARE_METERS_PER_SQUARE_YARD /</span>
+                SurfaceConverter.SQUARE_METERS_PER_SQUARE_FOOT)) {
+<span class="fc" id="L288">            return format(squareFeet, SurfaceUnit.SQUARE_FOOT);</span>
+        }
+
+<span class="fc" id="L291">        double squareYards = SurfaceConverter.convert(v, unit,</span>
+                SurfaceUnit.SQUARE_YARD);
+<span class="fc bfc" id="L293" title="All 2 branches covered.">        if (Math.abs(squareYards) &lt; (SurfaceConverter.SQUARE_METERS_PER_SQUARE_MILE/</span>
+                SurfaceConverter.SQUARE_METERS_PER_SQUARE_YARD)) {
+<span class="fc" id="L295">            return format(squareYards, SurfaceUnit.SQUARE_YARD);</span>
+        }
+
+<span class="fc" id="L298">        double squareMiles = SurfaceConverter.convert(v, unit, SurfaceUnit.SQUARE_MILE);</span>
+<span class="fc" id="L299">        return format(squareMiles, SurfaceUnit.SQUARE_MILE);</span>
+    }
+
+    /**
+     * Returns unit string representation.
+     * @param unit a measure unit.
+     * @return its string representation.
+     */
+    @Override
+    public String getUnitSymbol(SurfaceUnit unit) {
+        String unitStr;
+<span class="pc bfc" id="L310" title="All 13 branches covered.">        switch(unit) {</span>
+            case SQUARE_MILLIMETER:
+<span class="fc" id="L312">                unitStr = SQUARE_MILLIMETER;</span>
+<span class="fc" id="L313">                break;</span>
+            case SQUARE_CENTIMETER:
+<span class="fc" id="L315">                unitStr = SQUARE_CENTIMETER;</span>
+<span class="fc" id="L316">                break;</span>
+            case SQUARE_KILOMETER:
+<span class="fc" id="L318">                unitStr = SQUARE_KILOMETER;</span>
+<span class="fc" id="L319">                break;</span>
+            case SQUARE_INCH:
+<span class="fc" id="L321">                unitStr = SQUARE_INCH;</span>
+<span class="fc" id="L322">                break;</span>
+            case SQUARE_FOOT:
+<span class="fc" id="L324">                unitStr = SQUARE_FOOT;</span>
+<span class="fc" id="L325">                break;</span>
+            case SQUARE_YARD:
+<span class="fc" id="L327">                unitStr = SQUARE_YARD;</span>
+<span class="fc" id="L328">                break;</span>
+            case SQUARE_MILE:
+<span class="fc" id="L330">                unitStr = SQUARE_MILE;</span>
+<span class="fc" id="L331">                break;</span>
+            case CENTIARE:
+<span class="fc" id="L333">                unitStr = CENTIARE;</span>
+<span class="fc" id="L334">                break;</span>
+            case ARE:
+<span class="fc" id="L336">                unitStr = ARE;</span>
+<span class="fc" id="L337">                break;</span>
+            case DECARE:
+<span class="fc" id="L339">                unitStr = DECARE;</span>
+<span class="fc" id="L340">                break;</span>
+            case HECTARE:
+<span class="fc" id="L342">                unitStr = HECTARE;</span>
+<span class="fc" id="L343">                break;</span>
+            case ACRE:
+<span class="fc" id="L345">                unitStr = ACRE;</span>
+<span class="fc" id="L346">                break;</span>
+
+            case SQUARE_METER:
+            default:
+<span class="fc" id="L350">                unitStr = SQUARE_METER;</span>
+                break;
+        }
+<span class="fc" id="L353">        return unitStr;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

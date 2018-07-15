@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TimeUnit.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">TimeUnit.java</span></div><h1>TimeUnit.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2018 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.units;
+
+/**
+ * Enumerator containing recognized typical time units.
+ */
+<span class="pc" id="L21">public enum TimeUnit {</span>
+    /**
+     * Nanosecond time unit. This belongs to the International System of units.
+     */
+<span class="fc" id="L25">    NANOSECOND,</span>
+
+    /**
+     * Microsecond time unit. This belongs to the International System of units.
+     */
+<span class="fc" id="L30">    MICROSECOND,</span>
+
+    /**
+     * Millisecond time unit. This belongs to the International System of units.
+     */
+<span class="fc" id="L35">    MILLISECOND,</span>
+
+    /**
+     * Second time unit. This belongs to the International System of units.
+     */
+<span class="fc" id="L40">    SECOND,</span>
+
+    /**
+     * Minute time unit.
+     */
+<span class="fc" id="L45">    MINUTE,</span>
+
+    /**
+     * Hour time unit.
+     */
+<span class="fc" id="L50">    HOUR,</span>
+
+    /**
+     * Day time unit.
+     */
+<span class="fc" id="L55">    DAY,</span>
+
+    /**
+     * Week time unit.
+     */
+<span class="fc" id="L60">    WEEK,</span>
+
+    /**
+     * Month time unit (considered as 30 days).
+     */
+<span class="fc" id="L65">    MONTH,</span>
+
+    /**
+     * Year time unit (considered as 365 days).
+     */
+<span class="fc" id="L70">    YEAR,</span>
+
+    /**
+     * Century time unit (considered as 100 years).
+     */
+<span class="fc" id="L75">    CENTURY;</span>
+
+    /**
+     * Returns unit system for provided time unit.
+     * @param unit time unit to be checked.
+     * @return returns metric system only for units belonging to the International
+     * System of units.
+     * @throws IllegalArgumentException if unit is null or does not belong to the
+     * international system of units.
+     */
+    public static UnitSystem getUnitSystem(TimeUnit unit) throws IllegalArgumentException {
+<span class="fc bfc" id="L86" title="All 2 branches covered.">        if (unit == null) {</span>
+<span class="fc" id="L87">            throw new IllegalArgumentException();</span>
+        }
+
+<span class="pc bfc" id="L90" title="All 2 branches covered.">        switch (unit) {</span>
+            case NANOSECOND:
+            case MICROSECOND:
+            case MILLISECOND:
+            case SECOND:
+<span class="fc" id="L95">                return UnitSystem.METRIC;</span>
+            default:
+<span class="fc" id="L97">                throw new IllegalArgumentException();</span>
+        }
+    }
+
+    /**
+     * Gets all supported metric time units.
+     * @return all supported metric time units.
+     */
+    public static TimeUnit[] getMetricUnits() {
+<span class="fc" id="L106">        return new TimeUnit[] {</span>
+                NANOSECOND,
+                MICROSECOND,
+                MILLISECOND,
+                SECOND
+        };
+    }
+
+    /**
+     * Gets all supported units not belonging to the International System
+     * of Units.
+     * @return all units not belonging to the International System of Units.
+     */
+    public static TimeUnit[] getNonInternationalSystemUnits() {
+<span class="fc" id="L120">        return new TimeUnit[] {</span>
+                MINUTE,
+                HOUR,
+                DAY,
+                WEEK,
+                MONTH,
+                YEAR,
+                CENTURY
+        };
+    }
+
+    /**
+     * Indicates whether provided unit belongs to the metric unit system.
+     * @param unit time unit to be checked.
+     * @return true if unit belongs to metric unit system.
+     * @throws IllegalArgumentException if unit is null or not supported.
+     */
+    public static boolean isMetric(TimeUnit unit) throws IllegalArgumentException {
+<span class="fc bfc" id="L138" title="All 2 branches covered.">        if (unit == null) {</span>
+<span class="fc" id="L139">            throw new IllegalArgumentException();</span>
+        }
+
+        try {
+<span class="pc bpc" id="L143" title="1 of 2 branches missed.">            return getUnitSystem(unit) == UnitSystem.METRIC;</span>
+<span class="fc" id="L144">        } catch (IllegalArgumentException e) {</span>
+<span class="fc" id="L145">            return false;</span>
+        }
+    }
+
+    /**
+     * Indicates whether provided unit belongs to the International System of
+     * units.
+     * @param unit time unit to be checked.
+     * @return true if unit does not belong to the International System of units,
+     * false otherwise.
+     * @throws IllegalArgumentException if unit is null or not supported.
+     */
+    public static boolean isNonInternationalSystem(TimeUnit unit) throws IllegalArgumentException {
+<span class="fc bfc" id="L158" title="All 2 branches covered.">        if (unit == null) {</span>
+<span class="fc" id="L159">            throw new IllegalArgumentException();</span>
+        }
+
+<span class="fc bfc" id="L162" title="All 2 branches covered.">        return !isMetric(unit);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

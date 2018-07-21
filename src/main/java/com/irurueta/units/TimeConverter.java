@@ -82,7 +82,7 @@ public class TimeConverter {
 
     /**
      * Converts a time to provided output time unit.
-     * @param input input time to be converter.
+     * @param input input time to be converted.
      * @param output output time where result will be stored and containing
      *               output unit.
      */

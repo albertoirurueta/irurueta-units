@@ -84,6 +84,7 @@ public class TimeTest {
 
         //noinspection all
         assertFalse(t1.equals(null));
+        //noinspection all
         assertFalse(t1.equals(new Object()));
     }
 
@@ -414,7 +415,7 @@ public class TimeTest {
         assertEquals(t1.getUnit(), TimeUnit.SECOND);
         assertEquals(t1.getValue().doubleValue(), value1, 0.0);
 
-        assertEquals(t1.getUnit(), TimeUnit.SECOND);
+        assertEquals(t2.getUnit(), TimeUnit.SECOND);
         assertEquals(t2.getValue().doubleValue(), value2, 0.0);
 
         assertEquals(result.getUnit(), TimeUnit.MILLISECOND);

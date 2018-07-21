@@ -21,6 +21,7 @@ import java.util.Locale;
 /**
  * Formats and parses distance value and unit.
  */
+@SuppressWarnings("WeakerAccess")
 public class DistanceFormatter extends MeasureFormatter<Distance, DistanceUnit> implements Cloneable {
 
     /**
@@ -66,7 +67,6 @@ public class DistanceFormatter extends MeasureFormatter<Distance, DistanceUnit> 
     /**
      * Constructor.
      */
-    @SuppressWarnings("WeakerAccess")
     public DistanceFormatter() {
         super();
     }
@@ -76,7 +76,6 @@ public class DistanceFormatter extends MeasureFormatter<Distance, DistanceUnit> 
      * @param locale locale.
      * @throws IllegalArgumentException if locale is null.
      */
-    @SuppressWarnings("WeakerAccess")
     public DistanceFormatter(Locale locale) throws IllegalArgumentException {
         super(locale);
     }

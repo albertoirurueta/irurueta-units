@@ -84,6 +84,7 @@ public class DistanceTest {
 
         //noinspection all
         assertFalse(d1.equals(null));
+        //noinspection all
         assertFalse(d1.equals(new Object()));
     }
 

@@ -98,7 +98,7 @@ public class DistanceFormatter extends MeasureFormatter<Distance, DistanceUnit> 
     @Override
     public boolean equals(Object obj) {
         boolean equals = super.equals(obj);
-        return (!equals || obj instanceof DistanceFormatter) && equals;
+        return (obj instanceof DistanceFormatter) && equals;
     }
 
     /**

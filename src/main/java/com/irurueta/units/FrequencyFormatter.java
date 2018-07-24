@@ -85,7 +85,7 @@ public class FrequencyFormatter extends MeasureFormatter<Frequency, FrequencyUni
     @Override
     public boolean equals(Object obj) {
         boolean equals = super.equals(obj);
-        return (!equals || obj instanceof FrequencyFormatter) && equals;
+        return (obj instanceof FrequencyFormatter) && equals;
     }
 
     /**

@@ -18,6 +18,10 @@ package com.irurueta.units;
 import java.text.ParseException;
 import java.util.Locale;
 
+/**
+ * Formats and parses surface value and unit.
+ */
+@SuppressWarnings("WeakerAccess")
 public class SurfaceFormatter extends MeasureFormatter<Surface, SurfaceUnit> {
     /**
      * Square millimeter symbol.
@@ -121,7 +125,7 @@ public class SurfaceFormatter extends MeasureFormatter<Surface, SurfaceUnit> {
     @Override
     public boolean equals(Object obj) {
         boolean equals = super.equals(obj);
-        return (!equals || obj instanceof SurfaceFormatter) && equals;
+        return (obj instanceof SurfaceFormatter) && equals;
     }
 
     /**

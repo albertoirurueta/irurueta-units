@@ -25,71 +25,24 @@ import static org.junit.Assert.assertNotNull;
 
 public class SurfaceConverterTest {
 
-    /**
-     * Number of square meters in 1 square milimeter.
-     */
     private static final double SQUARE_METERS_PER_SQUARE_MILLIMETER =
             DistanceConverter.METERS_PER_MILLIMETER * DistanceConverter.METERS_PER_MILLIMETER;
-
-    /**
-     * Number of square meters in 1 square centimeter.
-     */
     private static final double SQUARE_METERS_PER_SQUARE_CENTIMETER =
             DistanceConverter.METERS_PER_CENTIMETER * DistanceConverter.METERS_PER_CENTIMETER;
-
-    /**
-     * Number of square meters in 1 square kilometer.
-     */
     private static final double SQUARE_METERS_PER_SQUARE_KILOMETER =
             DistanceConverter.METERS_PER_KILOMETER * DistanceConverter.METERS_PER_KILOMETER;
-
-    /**
-     * Number of square meters in 1 square inch.
-     */
     private static final double SQUARE_METERS_PER_SQUARE_INCH =
             DistanceConverter.METERS_PER_INCH * DistanceConverter.METERS_PER_INCH;
-
-    /**
-     * Number of square meters in 1 square foot.
-     */
     private static final double SQUARE_METERS_PER_SQUARE_FOOT =
             DistanceConverter.METERS_PER_FOOT * DistanceConverter.METERS_PER_FOOT;
-
-    /**
-     * Number of square meters in 1 square yard.
-     */
     private static final double SQUARE_METERS_PER_SQUARE_YARD =
             DistanceConverter.METERS_PER_YARD * DistanceConverter.METERS_PER_YARD;
-
-    /**
-     * Number of square meters in 1 square mile.
-     */
     private static final double SQUARE_METERS_PER_SQUARE_MILE =
             DistanceConverter.METERS_PER_MILE * DistanceConverter.METERS_PER_MILE;
-
-    /**
-     * Number of square meters in 1 centiare.
-     */
     private static final double SQUARE_METERS_PER_CENTIARE = 1.0;
-
-    /**
-     * Number of square meters in 1 are.
-     */
     private static final double SQUARE_METERS_PER_ARE = 100.0;
-
-    /**
-     * Number of square meters in 1 decare.
-     */
     private static final double SQUARE_METERS_PER_DECARE = 1000.0;
-
-    /**
-     * Number of square meters in 1 hectare.
-     */
     private static final double SQUARE_METERS_PER_HECTARE = 10000.0;
-
-    /**
-     * Number of square meters in 1 acre.
-     */
     private static final double SQUARE_METERS_PER_ACRE = 4046.8564224;
 
     private static final double ERROR = 1e-6;

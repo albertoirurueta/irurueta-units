@@ -25,24 +25,9 @@ import static org.junit.Assert.*;
 
 public class FrequencyConverterTest {
 
-    /**
-     * Number of Hertz's in one KiloHertz.
-     */
     private static final double HERTZS_PER_KILOHERTZ = 1e3;
-
-    /**
-     * Number of Hertz's in one MegaHertz.
-     */
     private static final double HERTZ_PER_MEGAHERTZ = 1e6;
-
-    /**
-     * Number of Hertz's in one GigaHertz.
-     */
     private static final double HERTZ_PER_GIGAHERTZ = 1e9;
-
-    /**
-     * Number of HErtz's in one TeraHertz.
-     */
     private static final double HERTZ_PER_TERAHERTZ = 1e12;
 
     private static final double ERROR = 1e-6;

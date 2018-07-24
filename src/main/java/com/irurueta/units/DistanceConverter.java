@@ -22,6 +22,7 @@ import java.math.BigDecimal;
  * To prevent loss of accuracy, conversion should only be done as a final step
  * before displaying distance measurements.
  */
+@SuppressWarnings("WeakerAccess")
 public class DistanceConverter {
 
     /**
@@ -100,7 +101,7 @@ public class DistanceConverter {
      * Converts a distance to requested output unit.
      * @param input input distance to be converted.
      * @param outputUnit requested output unit.
-     * @param result distance unit where result will be stored.
+     * @param result distance instance where result will be stored.
      */
     public static void convert(Distance input, DistanceUnit outputUnit, Distance result) {
         Number value = convert(input.getValue(), input.getUnit(), outputUnit);

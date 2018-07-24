@@ -24,54 +24,15 @@ import static org.junit.Assert.*;
 
 public class TimeConverterTest {
 
-    /**
-     * Number of seconds in 1 nanosecond.
-     */
     private static final double SECONDS_PER_NANOSECOND = 1e-9;
-
-    /**
-     * Number of seconds in 1 microsecond.
-     */
     private static final double SECONDS_PER_MICROSECOND = 1e-6;
-
-    /**
-     * Number of seconds in 1 milliseconds.
-     */
     private static final double SECONDS_PER_MILLISECOND = 1e-3;
-
-    /**
-     * Number of seconds in 1 minute.
-     */
     private static final double SECONDS_PER_MINUTE = 60.0;
-
-    /**
-     * Number of seconds in 1 hour.
-     */
     private static final double SECONDS_PER_HOUR = 3600.0;
-
-    /**
-     * Number of seconds in 1 day.
-     */
     private static final double SECONDS_PER_DAY = 24 * SECONDS_PER_HOUR;
-
-    /**
-     * Number of seconds in 1 week.
-     */
     private static final double SECONDS_PER_WEEK = 7 * SECONDS_PER_DAY;
-
-    /**
-     * Number of seconds in 1 month.
-     */
     private static final double SECONDS_PER_MONTH = 30 * SECONDS_PER_DAY;
-
-    /**
-     * Number of seconds in 1 year.
-     */
     private static final double SECONDS_PER_YEAR = 365 * SECONDS_PER_DAY;
-
-    /**
-     * Number of seconds in 1 century.
-     */
     private static final double SECONDS_PER_CENTURY = 100 * SECONDS_PER_YEAR;
 
     private static final double ERROR = 1e-6;

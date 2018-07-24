@@ -20,6 +20,7 @@ import java.math.BigDecimal;
 /**
  * Contains a distance value and unit.
  */
+@SuppressWarnings("WeakerAccess")
 public class Distance extends Measurement<DistanceUnit> {
 
     /**
@@ -283,7 +284,7 @@ public class Distance extends Measurement<DistanceUnit> {
      * provided unit.
      * @param value value to be subtracted.
      * @param unit unit of value to be subtracted.
-     * @param resultUnit unit of returned time.
+     * @param resultUnit unit of returned distance.
      * @return a new distance containing result.
      */
     public Distance subtractAndReturnNew(Number value, DistanceUnit unit, DistanceUnit resultUnit) {

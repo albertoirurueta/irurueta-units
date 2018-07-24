@@ -20,44 +20,16 @@ import org.junit.*;
 import java.math.BigDecimal;
 import java.util.Random;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class DistanceConverterTest {
 
-    /**
-     * Number of meters in 1 milimeter
-     */
     private static final double METERS_PER_MILLIMETER = 0.001;
-
-    /**
-     * Number of meters in 1 centimeter
-     */
     private static final double METERS_PER_CENTIMETER = 0.01;
-
-    /**
-     * Number of meters in 1 kilometer
-     */
     private static final double METERS_PER_KILOMETER = 1000.0;
-
-    /**
-     * Number of meters in 1 inch
-     */
     private static final double METERS_PER_INCH = 0.0254;
-
-    /**
-     * Number of meters in 1 foot
-     */
     private static final double METERS_PER_FOOT = 0.3048;
-
-    /**
-     * Number of meters in 1 yard
-     */
     private static final double METERS_PER_YARD = 0.9144;
-
-    /**
-     * Number of meters in 1 mile
-     */
     private static final double METERS_PER_MILE = 1609.344;
 
     private static final double ERROR = 1e-6;

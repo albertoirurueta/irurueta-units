@@ -26,6 +26,7 @@ import java.util.regex.Pattern;
 /**
  * Formats and parses time value and unit.
  */
+@SuppressWarnings("WeakerAccess")
 public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements Cloneable {
 
     /**
@@ -415,7 +416,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
     @Override
     public boolean equals(Object obj) {
         boolean equals = super.equals(obj);
-        return (!equals || obj instanceof TimeFormatter) && equals;
+        return (obj instanceof TimeFormatter) && equals;
     }
 
     /**

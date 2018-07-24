@@ -2,21 +2,72 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96d46074-172b-460f-b8b5-abc929169b19" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/irurueta/units/Frequency.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/irurueta/units/FrequencyConverter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/irurueta/units/FrequencyFormatter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/irurueta/units/FrequencyUnit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/units/FrequencyConverterTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/units/FrequencyFormatterTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/units/FrequencyTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/irurueta/units/Speed.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/irurueta/units/SpeedConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/irurueta/units/SpeedFormatter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/irurueta/units/SpeedUnit.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/units/SpeedConverterTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/units/SpeedFormatterTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/units/SpeedTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/units/SpeedUnitTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/irurueta/units/Distance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/irurueta/units/Distance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/irurueta/units/DistanceConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/irurueta/units/DistanceConverter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/irurueta/units/DistanceFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/irurueta/units/DistanceFormatter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/irurueta/units/TimeConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/irurueta/units/TimeConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/irurueta/units/FrequencyFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/irurueta/units/FrequencyFormatter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/irurueta/units/SurfaceFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/irurueta/units/SurfaceFormatter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/irurueta/units/TimeFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/irurueta/units/TimeFormatter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/irurueta/units/build-info.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/irurueta/units/build-info.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/irurueta/units/DistanceConverterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/units/DistanceConverterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/irurueta/units/DistanceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/units/DistanceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/irurueta/units/FrequencyConverterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/units/FrequencyConverterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/irurueta/units/SurfaceConverterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/units/SurfaceConverterTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/irurueta/units/TimeConverterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/units/TimeConverterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/irurueta/units/TimeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/units/TimeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/irurueta/units/build-info.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/irurueta/units/Distance.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/irurueta/units/Distance.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/irurueta/units/DistanceConverter$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/irurueta/units/DistanceConverter$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/irurueta/units/DistanceConverter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/irurueta/units/DistanceConverter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/irurueta/units/DistanceFormatter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/irurueta/units/DistanceFormatter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/irurueta/units/FrequencyFormatter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/irurueta/units/FrequencyFormatter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/irurueta/units/SurfaceFormatter$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/irurueta/units/SurfaceFormatter$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/irurueta/units/SurfaceFormatter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/irurueta/units/SurfaceFormatter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/irurueta/units/TimeFormatter$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/irurueta/units/TimeFormatter$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/irurueta/units/TimeFormatter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/irurueta/units/TimeFormatter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/jacoco.exec" beforeDir="false" afterPath="$PROJECT_DIR$/target/jacoco.exec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.BuildInfoTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.BuildInfoTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.DistanceConverterTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.DistanceConverterTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.DistanceFormatterTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.DistanceFormatterTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.DistanceTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.DistanceTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.DistanceUnitTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.DistanceUnitTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.SurfaceConverterTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.SurfaceConverterTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.SurfaceFormatterTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.SurfaceFormatterTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.SurfaceTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.SurfaceTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.SurfaceUnitTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.SurfaceUnitTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.TimeConverterTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.TimeConverterTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.TimeFormatterTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.TimeFormatterTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.TimeTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.TimeTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.TimeUnitTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.TimeUnitTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.UnitLocaleTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.UnitLocaleTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.UnitsExceptionTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.UnitsExceptionTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.UnknownUnitExceptionTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.irurueta.units.UnknownUnitExceptionTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.irurueta.units.BuildInfoTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.irurueta.units.BuildInfoTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.irurueta.units.DistanceConverterTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.irurueta.units.DistanceConverterTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.irurueta.units.DistanceFormatterTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.irurueta.units.DistanceFormatterTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.irurueta.units.DistanceTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.irurueta.units.DistanceTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.irurueta.units.DistanceUnitTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.irurueta.units.DistanceUnitTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.irurueta.units.SurfaceConverterTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.irurueta.units.SurfaceConverterTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.irurueta.units.SurfaceFormatterTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.irurueta.units.SurfaceFormatterTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.irurueta.units.SurfaceTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.irurueta.units.SurfaceTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.irurueta.units.SurfaceUnitTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.irurueta.units.SurfaceUnitTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.irurueta.units.TimeFormatterTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.irurueta.units.TimeFormatterTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.irurueta.units.TimeTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.irurueta.units.TimeTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.irurueta.units.UnitLocaleTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.irurueta.units.UnitLocaleTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.irurueta.units.UnknownUnitExceptionTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.irurueta.units.UnknownUnitExceptionTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/irurueta/units/DistanceConverterTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/irurueta/units/DistanceConverterTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/irurueta/units/DistanceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/irurueta/units/DistanceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/irurueta/units/FrequencyConverterTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/irurueta/units/FrequencyConverterTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/irurueta/units/SurfaceConverterTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/irurueta/units/SurfaceConverterTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/com/irurueta/units/TimeConverterTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/irurueta/units/TimeConverterTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/irurueta/units/TimeTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/irurueta/units/TimeTest.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -31,20 +82,14 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="Frequency.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/Frequency.java">
+          <file leaf-file-name="SpeedTest.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/SpeedTest.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="103">
-                  <caret line="21" column="3" selection-start-line="21" selection-start-column="3" selection-end-line="21" selection-end-column="3" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="TimeFormatter.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/TimeFormatter.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="83">
-                  <caret line="30" column="7" lean-forward="true" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
+                <state relative-caret-position="8520">
+                  <caret line="587" selection-start-line="587" selection-end-line="587" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -52,108 +97,8 @@
           <file leaf-file-name="DistanceFormatter.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/DistanceFormatter.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="141">
-                  <caret line="111" column="22" selection-start-line="111" selection-start-column="22" selection-end-line="111" selection-end-column="22" />
-                  <folding>
-                    <element signature="e#780#813#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="FrequencyFormatterTest.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/FrequencyFormatterTest.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="304">
-                  <caret line="759" selection-start-line="759" selection-end-line="759" />
-                  <folding>
-                    <element signature="method#FrequencyFormatterTest#0;class#FrequencyFormatterTest#0" />
-                    <element signature="method#setUpClass#0;class#FrequencyFormatterTest#0" />
-                    <element signature="method#tearDownClass#0;class#FrequencyFormatterTest#0" />
-                    <element signature="method#setUp#0;class#FrequencyFormatterTest#0" />
-                    <element signature="method#tearDown#0;class#FrequencyFormatterTest#0" />
-                    <element signature="method#testConstructor#0;class#FrequencyFormatterTest#0" />
-                    <element signature="method#testClone#0;class#FrequencyFormatterTest#0" />
-                    <element signature="method#testEquals#0;class#FrequencyFormatterTest#0" />
-                    <element signature="method#testHashCode#0;class#FrequencyFormatterTest#0" />
-                    <element signature="method#testFormatNumber#0;class#FrequencyFormatterTest#0" />
-                    <element signature="method#testFormatNumberAndStringBuffer#0;class#FrequencyFormatterTest#0" />
-                    <element signature="method#testFormatDouble#0;class#FrequencyFormatterTest#0" />
-                    <element signature="method#testFormatDoubleAndStringBuffer#0;class#FrequencyFormatterTest#0" />
-                    <element signature="method#testFormatFrequency#0;class#FrequencyFormatterTest#0" />
-                    <element signature="method#testFormatFrequencyAndStringBuffer#0;class#FrequencyFormatterTest#0" />
-                    <element signature="method#testFormatAndConvertDouble#0;class#FrequencyFormatterTest#0" />
-                    <element signature="method#testFormatAndConvertFrequency#0;class#FrequencyFormatterTest#0" />
-                    <element signature="method#testFormatAndConvertNumberAndUnitSystem#0;class#FrequencyFormatterTest#0" />
-                    <element signature="method#testFormatAndConvertDoubleAndUnitSystem#0;class#FrequencyFormatterTest#0" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="FrequencyConverter.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/FrequencyConverter.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="382">
-                  <caret line="80" column="56" lean-forward="true" selection-start-line="80" selection-start-column="56" selection-end-line="80" selection-end-column="56" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="FrequencyUnit.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/FrequencyUnit.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="90">
-                  <caret line="20" column="12" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="FrequencyTest.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/FrequencyTest.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="105">
-                  <caret line="7" column="19" lean-forward="true" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="FrequencyConverterTest.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/FrequencyConverterTest.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="3870">
-                  <caret line="258" column="7" selection-start-line="258" selection-start-column="7" selection-end-line="258" selection-end-column="7" />
-                  <folding>
-                    <element signature="e#0#707#0" expanded="true" />
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="FrequencyFormatter.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/FrequencyFormatter.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="141">
-                  <caret line="98" column="22" selection-start-line="98" selection-start-column="22" selection-end-line="98" selection-end-column="22" />
-                  <folding>
-                    <element signature="e#0#702#0" expanded="true" />
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#781#814#0" expanded="true" />
-                    <element signature="e#1324#1325#0" expanded="true" />
-                    <element signature="e#1346#1347#0" expanded="true" />
-                    <element signature="e#2579#2580#0" expanded="true" />
-                    <element signature="e#2619#2620#0" expanded="true" />
-                    <element signature="e#7901#7902#0" expanded="true" />
-                    <element signature="e#7922#7923#0" expanded="true" />
-                  </folding>
+                <state relative-caret-position="3765">
+                  <caret line="268" column="28" selection-start-line="268" selection-start-column="28" selection-end-line="268" selection-end-column="28" />
                 </state>
               </provider>
             </entry>
@@ -162,31 +107,15 @@
             <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/DistanceFormatterTest.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="319">
-                  <caret line="1023" selection-start-line="910" selection-end-line="1023" />
+                  <caret line="1023" selection-start-line="613" selection-end-line="1023" />
                   <folding>
+                    <element signature="imports" expanded="true" />
                     <element signature="method#DistanceFormatterTest#0;class#DistanceFormatterTest#0" />
                     <element signature="method#setUpClass#0;class#DistanceFormatterTest#0" />
                     <element signature="method#tearDownClass#0;class#DistanceFormatterTest#0" />
                     <element signature="method#setUp#0;class#DistanceFormatterTest#0" />
                     <element signature="method#tearDown#0;class#DistanceFormatterTest#0" />
                     <element signature="method#testConstructor#0;class#DistanceFormatterTest#0" />
-                    <element signature="method#testClone#0;class#DistanceFormatterTest#0" />
-                    <element signature="method#testEquals#0;class#DistanceFormatterTest#0" />
-                    <element signature="method#testHashCode#0;class#DistanceFormatterTest#0" />
-                    <element signature="method#testFormatNumber#0;class#DistanceFormatterTest#0" />
-                    <element signature="method#testFormatNumberAndStringBuffer#0;class#DistanceFormatterTest#0" />
-                    <element signature="method#testFormatDouble#0;class#DistanceFormatterTest#0" />
-                    <element signature="method#testFormatDoubleAndStringBuffer#0;class#DistanceFormatterTest#0" />
-                    <element signature="method#testFormatDistance#0;class#DistanceFormatterTest#0" />
-                    <element signature="method#testFormatDistanceAndStringBuffer#0;class#DistanceFormatterTest#0" />
-                    <element signature="method#testFormatAndConvertNumber#0;class#DistanceFormatterTest#0" />
-                    <element signature="method#testFormatAndConvertDouble#0;class#DistanceFormatterTest#0" />
-                    <element signature="method#testFormatAndConvertDistance#0;class#DistanceFormatterTest#0" />
-                    <element signature="method#testFormatAnConvertNumberAndUnitSystem#0;class#DistanceFormatterTest#0" />
-                    <element signature="method#testFormatAndConvertDoubleAndUnitSystem#0;class#DistanceFormatterTest#0" />
-                    <element signature="method#testFormatAndConvertDistanceAndUnitSystem#0;class#DistanceFormatterTest#0" />
-                    <element signature="method#testFormatAndConvertMetric#0;class#DistanceFormatterTest#0" />
-                    <element signature="method#testFormatAndConvertImperial#0;class#DistanceFormatterTest#0" />
                     <element signature="method#testGetSetMaximumFractionDigits#0;class#DistanceFormatterTest#0" />
                     <element signature="method#testGetSetMaximumIntegerDigits#0;class#DistanceFormatterTest#0" />
                     <element signature="method#testGetSetMinimumFractionDigits#0;class#DistanceFormatterTest#0" />
@@ -210,6 +139,52 @@
             </entry>
           </file>
         </leaf>
+      </split-first>
+      <split-second>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="Speed.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/Speed.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="4110">
+                  <caret line="300" column="51" selection-start-line="300" selection-start-column="51" selection-end-line="300" selection-end-column="51" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SpeedUnit.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/SpeedUnit.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="90">
+                  <caret line="20" column="12" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SpeedFormatter.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/SpeedFormatter.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="347">
+                  <caret line="133" column="9" selection-start-line="133" selection-start-column="9" selection-end-line="133" selection-end-column="9" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SpeedFormatterTest.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/SpeedFormatterTest.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="141">
+                  <caret line="753" column="37" selection-start-line="753" selection-start-column="37" selection-end-line="753" selection-end-column="37" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
       </split-second>
     </splitter>
   </component>
@@ -220,6 +195,12 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>equals</find>
+      <find>formatAndConv</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -247,11 +228,26 @@
         <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/Frequency.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/TimeTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/FrequencyTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/FrequencyFormatterTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/SpeedUnit.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/DistanceConverter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/SpeedConverter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/Distance.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/Speed.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/SpeedUnitTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/TimeConverterTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/SurfaceConverterTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/FrequencyConverterTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/DistanceConverterTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/SpeedConverterTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/DistanceTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/SpeedTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/DistanceFormatter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/FrequencyFormatter.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/FrequencyFormatterTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/SurfaceFormatter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/TimeFormatter.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/SpeedFormatterTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/SpeedFormatter.java" />
       </list>
     </option>
   </component>
@@ -294,69 +290,7 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="units" type="b2602c69:ProjectViewProjectNode" />
-              <item name="irurueta-units" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="units" type="b2602c69:ProjectViewProjectNode" />
-              <item name="irurueta-units" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="units" type="b2602c69:ProjectViewProjectNode" />
-              <item name="irurueta-units" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="units" type="b2602c69:ProjectViewProjectNode" />
-              <item name="irurueta-units" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="units" type="b2602c69:ProjectViewProjectNode" />
-              <item name="irurueta-units" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="units" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="units" type="b2602c69:ProjectViewProjectNode" />
-              <item name="irurueta-units" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="units" type="b2602c69:ProjectViewProjectNode" />
-              <item name="irurueta-units" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="units" type="b2602c69:ProjectViewProjectNode" />
-              <item name="irurueta-units" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="units" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -388,14 +322,14 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.FrequencyFormatterTest">
+  <component name="RunManager" selected="JUnit.SpeedFormatterTest">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
-    <configuration name="FrequencyConverterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DistanceFormatterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="irurueta-units" />
       <extension name="coverage">
         <pattern>
@@ -406,7 +340,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.irurueta.units" />
-      <option name="MAIN_CLASS_NAME" value="com.irurueta.units.FrequencyConverterTest" />
+      <option name="MAIN_CLASS_NAME" value="com.irurueta.units.DistanceFormatterTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -418,7 +352,7 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="FrequencyFormatterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SpeedConverterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="irurueta-units" />
       <extension name="coverage">
         <pattern>
@@ -429,7 +363,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.irurueta.units" />
-      <option name="MAIN_CLASS_NAME" value="com.irurueta.units.FrequencyFormatterTest" />
+      <option name="MAIN_CLASS_NAME" value="com.irurueta.units.SpeedConverterTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -441,7 +375,7 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="FrequencyTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SpeedFormatterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="irurueta-units" />
       <extension name="coverage">
         <pattern>
@@ -452,7 +386,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.irurueta.units" />
-      <option name="MAIN_CLASS_NAME" value="com.irurueta.units.FrequencyTest" />
+      <option name="MAIN_CLASS_NAME" value="com.irurueta.units.SpeedFormatterTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -464,7 +398,7 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="TimeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SpeedTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="irurueta-units" />
       <extension name="coverage">
         <pattern>
@@ -475,7 +409,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.irurueta.units" />
-      <option name="MAIN_CLASS_NAME" value="com.irurueta.units.TimeTest" />
+      <option name="MAIN_CLASS_NAME" value="com.irurueta.units.SpeedTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -562,19 +496,19 @@
       <predefined_log_file id="idea.log" enabled="true" />
     </configuration>
     <list>
+      <item itemvalue="JUnit.SpeedConverterTest" />
+      <item itemvalue="JUnit.SpeedTest" />
+      <item itemvalue="JUnit.DistanceFormatterTest" />
       <item itemvalue="JUnit.com.irurueta.units in irurueta-units" />
-      <item itemvalue="JUnit.FrequencyTest" />
-      <item itemvalue="JUnit.TimeTest" />
-      <item itemvalue="JUnit.FrequencyConverterTest" />
-      <item itemvalue="JUnit.FrequencyFormatterTest" />
+      <item itemvalue="JUnit.SpeedFormatterTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.FrequencyFormatterTest" />
-        <item itemvalue="JUnit.FrequencyConverterTest" />
-        <item itemvalue="JUnit.FrequencyTest" />
-        <item itemvalue="JUnit.TimeTest" />
+        <item itemvalue="JUnit.SpeedFormatterTest" />
         <item itemvalue="JUnit.com.irurueta.units in irurueta-units" />
+        <item itemvalue="JUnit.DistanceFormatterTest" />
+        <item itemvalue="JUnit.SpeedTest" />
+        <item itemvalue="JUnit.SpeedConverterTest" />
       </list>
     </recent_temporary>
   </component>
@@ -593,44 +527,47 @@
       <workItem from="1527676254561" duration="292000" />
       <workItem from="1531676372155" duration="6419000" />
       <workItem from="1531993298615" duration="1523000" />
-      <workItem from="1532102097979" duration="20069000" />
+      <workItem from="1532102097979" duration="26676000" />
+      <workItem from="1532377410404" duration="5930000" />
+      <workItem from="1532428361764" duration="4987000" />
+      <workItem from="1532465978379" duration="4582000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="FrequencyFormatterTest - 2018.07.21 at 18h 57m 18s.xml">
-      <configuration name="FrequencyFormatterTest" configurationId="JUnit" />
+    <history-entry file="SpeedFormatterTest - 2018.07.25 at 00h 01m 24s.xml">
+      <configuration name="SpeedFormatterTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="FrequencyFormatterTest - 2018.07.21 at 18h 58m 10s.xml">
-      <configuration name="FrequencyFormatterTest" configurationId="JUnit" />
+    <history-entry file="SpeedFormatterTest - 2018.07.25 at 00h 03m 11s.xml">
+      <configuration name="SpeedFormatterTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="FrequencyFormatterTest - 2018.07.21 at 19h 00m 07s.xml">
-      <configuration name="FrequencyFormatterTest" configurationId="JUnit" />
+    <history-entry file="SpeedFormatterTest - 2018.07.25 at 00h 05m 03s.xml">
+      <configuration name="SpeedFormatterTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="FrequencyFormatterTest - 2018.07.21 at 19h 02m 31s.xml">
-      <configuration name="FrequencyFormatterTest" configurationId="JUnit" />
+    <history-entry file="SpeedFormatterTest - 2018.07.25 at 00h 06m 23s.xml">
+      <configuration name="SpeedFormatterTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="FrequencyFormatterTest - 2018.07.21 at 19h 06m 47s.xml">
-      <configuration name="FrequencyFormatterTest" configurationId="JUnit" />
+    <history-entry file="SpeedFormatterTest - 2018.07.25 at 00h 07m 18s.xml">
+      <configuration name="SpeedFormatterTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="FrequencyFormatterTest - 2018.07.21 at 19h 22m 41s.xml">
-      <configuration name="FrequencyFormatterTest" configurationId="JUnit" />
+    <history-entry file="SpeedFormatterTest - 2018.07.25 at 00h 08m 17s.xml">
+      <configuration name="SpeedFormatterTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="FrequencyFormatterTest - 2018.07.21 at 19h 27m 18s.xml">
-      <configuration name="FrequencyFormatterTest" configurationId="JUnit" />
+    <history-entry file="SpeedFormatterTest - 2018.07.25 at 00h 10m 22s.xml">
+      <configuration name="SpeedFormatterTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="FrequencyFormatterTest - 2018.07.21 at 19h 28m 15s.xml">
-      <configuration name="FrequencyFormatterTest" configurationId="JUnit" />
+    <history-entry file="SpeedFormatterTest - 2018.07.25 at 00h 11m 43s.xml">
+      <configuration name="SpeedFormatterTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="FrequencyFormatterTest - 2018.07.21 at 19h 31m 19s.xml">
-      <configuration name="FrequencyFormatterTest" configurationId="JUnit" />
+    <history-entry file="SpeedFormatterTest - 2018.07.25 at 00h 15m 32s.xml">
+      <configuration name="SpeedFormatterTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="FrequencyFormatterTest - 2018.07.21 at 19h 32m 13s.xml">
-      <configuration name="FrequencyFormatterTest" configurationId="JUnit" />
+    <history-entry file="SpeedFormatterTest - 2018.07.25 at 00h 24m 18s.xml">
+      <configuration name="SpeedFormatterTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31929000" />
+    <option name="totallyTimeSpent" value="54035000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="9" y="23" width="1431" height="803" extended-state="0" />
@@ -643,7 +580,7 @@
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="right" id="Maven Projects" order="3" weight="0.3297336" />
+      <window_info anchor="right" id="Maven Projects" order="3" weight="0.32901368" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3286119" />
@@ -673,135 +610,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/TimeConverterTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-          <folding>
-            <element signature="docComment;field#SECONDS_PER_NANOSECOND#0;class#TimeConverterTest#0" />
-            <element signature="docComment;field#SECONDS_PER_MICROSECOND#0;class#TimeConverterTest#0" />
-            <element signature="docComment;field#SECONDS_PER_MILLISECOND#0;class#TimeConverterTest#0" />
-            <element signature="docComment;field#SECONDS_PER_MINUTE#0;class#TimeConverterTest#0" />
-            <element signature="docComment;field#SECONDS_PER_HOUR#0;class#TimeConverterTest#0" />
-            <element signature="docComment;field#SECONDS_PER_DAY#0;class#TimeConverterTest#0" />
-            <element signature="docComment;field#SECONDS_PER_WEEK#0;class#TimeConverterTest#0" />
-            <element signature="docComment;field#SECONDS_PER_MONTH#0;class#TimeConverterTest#0" />
-            <element signature="docComment;field#SECONDS_PER_YEAR#0;class#TimeConverterTest#0" />
-            <element signature="docComment;field#SECONDS_PER_CENTURY#0;class#TimeConverterTest#0" />
-            <element signature="method#TimeConverterTest#0;class#TimeConverterTest#0" />
-            <element signature="method#setUpClass#0;class#TimeConverterTest#0" />
-            <element signature="method#tearDownClass#0;class#TimeConverterTest#0" />
-            <element signature="method#setUp#0;class#TimeConverterTest#0" />
-            <element signature="method#tearDown#0;class#TimeConverterTest#0" />
-            <element signature="method#testConstructor#0;class#TimeConverterTest#0" />
-            <element signature="method#testSecondNanosecond#0;class#TimeConverterTest#0" />
-            <element signature="method#testSecondMicrosecond#0;class#TimeConverterTest#0" />
-            <element signature="method#testSecondMillisecond#0;class#TimeConverterTest#0" />
-            <element signature="method#testSecondMinute#0;class#TimeConverterTest#0" />
-            <element signature="method#testSecondHour#0;class#TimeConverterTest#0" />
-            <element signature="method#testSecondDay#0;class#TimeConverterTest#0" />
-            <element signature="method#testSecondWeek#0;class#TimeConverterTest#0" />
-            <element signature="method#testSecondMonth#0;class#TimeConverterTest#0" />
-            <element signature="method#testSecondYear#0;class#TimeConverterTest#0" />
-            <element signature="method#testSecondCentury#0;class#TimeConverterTest#0" />
-            <element signature="method#testConvertDouble#0;class#TimeConverterTest#0" />
-            <element signature="method#testConvertNumber#0;class#TimeConverterTest#0" />
-            <element signature="method#testConvertTime#0;class#TimeConverterTest#0" />
-            <element signature="method#testConvertAndUpdateTime#0;class#TimeConverterTest#0" />
-            <element signature="method#testConvertAndReturnNewTime#0;class#TimeConverterTest#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/Frequency.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="21" column="3" lean-forward="true" selection-start-line="21" selection-start-column="3" selection-end-line="21" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/TimeTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="22" selection-start-line="22" selection-end-line="22" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/FrequencyConverter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2910">
-          <caret line="224" column="55" selection-start-line="224" selection-start-column="55" selection-end-line="224" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/FrequencyTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="41" column="22" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="47" lean-forward="true" selection-start-line="4" selection-start-column="47" selection-end-line="4" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/Distance.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="15" selection-end-line="15" />
-          <folding>
-            <element signature="e#0#12345#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/TimeConverter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1230">
-          <caret line="98" column="4" selection-start-line="98" selection-start-column="4" selection-end-line="98" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#11922#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/Time.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3120">
-          <caret line="220" selection-start-line="218" selection-end-line="220" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/FrequencyUnit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="14" column="3" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/FrequencyConverter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2910">
-          <caret line="224" column="55" selection-start-line="224" selection-start-column="55" selection-end-line="224" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/Frequency.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3165">
-          <caret line="237" selection-start-line="237" selection-end-line="237" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3615">
@@ -879,24 +687,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/DistanceConverter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="270" column="30" lean-forward="true" selection-start-line="270" selection-start-column="30" selection-end-line="270" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/package-info.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="23" lean-forward="true" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/SurfaceFormatter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-172">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -928,13 +722,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/DistanceUnit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1133">
-          <caret line="18" column="42" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/SurfaceUnit.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="146">
@@ -953,19 +740,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1230">
           <caret line="98" column="4" selection-start-line="98" selection-start-column="4" selection-end-line="98" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#11922#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/Distance.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="15" selection-end-line="15" />
-          <folding>
-            <element signature="e#0#12345#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -986,64 +760,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/Time.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="13" column="72" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret line="4" column="47" selection-start-line="4" selection-start-column="47" selection-end-line="4" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/TimeConverterTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="660" column="21" selection-start-line="76" selection-start-column="4" selection-end-line="76" selection-end-column="45" />
-          <folding>
-            <element signature="docComment;field#SECONDS_PER_NANOSECOND#0;class#TimeConverterTest#0" />
-            <element signature="docComment;field#SECONDS_PER_MICROSECOND#0;class#TimeConverterTest#0" />
-            <element signature="docComment;field#SECONDS_PER_MILLISECOND#0;class#TimeConverterTest#0" />
-            <element signature="docComment;field#SECONDS_PER_MINUTE#0;class#TimeConverterTest#0" />
-            <element signature="docComment;field#SECONDS_PER_HOUR#0;class#TimeConverterTest#0" />
-            <element signature="docComment;field#SECONDS_PER_DAY#0;class#TimeConverterTest#0" />
-            <element signature="docComment;field#SECONDS_PER_WEEK#0;class#TimeConverterTest#0" />
-            <element signature="docComment;field#SECONDS_PER_MONTH#0;class#TimeConverterTest#0" />
-            <element signature="docComment;field#SECONDS_PER_YEAR#0;class#TimeConverterTest#0" />
-            <element signature="docComment;field#SECONDS_PER_CENTURY#0;class#TimeConverterTest#0" />
-            <element signature="method#TimeConverterTest#0;class#TimeConverterTest#0" />
-            <element signature="method#setUpClass#0;class#TimeConverterTest#0" />
-            <element signature="method#tearDownClass#0;class#TimeConverterTest#0" />
-            <element signature="method#setUp#0;class#TimeConverterTest#0" />
-            <element signature="method#tearDown#0;class#TimeConverterTest#0" />
-            <element signature="method#testConstructor#0;class#TimeConverterTest#0" />
-            <element signature="method#testSecondNanosecond#0;class#TimeConverterTest#0" />
-            <element signature="method#testSecondMicrosecond#0;class#TimeConverterTest#0" />
-            <element signature="method#testSecondMillisecond#0;class#TimeConverterTest#0" />
-            <element signature="method#testSecondMinute#0;class#TimeConverterTest#0" />
-            <element signature="method#testSecondHour#0;class#TimeConverterTest#0" />
-            <element signature="method#testSecondDay#0;class#TimeConverterTest#0" />
-            <element signature="method#testSecondWeek#0;class#TimeConverterTest#0" />
-            <element signature="method#testSecondMonth#0;class#TimeConverterTest#0" />
-            <element signature="method#testSecondYear#0;class#TimeConverterTest#0" />
-            <element signature="method#testSecondCentury#0;class#TimeConverterTest#0" />
-            <element signature="method#testConvertDouble#0;class#TimeConverterTest#0" />
-            <element signature="method#testConvertNumber#0;class#TimeConverterTest#0" />
-            <element signature="method#testConvertTime#0;class#TimeConverterTest#0" />
-            <element signature="method#testConvertAndUpdateTime#0;class#TimeConverterTest#0" />
-            <element signature="method#testConvertAndReturnNewTime#0;class#TimeConverterTest#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/Frequency.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="21" column="3" selection-start-line="21" selection-start-column="3" selection-end-line="21" selection-end-column="3" />
         </state>
       </provider>
     </entry>
@@ -1054,24 +774,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/FrequencyConverterTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3870">
-          <caret line="258" column="7" selection-start-line="258" selection-start-column="7" selection-end-line="258" selection-end-column="7" />
-          <folding>
-            <element signature="e#0#707#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/TimeFormatter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="30" column="7" lean-forward="true" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -1089,40 +791,201 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/MeasureFormatter.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/FrequencyFormatterTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="457" selection-start-line="450" selection-end-line="457" />
+        <state relative-caret-position="154">
+          <caret line="749" column="16" lean-forward="true" selection-start-line="749" selection-start-column="16" selection-end-line="749" selection-end-column="16" />
           <folding>
-            <element signature="e#16466#16467#0" expanded="true" />
+            <element signature="method#FrequencyFormatterTest#0;class#FrequencyFormatterTest#0" />
+            <element signature="method#setUpClass#0;class#FrequencyFormatterTest#0" />
+            <element signature="method#tearDownClass#0;class#FrequencyFormatterTest#0" />
+            <element signature="method#setUp#0;class#FrequencyFormatterTest#0" />
+            <element signature="method#tearDown#0;class#FrequencyFormatterTest#0" />
+            <element signature="method#testConstructor#0;class#FrequencyFormatterTest#0" />
+            <element signature="method#testClone#0;class#FrequencyFormatterTest#0" />
+            <element signature="method#testEquals#0;class#FrequencyFormatterTest#0" />
+            <element signature="method#testHashCode#0;class#FrequencyFormatterTest#0" />
+            <element signature="method#testFormatNumber#0;class#FrequencyFormatterTest#0" />
+            <element signature="method#testFormatNumberAndStringBuffer#0;class#FrequencyFormatterTest#0" />
+            <element signature="method#testFormatDouble#0;class#FrequencyFormatterTest#0" />
+            <element signature="method#testFormatDoubleAndStringBuffer#0;class#FrequencyFormatterTest#0" />
+            <element signature="method#testFormatFrequency#0;class#FrequencyFormatterTest#0" />
+            <element signature="method#testFormatFrequencyAndStringBuffer#0;class#FrequencyFormatterTest#0" />
+            <element signature="method#testFormatAndConvertDouble#0;class#FrequencyFormatterTest#0" />
+            <element signature="method#testFormatAndConvertFrequency#0;class#FrequencyFormatterTest#0" />
+            <element signature="method#testFormatAndConvertNumberAndUnitSystem#0;class#FrequencyFormatterTest#0" />
+            <element signature="method#testFormatAndConvertDoubleAndUnitSystem#0;class#FrequencyFormatterTest#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/DistanceFormatter.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/Time.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="111" column="22" selection-start-line="111" selection-start-column="22" selection-end-line="111" selection-end-column="22" />
+        <state relative-caret-position="195">
+          <caret line="13" column="72" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/DistanceUnit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="95" column="22" lean-forward="true" selection-start-line="95" selection-start-column="22" selection-end-line="95" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/Frequency.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-108">
+          <caret line="21" column="3" selection-start-line="21" selection-start-column="3" selection-end-line="21" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/DistanceUnitTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1054">
+          <caret line="19" column="33" lean-forward="true" selection-start-line="19" selection-end-line="19" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/DistanceConverter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2490">
+          <caret line="184" selection-start-line="184" selection-end-line="184" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/TimeConverterTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/SurfaceConverterTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/FrequencyConverterTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/DistanceConverterTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5899">
+          <caret line="22" selection-start-line="22" selection-end-line="22" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/SpeedConverter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2081">
+          <caret line="191" column="38" selection-start-line="191" selection-start-column="38" selection-end-line="191" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/Distance.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4245">
+          <caret line="311" column="7" selection-start-line="311" selection-start-column="7" selection-end-line="311" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/SpeedConverterTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="14" column="3" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/SpeedUnitTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1440">
+          <caret line="110" column="53" selection-start-line="110" selection-start-column="53" selection-end-line="110" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/DistanceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6949">
+          <caret line="86" column="26" selection-start-line="86" selection-start-column="26" selection-end-line="86" selection-end-column="26" />
           <folding>
-            <element signature="e#780#813#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/SpeedTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8520">
+          <caret line="587" selection-start-line="587" selection-end-line="587" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/Speed.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4110">
+          <caret line="300" column="51" selection-start-line="300" selection-start-column="51" selection-end-line="300" selection-end-column="51" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/FrequencyFormatter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="98" column="22" selection-start-line="98" selection-start-column="22" selection-end-line="98" selection-end-column="22" />
+        <state relative-caret-position="1050">
+          <caret line="87" column="16" selection-start-line="87" selection-start-column="16" selection-end-line="87" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/SurfaceFormatter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2391">
+          <caret line="21" column="45" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/TimeFormatter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="418" column="16" selection-start-line="418" selection-start-column="16" selection-end-line="418" selection-end-column="16" />
           <folding>
-            <element signature="e#0#702#0" expanded="true" />
+            <element signature="e#0#52610#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#781#814#0" expanded="true" />
-            <element signature="e#1324#1325#0" expanded="true" />
-            <element signature="e#1346#1347#0" expanded="true" />
-            <element signature="e#2579#2580#0" expanded="true" />
-            <element signature="e#2619#2620#0" expanded="true" />
-            <element signature="e#7901#7902#0" expanded="true" />
-            <element signature="e#7922#7923#0" expanded="true" />
+            <element signature="e#935#968#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/SpeedUnit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="20" column="12" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/DistanceFormatter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3765">
+          <caret line="268" column="28" selection-start-line="268" selection-start-column="28" selection-end-line="268" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/MeasureFormatter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="264" column="27" selection-start-line="264" selection-start-column="27" selection-end-line="264" selection-end-column="27" />
+          <folding>
+            <element signature="e#7921#7922#0" expanded="true" />
+            <element signature="e#7990#7991#0" expanded="true" />
+            <element signature="e#16416#16417#0" expanded="true" />
+            <element signature="e#16466#16467#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1130,31 +993,15 @@
     <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/DistanceFormatterTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="319">
-          <caret line="1023" selection-start-line="910" selection-end-line="1023" />
+          <caret line="1023" selection-start-line="613" selection-end-line="1023" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="method#DistanceFormatterTest#0;class#DistanceFormatterTest#0" />
             <element signature="method#setUpClass#0;class#DistanceFormatterTest#0" />
             <element signature="method#tearDownClass#0;class#DistanceFormatterTest#0" />
             <element signature="method#setUp#0;class#DistanceFormatterTest#0" />
             <element signature="method#tearDown#0;class#DistanceFormatterTest#0" />
             <element signature="method#testConstructor#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testClone#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testEquals#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testHashCode#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testFormatNumber#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testFormatNumberAndStringBuffer#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testFormatDouble#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testFormatDoubleAndStringBuffer#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testFormatDistance#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testFormatDistanceAndStringBuffer#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testFormatAndConvertNumber#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testFormatAndConvertDouble#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testFormatAndConvertDistance#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testFormatAnConvertNumberAndUnitSystem#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testFormatAndConvertDoubleAndUnitSystem#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testFormatAndConvertDistanceAndUnitSystem#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testFormatAndConvertMetric#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testFormatAndConvertImperial#0;class#DistanceFormatterTest#0" />
             <element signature="method#testGetSetMaximumFractionDigits#0;class#DistanceFormatterTest#0" />
             <element signature="method#testGetSetMaximumIntegerDigits#0;class#DistanceFormatterTest#0" />
             <element signature="method#testGetSetMinimumFractionDigits#0;class#DistanceFormatterTest#0" />
@@ -1176,30 +1023,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/FrequencyFormatterTest.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/SpeedFormatterTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="759" selection-start-line="759" selection-end-line="759" />
+        <state relative-caret-position="141">
+          <caret line="753" column="37" selection-start-line="753" selection-start-column="37" selection-end-line="753" selection-end-column="37" />
           <folding>
-            <element signature="method#FrequencyFormatterTest#0;class#FrequencyFormatterTest#0" />
-            <element signature="method#setUpClass#0;class#FrequencyFormatterTest#0" />
-            <element signature="method#tearDownClass#0;class#FrequencyFormatterTest#0" />
-            <element signature="method#setUp#0;class#FrequencyFormatterTest#0" />
-            <element signature="method#tearDown#0;class#FrequencyFormatterTest#0" />
-            <element signature="method#testConstructor#0;class#FrequencyFormatterTest#0" />
-            <element signature="method#testClone#0;class#FrequencyFormatterTest#0" />
-            <element signature="method#testEquals#0;class#FrequencyFormatterTest#0" />
-            <element signature="method#testHashCode#0;class#FrequencyFormatterTest#0" />
-            <element signature="method#testFormatNumber#0;class#FrequencyFormatterTest#0" />
-            <element signature="method#testFormatNumberAndStringBuffer#0;class#FrequencyFormatterTest#0" />
-            <element signature="method#testFormatDouble#0;class#FrequencyFormatterTest#0" />
-            <element signature="method#testFormatDoubleAndStringBuffer#0;class#FrequencyFormatterTest#0" />
-            <element signature="method#testFormatFrequency#0;class#FrequencyFormatterTest#0" />
-            <element signature="method#testFormatFrequencyAndStringBuffer#0;class#FrequencyFormatterTest#0" />
-            <element signature="method#testFormatAndConvertDouble#0;class#FrequencyFormatterTest#0" />
-            <element signature="method#testFormatAndConvertFrequency#0;class#FrequencyFormatterTest#0" />
-            <element signature="method#testFormatAndConvertNumberAndUnitSystem#0;class#FrequencyFormatterTest#0" />
-            <element signature="method#testFormatAndConvertDoubleAndUnitSystem#0;class#FrequencyFormatterTest#0" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/SpeedFormatter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="133" column="9" selection-start-line="133" selection-start-column="9" selection-end-line="133" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

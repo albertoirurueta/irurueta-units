@@ -36,6 +36,11 @@ public class SpeedConverter {
     static final double METERS_PER_MILE = 1609.344;
 
     /**
+     * Number of meters in 1 foot.
+     */
+    static final double METERS_PER_FOOT = 0.3048;
+
+    /**
      * Number of seconds in 1 hour.
      */
     static final double SECONDS_PER_HOUR = 3600.0;
@@ -113,6 +118,9 @@ public class SpeedConverter {
 
         //convert to meters per second
         switch (inputUnit) {
+            case FEET_PER_SECOND:
+                metersPerSecond = feetPerSecondToMetersPerSecond(input);
+                break;
             case MILES_PER_HOUR:
                 metersPerSecond = milesPerHourToMetersPerSecond(input);
                 break;
@@ -130,6 +138,8 @@ public class SpeedConverter {
 
         //convert from meters per second to required output unit
         switch (outputUnit) {
+            case FEET_PER_SECOND:
+                return metersPerSecondToFeetPerSecond(metersPerSecond);
             case MILES_PER_HOUR:
                 return metersPerSecondToMilesPerHour(metersPerSecond);
             case KILOMETERS_PER_HOUR:
@@ -140,6 +150,24 @@ public class SpeedConverter {
             default:
                 return metersPerSecond;
         }
+    }
+
+    /**
+     * Converts provided feet per second value to meters per second.
+     * @param feetPerSecond feet per second value.
+     * @return same speed converted to meters per second.
+     */
+    public static double feetPerSecondToMetersPerSecond(double feetPerSecond) {
+        return feetPerSecond * METERS_PER_FOOT;
+    }
+
+    /**
+     * Converts provided meters per second value to feet per second.
+     * @param metersPerSecond meters per second value.
+     * @return same speed converted to feet per second.
+     */
+    public static double metersPerSecondToFeetPerSecond(double metersPerSecond) {
+        return metersPerSecond / METERS_PER_FOOT;
     }
 
     /**

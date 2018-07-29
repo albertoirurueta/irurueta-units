@@ -266,7 +266,7 @@ public class SpeedTest {
     }
 
     @Test
-    public void testAddandReturnNew3() {
+    public void testAddAndReturnNew3() {
         Random r = new Random();
         double value1 = r.nextDouble();
         double value2 = r.nextDouble();

@@ -16,97 +16,83 @@
 package com.irurueta.units;
 
 /**
- * Enumerator containing recognized typical speed units.
+ * Enumerator containing recognized typical acceleration units.
  */
-public enum SpeedUnit {
+public enum AccelerationUnit {
     /**
-     * Meters per second (m/s).
+     * Meters per squared second (m/s^2).
      */
-    METERS_PER_SECOND,
+    METERS_PER_SQUARED_SECOND,
 
     /**
-     * Kilometers per hour (Km/h)
+     * Relative to gravitational acceleration (9.81 m/s^2).
      */
-    KILOMETERS_PER_HOUR,
+    G,
 
     /**
-     * Kilometers per second (Km/s)
+     * Feet per squared second (ft/s^2).
      */
-    KILOMETERS_PER_SECOND,
+    FEET_PER_SQUARED_SECOND;
 
     /**
-     * Keet per second (ft/s)
-     */
-    FEET_PER_SECOND,
-
-    /**
-     * Miles per hour (mph)
-     */
-    MILES_PER_HOUR;
-
-    /**
-     * Returns unit system for provided speed unit.
-     * @param unit speed unit to be checked.
+     * Returns unit system for provided acceleration unit.
+     * @param unit acceleration unit to be checked.
      * @return unit system (metric or imperial).
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static UnitSystem getUnitSystem(SpeedUnit unit) throws IllegalArgumentException {
+    public static UnitSystem getUnitSystem(AccelerationUnit unit) throws IllegalArgumentException {
         if (unit == null) {
             throw new IllegalArgumentException();
         }
 
         switch (unit) {
-            case FEET_PER_SECOND:
-            case MILES_PER_HOUR:
+            case FEET_PER_SQUARED_SECOND:
                 return UnitSystem.IMPERIAL;
-            case METERS_PER_SECOND:
-            case KILOMETERS_PER_HOUR:
-            case KILOMETERS_PER_SECOND:
+            case METERS_PER_SQUARED_SECOND:
+            case G:
             default:
                 return UnitSystem.METRIC;
         }
     }
 
     /**
-     * Gets all supported metric speed units.
-     * @return all supported metric speed units.
+     * Gets all supported metric acceleration units.
+     * @return all supported metric acceleration units.
      */
-    public static SpeedUnit[] getMetricUnits() {
-        return new SpeedUnit[] {
-                METERS_PER_SECOND,
-                KILOMETERS_PER_HOUR,
-                KILOMETERS_PER_SECOND
+    public static AccelerationUnit[] getMetricUnits() {
+        return new AccelerationUnit[] {
+                METERS_PER_SQUARED_SECOND,
+                G
         };
     }
 
     /**
-     * Gets all supported imperial speed units.
-     * @return all supported imperial speed units.
+     * Gets all supported imperial acceleration units.
+     * @return all supported imperial acceleration units.
      */
-    public static SpeedUnit[] getImperialUnits() {
-        return new SpeedUnit[] {
-                FEET_PER_SECOND,
-                MILES_PER_HOUR
+    public static AccelerationUnit[] getImperialUnits() {
+        return new AccelerationUnit[] {
+                FEET_PER_SQUARED_SECOND
         };
     }
 
     /**
      * Indicates whether provided unit belongs to the metric unit system.
-     * @param unit speed unit to be checked.
+     * @param unit acceleration unit to be checked.
      * @return true if unit belongs to metric unit system.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isMetric(SpeedUnit unit) throws IllegalArgumentException {
+    public static boolean isMetric(AccelerationUnit unit) throws IllegalArgumentException {
         return getUnitSystem(unit) == UnitSystem.METRIC;
     }
 
     /**
      * Indicates whether provided unit belongs to the imperial unit system.
-     * @param unit speed unit to be checked.
+     * @param unit acceleration unit to be checked.
      * @return true if unit belongs to imperial unit system.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isImperial(SpeedUnit unit) throws IllegalArgumentException {
+    public static boolean isImperial(AccelerationUnit unit) throws IllegalArgumentException {
         return getUnitSystem(unit) == UnitSystem.IMPERIAL;
     }
 }

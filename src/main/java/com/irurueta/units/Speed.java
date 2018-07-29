@@ -88,7 +88,7 @@ public class Speed extends Measurement<SpeedUnit> {
      * @param unit1 1st argument unit.
      * @param value2 2nd argument value.
      * @param unit2 2nd argument unit.
-     * @param resultUnit unit of result to be resturned.
+     * @param resultUnit unit of result to be returned.
      * @return result of addition.
      */
     public static Number add(Number value1, SpeedUnit unit1,

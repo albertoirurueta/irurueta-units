@@ -41,6 +41,11 @@ public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit>
     public static final String KILOMETERS_PER_SECOND = "Km/s";
 
     /**
+     * Feet per second symbol.
+     */
+    public static final String FEET_PER_SECOND = "ft/s";
+
+    /**
      * Miles per hour symbol.
      */
     public static final String MILES_PER_HOUR = "mph";
@@ -123,6 +128,10 @@ public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit>
                 source.endsWith(KILOMETERS_PER_SECOND)) {
             return SpeedUnit.KILOMETERS_PER_SECOND;
         }
+        if (source.contains(FEET_PER_SECOND + " ") ||
+                source.endsWith(FEET_PER_SECOND)) {
+            return SpeedUnit.FEET_PER_SECOND;
+        }
         if (source.contains(MILES_PER_HOUR + " ") ||
                 source.endsWith(MILES_PER_HOUR)) {
             return SpeedUnit.MILES_PER_HOUR;
@@ -144,7 +153,7 @@ public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit>
      * @param value a speed value.
      * @param unit a speed unit.
      * @param system system unit to convert speed to.
-     * @return a string representation of speed vlaue and unit.
+     * @return a string representation of speed value and unit.
      */
     @Override
     public String formatAndConvert(Number value, SpeedUnit unit, UnitSystem system) {
@@ -164,7 +173,7 @@ public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit>
      * this method will convert it to a more appropriate unit.
      * @param value a speed value.
      * @param unit a speed unit.
-     * @return a string representation of speed vlaue and unit using metric
+     * @return a string representation of speed value and unit using metric
      * unit system.
      */
     public String formatAndConvertMetric(Number value, SpeedUnit unit) {
@@ -200,10 +209,18 @@ public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit>
      * unit system.
      */
     public String formatAndConvertImperial(Number value, SpeedUnit unit) {
-        //always convert and format as miles per hour
-        return format(SpeedConverter.convert(
-                value, unit, SpeedUnit.MILES_PER_HOUR),
+        double v = value.doubleValue();
+
+        double feetPerSecond = SpeedConverter.convert(v, unit,
+                SpeedUnit.FEET_PER_SECOND);
+        if (Math.abs(feetPerSecond) < SpeedConverter.METERS_PER_MILE /
+                SpeedConverter.SECONDS_PER_HOUR / SpeedConverter.METERS_PER_FOOT) {
+            return format(feetPerSecond, SpeedUnit.FEET_PER_SECOND);
+        }
+
+        double milesPerHour = SpeedConverter.convert(v, unit,
                 SpeedUnit.MILES_PER_HOUR);
+        return format(milesPerHour, SpeedUnit.MILES_PER_HOUR);
     }
 
     /**
@@ -220,6 +237,9 @@ public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit>
                 break;
             case KILOMETERS_PER_SECOND:
                 unitStr = KILOMETERS_PER_SECOND;
+                break;
+            case FEET_PER_SECOND:
+                unitStr = FEET_PER_SECOND;
                 break;
             case MILES_PER_HOUR:
                 unitStr = MILES_PER_HOUR;

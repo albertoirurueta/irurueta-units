@@ -16,16 +16,16 @@
 package com.irurueta.units;
 
 /**
- * Enumerator containing angle units.
+ * Enumerator containing recognized angular speed units.
  */
-public enum AngleUnit {
+public enum AngularSpeedUnit {
     /**
-     * Radian.
+     * Radians per second.
      */
-    RADIANS,
+    RADIANS_PER_SECOND,
 
     /**
-     * Degrees unit.
+     * Degrees per second.
      */
-    DEGREES
+    DEGREES_PER_SECOND
 }

@@ -114,7 +114,7 @@ public class Angle extends Measurement<AngleUnit> {
      * @param arg1 1st argument.
      * @param arg2 2nd argument.
      * @param unit unit of returned angle.
-     * @return a nw instance containing result.
+     * @return a new instance containing result.
      */
     public static Angle addAndReturnNew(Angle arg1, Angle arg2, AngleUnit unit) {
         Angle result = new Angle();
@@ -280,7 +280,7 @@ public class Angle extends Measurement<AngleUnit> {
      * provided unit.
      * @param value value to be subtracted.
      * @param unit unit of value to be subtracted.
-     * @param resultUnit unit of returned angl.
+     * @param resultUnit unit of returned angle.
      * @return a new angle containing result.
      */
     public Angle subtractAndReturnNew(Number value, AngleUnit unit,

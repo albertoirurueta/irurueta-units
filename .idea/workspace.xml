@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96d46074-172b-460f-b8b5-abc929169b19" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/irurueta/units/AngleFormatter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/units/AngleFormatterTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/units/AngleTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/irurueta/units/AngularSpeed.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/irurueta/units/AngularSpeedConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/irurueta/units/AngularSpeedFormatter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/irurueta/units/AngularSpeedUnit.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/units/AngularSpeedConverterTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/units/AngularSpeedFormatterTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/units/AngularSpeedTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/irurueta/units/Angle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/irurueta/units/Angle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/irurueta/units/AngleUnit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/irurueta/units/AngleUnit.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -20,36 +26,79 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="Angle.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/Angle.java">
+          <file leaf-file-name="AngularSpeed.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/AngularSpeed.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="735">
-                  <caret line="65" column="5" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="DistanceFormatter.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/DistanceFormatter.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="116">
-                  <caret line="257" column="5" lean-forward="true" selection-start-line="257" selection-start-column="5" selection-end-line="257" selection-end-column="5" />
+                <state relative-caret-position="-3881">
+                  <caret line="69" column="34" selection-start-line="69" selection-start-column="34" selection-end-line="69" selection-end-column="34" />
                   <folding>
-                    <element signature="e#780#813#0" expanded="true" />
+                    <element signature="e#716#749#0" expanded="true" />
+                    <element signature="e#1216#1217#0" expanded="true" />
+                    <element signature="e#1239#1240#0" expanded="true" />
+                    <element signature="e#6924#6925#0" expanded="true" />
+                    <element signature="e#6944#6945#0" expanded="true" />
+                    <element signature="e#7205#7206#0" expanded="true" />
+                    <element signature="e#7241#7242#0" expanded="true" />
+                    <element signature="e#12453#12454#0" expanded="true" />
+                    <element signature="e#12482#12483#0" expanded="true" />
+                    <element signature="e#12696#12697#0" expanded="true" />
+                    <element signature="e#12721#12722#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="AngleFormatterTest.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="AngularSpeedTest.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/AngularSpeedTest.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="236">
+                  <caret line="593" column="32" lean-forward="true" selection-start-line="593" selection-start-column="32" selection-end-line="593" selection-end-column="32" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="AngularSpeedFormatter.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/AngularSpeedFormatter.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="131">
+                  <caret line="129" column="33" selection-start-line="129" selection-start-column="18" selection-end-line="129" selection-end-column="33" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#726#759#0" expanded="true" />
+                    <element signature="e#1165#1166#0" expanded="true" />
+                    <element signature="e#1188#1189#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="AngleFormatterTest.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/AngleFormatterTest.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="316">
-                  <caret line="661" column="41" selection-start-line="661" selection-start-column="41" selection-end-line="661" selection-end-column="41" />
+                <state relative-caret-position="141">
+                  <caret line="579" column="5" lean-forward="true" selection-start-line="317" selection-end-line="579" selection-end-column="5" />
                   <folding>
-                    <element signature="e#0#702#0" expanded="true" />
                     <element signature="imports" expanded="true" />
                     <element signature="method#testParseDegreesAndMinutes#0;class#AngleFormatterTest#0" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="AngularSpeedFormatterTest.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/AngularSpeedFormatterTest.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="210">
+                  <caret line="28" column="40" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -58,95 +107,8 @@
           <file leaf-file-name="MeasureFormatter.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/MeasureFormatter.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="141">
-                  <caret line="152" column="24" selection-start-line="152" selection-start-column="24" selection-end-line="152" selection-end-column="24" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="AngleTest.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/AngleTest.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="240">
-                  <caret line="30" column="16" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="AngleFormatter.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/AngleFormatter.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="274">
-                  <caret line="60" column="17" selection-start-line="60" selection-start-column="17" selection-end-line="60" selection-end-column="17" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#718#751#0" expanded="true" />
-                    <element signature="e#1069#1070#0" expanded="true" />
-                    <element signature="e#1092#1093#0" expanded="true" />
-                    <element signature="e#3956#3957#0" expanded="true" />
-                    <element signature="e#3998#3999#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="TimeFormatterTest.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/TimeFormatterTest.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-2625">
-                  <caret line="30" column="45" lean-forward="true" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="45" />
-                  <folding>
-                    <element signature="e#989#1019#0" />
-                    <element signature="e#1025#1077#0" />
-                    <element signature="e#1083#1137#0" />
-                    <element signature="e#1143#1178#0" />
-                    <element signature="e#1184#1221#0" />
-                    <element signature="e#1227#4128#0" />
-                    <element signature="e#4134#4741#0" />
-                    <element signature="e#4747#5282#0" />
-                    <element signature="e#5288#5749#0" />
-                    <element signature="e#5755#7395#0" />
-                    <element signature="e#7401#10398#0" />
-                    <element signature="e#10404#11820#0" />
-                    <element signature="e#11826#14375#0" />
-                    <element signature="e#14381#15935#0" />
-                    <element signature="e#15941#18628#0" />
-                    <element signature="e#18634#20108#0" />
-                    <element signature="e#20114#21412#0" />
-                    <element signature="e#21418#22824#0" />
-                    <element signature="e#22830#24383#0" />
-                    <element signature="e#24389#25766#0" />
-                    <element signature="e#25772#27257#0" />
-                    <element signature="e#27263#27454#0" />
-                    <element signature="e#27460#27874#0" />
-                    <element signature="e#27880#28289#0" />
-                    <element signature="e#28295#28709#0" />
-                    <element signature="e#28715#29124#0" />
-                    <element signature="e#29130#29545#0" />
-                    <element signature="e#29551#30001#0" />
-                    <element signature="e#30007#30485#0" />
-                    <element signature="e#30491#31170#0" />
-                    <element signature="e#31176#31536#0" />
-                    <element signature="e#31542#32293#0" />
-                    <element signature="e#32299#33660#0" />
-                    <element signature="e#33666#34637#0" />
-                    <element signature="e#34643#35713#0" />
-                    <element signature="e#35719#38730#0" />
-                    <element signature="e#38736#40121#0" />
-                    <element signature="e#40127#41441#0" />
-                    <element signature="e#44066#45391#0" />
-                    <element signature="e#45397#47553#0" />
-                    <element signature="e#47559#53288#0" />
-                    <element signature="e#53294#59952#0" />
-                    <element signature="e#59958#68948#0" />
-                  </folding>
+                <state relative-caret-position="139">
+                  <caret line="264" column="27" selection-start-line="264" selection-start-column="27" selection-end-line="264" selection-end-column="27" />
                 </state>
               </provider>
             </entry>
@@ -184,11 +146,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/s3-settings.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/BuildInfo.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/irurueta/BuildInfoTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/BuildInfoTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/UnitsException.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/SurfaceFormatterTest.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/FrequencyUnit.java" />
@@ -226,13 +183,20 @@
         <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/SpeedFormatterTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/AccelerationFormatterTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/DistanceUnit.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/AngleUnit.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/Angle.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/AngleConverter.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/AngleConverterTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/AngleTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/AngleFormatter.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/AngleFormatterTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/AngleUnit.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/AngularSpeedUnit.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/AngularSpeedConverter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/Angle.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/AngularSpeedFormatter.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/AngularSpeedConverterTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/AngularSpeed.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/AngleTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/AngularSpeedTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/AngularSpeedFormatterTest.java" />
       </list>
     </option>
   </component>
@@ -305,14 +269,6 @@
               <item name="units" type="b2602c69:ProjectViewProjectNode" />
               <item name="irurueta-units" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="units" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="units" type="b2602c69:ProjectViewProjectNode" />
-              <item name="irurueta-units" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -368,35 +324,12 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.AngleFormatterTest">
+  <component name="RunManager" selected="JUnit.com.irurueta.units in irurueta-units">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-    </configuration>
-    <configuration name="AngleConverterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="irurueta-units" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.irurueta.units.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.irurueta.units" />
-      <option name="MAIN_CLASS_NAME" value="com.irurueta.units.AngleConverterTest" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
     </configuration>
     <configuration name="AngleFormatterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="irurueta-units" />
@@ -421,7 +354,7 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="AngleFormatterTest.testFormatDegreesAndMinutes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AngularSpeedConverterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="irurueta-units" />
       <extension name="coverage">
         <pattern>
@@ -432,9 +365,9 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.irurueta.units" />
-      <option name="MAIN_CLASS_NAME" value="com.irurueta.units.AngleFormatterTest" />
-      <option name="METHOD_NAME" value="testFormatDegreesAndMinutes" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="com.irurueta.units.AngularSpeedConverterTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
@@ -444,7 +377,7 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="AngleFormatterTest.testFormatDegreesMinutesAndSeconds" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AngularSpeedFormatterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="irurueta-units" />
       <extension name="coverage">
         <pattern>
@@ -455,9 +388,9 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.irurueta.units" />
-      <option name="MAIN_CLASS_NAME" value="com.irurueta.units.AngleFormatterTest" />
-      <option name="METHOD_NAME" value="testFormatDegreesMinutesAndSeconds" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="com.irurueta.units.AngularSpeedFormatterTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
@@ -467,7 +400,7 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="AngleTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AngularSpeedTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="irurueta-units" />
       <extension name="coverage">
         <pattern>
@@ -478,7 +411,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.irurueta.units" />
-      <option name="MAIN_CLASS_NAME" value="com.irurueta.units.AngleTest" />
+      <option name="MAIN_CLASS_NAME" value="com.irurueta.units.AngularSpeedTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -497,6 +430,29 @@
       <option name="MAIN_CLASS_NAME" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="com.irurueta.units in irurueta-units" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="irurueta-units" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.irurueta.units.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.irurueta.units" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="package" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
@@ -542,19 +498,19 @@
       <predefined_log_file id="idea.log" enabled="true" />
     </configuration>
     <list>
-      <item itemvalue="JUnit.AngleConverterTest" />
-      <item itemvalue="JUnit.AngleTest" />
       <item itemvalue="JUnit.AngleFormatterTest" />
-      <item itemvalue="JUnit.AngleFormatterTest.testFormatDegreesAndMinutes" />
-      <item itemvalue="JUnit.AngleFormatterTest.testFormatDegreesMinutesAndSeconds" />
+      <item itemvalue="JUnit.AngularSpeedConverterTest" />
+      <item itemvalue="JUnit.AngularSpeedTest" />
+      <item itemvalue="JUnit.AngularSpeedFormatterTest" />
+      <item itemvalue="JUnit.com.irurueta.units in irurueta-units" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.com.irurueta.units in irurueta-units" />
+        <item itemvalue="JUnit.AngularSpeedFormatterTest" />
+        <item itemvalue="JUnit.AngularSpeedTest" />
+        <item itemvalue="JUnit.AngularSpeedConverterTest" />
         <item itemvalue="JUnit.AngleFormatterTest" />
-        <item itemvalue="JUnit.AngleFormatterTest.testFormatDegreesMinutesAndSeconds" />
-        <item itemvalue="JUnit.AngleFormatterTest.testFormatDegreesAndMinutes" />
-        <item itemvalue="JUnit.AngleTest" />
-        <item itemvalue="JUnit.AngleConverterTest" />
       </list>
     </recent_temporary>
   </component>
@@ -589,44 +545,44 @@
       <workItem from="1533157514581" duration="3294000" />
       <workItem from="1533229997180" duration="356000" />
       <workItem from="1533244572996" duration="3510000" />
-      <workItem from="1533329200703" duration="6471000" />
+      <workItem from="1533329200703" duration="19755000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="AngleFormatterTest - 2018.08.04 at 00h 18m 01s.xml">
-      <configuration name="AngleFormatterTest" configurationId="JUnit" />
+    <history-entry file="AngularSpeedTest - 2018.08.04 at 13h 35m 28s.xml">
+      <configuration name="AngularSpeedTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="AngleFormatterTest_testFormatDegreesMinutesAndSeconds - 2018.08.04 at 00h 18m 29s.xml">
-      <configuration name="AngleFormatterTest.testFormatDegreesMinutesAndSeconds" configurationId="JUnit" />
+    <history-entry file="AngularSpeedTest - 2018.08.04 at 13h 53m 56s.xml">
+      <configuration name="AngularSpeedTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="AngleFormatterTest_testFormatDegreesMinutesAndSeconds - 2018.08.04 at 00h 23m 39s.xml">
-      <configuration name="AngleFormatterTest.testFormatDegreesMinutesAndSeconds" configurationId="JUnit" />
+    <history-entry file="AngularSpeedTest - 2018.08.04 at 15h 03m 14s.xml">
+      <configuration name="AngularSpeedTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="AngleFormatterTest - 2018.08.04 at 00h 24m 15s.xml">
-      <configuration name="AngleFormatterTest" configurationId="JUnit" />
+    <history-entry file="AngularSpeedFormatterTest - 2018.08.04 at 15h 16m 34s.xml">
+      <configuration name="AngularSpeedFormatterTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="AngleFormatterTest - 2018.08.04 at 00h 24m 31s.xml">
-      <configuration name="AngleFormatterTest" configurationId="JUnit" />
+    <history-entry file="AngularSpeedFormatterTest - 2018.08.04 at 15h 25m 17s.xml">
+      <configuration name="AngularSpeedFormatterTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="AngleFormatterTest - 2018.08.04 at 00h 27m 36s.xml">
-      <configuration name="AngleFormatterTest" configurationId="JUnit" />
+    <history-entry file="AngularSpeedFormatterTest - 2018.08.04 at 15h 26m 46s.xml">
+      <configuration name="AngularSpeedFormatterTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="AngleFormatterTest - 2018.08.04 at 00h 29m 19s.xml">
-      <configuration name="AngleFormatterTest" configurationId="JUnit" />
+    <history-entry file="AngularSpeedFormatterTest - 2018.08.04 at 15h 30m 15s.xml">
+      <configuration name="AngularSpeedFormatterTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="AngleFormatterTest - 2018.08.04 at 00h 30m 10s.xml">
-      <configuration name="AngleFormatterTest" configurationId="JUnit" />
+    <history-entry file="AngularSpeedFormatterTest - 2018.08.04 at 15h 38m 28s.xml">
+      <configuration name="AngularSpeedFormatterTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="AngleFormatterTest - 2018.08.04 at 00h 32m 35s.xml">
-      <configuration name="AngleFormatterTest" configurationId="JUnit" />
+    <history-entry file="AngularSpeedFormatterTest - 2018.08.04 at 15h 49m 04s.xml">
+      <configuration name="AngularSpeedFormatterTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="AngleFormatterTest - 2018.08.04 at 00h 34m 38s.xml">
-      <configuration name="AngleFormatterTest" configurationId="JUnit" />
+    <history-entry file="AngularSpeedFormatterTest - 2018.08.04 at 15h 50m 13s.xml">
+      <configuration name="AngularSpeedFormatterTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100380000" />
+    <option name="totallyTimeSpent" value="113664000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="47" width="1431" height="803" extended-state="0" />
@@ -670,59 +626,10 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="46" />
+      <option name="time" value="64" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/TimeConverter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1230">
-          <caret line="98" column="4" selection-start-line="98" selection-start-column="4" selection-end-line="98" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/TimeUnitTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1206">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/TimeTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="562" lean-forward="true" selection-start-line="562" selection-end-line="562" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="4" column="47" selection-start-line="4" selection-start-column="47" selection-end-line="4" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/FrequencyTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="19" lean-forward="true" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/FrequencyConverter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="80" column="56" lean-forward="true" selection-start-line="80" selection-start-column="56" selection-end-line="80" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/FrequencyUnit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="20" column="12" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/FrequencyFormatterTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
@@ -905,13 +812,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home/src.zip!/java/lang/Math.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="541">
-          <caret line="440" column="25" selection-start-line="440" selection-start-column="25" selection-end-line="440" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/DistanceConverter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -919,24 +819,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/DistanceUnit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="626">
-          <caret line="101" column="28" selection-start-line="101" selection-start-column="28" selection-end-line="101" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/DistanceConverterTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="86">
           <caret line="421" column="71" selection-start-line="421" selection-start-column="52" selection-end-line="421" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/AngleConverterTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="727" column="23" lean-forward="true" selection-start-line="727" selection-start-column="23" selection-end-line="727" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -966,51 +852,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/Angle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="65" column="5" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/AngleTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="30" column="16" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/AngleUnit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/TimeFormatter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
           <caret line="733" column="70" selection-start-line="733" selection-start-column="70" selection-end-line="733" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/DistanceFormatter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="257" column="5" lean-forward="true" selection-start-line="257" selection-start-column="5" selection-end-line="257" selection-end-column="5" />
-          <folding>
-            <element signature="e#780#813#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/MeasureFormatter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="152" column="24" selection-start-line="152" selection-start-column="24" selection-end-line="152" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -1061,13 +906,6 @@
             <element signature="method#testFindUnit#0;class#DistanceFormatterTest#0" />
             <element signature="method#testGetUnitSymbol#0;class#DistanceFormatterTest#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/AngleConverter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="310" column="28" lean-forward="true" selection-start-line="310" selection-start-column="28" selection-end-line="310" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -1123,29 +961,216 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/DistanceFormatter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="260" column="28" lean-forward="true" selection-start-line="260" selection-start-column="28" selection-end-line="260" selection-end-column="28" />
+          <folding>
+            <element signature="e#780#813#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/DistanceUnit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="17" column="3" lean-forward="true" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/AngleUnit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="23" column="7" lean-forward="true" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home/src.zip!/java/lang/Math.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="234" column="25" selection-start-line="234" selection-start-column="25" selection-end-line="234" selection-end-column="25" />
+          <folding>
+            <element signature="e#9016#9017#0" expanded="true" />
+            <element signature="e#9058#9059#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/AngleConverter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3874">
+          <caret line="123" column="33" lean-forward="true" selection-start-line="123" selection-start-column="33" selection-end-line="123" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/AngularSpeedUnit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="23" column="7" lean-forward="true" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/AngleFormatter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="60" column="17" selection-start-line="60" selection-start-column="17" selection-end-line="60" selection-end-column="17" />
+        <state relative-caret-position="-1572">
+          <caret line="64" column="7" lean-forward="true" selection-start-line="64" selection-start-column="7" selection-end-line="64" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#718#751#0" expanded="true" />
-            <element signature="e#1069#1070#0" expanded="true" />
-            <element signature="e#1092#1093#0" expanded="true" />
-            <element signature="e#3956#3957#0" expanded="true" />
-            <element signature="e#3998#3999#0" expanded="true" />
+            <element signature="e#5050#5051#0" expanded="true" />
+            <element signature="e#5092#5093#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/AngleConverterTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2344">
+          <caret line="24" column="11" lean-forward="true" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#testToDegreesAndMinutes1#0;class#AngleConverterTest#0" />
+            <element signature="method#testToDegreesAndMinutes2#0;class#AngleConverterTest#0" />
+            <element signature="method#testToDegreesAndMinutes3#0;class#AngleConverterTest#0" />
+            <element signature="method#testToDegreesAndMinutes4#0;class#AngleConverterTest#0" />
+            <element signature="method#testToDegreesAndMinutes5#0;class#AngleConverterTest#0" />
+            <element signature="method#testToDegreesAndMinutes6#0;class#AngleConverterTest#0" />
+            <element signature="method#testFromDegreesAndMinutes1#0;class#AngleConverterTest#0" />
+            <element signature="method#testFromDegreesAndMinutes2#0;class#AngleConverterTest#0" />
+            <element signature="method#testFromDegreesAndMinutesAndReturnNew#0;class#AngleConverterTest#0" />
+            <element signature="method#testToDegreesMinutesAndSeconds1#0;class#AngleConverterTest#0" />
+            <element signature="method#testToDegreesMinutesAndSeconds2#0;class#AngleConverterTest#0" />
+            <element signature="method#testToDegreesMinutesAndSeconds3#0;class#AngleConverterTest#0" />
+            <element signature="method#testToDegreesMinutesAndSeconds4#0;class#AngleConverterTest#0" />
+            <element signature="method#testToDegreesMinutesAndSeconds5#0;class#AngleConverterTest#0" />
+            <element signature="method#testToDegreesMinutesAndSeconds6#0;class#AngleConverterTest#0" />
+            <element signature="method#testFromDegreesMinutesAndSeconds1#0;class#AngleConverterTest#0" />
+            <element signature="method#testFromDegreesMinutesAndSeconds2#0;class#AngleConverterTest#0" />
+            <element signature="method#testFromDegreesMinutesAndSecondsAndReturnNew#0;class#AngleConverterTest#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/AngularSpeedConverterTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="521">
+          <caret line="180" column="46" selection-start-line="180" selection-start-column="46" selection-end-line="180" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/AngularSpeedConverter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="114" column="32" selection-start-line="114" selection-start-column="32" selection-end-line="114" selection-end-column="32" />
+          <folding>
+            <element signature="e#856#889#0" expanded="true" />
+            <element signature="e#1380#1381#0" expanded="true" />
+            <element signature="e#1404#1405#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/Angle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3856">
+          <caret line="305" column="23" selection-start-line="305" selection-start-column="23" selection-end-line="305" selection-end-column="23" />
+          <folding>
+            <element signature="e#738#771#0" expanded="true" />
+            <element signature="e#5737#5738#0" expanded="true" />
+            <element signature="e#5790#5791#0" expanded="true" />
+            <element signature="e#6022#6023#0" expanded="true" />
+            <element signature="e#6098#6099#0" expanded="true" />
+            <element signature="e#6330#6331#0" expanded="true" />
+            <element signature="e#6406#6407#0" expanded="true" />
+            <element signature="e#6551#6552#0" expanded="true" />
+            <element signature="e#6589#6590#0" expanded="true" />
+            <element signature="e#6815#6816#0" expanded="true" />
+            <element signature="e#6851#6852#0" expanded="true" />
+            <element signature="e#10684#10685#0" expanded="true" />
+            <element signature="e#10742#10743#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/AngularSpeed.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3881">
+          <caret line="69" column="34" selection-start-line="69" selection-start-column="34" selection-end-line="69" selection-end-column="34" />
+          <folding>
+            <element signature="e#716#749#0" expanded="true" />
+            <element signature="e#1216#1217#0" expanded="true" />
+            <element signature="e#1239#1240#0" expanded="true" />
+            <element signature="e#6924#6925#0" expanded="true" />
+            <element signature="e#6944#6945#0" expanded="true" />
+            <element signature="e#7205#7206#0" expanded="true" />
+            <element signature="e#7241#7242#0" expanded="true" />
+            <element signature="e#12453#12454#0" expanded="true" />
+            <element signature="e#12482#12483#0" expanded="true" />
+            <element signature="e#12696#12697#0" expanded="true" />
+            <element signature="e#12721#12722#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/AngularSpeedTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="593" column="32" lean-forward="true" selection-start-line="593" selection-start-column="32" selection-end-line="593" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/AngleTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="563" column="5" lean-forward="true" selection-start-line="563" selection-start-column="5" selection-end-line="563" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/AngleFormatterTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="661" column="41" selection-start-line="661" selection-start-column="41" selection-end-line="661" selection-end-column="41" />
+        <state relative-caret-position="141">
+          <caret line="579" column="5" lean-forward="true" selection-start-line="317" selection-end-line="579" selection-end-column="5" />
           <folding>
-            <element signature="e#0#702#0" expanded="true" />
             <element signature="imports" expanded="true" />
             <element signature="method#testParseDegreesAndMinutes#0;class#AngleFormatterTest#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/MeasureFormatter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="264" column="27" selection-start-line="264" selection-start-column="27" selection-end-line="264" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/AngularSpeedFormatter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="129" column="33" selection-start-line="129" selection-start-column="18" selection-end-line="129" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#726#759#0" expanded="true" />
+            <element signature="e#1165#1166#0" expanded="true" />
+            <element signature="e#1188#1189#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/AngularSpeedFormatterTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="28" column="40" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

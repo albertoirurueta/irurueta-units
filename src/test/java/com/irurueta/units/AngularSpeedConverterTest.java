@@ -143,7 +143,7 @@ public class AngularSpeedConverterTest {
     }
 
     @Test
-    public void testConvertAndReturnNewAngle() {
+    public void testConvertAndReturnNewAngularSpeed() {
         double value = new Random().nextDouble();
         AngularSpeed input = new AngularSpeed(value,
                 AngularSpeedUnit.DEGREES_PER_SECOND);

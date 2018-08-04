@@ -134,7 +134,7 @@ public class AngularSpeedFormatter extends
 
     /**
      * Returns unit string representation.
-     * @param unit an angualr speed unit.
+     * @param unit an angular speed unit.
      * @return its string representation.
      */
     @Override

@@ -64,7 +64,7 @@ public class AngularSpeedConverter {
     }
 
     /**
-     * Converts and angular speed to requested output unit.
+     * Converts an angular speed to requested output unit.
      * @param input input angular speed to be converted.
      * @param outputUnit requested output unit.
      * @param result angular speed instance where result will be stored.
@@ -110,7 +110,7 @@ public class AngularSpeedConverter {
                 break;
         }
 
-        //convert from radians to required output unit
+        //convert from radians per second to required output unit
         switch (outputUnit) {
             case DEGREES_PER_SECOND:
                 return Math.toDegrees(radiansPerSecond);

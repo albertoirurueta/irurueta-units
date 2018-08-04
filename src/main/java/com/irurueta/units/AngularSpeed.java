@@ -67,7 +67,7 @@ public class AngularSpeed extends Measurement<AngularSpeedUnit> {
     }
 
     /**
-     * Adds two angular values and units and returns the result.
+     * Adds two angular speed values and units and returns the result.
      * @param value1 1st argument value.
      * @param unit1 1st argument unit.
      * @param value2 2nd argument value.
@@ -84,7 +84,7 @@ public class AngularSpeed extends Measurement<AngularSpeedUnit> {
     }
 
     /**
-     * Adds two angular values and unit and returns the result.
+     * Adds two angular acceleration values and units and returns the result.
      * @param value1 1st argument value.
      * @param unit1 1st argument unit.
      * @param value2 2nd argument value.
@@ -100,7 +100,7 @@ public class AngularSpeed extends Measurement<AngularSpeedUnit> {
     }
 
     /**
-     * Adds two angular speed and stores the result into provided instance.
+     * Adds two angular speeds and stores the result into provided instance.
      * @param arg1 1st argument.
      * @param arg2 2nd argument.
      * @param result instance where result will be stored.
@@ -183,7 +183,7 @@ public class AngularSpeed extends Measurement<AngularSpeedUnit> {
      * Adds provided angular speed value and unit and updates current angular speed
      * instance.
      * @param value angular speed value to be added.
-     * @param unit unit of angular value.
+     * @param unit unit of angular speed value.
      */
     public void add(Number value, AngularSpeedUnit unit) {
         setValue(add(getValue(), getUnit(), value, unit, getUnit()));

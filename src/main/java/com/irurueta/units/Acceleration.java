@@ -20,6 +20,7 @@ import java.math.BigDecimal;
 /**
  * Contains an acceleration value and unit.
  */
+@SuppressWarnings("WeakerAccess")
 public class Acceleration extends Measurement<AccelerationUnit> {
 
     /**

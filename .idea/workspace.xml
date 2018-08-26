@@ -5,11 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/irurueta/units/build-info.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/irurueta/units/build-info.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/java-basic.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/java-empty.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/java-imports.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/java-unnecessary.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/java-unusedcode.xml" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -25,8 +20,8 @@
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="24" lean-forward="true" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+            <state relative-caret-position="330">
+              <caret line="22" column="47" lean-forward="true" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -147,7 +142,7 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="297" />
+    <option name="x" value="9" />
     <option name="y" value="23" />
     <option name="width" value="1431" />
     <option name="height" value="803" />
@@ -187,6 +182,29 @@
               <item name="units" type="b2602c69:ProjectViewProjectNode" />
               <item name="irurueta-units" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="units" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="units" type="b2602c69:ProjectViewProjectNode" />
+              <item name="irurueta-units" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="units" type="b2602c69:ProjectViewProjectNode" />
+              <item name="irurueta-units" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="units" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="units" type="b2602c69:ProjectViewProjectNode" />
+              <item name="irurueta-units" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -207,7 +225,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
@@ -455,7 +473,11 @@
       <workItem from="1533157514581" duration="3294000" />
       <workItem from="1533229997180" duration="356000" />
       <workItem from="1533244572996" duration="3510000" />
-      <workItem from="1533329200703" duration="34113000" />
+      <workItem from="1533329200703" duration="36819000" />
+      <workItem from="1533507348232" duration="447000" />
+      <workItem from="1534030432461" duration="472000" />
+      <workItem from="1534081836946" duration="707000" />
+      <workItem from="1534798236130" duration="131000" />
     </task>
     <servers />
   </component>
@@ -492,37 +514,37 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="128022000" />
+    <option name="totallyTimeSpent" value="132485000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="297" y="23" width="1431" height="803" extended-state="0" />
+    <frame x="9" y="23" width="1431" height="803" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.3286119" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" weight="0.32901368" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3286119" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2735781" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28077754" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.3286119" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -663,14 +685,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4515">
           <caret line="331" column="5" selection-start-line="331" selection-start-column="5" selection-end-line="331" selection-end-column="5" />
-          <folding>
-            <element signature="e#11107#11108#0" expanded="true" />
-            <element signature="e#11165#11166#0" expanded="true" />
-            <element signature="e#12029#12030#0" expanded="true" />
-            <element signature="e#12075#12076#0" expanded="true" />
-            <element signature="e#12338#12339#0" expanded="true" />
-            <element signature="e#12379#12380#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -678,10 +692,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="561" column="5" lean-forward="true" selection-start-line="561" selection-start-column="5" selection-end-line="561" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#testConstructor#0;class#DistanceTest#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -696,49 +706,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="244">
           <caret line="909" lean-forward="true" selection-start-line="909" selection-end-line="909" />
-          <folding>
-            <element signature="method#DistanceFormatterTest#0;class#DistanceFormatterTest#0" />
-            <element signature="method#setUpClass#0;class#DistanceFormatterTest#0" />
-            <element signature="method#tearDownClass#0;class#DistanceFormatterTest#0" />
-            <element signature="method#setUp#0;class#DistanceFormatterTest#0" />
-            <element signature="method#tearDown#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testConstructor#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testClone#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testEquals#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testHashCode#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testFormatNumber#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testFormatNumberAndStringBuffer#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testFormatDouble#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testFormatDoubleAndStringBuffer#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testFormatDistance#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testFormatDistanceAndStringBuffer#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testFormatAndConvertNumber#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testFormatAndConvertDouble#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testFormatAndConvertDistance#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testFormatAnConvertNumberAndUnitSystem#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testFormatAndConvertDoubleAndUnitSystem#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testFormatAndConvertDistanceAndUnitSystem#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testFormatAndConvertMetric#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testFormatAndConvertImperial#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testGetAvailableLocales#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testGetSetMaximumFractionDigits#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testGetSetMaximumIntegerDigits#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testGetSetMinimumFractionDigits#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testGetSetMinimumIntegerDigits#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testGetSetRoundingMode#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testIsSetGroupingUsed#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testIsSetParseIntegerOnly#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testGetSetValueAndUnitFormatPattern#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testGetUnitSystem#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testIsValidUnit#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testIsValidMeasurement#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testIsMetricUnit#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testIsImperialUnit#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testGetUnitSystemFromSource#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testParse#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testFindUnit#0;class#DistanceFormatterTest#0" />
-            <element signature="method#testGetUnitSymbol#0;class#DistanceFormatterTest#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -746,51 +713,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2625">
           <caret line="30" column="45" lean-forward="true" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="45" />
-          <folding>
-            <element signature="e#989#1019#0" />
-            <element signature="e#1025#1077#0" />
-            <element signature="e#1083#1137#0" />
-            <element signature="e#1143#1178#0" />
-            <element signature="e#1184#1221#0" />
-            <element signature="e#1227#4128#0" />
-            <element signature="e#4134#4741#0" />
-            <element signature="e#4747#5282#0" />
-            <element signature="e#5288#5749#0" />
-            <element signature="e#5755#7395#0" />
-            <element signature="e#7401#10398#0" />
-            <element signature="e#10404#11820#0" />
-            <element signature="e#11826#14375#0" />
-            <element signature="e#14381#15935#0" />
-            <element signature="e#15941#18628#0" />
-            <element signature="e#18634#20108#0" />
-            <element signature="e#20114#21412#0" />
-            <element signature="e#21418#22824#0" />
-            <element signature="e#22830#24383#0" />
-            <element signature="e#24389#25766#0" />
-            <element signature="e#25772#27257#0" />
-            <element signature="e#27263#27454#0" />
-            <element signature="e#27460#27874#0" />
-            <element signature="e#27880#28289#0" />
-            <element signature="e#28295#28709#0" />
-            <element signature="e#28715#29124#0" />
-            <element signature="e#29130#29545#0" />
-            <element signature="e#29551#30001#0" />
-            <element signature="e#30007#30485#0" />
-            <element signature="e#30491#31170#0" />
-            <element signature="e#31176#31536#0" />
-            <element signature="e#31542#32293#0" />
-            <element signature="e#32299#33660#0" />
-            <element signature="e#33666#34637#0" />
-            <element signature="e#34643#35713#0" />
-            <element signature="e#35719#38730#0" />
-            <element signature="e#38736#40121#0" />
-            <element signature="e#40127#41441#0" />
-            <element signature="e#44066#45391#0" />
-            <element signature="e#45397#47553#0" />
-            <element signature="e#47559#53288#0" />
-            <element signature="e#53294#59952#0" />
-            <element signature="e#59958#68948#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -798,9 +720,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
           <caret line="260" column="28" lean-forward="true" selection-start-line="260" selection-start-column="28" selection-end-line="260" selection-end-column="28" />
-          <folding>
-            <element signature="e#780#813#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -822,10 +741,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="513">
           <caret line="234" column="25" selection-start-line="234" selection-start-column="25" selection-end-line="234" selection-end-column="25" />
-          <folding>
-            <element signature="e#9016#9017#0" expanded="true" />
-            <element signature="e#9058#9059#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -840,11 +755,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1572">
           <caret line="64" column="7" lean-forward="true" selection-start-line="64" selection-start-column="7" selection-end-line="64" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5050#5051#0" expanded="true" />
-            <element signature="e#5092#5093#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -852,27 +762,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2344">
           <caret line="24" column="11" lean-forward="true" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#testToDegreesAndMinutes1#0;class#AngleConverterTest#0" />
-            <element signature="method#testToDegreesAndMinutes2#0;class#AngleConverterTest#0" />
-            <element signature="method#testToDegreesAndMinutes3#0;class#AngleConverterTest#0" />
-            <element signature="method#testToDegreesAndMinutes4#0;class#AngleConverterTest#0" />
-            <element signature="method#testToDegreesAndMinutes5#0;class#AngleConverterTest#0" />
-            <element signature="method#testToDegreesAndMinutes6#0;class#AngleConverterTest#0" />
-            <element signature="method#testFromDegreesAndMinutes1#0;class#AngleConverterTest#0" />
-            <element signature="method#testFromDegreesAndMinutes2#0;class#AngleConverterTest#0" />
-            <element signature="method#testFromDegreesAndMinutesAndReturnNew#0;class#AngleConverterTest#0" />
-            <element signature="method#testToDegreesMinutesAndSeconds1#0;class#AngleConverterTest#0" />
-            <element signature="method#testToDegreesMinutesAndSeconds2#0;class#AngleConverterTest#0" />
-            <element signature="method#testToDegreesMinutesAndSeconds3#0;class#AngleConverterTest#0" />
-            <element signature="method#testToDegreesMinutesAndSeconds4#0;class#AngleConverterTest#0" />
-            <element signature="method#testToDegreesMinutesAndSeconds5#0;class#AngleConverterTest#0" />
-            <element signature="method#testToDegreesMinutesAndSeconds6#0;class#AngleConverterTest#0" />
-            <element signature="method#testFromDegreesMinutesAndSeconds1#0;class#AngleConverterTest#0" />
-            <element signature="method#testFromDegreesMinutesAndSeconds2#0;class#AngleConverterTest#0" />
-            <element signature="method#testFromDegreesMinutesAndSecondsAndReturnNew#0;class#AngleConverterTest#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -880,21 +769,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3856">
           <caret line="305" column="23" selection-start-line="305" selection-start-column="23" selection-end-line="305" selection-end-column="23" />
-          <folding>
-            <element signature="e#738#771#0" expanded="true" />
-            <element signature="e#5737#5738#0" expanded="true" />
-            <element signature="e#5790#5791#0" expanded="true" />
-            <element signature="e#6022#6023#0" expanded="true" />
-            <element signature="e#6098#6099#0" expanded="true" />
-            <element signature="e#6330#6331#0" expanded="true" />
-            <element signature="e#6406#6407#0" expanded="true" />
-            <element signature="e#6551#6552#0" expanded="true" />
-            <element signature="e#6589#6590#0" expanded="true" />
-            <element signature="e#6815#6816#0" expanded="true" />
-            <element signature="e#6851#6852#0" expanded="true" />
-            <element signature="e#10684#10685#0" expanded="true" />
-            <element signature="e#10742#10743#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -902,9 +776,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="563" column="5" lean-forward="true" selection-start-line="563" selection-start-column="5" selection-end-line="563" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -912,10 +783,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="141">
           <caret line="579" column="5" lean-forward="true" selection-start-line="317" selection-end-line="579" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#testParseDegreesAndMinutes#0;class#AngleFormatterTest#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -944,10 +811,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1819">
           <caret line="185" column="41" selection-start-line="185" selection-start-column="41" selection-end-line="185" selection-end-column="41" />
-          <folding>
-            <element signature="e#7241#7242#0" expanded="true" />
-            <element signature="e#7275#7276#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -962,10 +825,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="163">
           <caret line="105" column="22" lean-forward="true" selection-start-line="105" selection-start-column="22" selection-end-line="105" selection-end-column="22" />
-          <folding>
-            <element signature="e#1410#1411#0" expanded="true" />
-            <element signature="e#1466#1467#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -973,9 +832,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="121" column="9" lean-forward="true" selection-start-line="121" selection-start-column="9" selection-end-line="121" selection-end-column="9" />
-          <folding>
-            <element signature="e#870#903#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -997,11 +853,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7">
           <caret line="145" column="51" selection-start-line="145" selection-start-column="51" selection-end-line="145" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#testConstructor#0;class#AngularSpeedConverterTest#0" />
-            <element signature="method#testRadiansPerSecondDegreesPerSecond#0;class#AngularSpeedConverterTest#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1009,9 +860,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="521">
           <caret line="184" column="46" selection-start-line="184" selection-start-column="46" selection-end-line="184" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1019,19 +867,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="236">
           <caret line="321" column="22" selection-start-line="321" selection-start-column="22" selection-end-line="321" selection-end-column="22" />
-          <folding>
-            <element signature="e#723#756#0" expanded="true" />
-            <element signature="e#1272#1273#0" expanded="true" />
-            <element signature="e#1295#1296#0" expanded="true" />
-            <element signature="e#7614#7615#0" expanded="true" />
-            <element signature="e#7648#7649#0" expanded="true" />
-            <element signature="e#7884#7885#0" expanded="true" />
-            <element signature="e#7920#7921#0" expanded="true" />
-            <element signature="e#13540#13541#0" expanded="true" />
-            <element signature="e#13565#13566#0" expanded="true" />
-            <element signature="e#13818#13819#0" expanded="true" />
-            <element signature="e#13855#13856#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1039,9 +874,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-5704">
           <caret line="197" selection-start-line="194" selection-end-line="197" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1049,9 +881,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="521">
           <caret line="661" column="56" lean-forward="true" selection-start-line="661" selection-start-column="56" selection-end-line="661" selection-end-column="56" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1059,9 +888,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="323" column="12" selection-start-line="323" selection-start-column="12" selection-end-line="323" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1069,12 +895,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="31" column="64" lean-forward="true" selection-start-line="31" selection-start-column="64" selection-end-line="31" selection-end-column="65" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#733#766#0" expanded="true" />
-            <element signature="e#1242#1243#0" expanded="true" />
-            <element signature="e#1266#1267#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1082,9 +902,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="371">
           <caret line="602" lean-forward="true" selection-start-line="602" selection-end-line="602" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1092,16 +909,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="30" column="18" lean-forward="true" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="24" lean-forward="true" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+        <state relative-caret-position="330">
+          <caret line="22" column="47" lean-forward="true" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
         </state>
       </provider>
     </entry>

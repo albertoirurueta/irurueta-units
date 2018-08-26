@@ -113,7 +113,7 @@ mvn -s s3-settings.xml clean test site deploy site-deploy
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
-                        <version>3.0.1</version>
+                        <version>3.0.0</version>
                         <executions>
                             <execution>
                                 <id>attach-sources</id>
@@ -126,7 +126,7 @@ mvn -s s3-settings.xml clean test site deploy site-deploy
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.0.0</version>
+                        <version>2.10.3</version>
                         <executions>
                             <execution>
                                 <id>attach-javadocs</id>
@@ -152,18 +152,18 @@ mvn -s s3-settings.xml clean test site deploy site-deploy
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.0</version>
+                <version>2.20.1</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.22.0</version>
+                <version>2.20.1</version>
             </plugin>
             <!-- code coverage plugin -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.1</version>
+                <version>0.7.9</version>
                 <executions>
                     <execution>
                         <id>jacoco-initialize</id>
@@ -184,7 +184,7 @@ mvn -s s3-settings.xml clean test site deploy site-deploy
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>findbugs-maven-plugin</artifactId>
-                <version>3.0.5</version>
+                <version>3.0.3</version>
             </plugin>
             <!-- save build info into generated package -->
             <plugin>
@@ -228,6 +228,17 @@ mvn -s s3-settings.xml clean test site deploy site-deploy
                                 }
                                 if(branch == null){
                                     branch = System.getenv("TRAVIS_BRANCH");
+                                }
+
+                                //GITLAB
+                                if (buildNumber == null) {
+                                    buildNumber = System.getenv("CI_JOB_ID");
+                                }
+                                if (commit == null) {
+                                    commit = System.getenv("CI_COMMIT_SHA");
+                                }
+                                if (branch == null) {
+                                    branch = System.getenv("CI_COMMIT_REF_NAME");
                                 }
 
                                 def props = new Properties();
@@ -274,7 +285,7 @@ mvn -s s3-settings.xml clean test site deploy site-deploy
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.0.1</version>
+                <version>2.10.3</version>
                 <configuration>
                     <show>private</show>
                     <nohelp>true</nohelp>
@@ -287,19 +298,19 @@ mvn -s s3-settings.xml clean test site deploy site-deploy
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>2.22.0</version>
+                <version>2.19.1</version>
             </plugin>
             <!-- adds code coverage report into site -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.1</version>
+                <version>0.7.9</version>
             </plugin>
             <!-- adds code quality reports into site -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>2.17</version>
                 <configuration>
                     <configLocation>checkstyle.xml</configLocation>
                 </configuration>
@@ -315,12 +326,12 @@ mvn -s s3-settings.xml clean test site deploy site-deploy
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>findbugs-maven-plugin</artifactId>
-                <version>3.0.5</version>
+                <version>3.0.3</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
-                <version>3.10.0</version>
+                <version>3.6</version>
             </plugin>
             <!--
             adds cross reference into source for easier navigation of source in

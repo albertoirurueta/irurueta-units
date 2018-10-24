@@ -21,7 +21,7 @@ import java.util.Locale;
 /**
  * Formats and parses speed value and unit.
  */
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "Duplicates"})
 public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit>
         implements Cloneable {
 

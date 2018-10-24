@@ -28,6 +28,7 @@ import java.util.Locale;
  * @param <M> type of measurement (i.e. Distance or Surface).
  * @param <U> type of unit (i.e. DistanceUnit or SurfaceUnit).
  */
+@SuppressWarnings("WeakerAccess")
 public abstract class MeasureFormatter<M extends Measurement, U extends Enum> implements Cloneable {
 
     /**

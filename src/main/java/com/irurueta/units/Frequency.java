@@ -20,6 +20,7 @@ import java.math.BigDecimal;
 /**
  * Contains a frequency value and unit.
  */
+@SuppressWarnings("WeakerAccess")
 public class Frequency extends Measurement<FrequencyUnit> {
 
     /**

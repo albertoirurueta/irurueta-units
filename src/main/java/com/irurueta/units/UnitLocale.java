@@ -23,6 +23,7 @@ import java.util.Locale;
  * have the option to specify their own unit system if the applications requires
  * it.
  */
+@SuppressWarnings("WeakerAccess")
 public class UnitLocale {
 
     /**

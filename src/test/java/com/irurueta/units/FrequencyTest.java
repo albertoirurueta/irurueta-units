@@ -83,7 +83,7 @@ public class FrequencyTest {
         assertNotEquals(f1, f4);
 
         //noinespection all
-        assertFalse(f1.equals(null));
+        assertNotEquals(null, f1);
         //noinspection all
         assertFalse(f1.equals(new Object()));
     }

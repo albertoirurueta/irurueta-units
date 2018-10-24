@@ -28,6 +28,7 @@ import java.util.logging.Logger;
 /**
  * Contains build data of this library.
  */
+@SuppressWarnings("WeakerAccess")
 public class BuildInfo {
 
     /**

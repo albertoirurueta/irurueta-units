@@ -16,12 +16,12 @@
 package com.irurueta.units;
 
 import org.junit.*;
-import org.junit.internal.runners.ErrorReportingRunner;
 
 import java.math.BigDecimal;
 import java.util.Random;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class FrequencyConverterTest {
 

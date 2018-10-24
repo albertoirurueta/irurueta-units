@@ -21,7 +21,7 @@ import java.util.Locale;
 /**
  * Formats and parses surface value and unit.
  */
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "Duplicates"})
 public class SurfaceFormatter extends MeasureFormatter<Surface, SurfaceUnit> {
     /**
      * Square millimeter symbol.

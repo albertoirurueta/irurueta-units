@@ -84,7 +84,7 @@ public class SurfaceTest {
 
         //noinspection all
         assertFalse(s1.equals(null));
-        assertFalse(s1.equals(new Object()));
+        assertNotEquals(s1, new Object());
     }
 
     @Test

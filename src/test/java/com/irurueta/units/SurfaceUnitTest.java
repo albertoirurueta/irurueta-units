@@ -115,7 +115,7 @@ public class SurfaceUnitTest {
 
         //force IllegalArgumentException
         try {
-            SurfaceUnit.isMetric(null);
+            assertFalse(SurfaceUnit.isMetric(null));
             fail("IllegalArgumentException expected but not thrown");
         } catch (IllegalArgumentException ignore) { }
     }
@@ -138,7 +138,7 @@ public class SurfaceUnitTest {
 
         //force IllegalArgumentException
         try {
-            SurfaceUnit.isImperial(null);
+            assertFalse(SurfaceUnit.isImperial(null));
             fail("IllegalArgumentException expected but not thrown");
         } catch (IllegalArgumentException ignore) { }
     }

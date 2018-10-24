@@ -21,7 +21,7 @@ import java.util.Locale;
 /**
  * Formats and parses distance value and unit.
  */
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "Duplicates"})
 public class DistanceFormatter extends MeasureFormatter<Distance, DistanceUnit> implements Cloneable {
 
     /**

@@ -21,7 +21,7 @@ import java.util.Locale;
 /**
  * Formats and parses acceleration value and unit.
  */
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "Duplicates"})
 public class AccelerationFormatter extends
         MeasureFormatter<Acceleration, AccelerationUnit> implements Cloneable {
 

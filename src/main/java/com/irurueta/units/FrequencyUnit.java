@@ -42,5 +42,5 @@ public enum FrequencyUnit {
     /**
      * TeraHertz (THz).
      */
-    TERAHERTZ;
+    TERAHERTZ
 }

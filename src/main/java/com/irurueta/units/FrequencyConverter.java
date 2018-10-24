@@ -22,6 +22,7 @@ import java.math.BigDecimal;
  * To prevent loss of accuracy, conversion should only be done as a final step
  * before displaying frequency measurements.
  */
+@SuppressWarnings("WeakerAccess")
 public class FrequencyConverter {
 
     /**

@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="96d46074-172b-460f-b8b5-abc929169b19" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/checkstyle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/checkstyle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/irurueta/units/build-info.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/irurueta/units/build-info.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/irurueta/units/AngleConverterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/units/AngleConverterTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -17,31 +19,34 @@
     <session id="1269697072">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
-          <entry key="project.open.time.0" value="2" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.closed" value="4" />
+          <entry key="project.open.time.0" value="3" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="217" />
+          <entry key="java" value="222" />
           <entry key="xml" value="62" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="217" />
+          <entry key="JAVA" value="222" />
           <entry key="XML" value="62" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="82" />
+          <entry key="java" value="85" />
+          <entry key="xml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="82" />
+          <entry key="JAVA" value="85" />
+          <entry key="XML" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.spring.boot.run.usages" />
@@ -52,14 +57,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="270" column="70" selection-start-line="270" selection-start-column="70" selection-end-line="270" selection-end-column="70" />
-              <folding>
-                <element signature="e#33#54#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="300">
+              <caret line="20" column="16" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/checkstyle.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="197">
+              <caret line="62" column="24" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -81,6 +92,8 @@
       <find>parse</find>
       <find>formatAndConvert</find>
       <find>formatAndConver</find>
+      <find>AvoidStarImport</find>
+      <find>AngleConverterTest</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -96,7 +109,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/AccelerationUnit.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/AccelerationUnitTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/Speed.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/SpeedTest.java" />
@@ -106,7 +118,6 @@
         <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/AccelerationFormatterTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/DistanceUnit.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/AngleConverter.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/AngleConverterTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/AngleFormatter.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/AngleFormatterTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/AngleUnit.java" />
@@ -147,6 +158,8 @@
         <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/SurfaceTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/SurfaceUnitTest.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/checkstyle.xml" />
+        <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/AngleConverterTest.java" />
       </list>
     </option>
   </component>
@@ -180,7 +193,7 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="5" />
+    <option name="x" value="4" />
     <option name="y" value="23" />
     <option name="width" value="1431" />
     <option name="height" value="803" />
@@ -191,7 +204,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -210,67 +222,17 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="units" type="b2602c69:ProjectViewProjectNode" />
-              <item name="irurueta-units" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="units" type="b2602c69:ProjectViewProjectNode" />
-              <item name="irurueta-units" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="units" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="units" type="b2602c69:ProjectViewProjectNode" />
-              <item name="irurueta-units" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="units" type="b2602c69:ProjectViewProjectNode" />
-              <item name="irurueta-units" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="units" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="units" type="b2602c69:ProjectViewProjectNode" />
-              <item name="irurueta-units" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="units" type="b2602c69:ProjectViewProjectNode" />
-              <item name="irurueta-units" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="units" type="b2602c69:ProjectViewProjectNode" />
-              <item name="irurueta-units" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="units" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540399616411" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541859429763" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -298,7 +260,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.com.irurueta.units in irurueta-units">
+  <component name="RunManager" selected="JUnit.AngleConverterTest">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -307,6 +269,21 @@
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AngleConverterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="irurueta-units" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.irurueta.units.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.irurueta.units" />
+      <option name="MAIN_CLASS_NAME" value="com.irurueta.units.AngleConverterTest" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -356,21 +333,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AngularSpeedFormatterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="irurueta-units" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.irurueta.units.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.irurueta.units" />
-      <option name="MAIN_CLASS_NAME" value="com.irurueta.units.AngularSpeedFormatterTest" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <method v="2">
@@ -410,19 +372,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.AngularSpeedFormatterTest" />
       <item itemvalue="JUnit.com.irurueta.units in irurueta-units" />
       <item itemvalue="JUnit.AngularAccelerationConverterTest" />
       <item itemvalue="JUnit.AngularAccelerationTest" />
       <item itemvalue="JUnit.AngularAccelerationFormatterTest" />
+      <item itemvalue="JUnit.AngleConverterTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AngleConverterTest" />
         <item itemvalue="JUnit.com.irurueta.units in irurueta-units" />
         <item itemvalue="JUnit.AngularAccelerationFormatterTest" />
         <item itemvalue="JUnit.AngularAccelerationTest" />
         <item itemvalue="JUnit.AngularAccelerationConverterTest" />
-        <item itemvalue="JUnit.AngularSpeedFormatterTest" />
       </list>
     </recent_temporary>
   </component>
@@ -464,13 +426,12 @@
       <workItem from="1534798236130" duration="131000" />
       <workItem from="1540397052441" duration="2572000" />
       <workItem from="1540478468299" duration="75000" />
+      <workItem from="1541858541274" duration="939000" />
+      <workItem from="1541863906511" duration="2000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="AngularAccelerationConverterTest - 2018.08.04 at 17h 56m 07s.xml">
-      <configuration name="AngularAccelerationConverterTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="AngularAccelerationTest - 2018.08.04 at 18h 06m 31s.xml">
       <configuration name="AngularAccelerationTest" configurationId="JUnit" />
     </history-entry>
@@ -498,15 +459,18 @@
     <history-entry file="com_irurueta_units_in_irurueta-units - 2018.08.04 at 23h 13m 01s.xml">
       <configuration name="com.irurueta.units in irurueta-units" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="AngleConverterTest - 2018.11.10 at 15h 13m 00s.xml">
+      <configuration name="AngleConverterTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="135132000" />
+    <option name="totallyTimeSpent" value="136073000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="5" y="23" width="1431" height="803" extended-state="0" />
+    <frame x="4" y="23" width="1431" height="803" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28797695" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29661626" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -515,7 +479,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32770744" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32630098" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -543,27 +507,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/SpeedFormatter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2411">
-          <caret line="55" column="27" lean-forward="true" selection-start-line="55" selection-start-column="27" selection-end-line="55" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/SpeedUnit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="92" column="7" lean-forward="true" selection-start-line="92" selection-start-column="7" selection-end-line="92" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/Surface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="30" column="4" lean-forward="true" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/SurfaceConverter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -663,13 +606,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/AccelerationUnitTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/AngleConverterTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret lean-forward="true" />
@@ -893,13 +829,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/Measurement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="122" column="16" selection-start-line="122" selection-start-column="16" selection-end-line="122" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/AngleConverter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="381" column="25" selection-start-line="381" selection-start-column="25" selection-end-line="381" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/AngleConverterTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="547" column="42" lean-forward="true" selection-start-line="547" selection-start-column="42" selection-end-line="547" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="270" column="70" selection-start-line="270" selection-start-column="70" selection-end-line="270" selection-end-column="70" />
-          <folding>
-            <element signature="e#33#54#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="300">
+          <caret line="20" column="16" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/checkstyle.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="62" column="24" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="24" />
         </state>
       </provider>
     </entry>

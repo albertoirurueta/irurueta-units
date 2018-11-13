@@ -2,18 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96d46074-172b-460f-b8b5-abc929169b19" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LICENSE.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cd/before-deploy.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cd/deploy.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cd/mvnsettings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sonar-project.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/site/apt/index.apt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/s3-settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/irurueta/units/FrequencyFormatterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/units/FrequencyFormatterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/irurueta/units/TimeFormatterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/units/TimeFormatterTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -37,7 +28,7 @@
         <counts>
           <entry key="apt" value="5" />
           <entry key="gitignore" value="5" />
-          <entry key="java" value="222" />
+          <entry key="java" value="227" />
           <entry key="md" value="140" />
           <entry key="properties" value="5" />
           <entry key="sh" value="8" />
@@ -47,7 +38,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Bash" value="8" />
-          <entry key="JAVA" value="222" />
+          <entry key="JAVA" value="227" />
           <entry key="Markdown" value="140" />
           <entry key="PLAIN_TEXT" value="10" />
           <entry key="Properties" value="5" />
@@ -58,7 +49,7 @@
         <counts>
           <entry key="apt" value="1" />
           <entry key="gitignore" value="1" />
-          <entry key="java" value="85" />
+          <entry key="java" value="90" />
           <entry key="md" value="2" />
           <entry key="properties" value="1" />
           <entry key="sh" value="2" />
@@ -70,7 +61,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Bash" value="2" />
-          <entry key="JAVA" value="85" />
+          <entry key="JAVA" value="90" />
           <entry key="Markdown" value="2" />
           <entry key="PLAIN_TEXT" value="3" />
           <entry key="Properties" value="1" />
@@ -87,46 +78,58 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/FrequencyFormatterTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="62" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="62" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.travis.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="79">
-              <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cd/deploy.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cd/before-deploy.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="139" selection-start-line="2" selection-start-column="139" selection-end-line="2" selection-end-column="139" />
+            <state relative-caret-position="105">
+              <caret line="85" column="65" lean-forward="true" selection-start-line="85" selection-start-column="48" selection-end-line="85" selection-end-column="65" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/site/apt/index.apt">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/TimeFormatterTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
+            <state relative-caret-position="482">
+              <caret line="87" column="65" selection-start-line="87" selection-start-column="65" selection-end-line="87" selection-end-column="65" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/TimeFormatter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="581" column="22" selection-start-line="581" selection-start-column="22" selection-end-line="581" selection-end-column="22" />
+              <folding>
+                <element signature="e#17520#17521#0" expanded="true" />
+                <element signature="e#17560#17561#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/FrequencyFormatter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="514">
+              <caret line="239" column="22" selection-start-line="239" selection-start-column="22" selection-end-line="239" selection-end-column="22" />
+              <folding>
+                <element signature="e#7904#7905#0" expanded="true" />
+                <element signature="e#7944#7945#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/UnitLocale.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="53" column="29" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="29" />
+              <folding>
+                <element signature="e#1523#1524#0" expanded="true" />
+                <element signature="e#1574#1575#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -150,6 +153,8 @@
       <find>formatAndConver</find>
       <find>AvoidStarImport</find>
       <find>AngleConverterTest</find>
+      <find>FrequencyFormatterTest</find>
+      <find>TimeFormatterTest</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -165,8 +170,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/AccelerationFormatterTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/DistanceUnit.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/AngleConverter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/irurueta/units/AngleFormatter.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/AngleFormatterTest.java" />
@@ -216,6 +219,8 @@
         <option value="$PROJECT_DIR$/.travis.yml" />
         <option value="$PROJECT_DIR$/cd/before-deploy.sh" />
         <option value="$PROJECT_DIR$/src/site/apt/index.apt" />
+        <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/FrequencyFormatterTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/irurueta/units/TimeFormatterTest.java" />
       </list>
     </option>
   </component>
@@ -249,8 +254,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="164" />
-    <option name="y" value="23" />
+    <option name="x" value="11" />
+    <option name="y" value="45" />
     <option name="width" value="1431" />
     <option name="height" value="803" />
   </component>
@@ -300,7 +305,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542152180208" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542152800061" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -329,7 +334,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.AngleConverterTest">
+  <component name="RunManager" selected="JUnit.TimeFormatterTest">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -357,21 +362,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AngularAccelerationConverterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="irurueta-units" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.irurueta.units.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.irurueta.units" />
-      <option name="MAIN_CLASS_NAME" value="com.irurueta.units.AngularAccelerationConverterTest" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="AngularAccelerationFormatterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="irurueta-units" />
       <extension name="coverage">
@@ -387,7 +377,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AngularAccelerationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="FrequencyFormatterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="irurueta-units" />
       <extension name="coverage">
         <pattern>
@@ -396,7 +386,22 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.irurueta.units" />
-      <option name="MAIN_CLASS_NAME" value="com.irurueta.units.AngularAccelerationTest" />
+      <option name="MAIN_CLASS_NAME" value="com.irurueta.units.FrequencyFormatterTest" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TimeFormatterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="irurueta-units" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.irurueta.units.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.irurueta.units" />
+      <option name="MAIN_CLASS_NAME" value="com.irurueta.units.TimeFormatterTest" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -442,18 +447,18 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.com.irurueta.units in irurueta-units" />
-      <item itemvalue="JUnit.AngularAccelerationConverterTest" />
-      <item itemvalue="JUnit.AngularAccelerationTest" />
       <item itemvalue="JUnit.AngularAccelerationFormatterTest" />
       <item itemvalue="JUnit.AngleConverterTest" />
+      <item itemvalue="JUnit.FrequencyFormatterTest" />
+      <item itemvalue="JUnit.TimeFormatterTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TimeFormatterTest" />
+        <item itemvalue="JUnit.FrequencyFormatterTest" />
         <item itemvalue="JUnit.AngleConverterTest" />
         <item itemvalue="JUnit.com.irurueta.units in irurueta-units" />
         <item itemvalue="JUnit.AngularAccelerationFormatterTest" />
-        <item itemvalue="JUnit.AngularAccelerationTest" />
-        <item itemvalue="JUnit.AngularAccelerationConverterTest" />
       </list>
     </recent_temporary>
   </component>
@@ -497,17 +502,11 @@
       <workItem from="1540478468299" duration="75000" />
       <workItem from="1541858541274" duration="939000" />
       <workItem from="1541863906511" duration="2000" />
-      <workItem from="1542150127276" duration="2042000" />
+      <workItem from="1542150127276" duration="2632000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="AngularAccelerationTest - 2018.08.04 at 18h 06m 31s.xml">
-      <configuration name="AngularAccelerationTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AngularAccelerationTest - 2018.08.04 at 18h 10m 11s.xml">
-      <configuration name="AngularAccelerationTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="AngularAccelerationTest - 2018.08.04 at 18h 12m 47s.xml">
       <configuration name="AngularAccelerationTest" configurationId="JUnit" />
     </history-entry>
@@ -532,15 +531,21 @@
     <history-entry file="AngleConverterTest - 2018.11.10 at 15h 13m 00s.xml">
       <configuration name="AngleConverterTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="FrequencyFormatterTest - 2018.11.14 at 00h 44m 06s.xml">
+      <configuration name="FrequencyFormatterTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="FrequencyFormatterTest - 2018.11.14 at 00h 45m 38s.xml">
+      <configuration name="FrequencyFormatterTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="138115000" />
+    <option name="totallyTimeSpent" value="138705000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="295" y="23" width="1431" height="803" extended-state="0" />
+    <frame x="11" y="45" width="1431" height="803" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30093592" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.30093592" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -577,27 +582,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/UnitsException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-131">
-          <caret lean-forward="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/UnitSystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/UnknownUnitException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/AccelerationConverterTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -724,13 +708,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/FrequencyFormatterTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/FrequencyTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
@@ -798,13 +775,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/TimeFormatterTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
         </state>
       </provider>
     </entry>
@@ -900,8 +870,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.travis.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
+        <state relative-caret-position="240">
           <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="62" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="62" />
         </state>
       </provider>
     </entry>
@@ -919,17 +896,57 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="62" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/site/apt/index.apt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/UnitLocale.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="53" column="29" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="29" />
+          <folding>
+            <element signature="e#1523#1524#0" expanded="true" />
+            <element signature="e#1574#1575#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/FrequencyFormatter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="514">
+          <caret line="239" column="22" selection-start-line="239" selection-start-column="22" selection-end-line="239" selection-end-column="22" />
+          <folding>
+            <element signature="e#7904#7905#0" expanded="true" />
+            <element signature="e#7944#7945#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/irurueta/units/TimeFormatter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="581" column="22" selection-start-line="581" selection-start-column="22" selection-end-line="581" selection-end-column="22" />
+          <folding>
+            <element signature="e#17520#17521#0" expanded="true" />
+            <element signature="e#17560#17561#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/FrequencyFormatterTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="85" column="65" lean-forward="true" selection-start-line="85" selection-start-column="48" selection-end-line="85" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/units/TimeFormatterTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="482">
+          <caret line="87" column="65" selection-start-line="87" selection-start-column="65" selection-end-line="87" selection-end-column="65" />
         </state>
       </provider>
     </entry>

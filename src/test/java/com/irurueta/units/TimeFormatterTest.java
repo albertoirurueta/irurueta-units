@@ -61,7 +61,7 @@ public class TimeFormatterTest {
                 NumberFormat.getInstance().getMinimumIntegerDigits());
         assertEquals(formatter.getRoundingMode(),
                 NumberFormat.getInstance().getRoundingMode());
-        assertEquals(formatter.getUnitSystem(), UnitLocale.getDefault());
+        assertEquals(formatter.getUnitSystem(), UnitSystem.METRIC);
         assertEquals(formatter.isGroupingUsed(),
                 NumberFormat.getInstance().isGroupingUsed());
         assertEquals(formatter.isParseIntegerOnly(),
@@ -85,7 +85,7 @@ public class TimeFormatterTest {
                 NumberFormat.getInstance(locale).getMinimumIntegerDigits());
         assertEquals(formatter.getRoundingMode(),
                 NumberFormat.getInstance(locale).getRoundingMode());
-        assertEquals(formatter.getUnitSystem(), UnitLocale.getFrom(locale));
+        assertEquals(formatter.getUnitSystem(), UnitSystem.METRIC);
         assertEquals(formatter.isGroupingUsed(),
                 NumberFormat.getInstance(locale).isGroupingUsed());
         assertEquals(formatter.isParseIntegerOnly(),

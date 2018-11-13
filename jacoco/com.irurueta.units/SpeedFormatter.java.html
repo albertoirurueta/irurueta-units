@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SpeedFormatter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">SpeedFormatter.java</span></div><h1>SpeedFormatter.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2018 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.units;
+
+import java.text.ParseException;
+import java.util.Locale;
+
+/**
+ * Formats and parses speed value and unit.
+ */
+@SuppressWarnings({&quot;WeakerAccess&quot;, &quot;Duplicates&quot;})
+public class SpeedFormatter extends MeasureFormatter&lt;Speed, SpeedUnit&gt;
+        implements Cloneable {
+
+    /**
+     * Meters per second symbol.
+     */
+    public static final String METERS_PER_SECOND = &quot;m/s&quot;;
+
+    /**
+     * Kilometers per hour symbol.
+     */
+    public static final String KILOMETERS_PER_HOUR = &quot;Km/h&quot;;
+
+    /**
+     * Kilometers per second symbol.
+     */
+    public static final String KILOMETERS_PER_SECOND = &quot;Km/s&quot;;
+
+    /**
+     * Feet per second symbol.
+     */
+    public static final String FEET_PER_SECOND = &quot;ft/s&quot;;
+
+    /**
+     * Miles per hour symbol.
+     */
+    public static final String MILES_PER_HOUR = &quot;mph&quot;;
+
+    /**
+     * Constructor.
+     */
+    public SpeedFormatter() {
+<span class="fc" id="L57">        super();</span>
+<span class="fc" id="L58">    }</span>
+
+    /**
+     * Constructor with locale.
+     * @param locale locale.
+     * @throws IllegalArgumentException if locale is null.
+     */
+    public SpeedFormatter(Locale locale) throws IllegalArgumentException {
+<span class="fc" id="L66">        super(locale);</span>
+<span class="fc" id="L67">    }</span>
+
+    /**
+     * Clones this speed formatter.
+     * @return a copy of this speed formatter.
+     */
+    @Override
+    public Object clone() {
+<span class="fc" id="L75">        SpeedFormatter copy = new SpeedFormatter();</span>
+<span class="fc" id="L76">        return internalClone(copy);</span>
+    }
+
+    /**
+     * Determines if two speed formatters are equal by comparing all of their internal
+     * parameters.
+     * @param obj another object to compare.
+     * @return true if provided object is assumed to be equal to this instance.
+     */
+    public boolean equals(Object obj) {
+<span class="fc" id="L86">        boolean equals = super.equals(obj);</span>
+<span class="fc bfc" id="L87" title="All 4 branches covered.">        return (obj instanceof SpeedFormatter) &amp;&amp; equals;</span>
+    }
+
+    /**
+     * Gets unit system for detected unit into provided string representation
+     * of a measurement.
+     * @param source a measurement string representation to be checked.
+     * @return a unit system (either metric or imperial) or null if unit
+     * cannot be determined.
+     */
+    @Override
+    public UnitSystem getUnitSystem(String source) {
+<span class="fc" id="L99">        SpeedUnit unit = findUnit(source);</span>
+<span class="fc bfc" id="L100" title="All 2 branches covered.">        return unit != null ? SpeedUnit.getUnitSystem(unit) : null;</span>
+    }
+
+    /**
+     * Parses provided string and tries to determine speed value and unit.
+     * @param source a string to be parsed.
+     * @return a speed containing a value and unit.
+     * @throws ParseException if provided string cannot be parsed.
+     * @throws UnknownUnitException if unit cannot be determined.
+     */
+    @Override
+    public Speed parse(String source) throws ParseException,
+            UnknownUnitException {
+<span class="fc" id="L113">        return internalParse(source, new Speed());</span>
+    }
+
+    /**
+     * Attempts to determine a speed unit within a measurement string representation.
+     * @param source a measurement string representation.
+     * @return a speed unit, or null if none can be determined.
+     */
+    @Override
+    public SpeedUnit findUnit(String source) {
+<span class="fc bfc" id="L123" title="All 2 branches covered.">        if (source.contains(KILOMETERS_PER_HOUR + &quot; &quot;) ||</span>
+<span class="fc bfc" id="L124" title="All 2 branches covered.">                source.endsWith(KILOMETERS_PER_HOUR)) {</span>
+<span class="fc" id="L125">            return SpeedUnit.KILOMETERS_PER_HOUR;</span>
+        }
+<span class="fc bfc" id="L127" title="All 2 branches covered.">        if (source.contains(KILOMETERS_PER_SECOND + &quot; &quot;) ||</span>
+<span class="fc bfc" id="L128" title="All 2 branches covered.">                source.endsWith(KILOMETERS_PER_SECOND)) {</span>
+<span class="fc" id="L129">            return SpeedUnit.KILOMETERS_PER_SECOND;</span>
+        }
+<span class="pc bpc" id="L131" title="1 of 2 branches missed.">        if (source.contains(FEET_PER_SECOND + &quot; &quot;) ||</span>
+<span class="fc bfc" id="L132" title="All 2 branches covered.">                source.endsWith(FEET_PER_SECOND)) {</span>
+<span class="fc" id="L133">            return SpeedUnit.FEET_PER_SECOND;</span>
+        }
+<span class="fc bfc" id="L135" title="All 2 branches covered.">        if (source.contains(MILES_PER_HOUR + &quot; &quot;) ||</span>
+<span class="fc bfc" id="L136" title="All 2 branches covered.">                source.endsWith(MILES_PER_HOUR)) {</span>
+<span class="fc" id="L137">            return SpeedUnit.MILES_PER_HOUR;</span>
+        }
+
+<span class="fc bfc" id="L140" title="All 2 branches covered.">        if (source.contains(METERS_PER_SECOND + &quot; &quot;) ||</span>
+<span class="fc bfc" id="L141" title="All 2 branches covered.">                source.endsWith(METERS_PER_SECOND)) {</span>
+<span class="fc" id="L142">            return SpeedUnit.METERS_PER_SECOND;</span>
+        }
+<span class="fc" id="L144">        return null;</span>
+    }
+
+    /**
+     * Formats and converts provided speed value and unit using provided
+     * unit system.
+     * If provided value is too large for provided unit, this method will
+     * convert it to a more appropriate unit using provided unit system (either
+     * metric or imperial).
+     * @param value a speed value.
+     * @param unit a speed unit.
+     * @param system system unit to convert speed to.
+     * @return a string representation of speed value and unit.
+     */
+    @Override
+    public String formatAndConvert(Number value, SpeedUnit unit, UnitSystem system) {
+<span class="fc bfc" id="L160" title="All 2 branches covered.">        switch (system) {</span>
+            case IMPERIAL:
+<span class="fc" id="L162">                return formatAndConvertImperial(value, unit);</span>
+            case METRIC:
+            default:
+<span class="fc" id="L165">                return formatAndConvertMetric(value, unit);</span>
+        }
+    }
+
+    /**
+     * Formats and converts provided speed value and unit using metric unit
+     * system.
+     * If provided speed value is too large for provided speed unit,
+     * this method will convert it to a more appropriate unit.
+     * @param value a speed value.
+     * @param unit a speed unit.
+     * @return a string representation of speed value and unit using metric
+     * unit system.
+     */
+    public String formatAndConvertMetric(Number value, SpeedUnit unit) {
+<span class="fc" id="L180">        double v = value.doubleValue();</span>
+
+<span class="fc" id="L182">        double metersPerSecond = SpeedConverter.convert(v, unit,</span>
+                SpeedUnit.METERS_PER_SECOND);
+<span class="fc bfc" id="L184" title="All 2 branches covered.">        if (Math.abs(metersPerSecond) &lt;</span>
+                SpeedConverter.METERS_PER_KILOMETER / SpeedConverter.SECONDS_PER_HOUR) {
+<span class="fc" id="L186">            return format(metersPerSecond, SpeedUnit.METERS_PER_SECOND);</span>
+        }
+
+<span class="fc" id="L189">        double kilometersPerHour = SpeedConverter.convert(v, unit,</span>
+                SpeedUnit.KILOMETERS_PER_HOUR);
+
+<span class="fc bfc" id="L192" title="All 2 branches covered.">        if (Math.abs(kilometersPerHour) &lt; SpeedConverter.SECONDS_PER_HOUR) {</span>
+<span class="fc" id="L193">            return format(kilometersPerHour, SpeedUnit.KILOMETERS_PER_HOUR);</span>
+        }
+
+<span class="fc" id="L196">        double kilometersPerSecond = SpeedConverter.convert(v, unit,</span>
+                SpeedUnit.KILOMETERS_PER_SECOND);
+<span class="fc" id="L198">        return format(kilometersPerSecond, SpeedUnit.KILOMETERS_PER_SECOND);</span>
+    }
+
+    /**
+     * Formats and converts provided speed value and unit using imperial unit
+     * system.
+     * If provided speed value is too large for provided speed unit,
+     * this method will convert it to a more appropriate unit.
+     * @param value a speed value.
+     * @param unit a speed unit.
+     * @return a string representation of speed value and unit using imperial
+     * unit system.
+     */
+    public String formatAndConvertImperial(Number value, SpeedUnit unit) {
+<span class="fc" id="L212">        double v = value.doubleValue();</span>
+
+<span class="fc" id="L214">        double feetPerSecond = SpeedConverter.convert(v, unit,</span>
+                SpeedUnit.FEET_PER_SECOND);
+<span class="fc bfc" id="L216" title="All 2 branches covered.">        if (Math.abs(feetPerSecond) &lt; SpeedConverter.METERS_PER_MILE /</span>
+                SpeedConverter.SECONDS_PER_HOUR / SpeedConverter.METERS_PER_FOOT) {
+<span class="fc" id="L218">            return format(feetPerSecond, SpeedUnit.FEET_PER_SECOND);</span>
+        }
+
+<span class="fc" id="L221">        double milesPerHour = SpeedConverter.convert(v, unit,</span>
+                SpeedUnit.MILES_PER_HOUR);
+<span class="fc" id="L223">        return format(milesPerHour, SpeedUnit.MILES_PER_HOUR);</span>
+    }
+
+    /**
+     * Returns unit string representation.
+     * @param unit a speed unit.
+     * @return its string representation.
+     */
+    @Override
+    public String getUnitSymbol(SpeedUnit unit) {
+        String unitStr;
+<span class="fc bfc" id="L234" title="All 5 branches covered.">        switch (unit) {</span>
+            case KILOMETERS_PER_HOUR:
+<span class="fc" id="L236">                unitStr = KILOMETERS_PER_HOUR;</span>
+<span class="fc" id="L237">                break;</span>
+            case KILOMETERS_PER_SECOND:
+<span class="fc" id="L239">                unitStr = KILOMETERS_PER_SECOND;</span>
+<span class="fc" id="L240">                break;</span>
+            case FEET_PER_SECOND:
+<span class="fc" id="L242">                unitStr = FEET_PER_SECOND;</span>
+<span class="fc" id="L243">                break;</span>
+            case MILES_PER_HOUR:
+<span class="fc" id="L245">                unitStr = MILES_PER_HOUR;</span>
+<span class="fc" id="L246">                break;</span>
+            case METERS_PER_SECOND:
+            default:
+<span class="fc" id="L249">                unitStr = METERS_PER_SECOND;</span>
+                break;
+        }
+<span class="fc" id="L252">        return unitStr;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

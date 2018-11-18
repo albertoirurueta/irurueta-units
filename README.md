@@ -23,4 +23,5 @@ Library to manage different measurement units
 [Maven Site Report](http://albertoirurueta.github.io/irurueta-units)
 
 
-[![paypal](https://www.paypalobjects.com/en_US/ES/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZK2UNC3M3PKKS)
+Donations are welcome :)
+[![paypal](https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_100x26.png)](https://paypal.me/albertoirurueta)

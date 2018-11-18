@@ -620,14 +620,14 @@
 <a class="jxr_linenumber" name="L612" href="#L612">612</a>         <strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L613" href="#L613">613</a>             angle = AngleConverter.fromDegreesMinutesAndSecondsAndReturnNew(
 <a class="jxr_linenumber" name="L614" href="#L614">614</a>                     (<strong class="jxr_keyword">int</strong>)degreesMinutesAndSeconds[0],
-<a class="jxr_linenumber" name="L615" href="#L615">615</a>                     -(<strong class="jxr_keyword">int</strong>)degreesMinutesAndSeconds[1], degreesMinutesAndSeconds[2],
+<a class="jxr_linenumber" name="L615" href="#L615">615</a>                     -1, degreesMinutesAndSeconds[2],
 <a class="jxr_linenumber" name="L616" href="#L616">616</a>                     AngleUnit.DEGREES);
 <a class="jxr_linenumber" name="L617" href="#L617">617</a>             fail(<span class="jxr_string">"IllegalArgumentException expected but not thrown"</span>);
 <a class="jxr_linenumber" name="L618" href="#L618">618</a>         } <strong class="jxr_keyword">catch</strong> (IllegalArgumentException ignore) { }
 <a class="jxr_linenumber" name="L619" href="#L619">619</a>         <strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L620" href="#L620">620</a>             angle = AngleConverter.fromDegreesMinutesAndSecondsAndReturnNew(
 <a class="jxr_linenumber" name="L621" href="#L621">621</a>                     (<strong class="jxr_keyword">int</strong>)degreesMinutesAndSeconds[0],
-<a class="jxr_linenumber" name="L622" href="#L622">622</a>                     (<strong class="jxr_keyword">int</strong>)degreesMinutesAndSeconds[1], -degreesMinutesAndSeconds[2],
+<a class="jxr_linenumber" name="L622" href="#L622">622</a>                     (<strong class="jxr_keyword">int</strong>)degreesMinutesAndSeconds[1], -1.0,
 <a class="jxr_linenumber" name="L623" href="#L623">623</a>                     AngleUnit.DEGREES);
 <a class="jxr_linenumber" name="L624" href="#L624">624</a>             fail(<span class="jxr_string">"IllegalArgumentException expected but not thrown"</span>);
 <a class="jxr_linenumber" name="L625" href="#L625">625</a>         } <strong class="jxr_keyword">catch</strong> (IllegalArgumentException ignore) { }

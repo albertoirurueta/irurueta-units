@@ -534,13 +534,13 @@
 <a class="jxr_linenumber" name="L526" href="#L526">526</a>         <em class="jxr_comment">//force IllegalArgumentException</em>
 <a class="jxr_linenumber" name="L527" href="#L527">527</a>         <strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L528" href="#L528">528</a>             AngleConverter.fromDegreesMinutesAndSeconds((<strong class="jxr_keyword">int</strong>)degreesMinutesAndSeconds[0],
-<a class="jxr_linenumber" name="L529" href="#L529">529</a>                     -(<strong class="jxr_keyword">int</strong>)degreesMinutesAndSeconds[1], degreesMinutesAndSeconds[2],
+<a class="jxr_linenumber" name="L529" href="#L529">529</a>                     -1, degreesMinutesAndSeconds[2],
 <a class="jxr_linenumber" name="L530" href="#L530">530</a>                     AngleUnit.DEGREES);
 <a class="jxr_linenumber" name="L531" href="#L531">531</a>             fail(<span class="jxr_string">"IllegalArgumentException expected but not thrown"</span>);
 <a class="jxr_linenumber" name="L532" href="#L532">532</a>         } <strong class="jxr_keyword">catch</strong> (IllegalArgumentException ignore) { }
 <a class="jxr_linenumber" name="L533" href="#L533">533</a>         <strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L534" href="#L534">534</a>             AngleConverter.fromDegreesMinutesAndSeconds((<strong class="jxr_keyword">int</strong>)degreesMinutesAndSeconds[0],
-<a class="jxr_linenumber" name="L535" href="#L535">535</a>                     (<strong class="jxr_keyword">int</strong>)degreesMinutesAndSeconds[1], -degreesMinutesAndSeconds[2],
+<a class="jxr_linenumber" name="L535" href="#L535">535</a>                     (<strong class="jxr_keyword">int</strong>)degreesMinutesAndSeconds[1], -1.0,
 <a class="jxr_linenumber" name="L536" href="#L536">536</a>                     AngleUnit.DEGREES);
 <a class="jxr_linenumber" name="L537" href="#L537">537</a>             fail(<span class="jxr_string">"IllegalArgumentException expected but not thrown"</span>);
 <a class="jxr_linenumber" name="L538" href="#L538">538</a>         } <strong class="jxr_keyword">catch</strong> (IllegalArgumentException ignore) { }

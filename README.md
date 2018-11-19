@@ -2,7 +2,6 @@
 Library to manage different measurement units
 
 [![Build Status](https://travis-ci.org/albertoirurueta/irurueta-units.svg?branch=master)](https://travis-ci.org/albertoirurueta/irurueta-units)
-[![Coverage Status](https://coveralls.io/repos/github/albertoirurueta/irurueta-units/badge.svg?branch=master)](https://coveralls.io/github/albertoirurueta/irurueta-units?branch=master)
 
 
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=albertoirurueta_irurueta-units&metric=bugs)](https://sonarcloud.io/dashboard?id=albertoirurueta_irurueta-units)
@@ -22,7 +21,7 @@ Library to manage different measurement units
 
 [Maven Site Report](http://albertoirurueta.github.io/irurueta-units)
 
-
 Donations are welcome :)
+Contribute to the maintenance of this project by clicking on the following link:
 
 [![paypal](https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_100x26.png)](https://paypal.me/albertoirurueta)

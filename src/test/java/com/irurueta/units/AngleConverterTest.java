@@ -526,13 +526,13 @@ public class AngleConverterTest {
         //force IllegalArgumentException
         try {
             AngleConverter.fromDegreesMinutesAndSeconds((int)degreesMinutesAndSeconds[0],
-                    -(int)degreesMinutesAndSeconds[1], degreesMinutesAndSeconds[2],
+                    -1, degreesMinutesAndSeconds[2],
                     AngleUnit.DEGREES);
             fail("IllegalArgumentException expected but not thrown");
         } catch (IllegalArgumentException ignore) { }
         try {
             AngleConverter.fromDegreesMinutesAndSeconds((int)degreesMinutesAndSeconds[0],
-                    (int)degreesMinutesAndSeconds[1], -degreesMinutesAndSeconds[2],
+                    (int)degreesMinutesAndSeconds[1], -1.0,
                     AngleUnit.DEGREES);
             fail("IllegalArgumentException expected but not thrown");
         } catch (IllegalArgumentException ignore) { }

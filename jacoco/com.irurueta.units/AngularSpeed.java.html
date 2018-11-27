@@ -29,17 +29,16 @@ public class AngularSpeed extends Measurement&lt;AngularSpeedUnit&gt; {
      * @param unit unit of angular speed.
      * @throws IllegalArgumentException if either value or unit is null.
      */
-    public AngularSpeed(Number value, AngularSpeedUnit unit)
-            throws IllegalArgumentException {
-<span class="fc" id="L34">        super(value, unit);</span>
-<span class="fc" id="L35">    }</span>
+    public AngularSpeed(Number value, AngularSpeedUnit unit) {
+<span class="fc" id="L33">        super(value, unit);</span>
+<span class="fc" id="L34">    }</span>
 
     /**
      * Constructor.
      */
     AngularSpeed() {
-<span class="fc" id="L41">        super();</span>
-<span class="fc" id="L42">    }</span>
+<span class="fc" id="L40">        super();</span>
+<span class="fc" id="L41">    }</span>
 
     /**
      * Determines if two angular speed values are equal up to a certain tolerance.
@@ -52,18 +51,18 @@ public class AngularSpeed extends Measurement&lt;AngularSpeedUnit&gt; {
      */
     @Override
     public boolean equals(Measurement&lt;AngularSpeedUnit&gt; other, double tolerance) {
-<span class="fc bfc" id="L55" title="All 2 branches covered.">        if (super.equals(other, tolerance)) {</span>
-<span class="fc" id="L56">            return true;</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        if (super.equals(other, tolerance)) {</span>
+<span class="fc" id="L55">            return true;</span>
         }
 
         //attempt conversion to common units
-<span class="fc bfc" id="L60" title="All 2 branches covered.">        if (other == null) {</span>
-<span class="fc" id="L61">            return false;</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        if (other == null) {</span>
+<span class="fc" id="L60">            return false;</span>
         }
 
-<span class="fc" id="L64">        double otherValue = AngularSpeedConverter.convert(other.getValue().doubleValue(),</span>
-<span class="fc" id="L65">                other.getUnit(), getUnit());</span>
-<span class="fc bfc" id="L66" title="All 2 branches covered.">        return (Math.abs(getValue().doubleValue() - otherValue)) &lt;= tolerance;</span>
+<span class="fc" id="L63">        double otherValue = AngularSpeedConverter.convert(other.getValue().doubleValue(),</span>
+<span class="fc" id="L64">                other.getUnit(), getUnit());</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        return (Math.abs(getValue().doubleValue() - otherValue)) &lt;= tolerance;</span>
     }
 
     /**
@@ -78,9 +77,9 @@ public class AngularSpeed extends Measurement&lt;AngularSpeedUnit&gt; {
     public static double add(double value1, AngularSpeedUnit unit1,
                              double value2, AngularSpeedUnit unit2,
                              AngularSpeedUnit resultUnit) {
-<span class="fc" id="L81">        double v1 = AngularSpeedConverter.convert(value1, unit1, resultUnit);</span>
-<span class="fc" id="L82">        double v2 = AngularSpeedConverter.convert(value2, unit2, resultUnit);</span>
-<span class="fc" id="L83">        return v1 + v2;</span>
+<span class="fc" id="L80">        double v1 = AngularSpeedConverter.convert(value1, unit1, resultUnit);</span>
+<span class="fc" id="L81">        double v2 = AngularSpeedConverter.convert(value2, unit2, resultUnit);</span>
+<span class="fc" id="L82">        return v1 + v2;</span>
     }
 
     /**
@@ -95,8 +94,8 @@ public class AngularSpeed extends Measurement&lt;AngularSpeedUnit&gt; {
     public static Number add(Number value1, AngularSpeedUnit unit1,
                              Number value2, AngularSpeedUnit unit2,
                              AngularSpeedUnit resultUnit) {
-<span class="fc" id="L98">        return new BigDecimal(add(value1.doubleValue(), unit1,</span>
-<span class="fc" id="L99">                value2.doubleValue(), unit2, resultUnit));</span>
+<span class="fc" id="L97">        return new BigDecimal(add(value1.doubleValue(), unit1,</span>
+<span class="fc" id="L98">                value2.doubleValue(), unit2, resultUnit));</span>
     }
 
     /**
@@ -106,9 +105,9 @@ public class AngularSpeed extends Measurement&lt;AngularSpeedUnit&gt; {
      * @param result instance where result will be stored.
      */
     public static void add(AngularSpeed arg1, AngularSpeed arg2, AngularSpeed result) {
-<span class="fc" id="L109">        result.setValue(add(arg1.getValue(), arg1.getUnit(),</span>
-<span class="fc" id="L110">                arg2.getValue(), arg2.getUnit(), result.getUnit()));</span>
-<span class="fc" id="L111">    }</span>
+<span class="fc" id="L108">        result.setValue(add(arg1.getValue(), arg1.getUnit(),</span>
+<span class="fc" id="L109">                arg2.getValue(), arg2.getUnit(), result.getUnit()));</span>
+<span class="fc" id="L110">    }</span>
 
     /**
      * Adds two angular speeds.
@@ -119,10 +118,10 @@ public class AngularSpeed extends Measurement&lt;AngularSpeedUnit&gt; {
      */
     public static AngularSpeed addAndReturnNew(AngularSpeed arg1, AngularSpeed arg2,
                                               AngularSpeedUnit unit) {
-<span class="fc" id="L122">        AngularSpeed result = new AngularSpeed();</span>
-<span class="fc" id="L123">        result.setUnit(unit);</span>
-<span class="fc" id="L124">        add(arg1, arg2, result);</span>
-<span class="fc" id="L125">        return result;</span>
+<span class="fc" id="L121">        AngularSpeed result = new AngularSpeed();</span>
+<span class="fc" id="L122">        result.setUnit(unit);</span>
+<span class="fc" id="L123">        add(arg1, arg2, result);</span>
+<span class="fc" id="L124">        return result;</span>
     }
 
     /**
@@ -135,11 +134,11 @@ public class AngularSpeed extends Measurement&lt;AngularSpeedUnit&gt; {
      */
     public AngularSpeed addAndReturnNew(double value, AngularSpeedUnit unit,
                                         AngularSpeedUnit resultUnit) {
-<span class="fc" id="L138">        AngularSpeed result = new AngularSpeed();</span>
-<span class="fc" id="L139">        result.setUnit(resultUnit);</span>
-<span class="fc" id="L140">        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit,</span>
+<span class="fc" id="L137">        AngularSpeed result = new AngularSpeed();</span>
+<span class="fc" id="L138">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L139">        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit,</span>
                 resultUnit));
-<span class="fc" id="L142">        return result;</span>
+<span class="fc" id="L141">        return result;</span>
     }
 
     /**
@@ -152,10 +151,10 @@ public class AngularSpeed extends Measurement&lt;AngularSpeedUnit&gt; {
      */
     public AngularSpeed addAndReturnNew(Number value, AngularSpeedUnit unit,
                                         AngularSpeedUnit resultUnit) {
-<span class="fc" id="L155">        AngularSpeed result = new AngularSpeed();</span>
-<span class="fc" id="L156">        result.setUnit(resultUnit);</span>
-<span class="fc" id="L157">        result.setValue(add(getValue(), getUnit(), value, unit, resultUnit));</span>
-<span class="fc" id="L158">        return result;</span>
+<span class="fc" id="L154">        AngularSpeed result = new AngularSpeed();</span>
+<span class="fc" id="L155">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L156">        result.setValue(add(getValue(), getUnit(), value, unit, resultUnit));</span>
+<span class="fc" id="L157">        return result;</span>
     }
 
     /**
@@ -166,7 +165,7 @@ public class AngularSpeed extends Measurement&lt;AngularSpeedUnit&gt; {
      * @return a new angular speed containing result.
      */
     public AngularSpeed addAndReturnNew(AngularSpeed s, AngularSpeedUnit unit) {
-<span class="fc" id="L169">        return addAndReturnNew(this, s, unit);</span>
+<span class="fc" id="L168">        return addAndReturnNew(this, s, unit);</span>
     }
 
     /**
@@ -176,8 +175,8 @@ public class AngularSpeed extends Measurement&lt;AngularSpeedUnit&gt; {
      * @param unit unit of angular speed value.
      */
     public void add(double value, AngularSpeedUnit unit) {
-<span class="fc" id="L179">        setValue(add(getValue(), getUnit(), value, unit, getUnit()));</span>
-<span class="fc" id="L180">    }</span>
+<span class="fc" id="L178">        setValue(add(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L179">    }</span>
 
     /**
      * Adds provided angular speed value and unit and updates current angular speed
@@ -186,16 +185,16 @@ public class AngularSpeed extends Measurement&lt;AngularSpeedUnit&gt; {
      * @param unit unit of angular speed value.
      */
     public void add(Number value, AngularSpeedUnit unit) {
-<span class="fc" id="L189">        setValue(add(getValue(), getUnit(), value, unit, getUnit()));</span>
-<span class="fc" id="L190">    }</span>
+<span class="fc" id="L188">        setValue(add(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L189">    }</span>
 
     /**
      * Adds provided angular speed and updates current angular speed.
      * @param s angular speed to be added.
      */
     public void add(AngularSpeed s) {
-<span class="fc" id="L197">        add(this, s, this);</span>
-<span class="fc" id="L198">    }</span>
+<span class="fc" id="L196">        add(this, s, this);</span>
+<span class="fc" id="L197">    }</span>
 
     /**
      * Adds provided angular speed and stores the result into provided angular speed.
@@ -203,8 +202,8 @@ public class AngularSpeed extends Measurement&lt;AngularSpeedUnit&gt; {
      * @param result instance where result will be stored.
      */
     public void add(AngularSpeed s, AngularSpeed result) {
-<span class="fc" id="L206">        add(this, s, result);</span>
-<span class="fc" id="L207">    }</span>
+<span class="fc" id="L205">        add(this, s, result);</span>
+<span class="fc" id="L206">    }</span>
 
     /**
      * Subtracts two angular speed values and units and returns the result.
@@ -218,9 +217,9 @@ public class AngularSpeed extends Measurement&lt;AngularSpeedUnit&gt; {
     public static double subtract(double value1, AngularSpeedUnit unit1,
                                   double value2, AngularSpeedUnit unit2,
                                   AngularSpeedUnit resultUnit) {
-<span class="fc" id="L221">        double v1 = AngularSpeedConverter.convert(value1, unit1, resultUnit);</span>
-<span class="fc" id="L222">        double v2 = AngularSpeedConverter.convert(value2, unit2, resultUnit);</span>
-<span class="fc" id="L223">        return v1 - v2;</span>
+<span class="fc" id="L220">        double v1 = AngularSpeedConverter.convert(value1, unit1, resultUnit);</span>
+<span class="fc" id="L221">        double v2 = AngularSpeedConverter.convert(value2, unit2, resultUnit);</span>
+<span class="fc" id="L222">        return v1 - v2;</span>
     }
 
     /**
@@ -235,8 +234,8 @@ public class AngularSpeed extends Measurement&lt;AngularSpeedUnit&gt; {
     public static Number subtract(Number value1, AngularSpeedUnit unit1,
                                   Number value2, AngularSpeedUnit unit2,
                                   AngularSpeedUnit resultUnit) {
-<span class="fc" id="L238">        return new BigDecimal(subtract(value1.doubleValue(), unit1,</span>
-<span class="fc" id="L239">                value2.doubleValue(), unit2, resultUnit));</span>
+<span class="fc" id="L237">        return new BigDecimal(subtract(value1.doubleValue(), unit1,</span>
+<span class="fc" id="L238">                value2.doubleValue(), unit2, resultUnit));</span>
     }
 
     /**
@@ -247,9 +246,9 @@ public class AngularSpeed extends Measurement&lt;AngularSpeedUnit&gt; {
      */
     public static void subtract(AngularSpeed arg1, AngularSpeed arg2,
                                 AngularSpeed result) {
-<span class="fc" id="L250">        result.setValue(subtract(arg1.getValue(), arg1.getUnit(),</span>
-<span class="fc" id="L251">                arg2.getValue(), arg2.getUnit(), result.getUnit()));</span>
-<span class="fc" id="L252">    }</span>
+<span class="fc" id="L249">        result.setValue(subtract(arg1.getValue(), arg1.getUnit(),</span>
+<span class="fc" id="L250">                arg2.getValue(), arg2.getUnit(), result.getUnit()));</span>
+<span class="fc" id="L251">    }</span>
 
     /**
      * Subtracts two angular speeds.
@@ -260,10 +259,10 @@ public class AngularSpeed extends Measurement&lt;AngularSpeedUnit&gt; {
      */
     public static AngularSpeed subtractAndReturnNew(AngularSpeed arg1,
             AngularSpeed arg2, AngularSpeedUnit unit) {
-<span class="fc" id="L263">        AngularSpeed result = new AngularSpeed();</span>
-<span class="fc" id="L264">        result.setUnit(unit);</span>
-<span class="fc" id="L265">        subtract(arg1, arg2, result);</span>
-<span class="fc" id="L266">        return result;</span>
+<span class="fc" id="L262">        AngularSpeed result = new AngularSpeed();</span>
+<span class="fc" id="L263">        result.setUnit(unit);</span>
+<span class="fc" id="L264">        subtract(arg1, arg2, result);</span>
+<span class="fc" id="L265">        return result;</span>
     }
 
     /**
@@ -276,11 +275,11 @@ public class AngularSpeed extends Measurement&lt;AngularSpeedUnit&gt; {
      */
     public AngularSpeed subtractAndReturnNew(double value, AngularSpeedUnit unit,
                                              AngularSpeedUnit resultUnit) {
-<span class="fc" id="L279">        AngularSpeed result = new AngularSpeed();</span>
-<span class="fc" id="L280">        result.setUnit(resultUnit);</span>
-<span class="fc" id="L281">        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit,</span>
+<span class="fc" id="L278">        AngularSpeed result = new AngularSpeed();</span>
+<span class="fc" id="L279">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L280">        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit,</span>
                 resultUnit));
-<span class="fc" id="L283">        return result;</span>
+<span class="fc" id="L282">        return result;</span>
     }
 
     /**
@@ -293,10 +292,10 @@ public class AngularSpeed extends Measurement&lt;AngularSpeedUnit&gt; {
      */
     public AngularSpeed subtractAndReturnNew(Number value, AngularSpeedUnit unit,
                                              AngularSpeedUnit resultUnit) {
-<span class="fc" id="L296">        AngularSpeed result = new AngularSpeed();</span>
-<span class="fc" id="L297">        result.setUnit(resultUnit);</span>
-<span class="fc" id="L298">        result.setValue(subtract(getValue(), getUnit(), value, unit, resultUnit));</span>
-<span class="fc" id="L299">        return result;</span>
+<span class="fc" id="L295">        AngularSpeed result = new AngularSpeed();</span>
+<span class="fc" id="L296">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L297">        result.setValue(subtract(getValue(), getUnit(), value, unit, resultUnit));</span>
+<span class="fc" id="L298">        return result;</span>
     }
 
     /**
@@ -307,7 +306,7 @@ public class AngularSpeed extends Measurement&lt;AngularSpeedUnit&gt; {
      * @return a new angular speed containing result.
      */
     public AngularSpeed subtractAndReturnNew(AngularSpeed s, AngularSpeedUnit unit) {
-<span class="fc" id="L310">        return subtractAndReturnNew(this, s, unit);</span>
+<span class="fc" id="L309">        return subtractAndReturnNew(this, s, unit);</span>
     }
 
     /**
@@ -317,8 +316,8 @@ public class AngularSpeed extends Measurement&lt;AngularSpeedUnit&gt; {
      * @param unit unit of angular speed value.
      */
     public void subtract(double value, AngularSpeedUnit unit) {
-<span class="fc" id="L320">        setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));</span>
-<span class="fc" id="L321">    }</span>
+<span class="fc" id="L319">        setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L320">    }</span>
 
     /**
      * Subtracts provided angular speed value and unit and updates current angular
@@ -327,16 +326,16 @@ public class AngularSpeed extends Measurement&lt;AngularSpeedUnit&gt; {
      * @param unit unit of angular speed value.
      */
     public void subtract(Number value, AngularSpeedUnit unit) {
-<span class="fc" id="L330">        setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));</span>
-<span class="fc" id="L331">    }</span>
+<span class="fc" id="L329">        setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L330">    }</span>
 
     /**
      * Subtracts provided angular speed and updates current angular speed.
      * @param s angular speed to be subtracted.
      */
     public void subtract(AngularSpeed s) {
-<span class="fc" id="L338">        subtract(this, s, this);</span>
-<span class="fc" id="L339">    }</span>
+<span class="fc" id="L337">        subtract(this, s, this);</span>
+<span class="fc" id="L338">    }</span>
 
     /**
      * Subtracts provided angular speed and stores the result into provided
@@ -345,7 +344,7 @@ public class AngularSpeed extends Measurement&lt;AngularSpeedUnit&gt; {
      * @param result instance where result will be stored.
      */
     public void subtract(AngularSpeed s, AngularSpeed result) {
-<span class="fc" id="L348">        subtract(this, s, result);</span>
-<span class="fc" id="L349">    }</span>
+<span class="fc" id="L347">        subtract(this, s, result);</span>
+<span class="fc" id="L348">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

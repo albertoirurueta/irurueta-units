@@ -95,28 +95,29 @@ public class AngularSpeedConverter {
      * @param outputUnit output angular speed unit.
      * @return converted angular speed value.
      */
+    @SuppressWarnings(&quot;Duplicates&quot;)
     public static double convert(double input, AngularSpeedUnit inputUnit,
                                  AngularSpeedUnit outputUnit) {
         double radiansPerSecond;
 
         //convert to radians per second
-<span class="fc bfc" id="L103" title="All 2 branches covered.">        switch (inputUnit) {</span>
+<span class="fc bfc" id="L104" title="All 2 branches covered.">        switch (inputUnit) {</span>
             case DEGREES_PER_SECOND:
-<span class="fc" id="L105">                radiansPerSecond = Math.toRadians(input);</span>
-<span class="fc" id="L106">                break;</span>
+<span class="fc" id="L106">                radiansPerSecond = Math.toRadians(input);</span>
+<span class="fc" id="L107">                break;</span>
             case RADIANS_PER_SECOND:
             default:
-<span class="fc" id="L109">                radiansPerSecond = input;</span>
+<span class="fc" id="L110">                radiansPerSecond = input;</span>
                 break;
         }
 
         //convert from radians per second to required output unit
-<span class="fc bfc" id="L114" title="All 2 branches covered.">        switch (outputUnit) {</span>
+<span class="fc bfc" id="L115" title="All 2 branches covered.">        switch (outputUnit) {</span>
             case DEGREES_PER_SECOND:
-<span class="fc" id="L116">                return Math.toDegrees(radiansPerSecond);</span>
+<span class="fc" id="L117">                return Math.toDegrees(radiansPerSecond);</span>
             case RADIANS_PER_SECOND:
             default:
-<span class="fc" id="L119">                return radiansPerSecond;</span>
+<span class="fc" id="L120">                return radiansPerSecond;</span>
         }
     }
 
@@ -126,7 +127,7 @@ public class AngularSpeedConverter {
      * @return same angular speed converted to radians per second.
      */
     public static double degreesPerSecondToRadiansPerSecond(double degreesPerSecond) {
-<span class="fc" id="L129">        return Math.toRadians(degreesPerSecond);</span>
+<span class="fc" id="L130">        return Math.toRadians(degreesPerSecond);</span>
     }
 
     /**
@@ -135,7 +136,7 @@ public class AngularSpeedConverter {
      * @return same angular speed converted to degrees per second.
      */
     public static double radiansPerSecondToDegreesPerSecond(double radiansPerSecond) {
-<span class="fc" id="L138">        return Math.toDegrees(radiansPerSecond);</span>
+<span class="fc" id="L139">        return Math.toDegrees(radiansPerSecond);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

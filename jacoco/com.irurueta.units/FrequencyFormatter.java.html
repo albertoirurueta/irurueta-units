@@ -62,9 +62,18 @@ public class FrequencyFormatter extends MeasureFormatter&lt;Frequency, Frequency
      * @param locale locale.
      * @throws IllegalArgumentException if locale is null.
      */
-    public FrequencyFormatter(Locale locale) throws IllegalArgumentException {
+    public FrequencyFormatter(Locale locale) {
 <span class="fc" id="L66">        super(locale);</span>
 <span class="fc" id="L67">    }</span>
+
+    /**
+     * Copy constructor.
+     * @param formatter input instance to copy from.
+     * @throws NullPointerException if provided formatter is null.
+     */
+    public FrequencyFormatter(FrequencyFormatter formatter) {
+<span class="fc" id="L75">        this(formatter.getLocale());</span>
+<span class="fc" id="L76">    }</span>
 
     /**
      * Clones this frequency formatter.
@@ -72,8 +81,8 @@ public class FrequencyFormatter extends MeasureFormatter&lt;Frequency, Frequency
      */
     @Override
     public Object clone() {
-<span class="fc" id="L75">        FrequencyFormatter copy = new FrequencyFormatter();</span>
-<span class="fc" id="L76">        return internalClone(copy);</span>
+<span class="fc" id="L84">        FrequencyFormatter copy = new FrequencyFormatter();</span>
+<span class="fc" id="L85">        return internalClone(copy);</span>
     }
 
     /**
@@ -84,8 +93,19 @@ public class FrequencyFormatter extends MeasureFormatter&lt;Frequency, Frequency
      */
     @Override
     public boolean equals(Object obj) {
-<span class="fc" id="L87">        boolean equals = super.equals(obj);</span>
-<span class="fc bfc" id="L88" title="All 4 branches covered.">        return (obj instanceof FrequencyFormatter) &amp;&amp; equals;</span>
+<span class="fc" id="L96">        boolean equals = super.equals(obj);</span>
+<span class="fc bfc" id="L97" title="All 4 branches covered.">        return (obj instanceof FrequencyFormatter) &amp;&amp; equals;</span>
+    }
+
+    /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare objects.
+     * This implementation only calls parent implementation to avoid static analyzer warning.
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+<span class="fc" id="L108">        return super.hashCode();</span>
     }
 
     /**
@@ -97,7 +117,7 @@ public class FrequencyFormatter extends MeasureFormatter&lt;Frequency, Frequency
      */
     @Override
     public UnitSystem getUnitSystem(String source) {
-<span class="fc" id="L100">        return UnitSystem.METRIC;</span>
+<span class="fc" id="L120">        return UnitSystem.METRIC;</span>
     }
 
     /**
@@ -110,7 +130,7 @@ public class FrequencyFormatter extends MeasureFormatter&lt;Frequency, Frequency
     @Override
     public Frequency parse(String source) throws ParseException,
             UnknownUnitException {
-<span class="fc" id="L113">        return internalParse(source, new Frequency());</span>
+<span class="fc" id="L133">        return internalParse(source, new Frequency());</span>
     }
 
     /**
@@ -121,23 +141,23 @@ public class FrequencyFormatter extends MeasureFormatter&lt;Frequency, Frequency
      */
     @Override
     public FrequencyUnit findUnit(String source) {
-<span class="fc bfc" id="L124" title="All 4 branches covered.">        if (source.contains(KILOHERTZ + &quot; &quot;) || source.endsWith(KILOHERTZ)) {</span>
-<span class="fc" id="L125">            return FrequencyUnit.KILOHERTZ;</span>
+<span class="fc bfc" id="L144" title="All 4 branches covered.">        if (source.contains(KILOHERTZ + &quot; &quot;) || source.endsWith(KILOHERTZ)) {</span>
+<span class="fc" id="L145">            return FrequencyUnit.KILOHERTZ;</span>
         }
-<span class="fc bfc" id="L127" title="All 4 branches covered.">        if (source.contains(MEGAHERTZ + &quot; &quot;) || source.endsWith(MEGAHERTZ)) {</span>
-<span class="fc" id="L128">            return FrequencyUnit.MEGAHERTZ;</span>
+<span class="fc bfc" id="L147" title="All 4 branches covered.">        if (source.contains(MEGAHERTZ + &quot; &quot;) || source.endsWith(MEGAHERTZ)) {</span>
+<span class="fc" id="L148">            return FrequencyUnit.MEGAHERTZ;</span>
         }
-<span class="fc bfc" id="L130" title="All 4 branches covered.">        if (source.contains(GIGAHERTZ + &quot; &quot;) || source.endsWith(GIGAHERTZ)) {</span>
-<span class="fc" id="L131">            return FrequencyUnit.GIGAHERTZ;</span>
+<span class="fc bfc" id="L150" title="All 4 branches covered.">        if (source.contains(GIGAHERTZ + &quot; &quot;) || source.endsWith(GIGAHERTZ)) {</span>
+<span class="fc" id="L151">            return FrequencyUnit.GIGAHERTZ;</span>
         }
-<span class="fc bfc" id="L133" title="All 4 branches covered.">        if (source.contains(TERAHERTZ + &quot; &quot;) ||source.endsWith(TERAHERTZ)) {</span>
-<span class="fc" id="L134">            return FrequencyUnit.TERAHERTZ;</span>
+<span class="fc bfc" id="L153" title="All 4 branches covered.">        if (source.contains(TERAHERTZ + &quot; &quot;) ||source.endsWith(TERAHERTZ)) {</span>
+<span class="fc" id="L154">            return FrequencyUnit.TERAHERTZ;</span>
         }
 
-<span class="fc bfc" id="L137" title="All 4 branches covered.">        if (source.contains(HERTZ + &quot; &quot;) || source.endsWith(HERTZ)) {</span>
-<span class="fc" id="L138">            return FrequencyUnit.HERTZ;</span>
+<span class="fc bfc" id="L157" title="All 4 branches covered.">        if (source.contains(HERTZ + &quot; &quot;) || source.endsWith(HERTZ)) {</span>
+<span class="fc" id="L158">            return FrequencyUnit.HERTZ;</span>
         }
-<span class="fc" id="L140">        return null;</span>
+<span class="fc" id="L160">        return null;</span>
     }
 
     /**
@@ -153,7 +173,7 @@ public class FrequencyFormatter extends MeasureFormatter&lt;Frequency, Frequency
     @Override
     public String formatAndConvert(Number value, FrequencyUnit unit,
                                    UnitSystem system) {
-<span class="fc" id="L156">        return formatAndConvertMetric(value, unit);</span>
+<span class="fc" id="L176">        return formatAndConvertMetric(value, unit);</span>
     }
 
     /**
@@ -167,37 +187,37 @@ public class FrequencyFormatter extends MeasureFormatter&lt;Frequency, Frequency
      * unit system.
      */
     public String formatAndConvertMetric(Number value, FrequencyUnit unit) {
-<span class="fc" id="L170">        double v = value.doubleValue();</span>
+<span class="fc" id="L190">        double v = value.doubleValue();</span>
 
-<span class="fc" id="L172">        double hertz = FrequencyConverter.convert(v, unit, FrequencyUnit.HERTZ);</span>
-<span class="fc bfc" id="L173" title="All 2 branches covered.">        if (Math.abs(hertz) &lt; (FrequencyConverter.HERTZS_PER_KILOHERTZ)) {</span>
-<span class="fc" id="L174">            return format(hertz, FrequencyUnit.HERTZ);</span>
+<span class="fc" id="L192">        double hertz = FrequencyConverter.convert(v, unit, FrequencyUnit.HERTZ);</span>
+<span class="fc bfc" id="L193" title="All 2 branches covered.">        if (Math.abs(hertz) &lt; (FrequencyConverter.HERTZS_PER_KILOHERTZ)) {</span>
+<span class="fc" id="L194">            return format(hertz, FrequencyUnit.HERTZ);</span>
         }
 
-<span class="fc" id="L177">        double kiloHertz = FrequencyConverter.convert(v, unit,</span>
+<span class="fc" id="L197">        double kiloHertz = FrequencyConverter.convert(v, unit,</span>
                 FrequencyUnit.KILOHERTZ);
-<span class="fc bfc" id="L179" title="All 2 branches covered.">        if (Math.abs(kiloHertz) &lt; (FrequencyConverter.HERTZ_PER_MEGAHERTZ /</span>
+<span class="fc bfc" id="L199" title="All 2 branches covered.">        if (Math.abs(kiloHertz) &lt; (FrequencyConverter.HERTZ_PER_MEGAHERTZ /</span>
                 FrequencyConverter.HERTZS_PER_KILOHERTZ)) {
-<span class="fc" id="L181">            return format(kiloHertz, FrequencyUnit.KILOHERTZ);</span>
+<span class="fc" id="L201">            return format(kiloHertz, FrequencyUnit.KILOHERTZ);</span>
         }
 
-<span class="fc" id="L184">        double megaHertz = FrequencyConverter.convert(v, unit,</span>
+<span class="fc" id="L204">        double megaHertz = FrequencyConverter.convert(v, unit,</span>
                 FrequencyUnit.MEGAHERTZ);
-<span class="fc bfc" id="L186" title="All 2 branches covered.">        if (Math.abs(megaHertz) &lt; (FrequencyConverter.HERTZ_PER_GIGAHERTZ /</span>
+<span class="fc bfc" id="L206" title="All 2 branches covered.">        if (Math.abs(megaHertz) &lt; (FrequencyConverter.HERTZ_PER_GIGAHERTZ /</span>
                 FrequencyConverter.HERTZ_PER_MEGAHERTZ)) {
-<span class="fc" id="L188">            return format(megaHertz, FrequencyUnit.MEGAHERTZ);</span>
+<span class="fc" id="L208">            return format(megaHertz, FrequencyUnit.MEGAHERTZ);</span>
         }
 
-<span class="fc" id="L191">        double gigaHertz = FrequencyConverter.convert(v, unit,</span>
+<span class="fc" id="L211">        double gigaHertz = FrequencyConverter.convert(v, unit,</span>
                 FrequencyUnit.GIGAHERTZ);
-<span class="fc bfc" id="L193" title="All 2 branches covered.">        if (Math.abs(gigaHertz) &lt; (FrequencyConverter.HERTZ_PER_TERAHERTZ /</span>
+<span class="fc bfc" id="L213" title="All 2 branches covered.">        if (Math.abs(gigaHertz) &lt; (FrequencyConverter.HERTZ_PER_TERAHERTZ /</span>
                 FrequencyConverter.HERTZ_PER_GIGAHERTZ)) {
-<span class="fc" id="L195">            return format(gigaHertz, FrequencyUnit.GIGAHERTZ);</span>
+<span class="fc" id="L215">            return format(gigaHertz, FrequencyUnit.GIGAHERTZ);</span>
         }
 
-<span class="fc" id="L198">        double teraHertz = FrequencyConverter.convert(v, unit,</span>
+<span class="fc" id="L218">        double teraHertz = FrequencyConverter.convert(v, unit,</span>
                 FrequencyUnit.TERAHERTZ);
-<span class="fc" id="L200">        return format(teraHertz, FrequencyUnit.TERAHERTZ);</span>
+<span class="fc" id="L220">        return format(teraHertz, FrequencyUnit.TERAHERTZ);</span>
     }
 
     /**
@@ -208,26 +228,26 @@ public class FrequencyFormatter extends MeasureFormatter&lt;Frequency, Frequency
     @Override
     public String getUnitSymbol(FrequencyUnit unit) {
         String unitStr;
-<span class="fc bfc" id="L211" title="All 5 branches covered.">        switch (unit) {</span>
+<span class="fc bfc" id="L231" title="All 5 branches covered.">        switch (unit) {</span>
             case KILOHERTZ:
-<span class="fc" id="L213">                unitStr = KILOHERTZ;</span>
-<span class="fc" id="L214">                break;</span>
+<span class="fc" id="L233">                unitStr = KILOHERTZ;</span>
+<span class="fc" id="L234">                break;</span>
             case MEGAHERTZ:
-<span class="fc" id="L216">                unitStr = MEGAHERTZ;</span>
-<span class="fc" id="L217">                break;</span>
+<span class="fc" id="L236">                unitStr = MEGAHERTZ;</span>
+<span class="fc" id="L237">                break;</span>
             case GIGAHERTZ:
-<span class="fc" id="L219">                unitStr = GIGAHERTZ;</span>
-<span class="fc" id="L220">                break;</span>
+<span class="fc" id="L239">                unitStr = GIGAHERTZ;</span>
+<span class="fc" id="L240">                break;</span>
             case TERAHERTZ:
-<span class="fc" id="L222">                unitStr = TERAHERTZ;</span>
-<span class="fc" id="L223">                break;</span>
+<span class="fc" id="L242">                unitStr = TERAHERTZ;</span>
+<span class="fc" id="L243">                break;</span>
 
             case HERTZ:
             default:
-<span class="fc" id="L227">                unitStr = HERTZ;</span>
+<span class="fc" id="L247">                unitStr = HERTZ;</span>
                 break;
         }
-<span class="fc" id="L230">        return unitStr;</span>
+<span class="fc" id="L250">        return unitStr;</span>
     }
 
     /**
@@ -238,7 +258,7 @@ public class FrequencyFormatter extends MeasureFormatter&lt;Frequency, Frequency
      */
     @Override
     public UnitSystem getUnitSystem() {
-<span class="fc" id="L241">        return UnitSystem.METRIC;</span>
+<span class="fc" id="L261">        return UnitSystem.METRIC;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

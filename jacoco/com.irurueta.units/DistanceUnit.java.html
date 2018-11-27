@@ -65,7 +65,7 @@ package com.irurueta.units;
      * @return unit system (metric or imperial).
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static UnitSystem getUnitSystem(DistanceUnit unit) throws IllegalArgumentException {
+    public static UnitSystem getUnitSystem(DistanceUnit unit) {
 <span class="fc bfc" id="L69" title="All 2 branches covered.">        if (unit == null) {</span>
 <span class="fc" id="L70">            throw new IllegalArgumentException();</span>
         }
@@ -117,7 +117,7 @@ package com.irurueta.units;
      * @return true if unit belongs to metric unit system.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isMetric(DistanceUnit unit) throws IllegalArgumentException {
+    public static boolean isMetric(DistanceUnit unit) {
 <span class="fc bfc" id="L121" title="All 2 branches covered.">        return getUnitSystem(unit) == UnitSystem.METRIC;</span>
     }
 
@@ -127,7 +127,7 @@ package com.irurueta.units;
      * @return true if unit belongs to imperial unit system.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isImperial(DistanceUnit unit) throws IllegalArgumentException {
+    public static boolean isImperial(DistanceUnit unit) {
 <span class="fc bfc" id="L131" title="All 2 branches covered.">        return getUnitSystem(unit) == UnitSystem.IMPERIAL;</span>
     }
 }

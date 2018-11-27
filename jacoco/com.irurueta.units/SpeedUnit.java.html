@@ -50,7 +50,7 @@ package com.irurueta.units;
      * @return unit system (metric or imperial).
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static UnitSystem getUnitSystem(SpeedUnit unit) throws IllegalArgumentException {
+    public static UnitSystem getUnitSystem(SpeedUnit unit) {
 <span class="fc bfc" id="L54" title="All 2 branches covered.">        if (unit == null) {</span>
 <span class="fc" id="L55">            throw new IllegalArgumentException();</span>
         }
@@ -96,7 +96,7 @@ package com.irurueta.units;
      * @return true if unit belongs to metric unit system.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isMetric(SpeedUnit unit) throws IllegalArgumentException {
+    public static boolean isMetric(SpeedUnit unit) {
 <span class="fc bfc" id="L100" title="All 2 branches covered.">        return getUnitSystem(unit) == UnitSystem.METRIC;</span>
     }
 
@@ -106,7 +106,7 @@ package com.irurueta.units;
      * @return true if unit belongs to imperial unit system.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isImperial(SpeedUnit unit) throws IllegalArgumentException {
+    public static boolean isImperial(SpeedUnit unit) {
 <span class="fc bfc" id="L110" title="All 2 branches covered.">        return getUnitSystem(unit) == UnitSystem.IMPERIAL;</span>
     }
 }

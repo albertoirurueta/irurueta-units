@@ -82,7 +82,7 @@ package com.irurueta.units;
      * @throws IllegalArgumentException if unit is null or does not belong to the
      * international system of units.
      */
-    public static UnitSystem getUnitSystem(TimeUnit unit) throws IllegalArgumentException {
+    public static UnitSystem getUnitSystem(TimeUnit unit) {
 <span class="fc bfc" id="L86" title="All 2 branches covered.">        if (unit == null) {</span>
 <span class="fc" id="L87">            throw new IllegalArgumentException();</span>
         }
@@ -134,7 +134,7 @@ package com.irurueta.units;
      * @return true if unit belongs to metric unit system.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isMetric(TimeUnit unit) throws IllegalArgumentException {
+    public static boolean isMetric(TimeUnit unit) {
 <span class="fc bfc" id="L138" title="All 2 branches covered.">        if (unit == null) {</span>
 <span class="fc" id="L139">            throw new IllegalArgumentException();</span>
         }
@@ -154,7 +154,7 @@ package com.irurueta.units;
      * false otherwise.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isNonInternationalSystem(TimeUnit unit) throws IllegalArgumentException {
+    public static boolean isNonInternationalSystem(TimeUnit unit) {
 <span class="fc bfc" id="L158" title="All 2 branches covered.">        if (unit == null) {</span>
 <span class="fc" id="L159">            throw new IllegalArgumentException();</span>
         }

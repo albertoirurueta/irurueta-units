@@ -90,7 +90,7 @@ package com.irurueta.units;
      * @return unit system (metric or imperial).
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static UnitSystem getUnitSystem(SurfaceUnit unit) throws IllegalArgumentException {
+    public static UnitSystem getUnitSystem(SurfaceUnit unit) {
 <span class="fc bfc" id="L94" title="All 2 branches covered.">        if (unit == null) {</span>
 <span class="fc" id="L95">            throw new IllegalArgumentException();</span>
         }
@@ -152,7 +152,7 @@ package com.irurueta.units;
      * @return true if unit belongs to metric unit system.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isMetric(SurfaceUnit unit) throws IllegalArgumentException {
+    public static boolean isMetric(SurfaceUnit unit) {
 <span class="fc bfc" id="L156" title="All 2 branches covered.">        return getUnitSystem(unit) == UnitSystem.METRIC;</span>
     }
 
@@ -162,7 +162,7 @@ package com.irurueta.units;
      * @return true if unit belongs to imperial unit system.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isImperial(SurfaceUnit unit) throws IllegalArgumentException {
+    public static boolean isImperial(SurfaceUnit unit) {
 <span class="fc bfc" id="L166" title="All 2 branches covered.">        return getUnitSystem(unit) == UnitSystem.IMPERIAL;</span>
     }
 }

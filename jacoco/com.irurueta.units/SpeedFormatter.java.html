@@ -62,9 +62,18 @@ public class SpeedFormatter extends MeasureFormatter&lt;Speed, SpeedUnit&gt;
      * @param locale locale.
      * @throws IllegalArgumentException if locale is null.
      */
-    public SpeedFormatter(Locale locale) throws IllegalArgumentException {
+    public SpeedFormatter(Locale locale) {
 <span class="fc" id="L66">        super(locale);</span>
 <span class="fc" id="L67">    }</span>
+
+    /**
+     * Copy constructor.
+     * @param formatter input instance to copy from.
+     * @throws NullPointerException if provided formatter is null.
+     */
+    public SpeedFormatter(SpeedFormatter formatter) {
+<span class="fc" id="L75">        this(formatter.getLocale());</span>
+<span class="fc" id="L76">    }</span>
 
     /**
      * Clones this speed formatter.
@@ -72,8 +81,8 @@ public class SpeedFormatter extends MeasureFormatter&lt;Speed, SpeedUnit&gt;
      */
     @Override
     public Object clone() {
-<span class="fc" id="L75">        SpeedFormatter copy = new SpeedFormatter();</span>
-<span class="fc" id="L76">        return internalClone(copy);</span>
+<span class="fc" id="L84">        SpeedFormatter copy = new SpeedFormatter();</span>
+<span class="fc" id="L85">        return internalClone(copy);</span>
     }
 
     /**
@@ -83,8 +92,19 @@ public class SpeedFormatter extends MeasureFormatter&lt;Speed, SpeedUnit&gt;
      * @return true if provided object is assumed to be equal to this instance.
      */
     public boolean equals(Object obj) {
-<span class="fc" id="L86">        boolean equals = super.equals(obj);</span>
-<span class="fc bfc" id="L87" title="All 4 branches covered.">        return (obj instanceof SpeedFormatter) &amp;&amp; equals;</span>
+<span class="fc" id="L95">        boolean equals = super.equals(obj);</span>
+<span class="fc bfc" id="L96" title="All 4 branches covered.">        return (obj instanceof SpeedFormatter) &amp;&amp; equals;</span>
+    }
+
+    /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare objects.
+     * This implementation only calls parent implementation to avoid static analyzer warning.
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+<span class="fc" id="L107">        return super.hashCode();</span>
     }
 
     /**
@@ -96,8 +116,8 @@ public class SpeedFormatter extends MeasureFormatter&lt;Speed, SpeedUnit&gt;
      */
     @Override
     public UnitSystem getUnitSystem(String source) {
-<span class="fc" id="L99">        SpeedUnit unit = findUnit(source);</span>
-<span class="fc bfc" id="L100" title="All 2 branches covered.">        return unit != null ? SpeedUnit.getUnitSystem(unit) : null;</span>
+<span class="fc" id="L119">        SpeedUnit unit = findUnit(source);</span>
+<span class="fc bfc" id="L120" title="All 2 branches covered.">        return unit != null ? SpeedUnit.getUnitSystem(unit) : null;</span>
     }
 
     /**
@@ -110,7 +130,7 @@ public class SpeedFormatter extends MeasureFormatter&lt;Speed, SpeedUnit&gt;
     @Override
     public Speed parse(String source) throws ParseException,
             UnknownUnitException {
-<span class="fc" id="L113">        return internalParse(source, new Speed());</span>
+<span class="fc" id="L133">        return internalParse(source, new Speed());</span>
     }
 
     /**
@@ -120,28 +140,28 @@ public class SpeedFormatter extends MeasureFormatter&lt;Speed, SpeedUnit&gt;
      */
     @Override
     public SpeedUnit findUnit(String source) {
-<span class="fc bfc" id="L123" title="All 2 branches covered.">        if (source.contains(KILOMETERS_PER_HOUR + &quot; &quot;) ||</span>
-<span class="fc bfc" id="L124" title="All 2 branches covered.">                source.endsWith(KILOMETERS_PER_HOUR)) {</span>
-<span class="fc" id="L125">            return SpeedUnit.KILOMETERS_PER_HOUR;</span>
+<span class="fc bfc" id="L143" title="All 2 branches covered.">        if (source.contains(KILOMETERS_PER_HOUR + &quot; &quot;) ||</span>
+<span class="fc bfc" id="L144" title="All 2 branches covered.">                source.endsWith(KILOMETERS_PER_HOUR)) {</span>
+<span class="fc" id="L145">            return SpeedUnit.KILOMETERS_PER_HOUR;</span>
         }
-<span class="fc bfc" id="L127" title="All 2 branches covered.">        if (source.contains(KILOMETERS_PER_SECOND + &quot; &quot;) ||</span>
-<span class="fc bfc" id="L128" title="All 2 branches covered.">                source.endsWith(KILOMETERS_PER_SECOND)) {</span>
-<span class="fc" id="L129">            return SpeedUnit.KILOMETERS_PER_SECOND;</span>
+<span class="fc bfc" id="L147" title="All 2 branches covered.">        if (source.contains(KILOMETERS_PER_SECOND + &quot; &quot;) ||</span>
+<span class="fc bfc" id="L148" title="All 2 branches covered.">                source.endsWith(KILOMETERS_PER_SECOND)) {</span>
+<span class="fc" id="L149">            return SpeedUnit.KILOMETERS_PER_SECOND;</span>
         }
-<span class="pc bpc" id="L131" title="1 of 2 branches missed.">        if (source.contains(FEET_PER_SECOND + &quot; &quot;) ||</span>
-<span class="fc bfc" id="L132" title="All 2 branches covered.">                source.endsWith(FEET_PER_SECOND)) {</span>
-<span class="fc" id="L133">            return SpeedUnit.FEET_PER_SECOND;</span>
+<span class="pc bpc" id="L151" title="1 of 2 branches missed.">        if (source.contains(FEET_PER_SECOND + &quot; &quot;) ||</span>
+<span class="fc bfc" id="L152" title="All 2 branches covered.">                source.endsWith(FEET_PER_SECOND)) {</span>
+<span class="fc" id="L153">            return SpeedUnit.FEET_PER_SECOND;</span>
         }
-<span class="fc bfc" id="L135" title="All 2 branches covered.">        if (source.contains(MILES_PER_HOUR + &quot; &quot;) ||</span>
-<span class="fc bfc" id="L136" title="All 2 branches covered.">                source.endsWith(MILES_PER_HOUR)) {</span>
-<span class="fc" id="L137">            return SpeedUnit.MILES_PER_HOUR;</span>
+<span class="fc bfc" id="L155" title="All 2 branches covered.">        if (source.contains(MILES_PER_HOUR + &quot; &quot;) ||</span>
+<span class="fc bfc" id="L156" title="All 2 branches covered.">                source.endsWith(MILES_PER_HOUR)) {</span>
+<span class="fc" id="L157">            return SpeedUnit.MILES_PER_HOUR;</span>
         }
 
-<span class="fc bfc" id="L140" title="All 2 branches covered.">        if (source.contains(METERS_PER_SECOND + &quot; &quot;) ||</span>
-<span class="fc bfc" id="L141" title="All 2 branches covered.">                source.endsWith(METERS_PER_SECOND)) {</span>
-<span class="fc" id="L142">            return SpeedUnit.METERS_PER_SECOND;</span>
+<span class="fc bfc" id="L160" title="All 2 branches covered.">        if (source.contains(METERS_PER_SECOND + &quot; &quot;) ||</span>
+<span class="fc bfc" id="L161" title="All 2 branches covered.">                source.endsWith(METERS_PER_SECOND)) {</span>
+<span class="fc" id="L162">            return SpeedUnit.METERS_PER_SECOND;</span>
         }
-<span class="fc" id="L144">        return null;</span>
+<span class="fc" id="L164">        return null;</span>
     }
 
     /**
@@ -157,12 +177,12 @@ public class SpeedFormatter extends MeasureFormatter&lt;Speed, SpeedUnit&gt;
      */
     @Override
     public String formatAndConvert(Number value, SpeedUnit unit, UnitSystem system) {
-<span class="fc bfc" id="L160" title="All 2 branches covered.">        switch (system) {</span>
+<span class="fc bfc" id="L180" title="All 2 branches covered.">        switch (system) {</span>
             case IMPERIAL:
-<span class="fc" id="L162">                return formatAndConvertImperial(value, unit);</span>
+<span class="fc" id="L182">                return formatAndConvertImperial(value, unit);</span>
             case METRIC:
             default:
-<span class="fc" id="L165">                return formatAndConvertMetric(value, unit);</span>
+<span class="fc" id="L185">                return formatAndConvertMetric(value, unit);</span>
         }
     }
 
@@ -177,25 +197,25 @@ public class SpeedFormatter extends MeasureFormatter&lt;Speed, SpeedUnit&gt;
      * unit system.
      */
     public String formatAndConvertMetric(Number value, SpeedUnit unit) {
-<span class="fc" id="L180">        double v = value.doubleValue();</span>
+<span class="fc" id="L200">        double v = value.doubleValue();</span>
 
-<span class="fc" id="L182">        double metersPerSecond = SpeedConverter.convert(v, unit,</span>
+<span class="fc" id="L202">        double metersPerSecond = SpeedConverter.convert(v, unit,</span>
                 SpeedUnit.METERS_PER_SECOND);
-<span class="fc bfc" id="L184" title="All 2 branches covered.">        if (Math.abs(metersPerSecond) &lt;</span>
+<span class="fc bfc" id="L204" title="All 2 branches covered.">        if (Math.abs(metersPerSecond) &lt;</span>
                 SpeedConverter.METERS_PER_KILOMETER / SpeedConverter.SECONDS_PER_HOUR) {
-<span class="fc" id="L186">            return format(metersPerSecond, SpeedUnit.METERS_PER_SECOND);</span>
+<span class="fc" id="L206">            return format(metersPerSecond, SpeedUnit.METERS_PER_SECOND);</span>
         }
 
-<span class="fc" id="L189">        double kilometersPerHour = SpeedConverter.convert(v, unit,</span>
+<span class="fc" id="L209">        double kilometersPerHour = SpeedConverter.convert(v, unit,</span>
                 SpeedUnit.KILOMETERS_PER_HOUR);
 
-<span class="fc bfc" id="L192" title="All 2 branches covered.">        if (Math.abs(kilometersPerHour) &lt; SpeedConverter.SECONDS_PER_HOUR) {</span>
-<span class="fc" id="L193">            return format(kilometersPerHour, SpeedUnit.KILOMETERS_PER_HOUR);</span>
+<span class="fc bfc" id="L212" title="All 2 branches covered.">        if (Math.abs(kilometersPerHour) &lt; SpeedConverter.SECONDS_PER_HOUR) {</span>
+<span class="fc" id="L213">            return format(kilometersPerHour, SpeedUnit.KILOMETERS_PER_HOUR);</span>
         }
 
-<span class="fc" id="L196">        double kilometersPerSecond = SpeedConverter.convert(v, unit,</span>
+<span class="fc" id="L216">        double kilometersPerSecond = SpeedConverter.convert(v, unit,</span>
                 SpeedUnit.KILOMETERS_PER_SECOND);
-<span class="fc" id="L198">        return format(kilometersPerSecond, SpeedUnit.KILOMETERS_PER_SECOND);</span>
+<span class="fc" id="L218">        return format(kilometersPerSecond, SpeedUnit.KILOMETERS_PER_SECOND);</span>
     }
 
     /**
@@ -209,18 +229,18 @@ public class SpeedFormatter extends MeasureFormatter&lt;Speed, SpeedUnit&gt;
      * unit system.
      */
     public String formatAndConvertImperial(Number value, SpeedUnit unit) {
-<span class="fc" id="L212">        double v = value.doubleValue();</span>
+<span class="fc" id="L232">        double v = value.doubleValue();</span>
 
-<span class="fc" id="L214">        double feetPerSecond = SpeedConverter.convert(v, unit,</span>
+<span class="fc" id="L234">        double feetPerSecond = SpeedConverter.convert(v, unit,</span>
                 SpeedUnit.FEET_PER_SECOND);
-<span class="fc bfc" id="L216" title="All 2 branches covered.">        if (Math.abs(feetPerSecond) &lt; SpeedConverter.METERS_PER_MILE /</span>
+<span class="fc bfc" id="L236" title="All 2 branches covered.">        if (Math.abs(feetPerSecond) &lt; SpeedConverter.METERS_PER_MILE /</span>
                 SpeedConverter.SECONDS_PER_HOUR / SpeedConverter.METERS_PER_FOOT) {
-<span class="fc" id="L218">            return format(feetPerSecond, SpeedUnit.FEET_PER_SECOND);</span>
+<span class="fc" id="L238">            return format(feetPerSecond, SpeedUnit.FEET_PER_SECOND);</span>
         }
 
-<span class="fc" id="L221">        double milesPerHour = SpeedConverter.convert(v, unit,</span>
+<span class="fc" id="L241">        double milesPerHour = SpeedConverter.convert(v, unit,</span>
                 SpeedUnit.MILES_PER_HOUR);
-<span class="fc" id="L223">        return format(milesPerHour, SpeedUnit.MILES_PER_HOUR);</span>
+<span class="fc" id="L243">        return format(milesPerHour, SpeedUnit.MILES_PER_HOUR);</span>
     }
 
     /**
@@ -231,25 +251,25 @@ public class SpeedFormatter extends MeasureFormatter&lt;Speed, SpeedUnit&gt;
     @Override
     public String getUnitSymbol(SpeedUnit unit) {
         String unitStr;
-<span class="fc bfc" id="L234" title="All 5 branches covered.">        switch (unit) {</span>
+<span class="fc bfc" id="L254" title="All 5 branches covered.">        switch (unit) {</span>
             case KILOMETERS_PER_HOUR:
-<span class="fc" id="L236">                unitStr = KILOMETERS_PER_HOUR;</span>
-<span class="fc" id="L237">                break;</span>
+<span class="fc" id="L256">                unitStr = KILOMETERS_PER_HOUR;</span>
+<span class="fc" id="L257">                break;</span>
             case KILOMETERS_PER_SECOND:
-<span class="fc" id="L239">                unitStr = KILOMETERS_PER_SECOND;</span>
-<span class="fc" id="L240">                break;</span>
+<span class="fc" id="L259">                unitStr = KILOMETERS_PER_SECOND;</span>
+<span class="fc" id="L260">                break;</span>
             case FEET_PER_SECOND:
-<span class="fc" id="L242">                unitStr = FEET_PER_SECOND;</span>
-<span class="fc" id="L243">                break;</span>
+<span class="fc" id="L262">                unitStr = FEET_PER_SECOND;</span>
+<span class="fc" id="L263">                break;</span>
             case MILES_PER_HOUR:
-<span class="fc" id="L245">                unitStr = MILES_PER_HOUR;</span>
-<span class="fc" id="L246">                break;</span>
+<span class="fc" id="L265">                unitStr = MILES_PER_HOUR;</span>
+<span class="fc" id="L266">                break;</span>
             case METERS_PER_SECOND:
             default:
-<span class="fc" id="L249">                unitStr = METERS_PER_SECOND;</span>
+<span class="fc" id="L269">                unitStr = METERS_PER_SECOND;</span>
                 break;
         }
-<span class="fc" id="L252">        return unitStr;</span>
+<span class="fc" id="L272">        return unitStr;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

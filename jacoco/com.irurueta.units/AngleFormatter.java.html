@@ -82,9 +82,20 @@ public class AngleFormatter extends MeasureFormatter&lt;Angle, AngleUnit&gt; imp
      * @param locale locale.
      * @throws IllegalArgumentException if locale is null.
      */
-    public AngleFormatter(Locale locale) throws IllegalArgumentException {
+    public AngleFormatter(Locale locale) {
 <span class="fc" id="L86">        super(locale);</span>
 <span class="fc" id="L87">    }</span>
+
+    /**
+     * Copy constructor.
+     * @param formatter input instance to copy from.
+     * @throws NullPointerException if provided formatter is null.
+     */
+    public AngleFormatter(AngleFormatter formatter) {
+<span class="fc" id="L95">        this(formatter.getLocale());</span>
+<span class="fc" id="L96">        mDegreesAndMinutesPattern = formatter.mDegreesAndMinutesPattern;</span>
+<span class="fc" id="L97">        mDegreesMinutesAndSecondsPattern = formatter.mDegreesMinutesAndSecondsPattern;</span>
+<span class="fc" id="L98">    }</span>
 
     /**
      * Clones this angle formatter.
@@ -92,8 +103,8 @@ public class AngleFormatter extends MeasureFormatter&lt;Angle, AngleUnit&gt; imp
      */
     @Override
     public Object clone() {
-<span class="nc" id="L95">        AngleFormatter copy = new AngleFormatter();</span>
-<span class="nc" id="L96">        return internalClone(copy);</span>
+<span class="nc" id="L106">        AngleFormatter copy = new AngleFormatter();</span>
+<span class="nc" id="L107">        return internalClone(copy);</span>
     }
 
     /**
@@ -104,8 +115,19 @@ public class AngleFormatter extends MeasureFormatter&lt;Angle, AngleUnit&gt; imp
      */
     @Override
     public boolean equals(Object obj) {
-<span class="fc" id="L107">        boolean equals = super.equals(obj);</span>
-<span class="fc bfc" id="L108" title="All 4 branches covered.">        return (obj instanceof AngleFormatter) &amp;&amp; equals;</span>
+<span class="fc" id="L118">        boolean equals = super.equals(obj);</span>
+<span class="fc bfc" id="L119" title="All 4 branches covered.">        return (obj instanceof AngleFormatter) &amp;&amp; equals;</span>
+    }
+
+    /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare objects.
+     * This implementation only calls parent implementation to avoid static analyzer warning.
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+<span class="fc" id="L130">        return super.hashCode();</span>
     }
 
     /**
@@ -116,8 +138,8 @@ public class AngleFormatter extends MeasureFormatter&lt;Angle, AngleUnit&gt; imp
      */
     @Override
     public UnitSystem getUnitSystem(String source) {
-<span class="fc" id="L119">        AngleUnit unit = findUnit(source);</span>
-<span class="fc bfc" id="L120" title="All 2 branches covered.">        return unit != null ? UnitSystem.METRIC : null;</span>
+<span class="fc" id="L141">        AngleUnit unit = findUnit(source);</span>
+<span class="fc bfc" id="L142" title="All 2 branches covered.">        return unit != null ? UnitSystem.METRIC : null;</span>
     }
 
     /**
@@ -129,7 +151,7 @@ public class AngleFormatter extends MeasureFormatter&lt;Angle, AngleUnit&gt; imp
      */
     @Override
     public Angle parse(String source) throws ParseException, UnknownUnitException {
-<span class="fc" id="L132">        return internalParse(source, new Angle());</span>
+<span class="fc" id="L154">        return internalParse(source, new Angle());</span>
     }
 
     /**
@@ -139,13 +161,13 @@ public class AngleFormatter extends MeasureFormatter&lt;Angle, AngleUnit&gt; imp
      */
     @Override
     public AngleUnit findUnit(String source) {
-<span class="fc bfc" id="L142" title="All 4 branches covered.">        if (source.contains(DEGREE + &quot; &quot;) || source.endsWith(DEGREE)) {</span>
-<span class="fc" id="L143">            return AngleUnit.DEGREES;</span>
+<span class="fc bfc" id="L164" title="All 4 branches covered.">        if (source.contains(DEGREE + &quot; &quot;) || source.endsWith(DEGREE)) {</span>
+<span class="fc" id="L165">            return AngleUnit.DEGREES;</span>
         }
-<span class="fc bfc" id="L145" title="All 4 branches covered.">        if (source.contains(RADIAN + &quot; &quot;) || source.endsWith(RADIAN)) {</span>
-<span class="fc" id="L146">            return AngleUnit.RADIANS;</span>
+<span class="fc bfc" id="L167" title="All 4 branches covered.">        if (source.contains(RADIAN + &quot; &quot;) || source.endsWith(RADIAN)) {</span>
+<span class="fc" id="L168">            return AngleUnit.RADIANS;</span>
         }
-<span class="fc" id="L148">        return null;</span>
+<span class="fc" id="L170">        return null;</span>
     }
 
     /**
@@ -158,7 +180,7 @@ public class AngleFormatter extends MeasureFormatter&lt;Angle, AngleUnit&gt; imp
      */
     @Override
     public String formatAndConvert(Number value, AngleUnit unit, UnitSystem system) {
-<span class="fc" id="L161">        return format(value, unit);</span>
+<span class="fc" id="L183">        return format(value, unit);</span>
     }
 
     /**
@@ -167,18 +189,19 @@ public class AngleFormatter extends MeasureFormatter&lt;Angle, AngleUnit&gt; imp
      * @return its string representation.
      */
     @Override
+    @SuppressWarnings(&quot;Duplicates&quot;)
     public String getUnitSymbol(AngleUnit unit) {
         String unitStr;
-<span class="fc bfc" id="L172" title="All 2 branches covered.">        switch (unit) {</span>
+<span class="fc bfc" id="L195" title="All 2 branches covered.">        switch (unit) {</span>
             case DEGREES:
-<span class="fc" id="L174">                unitStr = DEGREE;</span>
-<span class="fc" id="L175">                break;</span>
+<span class="fc" id="L197">                unitStr = DEGREE;</span>
+<span class="fc" id="L198">                break;</span>
             case RADIANS:
             default:
-<span class="fc" id="L178">                unitStr = RADIAN;</span>
+<span class="fc" id="L201">                unitStr = RADIAN;</span>
                 break;
         }
-<span class="fc" id="L181">        return unitStr;</span>
+<span class="fc" id="L204">        return unitStr;</span>
     }
 
     /**
@@ -188,10 +211,10 @@ public class AngleFormatter extends MeasureFormatter&lt;Angle, AngleUnit&gt; imp
      * decimal minutes.
      */
     public String formatDegreesAndMinutes(Angle angle) {
-<span class="fc" id="L191">        double[] degreesAndMinutes = AngleConverter.toDegreesAndMinutes(angle);</span>
-<span class="fc" id="L192">        return MessageFormat.format(DEGREES_AND_MINUTES_MESSAGE_PATTERN,</span>
-<span class="fc" id="L193">                mNumberFormat.format(degreesAndMinutes[0]),</span>
-<span class="fc" id="L194">                mNumberFormat.format(degreesAndMinutes[1]));</span>
+<span class="fc" id="L214">        double[] degreesAndMinutes = AngleConverter.toDegreesAndMinutes(angle);</span>
+<span class="fc" id="L215">        return MessageFormat.format(DEGREES_AND_MINUTES_MESSAGE_PATTERN,</span>
+<span class="fc" id="L216">                mNumberFormat.format(degreesAndMinutes[0]),</span>
+<span class="fc" id="L217">                mNumberFormat.format(degreesAndMinutes[1]));</span>
     }
 
     /**
@@ -201,12 +224,12 @@ public class AngleFormatter extends MeasureFormatter&lt;Angle, AngleUnit&gt; imp
      * minutes and decimal seconds.
      */
     public String formatDegreesMinutesAndSeconds(Angle angle) {
-<span class="fc" id="L204">        double[] degreesMinutesAndSeconds =</span>
-<span class="fc" id="L205">                AngleConverter.toDegreesMinutesAndSeconds(angle);</span>
-<span class="fc" id="L206">        return MessageFormat.format(DEGREES_MINUTES_AND_SECONDS_MESSAGE_PATTERN,</span>
-<span class="fc" id="L207">                mNumberFormat.format(degreesMinutesAndSeconds[0]),</span>
-<span class="fc" id="L208">                mNumberFormat.format(degreesMinutesAndSeconds[1]),</span>
-<span class="fc" id="L209">                mNumberFormat.format(degreesMinutesAndSeconds[2]));</span>
+<span class="fc" id="L227">        double[] degreesMinutesAndSeconds =</span>
+<span class="fc" id="L228">                AngleConverter.toDegreesMinutesAndSeconds(angle);</span>
+<span class="fc" id="L229">        return MessageFormat.format(DEGREES_MINUTES_AND_SECONDS_MESSAGE_PATTERN,</span>
+<span class="fc" id="L230">                mNumberFormat.format(degreesMinutesAndSeconds[0]),</span>
+<span class="fc" id="L231">                mNumberFormat.format(degreesMinutesAndSeconds[1]),</span>
+<span class="fc" id="L232">                mNumberFormat.format(degreesMinutesAndSeconds[2]));</span>
     }
 
     /**
@@ -217,26 +240,27 @@ public class AngleFormatter extends MeasureFormatter&lt;Angle, AngleUnit&gt; imp
      * @throws ParseException if parsing fails.
      * @throws UnknownUnitException if format is not recognized.
      */
+    @SuppressWarnings(&quot;Duplicates&quot;)
     public Angle parseDegreesAndMinutes(CharSequence source) throws ParseException,
             UnknownUnitException{
-<span class="fc bfc" id="L222" title="All 2 branches covered.">        if (mDegreesAndMinutesPattern == null) {</span>
-<span class="fc" id="L223">            mDegreesAndMinutesPattern = Pattern.compile(DEGREES_AND_MINUTES_PATTERN);</span>
+<span class="fc bfc" id="L246" title="All 2 branches covered.">        if (mDegreesAndMinutesPattern == null) {</span>
+<span class="fc" id="L247">            mDegreesAndMinutesPattern = Pattern.compile(DEGREES_AND_MINUTES_PATTERN);</span>
         }
 
-<span class="fc" id="L226">        Matcher matcher = mDegreesAndMinutesPattern.matcher(source);</span>
-<span class="fc bfc" id="L227" title="All 2 branches covered.">        if (!matcher.matches()) {</span>
-<span class="fc" id="L228">            throw new UnknownUnitException();</span>
+<span class="fc" id="L250">        Matcher matcher = mDegreesAndMinutesPattern.matcher(source);</span>
+<span class="fc bfc" id="L251" title="All 2 branches covered.">        if (!matcher.matches()) {</span>
+<span class="fc" id="L252">            throw new UnknownUnitException();</span>
         }
 
-<span class="fc" id="L231">        String degreeString = matcher.group(1);</span>
-<span class="fc" id="L232">        String minuteString = matcher.group(3);</span>
+<span class="fc" id="L255">        String degreeString = matcher.group(1);</span>
+<span class="fc" id="L256">        String minuteString = matcher.group(3);</span>
 
-<span class="fc" id="L234">        Number degree = mNumberFormat.parse(degreeString);</span>
-<span class="fc" id="L235">        Number minute = mNumberFormat.parse(minuteString);</span>
+<span class="fc" id="L258">        Number degree = mNumberFormat.parse(degreeString);</span>
+<span class="fc" id="L259">        Number minute = mNumberFormat.parse(minuteString);</span>
 
-<span class="fc" id="L237">        double angle = AngleConverter.fromDegreesAndMinutes(degree.intValue(),</span>
-<span class="fc" id="L238">                minute.doubleValue(), AngleUnit.DEGREES);</span>
-<span class="fc" id="L239">        return new Angle(angle, AngleUnit.DEGREES);</span>
+<span class="fc" id="L261">        double angle = AngleConverter.fromDegreesAndMinutes(degree.intValue(),</span>
+<span class="fc" id="L262">                minute.doubleValue(), AngleUnit.DEGREES);</span>
+<span class="fc" id="L263">        return new Angle(angle, AngleUnit.DEGREES);</span>
     }
 
     /**
@@ -247,29 +271,30 @@ public class AngleFormatter extends MeasureFormatter&lt;Angle, AngleUnit&gt; imp
      * @throws ParseException if parsing fails.
      * @throws UnknownUnitException if format is not recognized.
      */
+    @SuppressWarnings(&quot;Duplicates&quot;)
     public Angle parseDegreesMinutesAndSeconds(CharSequence source)
             throws ParseException, UnknownUnitException {
-<span class="fc bfc" id="L252" title="All 2 branches covered.">        if (mDegreesMinutesAndSecondsPattern == null) {</span>
-<span class="fc" id="L253">            mDegreesMinutesAndSecondsPattern = Pattern.compile(</span>
+<span class="fc bfc" id="L277" title="All 2 branches covered.">        if (mDegreesMinutesAndSecondsPattern == null) {</span>
+<span class="fc" id="L278">            mDegreesMinutesAndSecondsPattern = Pattern.compile(</span>
                     DEGREES_MINUTES_AND_SECONDS_PATTERN);
         }
 
-<span class="fc" id="L257">        Matcher matcher = mDegreesMinutesAndSecondsPattern.matcher(source);</span>
-<span class="fc bfc" id="L258" title="All 2 branches covered.">        if (!matcher.matches()) {</span>
-<span class="fc" id="L259">            throw new UnknownUnitException();</span>
+<span class="fc" id="L282">        Matcher matcher = mDegreesMinutesAndSecondsPattern.matcher(source);</span>
+<span class="fc bfc" id="L283" title="All 2 branches covered.">        if (!matcher.matches()) {</span>
+<span class="fc" id="L284">            throw new UnknownUnitException();</span>
         }
 
-<span class="fc" id="L262">        String degreeString = matcher.group(1);</span>
-<span class="fc" id="L263">        String minuteString = matcher.group(3);</span>
-<span class="fc" id="L264">        String secondString = matcher.group(5);</span>
+<span class="fc" id="L287">        String degreeString = matcher.group(1);</span>
+<span class="fc" id="L288">        String minuteString = matcher.group(3);</span>
+<span class="fc" id="L289">        String secondString = matcher.group(5);</span>
 
-<span class="fc" id="L266">        Number degree = mNumberFormat.parse(degreeString);</span>
-<span class="fc" id="L267">        Number minute = mNumberFormat.parse(minuteString);</span>
-<span class="fc" id="L268">        Number second = mNumberFormat.parse(secondString);</span>
+<span class="fc" id="L291">        Number degree = mNumberFormat.parse(degreeString);</span>
+<span class="fc" id="L292">        Number minute = mNumberFormat.parse(minuteString);</span>
+<span class="fc" id="L293">        Number second = mNumberFormat.parse(secondString);</span>
 
-<span class="fc" id="L270">        double angle = AngleConverter.fromDegreesMinutesAndSeconds(degree.intValue(),</span>
-<span class="fc" id="L271">                minute.intValue(), second.doubleValue(), AngleUnit.DEGREES);</span>
-<span class="fc" id="L272">        return new Angle(angle, AngleUnit.DEGREES);</span>
+<span class="fc" id="L295">        double angle = AngleConverter.fromDegreesMinutesAndSeconds(degree.intValue(),</span>
+<span class="fc" id="L296">                minute.intValue(), second.doubleValue(), AngleUnit.DEGREES);</span>
+<span class="fc" id="L297">        return new Angle(angle, AngleUnit.DEGREES);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

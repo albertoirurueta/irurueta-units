@@ -47,9 +47,18 @@ public class AngularSpeedFormatter extends
      * @param locale locale.
      * @throws IllegalArgumentException if locale is null.
      */
-    public AngularSpeedFormatter(Locale locale) throws IllegalArgumentException {
+    public AngularSpeedFormatter(Locale locale) {
 <span class="fc" id="L51">        super(locale);</span>
 <span class="fc" id="L52">    }</span>
+
+    /**
+     * Copy constructor.
+     * @param formatter input instance to copy from.
+     * @throws NullPointerException if provided formatter is null.
+     */
+    public AngularSpeedFormatter(AngularSpeedFormatter formatter) {
+<span class="fc" id="L60">        this(formatter.getLocale());</span>
+<span class="fc" id="L61">    }</span>
 
     /**
      * Clones this angular speed formatter.
@@ -57,8 +66,8 @@ public class AngularSpeedFormatter extends
      */
     @Override
     public Object clone() {
-<span class="nc" id="L60">        AngularSpeedFormatter copy = new AngularSpeedFormatter();</span>
-<span class="nc" id="L61">        return internalClone(copy);</span>
+<span class="nc" id="L69">        AngularSpeedFormatter copy = new AngularSpeedFormatter();</span>
+<span class="nc" id="L70">        return internalClone(copy);</span>
     }
 
     /**
@@ -69,8 +78,19 @@ public class AngularSpeedFormatter extends
      */
     @Override
     public boolean equals(Object obj) {
-<span class="fc" id="L72">        boolean equals = super.equals(obj);</span>
-<span class="fc bfc" id="L73" title="All 4 branches covered.">        return (obj instanceof AngularSpeedFormatter) &amp;&amp; equals;</span>
+<span class="fc" id="L81">        boolean equals = super.equals(obj);</span>
+<span class="fc bfc" id="L82" title="All 4 branches covered.">        return (obj instanceof AngularSpeedFormatter) &amp;&amp; equals;</span>
+    }
+
+    /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare objects.
+     * This implementation only calls parent implementation to avoid static analyzer warning.
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+<span class="fc" id="L93">        return super.hashCode();</span>
     }
 
     /**
@@ -81,8 +101,8 @@ public class AngularSpeedFormatter extends
      */
     @Override
     public UnitSystem getUnitSystem(String source) {
-<span class="fc" id="L84">        AngularSpeedUnit unit = findUnit(source);</span>
-<span class="fc bfc" id="L85" title="All 2 branches covered.">        return unit != null ? UnitSystem.METRIC : null;</span>
+<span class="fc" id="L104">        AngularSpeedUnit unit = findUnit(source);</span>
+<span class="fc bfc" id="L105" title="All 2 branches covered.">        return unit != null ? UnitSystem.METRIC : null;</span>
     }
 
     /**
@@ -95,7 +115,7 @@ public class AngularSpeedFormatter extends
     @Override
     public AngularSpeed parse(String source) throws ParseException,
             UnknownUnitException {
-<span class="fc" id="L98">        return internalParse(source, new AngularSpeed());</span>
+<span class="fc" id="L118">        return internalParse(source, new AngularSpeed());</span>
     }
 
     /**
@@ -106,15 +126,15 @@ public class AngularSpeedFormatter extends
      */
     @Override
     public AngularSpeedUnit findUnit(String source) {
-<span class="fc bfc" id="L109" title="All 2 branches covered.">        if (source.contains(DEGREES_PER_SECOND + &quot; &quot;) ||</span>
-<span class="fc bfc" id="L110" title="All 2 branches covered.">                source.endsWith(DEGREES_PER_SECOND)) {</span>
-<span class="fc" id="L111">            return AngularSpeedUnit.DEGREES_PER_SECOND;</span>
+<span class="fc bfc" id="L129" title="All 2 branches covered.">        if (source.contains(DEGREES_PER_SECOND + &quot; &quot;) ||</span>
+<span class="fc bfc" id="L130" title="All 2 branches covered.">                source.endsWith(DEGREES_PER_SECOND)) {</span>
+<span class="fc" id="L131">            return AngularSpeedUnit.DEGREES_PER_SECOND;</span>
         }
-<span class="fc bfc" id="L113" title="All 2 branches covered.">        if (source.contains(RADIANS_PER_SECOND + &quot; &quot;) ||</span>
-<span class="fc bfc" id="L114" title="All 2 branches covered.">                source.endsWith(RADIANS_PER_SECOND)) {</span>
-<span class="fc" id="L115">            return AngularSpeedUnit.RADIANS_PER_SECOND;</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">        if (source.contains(RADIANS_PER_SECOND + &quot; &quot;) ||</span>
+<span class="fc bfc" id="L134" title="All 2 branches covered.">                source.endsWith(RADIANS_PER_SECOND)) {</span>
+<span class="fc" id="L135">            return AngularSpeedUnit.RADIANS_PER_SECOND;</span>
         }
-<span class="fc" id="L117">        return null;</span>
+<span class="fc" id="L137">        return null;</span>
     }
 
     /**
@@ -129,7 +149,7 @@ public class AngularSpeedFormatter extends
     @Override
     public String formatAndConvert(Number value, AngularSpeedUnit unit,
                                    UnitSystem system) {
-<span class="fc" id="L132">        return format(value, unit);</span>
+<span class="fc" id="L152">        return format(value, unit);</span>
     }
 
     /**
@@ -138,18 +158,19 @@ public class AngularSpeedFormatter extends
      * @return its string representation.
      */
     @Override
+    @SuppressWarnings(&quot;Duplicates&quot;)
     public String getUnitSymbol(AngularSpeedUnit unit) {
         String unitStr;
-<span class="fc bfc" id="L143" title="All 2 branches covered.">        switch (unit) {</span>
+<span class="fc bfc" id="L164" title="All 2 branches covered.">        switch (unit) {</span>
             case DEGREES_PER_SECOND:
-<span class="fc" id="L145">                unitStr = DEGREES_PER_SECOND;</span>
-<span class="fc" id="L146">                break;</span>
+<span class="fc" id="L166">                unitStr = DEGREES_PER_SECOND;</span>
+<span class="fc" id="L167">                break;</span>
             case RADIANS_PER_SECOND:
             default:
-<span class="fc" id="L149">                unitStr = RADIANS_PER_SECOND;</span>
+<span class="fc" id="L170">                unitStr = RADIANS_PER_SECOND;</span>
                 break;
         }
-<span class="fc" id="L152">        return unitStr;</span>
+<span class="fc" id="L173">        return unitStr;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

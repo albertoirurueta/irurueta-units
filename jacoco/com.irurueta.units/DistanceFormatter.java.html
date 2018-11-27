@@ -76,9 +76,18 @@ public class DistanceFormatter extends MeasureFormatter&lt;Distance, DistanceUni
      * @param locale locale.
      * @throws IllegalArgumentException if locale is null.
      */
-    public DistanceFormatter(Locale locale) throws IllegalArgumentException {
+    public DistanceFormatter(Locale locale) {
 <span class="fc" id="L80">        super(locale);</span>
 <span class="fc" id="L81">    }</span>
+
+    /**
+     * Copy constructor.
+     * @param formatter input instance to copy from.
+     * @throws NullPointerException if provided formatter is null.
+     */
+    public DistanceFormatter(DistanceFormatter formatter) {
+<span class="fc" id="L89">        this(formatter.getLocale());</span>
+<span class="fc" id="L90">    }</span>
 
     /**
      * Clones this distance formatter.
@@ -86,8 +95,8 @@ public class DistanceFormatter extends MeasureFormatter&lt;Distance, DistanceUni
      */
     @Override
     public Object clone() {
-<span class="fc" id="L89">        DistanceFormatter copy = new DistanceFormatter();</span>
-<span class="fc" id="L90">        return internalClone(copy);</span>
+<span class="fc" id="L98">        DistanceFormatter copy = new DistanceFormatter();</span>
+<span class="fc" id="L99">        return internalClone(copy);</span>
     }
 
     /**
@@ -97,8 +106,19 @@ public class DistanceFormatter extends MeasureFormatter&lt;Distance, DistanceUni
      */
     @Override
     public boolean equals(Object obj) {
-<span class="fc" id="L100">        boolean equals = super.equals(obj);</span>
-<span class="fc bfc" id="L101" title="All 4 branches covered.">        return (obj instanceof DistanceFormatter) &amp;&amp; equals;</span>
+<span class="fc" id="L109">        boolean equals = super.equals(obj);</span>
+<span class="fc bfc" id="L110" title="All 4 branches covered.">        return (obj instanceof DistanceFormatter) &amp;&amp; equals;</span>
+    }
+
+    /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare objects.
+     * This implementation only calls parent implementation to avoid static analyzer warning.
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+<span class="fc" id="L121">        return super.hashCode();</span>
     }
 
     /**
@@ -110,8 +130,8 @@ public class DistanceFormatter extends MeasureFormatter&lt;Distance, DistanceUni
      */
     @Override
     public UnitSystem getUnitSystem(String source) {
-<span class="fc" id="L113">        DistanceUnit unit = findUnit(source);</span>
-<span class="fc bfc" id="L114" title="All 2 branches covered.">        return unit != null ? DistanceUnit.getUnitSystem(unit) : null;</span>
+<span class="fc" id="L133">        DistanceUnit unit = findUnit(source);</span>
+<span class="fc bfc" id="L134" title="All 2 branches covered.">        return unit != null ? DistanceUnit.getUnitSystem(unit) : null;</span>
     }
 
     /**
@@ -124,7 +144,7 @@ public class DistanceFormatter extends MeasureFormatter&lt;Distance, DistanceUni
     @Override
     public Distance parse(String source) throws ParseException,
             UnknownUnitException {
-<span class="fc" id="L127">        return internalParse(source, new Distance());</span>
+<span class="fc" id="L147">        return internalParse(source, new Distance());</span>
     }
 
     /**
@@ -135,32 +155,32 @@ public class DistanceFormatter extends MeasureFormatter&lt;Distance, DistanceUni
      */
     @Override
     public DistanceUnit findUnit(String source) {
-<span class="fc bfc" id="L138" title="All 4 branches covered.">        if (source.contains(MILLIMETER + &quot; &quot;) || source.endsWith(MILLIMETER)) {</span>
-<span class="fc" id="L139">            return DistanceUnit.MILLIMETER;</span>
+<span class="fc bfc" id="L158" title="All 4 branches covered.">        if (source.contains(MILLIMETER + &quot; &quot;) || source.endsWith(MILLIMETER)) {</span>
+<span class="fc" id="L159">            return DistanceUnit.MILLIMETER;</span>
         }
-<span class="fc bfc" id="L141" title="All 4 branches covered.">        if (source.contains(CENTIMETER + &quot; &quot;) || source.endsWith(CENTIMETER)) {</span>
-<span class="fc" id="L142">            return DistanceUnit.CENTIMETER;</span>
+<span class="fc bfc" id="L161" title="All 4 branches covered.">        if (source.contains(CENTIMETER + &quot; &quot;) || source.endsWith(CENTIMETER)) {</span>
+<span class="fc" id="L162">            return DistanceUnit.CENTIMETER;</span>
         }
-<span class="fc bfc" id="L144" title="All 4 branches covered.">        if (source.contains(KILOMETER + &quot; &quot;) || source.endsWith(KILOMETER)) {</span>
-<span class="fc" id="L145">            return DistanceUnit.KILOMETER;</span>
+<span class="fc bfc" id="L164" title="All 4 branches covered.">        if (source.contains(KILOMETER + &quot; &quot;) || source.endsWith(KILOMETER)) {</span>
+<span class="fc" id="L165">            return DistanceUnit.KILOMETER;</span>
         }
-<span class="fc bfc" id="L147" title="All 4 branches covered.">        if (source.contains(INCH + &quot; &quot;) || source.endsWith(INCH)) {</span>
-<span class="fc" id="L148">            return DistanceUnit.INCH;</span>
+<span class="fc bfc" id="L167" title="All 4 branches covered.">        if (source.contains(INCH + &quot; &quot;) || source.endsWith(INCH)) {</span>
+<span class="fc" id="L168">            return DistanceUnit.INCH;</span>
         }
-<span class="fc bfc" id="L150" title="All 4 branches covered.">        if (source.contains(FOOT + &quot; &quot;) || source.endsWith(FOOT)) {</span>
-<span class="fc" id="L151">            return DistanceUnit.FOOT;</span>
+<span class="fc bfc" id="L170" title="All 4 branches covered.">        if (source.contains(FOOT + &quot; &quot;) || source.endsWith(FOOT)) {</span>
+<span class="fc" id="L171">            return DistanceUnit.FOOT;</span>
         }
-<span class="fc bfc" id="L153" title="All 4 branches covered.">        if (source.contains(YARD + &quot; &quot;) || source.endsWith(YARD)) {</span>
-<span class="fc" id="L154">            return DistanceUnit.YARD;</span>
+<span class="fc bfc" id="L173" title="All 4 branches covered.">        if (source.contains(YARD + &quot; &quot;) || source.endsWith(YARD)) {</span>
+<span class="fc" id="L174">            return DistanceUnit.YARD;</span>
         }
-<span class="fc bfc" id="L156" title="All 4 branches covered.">        if (source.contains(MILE + &quot; &quot;) || source.endsWith(MILE)) {</span>
-<span class="fc" id="L157">            return DistanceUnit.MILE;</span>
+<span class="fc bfc" id="L176" title="All 4 branches covered.">        if (source.contains(MILE + &quot; &quot;) || source.endsWith(MILE)) {</span>
+<span class="fc" id="L177">            return DistanceUnit.MILE;</span>
         }
 
-<span class="fc bfc" id="L160" title="All 4 branches covered.">        if (source.contains(METER + &quot; &quot;) || source.endsWith(METER)) {</span>
-<span class="fc" id="L161">            return DistanceUnit.METER;</span>
+<span class="fc bfc" id="L180" title="All 4 branches covered.">        if (source.contains(METER + &quot; &quot;) || source.endsWith(METER)) {</span>
+<span class="fc" id="L181">            return DistanceUnit.METER;</span>
         }
-<span class="fc" id="L163">        return null;</span>
+<span class="fc" id="L183">        return null;</span>
     }
 
     /**
@@ -176,12 +196,12 @@ public class DistanceFormatter extends MeasureFormatter&lt;Distance, DistanceUni
      */
     @Override
     public String formatAndConvert(Number value, DistanceUnit unit, UnitSystem system) {
-<span class="fc bfc" id="L179" title="All 2 branches covered.">        switch (system) {</span>
+<span class="fc bfc" id="L199" title="All 2 branches covered.">        switch (system) {</span>
             case IMPERIAL:
-<span class="fc" id="L181">                return formatAndConvertImperial(value, unit);</span>
+<span class="fc" id="L201">                return formatAndConvertImperial(value, unit);</span>
             case METRIC:
             default:
-<span class="fc" id="L184">                return formatAndConvertMetric(value, unit);</span>
+<span class="fc" id="L204">                return formatAndConvertMetric(value, unit);</span>
         }
     }
 
@@ -196,30 +216,30 @@ public class DistanceFormatter extends MeasureFormatter&lt;Distance, DistanceUni
      * unit system.
      */
     public String formatAndConvertMetric(Number value, DistanceUnit unit) {
-<span class="fc" id="L199">        double v = value.doubleValue();</span>
+<span class="fc" id="L219">        double v = value.doubleValue();</span>
 
-<span class="fc" id="L201">        double millimeters = DistanceConverter.convert(v, unit,</span>
+<span class="fc" id="L221">        double millimeters = DistanceConverter.convert(v, unit,</span>
                 DistanceUnit.MILLIMETER);
-<span class="fc bfc" id="L203" title="All 2 branches covered.">        if (Math.abs(millimeters) &lt; (DistanceConverter.METERS_PER_CENTIMETER /</span>
+<span class="fc bfc" id="L223" title="All 2 branches covered.">        if (Math.abs(millimeters) &lt; (DistanceConverter.METERS_PER_CENTIMETER /</span>
                 DistanceConverter.METERS_PER_MILLIMETER)) {
-<span class="fc" id="L205">            return format(millimeters, DistanceUnit.MILLIMETER);</span>
+<span class="fc" id="L225">            return format(millimeters, DistanceUnit.MILLIMETER);</span>
         }
 
-<span class="fc" id="L208">        double centimeters = DistanceConverter.convert(v, unit,</span>
+<span class="fc" id="L228">        double centimeters = DistanceConverter.convert(v, unit,</span>
                 DistanceUnit.CENTIMETER);
-<span class="fc bfc" id="L210" title="All 2 branches covered.">        if (Math.abs(centimeters) &lt;</span>
+<span class="fc bfc" id="L230" title="All 2 branches covered.">        if (Math.abs(centimeters) &lt;</span>
                 (1.0 / DistanceConverter.METERS_PER_CENTIMETER)) {
-<span class="fc" id="L212">            return format(centimeters, DistanceUnit.CENTIMETER);</span>
+<span class="fc" id="L232">            return format(centimeters, DistanceUnit.CENTIMETER);</span>
         }
 
-<span class="fc" id="L215">        double meters = DistanceConverter.convert(v, unit, DistanceUnit.METER);</span>
-<span class="fc bfc" id="L216" title="All 2 branches covered.">        if (Math.abs(meters) &lt; DistanceConverter.METERS_PER_KILOMETER) {</span>
-<span class="fc" id="L217">            return format(meters, DistanceUnit.METER);</span>
+<span class="fc" id="L235">        double meters = DistanceConverter.convert(v, unit, DistanceUnit.METER);</span>
+<span class="fc bfc" id="L236" title="All 2 branches covered.">        if (Math.abs(meters) &lt; DistanceConverter.METERS_PER_KILOMETER) {</span>
+<span class="fc" id="L237">            return format(meters, DistanceUnit.METER);</span>
         }
 
-<span class="fc" id="L220">        double kilometers = DistanceConverter.convert(v, unit,</span>
+<span class="fc" id="L240">        double kilometers = DistanceConverter.convert(v, unit,</span>
                 DistanceUnit.KILOMETER);
-<span class="fc" id="L222">        return format(kilometers, DistanceUnit.KILOMETER);</span>
+<span class="fc" id="L242">        return format(kilometers, DistanceUnit.KILOMETER);</span>
     }
 
     /**
@@ -233,28 +253,28 @@ public class DistanceFormatter extends MeasureFormatter&lt;Distance, DistanceUni
      * unit system.
      */
     public String formatAndConvertImperial(Number value, DistanceUnit unit) {
-<span class="fc" id="L236">        double v = value.doubleValue();</span>
+<span class="fc" id="L256">        double v = value.doubleValue();</span>
 
-<span class="fc" id="L238">        double inches = DistanceConverter.convert(v, unit, DistanceUnit.INCH);</span>
-<span class="fc bfc" id="L239" title="All 2 branches covered.">        if (Math.abs(inches) &lt; (DistanceConverter.METERS_PER_FOOT /</span>
+<span class="fc" id="L258">        double inches = DistanceConverter.convert(v, unit, DistanceUnit.INCH);</span>
+<span class="fc bfc" id="L259" title="All 2 branches covered.">        if (Math.abs(inches) &lt; (DistanceConverter.METERS_PER_FOOT /</span>
                 DistanceConverter.METERS_PER_INCH)) {
-<span class="fc" id="L241">            return format(inches, DistanceUnit.INCH);</span>
+<span class="fc" id="L261">            return format(inches, DistanceUnit.INCH);</span>
         }
 
-<span class="fc" id="L244">        double feet = DistanceConverter.convert(v, unit, DistanceUnit.FOOT);</span>
-<span class="fc bfc" id="L245" title="All 2 branches covered.">        if (Math.abs(feet) &lt; (DistanceConverter.METERS_PER_YARD /</span>
+<span class="fc" id="L264">        double feet = DistanceConverter.convert(v, unit, DistanceUnit.FOOT);</span>
+<span class="fc bfc" id="L265" title="All 2 branches covered.">        if (Math.abs(feet) &lt; (DistanceConverter.METERS_PER_YARD /</span>
                 DistanceConverter.METERS_PER_FOOT)) {
-<span class="fc" id="L247">            return format(feet, DistanceUnit.FOOT);</span>
+<span class="fc" id="L267">            return format(feet, DistanceUnit.FOOT);</span>
         }
 
-<span class="fc" id="L250">        double yards = DistanceConverter.convert(v, unit, DistanceUnit.YARD);</span>
-<span class="fc bfc" id="L251" title="All 2 branches covered.">        if (Math.abs(yards) &lt; (DistanceConverter.METERS_PER_MILE /</span>
+<span class="fc" id="L270">        double yards = DistanceConverter.convert(v, unit, DistanceUnit.YARD);</span>
+<span class="fc bfc" id="L271" title="All 2 branches covered.">        if (Math.abs(yards) &lt; (DistanceConverter.METERS_PER_MILE /</span>
                 DistanceConverter.METERS_PER_YARD)) {
-<span class="fc" id="L253">            return format(yards, DistanceUnit.YARD);</span>
+<span class="fc" id="L273">            return format(yards, DistanceUnit.YARD);</span>
         }
 
-<span class="fc" id="L256">        double miles = DistanceConverter.convert(v, unit, DistanceUnit.MILE);</span>
-<span class="fc" id="L257">        return format(miles, DistanceUnit.MILE);</span>
+<span class="fc" id="L276">        double miles = DistanceConverter.convert(v, unit, DistanceUnit.MILE);</span>
+<span class="fc" id="L277">        return format(miles, DistanceUnit.MILE);</span>
     }
 
     /**
@@ -265,35 +285,35 @@ public class DistanceFormatter extends MeasureFormatter&lt;Distance, DistanceUni
     @Override
     public String getUnitSymbol(DistanceUnit unit) {
         String unitStr;
-<span class="fc bfc" id="L268" title="All 8 branches covered.">        switch (unit) {</span>
+<span class="fc bfc" id="L288" title="All 8 branches covered.">        switch (unit) {</span>
             case MILLIMETER:
-<span class="fc" id="L270">                unitStr = MILLIMETER;</span>
-<span class="fc" id="L271">                break;</span>
+<span class="fc" id="L290">                unitStr = MILLIMETER;</span>
+<span class="fc" id="L291">                break;</span>
             case CENTIMETER:
-<span class="fc" id="L273">                unitStr = CENTIMETER;</span>
-<span class="fc" id="L274">                break;</span>
+<span class="fc" id="L293">                unitStr = CENTIMETER;</span>
+<span class="fc" id="L294">                break;</span>
             case KILOMETER:
-<span class="fc" id="L276">                unitStr = KILOMETER;</span>
-<span class="fc" id="L277">                break;</span>
+<span class="fc" id="L296">                unitStr = KILOMETER;</span>
+<span class="fc" id="L297">                break;</span>
             case INCH:
-<span class="fc" id="L279">                unitStr = INCH;</span>
-<span class="fc" id="L280">                break;</span>
+<span class="fc" id="L299">                unitStr = INCH;</span>
+<span class="fc" id="L300">                break;</span>
             case FOOT:
-<span class="fc" id="L282">                unitStr = FOOT;</span>
-<span class="fc" id="L283">                break;</span>
+<span class="fc" id="L302">                unitStr = FOOT;</span>
+<span class="fc" id="L303">                break;</span>
             case YARD:
-<span class="fc" id="L285">                unitStr = YARD;</span>
-<span class="fc" id="L286">                break;</span>
+<span class="fc" id="L305">                unitStr = YARD;</span>
+<span class="fc" id="L306">                break;</span>
             case MILE:
-<span class="fc" id="L288">                unitStr = MILE;</span>
-<span class="fc" id="L289">                break;</span>
+<span class="fc" id="L308">                unitStr = MILE;</span>
+<span class="fc" id="L309">                break;</span>
 
             case METER:
             default:
-<span class="fc" id="L293">                unitStr = METER;</span>
+<span class="fc" id="L313">                unitStr = METER;</span>
                 break;
         }
-<span class="fc" id="L296">        return unitStr;</span>
+<span class="fc" id="L316">        return unitStr;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

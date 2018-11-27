@@ -29,17 +29,16 @@ public class AngularAcceleration extends Measurement&lt;AngularAccelerationUnit&
      * @param unit unit of angualr acceleration.
      * @throws IllegalArgumentException if either value or unit is null.
      */
-    public AngularAcceleration(Number value, AngularAccelerationUnit unit)
-            throws IllegalArgumentException {
-<span class="fc" id="L34">        super(value, unit);</span>
-<span class="fc" id="L35">    }</span>
+    public AngularAcceleration(Number value, AngularAccelerationUnit unit) {
+<span class="fc" id="L33">        super(value, unit);</span>
+<span class="fc" id="L34">    }</span>
 
     /**
      * Constructor.
      */
     AngularAcceleration() {
-<span class="fc" id="L41">        super();</span>
-<span class="fc" id="L42">    }</span>
+<span class="fc" id="L40">        super();</span>
+<span class="fc" id="L41">    }</span>
 
     /**
      * Determines if two angular acceleration values are equal up to a certain tolerance.
@@ -51,18 +50,18 @@ public class AngularAcceleration extends Measurement&lt;AngularAccelerationUnit&
      * instance, false otherwise.
      */
     public boolean equals(Measurement&lt;AngularAccelerationUnit&gt; other, double tolerance) {
-<span class="fc bfc" id="L54" title="All 2 branches covered.">        if (super.equals(other, tolerance)) {</span>
-<span class="fc" id="L55">            return true;</span>
+<span class="fc bfc" id="L53" title="All 2 branches covered.">        if (super.equals(other, tolerance)) {</span>
+<span class="fc" id="L54">            return true;</span>
         }
 
         //attempt conversion to common units
-<span class="fc bfc" id="L59" title="All 2 branches covered.">        if (other == null) {</span>
-<span class="fc" id="L60">            return false;</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        if (other == null) {</span>
+<span class="fc" id="L59">            return false;</span>
         }
 
-<span class="fc" id="L63">        double otherValue = AngularAccelerationConverter.convert(</span>
-<span class="fc" id="L64">                other.getValue().doubleValue(), other.getUnit(), getUnit());</span>
-<span class="fc bfc" id="L65" title="All 2 branches covered.">        return (Math.abs(getValue().doubleValue() - otherValue)) &lt;= tolerance;</span>
+<span class="fc" id="L62">        double otherValue = AngularAccelerationConverter.convert(</span>
+<span class="fc" id="L63">                other.getValue().doubleValue(), other.getUnit(), getUnit());</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        return (Math.abs(getValue().doubleValue() - otherValue)) &lt;= tolerance;</span>
     }
 
     /**
@@ -77,9 +76,9 @@ public class AngularAcceleration extends Measurement&lt;AngularAccelerationUnit&
     public static double add(double value1, AngularAccelerationUnit unit1,
                              double value2, AngularAccelerationUnit unit2,
                              AngularAccelerationUnit resultUnit) {
-<span class="fc" id="L80">        double v1 = AngularAccelerationConverter.convert(value1, unit1, resultUnit);</span>
-<span class="fc" id="L81">        double v2 = AngularAccelerationConverter.convert(value2, unit2, resultUnit);</span>
-<span class="fc" id="L82">        return v1 + v2;</span>
+<span class="fc" id="L79">        double v1 = AngularAccelerationConverter.convert(value1, unit1, resultUnit);</span>
+<span class="fc" id="L80">        double v2 = AngularAccelerationConverter.convert(value2, unit2, resultUnit);</span>
+<span class="fc" id="L81">        return v1 + v2;</span>
     }
 
     /**
@@ -94,8 +93,8 @@ public class AngularAcceleration extends Measurement&lt;AngularAccelerationUnit&
     public static Number add(Number value1, AngularAccelerationUnit unit1,
                              Number value2, AngularAccelerationUnit unit2,
                              AngularAccelerationUnit resultUnit) {
-<span class="fc" id="L97">        return new BigDecimal(add(value1.doubleValue(), unit1,</span>
-<span class="fc" id="L98">                value2.doubleValue(), unit2, resultUnit));</span>
+<span class="fc" id="L96">        return new BigDecimal(add(value1.doubleValue(), unit1,</span>
+<span class="fc" id="L97">                value2.doubleValue(), unit2, resultUnit));</span>
     }
 
     /**
@@ -106,9 +105,9 @@ public class AngularAcceleration extends Measurement&lt;AngularAccelerationUnit&
      */
     public static void add(AngularAcceleration arg1, AngularAcceleration arg2,
                            AngularAcceleration result) {
-<span class="fc" id="L109">        result.setValue(add(arg1.getValue(), arg1.getUnit(),</span>
-<span class="fc" id="L110">                arg2.getValue(), arg2.getUnit(), result.getUnit()));</span>
-<span class="fc" id="L111">    }</span>
+<span class="fc" id="L108">        result.setValue(add(arg1.getValue(), arg1.getUnit(),</span>
+<span class="fc" id="L109">                arg2.getValue(), arg2.getUnit(), result.getUnit()));</span>
+<span class="fc" id="L110">    }</span>
 
     /**
      * Adds two angular accelerations.
@@ -119,10 +118,10 @@ public class AngularAcceleration extends Measurement&lt;AngularAccelerationUnit&
      */
     public static AngularAcceleration addAndReturnNew(AngularAcceleration arg1,
             AngularAcceleration arg2, AngularAccelerationUnit unit) {
-<span class="fc" id="L122">        AngularAcceleration result = new AngularAcceleration();</span>
-<span class="fc" id="L123">        result.setUnit(unit);</span>
-<span class="fc" id="L124">        add(arg1, arg2, result);</span>
-<span class="fc" id="L125">        return result;</span>
+<span class="fc" id="L121">        AngularAcceleration result = new AngularAcceleration();</span>
+<span class="fc" id="L122">        result.setUnit(unit);</span>
+<span class="fc" id="L123">        add(arg1, arg2, result);</span>
+<span class="fc" id="L124">        return result;</span>
     }
 
     /**
@@ -135,11 +134,11 @@ public class AngularAcceleration extends Measurement&lt;AngularAccelerationUnit&
      */
     public AngularAcceleration addAndReturnNew(double value,
             AngularAccelerationUnit unit, AngularAccelerationUnit resultUnit) {
-<span class="fc" id="L138">        AngularAcceleration result = new AngularAcceleration();</span>
-<span class="fc" id="L139">        result.setUnit(resultUnit);</span>
-<span class="fc" id="L140">        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit,</span>
+<span class="fc" id="L137">        AngularAcceleration result = new AngularAcceleration();</span>
+<span class="fc" id="L138">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L139">        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit,</span>
                 resultUnit));
-<span class="fc" id="L142">        return result;</span>
+<span class="fc" id="L141">        return result;</span>
     }
 
     /**
@@ -152,10 +151,10 @@ public class AngularAcceleration extends Measurement&lt;AngularAccelerationUnit&
      */
     public AngularAcceleration addAndReturnNew(Number value,
             AngularAccelerationUnit unit, AngularAccelerationUnit resultUnit) {
-<span class="fc" id="L155">        AngularAcceleration result = new AngularAcceleration();</span>
-<span class="fc" id="L156">        result.setUnit(resultUnit);</span>
-<span class="fc" id="L157">        result.setValue(add(getValue(), getUnit(), value, unit, resultUnit));</span>
-<span class="fc" id="L158">        return result;</span>
+<span class="fc" id="L154">        AngularAcceleration result = new AngularAcceleration();</span>
+<span class="fc" id="L155">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L156">        result.setValue(add(getValue(), getUnit(), value, unit, resultUnit));</span>
+<span class="fc" id="L157">        return result;</span>
     }
 
     /**
@@ -167,7 +166,7 @@ public class AngularAcceleration extends Measurement&lt;AngularAccelerationUnit&
      */
     public AngularAcceleration addAndReturnNew(AngularAcceleration a,
             AngularAccelerationUnit unit) {
-<span class="fc" id="L170">        return addAndReturnNew(this, a, unit);</span>
+<span class="fc" id="L169">        return addAndReturnNew(this, a, unit);</span>
     }
 
     /**
@@ -177,8 +176,8 @@ public class AngularAcceleration extends Measurement&lt;AngularAccelerationUnit&
      * @param unit unit of angular acceleration value.
      */
     public void add(double value, AngularAccelerationUnit unit) {
-<span class="fc" id="L180">        setValue(add(getValue(), getUnit(), value, unit, getUnit()));</span>
-<span class="fc" id="L181">    }</span>
+<span class="fc" id="L179">        setValue(add(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L180">    }</span>
 
     /**
      * Adds provided angular acceleration value and unit and updates current angulasr
@@ -187,16 +186,16 @@ public class AngularAcceleration extends Measurement&lt;AngularAccelerationUnit&
      * @param unit unit of angular acceleration value.
      */
     public void add(Number value, AngularAccelerationUnit unit) {
-<span class="fc" id="L190">        setValue(add(getValue(), getUnit(), value, unit,getUnit()));</span>
-<span class="fc" id="L191">    }</span>
+<span class="fc" id="L189">        setValue(add(getValue(), getUnit(), value, unit,getUnit()));</span>
+<span class="fc" id="L190">    }</span>
 
     /**
      * Adds provided angular acceleration and updates current angular acceleration.
      * @param a angular acceleration to be added.
      */
     public void add(AngularAcceleration a) {
-<span class="fc" id="L198">        add(this, a, this);</span>
-<span class="fc" id="L199">    }</span>
+<span class="fc" id="L197">        add(this, a, this);</span>
+<span class="fc" id="L198">    }</span>
 
     /**
      * Adds provided angular acceleration and stores the result into provided angular
@@ -205,8 +204,8 @@ public class AngularAcceleration extends Measurement&lt;AngularAccelerationUnit&
      * @param result instance where result will be stored.
      */
     public void add(AngularAcceleration a, AngularAcceleration result) {
-<span class="fc" id="L208">        add(this, a, result);</span>
-<span class="fc" id="L209">    }</span>
+<span class="fc" id="L207">        add(this, a, result);</span>
+<span class="fc" id="L208">    }</span>
 
     /**
      * Subtracts two angular acceleration values and units and returns the result.
@@ -220,9 +219,9 @@ public class AngularAcceleration extends Measurement&lt;AngularAccelerationUnit&
     public static double subtract(double value1, AngularAccelerationUnit unit1,
                                   double value2, AngularAccelerationUnit unit2,
                                   AngularAccelerationUnit resultUnit) {
-<span class="fc" id="L223">        double v1 = AngularAccelerationConverter.convert(value1, unit1, resultUnit);</span>
-<span class="fc" id="L224">        double v2 = AngularAccelerationConverter.convert(value2, unit2, resultUnit);</span>
-<span class="fc" id="L225">        return v1 - v2;</span>
+<span class="fc" id="L222">        double v1 = AngularAccelerationConverter.convert(value1, unit1, resultUnit);</span>
+<span class="fc" id="L223">        double v2 = AngularAccelerationConverter.convert(value2, unit2, resultUnit);</span>
+<span class="fc" id="L224">        return v1 - v2;</span>
     }
 
     /**
@@ -237,8 +236,8 @@ public class AngularAcceleration extends Measurement&lt;AngularAccelerationUnit&
     public static Number subtract(Number value1, AngularAccelerationUnit unit1,
                                   Number value2, AngularAccelerationUnit unit2,
                                   AngularAccelerationUnit resultUnit) {
-<span class="fc" id="L240">        return new BigDecimal(subtract(value1.doubleValue(), unit1,</span>
-<span class="fc" id="L241">                value2.doubleValue(), unit2, resultUnit));</span>
+<span class="fc" id="L239">        return new BigDecimal(subtract(value1.doubleValue(), unit1,</span>
+<span class="fc" id="L240">                value2.doubleValue(), unit2, resultUnit));</span>
     }
 
     /**
@@ -249,9 +248,9 @@ public class AngularAcceleration extends Measurement&lt;AngularAccelerationUnit&
      */
     public static void subtract(AngularAcceleration arg1, AngularAcceleration arg2,
             AngularAcceleration result) {
-<span class="fc" id="L252">        result.setValue(subtract(arg1.getValue(), arg1.getUnit(),</span>
-<span class="fc" id="L253">                arg2.getValue(), arg2.getUnit(), result.getUnit()));</span>
-<span class="fc" id="L254">    }</span>
+<span class="fc" id="L251">        result.setValue(subtract(arg1.getValue(), arg1.getUnit(),</span>
+<span class="fc" id="L252">                arg2.getValue(), arg2.getUnit(), result.getUnit()));</span>
+<span class="fc" id="L253">    }</span>
 
     /**
      * Subtracts two angular accelerations.
@@ -262,10 +261,10 @@ public class AngularAcceleration extends Measurement&lt;AngularAccelerationUnit&
      */
     public static AngularAcceleration subtractAndReturnNew(AngularAcceleration arg1,
             AngularAcceleration arg2, AngularAccelerationUnit unit) {
-<span class="fc" id="L265">        AngularAcceleration result = new AngularAcceleration();</span>
-<span class="fc" id="L266">        result.setUnit(unit);</span>
-<span class="fc" id="L267">        subtract(arg1, arg2, result);</span>
-<span class="fc" id="L268">        return result;</span>
+<span class="fc" id="L264">        AngularAcceleration result = new AngularAcceleration();</span>
+<span class="fc" id="L265">        result.setUnit(unit);</span>
+<span class="fc" id="L266">        subtract(arg1, arg2, result);</span>
+<span class="fc" id="L267">        return result;</span>
     }
 
     /**
@@ -278,11 +277,11 @@ public class AngularAcceleration extends Measurement&lt;AngularAccelerationUnit&
      */
     public AngularAcceleration subtractAndReturnNew(double value,
             AngularAccelerationUnit unit, AngularAccelerationUnit resultUnit) {
-<span class="fc" id="L281">        AngularAcceleration result = new AngularAcceleration();</span>
-<span class="fc" id="L282">        result.setUnit(resultUnit);</span>
-<span class="fc" id="L283">        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit,</span>
+<span class="fc" id="L280">        AngularAcceleration result = new AngularAcceleration();</span>
+<span class="fc" id="L281">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L282">        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit,</span>
                 resultUnit));
-<span class="fc" id="L285">        return result;</span>
+<span class="fc" id="L284">        return result;</span>
     }
 
     /**
@@ -295,10 +294,10 @@ public class AngularAcceleration extends Measurement&lt;AngularAccelerationUnit&
      */
     public AngularAcceleration subtractAndReturnNew(Number value,
             AngularAccelerationUnit unit, AngularAccelerationUnit resultUnit) {
-<span class="fc" id="L298">        AngularAcceleration result = new AngularAcceleration();</span>
-<span class="fc" id="L299">        result.setUnit(resultUnit);</span>
-<span class="fc" id="L300">        result.setValue(subtract(getValue(), getUnit(), value, unit, resultUnit));</span>
-<span class="fc" id="L301">        return result;</span>
+<span class="fc" id="L297">        AngularAcceleration result = new AngularAcceleration();</span>
+<span class="fc" id="L298">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L299">        result.setValue(subtract(getValue(), getUnit(), value, unit, resultUnit));</span>
+<span class="fc" id="L300">        return result;</span>
     }
 
     /**
@@ -310,7 +309,7 @@ public class AngularAcceleration extends Measurement&lt;AngularAccelerationUnit&
      */
     public AngularAcceleration subtractAndReturnNew(AngularAcceleration a,
                                                     AngularAccelerationUnit unit) {
-<span class="fc" id="L313">        return subtractAndReturnNew(this, a, unit);</span>
+<span class="fc" id="L312">        return subtractAndReturnNew(this, a, unit);</span>
     }
 
     /**
@@ -320,8 +319,8 @@ public class AngularAcceleration extends Measurement&lt;AngularAccelerationUnit&
      * @param unit unit of angular acceleration value.
      */
     public void subtract(double value, AngularAccelerationUnit unit) {
-<span class="fc" id="L323">        setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));</span>
-<span class="fc" id="L324">    }</span>
+<span class="fc" id="L322">        setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L323">    }</span>
 
     /**
      * Subtracts provided angular acceleration value and unit and updates current
@@ -330,16 +329,16 @@ public class AngularAcceleration extends Measurement&lt;AngularAccelerationUnit&
      * @param unit unit of angular acceleration value.
      */
     public void subtract(Number value, AngularAccelerationUnit unit) {
-<span class="fc" id="L333">        setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));</span>
-<span class="fc" id="L334">    }</span>
+<span class="fc" id="L332">        setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L333">    }</span>
 
     /**
      * Subtracts provided angular acceleration and updates current angular acceleration.
      * @param a angular acceleration to be subtracted.
      */
     public void subtract(AngularAcceleration a) {
-<span class="fc" id="L341">        subtract(this, a, this);</span>
-<span class="fc" id="L342">    }</span>
+<span class="fc" id="L340">        subtract(this, a, this);</span>
+<span class="fc" id="L341">    }</span>
 
     /**
      * Subtracts provided angular acceleration and stores the result into provided
@@ -348,7 +347,7 @@ public class AngularAcceleration extends Measurement&lt;AngularAccelerationUnit&
      * @param result instance where result will be stored.
      */
     public void subtract(AngularAcceleration a, AngularAcceleration result) {
-<span class="fc" id="L351">        subtract(this, a, result);</span>
-<span class="fc" id="L352">    }</span>
+<span class="fc" id="L350">        subtract(this, a, result);</span>
+<span class="fc" id="L351">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

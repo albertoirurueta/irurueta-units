@@ -112,7 +112,7 @@ public class AccelerationConverter {
 <span class="fc" id="L112">                metersPerSquaredSecond = feetPerSquaredSecondToMetersPerSquaredSecond(input);</span>
 <span class="fc" id="L113">                break;</span>
             case G:
-<span class="fc" id="L115">                metersPerSquaredSecond = GToMetersPerSquaredSecond(input);</span>
+<span class="fc" id="L115">                metersPerSquaredSecond = gravityToMetersPerSquaredSecond(input);</span>
 <span class="fc" id="L116">                break;</span>
             case METERS_PER_SQUARED_SECOND:
             default:
@@ -125,7 +125,7 @@ public class AccelerationConverter {
             case FEET_PER_SQUARED_SECOND:
 <span class="fc" id="L126">                return metersPerSquaredSecondToFeetPerSquaredSecond(metersPerSquaredSecond);</span>
             case G:
-<span class="fc" id="L128">                return metersPerSquaredSecondToG(metersPerSquaredSecond);</span>
+<span class="fc" id="L128">                return metersPerSquaredSecondToGravity(metersPerSquaredSecond);</span>
             case METERS_PER_SQUARED_SECOND:
             default:
 <span class="fc" id="L131">                return metersPerSquaredSecond;</span>
@@ -154,11 +154,11 @@ public class AccelerationConverter {
     /**
      * Converts provided acceleration expressed in terms of standard gravity
      * (9.8 m/s^2) to meters per squared second.
-     * @param G acceleration relative to standard gravity.
+     * @param g acceleration relative to standard gravity.
      * @return same acceleration converted to meters per squared second.
      */
-    public static double GToMetersPerSquaredSecond(double G) {
-<span class="fc" id="L161">        return G * STANDARD_GRAVITY;</span>
+    public static double gravityToMetersPerSquaredSecond(double g) {
+<span class="fc" id="L161">        return g * STANDARD_GRAVITY;</span>
     }
 
     /**
@@ -167,7 +167,7 @@ public class AccelerationConverter {
      * @param metersPerSquaredSecond meters per squared second value.
      * @return same acceleration expressed in relative terms to the standard gravity.
      */
-    public static double metersPerSquaredSecondToG(double metersPerSquaredSecond) {
+    public static double metersPerSquaredSecondToGravity(double metersPerSquaredSecond) {
 <span class="fc" id="L171">        return metersPerSquaredSecond / STANDARD_GRAVITY;</span>
     }
 }

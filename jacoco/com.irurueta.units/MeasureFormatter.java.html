@@ -73,7 +73,7 @@ public abstract class MeasureFormatter&lt;M extends Measurement, U extends Enum&
      * @param locale locale.
      * @throws IllegalArgumentException if locale is null.
      */
-<span class="fc" id="L76">    MeasureFormatter(Locale locale) throws IllegalArgumentException {</span>
+<span class="fc" id="L76">    MeasureFormatter(Locale locale) {</span>
 <span class="fc bfc" id="L77" title="All 2 branches covered.">        if (locale == null) {</span>
 <span class="fc" id="L78">            throw new IllegalArgumentException();</span>
         }
@@ -167,7 +167,7 @@ public abstract class MeasureFormatter&lt;M extends Measurement, U extends Enum&
      * @return string representation of provided measurement value and unit.
      */
     public String format(double value, U unit) {
-<span class="fc" id="L170">        return format(new BigDecimal(value), unit);</span>
+<span class="fc" id="L170">        return format(BigDecimal.valueOf(value), unit);</span>
     }
 
     /**
@@ -181,7 +181,7 @@ public abstract class MeasureFormatter&lt;M extends Measurement, U extends Enum&
      */
     public StringBuffer format(double value, U unit,
                                StringBuffer toAppendTo, FieldPosition pos) {
-<span class="fc" id="L184">        return format(new BigDecimal(value), unit, toAppendTo, pos);</span>
+<span class="fc" id="L184">        return format(BigDecimal.valueOf(value), unit, toAppendTo, pos);</span>
     }
 
     /**
@@ -234,7 +234,7 @@ public abstract class MeasureFormatter&lt;M extends Measurement, U extends Enum&
      * @return a string representation of measurement value and unit.
      */
     public String formatAndConvert(double value, U unit) {
-<span class="fc" id="L237">        return formatAndConvert(new BigDecimal(value), unit);</span>
+<span class="fc" id="L237">        return formatAndConvert(BigDecimal.valueOf(value), unit);</span>
     }
 
     /**
@@ -277,7 +277,7 @@ public abstract class MeasureFormatter&lt;M extends Measurement, U extends Enum&
      * @return a string representation of measurement value and unit.
      */
     public String formatAndConvert(double value, U unit, UnitSystem system) {
-<span class="fc" id="L280">        return formatAndConvert(new BigDecimal(value), unit, system);</span>
+<span class="fc" id="L280">        return formatAndConvert(BigDecimal.valueOf(value), unit, system);</span>
     }
 
     /**
@@ -441,13 +441,12 @@ public abstract class MeasureFormatter&lt;M extends Measurement, U extends Enum&
      * together.
      * @throws IllegalArgumentException if provided pattern is null.
      */
-    public void setValueAndUnitFormatPattern(String valueAndUnitFormatPattern)
-            throws IllegalArgumentException {
-<span class="fc bfc" id="L446" title="All 2 branches covered.">        if (valueAndUnitFormatPattern == null) {</span>
-<span class="fc" id="L447">            throw new IllegalArgumentException();</span>
+    public void setValueAndUnitFormatPattern(String valueAndUnitFormatPattern) {
+<span class="fc bfc" id="L445" title="All 2 branches covered.">        if (valueAndUnitFormatPattern == null) {</span>
+<span class="fc" id="L446">            throw new IllegalArgumentException();</span>
         }
-<span class="fc" id="L449">        mValueAndUnitFormatPattern = valueAndUnitFormatPattern;</span>
-<span class="fc" id="L450">    }</span>
+<span class="fc" id="L448">        mValueAndUnitFormatPattern = valueAndUnitFormatPattern;</span>
+<span class="fc" id="L449">    }</span>
 
     /**
      * Returns unit system this instance will use based on its assigned locale.
@@ -456,7 +455,7 @@ public abstract class MeasureFormatter&lt;M extends Measurement, U extends Enum&
      * @return unit system this instance will use.
      */
     public UnitSystem getUnitSystem() {
-<span class="fc" id="L459">        return UnitLocale.getFrom(mLocale);</span>
+<span class="fc" id="L458">        return UnitLocale.getFrom(mLocale);</span>
     }
 
     /**
@@ -467,7 +466,7 @@ public abstract class MeasureFormatter&lt;M extends Measurement, U extends Enum&
      * otherwise.
      */
     public boolean isValidUnit(String source) {
-<span class="fc bfc" id="L470" title="All 2 branches covered.">        return findUnit(source) != null;</span>
+<span class="fc bfc" id="L469" title="All 2 branches covered.">        return findUnit(source) != null;</span>
     }
 
     /**
@@ -479,10 +478,10 @@ public abstract class MeasureFormatter&lt;M extends Measurement, U extends Enum&
      */
     public boolean isValidMeasurement(String source) {
         try {
-<span class="fc" id="L482">            mNumberFormat.parse(source);</span>
-<span class="fc" id="L483">            return isValidUnit(source);</span>
-<span class="fc" id="L484">        } catch (ParseException e) {</span>
-<span class="fc" id="L485">            return false;</span>
+<span class="fc" id="L481">            mNumberFormat.parse(source);</span>
+<span class="fc" id="L482">            return isValidUnit(source);</span>
+<span class="fc" id="L483">        } catch (ParseException e) {</span>
+<span class="fc" id="L484">            return false;</span>
         }
     }
 
@@ -494,7 +493,7 @@ public abstract class MeasureFormatter&lt;M extends Measurement, U extends Enum&
      * cannot be determined.
      */
     public boolean isMetricUnit(String source) {
-<span class="fc bfc" id="L497" title="All 2 branches covered.">        return getUnitSystem(source) == UnitSystem.METRIC;</span>
+<span class="fc bfc" id="L496" title="All 2 branches covered.">        return getUnitSystem(source) == UnitSystem.METRIC;</span>
     }
 
     /**
@@ -505,7 +504,7 @@ public abstract class MeasureFormatter&lt;M extends Measurement, U extends Enum&
      * cannot be determined.
      */
     public boolean isImperialUnit(String source) {
-<span class="fc bfc" id="L508" title="All 2 branches covered.">        return getUnitSystem(source) == UnitSystem.IMPERIAL;</span>
+<span class="fc bfc" id="L507" title="All 2 branches covered.">        return getUnitSystem(source) == UnitSystem.IMPERIAL;</span>
     }
 
     /**
@@ -552,13 +551,13 @@ public abstract class MeasureFormatter&lt;M extends Measurement, U extends Enum&
     @SuppressWarnings(&quot;unchecked&quot;)
     M internalParse(String source, M measure) throws ParseException,
             UnknownUnitException {
-<span class="fc" id="L555">        measure.setValue(mNumberFormat.parse(source));</span>
+<span class="fc" id="L554">        measure.setValue(mNumberFormat.parse(source));</span>
         try {
-<span class="fc" id="L557">            measure.setUnit(findUnit(source));</span>
-<span class="fc" id="L558">        } catch (IllegalArgumentException e) {</span>
-<span class="fc" id="L559">            throw new UnknownUnitException(e);</span>
-<span class="fc" id="L560">        }</span>
-<span class="fc" id="L561">        return measure;</span>
+<span class="fc" id="L556">            measure.setUnit(findUnit(source));</span>
+<span class="fc" id="L557">        } catch (IllegalArgumentException e) {</span>
+<span class="fc" id="L558">            throw new UnknownUnitException(e);</span>
+<span class="fc" id="L559">        }</span>
+<span class="fc" id="L560">        return measure;</span>
     }
 
     /**
@@ -567,14 +566,14 @@ public abstract class MeasureFormatter&lt;M extends Measurement, U extends Enum&
      * @return provided copy.
      */
     MeasureFormatter&lt;M, U&gt; internalClone(MeasureFormatter&lt;M, U&gt; copy) {
-<span class="fc" id="L570">        copy.mNumberFormat = (NumberFormat)mNumberFormat.clone();</span>
-<span class="fc bfc" id="L571" title="All 2 branches covered.">        if (mFormat != null) {</span>
-<span class="fc" id="L572">            copy.mFormat = (MessageFormat)mFormat.clone();</span>
+<span class="fc" id="L569">        copy.mNumberFormat = (NumberFormat)mNumberFormat.clone();</span>
+<span class="fc bfc" id="L570" title="All 2 branches covered.">        if (mFormat != null) {</span>
+<span class="fc" id="L571">            copy.mFormat = (MessageFormat)mFormat.clone();</span>
         }
-<span class="pc bpc" id="L574" title="1 of 2 branches missed.">        if (mLocale != null) {</span>
-<span class="fc" id="L575">            copy.mLocale = (Locale)mLocale.clone();</span>
+<span class="pc bpc" id="L573" title="1 of 2 branches missed.">        if (mLocale != null) {</span>
+<span class="fc" id="L574">            copy.mLocale = (Locale)mLocale.clone();</span>
         }
-<span class="fc" id="L577">        return copy;</span>
+<span class="fc" id="L576">        return copy;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

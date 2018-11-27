@@ -40,7 +40,7 @@ public abstract class Measurement&lt;T extends Enum&gt; implements Serializable 
      * @throws IllegalArgumentException if either value or unit is null.
      */
     @SuppressWarnings(&quot;WeakerAccess&quot;)
-<span class="fc" id="L43">    public Measurement(Number value, T unit) throws IllegalArgumentException {</span>
+<span class="fc" id="L43">    public Measurement(Number value, T unit) {</span>
 <span class="fc bfc" id="L44" title="All 4 branches covered.">        if (value == null || unit == null) {</span>
 <span class="fc" id="L45">            throw new IllegalArgumentException();</span>
         }
@@ -120,7 +120,7 @@ public abstract class Measurement&lt;T extends Enum&gt; implements Serializable 
      * @param value measurement value.
      * @throws IllegalArgumentException if measurement value is null.
      */
-    public void setValue(Number value) throws IllegalArgumentException {
+    public void setValue(Number value) {
 <span class="fc bfc" id="L124" title="All 2 branches covered.">        if (value == null) {</span>
 <span class="fc" id="L125">            throw new IllegalArgumentException();</span>
         }
@@ -141,7 +141,7 @@ public abstract class Measurement&lt;T extends Enum&gt; implements Serializable 
      * @param unit measurement unit.
      * @throws IllegalArgumentException if measurement unit is null.
      */
-    public void setUnit(T unit) throws IllegalArgumentException {
+    public void setUnit(T unit) {
 <span class="fc bfc" id="L145" title="All 2 branches covered.">        if (unit == null) {</span>
 <span class="fc" id="L146">            throw new IllegalArgumentException();</span>
         }

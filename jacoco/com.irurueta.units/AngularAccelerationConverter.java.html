@@ -97,28 +97,29 @@ public class AngularAccelerationConverter {
      * @param outputUnit output angular acceleration unit.
      * @return converted angular acceleration value.
      */
+    @SuppressWarnings(&quot;Duplicates&quot;)
     public static double convert(double input, AngularAccelerationUnit inputUnit,
                                  AngularAccelerationUnit outputUnit) {
         double radiansPerSquaredSecond;
 
         //convert to radians per squared second
-<span class="fc bfc" id="L105" title="All 2 branches covered.">        switch (inputUnit) {</span>
+<span class="fc bfc" id="L106" title="All 2 branches covered.">        switch (inputUnit) {</span>
             case DEGREES_PER_SQUARED_SECOND:
-<span class="fc" id="L107">                radiansPerSquaredSecond = Math.toRadians(input);</span>
-<span class="fc" id="L108">                break;</span>
+<span class="fc" id="L108">                radiansPerSquaredSecond = Math.toRadians(input);</span>
+<span class="fc" id="L109">                break;</span>
             case RADIANS_PER_SQUARED_SECOND:
             default:
-<span class="fc" id="L111">                radiansPerSquaredSecond = input;</span>
+<span class="fc" id="L112">                radiansPerSquaredSecond = input;</span>
                 break;
         }
 
         //convert from radians per squared second to required output unit
-<span class="fc bfc" id="L116" title="All 2 branches covered.">        switch (outputUnit) {</span>
+<span class="fc bfc" id="L117" title="All 2 branches covered.">        switch (outputUnit) {</span>
             case DEGREES_PER_SQUARED_SECOND:
-<span class="fc" id="L118">                return Math.toDegrees(radiansPerSquaredSecond);</span>
+<span class="fc" id="L119">                return Math.toDegrees(radiansPerSquaredSecond);</span>
             case RADIANS_PER_SQUARED_SECOND:
             default:
-<span class="fc" id="L121">                return radiansPerSquaredSecond;</span>
+<span class="fc" id="L122">                return radiansPerSquaredSecond;</span>
         }
     }
 
@@ -129,7 +130,7 @@ public class AngularAccelerationConverter {
      */
     public static double degreesPerSquaredSecondToRadiansPerSquaredSecond(
             double degreesPerSquaredSecond) {
-<span class="fc" id="L132">        return Math.toRadians(degreesPerSquaredSecond);</span>
+<span class="fc" id="L133">        return Math.toRadians(degreesPerSquaredSecond);</span>
     }
 
     /**
@@ -139,7 +140,7 @@ public class AngularAccelerationConverter {
      */
     public static double radiansPerSquaredSecondToDegreesPerSquaredSecond(
             double radiansPerSquaredSecond) {
-<span class="fc" id="L142">        return Math.toDegrees(radiansPerSquaredSecond);</span>
+<span class="fc" id="L143">        return Math.toDegrees(radiansPerSquaredSecond);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

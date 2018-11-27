@@ -90,7 +90,7 @@ public enum SurfaceUnit {
      * @return unit system (metric or imperial).
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static UnitSystem getUnitSystem(SurfaceUnit unit) throws IllegalArgumentException {
+    public static UnitSystem getUnitSystem(SurfaceUnit unit) {
         if (unit == null) {
             throw new IllegalArgumentException();
         }
@@ -152,7 +152,7 @@ public enum SurfaceUnit {
      * @return true if unit belongs to metric unit system.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isMetric(SurfaceUnit unit) throws IllegalArgumentException {
+    public static boolean isMetric(SurfaceUnit unit) {
         return getUnitSystem(unit) == UnitSystem.METRIC;
     }
 
@@ -162,7 +162,7 @@ public enum SurfaceUnit {
      * @return true if unit belongs to imperial unit system.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isImperial(SurfaceUnit unit) throws IllegalArgumentException {
+    public static boolean isImperial(SurfaceUnit unit) {
         return getUnitSystem(unit) == UnitSystem.IMPERIAL;
     }
 }

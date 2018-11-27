@@ -62,8 +62,17 @@ public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit>
      * @param locale locale.
      * @throws IllegalArgumentException if locale is null.
      */
-    public SpeedFormatter(Locale locale) throws IllegalArgumentException {
+    public SpeedFormatter(Locale locale) {
         super(locale);
+    }
+
+    /**
+     * Copy constructor.
+     * @param formatter input instance to copy from.
+     * @throws NullPointerException if provided formatter is null.
+     */
+    public SpeedFormatter(SpeedFormatter formatter) {
+        this(formatter.getLocale());
     }
 
     /**
@@ -85,6 +94,17 @@ public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit>
     public boolean equals(Object obj) {
         boolean equals = super.equals(obj);
         return (obj instanceof SpeedFormatter) && equals;
+    }
+
+    /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare objects.
+     * This implementation only calls parent implementation to avoid static analyzer warning.
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
     /**

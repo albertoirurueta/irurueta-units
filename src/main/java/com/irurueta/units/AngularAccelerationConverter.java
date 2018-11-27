@@ -97,6 +97,7 @@ public class AngularAccelerationConverter {
      * @param outputUnit output angular acceleration unit.
      * @return converted angular acceleration value.
      */
+    @SuppressWarnings("Duplicates")
     public static double convert(double input, AngularAccelerationUnit inputUnit,
                                  AngularAccelerationUnit outputUnit) {
         double radiansPerSquaredSecond;

@@ -95,9 +95,42 @@ public class FrequencyFormatterTest {
         //force IllegalArgumentException
         formatter = null;
         try {
-            formatter = new FrequencyFormatter(null);
+            formatter = new FrequencyFormatter((Locale) null);
             fail("IllegalArgumentException expected but not thrown");
         } catch (IllegalArgumentException ignore) { }
+        assertNull(formatter);
+
+
+        //test copy constructor
+        formatter = new FrequencyFormatter(locale);
+        FrequencyFormatter formatter2 = new FrequencyFormatter(formatter);
+
+        //check
+        assertEquals(formatter2.getLocale(), locale);
+        assertEquals(formatter2.getMaximumFractionDigits(),
+                NumberFormat.getInstance(locale).getMaximumFractionDigits());
+        assertEquals(formatter2.getMaximumIntegerDigits(),
+                NumberFormat.getInstance(locale).getMaximumIntegerDigits());
+        assertEquals(formatter2.getMinimumFractionDigits(),
+                NumberFormat.getInstance(locale).getMinimumFractionDigits());
+        assertEquals(formatter2.getMinimumIntegerDigits(),
+                NumberFormat.getInstance(locale).getMinimumIntegerDigits());
+        assertEquals(formatter2.getRoundingMode(),
+                NumberFormat.getInstance(locale).getRoundingMode());
+        assertEquals(formatter2.getUnitSystem(), UnitSystem.METRIC);
+        assertEquals(formatter2.isGroupingUsed(),
+                NumberFormat.getInstance(locale).isGroupingUsed());
+        assertEquals(formatter2.isParseIntegerOnly(),
+                NumberFormat.getInstance(locale).isParseIntegerOnly());
+        assertEquals(formatter2.getValueAndUnitFormatPattern(),
+                MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
+
+        formatter = null;
+        try {
+            //noinspection all
+            formatter = new FrequencyFormatter((FrequencyFormatter)null);
+            fail("NullPointerException expected but not thrown");
+        } catch (NullPointerException ignore) { }
         assertNull(formatter);
     }
 

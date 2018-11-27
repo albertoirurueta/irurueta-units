@@ -29,7 +29,7 @@ public class Surface extends Measurement<SurfaceUnit> {
      * @throws IllegalArgumentException if either value or unit is null.
      */
     @SuppressWarnings("WeakerAccess")
-    public Surface(Number value, SurfaceUnit unit) throws IllegalArgumentException {
+    public Surface(Number value, SurfaceUnit unit) {
         super(value, unit);
     }
 

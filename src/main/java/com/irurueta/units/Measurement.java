@@ -40,7 +40,7 @@ public abstract class Measurement<T extends Enum> implements Serializable {
      * @throws IllegalArgumentException if either value or unit is null.
      */
     @SuppressWarnings("WeakerAccess")
-    public Measurement(Number value, T unit) throws IllegalArgumentException {
+    public Measurement(Number value, T unit) {
         if (value == null || unit == null) {
             throw new IllegalArgumentException();
         }
@@ -120,7 +120,7 @@ public abstract class Measurement<T extends Enum> implements Serializable {
      * @param value measurement value.
      * @throws IllegalArgumentException if measurement value is null.
      */
-    public void setValue(Number value) throws IllegalArgumentException {
+    public void setValue(Number value) {
         if (value == null) {
             throw new IllegalArgumentException();
         }
@@ -141,7 +141,7 @@ public abstract class Measurement<T extends Enum> implements Serializable {
      * @param unit measurement unit.
      * @throws IllegalArgumentException if measurement unit is null.
      */
-    public void setUnit(T unit) throws IllegalArgumentException {
+    public void setUnit(T unit) {
         if (unit == null) {
             throw new IllegalArgumentException();
         }

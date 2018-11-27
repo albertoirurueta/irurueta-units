@@ -29,7 +29,7 @@ public class Distance extends Measurement<DistanceUnit> {
      * @param unit unit of distance.
      * @throws IllegalArgumentException if either value or unit is null.
      */
-    public Distance(Number value, DistanceUnit unit) throws IllegalArgumentException {
+    public Distance(Number value, DistanceUnit unit) {
         super(value, unit);
     }
 

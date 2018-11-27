@@ -29,7 +29,7 @@ public class Frequency extends Measurement<FrequencyUnit> {
      * @param unit unit of frequency.
      * @throws IllegalArgumentException if either value or unit is null.
      */
-    public Frequency(Number value, FrequencyUnit unit) throws IllegalArgumentException {
+    public Frequency(Number value, FrequencyUnit unit) {
         super(value, unit);
     }
 

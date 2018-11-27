@@ -29,7 +29,7 @@ public class Acceleration extends Measurement<AccelerationUnit> {
      * @param unit unit of acceleration.
      * @throws IllegalArgumentException if either value or unit is null.
      */
-    public Acceleration(Number value, AccelerationUnit unit) throws IllegalArgumentException {
+    public Acceleration(Number value, AccelerationUnit unit) {
         super(value, unit);
     }
 

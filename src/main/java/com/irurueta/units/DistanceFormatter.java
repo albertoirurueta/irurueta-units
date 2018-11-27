@@ -76,8 +76,17 @@ public class DistanceFormatter extends MeasureFormatter<Distance, DistanceUnit> 
      * @param locale locale.
      * @throws IllegalArgumentException if locale is null.
      */
-    public DistanceFormatter(Locale locale) throws IllegalArgumentException {
+    public DistanceFormatter(Locale locale) {
         super(locale);
+    }
+
+    /**
+     * Copy constructor.
+     * @param formatter input instance to copy from.
+     * @throws NullPointerException if provided formatter is null.
+     */
+    public DistanceFormatter(DistanceFormatter formatter) {
+        this(formatter.getLocale());
     }
 
     /**
@@ -99,6 +108,17 @@ public class DistanceFormatter extends MeasureFormatter<Distance, DistanceUnit> 
     public boolean equals(Object obj) {
         boolean equals = super.equals(obj);
         return (obj instanceof DistanceFormatter) && equals;
+    }
+
+    /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare objects.
+     * This implementation only calls parent implementation to avoid static analyzer warning.
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
     /**

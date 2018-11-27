@@ -112,7 +112,7 @@ public class AccelerationConverter {
                 metersPerSquaredSecond = feetPerSquaredSecondToMetersPerSquaredSecond(input);
                 break;
             case G:
-                metersPerSquaredSecond = GToMetersPerSquaredSecond(input);
+                metersPerSquaredSecond = gravityToMetersPerSquaredSecond(input);
                 break;
             case METERS_PER_SQUARED_SECOND:
             default:
@@ -125,7 +125,7 @@ public class AccelerationConverter {
             case FEET_PER_SQUARED_SECOND:
                 return metersPerSquaredSecondToFeetPerSquaredSecond(metersPerSquaredSecond);
             case G:
-                return metersPerSquaredSecondToG(metersPerSquaredSecond);
+                return metersPerSquaredSecondToGravity(metersPerSquaredSecond);
             case METERS_PER_SQUARED_SECOND:
             default:
                 return metersPerSquaredSecond;
@@ -154,11 +154,11 @@ public class AccelerationConverter {
     /**
      * Converts provided acceleration expressed in terms of standard gravity
      * (9.8 m/s^2) to meters per squared second.
-     * @param G acceleration relative to standard gravity.
+     * @param g acceleration relative to standard gravity.
      * @return same acceleration converted to meters per squared second.
      */
-    public static double GToMetersPerSquaredSecond(double G) {
-        return G * STANDARD_GRAVITY;
+    public static double gravityToMetersPerSquaredSecond(double g) {
+        return g * STANDARD_GRAVITY;
     }
 
     /**
@@ -167,7 +167,7 @@ public class AccelerationConverter {
      * @param metersPerSquaredSecond meters per squared second value.
      * @return same acceleration expressed in relative terms to the standard gravity.
      */
-    public static double metersPerSquaredSecondToG(double metersPerSquaredSecond) {
+    public static double metersPerSquaredSecondToGravity(double metersPerSquaredSecond) {
         return metersPerSquaredSecond / STANDARD_GRAVITY;
     }
 }

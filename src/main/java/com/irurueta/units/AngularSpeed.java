@@ -29,8 +29,7 @@ public class AngularSpeed extends Measurement<AngularSpeedUnit> {
      * @param unit unit of angular speed.
      * @throws IllegalArgumentException if either value or unit is null.
      */
-    public AngularSpeed(Number value, AngularSpeedUnit unit)
-            throws IllegalArgumentException {
+    public AngularSpeed(Number value, AngularSpeedUnit unit) {
         super(value, unit);
     }
 

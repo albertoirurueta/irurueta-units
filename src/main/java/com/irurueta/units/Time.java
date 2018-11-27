@@ -29,7 +29,7 @@ public class Time extends Measurement<TimeUnit> {
      * @throws IllegalArgumentException if either value or unit is null.
      */
     @SuppressWarnings("WeakerAccess")
-    public Time(Number value, TimeUnit unit) throws IllegalArgumentException {
+    public Time(Number value, TimeUnit unit) {
         super(value, unit);
     }
 

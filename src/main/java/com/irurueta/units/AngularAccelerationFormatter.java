@@ -48,8 +48,17 @@ public class AngularAccelerationFormatter extends
      * @param locale locale.
      * @throws IllegalArgumentException if locale is null.
      */
-    public AngularAccelerationFormatter(Locale locale) throws IllegalArgumentException {
+    public AngularAccelerationFormatter(Locale locale) {
         super(locale);
+    }
+
+    /**
+     * Copy constructor.
+     * @param formatter input instance to copy from.
+     * @throws NullPointerException if provided formatter is null.
+     */
+    public AngularAccelerationFormatter(AngularAccelerationFormatter formatter) {
+        this(formatter.getLocale());
     }
 
     /**
@@ -72,6 +81,17 @@ public class AngularAccelerationFormatter extends
     public boolean equals(Object obj) {
         boolean equals = super.equals(obj);
         return (obj instanceof AngularAccelerationFormatter) && equals;
+    }
+
+    /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare objects.
+     * This implementation only calls parent implementation to avoid static analyzer warning.
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
     /**
@@ -139,6 +159,7 @@ public class AngularAccelerationFormatter extends
      * @param unit an angular accelerationunit.
      * @return its string representation.
      */
+    @SuppressWarnings("Duplicates")
     public String getUnitSymbol(AngularAccelerationUnit unit) {
         String unitStr;
         switch (unit) {

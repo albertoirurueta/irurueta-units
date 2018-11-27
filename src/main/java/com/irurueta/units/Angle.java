@@ -29,7 +29,7 @@ public class Angle extends Measurement<AngleUnit> {
      * @param unit unit of angle.
      * @throws IllegalArgumentException if either value or unit is null.
      */
-    public Angle(Number value, AngleUnit unit) throws IllegalArgumentException {
+    public Angle(Number value, AngleUnit unit) {
         super(value, unit);
     }
 

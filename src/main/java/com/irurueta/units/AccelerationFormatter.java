@@ -52,8 +52,17 @@ public class AccelerationFormatter extends
      * @param locale locale.
      * @throws IllegalArgumentException if locale is null.
      */
-    public AccelerationFormatter(Locale locale) throws IllegalArgumentException {
+    public AccelerationFormatter(Locale locale) {
         super(locale);
+    }
+
+    /**
+     * Copy constructor.
+     * @param formatter input instance to copy from.
+     * @throws NullPointerException if provided formatter is null.
+     */
+    public AccelerationFormatter(AccelerationFormatter formatter) {
+        this(formatter.getLocale());
     }
 
     /**
@@ -75,6 +84,17 @@ public class AccelerationFormatter extends
     public boolean equals(Object obj) {
         boolean equals = super.equals(obj);
         return (obj instanceof AccelerationFormatter) && equals;
+    }
+
+    /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare objects.
+     * This implementation only calls parent implementation to avoid static analyzer warning.
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
     /**

@@ -164,8 +164,9 @@ public class AngleConverter {
      * @param result array where computed degrees and minutes will be stored.
      * @throws IllegalArgumentException if provided array does not have length 2.
      */
+    @SuppressWarnings("Duplicates")
     public static void toDegreesAndMinutes(double value, AngleUnit unit,
-            double[] result) throws IllegalArgumentException {
+            double[] result) {
         if (result.length != DEGREES_AND_MINUTES) {
             throw new IllegalArgumentException();
         }
@@ -201,7 +202,7 @@ public class AngleConverter {
      * @throws IllegalArgumentException if provided array does not have length 2.
      */
     public static void toDegreesAndMinutes(Number value, AngleUnit unit,
-            double[] result) throws IllegalArgumentException {
+            double[] result) {
         toDegreesAndMinutes(value.doubleValue(), unit, result);
     }
 
@@ -221,8 +222,7 @@ public class AngleConverter {
      * @param result array where computed degrees and minutes will be stored.
      * @throws IllegalArgumentException if provided array does not have length 2.
      */
-    public static void toDegreesAndMinutes(Angle angle, double[] result)
-            throws IllegalArgumentException {
+    public static void toDegreesAndMinutes(Angle angle, double[] result) {
         toDegreesAndMinutes(angle.getValue(), angle.getUnit(), result);
     }
 
@@ -244,7 +244,7 @@ public class AngleConverter {
      * @throws IllegalArgumentException if minutes is negative.
      */
     public static double fromDegreesAndMinutes(int degrees, double minutes,
-            AngleUnit resultUnit) throws IllegalArgumentException {
+            AngleUnit resultUnit) {
         if (minutes < 0.0) {
             throw new IllegalArgumentException();
         }
@@ -260,8 +260,7 @@ public class AngleConverter {
      * @param result instance where angle value and unit will be stored.
      * @throws IllegalArgumentException if minutes is negative.
      */
-    public static void fromDegreesAndMinutes(int degrees, double minutes, Angle result)
-            throws IllegalArgumentException {
+    public static void fromDegreesAndMinutes(int degrees, double minutes, Angle result) {
         result.setValue(fromDegreesAndMinutes(degrees, minutes, result.getUnit()));
     }
 
@@ -275,7 +274,7 @@ public class AngleConverter {
      * @throws IllegalArgumentException if minutes is negative.
      */
     public static Angle fromDegreesAndMinutesAndReturnNew(int degrees, double minutes,
-            AngleUnit resultUnit) throws IllegalArgumentException {
+            AngleUnit resultUnit) {
         Angle result = new Angle(0.0, resultUnit);
         fromDegreesAndMinutes(degrees, minutes, result);
         return result;
@@ -289,8 +288,9 @@ public class AngleConverter {
      * @param result array where computed degrees, minutes and seconds will be stored.
      * @throws IllegalArgumentException if provided array does not have length 3.
      */
+    @SuppressWarnings("Duplicates")
     public static void toDegreesMinutesAndSeconds(double value, AngleUnit unit,
-            double[] result) throws IllegalArgumentException {
+            double[] result) {
         if (result.length != DEGREES_MINUTES_AND_SECONDS) {
             throw new IllegalArgumentException();
         }
@@ -334,7 +334,7 @@ public class AngleConverter {
      * @throws IllegalArgumentException if provided array does not have length 3.
      */
     public static void toDegreesMinutesAndSeconds(Number value, AngleUnit unit,
-            double[] result) throws IllegalArgumentException {
+            double[] result) {
         toDegreesMinutesAndSeconds(value.doubleValue(), unit, result);
     }
 
@@ -355,8 +355,7 @@ public class AngleConverter {
      * @param result array where computed degrees and minutes will be stored.
      * @throws IllegalArgumentException if provided array does not have length 3.
      */
-    public static void toDegreesMinutesAndSeconds(Angle angle, double[] result)
-            throws IllegalArgumentException {
+    public static void toDegreesMinutesAndSeconds(Angle angle, double[] result) {
         toDegreesMinutesAndSeconds(angle.getValue(), angle.getUnit(), result);
     }
 
@@ -380,7 +379,7 @@ public class AngleConverter {
      * @throws IllegalArgumentException if minutes or seconds are negative.
      */
     public static double fromDegreesMinutesAndSeconds(int degrees, int minutes,
-            double seconds, AngleUnit resultUnit) throws IllegalArgumentException {
+            double seconds, AngleUnit resultUnit) {
         if (minutes < 0 || seconds < 0.0) {
             throw new IllegalArgumentException();
         }
@@ -398,7 +397,7 @@ public class AngleConverter {
      * @throws IllegalArgumentException if minutes or seconds are negative.
      */
     public static void fromDegreesMinutesAndSeconds(int degrees, int minutes,
-            double seconds, Angle result) throws IllegalArgumentException {
+            double seconds, Angle result) {
         result.setValue(fromDegreesMinutesAndSeconds(degrees, minutes, seconds,
                 result.getUnit()));
     }
@@ -414,8 +413,7 @@ public class AngleConverter {
      * @throws IllegalArgumentException if minutes or seconds are negative.
      */
     public static Angle fromDegreesMinutesAndSecondsAndReturnNew(int degrees,
-            int minutes, double seconds, AngleUnit resultUnit)
-            throws IllegalArgumentException {
+            int minutes, double seconds, AngleUnit resultUnit) {
         Angle result = new Angle(0.0, resultUnit);
         fromDegreesMinutesAndSeconds(degrees, minutes, seconds, result);
         return result;

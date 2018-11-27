@@ -29,8 +29,7 @@ public class AngularAcceleration extends Measurement<AngularAccelerationUnit> {
      * @param unit unit of angualr acceleration.
      * @throws IllegalArgumentException if either value or unit is null.
      */
-    public AngularAcceleration(Number value, AngularAccelerationUnit unit)
-            throws IllegalArgumentException {
+    public AngularAcceleration(Number value, AngularAccelerationUnit unit) {
         super(value, unit);
     }
 

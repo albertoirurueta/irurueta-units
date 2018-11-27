@@ -95,6 +95,7 @@ public class AngularSpeedConverter {
      * @param outputUnit output angular speed unit.
      * @return converted angular speed value.
      */
+    @SuppressWarnings("Duplicates")
     public static double convert(double input, AngularSpeedUnit inputUnit,
                                  AngularSpeedUnit outputUnit) {
         double radiansPerSecond;

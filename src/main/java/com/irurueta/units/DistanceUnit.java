@@ -65,7 +65,7 @@ public enum DistanceUnit {
      * @return unit system (metric or imperial).
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static UnitSystem getUnitSystem(DistanceUnit unit) throws IllegalArgumentException {
+    public static UnitSystem getUnitSystem(DistanceUnit unit) {
         if (unit == null) {
             throw new IllegalArgumentException();
         }
@@ -117,7 +117,7 @@ public enum DistanceUnit {
      * @return true if unit belongs to metric unit system.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isMetric(DistanceUnit unit) throws IllegalArgumentException {
+    public static boolean isMetric(DistanceUnit unit) {
         return getUnitSystem(unit) == UnitSystem.METRIC;
     }
 
@@ -127,7 +127,7 @@ public enum DistanceUnit {
      * @return true if unit belongs to imperial unit system.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isImperial(DistanceUnit unit) throws IllegalArgumentException {
+    public static boolean isImperial(DistanceUnit unit) {
         return getUnitSystem(unit) == UnitSystem.IMPERIAL;
     }
 }

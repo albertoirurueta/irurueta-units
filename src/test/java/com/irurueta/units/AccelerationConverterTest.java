@@ -58,12 +58,12 @@ public class AccelerationConverterTest {
     }
 
     @Test
-    public void testMetersPerSquaredSecondG() {
+    public void testMetersPerSquaredSecondGravity() {
         double inputValue = new Random().nextDouble();
 
-        assertEquals(AccelerationConverter.metersPerSquaredSecondToG(inputValue),
+        assertEquals(AccelerationConverter.metersPerSquaredSecondToGravity(inputValue),
                 inputValue / AccelerationConverter.STANDARD_GRAVITY, ERROR);
-        assertEquals(AccelerationConverter.GToMetersPerSquaredSecond(inputValue),
+        assertEquals(AccelerationConverter.gravityToMetersPerSquaredSecond(inputValue),
                 inputValue * AccelerationConverter.STANDARD_GRAVITY, ERROR);
     }
 
@@ -82,7 +82,7 @@ public class AccelerationConverterTest {
                         inputValue), ERROR);
         assertEquals(AccelerationConverter.convert(inputValue,
                 AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                AccelerationUnit.G), AccelerationConverter.metersPerSquaredSecondToG(
+                AccelerationUnit.G), AccelerationConverter.metersPerSquaredSecondToGravity(
                         inputValue), ERROR);
 
         assertEquals(AccelerationConverter.convert(inputValue,
@@ -96,19 +96,19 @@ public class AccelerationConverterTest {
                 inputValue, ERROR);
         assertEquals(AccelerationConverter.convert(inputValue,
                 AccelerationUnit.FEET_PER_SQUARED_SECOND,
-                AccelerationUnit.G), AccelerationConverter.metersPerSquaredSecondToG(
+                AccelerationUnit.G), AccelerationConverter.metersPerSquaredSecondToGravity(
                         AccelerationConverter.feetPerSquaredSecondToMetersPerSquaredSecond(
                                 inputValue)), ERROR);
 
         assertEquals(AccelerationConverter.convert(inputValue,
                 AccelerationUnit.G,
                 AccelerationUnit.METERS_PER_SQUARED_SECOND),
-                AccelerationConverter.GToMetersPerSquaredSecond(inputValue), ERROR);
+                AccelerationConverter.gravityToMetersPerSquaredSecond(inputValue), ERROR);
         assertEquals(AccelerationConverter.convert(inputValue,
                 AccelerationUnit.G,
                 AccelerationUnit.FEET_PER_SQUARED_SECOND),
                 AccelerationConverter.metersPerSquaredSecondToFeetPerSquaredSecond(
-                        AccelerationConverter.GToMetersPerSquaredSecond(inputValue)),
+                        AccelerationConverter.gravityToMetersPerSquaredSecond(inputValue)),
                 ERROR);
         assertEquals(AccelerationConverter.convert(inputValue,
                 AccelerationUnit.G, AccelerationUnit.G),

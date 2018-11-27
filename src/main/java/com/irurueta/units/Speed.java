@@ -29,7 +29,7 @@ public class Speed extends Measurement<SpeedUnit> {
      * @param unit unit of speed.
      * @throws IllegalArgumentException if either value or unit is null.
      */
-    public Speed(Number value, SpeedUnit unit) throws IllegalArgumentException {
+    public Speed(Number value, SpeedUnit unit) {
         super(value, unit);
     }
 

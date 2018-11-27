@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
 /**
  * Formats and parses time value and unit.
  */
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "Duplicates"})
 public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements Cloneable {
 
     /**
@@ -394,8 +394,33 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
      * @throws IllegalArgumentException if locale is null.
      */
     @SuppressWarnings("WeakerAccess")
-    public TimeFormatter(Locale locale) throws IllegalArgumentException {
+    public TimeFormatter(Locale locale) {
         super(locale);
+    }
+
+    /**
+     * Copy constructor.
+     * @param formatter input instance to copy from.
+     * @throws NullPointerException if provided formatter is null.
+     */
+    public TimeFormatter(TimeFormatter formatter) {
+        this(formatter.getLocale());
+        mHourMinutePattern = formatter.mHourMinutePattern;
+        mHourMinuteSecondPattern = formatter.mHourMinuteSecondPattern;
+        mFirstCenturyPattern = formatter.mFirstCenturyPattern;
+        mSecondCenturyPattern = formatter.mSecondCenturyPattern;
+        mThirdCenturyPattern = formatter.mThirdCenturyPattern;
+        mCenturyPattern = formatter.mCenturyPattern;
+        mYearPattern = formatter.mYearPattern;
+        mMonthPattern = formatter.mMonthPattern;
+        mWeekPattern = formatter.mWeekPattern;
+        mDayPattern = formatter.mDayPattern;
+        mHourPattern = formatter.mHourPattern;
+        mMinutePattern = formatter.mMinutePattern;
+        mSecondPattern = formatter.mSecondPattern;
+        mMillisecondPattern = formatter.mMillisecondPattern;
+        mMicrosecondPattern = formatter.mMicrosecondPattern;
+        mNanosecondPattern = formatter.mNanosecondPattern;
     }
 
     /**
@@ -417,6 +442,17 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
     public boolean equals(Object obj) {
         boolean equals = super.equals(obj);
         return (obj instanceof TimeFormatter) && equals;
+    }
+
+    /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare objects.
+     * This implementation only calls parent implementation to avoid static analyzer warning.
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
     /**
@@ -873,7 +909,8 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
         //centuries
         double exactCenturies = TimeConverter.convert(time.getValue().doubleValue(),
                 time.getUnit(), TimeUnit.CENTURY);
-        double centuries = 0.0, diffCenturies;
+        double centuries = 0.0;
+        double diffCenturies;
         if ((flags & FORMAT_CENTURIES) != 0) {
             if((flags & (FORMAT_YEARS | FORMAT_MONTHS | FORMAT_WEEKS | FORMAT_DAYS |
                     FORMAT_HOURS | FORMAT_MINUTES | FORMAT_SECONDS |
@@ -892,7 +929,8 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
         //years
         double exactYears = TimeConverter.convert(diffCenturies, TimeUnit.CENTURY,
                 TimeUnit.YEAR);
-        double years = 0.0, diffYears;
+        double years = 0.0;
+        double diffYears;
         if ((flags & FORMAT_YEARS) != 0) {
             if ((flags & (FORMAT_MONTHS | FORMAT_WEEKS | FORMAT_DAYS |
                     FORMAT_HOURS | FORMAT_MINUTES | FORMAT_SECONDS |
@@ -911,7 +949,8 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
         //months
         double exactMonths = TimeConverter.convert(diffYears, TimeUnit.YEAR,
                 TimeUnit.MONTH);
-        double months = 0.0, diffMonths;
+        double months = 0.0;
+        double diffMonths;
         if ((flags & FORMAT_MONTHS) != 0) {
             if ((flags & (FORMAT_WEEKS | FORMAT_DAYS | FORMAT_HOURS |
                     FORMAT_MINUTES | FORMAT_SECONDS | FORMAT_MILLISECONDS |
@@ -929,7 +968,8 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
         //weeks
         double exactWeeks = TimeConverter.convert(diffMonths, TimeUnit.MONTH,
                 TimeUnit.WEEK);
-        double weeks = 0.0, diffWeeks;
+        double weeks = 0.0;
+        double diffWeeks;
         if ((flags & FORMAT_WEEKS) != 0) {
             if ((flags & (FORMAT_DAYS | FORMAT_HOURS | FORMAT_MINUTES |
                     FORMAT_SECONDS | FORMAT_MILLISECONDS | FORMAT_MICROSECONDS |
@@ -947,7 +987,8 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
         //days
         double exactDays = TimeConverter.convert(diffWeeks, TimeUnit.WEEK,
                 TimeUnit.DAY);
-        double days = 0.0, diffDays;
+        double days = 0.0;
+        double diffDays;
         if ((flags & FORMAT_DAYS) != 0) {
             if ((flags & (FORMAT_HOURS | FORMAT_MINUTES | FORMAT_SECONDS |
                     FORMAT_MILLISECONDS | FORMAT_MICROSECONDS |
@@ -965,7 +1006,8 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
         //hours
         double exactHours = TimeConverter.convert(diffDays, TimeUnit.DAY,
                 TimeUnit.HOUR);
-        double hours = 0.0, diffHours;
+        double hours = 0.0;
+        double diffHours;
         if ((flags & FORMAT_HOURS) != 0) {
             if ((flags & (FORMAT_MINUTES | FORMAT_SECONDS | FORMAT_MILLISECONDS |
                     FORMAT_MICROSECONDS | FORMAT_NANOSECONDS)) != 0) {
@@ -982,7 +1024,8 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
         //minutes
         double exactMinutes = TimeConverter.convert(diffHours, TimeUnit.HOUR,
                 TimeUnit.MINUTE);
-        double minutes = 0.0, diffMinutes;
+        double minutes = 0.0;
+        double diffMinutes;
         if ((flags & FORMAT_MINUTES) != 0) {
             if ((flags & (FORMAT_SECONDS | FORMAT_MILLISECONDS |
                     FORMAT_MICROSECONDS | FORMAT_NANOSECONDS)) != 0) {
@@ -999,7 +1042,8 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
         //seconds
         double exactSeconds = TimeConverter.convert(diffMinutes, TimeUnit.MINUTE,
                 TimeUnit.SECOND);
-        double seconds = 0.0, diffSeconds;
+        double seconds = 0.0;
+        double diffSeconds;
         if ((flags & FORMAT_SECONDS) != 0) {
             if ((flags & (FORMAT_MILLISECONDS | FORMAT_MICROSECONDS |
                     FORMAT_NANOSECONDS)) != 0) {
@@ -1016,7 +1060,8 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
         //milliseconds
         double exactMilliseconds = TimeConverter.convert(diffSeconds,
                 TimeUnit.SECOND, TimeUnit.MILLISECOND);
-        double milliseconds = 0.0, diffMilliseconds;
+        double milliseconds = 0.0;
+        double diffMilliseconds;
         if ((flags & FORMAT_MILLISECONDS) != 0) {
             if ((flags & (FORMAT_MICROSECONDS | FORMAT_NANOSECONDS)) != 0) {
                 //hay unidades más pequeñas
@@ -1032,7 +1077,8 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
         //microseconds
         double exactMicroseconds = TimeConverter.convert(diffMilliseconds,
                 TimeUnit.MILLISECOND, TimeUnit.MICROSECOND);
-        double microseconds = 0.0, diffMicroseconds;
+        double microseconds = 0.0;
+        double diffMicroseconds;
         if ((flags & FORMAT_MICROSECONDS) != 0) {
             if ((flags & (FORMAT_NANOSECONDS)) != 0) {
                 microseconds = Math.floor(exactMicroseconds);
@@ -1054,71 +1100,39 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
 
         //format result
         StringBuilder builder = new StringBuilder();
-        if ((flags & FORMAT_CENTURIES) != 0) {
-            if(!onlyNonZero || centuries != 0.0) {
-                builder.append(
-                        format(centuries, TimeUnit.CENTURY));
-            }
+        if (((flags & FORMAT_CENTURIES) != 0) && (!onlyNonZero || centuries != 0.0)) {
+            builder.append(format(centuries, TimeUnit.CENTURY));
         }
-        if ((flags & FORMAT_YEARS) != 0) {
-            if (!onlyNonZero || years != 0.0) {
-                appendSpaceIfNeeded(builder).append(
-                        format(years, TimeUnit.YEAR));
-            }
+        if (((flags & FORMAT_YEARS) != 0) && (!onlyNonZero || years != 0.0)) {
+            appendSpaceIfNeeded(builder).append(format(years, TimeUnit.YEAR));
         }
-        if ((flags & FORMAT_MONTHS) != 0) {
-            if (!onlyNonZero || months != 0.0) {
-                appendSpaceIfNeeded(builder).append(
-                        format(months, TimeUnit.MONTH));
-            }
+        if (((flags & FORMAT_MONTHS) != 0) && (!onlyNonZero || months != 0.0)) {
+            appendSpaceIfNeeded(builder).append(format(months, TimeUnit.MONTH));
         }
-        if ((flags & FORMAT_WEEKS) != 0) {
-            if (!onlyNonZero || weeks != 0.0) {
-                appendSpaceIfNeeded(builder).append(
-                        format(weeks, TimeUnit.WEEK));
-            }
+        if (((flags & FORMAT_WEEKS) != 0) && (!onlyNonZero || weeks != 0.0)) {
+            appendSpaceIfNeeded(builder).append(format(weeks, TimeUnit.WEEK));
         }
-        if ((flags & FORMAT_DAYS) != 0) {
-            if (!onlyNonZero || days != 0.0) {
-                appendSpaceIfNeeded(builder).append(
-                        format(days, TimeUnit.DAY));
-            }
+        if (((flags & FORMAT_DAYS) != 0) && (!onlyNonZero || days != 0.0)) {
+            appendSpaceIfNeeded(builder).append(
+                    format(days, TimeUnit.DAY));
         }
-        if ((flags & FORMAT_HOURS) != 0) {
-            if (!onlyNonZero || hours != 0.0) {
-                appendSpaceIfNeeded(builder).append(
-                        format(hours, TimeUnit.HOUR));
-            }
+        if (((flags & FORMAT_HOURS) != 0) && (!onlyNonZero || hours != 0.0)) {
+            appendSpaceIfNeeded(builder).append(format(hours, TimeUnit.HOUR));
         }
-        if ((flags & FORMAT_MINUTES) != 0) {
-            if (!onlyNonZero || minutes != 0.0) {
-                appendSpaceIfNeeded(builder).append(
-                        format(minutes, TimeUnit.MINUTE));
-            }
+        if (((flags & FORMAT_MINUTES) != 0) && (!onlyNonZero || minutes != 0.0)) {
+            appendSpaceIfNeeded(builder).append(format(minutes, TimeUnit.MINUTE));
         }
-        if ((flags & FORMAT_SECONDS) != 0) {
-            if (!onlyNonZero || seconds != 0.0) {
-                appendSpaceIfNeeded(builder).append(
-                        format(seconds, TimeUnit.SECOND));
-            }
+        if (((flags & FORMAT_SECONDS) != 0) && (!onlyNonZero || seconds != 0.0)) {
+            appendSpaceIfNeeded(builder).append(format(seconds, TimeUnit.SECOND));
         }
-        if ((flags & FORMAT_MILLISECONDS) != 0) {
-            if (!onlyNonZero || milliseconds != 0.0) {
-                appendSpaceIfNeeded(builder).append(
-                        format(milliseconds, TimeUnit.MILLISECOND));
-            }
+        if (((flags & FORMAT_MILLISECONDS) != 0) && (!onlyNonZero || milliseconds != 0.0)) {
+            appendSpaceIfNeeded(builder).append(format(milliseconds, TimeUnit.MILLISECOND));
         }
-        if ((flags & FORMAT_MICROSECONDS) != 0) {
-            if (!onlyNonZero || microseconds != 0.0) {
-                appendSpaceIfNeeded(builder).append(
-                        format(microseconds, TimeUnit.MICROSECOND));
-            }
+        if (((flags & FORMAT_MICROSECONDS) != 0) && (!onlyNonZero || microseconds != 0.0)) {
+            appendSpaceIfNeeded(builder).append(format(microseconds, TimeUnit.MICROSECOND));
         }
-        if ((flags & FORMAT_NANOSECONDS) != 0) {
-            if (!onlyNonZero || nanoseconds != 0.0) {
-                appendSpaceIfNeeded(builder).append(
-                        format(nanoseconds, TimeUnit.NANOSECOND));
-            }
+        if (((flags & FORMAT_NANOSECONDS) != 0) && (!onlyNonZero || nanoseconds != 0.0)) {
+            appendSpaceIfNeeded(builder).append(format(nanoseconds, TimeUnit.NANOSECOND));
         }
         return builder.toString();
     }

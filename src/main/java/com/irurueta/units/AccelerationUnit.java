@@ -40,7 +40,7 @@ public enum AccelerationUnit {
      * @return unit system (metric or imperial).
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static UnitSystem getUnitSystem(AccelerationUnit unit) throws IllegalArgumentException {
+    public static UnitSystem getUnitSystem(AccelerationUnit unit) {
         if (unit == null) {
             throw new IllegalArgumentException();
         }
@@ -82,7 +82,7 @@ public enum AccelerationUnit {
      * @return true if unit belongs to metric unit system.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isMetric(AccelerationUnit unit) throws IllegalArgumentException {
+    public static boolean isMetric(AccelerationUnit unit) {
         return getUnitSystem(unit) == UnitSystem.METRIC;
     }
 
@@ -92,7 +92,7 @@ public enum AccelerationUnit {
      * @return true if unit belongs to imperial unit system.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isImperial(AccelerationUnit unit) throws IllegalArgumentException {
+    public static boolean isImperial(AccelerationUnit unit) {
         return getUnitSystem(unit) == UnitSystem.IMPERIAL;
     }
 }

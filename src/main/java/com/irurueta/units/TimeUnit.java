@@ -82,7 +82,7 @@ public enum TimeUnit {
      * @throws IllegalArgumentException if unit is null or does not belong to the
      * international system of units.
      */
-    public static UnitSystem getUnitSystem(TimeUnit unit) throws IllegalArgumentException {
+    public static UnitSystem getUnitSystem(TimeUnit unit) {
         if (unit == null) {
             throw new IllegalArgumentException();
         }
@@ -134,7 +134,7 @@ public enum TimeUnit {
      * @return true if unit belongs to metric unit system.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isMetric(TimeUnit unit) throws IllegalArgumentException {
+    public static boolean isMetric(TimeUnit unit) {
         if (unit == null) {
             throw new IllegalArgumentException();
         }
@@ -154,7 +154,7 @@ public enum TimeUnit {
      * false otherwise.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isNonInternationalSystem(TimeUnit unit) throws IllegalArgumentException {
+    public static boolean isNonInternationalSystem(TimeUnit unit) {
         if (unit == null) {
             throw new IllegalArgumentException();
         }

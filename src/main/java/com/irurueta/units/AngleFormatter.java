@@ -82,8 +82,19 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> implement
      * @param locale locale.
      * @throws IllegalArgumentException if locale is null.
      */
-    public AngleFormatter(Locale locale) throws IllegalArgumentException {
+    public AngleFormatter(Locale locale) {
         super(locale);
+    }
+
+    /**
+     * Copy constructor.
+     * @param formatter input instance to copy from.
+     * @throws NullPointerException if provided formatter is null.
+     */
+    public AngleFormatter(AngleFormatter formatter) {
+        this(formatter.getLocale());
+        mDegreesAndMinutesPattern = formatter.mDegreesAndMinutesPattern;
+        mDegreesMinutesAndSecondsPattern = formatter.mDegreesMinutesAndSecondsPattern;
     }
 
     /**
@@ -106,6 +117,17 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> implement
     public boolean equals(Object obj) {
         boolean equals = super.equals(obj);
         return (obj instanceof AngleFormatter) && equals;
+    }
+
+    /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare objects.
+     * This implementation only calls parent implementation to avoid static analyzer warning.
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
     /**
@@ -167,6 +189,7 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> implement
      * @return its string representation.
      */
     @Override
+    @SuppressWarnings("Duplicates")
     public String getUnitSymbol(AngleUnit unit) {
         String unitStr;
         switch (unit) {
@@ -217,6 +240,7 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> implement
      * @throws ParseException if parsing fails.
      * @throws UnknownUnitException if format is not recognized.
      */
+    @SuppressWarnings("Duplicates")
     public Angle parseDegreesAndMinutes(CharSequence source) throws ParseException,
             UnknownUnitException{
         if (mDegreesAndMinutesPattern == null) {
@@ -247,6 +271,7 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> implement
      * @throws ParseException if parsing fails.
      * @throws UnknownUnitException if format is not recognized.
      */
+    @SuppressWarnings("Duplicates")
     public Angle parseDegreesMinutesAndSeconds(CharSequence source)
             throws ParseException, UnknownUnitException {
         if (mDegreesMinutesAndSecondsPattern == null) {

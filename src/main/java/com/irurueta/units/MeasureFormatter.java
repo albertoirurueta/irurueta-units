@@ -73,7 +73,7 @@ public abstract class MeasureFormatter<M extends Measurement, U extends Enum> im
      * @param locale locale.
      * @throws IllegalArgumentException if locale is null.
      */
-    MeasureFormatter(Locale locale) throws IllegalArgumentException {
+    MeasureFormatter(Locale locale) {
         if (locale == null) {
             throw new IllegalArgumentException();
         }
@@ -167,7 +167,7 @@ public abstract class MeasureFormatter<M extends Measurement, U extends Enum> im
      * @return string representation of provided measurement value and unit.
      */
     public String format(double value, U unit) {
-        return format(new BigDecimal(value), unit);
+        return format(BigDecimal.valueOf(value), unit);
     }
 
     /**
@@ -181,7 +181,7 @@ public abstract class MeasureFormatter<M extends Measurement, U extends Enum> im
      */
     public StringBuffer format(double value, U unit,
                                StringBuffer toAppendTo, FieldPosition pos) {
-        return format(new BigDecimal(value), unit, toAppendTo, pos);
+        return format(BigDecimal.valueOf(value), unit, toAppendTo, pos);
     }
 
     /**
@@ -234,7 +234,7 @@ public abstract class MeasureFormatter<M extends Measurement, U extends Enum> im
      * @return a string representation of measurement value and unit.
      */
     public String formatAndConvert(double value, U unit) {
-        return formatAndConvert(new BigDecimal(value), unit);
+        return formatAndConvert(BigDecimal.valueOf(value), unit);
     }
 
     /**
@@ -277,7 +277,7 @@ public abstract class MeasureFormatter<M extends Measurement, U extends Enum> im
      * @return a string representation of measurement value and unit.
      */
     public String formatAndConvert(double value, U unit, UnitSystem system) {
-        return formatAndConvert(new BigDecimal(value), unit, system);
+        return formatAndConvert(BigDecimal.valueOf(value), unit, system);
     }
 
     /**
@@ -441,8 +441,7 @@ public abstract class MeasureFormatter<M extends Measurement, U extends Enum> im
      * together.
      * @throws IllegalArgumentException if provided pattern is null.
      */
-    public void setValueAndUnitFormatPattern(String valueAndUnitFormatPattern)
-            throws IllegalArgumentException {
+    public void setValueAndUnitFormatPattern(String valueAndUnitFormatPattern) {
         if (valueAndUnitFormatPattern == null) {
             throw new IllegalArgumentException();
         }

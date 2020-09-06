@@ -23,10 +23,10 @@ under the License.
     <link>https://github.com/albertoirurueta/irurueta-units</link>
     <description>com.irurueta:irurueta-units - Checkstyle report</description>
     <language>en-us</language>
-    <copyright>&#169;2018</copyright>
+    <copyright>&#169;2018 - 2020</copyright>
     <item>
-      <title>File: 45,
-             Errors: 123,
+      <title>File: 49,
+             Errors: 93,
              Warnings: 0,
              Infos: 0
       </title>
@@ -55,49 +55,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.AngularSpeedFormatter.java">com/irurueta/units/AngularSpeedFormatter.java</a>
-                </td>
-                <td>
                   0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.build-info.properties">com/irurueta/units/build-info.properties</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.AccelerationFormatter.java">com/irurueta/units/AccelerationFormatter.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
                 </td>
               </tr>
                           <tr>
@@ -112,20 +70,6 @@ under the License.
                 </td>
                 <td>
                   0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.DistanceUnit.java">com/irurueta/units/DistanceUnit.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  8
                 </td>
               </tr>
                           <tr>
@@ -172,34 +116,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.MeasureFormatter.java">com/irurueta/units/MeasureFormatter.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  7
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.Speed.java">com/irurueta/units/Speed.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.AngleFormatter.java">com/irurueta/units/AngleFormatter.java</a>
                 </td>
                 <td>
@@ -209,7 +125,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  6
+                  1
                 </td>
               </tr>
                           <tr>
@@ -223,68 +139,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  3
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.AngleConverter.java">com/irurueta/units/AngleConverter.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
                   1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.TimeFormatter.java">com/irurueta/units/TimeFormatter.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  34
                 </td>
               </tr>
                           <tr>
                 <td>
                   <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.SurfaceConverter.java">com/irurueta/units/SurfaceConverter.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.FrequencyUnit.java">com/irurueta/units/FrequencyUnit.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.AngleUnit.java">com/irurueta/units/AngleUnit.java</a>
                 </td>
                 <td>
                   0
@@ -326,20 +186,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.AccelerationUnit.java">com/irurueta/units/AccelerationUnit.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  3
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.Angle.java">com/irurueta/units/Angle.java</a>
                 </td>
                 <td>
@@ -350,20 +196,6 @@ under the License.
                 </td>
                 <td>
                   0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.SpeedUnit.java">com/irurueta/units/SpeedUnit.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  9
                 </td>
               </tr>
                           <tr>
@@ -391,7 +223,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
+                  0
                 </td>
               </tr>
                           <tr>
@@ -405,49 +237,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.TimeUnit.java">com/irurueta/units/TimeUnit.java</a>
-                </td>
-                <td>
                   0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  11
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.AngularAccelerationFormatter.java">com/irurueta/units/AngularAccelerationFormatter.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.Measurement.java">com/irurueta/units/Measurement.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  3
                 </td>
               </tr>
                           <tr>
@@ -461,7 +251,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
+                  0
                 </td>
               </tr>
                           <tr>
@@ -494,6 +284,342 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.TimeConverter.java">com/irurueta/units/TimeConverter.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.SurfaceFormatter.java">com/irurueta/units/SurfaceFormatter.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.SpeedFormatter.java">com/irurueta/units/SpeedFormatter.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.FrequencyConverter.java">com/irurueta/units/FrequencyConverter.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.DistanceFormatter.java">com/irurueta/units/DistanceFormatter.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.AngularSpeedFormatter.java">com/irurueta/units/AngularSpeedFormatter.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.build-info.properties">com/irurueta/units/build-info.properties</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.AccelerationFormatter.java">com/irurueta/units/AccelerationFormatter.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.DistanceUnit.java">com/irurueta/units/DistanceUnit.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.MeasureFormatter.java">com/irurueta/units/MeasureFormatter.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.Speed.java">com/irurueta/units/Speed.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.MagneticFluxDensityConverter.java">com/irurueta/units/MagneticFluxDensityConverter.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.AngleConverter.java">com/irurueta/units/AngleConverter.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.TimeFormatter.java">com/irurueta/units/TimeFormatter.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  28
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.MagneticFluxDensityUnit.java">com/irurueta/units/MagneticFluxDensityUnit.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.FrequencyUnit.java">com/irurueta/units/FrequencyUnit.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.AngleUnit.java">com/irurueta/units/AngleUnit.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.SpeedUnit.java">com/irurueta/units/SpeedUnit.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  9
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.AccelerationUnit.java">com/irurueta/units/AccelerationUnit.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.MagneticFluxDensity.java">com/irurueta/units/MagneticFluxDensity.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.TimeUnit.java">com/irurueta/units/TimeUnit.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  11
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.AngularAccelerationFormatter.java">com/irurueta/units/AngularAccelerationFormatter.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.Measurement.java">com/irurueta/units/Measurement.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.DistanceConverter.java">com/irurueta/units/DistanceConverter.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.AngularSpeedUnit.java">com/irurueta/units/AngularSpeedUnit.java</a>
                 </td>
                 <td>
@@ -508,20 +634,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.DistanceConverter.java">com/irurueta/units/DistanceConverter.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.Distance.java">com/irurueta/units/Distance.java</a>
                 </td>
                 <td>
@@ -531,21 +643,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.TimeConverter.java">com/irurueta/units/TimeConverter.java</a>
-                </td>
-                <td>
                   0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
                 </td>
               </tr>
                           <tr>
@@ -578,35 +676,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.SpeedFormatter.java">com/irurueta/units/SpeedFormatter.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.SurfaceFormatter.java">com/irurueta/units/SurfaceFormatter.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  4
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.FrequencyConverter.java">com/irurueta/units/FrequencyConverter.java</a>
+                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.MagneticFluxDensityFormatter.java">com/irurueta/units/MagneticFluxDensityFormatter.java</a>
                 </td>
                 <td>
                   0
@@ -657,21 +727,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://github.com/albertoirurueta/irurueta-units/checkstyle.html#com.irurueta.units.DistanceFormatter.java">com/irurueta/units/DistanceFormatter.java</a>
-                </td>
-                <td>
                   0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
                 </td>
               </tr>
                       </tbody>

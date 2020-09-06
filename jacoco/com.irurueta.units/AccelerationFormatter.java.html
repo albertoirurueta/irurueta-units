@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.irurueta.units;
 
 import java.text.ParseException;
@@ -44,179 +45,179 @@ public class AccelerationFormatter extends
      * Constructor.
      */
     public AccelerationFormatter() {
-<span class="fc" id="L47">        super();</span>
-<span class="fc" id="L48">    }</span>
+<span class="fc" id="L48">        super();</span>
+<span class="fc" id="L49">    }</span>
 
     /**
      * Constructor with locale.
+     *
      * @param locale locale.
      * @throws IllegalArgumentException if locale is null.
      */
-    public AccelerationFormatter(Locale locale) {
-<span class="fc" id="L56">        super(locale);</span>
-<span class="fc" id="L57">    }</span>
+    public AccelerationFormatter(final Locale locale) {
+<span class="fc" id="L58">        super(locale);</span>
+<span class="fc" id="L59">    }</span>
 
     /**
      * Copy constructor.
+     *
      * @param formatter input instance to copy from.
      * @throws NullPointerException if provided formatter is null.
      */
-    public AccelerationFormatter(AccelerationFormatter formatter) {
-<span class="fc" id="L65">        this(formatter.getLocale());</span>
-<span class="fc" id="L66">    }</span>
+    public AccelerationFormatter(final AccelerationFormatter formatter) {
+<span class="fc" id="L68">        this(formatter.getLocale());</span>
+<span class="fc" id="L69">    }</span>
 
     /**
-     * Clones this acceleration formatter.
-     * @return a copy of this acceleration formatter.
-     */
-    @Override
-    public Object clone() {
-<span class="fc" id="L74">        AccelerationFormatter copy = new AccelerationFormatter();</span>
-<span class="fc" id="L75">        return internalClone(copy);</span>
-    }
-
-    /**
-     * Determines if two acceleration formatters are equal by comparing all of their
-     * internal parameters.
+     * Determines if two acceleration formatters are equal by comparing all of their internal parameters.
+     *
      * @param obj another object to compare.
      * @return true if provided object is assumed to be equal to this instance.
      */
-    public boolean equals(Object obj) {
-<span class="fc" id="L85">        boolean equals = super.equals(obj);</span>
-<span class="fc bfc" id="L86" title="All 4 branches covered.">        return (obj instanceof AccelerationFormatter) &amp;&amp; equals;</span>
+    public boolean equals(final Object obj) {
+<span class="fc" id="L78">        final boolean equals = super.equals(obj);</span>
+<span class="fc bfc" id="L79" title="All 4 branches covered.">        return (obj instanceof AccelerationFormatter) &amp;&amp; equals;</span>
     }
 
     /**
-     * Hash code generated for this instance.
-     * Hash codes can be internally used by some collections to coarsely compare objects.
-     * This implementation only calls parent implementation to avoid static analyzer warning.
+     * Hash code generated for this instance. Hash codes can be internally used by some collections to coarsely
+     * compare objects. This implementation only calls parent implementation to avoid static analyzer warning.
+     *
      * @return hash code.
      */
     @Override
     public int hashCode() {
-<span class="fc" id="L97">        return super.hashCode();</span>
+<span class="fc" id="L90">        return super.hashCode();</span>
     }
 
     /**
-     * Gets unit system for detected unit into provided string representation
-     * of a measurement.
+     * Gets unit system for detected unit into provided string representation of a measurement.
+     *
      * @param source a measurement string representation to be checked.
-     * @return a unit system (either metric or imperial) or null if unit
-     * cannot be determined.
+     * @return a unit system (either metric or imperial) or null if unit cannot be determined.
      */
-    public UnitSystem getUnitSystem(String source) {
-<span class="fc" id="L108">        AccelerationUnit unit = findUnit(source);</span>
-<span class="fc bfc" id="L109" title="All 2 branches covered.">        return unit != null ? AccelerationUnit.getUnitSystem(unit) : null;</span>
+    public UnitSystem getUnitSystem(final String source) {
+<span class="fc" id="L100">        final AccelerationUnit unit = findUnit(source);</span>
+<span class="fc bfc" id="L101" title="All 2 branches covered.">        return unit != null ? AccelerationUnit.getUnitSystem(unit) : null;</span>
     }
 
     /**
      * Parses provided string and tries to determine acceleration value and unit.
+     *
      * @param source a string to be parsed.
      * @return an acceleration containing a value and unit.
-     * @throws ParseException if provided string cannot be parsed.
+     * @throws ParseException       if provided string cannot be parsed.
      * @throws UnknownUnitException if unit cannot be determined.
      */
     @Override
-    public Acceleration parse(String source) throws ParseException,
+    public Acceleration parse(final String source) throws ParseException,
             UnknownUnitException {
-<span class="fc" id="L122">        return internalParse(source, new Acceleration());</span>
+<span class="fc" id="L115">        return internalParse(source, new Acceleration());</span>
     }
 
     /**
-     * Attempts to determine an acceleration unit within a measurement string
-     * representation.
+     * Attempts to determine an acceleration unit within a measurement string representation.
+     *
      * @param source a measurement string representation.
      * @return an acceleration unit, or null if none can be determined.
      */
     @Override
-    public AccelerationUnit findUnit(String source) {
-<span class="fc bfc" id="L133" title="All 2 branches covered.">        if (source.contains(METERS_PER_SQUARED_SECOND + &quot; &quot;) ||</span>
-<span class="fc bfc" id="L134" title="All 2 branches covered.">                source.endsWith(METERS_PER_SQUARED_SECOND)) {</span>
-<span class="fc" id="L135">            return AccelerationUnit.METERS_PER_SQUARED_SECOND;</span>
+    public AccelerationUnit findUnit(final String source) {
+<span class="fc bfc" id="L126" title="All 2 branches covered.">        if (source.contains(METERS_PER_SQUARED_SECOND + &quot; &quot;) ||</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">                source.endsWith(METERS_PER_SQUARED_SECOND)) {</span>
+<span class="fc" id="L128">            return AccelerationUnit.METERS_PER_SQUARED_SECOND;</span>
         }
-<span class="fc bfc" id="L137" title="All 4 branches covered.">        if (source.contains(G + &quot; &quot;) || source.endsWith(G)) {</span>
-<span class="fc" id="L138">            return AccelerationUnit.G;</span>
+<span class="fc bfc" id="L130" title="All 4 branches covered.">        if (source.contains(G + &quot; &quot;) || source.endsWith(G)) {</span>
+<span class="fc" id="L131">            return AccelerationUnit.G;</span>
         }
-<span class="fc bfc" id="L140" title="All 2 branches covered.">        if (source.contains(FEET_PER_SQUARED_SECOND + &quot; &quot;) ||</span>
-<span class="fc bfc" id="L141" title="All 2 branches covered.">                source.endsWith(FEET_PER_SQUARED_SECOND)) {</span>
-<span class="fc" id="L142">            return AccelerationUnit.FEET_PER_SQUARED_SECOND;</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">        if (source.contains(FEET_PER_SQUARED_SECOND + &quot; &quot;) ||</span>
+<span class="fc bfc" id="L134" title="All 2 branches covered.">                source.endsWith(FEET_PER_SQUARED_SECOND)) {</span>
+<span class="fc" id="L135">            return AccelerationUnit.FEET_PER_SQUARED_SECOND;</span>
         }
-<span class="fc" id="L144">        return null;</span>
+<span class="fc" id="L137">        return null;</span>
     }
 
     /**
-     * Formats and converts provided acceleration value and unit using provided
-     * unit system.
-     * If provided value is too large for provided unit, this method will
-     * convert it to a more appropriate unit using provided unit system (either
-     * metric or imperial).
-     * @param value an acceleration value.
-     * @param unit an acceleration unit.
+     * Formats and converts provided acceleration value and unit using provided unit system. If provided value is
+     * too large for provided unit, this method will convert it to a more appropriate unit using provided unit
+     * system (either metric or imperial).
+     *
+     * @param value  an acceleration value.
+     * @param unit   an acceleration unit.
      * @param system system unit to convert measurement to.
      * @return a string representation of acceleration value and unit.
      */
-    public String formatAndConvert(Number value, AccelerationUnit unit,
-                                   UnitSystem system) {
-<span class="fc bfc" id="L160" title="All 2 branches covered.">        switch (system) {</span>
+    public String formatAndConvert(
+            final Number value, final AccelerationUnit unit,
+            final UnitSystem system) {
+<span class="fc bfc" id="L153" title="All 2 branches covered.">        switch (system) {</span>
             case IMPERIAL:
-<span class="fc" id="L162">                return formatAndConvertImperial(value, unit);</span>
+<span class="fc" id="L155">                return formatAndConvertImperial(value, unit);</span>
             case METRIC:
             default:
-<span class="fc" id="L165">                return formatAndConvertMetric(value, unit);</span>
+<span class="fc" id="L158">                return formatAndConvertMetric(value, unit);</span>
         }
     }
 
     /**
-     * Formats and converts provided acceleration value and unit using metric unit
-     * system.
+     * Formats and converts provided acceleration value and unit using metric unit system.
+     *
      * @param value an acceleration value.
-     * @param unit an acceleration unit.
-     * @return a string representation of acceleration value and unit using metric
-     * unit system.
+     * @param unit  an acceleration unit.
+     * @return a string representation of acceleration value and unit using metric unit system.
      */
-    public String formatAndConvertMetric(Number value, AccelerationUnit unit) {
+    public String formatAndConvertMetric(
+            final Number value, final AccelerationUnit unit) {
         //always format as meters per squared second
-<span class="fc" id="L179">        return format(AccelerationConverter.convert(value, unit,</span>
+<span class="fc" id="L172">        return format(AccelerationConverter.convert(value, unit,</span>
                 AccelerationUnit.METERS_PER_SQUARED_SECOND),
                 AccelerationUnit.METERS_PER_SQUARED_SECOND);
     }
 
     /**
-     * Formats and converts provided acceleration value and unit using imperial unit
-     * system.
+     * Formats and converts provided acceleration value and unit using imperial unit system.
+     *
      * @param value an acceleration value.
-     * @param unit an acceleration unit.
-     * @return a string representation of acceleration value and unit using imperial
-     * unit system.
+     * @param unit  an acceleration unit.
+     * @return a string representation of acceleration value and unit using imperial unit system.
      */
-    public String formatAndConvertImperial(Number value, AccelerationUnit unit) {
+    public String formatAndConvertImperial(
+            final Number value, final AccelerationUnit unit) {
         //always format as feet per squared second
-<span class="fc" id="L194">        return format(AccelerationConverter.convert(value, unit,</span>
+<span class="fc" id="L187">        return format(AccelerationConverter.convert(value, unit,</span>
                 AccelerationUnit.FEET_PER_SQUARED_SECOND),
                 AccelerationUnit.FEET_PER_SQUARED_SECOND);
     }
 
     /**
      * Returns unit string representation.
+     *
      * @param unit an acceleration unit.
      * @return its string representation.
      */
     @Override
-    public String getUnitSymbol(AccelerationUnit unit) {
-        String unitStr;
-<span class="fc bfc" id="L207" title="All 3 branches covered.">        switch (unit) {</span>
+    public String getUnitSymbol(final AccelerationUnit unit) {
+<span class="fc bfc" id="L200" title="All 3 branches covered.">        switch (unit) {</span>
             case FEET_PER_SQUARED_SECOND:
-<span class="fc" id="L209">                unitStr = FEET_PER_SQUARED_SECOND;</span>
-<span class="fc" id="L210">                break;</span>
+<span class="fc" id="L202">                return FEET_PER_SQUARED_SECOND;</span>
             case G:
-<span class="fc" id="L212">                unitStr = G;</span>
-<span class="fc" id="L213">                break;</span>
+<span class="fc" id="L204">                return G;</span>
             case METERS_PER_SQUARED_SECOND:
             default:
-<span class="fc" id="L216">                unitStr = METERS_PER_SQUARED_SECOND;</span>
-                break;
+<span class="fc" id="L207">                return METERS_PER_SQUARED_SECOND;</span>
         }
-<span class="fc" id="L219">        return unitStr;</span>
+    }
+
+    /**
+     * Clones this acceleration formatter.
+     *
+     * @return a copy of this acceleration formatter.
+     * @throws CloneNotSupportedException if clone fails for any reason.
+     */
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+<span class="fc" id="L219">        final AccelerationFormatter copy = (AccelerationFormatter) super.clone();</span>
+<span class="fc" id="L220">        return internalClone(copy);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

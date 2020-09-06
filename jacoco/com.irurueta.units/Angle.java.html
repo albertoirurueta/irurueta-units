@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.irurueta.units;
 
 import java.math.BigDecimal;
@@ -25,315 +26,348 @@ public class Angle extends Measurement&lt;AngleUnit&gt; {
 
     /**
      * Constructor with value and unit.
+     *
      * @param value angle value.
-     * @param unit unit of angle.
+     * @param unit  unit of angle.
      * @throws IllegalArgumentException if either value or unit is null.
      */
-    public Angle(Number value, AngleUnit unit) {
-<span class="fc" id="L33">        super(value, unit);</span>
-<span class="fc" id="L34">    }</span>
+    public Angle(final Number value, final AngleUnit unit) {
+<span class="fc" id="L35">        super(value, unit);</span>
+<span class="fc" id="L36">    }</span>
 
     /**
      * Constructor.
      */
     Angle() {
-<span class="fc" id="L40">        super();</span>
-<span class="fc" id="L41">    }</span>
+<span class="fc" id="L42">        super();</span>
+<span class="fc" id="L43">    }</span>
 
     /**
-     * Determines if two angles are equal up to a certain tolerance.
-     * If needed, this method attempts unit conversion to compare both objects.
-     * @param other another measurement to compare.
-     * @param tolerance true if provided measurement is assumed to be equal to this
-     *                  instance up to provided tolerance.
-     * @return true if provided angle is assumed to be equal to this instance,
-     * false otherwise.
+     * Determines if two angles are equal up to a certain tolerance. If needed, this method attempts unit conversion
+     * to compare both objects.
+     *
+     * @param other     another measurement to compare.
+     * @param tolerance amount of tolerance to determine whether two angle instances are equal or not.
+     * @return true if provided angle is assumed to be equal to this instance, false otherwise.
      */
     @Override
-    public boolean equals(Measurement&lt;AngleUnit&gt; other, double tolerance) {
-<span class="fc bfc" id="L54" title="All 2 branches covered.">        if (super.equals(other, tolerance)) {</span>
-<span class="fc" id="L55">            return true;</span>
+    public boolean equals(
+            final Measurement&lt;AngleUnit&gt; other, final double tolerance) {
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        if (super.equals(other, tolerance)) {</span>
+<span class="fc" id="L57">            return true;</span>
         }
 
         //attempt conversion to common units
-<span class="fc bfc" id="L59" title="All 2 branches covered.">        if (other == null) {</span>
-<span class="fc" id="L60">            return false;</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        if (other == null) {</span>
+<span class="fc" id="L62">            return false;</span>
         }
 
-<span class="fc" id="L63">        double otherValue = AngleConverter.convert(other.getValue().doubleValue(),</span>
-<span class="fc" id="L64">                other.getUnit(), getUnit());</span>
-<span class="fc bfc" id="L65" title="All 2 branches covered.">        return (Math.abs(getValue().doubleValue() - otherValue)) &lt;= tolerance;</span>
+<span class="fc" id="L65">        final double otherValue = AngleConverter.convert(other.getValue().doubleValue(),</span>
+<span class="fc" id="L66">                other.getUnit(), getUnit());</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">        return (Math.abs(getValue().doubleValue() - otherValue)) &lt;= tolerance;</span>
     }
 
     /**
      * Adds two angle values and units and returns the result.
-     * @param value1 1st argument value.
-     * @param unit1 1st argument unit.
-     * @param value2 2nd argument value.
-     * @param unit2 2nd argument unit.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit.
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
      * @param resultUnit unit of result to be returned.
      * @return result of addition.
      */
-    public static double add(double value1, AngleUnit unit1,
-                             double value2, AngleUnit unit2,
-                             AngleUnit resultUnit) {
-<span class="fc" id="L80">        double v1 = AngleConverter.convert(value1, unit1, resultUnit);</span>
-<span class="fc" id="L81">        double v2 = AngleConverter.convert(value2, unit2, resultUnit);</span>
-<span class="fc" id="L82">        return v1 + v2;</span>
+    public static double add(
+            final double value1, final AngleUnit unit1,
+            final double value2, final AngleUnit unit2,
+            final AngleUnit resultUnit) {
+<span class="fc" id="L84">        final double v1 = AngleConverter.convert(value1, unit1, resultUnit);</span>
+<span class="fc" id="L85">        final double v2 = AngleConverter.convert(value2, unit2, resultUnit);</span>
+<span class="fc" id="L86">        return v1 + v2;</span>
     }
 
     /**
      * Adds two angle values and units and returns the result.
-     * @param value1 1st argument value.
-     * @param unit1 1st argument unit.
-     * @param value2 2nd argument value.
-     * @param unit2 2nd argument unit.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit.
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
      * @param resultUnit unit of result to be returned.
      * @return result of addition.
      */
-    public static Number add(Number value1, AngleUnit unit1,
-                             Number value2, AngleUnit unit2,
-                             AngleUnit resultUnit) {
-<span class="fc" id="L97">        return new BigDecimal(add(value1.doubleValue(), unit1,</span>
-<span class="fc" id="L98">                value2.doubleValue(), unit2, resultUnit));</span>
+    public static Number add(
+            final Number value1, final AngleUnit unit1,
+            final Number value2, final AngleUnit unit2,
+            final AngleUnit resultUnit) {
+<span class="fc" id="L103">        return BigDecimal.valueOf(add(value1.doubleValue(), unit1,</span>
+<span class="fc" id="L104">                value2.doubleValue(), unit2, resultUnit));</span>
     }
 
     /**
      * Adds two angles and stores the result into provided instance.
-     * @param arg1 1st argument.
-     * @param arg2 2nd argument.
+     *
+     * @param arg1   1st argument.
+     * @param arg2   2nd argument.
      * @param result instance where result will be stored.
      */
-    public static void add(Angle arg1, Angle arg2, Angle result) {
-<span class="fc" id="L108">        result.setValue(add(arg1.getValue(), arg1.getUnit(),</span>
-<span class="fc" id="L109">                arg2.getValue(), arg2.getUnit(), result.getUnit()));</span>
-<span class="fc" id="L110">    }</span>
+    public static void add(
+            final Angle arg1, final Angle arg2, final Angle result) {
+<span class="fc" id="L116">        result.setValue(add(arg1.getValue(), arg1.getUnit(),</span>
+<span class="fc" id="L117">                arg2.getValue(), arg2.getUnit(), result.getUnit()));</span>
+<span class="fc" id="L118">    }</span>
 
     /**
      * Adds two angles.
+     *
      * @param arg1 1st argument.
      * @param arg2 2nd argument.
      * @param unit unit of returned angle.
      * @return a new instance containing result.
      */
-    public static Angle addAndReturnNew(Angle arg1, Angle arg2, AngleUnit unit) {
-<span class="fc" id="L120">        Angle result = new Angle();</span>
-<span class="fc" id="L121">        result.setUnit(unit);</span>
-<span class="fc" id="L122">        add(arg1, arg2, result);</span>
-<span class="fc" id="L123">        return result;</span>
+    public static Angle addAndReturnNew(
+            final Angle arg1, final Angle arg2, final AngleUnit unit) {
+<span class="fc" id="L130">        final Angle result = new Angle();</span>
+<span class="fc" id="L131">        result.setUnit(unit);</span>
+<span class="fc" id="L132">        add(arg1, arg2, result);</span>
+<span class="fc" id="L133">        return result;</span>
     }
 
     /**
-     * Adds provided angle value and unit and returns a new angle instance using
-     * provided unit.
-     * @param value value to be added.
-     * @param unit unit of value to be added.
+     * Adds provided angle value and unit and returns a new angle instance using provided unit.
+     *
+     * @param value      value to be added.
+     * @param unit       unit of value to be added.
      * @param resultUnit unit of returned angle.
      * @return a new angle containing result.
      */
-    public Angle addAndReturnNew(double value, AngleUnit unit, AngleUnit resultUnit) {
-<span class="fc" id="L135">        Angle result = new Angle();</span>
-<span class="fc" id="L136">        result.setUnit(resultUnit);</span>
-<span class="fc" id="L137">        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit,</span>
+    public Angle addAndReturnNew(
+            final double value, final AngleUnit unit,
+            final AngleUnit resultUnit) {
+<span class="fc" id="L147">        final Angle result = new Angle();</span>
+<span class="fc" id="L148">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L149">        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit,</span>
                 resultUnit));
-<span class="fc" id="L139">        return result;</span>
+<span class="fc" id="L151">        return result;</span>
     }
 
     /**
-     * Adds provided angle value and unit and returns a new angle instance using
-     * provided unit.
-     * @param value value to be added.
-     * @param unit unit of value to be added.
+     * Adds provided angle value and unit and returns a new angle instance using provided unit.
+     *
+     * @param value      value to be added.
+     * @param unit       unit of value to be added.
      * @param resultUnit unit of returned angle.
      * @return a new angle containing result.
      */
-    public Angle addAndReturnNew(Number value, AngleUnit unit, AngleUnit resultUnit) {
-<span class="fc" id="L151">        Angle result = new Angle();</span>
-<span class="fc" id="L152">        result.setUnit(resultUnit);</span>
-<span class="fc" id="L153">        result.setValue(add(getValue(), getUnit(), value, unit, resultUnit));</span>
-<span class="fc" id="L154">        return result;</span>
+    public Angle addAndReturnNew(
+            final Number value, final AngleUnit unit,
+            final AngleUnit resultUnit) {
+<span class="fc" id="L165">        final Angle result = new Angle();</span>
+<span class="fc" id="L166">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L167">        result.setValue(add(getValue(), getUnit(), value, unit, resultUnit));</span>
+<span class="fc" id="L168">        return result;</span>
     }
 
     /**
      * Adds provided angle to current instance and returns a new angle.
-     * @param a angle to be added.
+     *
+     * @param a    angle to be added.
      * @param unit unit of returned angle.
      * @return a new angle containing result.
      */
-    public Angle addAndReturnNew(Angle a, AngleUnit unit) {
-<span class="fc" id="L164">        return addAndReturnNew(this, a, unit);</span>
+    public Angle addAndReturnNew(final Angle a, final AngleUnit unit) {
+<span class="fc" id="L179">        return addAndReturnNew(this, a, unit);</span>
     }
 
     /**
      * Adds provided angle value and unit and updates current angle instance.
+     *
      * @param value angle value to be added.
-     * @param unit unit of angle value.
+     * @param unit  unit of angle value.
      */
-    public void add(double value, AngleUnit unit) {
-<span class="fc" id="L173">        setValue(add(getValue(), getUnit(), value, unit, getUnit()));</span>
-<span class="fc" id="L174">    }</span>
+    public void add(final double value, final AngleUnit unit) {
+<span class="fc" id="L189">        setValue(add(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L190">    }</span>
 
     /**
      * Adds provided angle value and unit and updates current angle instance.
+     *
      * @param value angle value to be added.
-     * @param unit unit of angle value.
+     * @param unit  unit of angle value.
      */
-    public void add(Number value, AngleUnit unit) {
-<span class="fc" id="L182">        setValue(add(getValue(), getUnit(), value, unit, getUnit()));</span>
-<span class="fc" id="L183">    }</span>
-
-    /**
-     * Adds provided angle and updates current angle.
-     * @param angle angle to be added.
-     */
-    public void add(Angle angle) {
-<span class="fc" id="L190">        add(this, angle, this);</span>
-<span class="fc" id="L191">    }</span>
-
-    /**
-     * Adds provided angle and stores the result into provided angle.
-     * @param a angle to be added.
-     * @param result instance where result will be stored.
-     */
-    public void add(Angle a, Angle result) {
-<span class="fc" id="L199">        add(this, a, result);</span>
+    public void add(final Number value, final AngleUnit unit) {
+<span class="fc" id="L199">        setValue(add(getValue(), getUnit(), value, unit, getUnit()));</span>
 <span class="fc" id="L200">    }</span>
 
     /**
+     * Adds provided angle and updates current angle.
+     *
+     * @param angle angle to be added.
+     */
+    public void add(final Angle angle) {
+<span class="fc" id="L208">        add(this, angle, this);</span>
+<span class="fc" id="L209">    }</span>
+
+    /**
+     * Adds provided angle and stores the result into provided angle.
+     *
+     * @param a      angle to be added.
+     * @param result instance where result will be stored.
+     */
+    public void add(final Angle a, final Angle result) {
+<span class="fc" id="L218">        add(this, a, result);</span>
+<span class="fc" id="L219">    }</span>
+
+    /**
      * Subtracts two angle values and units and returns the result.
-     * @param value1 1st argument value.
-     * @param unit1 1st argument unit.
-     * @param value2 2nd argument value.
-     * @param unit2 2nd argument unit.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit.
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
      * @param resultUnit unit of result to be returned.
      * @return result of subtraction.
      */
-    public static double subtract(double value1, AngleUnit unit1,
-                                  double value2, AngleUnit unit2,
-                                  AngleUnit resultUnit) {
-<span class="fc" id="L214">        double v1 = AngleConverter.convert(value1, unit1, resultUnit);</span>
-<span class="fc" id="L215">        double v2 = AngleConverter.convert(value2, unit2, resultUnit);</span>
-<span class="fc" id="L216">        return v1 - v2;</span>
+    public static double subtract(
+            final double value1, final AngleUnit unit1,
+            final double value2, final AngleUnit unit2,
+            final AngleUnit resultUnit) {
+<span class="fc" id="L235">        final double v1 = AngleConverter.convert(value1, unit1, resultUnit);</span>
+<span class="fc" id="L236">        final double v2 = AngleConverter.convert(value2, unit2, resultUnit);</span>
+<span class="fc" id="L237">        return v1 - v2;</span>
     }
 
     /**
      * Subtracts two angle values and units and returns the result.
-     * @param value1 1st argument value.
-     * @param unit1 1st argument unit.
-     * @param value2 2nd argument value.
-     * @param unit2 2nd argument unit.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit.
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
      * @param resultUnit unit of result to be returned.
      * @return result of subtraction.
      */
-    public static Number subtract(Number value1, AngleUnit unit1,
-                                  Number value2, AngleUnit unit2,
-                                  AngleUnit resultUnit) {
-<span class="fc" id="L231">        return new BigDecimal(subtract(value1.doubleValue(), unit1,</span>
-<span class="fc" id="L232">                value2.doubleValue(), unit2, resultUnit));</span>
+    public static Number subtract(
+            final Number value1, final AngleUnit unit1,
+            final Number value2, final AngleUnit unit2,
+            final AngleUnit resultUnit) {
+<span class="fc" id="L254">        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1,</span>
+<span class="fc" id="L255">                value2.doubleValue(), unit2, resultUnit));</span>
     }
 
     /**
      * Subtracts two angles and stores the result into provided instance.
-     * @param arg1 1st argument.
-     * @param arg2 2nd argument.
+     *
+     * @param arg1   1st argument.
+     * @param arg2   2nd argument.
      * @param result instance where result will be stored.
      */
-    public static void subtract(Angle arg1, Angle arg2, Angle result) {
-<span class="fc" id="L242">        result.setValue(subtract(arg1.getValue(), arg1.getUnit(),</span>
-<span class="fc" id="L243">                arg2.getValue(), arg2.getUnit(), result.getUnit()));</span>
-<span class="fc" id="L244">    }</span>
+    public static void subtract(
+            final Angle arg1, final Angle arg2, final Angle result) {
+<span class="fc" id="L267">        result.setValue(subtract(arg1.getValue(), arg1.getUnit(),</span>
+<span class="fc" id="L268">                arg2.getValue(), arg2.getUnit(), result.getUnit()));</span>
+<span class="fc" id="L269">    }</span>
 
     /**
      * Subtracts two angles.
+     *
      * @param arg1 1st argument.
      * @param arg2 2nd argument.
      * @param unit unit of returned angle.
      * @return a new angle containing result.
      */
-    public static Angle subtractAndReturnNew(Angle arg1, Angle arg2,
-                                             AngleUnit unit) {
-<span class="fc" id="L255">        Angle result = new Angle();</span>
-<span class="fc" id="L256">        result.setUnit(unit);</span>
-<span class="fc" id="L257">        subtract(arg1, arg2, result);</span>
-<span class="fc" id="L258">        return result;</span>
+    public static Angle subtractAndReturnNew(
+            final Angle arg1, final Angle arg2, final AngleUnit unit) {
+<span class="fc" id="L281">        Angle result = new Angle();</span>
+<span class="fc" id="L282">        result.setUnit(unit);</span>
+<span class="fc" id="L283">        subtract(arg1, arg2, result);</span>
+<span class="fc" id="L284">        return result;</span>
     }
 
     /**
-     * Subtracts provided angle value and unit and returns a new angle instance using
-     * provided unit.
-     * @param value value to be subtracted.
-     * @param unit unit of value to be subtracted.
+     * Subtracts provided angle value and unit and returns a new angle instance using provided unit.
+     *
+     * @param value      value to be subtracted.
+     * @param unit       unit of value to be subtracted.
      * @param resultUnit unit of returned angle.
      * @return a new angle containing result.
      */
-    public Angle subtractAndReturnNew(double value, AngleUnit unit,
-                                      AngleUnit resultUnit) {
-<span class="fc" id="L271">        Angle result = new Angle();</span>
-<span class="fc" id="L272">        result.setUnit(resultUnit);</span>
-<span class="fc" id="L273">        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit,</span>
+    public Angle subtractAndReturnNew(
+            final double value, final AngleUnit unit,
+            final AngleUnit resultUnit) {
+<span class="fc" id="L298">        final Angle result = new Angle();</span>
+<span class="fc" id="L299">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L300">        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit,</span>
                 resultUnit));
-<span class="fc" id="L275">        return result;</span>
+<span class="fc" id="L302">        return result;</span>
     }
 
     /**
-     * Subtracts provided angle value and unit and returns a new angle instance using
-     * provided unit.
-     * @param value value to be subtracted.
-     * @param unit unit of value to be subtracted.
+     * Subtracts provided angle value and unit and returns a new angle instance using provided unit.
+     *
+     * @param value      value to be subtracted.
+     * @param unit       unit of value to be subtracted.
      * @param resultUnit unit of returned angle.
      * @return a new angle containing result.
      */
-    public Angle subtractAndReturnNew(Number value, AngleUnit unit,
-                                      AngleUnit resultUnit) {
-<span class="fc" id="L288">        Angle result = new Angle();</span>
-<span class="fc" id="L289">        result.setUnit(resultUnit);</span>
-<span class="fc" id="L290">        result.setValue(subtract(getValue(), getUnit(), value, unit, resultUnit));</span>
-<span class="fc" id="L291">        return result;</span>
+    public Angle subtractAndReturnNew(
+            final Number value, final AngleUnit unit,
+            final AngleUnit resultUnit) {
+<span class="fc" id="L316">        final Angle result = new Angle();</span>
+<span class="fc" id="L317">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L318">        result.setValue(subtract(getValue(), getUnit(), value, unit,</span>
+                resultUnit));
+<span class="fc" id="L320">        return result;</span>
     }
 
     /**
      * Subtracts provided angle to current instance and returns a new angle.
-     * @param a angle to be subtracted.
+     *
+     * @param a    angle to be subtracted.
      * @param unit unit of returned angle.
      * @return a new angle containing result.
      */
-    public Angle subtractAndReturnNew(Angle a, AngleUnit unit) {
-<span class="fc" id="L301">        return subtractAndReturnNew(this, a, unit);</span>
+    public Angle subtractAndReturnNew(final Angle a, final AngleUnit unit) {
+<span class="fc" id="L331">        return subtractAndReturnNew(this, a, unit);</span>
     }
 
     /**
      * Subtracts provided angle value and unit and updates current angle instance.
+     *
      * @param value angle value to be subtracted.
-     * @param unit unit of angle value.
+     * @param unit  unit of angle value.
      */
-    public void subtract(double value, AngleUnit unit) {
-<span class="fc" id="L310">        setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));</span>
-<span class="fc" id="L311">    }</span>
+    public void subtract(final double value, final AngleUnit unit) {
+<span class="fc" id="L341">        setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L342">    }</span>
 
     /**
      * Subtracts provided angle value and unit and updates current angle instance.
+     *
      * @param value angle value to be subtracted.
-     * @param unit unit of angle value.
+     * @param unit  unit of angle value.
      */
-    public void subtract(Number value, AngleUnit unit) {
-<span class="fc" id="L319">        setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));</span>
-<span class="fc" id="L320">    }</span>
+    public void subtract(final Number value, final AngleUnit unit) {
+<span class="fc" id="L351">        setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L352">    }</span>
 
     /**
      * Subtracts provided angle and updates current angle.
+     *
      * @param angle angle to be subtracted.
      */
-    public void subtract(Angle angle) {
-<span class="fc" id="L327">        subtract(this, angle, this);</span>
-<span class="fc" id="L328">    }</span>
+    public void subtract(final Angle angle) {
+<span class="fc" id="L360">        subtract(this, angle, this);</span>
+<span class="fc" id="L361">    }</span>
 
     /**
      * Subtracts provided angle and stores the result into provided angle.
-     * @param a angle to be subtracted.
+     *
+     * @param a      angle to be subtracted.
      * @param result instance where result will be stored.
      */
-    public void subtract(Angle a, Angle result) {
-<span class="fc" id="L336">        subtract(this, a, result);</span>
-<span class="fc" id="L337">    }</span>
+    public void subtract(final Angle a, final Angle result) {
+<span class="fc" id="L370">        subtract(this, a, result);</span>
+<span class="fc" id="L371">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

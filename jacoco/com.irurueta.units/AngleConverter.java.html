@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.irurueta.units;
 
 import java.math.BigDecimal;
 
 /**
- * Does angle conversions to different units.
- * To prevent loss of accuracy, conversion should only be done as a final step
- * before displaying angle measurements.
+ * Does angle conversions to different units. To prevent loss of accuracy, conversion should only be done as a final
+ * step before displaying angle measurements.
  */
 @SuppressWarnings(&quot;WeakerAccess&quot;)
 public class AngleConverter {
@@ -46,377 +46,423 @@ public class AngleConverter {
     private static final int MINUTES_TO_SECONDS = 60;
 
     /**
-     * Constructor.
-     * Prevents instantiation of helper class.
+     * Constructor. Prevents instantiation of helper class.
      */
-<span class="fc" id="L52">    AngleConverter() { }</span>
+    private AngleConverter() {
+    }
 
     /**
      * Converts an angle to provided output angle unit.
-     * @param input input angle to be converted.
-     * @param output output angle where result will be stored and
-     *               containing output unit.
+     *
+     * @param input  input angle to be converted.
+     * @param output output angle where result will be stored and containing output unit.
      */
-    public static void convert(Angle input, Angle output) {
+    public static void convert(final Angle input, final Angle output) {
 <span class="fc" id="L61">        convert(input, output.getUnit(), output);</span>
 <span class="fc" id="L62">    }</span>
 
     /**
      * Converts an angle to requested output unit.
-     * @param input input angle to be converted.
+     *
+     * @param input      input angle to be converted.
      * @param outputUnit requested output unit.
      * @return converted angle.
      */
-    public static Angle convertAndReturnNew(Angle input, AngleUnit outputUnit) {
-<span class="fc" id="L71">        Angle result = new Angle();</span>
-<span class="fc" id="L72">        convert(input, outputUnit, result);</span>
-<span class="fc" id="L73">        return result;</span>
+    public static Angle convertAndReturnNew(
+            final Angle input, final AngleUnit outputUnit) {
+<span class="fc" id="L73">        final Angle result = new Angle();</span>
+<span class="fc" id="L74">        convert(input, outputUnit, result);</span>
+<span class="fc" id="L75">        return result;</span>
     }
 
     /**
      * Converts and updates an angle to requested output unit.
-     * @param angle input angle to be converted and updated.
+     *
+     * @param angle      input angle to be converted and updated.
      * @param outputUnit requested output unit.
      */
-    public static void convert(Angle angle, AngleUnit outputUnit) {
-<span class="fc" id="L82">        convert(angle, outputUnit, angle);</span>
-<span class="fc" id="L83">    }</span>
+    public static void convert(
+            final Angle angle, final AngleUnit outputUnit) {
+<span class="fc" id="L86">        convert(angle, outputUnit, angle);</span>
+<span class="fc" id="L87">    }</span>
 
     /**
      * Converts an angle to requested output unit.
-     * @param input input angle to be converted.
+     *
+     * @param input      input angle to be converted.
      * @param outputUnit requested output unit.
-     * @param result angle instance where result will be stored.
+     * @param result     angle instance where result will be stored.
      */
-    public static void convert(Angle input, AngleUnit outputUnit, Angle result) {
-<span class="fc" id="L92">        Number value = convert(input.getValue(), input.getUnit(), outputUnit);</span>
-<span class="fc" id="L93">        result.setValue(value);</span>
-<span class="fc" id="L94">        result.setUnit(outputUnit);</span>
-<span class="fc" id="L95">    }</span>
+    public static void convert(
+            final Angle input, final AngleUnit outputUnit,
+            final Angle result) {
+<span class="fc" id="L99">        final Number value = convert(input.getValue(), input.getUnit(), outputUnit);</span>
+<span class="fc" id="L100">        result.setValue(value);</span>
+<span class="fc" id="L101">        result.setUnit(outputUnit);</span>
+<span class="fc" id="L102">    }</span>
 
     /**
      * Converts an angle value from input unit to provided output unit.
-     * @param input angle value.
-     * @param inputUnit input angle unit.
+     *
+     * @param input      angle value.
+     * @param inputUnit  input angle unit.
      * @param outputUnit output angle unit.
      * @return converted angle value.
      */
-    public static Number convert(Number input, AngleUnit inputUnit,
-                                 AngleUnit outputUnit) {
-<span class="fc" id="L106">        return new BigDecimal(convert(input.doubleValue(), inputUnit, outputUnit));</span>
+    public static Number convert(
+            final Number input, final AngleUnit inputUnit,
+            final AngleUnit outputUnit) {
+<span class="fc" id="L115">        return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit,</span>
+                outputUnit));
     }
 
     /**
      * Converts an angle value from input unit to provided output unit.
-     * @param input angle value.
-     * @param inputUnit input angle unit.
+     *
+     * @param input      angle value.
+     * @param inputUnit  input angle unit.
      * @param outputUnit output angle unit.
      * @return converted angle value.
      */
-    public static double convert(double input, AngleUnit inputUnit,
-                                 AngleUnit outputUnit) {
+    public static double convert(
+            final double input, final AngleUnit inputUnit,
+            final AngleUnit outputUnit) {
 
         double radians;
 
         //convert to radians
-<span class="fc bfc" id="L122" title="All 2 branches covered.">        switch (inputUnit) {</span>
+<span class="fc bfc" id="L134" title="All 2 branches covered.">        switch (inputUnit) {</span>
             case DEGREES:
-<span class="fc" id="L124">                radians = Math.toRadians(input);</span>
-<span class="fc" id="L125">                break;</span>
+<span class="fc" id="L136">                radians = Math.toRadians(input);</span>
+<span class="fc" id="L137">                break;</span>
             case RADIANS:
             default:
-<span class="fc" id="L128">                radians = input;</span>
+<span class="fc" id="L140">                radians = input;</span>
                 break;
         }
 
         //convert from radians to required output unit
-<span class="fc bfc" id="L133" title="All 2 branches covered.">        switch (outputUnit) {</span>
+<span class="fc bfc" id="L145" title="All 2 branches covered.">        switch (outputUnit) {</span>
             case DEGREES:
-<span class="fc" id="L135">                return Math.toDegrees(radians);</span>
+<span class="fc" id="L147">                return Math.toDegrees(radians);</span>
             case RADIANS:
             default:
-<span class="fc" id="L138">                return radians;</span>
+<span class="fc" id="L150">                return radians;</span>
         }
     }
 
     /**
      * Converts provided degree value to radians.
+     *
      * @param degree degree value.
      * @return same angle converted to radians.
      */
-    public static double degreeToRadian(double degree) {
-<span class="fc" id="L148">        return Math.toRadians(degree);</span>
+    public static double degreeToRadian(final double degree) {
+<span class="fc" id="L161">        return Math.toRadians(degree);</span>
     }
 
     /**
      * Converts provided radian value to degrees.
+     *
      * @param radian radian value.
      * @return same angle converted to degrees.
      */
-    public static double radianToDegree(double radian) {
-<span class="fc" id="L157">        return Math.toDegrees(radian);</span>
+    public static double radianToDegree(final double radian) {
+<span class="fc" id="L171">        return Math.toDegrees(radian);</span>
     }
 
     /**
      * Converts provided angle value and unit to integer degrees and decimal minutes.
-     * @param value angle value to be converted from.
-     * @param unit angle unit to be converted from.
+     *
+     * @param value  angle value to be converted from.
+     * @param unit   angle unit to be converted from.
      * @param result array where computed degrees and minutes will be stored.
      * @throws IllegalArgumentException if provided array does not have length 2.
      */
     @SuppressWarnings(&quot;Duplicates&quot;)
-    public static void toDegreesAndMinutes(double value, AngleUnit unit,
-            double[] result) {
-<span class="fc bfc" id="L170" title="All 2 branches covered.">        if (result.length != DEGREES_AND_MINUTES) {</span>
-<span class="fc" id="L171">            throw new IllegalArgumentException();</span>
+    public static void toDegreesAndMinutes(
+            final double value, final AngleUnit unit,
+            final double[] result) {
+<span class="fc bfc" id="L186" title="All 2 branches covered.">        if (result.length != DEGREES_AND_MINUTES) {</span>
+<span class="fc" id="L187">            throw new IllegalArgumentException();</span>
         }
 
-<span class="fc" id="L174">        double decimalDegrees = convert(value, unit, AngleUnit.DEGREES);</span>
+<span class="fc" id="L190">        final double decimalDegrees = convert(value, unit,</span>
+                AngleUnit.DEGREES);
 
-<span class="fc" id="L176">        double degrees = Math.floor(decimalDegrees);</span>
+<span class="fc" id="L193">        final double degrees = Math.floor(decimalDegrees);</span>
 
-<span class="fc" id="L178">        double remainderDegrees = decimalDegrees - degrees;</span>
-<span class="fc" id="L179">        double decimalMinutes = remainderDegrees * DEGREES_TO_MINUTES;</span>
+<span class="fc" id="L195">        final double remainderDegrees = decimalDegrees - degrees;</span>
+<span class="fc" id="L196">        final double decimalMinutes = remainderDegrees * DEGREES_TO_MINUTES;</span>
 
-<span class="fc" id="L181">        result[0] = degrees;</span>
-<span class="fc" id="L182">        result[1] = decimalMinutes;</span>
-<span class="fc" id="L183">    }</span>
+<span class="fc" id="L198">        result[0] = degrees;</span>
+<span class="fc" id="L199">        result[1] = decimalMinutes;</span>
+<span class="fc" id="L200">    }</span>
 
     /**
      * Converts provided angle value and unit to integer degrees and decimal minutes.
+     *
      * @param value angle value to be converted from.
-     * @param unit angle unit to be converted from.
+     * @param unit  angle unit to be converted from.
      * @return array containing degrees and minutes.
      */
-    public static double[] toDegreesAndMinutes(double value, AngleUnit unit) {
-<span class="fc" id="L192">        double[] result = new double[DEGREES_AND_MINUTES];</span>
-<span class="fc" id="L193">        toDegreesAndMinutes(value, unit, result);</span>
-<span class="fc" id="L194">        return result;</span>
+    public static double[] toDegreesAndMinutes(
+            final double value, final AngleUnit unit) {
+<span class="fc" id="L211">        final double[] result = new double[DEGREES_AND_MINUTES];</span>
+<span class="fc" id="L212">        toDegreesAndMinutes(value, unit, result);</span>
+<span class="fc" id="L213">        return result;</span>
     }
 
     /**
      * Converts provided angle value and unit to integer degrees and decimal minutes.
-     * @param value angle value to be converted from.
-     * @param unit angle unit to be converted from.
+     *
+     * @param value  angle value to be converted from.
+     * @param unit   angle unit to be converted from.
      * @param result array where computed degrees and minutes will be stored.
      * @throws IllegalArgumentException if provided array does not have length 2.
      */
-    public static void toDegreesAndMinutes(Number value, AngleUnit unit,
-            double[] result) {
-<span class="fc" id="L206">        toDegreesAndMinutes(value.doubleValue(), unit, result);</span>
-<span class="fc" id="L207">    }</span>
+    public static void toDegreesAndMinutes(
+            final Number value, final AngleUnit unit,
+            final double[] result) {
+<span class="fc" id="L227">        toDegreesAndMinutes(value.doubleValue(), unit, result);</span>
+<span class="fc" id="L228">    }</span>
 
     /**
      * Converts provided angle value and unit to integer degrees and decimal minutes.
+     *
      * @param value angle value to be converted from.
-     * @param unit angle unit to be converted from.
+     * @param unit  angle unit to be converted from.
      * @return array containing degrees and minutes.
      */
-    public static double[] toDegreesAndMinutes(Number value, AngleUnit unit) {
-<span class="fc" id="L216">        return toDegreesAndMinutes(value.doubleValue(), unit);</span>
+    public static double[] toDegreesAndMinutes(
+            final Number value, final AngleUnit unit) {
+<span class="fc" id="L239">        return toDegreesAndMinutes(value.doubleValue(), unit);</span>
     }
 
     /**
      * Converts provided angle to integer degrees and decimal minutes.
-     * @param angle angle to be converted from.
+     *
+     * @param angle  angle to be converted from.
      * @param result array where computed degrees and minutes will be stored.
      * @throws IllegalArgumentException if provided array does not have length 2.
      */
-    public static void toDegreesAndMinutes(Angle angle, double[] result) {
-<span class="fc" id="L226">        toDegreesAndMinutes(angle.getValue(), angle.getUnit(), result);</span>
-<span class="fc" id="L227">    }</span>
+    public static void toDegreesAndMinutes(
+            final Angle angle, final double[] result) {
+<span class="fc" id="L251">        toDegreesAndMinutes(angle.getValue(), angle.getUnit(), result);</span>
+<span class="fc" id="L252">    }</span>
 
     /**
      * Converts provided angle to integer degrees and decimal minutes.
+     *
      * @param angle angle to be converted from.
      * @return array containing degrees and minutes.
      */
-    public static double[] toDegreesAndMinutes(Angle angle) {
-<span class="fc" id="L235">        return toDegreesAndMinutes(angle.getValue(), angle.getUnit());</span>
+    public static double[] toDegreesAndMinutes(final Angle angle) {
+<span class="fc" id="L261">        return toDegreesAndMinutes(angle.getValue(), angle.getUnit());</span>
     }
 
     /**
      * Gets angle value from provided integer degrees and decimal minutes.
-     * @param degrees integer degrees.
-     * @param minutes decimal minutes.
+     *
+     * @param degrees    integer degrees.
+     * @param minutes    decimal minutes.
      * @param resultUnit unit of returned value.
      * @return decimal degrees.
      * @throws IllegalArgumentException if minutes is negative.
      */
-    public static double fromDegreesAndMinutes(int degrees, double minutes,
-            AngleUnit resultUnit) {
-<span class="fc bfc" id="L248" title="All 2 branches covered.">        if (minutes &lt; 0.0) {</span>
-<span class="fc" id="L249">            throw new IllegalArgumentException();</span>
+    public static double fromDegreesAndMinutes(
+            final int degrees, final double minutes,
+            final AngleUnit resultUnit) {
+<span class="fc bfc" id="L276" title="All 2 branches covered.">        if (minutes &lt; 0.0) {</span>
+<span class="fc" id="L277">            throw new IllegalArgumentException();</span>
         }
-<span class="fc" id="L251">        return convert(degrees + minutes / DEGREES_TO_MINUTES,</span>
+<span class="fc" id="L279">        return convert(degrees + minutes / DEGREES_TO_MINUTES,</span>
                 AngleUnit.DEGREES, resultUnit);
     }
 
     /**
-     * Gets angle from provided integer degrees and decimal minutes and
-     * sets the value into provided angle instance.
+     * Gets angle from provided integer degrees and decimal minutes and sets the value into provided angle instance.
+     *
      * @param degrees integer degrees.
      * @param minutes decimal minutes.
-     * @param result instance where angle value and unit will be stored.
+     * @param result  instance where angle value and unit will be stored.
      * @throws IllegalArgumentException if minutes is negative.
      */
-    public static void fromDegreesAndMinutes(int degrees, double minutes, Angle result) {
-<span class="fc" id="L264">        result.setValue(fromDegreesAndMinutes(degrees, minutes, result.getUnit()));</span>
-<span class="fc" id="L265">    }</span>
+    public static void fromDegreesAndMinutes(
+            final int degrees, final double minutes, final Angle result) {
+<span class="fc" id="L293">        result.setValue(fromDegreesAndMinutes(degrees, minutes,</span>
+<span class="fc" id="L294">                result.getUnit()));</span>
+<span class="fc" id="L295">    }</span>
 
     /**
-     * Gets new angle containing decimal degrees from provided integer degrees and
-     * decimal minutes.
-     * @param degrees integer degrees.
-     * @param minutes decimal minutes.
+     * Gets new angle containing decimal degrees from provided integer degrees and decimal minutes.
+     *
+     * @param degrees    integer degrees.
+     * @param minutes    decimal minutes.
      * @param resultUnit unit of returned value.
      * @return a new angle containing computed decimal degrees.
      * @throws IllegalArgumentException if minutes is negative.
      */
-    public static Angle fromDegreesAndMinutesAndReturnNew(int degrees, double minutes,
-            AngleUnit resultUnit) {
-<span class="fc" id="L278">        Angle result = new Angle(0.0, resultUnit);</span>
-<span class="fc" id="L279">        fromDegreesAndMinutes(degrees, minutes, result);</span>
-<span class="fc" id="L280">        return result;</span>
+    public static Angle fromDegreesAndMinutesAndReturnNew(
+            final int degrees, final double minutes,
+            final AngleUnit resultUnit) {
+<span class="fc" id="L309">        final Angle result = new Angle(0.0, resultUnit);</span>
+<span class="fc" id="L310">        fromDegreesAndMinutes(degrees, minutes, result);</span>
+<span class="fc" id="L311">        return result;</span>
     }
 
     /**
-     * Converts provided angle value and unit to integer degrees, integer minutes and
-     * decimal seconds.
-     * @param value angle value to be converted from.
-     * @param unit angle unit to be converted from.
+     * Converts provided angle value and unit to integer degrees, integer minutes and decimal seconds.
+     *
+     * @param value  angle value to be converted from.
+     * @param unit   angle unit to be converted from.
      * @param result array where computed degrees, minutes and seconds will be stored.
      * @throws IllegalArgumentException if provided array does not have length 3.
      */
     @SuppressWarnings(&quot;Duplicates&quot;)
-    public static void toDegreesMinutesAndSeconds(double value, AngleUnit unit,
-            double[] result) {
-<span class="fc bfc" id="L294" title="All 2 branches covered.">        if (result.length != DEGREES_MINUTES_AND_SECONDS) {</span>
-<span class="fc" id="L295">            throw new IllegalArgumentException();</span>
+    public static void toDegreesMinutesAndSeconds(
+            final double value, final AngleUnit unit,
+            final double[] result) {
+<span class="fc bfc" id="L326" title="All 2 branches covered.">        if (result.length != DEGREES_MINUTES_AND_SECONDS) {</span>
+<span class="fc" id="L327">            throw new IllegalArgumentException();</span>
         }
 
-<span class="fc" id="L298">        double decimalDegrees = convert(value, unit, AngleUnit.DEGREES);</span>
+<span class="fc" id="L330">        final double decimalDegrees = convert(value, unit,</span>
+                AngleUnit.DEGREES);
 
-<span class="fc" id="L300">        double degrees = Math.floor(decimalDegrees);</span>
+<span class="fc" id="L333">        final double degrees = Math.floor(decimalDegrees);</span>
 
-<span class="fc" id="L302">        double remainderDegrees = decimalDegrees - degrees;</span>
-<span class="fc" id="L303">        double decimalMinutes = remainderDegrees * DEGREES_TO_MINUTES;</span>
+<span class="fc" id="L335">        final double remainderDegrees = decimalDegrees - degrees;</span>
+<span class="fc" id="L336">        final double decimalMinutes = remainderDegrees * DEGREES_TO_MINUTES;</span>
 
-<span class="fc" id="L305">        double minutes = Math.floor(decimalMinutes);</span>
+<span class="fc" id="L338">        final double minutes = Math.floor(decimalMinutes);</span>
 
-<span class="fc" id="L307">        double remainderMinutes = decimalMinutes - minutes;</span>
-<span class="fc" id="L308">        double decimalSeconds = remainderMinutes * MINUTES_TO_SECONDS;</span>
+<span class="fc" id="L340">        final double remainderMinutes = decimalMinutes - minutes;</span>
+<span class="fc" id="L341">        final double decimalSeconds = remainderMinutes * MINUTES_TO_SECONDS;</span>
 
-<span class="fc" id="L310">        result[0] = degrees;</span>
-<span class="fc" id="L311">        result[1] = minutes;</span>
-<span class="fc" id="L312">        result[2] = decimalSeconds;</span>
-<span class="fc" id="L313">    }</span>
+<span class="fc" id="L343">        result[0] = degrees;</span>
+<span class="fc" id="L344">        result[1] = minutes;</span>
+<span class="fc" id="L345">        result[2] = decimalSeconds;</span>
+<span class="fc" id="L346">    }</span>
 
     /**
-     * Converts provided angle value and unit to integer degrees, integer minutes and
-     * decimal seconds.
+     * Converts provided angle value and unit to integer degrees, integer minutes and decimal seconds.
+     *
      * @param value angle value to be converted from.
-     * @param unit angle unit to be converted from.
+     * @param unit  angle unit to be converted from.
      * @return array containing degrees, minutes and seconds.
      */
-    public static double[] toDegreesMinutesAndSeconds(double value, AngleUnit unit) {
-<span class="fc" id="L323">        double[] result = new double[DEGREES_MINUTES_AND_SECONDS];</span>
-<span class="fc" id="L324">        toDegreesMinutesAndSeconds(value, unit, result);</span>
-<span class="fc" id="L325">        return result;</span>
+    public static double[] toDegreesMinutesAndSeconds(
+            final double value, final AngleUnit unit) {
+<span class="fc" id="L357">        final double[] result = new double[DEGREES_MINUTES_AND_SECONDS];</span>
+<span class="fc" id="L358">        toDegreesMinutesAndSeconds(value, unit, result);</span>
+<span class="fc" id="L359">        return result;</span>
     }
 
     /**
-     * Converts provided angle value and unit to integer degrees, integer minutes and
-     * decimal seconds.
-     * @param value angle value to be converted from.
-     * @param unit angle unit to be converted from.
+     * Converts provided angle value and unit to integer degrees, integer minutes and decimal seconds.
+     *
+     * @param value  angle value to be converted from.
+     * @param unit   angle unit to be converted from.
      * @param result array where computed degrees, minutes and seconds will be stored.
      * @throws IllegalArgumentException if provided array does not have length 3.
      */
-    public static void toDegreesMinutesAndSeconds(Number value, AngleUnit unit,
-            double[] result) {
-<span class="fc" id="L338">        toDegreesMinutesAndSeconds(value.doubleValue(), unit, result);</span>
-<span class="fc" id="L339">    }</span>
+    public static void toDegreesMinutesAndSeconds(
+            final Number value, final AngleUnit unit,
+            final double[] result) {
+<span class="fc" id="L373">        toDegreesMinutesAndSeconds(value.doubleValue(), unit, result);</span>
+<span class="fc" id="L374">    }</span>
 
     /**
-     * Converts provided angle value and unit to integer degrees, integer minutes and
-     * decimal seconds.
+     * Converts provided angle value and unit to integer degrees, integer minutes and decimal seconds.
+     *
      * @param value angle value to be converted from.
-     * @param unit angle unit to be converted from.
+     * @param unit  angle unit to be converted from.
      * @return array containing degrees, minutes and seconds.
      */
-    public static double[] toDegreesMinutesAndSeconds(Number value, AngleUnit unit) {
-<span class="fc" id="L349">        return toDegreesMinutesAndSeconds(value.doubleValue(), unit);</span>
+    public static double[] toDegreesMinutesAndSeconds(
+            final Number value, final AngleUnit unit) {
+<span class="fc" id="L385">        return toDegreesMinutesAndSeconds(value.doubleValue(), unit);</span>
     }
 
     /**
      * Converts provided angle to integer degrees, integer minutes and decimal seconds.
-     * @param angle angle to be converted from.
+     *
+     * @param angle  angle to be converted from.
      * @param result array where computed degrees and minutes will be stored.
      * @throws IllegalArgumentException if provided array does not have length 3.
      */
-    public static void toDegreesMinutesAndSeconds(Angle angle, double[] result) {
-<span class="fc" id="L359">        toDegreesMinutesAndSeconds(angle.getValue(), angle.getUnit(), result);</span>
-<span class="fc" id="L360">    }</span>
+    public static void toDegreesMinutesAndSeconds(
+            final Angle angle, final double[] result) {
+<span class="fc" id="L397">        toDegreesMinutesAndSeconds(angle.getValue(), angle.getUnit(),</span>
+                result);
+<span class="fc" id="L399">    }</span>
 
     /**
      * Converts provided angle to integer degrees, integer minutes and decimal seconds.
+     *
      * @param angle angle to be converted from.
      * @return array containing degrees and minutes.
      */
-    public static double[] toDegreesMinutesAndSeconds(Angle angle) {
-<span class="fc" id="L368">        return toDegreesMinutesAndSeconds(angle.getValue(), angle.getUnit());</span>
+    public static double[] toDegreesMinutesAndSeconds(
+            final Angle angle) {
+<span class="fc" id="L409">        return toDegreesMinutesAndSeconds(angle.getValue(),</span>
+<span class="fc" id="L410">                angle.getUnit());</span>
     }
 
     /**
-     * Gets decimal degrees from provided integer degrees, integer minutes and decimal
-     * seconds.
-     * @param degrees integer degrees.
-     * @param minutes integer minutes.
-     * @param seconds deciaml seconds.
+     * Gets decimal degrees from provided integer degrees, integer minutes and decimal seconds.
+     *
+     * @param degrees    integer degrees.
+     * @param minutes    integer minutes.
+     * @param seconds    deciaml seconds.
      * @param resultUnit unit of returned value.
      * @return decimal degrees.
      * @throws IllegalArgumentException if minutes or seconds are negative.
      */
-    public static double fromDegreesMinutesAndSeconds(int degrees, int minutes,
-            double seconds, AngleUnit resultUnit) {
-<span class="fc bfc" id="L383" title="All 4 branches covered.">        if (minutes &lt; 0 || seconds &lt; 0.0) {</span>
-<span class="fc" id="L384">            throw new IllegalArgumentException();</span>
+    public static double fromDegreesMinutesAndSeconds(
+            final int degrees, final int minutes,
+            final double seconds, final AngleUnit resultUnit) {
+<span class="fc bfc" id="L426" title="All 4 branches covered.">        if (minutes &lt; 0 || seconds &lt; 0.0) {</span>
+<span class="fc" id="L427">            throw new IllegalArgumentException();</span>
         }
-<span class="fc" id="L386">        return convert(degrees + (minutes + (seconds / MINUTES_TO_SECONDS)) /</span>
+<span class="fc" id="L429">        return convert(degrees + (minutes + (seconds / MINUTES_TO_SECONDS)) /</span>
                 DEGREES_TO_MINUTES, AngleUnit.DEGREES, resultUnit);
     }
 
     /**
-     * Gets decimal degrees from provided integer degrees, integer minutes and decimal
-     * seconds and sets the value into provided angle instance.
+     * Gets decimal degrees from provided integer degrees, integer minutes and decimal seconds and sets the value
+     * into provided angle instance.
+     *
      * @param degrees integer degrees.
      * @param minutes integer minutes.
      * @param seconds decimal seconds.
-     * @param result instance where angle value and unit will be stored.
+     * @param result  instance where angle value and unit will be stored.
      * @throws IllegalArgumentException if minutes or seconds are negative.
      */
-    public static void fromDegreesMinutesAndSeconds(int degrees, int minutes,
-            double seconds, Angle result) {
-<span class="fc" id="L401">        result.setValue(fromDegreesMinutesAndSeconds(degrees, minutes, seconds,</span>
-<span class="fc" id="L402">                result.getUnit()));</span>
-<span class="fc" id="L403">    }</span>
+    public static void fromDegreesMinutesAndSeconds(
+            final int degrees, final int minutes,
+            final double seconds, final Angle result) {
+<span class="fc" id="L446">        result.setValue(fromDegreesMinutesAndSeconds(degrees, minutes, seconds,</span>
+<span class="fc" id="L447">                result.getUnit()));</span>
+<span class="fc" id="L448">    }</span>
 
     /**
-     * Gets new angle containing decimal degrees from provided integer degrees, integer
-     * minutes and decimal seconds.
-     * @param degrees integer degrees.
-     * @param minutes integer minutes.
-     * @param seconds decimal seconds.
+     * Gets new angle containing decimal degrees from provided integer degrees, integer minutes and decimal seconds.
+     *
+     * @param degrees    integer degrees.
+     * @param minutes    integer minutes.
+     * @param seconds    decimal seconds.
      * @param resultUnit unit of returned value.
      * @return a new angle containing computed decimal degrees.
      * @throws IllegalArgumentException if minutes or seconds are negative.
      */
-    public static Angle fromDegreesMinutesAndSecondsAndReturnNew(int degrees,
-            int minutes, double seconds, AngleUnit resultUnit) {
-<span class="fc" id="L417">        Angle result = new Angle(0.0, resultUnit);</span>
-<span class="fc" id="L418">        fromDegreesMinutesAndSeconds(degrees, minutes, seconds, result);</span>
-<span class="fc" id="L419">        return result;</span>
+    public static Angle fromDegreesMinutesAndSecondsAndReturnNew(
+            final int degrees, final int minutes, final double seconds,
+            final AngleUnit resultUnit) {
+<span class="fc" id="L463">        final Angle result = new Angle(0.0, resultUnit);</span>
+<span class="fc" id="L464">        fromDegreesMinutesAndSeconds(degrees, minutes, seconds, result);</span>
+<span class="fc" id="L465">        return result;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

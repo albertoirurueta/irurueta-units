@@ -49,184 +49,207 @@ public class FrequencyConverter {
      * Constructor.
      * Prevents instantiation of helper class.
      */
-<span class="fc" id="L52">    FrequencyConverter() { }</span>
+    private FrequencyConverter() {
+    }
 
     /**
      * Converts a frequency to provided output frequency unit.
-     * @param input input frequency to be converted.
-     * @param output output frequency where result will be store and containing
+     *
+     * @param input  input frequency to be converted.
+     * @param output output frequency where result will be stored and containing
      *               output unit.
      */
-    public static void convert(Frequency input, Frequency output) {
-<span class="fc" id="L61">        convert(input, output.getUnit(), output);</span>
-<span class="fc" id="L62">    }</span>
+    public static void convert(
+            final Frequency input, final Frequency output) {
+<span class="fc" id="L64">        convert(input, output.getUnit(), output);</span>
+<span class="fc" id="L65">    }</span>
 
     /**
      * Converts a frequency to requested output unit.
-     * @param input input frequency to be converted.
+     *
+     * @param input      input frequency to be converted.
      * @param outputUnit requested output unit.
      * @return converted frequency.
      */
-    public static Frequency convertAndReturnNew(Frequency input,
-                                                FrequencyUnit outputUnit) {
-<span class="fc" id="L72">        Frequency result = new Frequency();</span>
-<span class="fc" id="L73">        convert(input, outputUnit, result);</span>
-<span class="fc" id="L74">        return result;</span>
+    public static Frequency convertAndReturnNew(
+            final Frequency input,
+            final FrequencyUnit outputUnit) {
+<span class="fc" id="L77">        final Frequency result = new Frequency();</span>
+<span class="fc" id="L78">        convert(input, outputUnit, result);</span>
+<span class="fc" id="L79">        return result;</span>
     }
 
     /**
      * Converts and updates a frequency to requested output unit.
-     * @param frequency input frequency to be converted and updated.
+     *
+     * @param frequency  input frequency to be converted and updated.
      * @param outputUnit requested output unit.
      */
-    public static void convert(Frequency frequency, FrequencyUnit outputUnit) {
-<span class="fc" id="L83">        convert(frequency, outputUnit, frequency);</span>
-<span class="fc" id="L84">    }</span>
+    public static void convert(
+            final Frequency frequency, final FrequencyUnit outputUnit) {
+<span class="fc" id="L90">        convert(frequency, outputUnit, frequency);</span>
+<span class="fc" id="L91">    }</span>
 
     /**
      * Converts a frequency to requested output unit.
-     * @param input input frequency to be converted.
+     *
+     * @param input      input frequency to be converted.
      * @param outputUnit requested output unit.
-     * @param result frequency unit where result will be stored.
+     * @param result     frequency unit where result will be stored.
      */
-    public static void convert(Frequency input, FrequencyUnit outputUnit,
-                               Frequency result) {
-<span class="fc" id="L94">        Number value = convert(input.getValue(), input.getUnit(), outputUnit);</span>
-<span class="fc" id="L95">        result.setValue(value);</span>
-<span class="fc" id="L96">        result.setUnit(outputUnit);</span>
-<span class="fc" id="L97">    }</span>
+    public static void convert(
+            final Frequency input, final FrequencyUnit outputUnit,
+            final Frequency result) {
+<span class="fc" id="L103">        final Number value = convert(input.getValue(), input.getUnit(),</span>
+                outputUnit);
+<span class="fc" id="L105">        result.setValue(value);</span>
+<span class="fc" id="L106">        result.setUnit(outputUnit);</span>
+<span class="fc" id="L107">    }</span>
 
     /**
      * Converts a frequency value from input unit to provided output unit.
-     * @param input frequency value.
-     * @param inputUnit input frequency unit.
+     *
+     * @param input      frequency value.
+     * @param inputUnit  input frequency unit.
      * @param outputUnit output frequency unit.
      * @return converted frequency value.
      */
-    public static Number convert(Number input, FrequencyUnit inputUnit,
-                                 FrequencyUnit outputUnit) {
-<span class="fc" id="L108">        return new BigDecimal(convert(input.doubleValue(), inputUnit, outputUnit));</span>
+    public static Number convert(
+            final Number input, final FrequencyUnit inputUnit,
+            final FrequencyUnit outputUnit) {
+<span class="fc" id="L120">        return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit,</span>
+                outputUnit));
     }
 
     /**
      * Converts a frequency value from input unit to provided output unit.
-     * @param input frequency value.
-     * @param inputUnit input frequency unit.
+     *
+     * @param input      frequency value.
+     * @param inputUnit  input frequency unit.
      * @param outputUnit output frequency unit.
      * @return converted frequency value.
      */
-    public static double convert(double input, FrequencyUnit inputUnit,
-                                 FrequencyUnit outputUnit) {
+    public static double convert(
+            final double input, final FrequencyUnit inputUnit,
+            final FrequencyUnit outputUnit) {
         double hertz;
 
-        //convert to hertz's
-<span class="fc bfc" id="L123" title="All 5 branches covered.">        switch (inputUnit) {</span>
+        // convert to hertz's
+<span class="fc bfc" id="L138" title="All 5 branches covered.">        switch (inputUnit) {</span>
             case KILOHERTZ:
-<span class="fc" id="L125">                hertz = kiloHertzToHertz(input);</span>
-<span class="fc" id="L126">                break;</span>
+<span class="fc" id="L140">                hertz = kiloHertzToHertz(input);</span>
+<span class="fc" id="L141">                break;</span>
             case MEGAHERTZ:
-<span class="fc" id="L128">                hertz = megaHertzToHertz(input);</span>
-<span class="fc" id="L129">                break;</span>
+<span class="fc" id="L143">                hertz = megaHertzToHertz(input);</span>
+<span class="fc" id="L144">                break;</span>
             case GIGAHERTZ:
-<span class="fc" id="L131">                hertz = gigaHertzToHertz(input);</span>
-<span class="fc" id="L132">                break;</span>
+<span class="fc" id="L146">                hertz = gigaHertzToHertz(input);</span>
+<span class="fc" id="L147">                break;</span>
             case TERAHERTZ:
-<span class="fc" id="L134">                hertz = teraHertzToHertz(input);</span>
-<span class="fc" id="L135">                break;</span>
+<span class="fc" id="L149">                hertz = teraHertzToHertz(input);</span>
+<span class="fc" id="L150">                break;</span>
 
             case HERTZ:
             default:
-<span class="fc" id="L139">                hertz = input;</span>
+<span class="fc" id="L154">                hertz = input;</span>
                 break;
         }
 
-        //convert from Hertz to required output unit
-<span class="fc bfc" id="L144" title="All 5 branches covered.">        switch (outputUnit) {</span>
+        // convert from Hertz to required output unit
+<span class="fc bfc" id="L159" title="All 5 branches covered.">        switch (outputUnit) {</span>
             case KILOHERTZ:
-<span class="fc" id="L146">                return hertzToKiloHertz(hertz);</span>
+<span class="fc" id="L161">                return hertzToKiloHertz(hertz);</span>
             case MEGAHERTZ:
-<span class="fc" id="L148">                return hertzToMegaHertz(hertz);</span>
+<span class="fc" id="L163">                return hertzToMegaHertz(hertz);</span>
             case GIGAHERTZ:
-<span class="fc" id="L150">                return hertzToGigaHertz(hertz);</span>
+<span class="fc" id="L165">                return hertzToGigaHertz(hertz);</span>
             case TERAHERTZ:
-<span class="fc" id="L152">                return hertzToTeraHertz(hertz);</span>
+<span class="fc" id="L167">                return hertzToTeraHertz(hertz);</span>
 
             case HERTZ:
             default:
-<span class="fc" id="L156">                return hertz;</span>
+<span class="fc" id="L171">                return hertz;</span>
         }
     }
 
     /**
      * Converts provided Hertz value to KiloHertz.
+     *
      * @param hertz hertz value.
      * @return same amount of frequency converted to KiloHertz.
      */
-    public static double hertzToKiloHertz(double hertz) {
-<span class="fc" id="L166">        return hertz / HERTZS_PER_KILOHERTZ;</span>
+    public static double hertzToKiloHertz(final double hertz) {
+<span class="fc" id="L182">        return hertz / HERTZS_PER_KILOHERTZ;</span>
     }
 
     /**
      * Converts provided Hertz value to MegaHertz.
+     *
      * @param hertz hertz value.
      * @return same amount of frequency converted to MegaHertz.
      */
-    public static double hertzToMegaHertz(double hertz) {
-<span class="fc" id="L175">        return hertz / HERTZ_PER_MEGAHERTZ;</span>
+    public static double hertzToMegaHertz(final double hertz) {
+<span class="fc" id="L192">        return hertz / HERTZ_PER_MEGAHERTZ;</span>
     }
 
     /**
      * Converts provided Hertz value to GigaHertz.
+     *
      * @param hertz hertz value.
      * @return same amount of frequency converted to GigaHertz.
      */
-    public static double hertzToGigaHertz(double hertz) {
-<span class="fc" id="L184">        return hertz / HERTZ_PER_GIGAHERTZ;</span>
+    public static double hertzToGigaHertz(final double hertz) {
+<span class="fc" id="L202">        return hertz / HERTZ_PER_GIGAHERTZ;</span>
     }
 
     /**
      * Converts provided Hertz value to TeraHertz.
+     *
      * @param hertz hertz value.
      * @return same amount of frequency converted to TeraHertz.
      */
-    public static double hertzToTeraHertz(double hertz) {
-<span class="fc" id="L193">        return hertz / HERTZ_PER_TERAHERTZ;</span>
+    public static double hertzToTeraHertz(final double hertz) {
+<span class="fc" id="L212">        return hertz / HERTZ_PER_TERAHERTZ;</span>
     }
 
     /**
      * Converts provided KiloHertz value to Hertz.
+     *
      * @param kiloHertz KiloHertz value.
      * @return same amount of frequency converted to Hertz.
      */
-    public static double kiloHertzToHertz(double kiloHertz) {
-<span class="fc" id="L202">        return kiloHertz * HERTZS_PER_KILOHERTZ;</span>
+    public static double kiloHertzToHertz(final double kiloHertz) {
+<span class="fc" id="L222">        return kiloHertz * HERTZS_PER_KILOHERTZ;</span>
     }
 
     /**
      * Converts provided MegaHertz value to Hertz.
+     *
      * @param megaHertz MegaHertz value.
      * @return same amount of frequency converted to Hertz.
      */
-    public static double megaHertzToHertz(double megaHertz) {
-<span class="fc" id="L211">        return megaHertz * HERTZ_PER_MEGAHERTZ;</span>
+    public static double megaHertzToHertz(final double megaHertz) {
+<span class="fc" id="L232">        return megaHertz * HERTZ_PER_MEGAHERTZ;</span>
     }
 
     /**
      * Converts provided GigaHertz value to Hertz.
+     *
      * @param gigaHertz GigaHertz value.
      * @return same amount of frequency converted to Hertz.
      */
-    public static double gigaHertzToHertz(double gigaHertz) {
-<span class="fc" id="L220">        return gigaHertz * HERTZ_PER_GIGAHERTZ;</span>
+    public static double gigaHertzToHertz(final double gigaHertz) {
+<span class="fc" id="L242">        return gigaHertz * HERTZ_PER_GIGAHERTZ;</span>
     }
 
     /**
      * Converts provided TeraHertz value to Hertz.
+     *
      * @param teraHertz TeraHertz value.
      * @return same amount of frequency converted to Hertz.
      */
-    public static double teraHertzToHertz(double teraHertz) {
-<span class="fc" id="L229">        return teraHertz * HERTZ_PER_TERAHERTZ;</span>
+    public static double teraHertzToHertz(final double teraHertz) {
+<span class="fc" id="L252">        return teraHertz * HERTZ_PER_TERAHERTZ;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

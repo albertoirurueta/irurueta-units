@@ -86,22 +86,23 @@ package com.irurueta.units;
 
     /**
      * Returns unit system for provided surface unit.
+     *
      * @param unit surface unit to be checked.
      * @return unit system (metric or imperial).
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static UnitSystem getUnitSystem(SurfaceUnit unit) {
-<span class="fc bfc" id="L94" title="All 2 branches covered.">        if (unit == null) {</span>
-<span class="fc" id="L95">            throw new IllegalArgumentException();</span>
+    public static UnitSystem getUnitSystem(final SurfaceUnit unit) {
+<span class="fc bfc" id="L95" title="All 2 branches covered.">        if (unit == null) {</span>
+<span class="fc" id="L96">            throw new IllegalArgumentException();</span>
         }
 
-<span class="fc bfc" id="L98" title="All 2 branches covered.">        switch (unit) {</span>
+<span class="fc bfc" id="L99" title="All 2 branches covered.">        switch (unit) {</span>
             case SQUARE_INCH:
             case SQUARE_FOOT:
             case SQUARE_YARD:
             case SQUARE_MILE:
             case ACRE:
-<span class="fc" id="L104">                return UnitSystem.IMPERIAL;</span>
+<span class="fc" id="L105">                return UnitSystem.IMPERIAL;</span>
             case SQUARE_MILLIMETER:
             case SQUARE_CENTIMETER:
             case SQUARE_METER:
@@ -111,16 +112,17 @@ package com.irurueta.units;
             case DECARE:
             case HECTARE:
             default:
-<span class="fc" id="L114">                return UnitSystem.METRIC;</span>
+<span class="fc" id="L115">                return UnitSystem.METRIC;</span>
         }
     }
 
     /**
      * Gets all supported metric surface units.
+     *
      * @return all supported metric surface units.
      */
     public static SurfaceUnit[] getMetricUnits() {
-<span class="fc" id="L123">        return new SurfaceUnit[] {</span>
+<span class="fc" id="L125">        return new SurfaceUnit[]{</span>
                 SQUARE_MILLIMETER,
                 SQUARE_CENTIMETER,
                 SQUARE_METER,
@@ -134,10 +136,11 @@ package com.irurueta.units;
 
     /**
      * Gets all supported imperial distance units.
+     *
      * @return all supported imperial distance units.
      */
     public static SurfaceUnit[] getImperialUnits() {
-<span class="fc" id="L140">        return new SurfaceUnit[] {</span>
+<span class="fc" id="L143">        return new SurfaceUnit[]{</span>
                 SQUARE_INCH,
                 SQUARE_FOOT,
                 SQUARE_YARD,
@@ -148,22 +151,24 @@ package com.irurueta.units;
 
     /**
      * Indicates whether provided unit belongs to the metric unit system.
+     *
      * @param unit distance unit to be checked.
      * @return true if unit belongs to metric unit system.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isMetric(SurfaceUnit unit) {
-<span class="fc bfc" id="L156" title="All 2 branches covered.">        return getUnitSystem(unit) == UnitSystem.METRIC;</span>
+    public static boolean isMetric(final SurfaceUnit unit) {
+<span class="fc bfc" id="L160" title="All 2 branches covered.">        return getUnitSystem(unit) == UnitSystem.METRIC;</span>
     }
 
     /**
      * Indicates whether provided unit belongs to the imperial unit system.
+     *
      * @param unit distance unit to be checked.
      * @return true if unit belongs to imperial unit system.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isImperial(SurfaceUnit unit) {
-<span class="fc bfc" id="L166" title="All 2 branches covered.">        return getUnitSystem(unit) == UnitSystem.IMPERIAL;</span>
+    public static boolean isImperial(final SurfaceUnit unit) {
+<span class="fc bfc" id="L171" title="All 2 branches covered.">        return getUnitSystem(unit) == UnitSystem.IMPERIAL;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

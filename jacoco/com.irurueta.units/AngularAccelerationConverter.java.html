@@ -29,118 +29,134 @@ public class AngularAccelerationConverter {
      * Constructor.
      * Prevents instantiation of helper class.
      */
-<span class="fc" id="L32">    AngularAccelerationConverter() { }</span>
+    private AngularAccelerationConverter() {
+    }
 
     /**
      * Converts an angular acceleration to provided output angular acceleration unit.
-     * @param input input angular acceleration to be converted.
+     *
+     * @param input  input angular acceleration to be converted.
      * @param output output angular acceleration where result will be stored and
      *               containing output unit.
      */
-    public static void convert(AngularAcceleration input, AngularAcceleration output) {
-<span class="fc" id="L41">        convert(input, output.getUnit(), output);</span>
-<span class="fc" id="L42">    }</span>
+    public static void convert(
+            final AngularAcceleration input,
+            final AngularAcceleration output) {
+<span class="fc" id="L45">        convert(input, output.getUnit(), output);</span>
+<span class="fc" id="L46">    }</span>
 
     /**
      * Converts an angular acceleration to requested output unit.
-     * @param input input angular acceleration to be converted.
+     *
+     * @param input      input angular acceleration to be converted.
      * @param outputUnit requested output unt.
      * @return converted angular acceleration.
      */
-    public static AngularAcceleration convertAndReturnNew(AngularAcceleration input,
-            AngularAccelerationUnit outputUnit) {
-<span class="fc" id="L52">        AngularAcceleration result = new AngularAcceleration();</span>
-<span class="fc" id="L53">        convert(input, outputUnit, result);</span>
-<span class="fc" id="L54">        return result;</span>
+    public static AngularAcceleration convertAndReturnNew(
+            final AngularAcceleration input,
+            final AngularAccelerationUnit outputUnit) {
+<span class="fc" id="L58">        final AngularAcceleration result = new AngularAcceleration();</span>
+<span class="fc" id="L59">        convert(input, outputUnit, result);</span>
+<span class="fc" id="L60">        return result;</span>
     }
 
     /**
      * Converts and updates an angular acceleration to requested output unit.
+     *
      * @param angularAcceleration input angular acceleration to be converted and updated.
-     * @param outputUnit requested output unit.
+     * @param outputUnit          requested output unit.
      */
-    public static void convert(AngularAcceleration angularAcceleration,
-                               AngularAccelerationUnit outputUnit) {
-<span class="fc" id="L64">        convert(angularAcceleration, outputUnit, angularAcceleration);</span>
-<span class="fc" id="L65">    }</span>
+    public static void convert(
+            final AngularAcceleration angularAcceleration,
+            final AngularAccelerationUnit outputUnit) {
+<span class="fc" id="L72">        convert(angularAcceleration, outputUnit, angularAcceleration);</span>
+<span class="fc" id="L73">    }</span>
 
     /**
      * Converts an angular acceleration to requested output unit.
-     * @param input input angular acceleration to be converted.
+     *
+     * @param input      input angular acceleration to be converted.
      * @param outputUnit requested output unit.
-     * @param result angular acceleration instance where result will be stored.
+     * @param result     angular acceleration instance where result will be stored.
      */
-    public static void convert(AngularAcceleration input,
-                               AngularAccelerationUnit outputUnit,
-                               AngularAcceleration result) {
-<span class="fc" id="L76">        Number value = convert(input.getValue(), input.getUnit(), outputUnit);</span>
-<span class="fc" id="L77">        result.setValue(value);</span>
-<span class="fc" id="L78">        result.setUnit(outputUnit);</span>
-<span class="fc" id="L79">    }</span>
+    public static void convert(
+            final AngularAcceleration input,
+            final AngularAccelerationUnit outputUnit,
+            final AngularAcceleration result) {
+<span class="fc" id="L86">        final Number value = convert(input.getValue(), input.getUnit(), outputUnit);</span>
+<span class="fc" id="L87">        result.setValue(value);</span>
+<span class="fc" id="L88">        result.setUnit(outputUnit);</span>
+<span class="fc" id="L89">    }</span>
 
     /**
      * Converts an angle value from input unit to provided output unit.
-     * @param input angular acceleration value.
-     * @param inputUnit input angular acceleration unit.
+     *
+     * @param input      angular acceleration value.
+     * @param inputUnit  input angular acceleration unit.
      * @param outputUnit output angular acceleration unit.
      * @return converted angular acceleration value.
      */
-    public static Number convert(Number input, AngularAccelerationUnit inputUnit,
-                                 AngularAccelerationUnit outputUnit) {
-<span class="fc" id="L90">        return new BigDecimal(convert(input.doubleValue(), inputUnit, outputUnit));</span>
+    public static Number convert(
+            final Number input, final AngularAccelerationUnit inputUnit,
+            final AngularAccelerationUnit outputUnit) {
+<span class="fc" id="L102">        return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit, outputUnit));</span>
     }
 
     /**
      * Converts an angular acceleration value from input unit to provided output unit.
-     * @param input angualr acceleration value.
-     * @param inputUnit input angular acceleration unit.
+     *
+     * @param input      angualr acceleration value.
+     * @param inputUnit  input angular acceleration unit.
      * @param outputUnit output angular acceleration unit.
      * @return converted angular acceleration value.
      */
     @SuppressWarnings(&quot;Duplicates&quot;)
-    public static double convert(double input, AngularAccelerationUnit inputUnit,
-                                 AngularAccelerationUnit outputUnit) {
+    public static double convert(
+            final double input, final AngularAccelerationUnit inputUnit,
+            final AngularAccelerationUnit outputUnit) {
         double radiansPerSquaredSecond;
 
         //convert to radians per squared second
-<span class="fc bfc" id="L106" title="All 2 branches covered.">        switch (inputUnit) {</span>
+<span class="fc bfc" id="L120" title="All 2 branches covered.">        switch (inputUnit) {</span>
             case DEGREES_PER_SQUARED_SECOND:
-<span class="fc" id="L108">                radiansPerSquaredSecond = Math.toRadians(input);</span>
-<span class="fc" id="L109">                break;</span>
+<span class="fc" id="L122">                radiansPerSquaredSecond = Math.toRadians(input);</span>
+<span class="fc" id="L123">                break;</span>
             case RADIANS_PER_SQUARED_SECOND:
             default:
-<span class="fc" id="L112">                radiansPerSquaredSecond = input;</span>
+<span class="fc" id="L126">                radiansPerSquaredSecond = input;</span>
                 break;
         }
 
         //convert from radians per squared second to required output unit
-<span class="fc bfc" id="L117" title="All 2 branches covered.">        switch (outputUnit) {</span>
+<span class="fc bfc" id="L131" title="All 2 branches covered.">        switch (outputUnit) {</span>
             case DEGREES_PER_SQUARED_SECOND:
-<span class="fc" id="L119">                return Math.toDegrees(radiansPerSquaredSecond);</span>
+<span class="fc" id="L133">                return Math.toDegrees(radiansPerSquaredSecond);</span>
             case RADIANS_PER_SQUARED_SECOND:
             default:
-<span class="fc" id="L122">                return radiansPerSquaredSecond;</span>
+<span class="fc" id="L136">                return radiansPerSquaredSecond;</span>
         }
     }
 
     /**
      * Converts provided degrees per squared second value to radians per squared second.
+     *
      * @param degreesPerSquaredSecond degrees per squared second value.
      * @return same angular acceleration converted to radians per squared second.
      */
     public static double degreesPerSquaredSecondToRadiansPerSquaredSecond(
-            double degreesPerSquaredSecond) {
-<span class="fc" id="L133">        return Math.toRadians(degreesPerSquaredSecond);</span>
+            final double degreesPerSquaredSecond) {
+<span class="fc" id="L148">        return Math.toRadians(degreesPerSquaredSecond);</span>
     }
 
     /**
      * Converts provided radians per squared second value to degrees per squared second.
+     *
      * @param radiansPerSquaredSecond radians per squared second value.
      * @return same angualr acceleration converted to degrees per squared second.
      */
     public static double radiansPerSquaredSecondToDegreesPerSquaredSecond(
-            double radiansPerSquaredSecond) {
-<span class="fc" id="L143">        return Math.toDegrees(radiansPerSquaredSecond);</span>
+            final double radiansPerSquaredSecond) {
+<span class="fc" id="L159">        return Math.toDegrees(radiansPerSquaredSecond);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

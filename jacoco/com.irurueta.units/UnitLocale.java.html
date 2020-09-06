@@ -45,37 +45,40 @@ public class UnitLocale {
      * Constructor.
      * Prevent instantiation of utility class.
      */
-<span class="fc" id="L48">    UnitLocale() { }</span>
+    private UnitLocale() {
+    }
 
     /**
      * Returns unit system for default locale.
+     *
      * @return unit system.
      */
     public static UnitSystem getDefault() {
-<span class="fc" id="L55">        return getFrom(Locale.getDefault());</span>
+<span class="fc" id="L57">        return getFrom(Locale.getDefault());</span>
     }
 
     /**
      * Returns unit system for provided locale.
+     *
      * @param locale a locale indicating at least a country, if no country is
-     * indicated then metric system will be assumed.
+     *               indicated then metric system will be assumed.
      * @return unis system.
      */
-    public static UnitSystem getFrom(Locale locale) {
-<span class="fc" id="L65">        String countryCode = locale.getCountry();</span>
-<span class="fc bfc" id="L66" title="All 2 branches covered.">        if (USA.equals(countryCode)) {</span>
+    public static UnitSystem getFrom(final Locale locale) {
+<span class="fc" id="L68">        final String countryCode = locale.getCountry();</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">        if (USA.equals(countryCode)) {</span>
             //USA
-<span class="fc" id="L68">            return UnitSystem.IMPERIAL;</span>
+<span class="fc" id="L71">            return UnitSystem.IMPERIAL;</span>
         }
-<span class="fc bfc" id="L70" title="All 2 branches covered.">        if (LIBERIA.equals(countryCode)) {</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">        if (LIBERIA.equals(countryCode)) {</span>
             //Liberia
-<span class="fc" id="L72">            return UnitSystem.IMPERIAL;</span>
+<span class="fc" id="L75">            return UnitSystem.IMPERIAL;</span>
         }
-<span class="fc bfc" id="L74" title="All 2 branches covered.">        if (BURMA.equals(countryCode)) {</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">        if (BURMA.equals(countryCode)) {</span>
             //Burma
-<span class="fc" id="L76">            return UnitSystem.IMPERIAL;</span>
+<span class="fc" id="L79">            return UnitSystem.IMPERIAL;</span>
         }
-<span class="fc" id="L78">        return UnitSystem.METRIC;</span>
+<span class="fc" id="L81">        return UnitSystem.METRIC;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

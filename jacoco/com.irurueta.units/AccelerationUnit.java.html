@@ -13,54 +13,57 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.irurueta.units;
 
 /**
  * Enumerator containing recognized typical acceleration units.
  */
-<span class="fc" id="L21">public enum AccelerationUnit {</span>
+<span class="fc" id="L22">public enum AccelerationUnit {</span>
     /**
      * Meters per squared second (m/s^2).
      */
-<span class="fc" id="L25">    METERS_PER_SQUARED_SECOND,</span>
+<span class="fc" id="L26">    METERS_PER_SQUARED_SECOND,</span>
 
     /**
      * Relative to gravitational acceleration (9.81 m/s^2).
      */
-<span class="fc" id="L30">    G,</span>
+<span class="fc" id="L31">    G,</span>
 
     /**
      * Feet per squared second (ft/s^2).
      */
-<span class="fc" id="L35">    FEET_PER_SQUARED_SECOND;</span>
+<span class="fc" id="L36">    FEET_PER_SQUARED_SECOND;</span>
 
     /**
      * Returns unit system for provided acceleration unit.
+     *
      * @param unit acceleration unit to be checked.
      * @return unit system (metric or imperial).
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static UnitSystem getUnitSystem(AccelerationUnit unit) {
-<span class="fc bfc" id="L44" title="All 2 branches covered.">        if (unit == null) {</span>
-<span class="fc" id="L45">            throw new IllegalArgumentException();</span>
+    public static UnitSystem getUnitSystem(final AccelerationUnit unit) {
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        if (unit == null) {</span>
+<span class="fc" id="L47">            throw new IllegalArgumentException();</span>
         }
 
-<span class="fc bfc" id="L48" title="All 2 branches covered.">        switch (unit) {</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        switch (unit) {</span>
             case FEET_PER_SQUARED_SECOND:
-<span class="fc" id="L50">                return UnitSystem.IMPERIAL;</span>
+<span class="fc" id="L52">                return UnitSystem.IMPERIAL;</span>
             case METERS_PER_SQUARED_SECOND:
             case G:
             default:
-<span class="fc" id="L54">                return UnitSystem.METRIC;</span>
+<span class="fc" id="L56">                return UnitSystem.METRIC;</span>
         }
     }
 
     /**
      * Gets all supported metric acceleration units.
+     *
      * @return all supported metric acceleration units.
      */
     public static AccelerationUnit[] getMetricUnits() {
-<span class="fc" id="L63">        return new AccelerationUnit[] {</span>
+<span class="fc" id="L66">        return new AccelerationUnit[]{</span>
                 METERS_PER_SQUARED_SECOND,
                 G
         };
@@ -68,32 +71,35 @@ package com.irurueta.units;
 
     /**
      * Gets all supported imperial acceleration units.
+     *
      * @return all supported imperial acceleration units.
      */
     public static AccelerationUnit[] getImperialUnits() {
-<span class="fc" id="L74">        return new AccelerationUnit[] {</span>
+<span class="fc" id="L78">        return new AccelerationUnit[]{</span>
                 FEET_PER_SQUARED_SECOND
         };
     }
 
     /**
      * Indicates whether provided unit belongs to the metric unit system.
+     *
      * @param unit acceleration unit to be checked.
      * @return true if unit belongs to metric unit system.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isMetric(AccelerationUnit unit) {
-<span class="fc bfc" id="L86" title="All 2 branches covered.">        return getUnitSystem(unit) == UnitSystem.METRIC;</span>
+    public static boolean isMetric(final AccelerationUnit unit) {
+<span class="fc bfc" id="L91" title="All 2 branches covered.">        return getUnitSystem(unit) == UnitSystem.METRIC;</span>
     }
 
     /**
      * Indicates whether provided unit belongs to the imperial unit system.
+     *
      * @param unit acceleration unit to be checked.
      * @return true if unit belongs to imperial unit system.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isImperial(AccelerationUnit unit) {
-<span class="fc bfc" id="L96" title="All 2 branches covered.">        return getUnitSystem(unit) == UnitSystem.IMPERIAL;</span>
+    public static boolean isImperial(final AccelerationUnit unit) {
+<span class="fc bfc" id="L102" title="All 2 branches covered.">        return getUnitSystem(unit) == UnitSystem.IMPERIAL;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

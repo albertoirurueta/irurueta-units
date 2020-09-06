@@ -25,320 +25,362 @@ public class Distance extends Measurement&lt;DistanceUnit&gt; {
 
     /**
      * Constructor with value and unit.
+     *
      * @param value distance value.
-     * @param unit unit of distance.
+     * @param unit  unit of distance.
      * @throws IllegalArgumentException if either value or unit is null.
      */
-    public Distance(Number value, DistanceUnit unit) {
-<span class="fc" id="L33">        super(value, unit);</span>
-<span class="fc" id="L34">    }</span>
+    public Distance(final Number value, final DistanceUnit unit) {
+<span class="fc" id="L34">        super(value, unit);</span>
+<span class="fc" id="L35">    }</span>
 
     /**
      * Constructor.
      */
     Distance() {
-<span class="fc" id="L40">        super();</span>
-<span class="fc" id="L41">    }</span>
+<span class="fc" id="L41">        super();</span>
+<span class="fc" id="L42">    }</span>
 
     /**
      * Determines if two distances are equal up to a certain tolerance.
      * If needed, this method attempts unit conversion to compare both objects.
-     * @param other another distance to compare.
-     * @param tolerance true if provided distance is assumed to be equal to this
-     *                  instance up to provided tolerance.
+     *
+     * @param other     another distance to compare.
+     * @param tolerance amount of tolerance to determine whether two distance instances are equal or not.
      * @return true if provided distance is assumed to be equal to this instance,
      * false otherwise.
      */
     @Override
-    public boolean equals(Measurement&lt;DistanceUnit&gt; other,
-                          double tolerance) {
-<span class="fc bfc" id="L55" title="All 2 branches covered.">        if(super.equals(other, tolerance)) {</span>
-<span class="fc" id="L56">            return true;</span>
+    public boolean equals(
+            final Measurement&lt;DistanceUnit&gt; other,
+            final double tolerance) {
+<span class="fc bfc" id="L57" title="All 2 branches covered.">        if (super.equals(other, tolerance)) {</span>
+<span class="fc" id="L58">            return true;</span>
         }
 
         //attempt conversion to common units
-<span class="fc bfc" id="L60" title="All 2 branches covered.">        if (other == null) {</span>
-<span class="fc" id="L61">            return false;</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">        if (other == null) {</span>
+<span class="fc" id="L63">            return false;</span>
         }
 
-<span class="fc" id="L64">        double otherValue = DistanceConverter.convert(</span>
-<span class="fc" id="L65">                other.getValue().doubleValue(), other.getUnit(),</span>
-<span class="fc" id="L66">                getUnit());</span>
-<span class="fc bfc" id="L67" title="All 2 branches covered.">        return (Math.abs(getValue().doubleValue() - otherValue)) &lt;= tolerance;</span>
+<span class="fc" id="L66">        final double otherValue = DistanceConverter.convert(</span>
+<span class="fc" id="L67">                other.getValue().doubleValue(), other.getUnit(),</span>
+<span class="fc" id="L68">                getUnit());</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">        return (Math.abs(getValue().doubleValue() - otherValue)) &lt;= tolerance;</span>
     }
 
     /**
      * Adds two distance values and units and returns the result.
-     * @param value1 1st argument value.
-     * @param unit1 1st argument unit.
-     * @param value2 2nd argument value.
-     * @param unit2 2nd argument unit.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit.
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
      * @param resultUnit unit of result to be returned.
      * @return result of addition.
      */
-    public static double add(double value1, DistanceUnit unit1,
-                             double value2, DistanceUnit unit2,
-                             DistanceUnit resultUnit) {
-<span class="fc" id="L82">        double v1 = DistanceConverter.convert(value1, unit1, resultUnit);</span>
-<span class="fc" id="L83">        double v2 = DistanceConverter.convert(value2, unit2, resultUnit);</span>
-<span class="fc" id="L84">        return v1 + v2;</span>
+    public static double add(
+            final double value1, DistanceUnit unit1,
+            final double value2, DistanceUnit unit2,
+            final DistanceUnit resultUnit) {
+<span class="fc" id="L86">        final double v1 = DistanceConverter.convert(value1, unit1, resultUnit);</span>
+<span class="fc" id="L87">        final double v2 = DistanceConverter.convert(value2, unit2, resultUnit);</span>
+<span class="fc" id="L88">        return v1 + v2;</span>
     }
 
     /**
      * Adds two distance values and units and returns the result.
-     * @param value1 1st argument value.
-     * @param unit1 1st argument unit.
-     * @param value2 2nd argument value.
-     * @param unit2 2nd argument unit.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit.
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
      * @param resultUnit unit of result to be returned.
      * @return result of addition.
      */
-    public static Number add(Number value1, DistanceUnit unit1,
-                             Number value2, DistanceUnit unit2,
-                             DistanceUnit resultUnit) {
-<span class="fc" id="L99">        return new BigDecimal(add(value1.doubleValue(), unit1,</span>
-<span class="fc" id="L100">                value2.doubleValue(), unit2, resultUnit));</span>
+    public static Number add(final Number value1, final DistanceUnit unit1,
+                             final Number value2, final DistanceUnit unit2,
+                             final DistanceUnit resultUnit) {
+<span class="fc" id="L104">        return BigDecimal.valueOf(add(value1.doubleValue(), unit1,</span>
+<span class="fc" id="L105">                value2.doubleValue(), unit2, resultUnit));</span>
     }
 
     /**
      * Adds two distances and stores the result into provided instance.
-     * @param arg1 1st argument.
-     * @param arg2 2nd argument.
+     *
+     * @param arg1   1st argument.
+     * @param arg2   2nd argument.
      * @param result instance where result will be stored.
      */
-    public static void add(Distance arg1, Distance arg2, Distance result) {
-<span class="fc" id="L110">        result.setValue(add(arg1.getValue(), arg1.getUnit(),</span>
-<span class="fc" id="L111">                arg2.getValue(), arg2.getUnit(), result.getUnit()));</span>
-<span class="fc" id="L112">    }</span>
+    public static void add(
+            final Distance arg1, final Distance arg2, final Distance result) {
+<span class="fc" id="L117">        result.setValue(add(arg1.getValue(), arg1.getUnit(),</span>
+<span class="fc" id="L118">                arg2.getValue(), arg2.getUnit(), result.getUnit()));</span>
+<span class="fc" id="L119">    }</span>
 
     /**
      * Adds two distances.
+     *
      * @param arg1 1st argument.
      * @param arg2 2nd argument.
      * @param unit unit of returned distance.
      * @return a new instance containing result.
      */
-    public static Distance addAndReturnNew(Distance arg1, Distance arg2,
-                                           DistanceUnit unit) {
-<span class="fc" id="L123">        Distance result = new Distance();</span>
-<span class="fc" id="L124">        result.setUnit(unit);</span>
-<span class="fc" id="L125">        add(arg1, arg2, result);</span>
-<span class="fc" id="L126">        return result;</span>
+    public static Distance addAndReturnNew(
+            final Distance arg1, final Distance arg2,
+            final DistanceUnit unit) {
+<span class="fc" id="L132">        final Distance result = new Distance();</span>
+<span class="fc" id="L133">        result.setUnit(unit);</span>
+<span class="fc" id="L134">        add(arg1, arg2, result);</span>
+<span class="fc" id="L135">        return result;</span>
     }
 
     /**
      * Adds provided distance value and unit and returns a new distance instance using
      * provided unit.
-     * @param value value to be added.
-     * @param unit unit of value to be added.
+     *
+     * @param value      value to be added.
+     * @param unit       unit of value to be added.
      * @param resultUnit unit of returned distance.
      * @return a new distance containing result.
      */
-    public Distance addAndReturnNew(double value, DistanceUnit unit, DistanceUnit resultUnit) {
-<span class="fc" id="L138">        Distance result = new Distance();</span>
-<span class="fc" id="L139">        result.setUnit(resultUnit);</span>
-<span class="fc" id="L140">        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit,</span>
+    public Distance addAndReturnNew(
+            final double value, final DistanceUnit unit,
+            final DistanceUnit resultUnit) {
+<span class="fc" id="L150">        final Distance result = new Distance();</span>
+<span class="fc" id="L151">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L152">        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit,</span>
                 resultUnit));
-<span class="fc" id="L142">        return result;</span>
+<span class="fc" id="L154">        return result;</span>
     }
 
     /**
      * Adds provided distance value and unit and returns a new distance instance using
      * provided unit.
-     * @param value value to be added.
-     * @param unit unit of value to be added.
+     *
+     * @param value      value to be added.
+     * @param unit       unit of value to be added.
      * @param resultUnit unit of returned distance.
      * @return a new distance containing result.
      */
-    public Distance addAndReturnNew(Number value, DistanceUnit unit, DistanceUnit resultUnit) {
-<span class="fc" id="L154">        Distance result = new Distance();</span>
-<span class="fc" id="L155">        result.setUnit(resultUnit);</span>
-<span class="fc" id="L156">        result.setValue(add(getValue(), getUnit(), value, unit, resultUnit));</span>
-<span class="fc" id="L157">        return result;</span>
+    public Distance addAndReturnNew(
+            final Number value, final DistanceUnit unit,
+            final DistanceUnit resultUnit) {
+<span class="fc" id="L169">        final Distance result = new Distance();</span>
+<span class="fc" id="L170">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L171">        result.setValue(add(getValue(), getUnit(), value, unit, resultUnit));</span>
+<span class="fc" id="L172">        return result;</span>
     }
 
     /**
      * Adds provided distance to current instance and returns a new
      * distance.
-     * @param d distance to be added.
+     *
+     * @param d    distance to be added.
      * @param unit unit of returned distance.
      * @return a new distance containing result.
      */
-    public Distance addAndReturnNew(Distance d, DistanceUnit unit) {
-<span class="fc" id="L168">        return addAndReturnNew(this, d, unit);</span>
+    public Distance addAndReturnNew(
+            final Distance d, final DistanceUnit unit) {
+<span class="fc" id="L185">        return addAndReturnNew(this, d, unit);</span>
     }
 
     /**
      * Adds provided distance value and unit and updates current distance instance.
+     *
      * @param value distance value to be added.
-     * @param unit unit of distance value.
+     * @param unit  unit of distance value.
      */
-    public void add(double value, DistanceUnit unit) {
-<span class="fc" id="L177">        setValue(add(getValue(), getUnit(), value, unit, getUnit()));</span>
-<span class="fc" id="L178">    }</span>
+    public void add(final double value, final DistanceUnit unit) {
+<span class="fc" id="L195">        setValue(add(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L196">    }</span>
 
     /**
      * Adds provided distance value and unit and updates current distance instance.
+     *
      * @param value distance value to be added.
-     * @param unit unit of distance value.
+     * @param unit  unit of distance value.
      */
-    public void add(Number value, DistanceUnit unit) {
-<span class="fc" id="L186">        setValue(add(getValue(), getUnit(), value, unit, getUnit()));</span>
-<span class="fc" id="L187">    }</span>
+    public void add(final Number value, final DistanceUnit unit) {
+<span class="fc" id="L205">        setValue(add(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L206">    }</span>
 
     /**
      * Adds provided distance and updates current distance.
+     *
      * @param distance distance to be added.
      */
-    public void add(Distance distance) {
-<span class="fc" id="L194">        add(this, distance, this);</span>
-<span class="fc" id="L195">    }</span>
+    public void add(final Distance distance) {
+<span class="fc" id="L214">        add(this, distance, this);</span>
+<span class="fc" id="L215">    }</span>
 
     /**
      * Adds provided distance and stores the result into provided
      * distance.
-     * @param d distance to be added.
+     *
+     * @param d      distance to be added.
      * @param result instance where result will be stored.
      */
-    public void add(Distance d, Distance result) {
-<span class="fc" id="L204">        add(this, d, result);</span>
-<span class="fc" id="L205">    }</span>
+    public void add(final Distance d, final Distance result) {
+<span class="fc" id="L225">        add(this, d, result);</span>
+<span class="fc" id="L226">    }</span>
 
     /**
      * Subtracts two distance values and units and returns the result.
-     * @param value1 1st argument value.
-     * @param unit1 1st argument unit.
-     * @param value2 2nd argument value.
-     * @param unit2 2nd argument unit.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit.
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
      * @param resultUnit unit of result to be returned.
      * @return result of subtraction.
      */
-    public static double subtract(double value1, DistanceUnit unit1,
-                                  double value2, DistanceUnit unit2,
-                                  DistanceUnit resultUnit) {
-<span class="fc" id="L219">        double v1 = DistanceConverter.convert(value1, unit1, resultUnit);</span>
-<span class="fc" id="L220">        double v2 = DistanceConverter.convert(value2, unit2, resultUnit);</span>
-<span class="fc" id="L221">        return v1 - v2;</span>
+    public static double subtract(
+            final double value1, final DistanceUnit unit1,
+            final double value2, final DistanceUnit unit2,
+            final DistanceUnit resultUnit) {
+<span class="fc" id="L242">        final double v1 = DistanceConverter.convert(value1, unit1, resultUnit);</span>
+<span class="fc" id="L243">        final double v2 = DistanceConverter.convert(value2, unit2, resultUnit);</span>
+<span class="fc" id="L244">        return v1 - v2;</span>
     }
 
     /**
      * Subtracts two distance value and units and returns the result.
-     * @param value1 1st argument value.
-     * @param unit1 1st argument unit.
-     * @param value2 2nd argument value.
-     * @param unit2 2nd argument unit.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit.
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
      * @param resultUnit unit of result to be returned.
      * @return result of subtraction.
      */
-    public static Number subtract(Number value1, DistanceUnit unit1,
-                                  Number value2, DistanceUnit unit2,
-                                  DistanceUnit resultUnit) {
-<span class="fc" id="L236">        return new BigDecimal(subtract(value1.doubleValue(), unit1,</span>
-<span class="fc" id="L237">                value2.doubleValue(), unit2, resultUnit));</span>
+    public static Number subtract(
+            final Number value1, final DistanceUnit unit1,
+            final Number value2, final DistanceUnit unit2,
+            final DistanceUnit resultUnit) {
+<span class="fc" id="L261">        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1,</span>
+<span class="fc" id="L262">                value2.doubleValue(), unit2, resultUnit));</span>
     }
 
     /**
      * Subtracts two distances and stores the result into provided instance.
-     * @param arg1 1st argument.
-     * @param arg2 2nd argument.
+     *
+     * @param arg1   1st argument.
+     * @param arg2   2nd argument.
      * @param result instance where result will be stored.
      */
-    public static void subtract(Distance arg1, Distance arg2, Distance result) {
-<span class="fc" id="L247">        result.setValue(subtract(arg1.getValue(), arg1.getUnit(),</span>
-<span class="fc" id="L248">                arg2.getValue(), arg2.getUnit(), result.getUnit()));</span>
-<span class="fc" id="L249">    }</span>
+    public static void subtract(
+            final Distance arg1, final Distance arg2,
+            final Distance result) {
+<span class="fc" id="L275">        result.setValue(subtract(arg1.getValue(), arg1.getUnit(),</span>
+<span class="fc" id="L276">                arg2.getValue(), arg2.getUnit(), result.getUnit()));</span>
+<span class="fc" id="L277">    }</span>
 
     /**
      * Subtracts two distances.
+     *
      * @param arg1 1st argument.
      * @param arg2 2nd argument.
      * @param unit unit of returned distance.
      * @return a new instance containing result.
      */
-    public static Distance subtractAndReturnNew(Distance arg1, Distance arg2,
-                                                DistanceUnit unit) {
-<span class="fc" id="L260">        Distance result = new Distance();</span>
-<span class="fc" id="L261">        result.setUnit(unit);</span>
-<span class="fc" id="L262">        subtract(arg1, arg2, result);</span>
-<span class="fc" id="L263">        return result;</span>
+    public static Distance subtractAndReturnNew(
+            final Distance arg1, final Distance arg2,
+            final DistanceUnit unit) {
+<span class="fc" id="L290">        final Distance result = new Distance();</span>
+<span class="fc" id="L291">        result.setUnit(unit);</span>
+<span class="fc" id="L292">        subtract(arg1, arg2, result);</span>
+<span class="fc" id="L293">        return result;</span>
     }
 
     /**
      * Subtracts provided distance value and unit and returns a new distance instance using
      * provided unit.
-     * @param value value to be subtracted.
-     * @param unit unit of value to be subtracted.
+     *
+     * @param value      value to be subtracted.
+     * @param unit       unit of value to be subtracted.
      * @param resultUnit unit of returned distance.
      * @return a new distance containing result.
      */
-    public Distance subtractAndReturnNew(double value, DistanceUnit unit, DistanceUnit resultUnit) {
-<span class="fc" id="L275">        Distance result = new Distance();</span>
-<span class="fc" id="L276">        result.setUnit(resultUnit);</span>
-<span class="fc" id="L277">        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit,</span>
+    public Distance subtractAndReturnNew(
+            final double value, final DistanceUnit unit,
+            final DistanceUnit resultUnit) {
+<span class="fc" id="L308">        final Distance result = new Distance();</span>
+<span class="fc" id="L309">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L310">        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit,</span>
                 resultUnit));
-<span class="fc" id="L279">        return result;</span>
+<span class="fc" id="L312">        return result;</span>
     }
 
     /**
      * Subtracts provided distance value and unit and returns a new distance instance using
      * provided unit.
-     * @param value value to be subtracted.
-     * @param unit unit of value to be subtracted.
+     *
+     * @param value      value to be subtracted.
+     * @param unit       unit of value to be subtracted.
      * @param resultUnit unit of returned distance.
      * @return a new distance containing result.
      */
-    public Distance subtractAndReturnNew(Number value, DistanceUnit unit, DistanceUnit resultUnit) {
-<span class="fc" id="L291">        Distance result = new Distance();</span>
-<span class="fc" id="L292">        result.setUnit(resultUnit);</span>
-<span class="fc" id="L293">        result.setValue(subtract(getValue(), getUnit(), value, unit, resultUnit));</span>
-<span class="fc" id="L294">        return result;</span>
+    public Distance subtractAndReturnNew(
+            final Number value, final DistanceUnit unit,
+            final DistanceUnit resultUnit) {
+<span class="fc" id="L327">        final Distance result = new Distance();</span>
+<span class="fc" id="L328">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L329">        result.setValue(subtract(getValue(), getUnit(), value, unit, resultUnit));</span>
+<span class="fc" id="L330">        return result;</span>
     }
 
     /**
      * Subtracts provided distance to current instance and returns a new
      * distance.
-     * @param d distance to be subtracted.
+     *
+     * @param d    distance to be subtracted.
      * @param unit unit of returned distance.
      * @return a new distance containing result.
      */
-    public Distance subtractAndReturnNew(Distance d, DistanceUnit unit) {
-<span class="fc" id="L305">        return subtractAndReturnNew(this, d, unit);</span>
+    public Distance subtractAndReturnNew(
+            final Distance d, final DistanceUnit unit) {
+<span class="fc" id="L343">        return subtractAndReturnNew(this, d, unit);</span>
     }
 
     /**
      * Subtracts provided distance value and unit and updates current distance instance.
+     *
      * @param value distance value to be subtracted.
-     * @param unit unit of distance value.
+     * @param unit  unit of distance value.
      */
-    public void subtract(double value, DistanceUnit unit) {
-<span class="fc" id="L314">        setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));</span>
-<span class="fc" id="L315">    }</span>
+    public void subtract(final double value, final DistanceUnit unit) {
+<span class="fc" id="L353">        setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L354">    }</span>
 
     /**
      * Subtracts provided distance value and unit and updates current distance instance.
+     *
      * @param value distance value to be subtracted.
-     * @param unit unit of distance value.
+     * @param unit  unit of distance value.
      */
-    public void subtract(Number value, DistanceUnit unit) {
-<span class="fc" id="L323">        setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));</span>
-<span class="fc" id="L324">    }</span>
+    public void subtract(final Number value, final DistanceUnit unit) {
+<span class="fc" id="L363">        setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L364">    }</span>
 
     /**
      * Subtracts provided distance and updates current distance.
+     *
      * @param distance distance to be subtracted.
      */
-    public void subtract(Distance distance) {
-<span class="fc" id="L331">        subtract(this, distance, this);</span>
-<span class="fc" id="L332">    }</span>
+    public void subtract(final Distance distance) {
+<span class="fc" id="L372">        subtract(this, distance, this);</span>
+<span class="fc" id="L373">    }</span>
 
     /**
      * Subtracts provided distance and stores the result into provided
      * distance.
-     * @param d distance to be subtracted.
+     *
+     * @param d      distance to be subtracted.
      * @param result instance where result will be stored.
      */
-    public void subtract(Distance d, Distance result) {
-<span class="fc" id="L341">        subtract(this, d, result);</span>
-<span class="fc" id="L342">    }</span>
+    public void subtract(final Distance d, final Distance result) {
+<span class="fc" id="L383">        subtract(this, d, result);</span>
+<span class="fc" id="L384">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

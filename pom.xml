@@ -7,6 +7,7 @@
     <artifactId>irurueta-units</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
+
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Library to manage different measurement units</description>
     <url>https://github.com/albertoirurueta/irurueta-units</url>
@@ -38,6 +39,13 @@
         </snapshotRepository>
     </distributionManagement>
 
+    <repositories>
+        <repository>
+            <id>maven-central-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <!-- dependencies for unit tests -->
         <dependency>
@@ -45,6 +53,7 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
             <scope>test</scope>
+            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
@@ -59,6 +68,7 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.7</maven.compiler.source>
@@ -282,9 +292,7 @@
                 <configuration>
                     <show>private</show>
                     <nohelp>true</nohelp>
-                    <links>
-                        <link>http://docs.oracle.com/javase/7/docs/api/</link>
-                    </links>
+                    <detectJavaApiLink>true</detectJavaApiLink>
                 </configuration>
             </plugin>
             <!-- adds unit tests report into site -->

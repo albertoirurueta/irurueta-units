@@ -15,42 +15,21 @@
  */
 package com.irurueta.units;
 
-import org.junit.*;
+import org.junit.Test;
 
 import java.util.Locale;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 public class UnitLocaleTest {
 
-    public UnitLocaleTest() { }
-
-    @BeforeClass
-    public static void setUpClass() { }
-
-    @AfterClass
-    public static void tearDownClass() { }
-
-    @Before
-    public void setUp() { }
-
-    @After
-    public void tearDown() { }
-
-    @Test
-    public void testConstructor() {
-        //noinspection all
-        assertNotNull(new UnitLocale());
-    }
-
     @Test
     public void testGetDefault() {
-        Locale defaultLocale = Locale.getDefault();
+        final Locale defaultLocale = Locale.getDefault();
         boolean isImperial = false;
-        if("US".equals(defaultLocale.getCountry()) ||
+        if ("US".equals(defaultLocale.getCountry()) ||
                 "LR".equals(defaultLocale.getCountry()) ||
-                "MM".equals(defaultLocale.getCountry())){
+                "MM".equals(defaultLocale.getCountry())) {
             isImperial = true;
         }
 

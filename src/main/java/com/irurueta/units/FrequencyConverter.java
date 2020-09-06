@@ -49,77 +49,92 @@ public class FrequencyConverter {
      * Constructor.
      * Prevents instantiation of helper class.
      */
-    FrequencyConverter() { }
+    private FrequencyConverter() {
+    }
 
     /**
      * Converts a frequency to provided output frequency unit.
-     * @param input input frequency to be converted.
-     * @param output output frequency where result will be store and containing
+     *
+     * @param input  input frequency to be converted.
+     * @param output output frequency where result will be stored and containing
      *               output unit.
      */
-    public static void convert(Frequency input, Frequency output) {
+    public static void convert(
+            final Frequency input, final Frequency output) {
         convert(input, output.getUnit(), output);
     }
 
     /**
      * Converts a frequency to requested output unit.
-     * @param input input frequency to be converted.
+     *
+     * @param input      input frequency to be converted.
      * @param outputUnit requested output unit.
      * @return converted frequency.
      */
-    public static Frequency convertAndReturnNew(Frequency input,
-                                                FrequencyUnit outputUnit) {
-        Frequency result = new Frequency();
+    public static Frequency convertAndReturnNew(
+            final Frequency input,
+            final FrequencyUnit outputUnit) {
+        final Frequency result = new Frequency();
         convert(input, outputUnit, result);
         return result;
     }
 
     /**
      * Converts and updates a frequency to requested output unit.
-     * @param frequency input frequency to be converted and updated.
+     *
+     * @param frequency  input frequency to be converted and updated.
      * @param outputUnit requested output unit.
      */
-    public static void convert(Frequency frequency, FrequencyUnit outputUnit) {
+    public static void convert(
+            final Frequency frequency, final FrequencyUnit outputUnit) {
         convert(frequency, outputUnit, frequency);
     }
 
     /**
      * Converts a frequency to requested output unit.
-     * @param input input frequency to be converted.
+     *
+     * @param input      input frequency to be converted.
      * @param outputUnit requested output unit.
-     * @param result frequency unit where result will be stored.
+     * @param result     frequency unit where result will be stored.
      */
-    public static void convert(Frequency input, FrequencyUnit outputUnit,
-                               Frequency result) {
-        Number value = convert(input.getValue(), input.getUnit(), outputUnit);
+    public static void convert(
+            final Frequency input, final FrequencyUnit outputUnit,
+            final Frequency result) {
+        final Number value = convert(input.getValue(), input.getUnit(),
+                outputUnit);
         result.setValue(value);
         result.setUnit(outputUnit);
     }
 
     /**
      * Converts a frequency value from input unit to provided output unit.
-     * @param input frequency value.
-     * @param inputUnit input frequency unit.
+     *
+     * @param input      frequency value.
+     * @param inputUnit  input frequency unit.
      * @param outputUnit output frequency unit.
      * @return converted frequency value.
      */
-    public static Number convert(Number input, FrequencyUnit inputUnit,
-                                 FrequencyUnit outputUnit) {
-        return new BigDecimal(convert(input.doubleValue(), inputUnit, outputUnit));
+    public static Number convert(
+            final Number input, final FrequencyUnit inputUnit,
+            final FrequencyUnit outputUnit) {
+        return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit,
+                outputUnit));
     }
 
     /**
      * Converts a frequency value from input unit to provided output unit.
-     * @param input frequency value.
-     * @param inputUnit input frequency unit.
+     *
+     * @param input      frequency value.
+     * @param inputUnit  input frequency unit.
      * @param outputUnit output frequency unit.
      * @return converted frequency value.
      */
-    public static double convert(double input, FrequencyUnit inputUnit,
-                                 FrequencyUnit outputUnit) {
+    public static double convert(
+            final double input, final FrequencyUnit inputUnit,
+            final FrequencyUnit outputUnit) {
         double hertz;
 
-        //convert to hertz's
+        // convert to hertz's
         switch (inputUnit) {
             case KILOHERTZ:
                 hertz = kiloHertzToHertz(input);
@@ -140,7 +155,7 @@ public class FrequencyConverter {
                 break;
         }
 
-        //convert from Hertz to required output unit
+        // convert from Hertz to required output unit
         switch (outputUnit) {
             case KILOHERTZ:
                 return hertzToKiloHertz(hertz);
@@ -159,73 +174,81 @@ public class FrequencyConverter {
 
     /**
      * Converts provided Hertz value to KiloHertz.
+     *
      * @param hertz hertz value.
      * @return same amount of frequency converted to KiloHertz.
      */
-    public static double hertzToKiloHertz(double hertz) {
+    public static double hertzToKiloHertz(final double hertz) {
         return hertz / HERTZS_PER_KILOHERTZ;
     }
 
     /**
      * Converts provided Hertz value to MegaHertz.
+     *
      * @param hertz hertz value.
      * @return same amount of frequency converted to MegaHertz.
      */
-    public static double hertzToMegaHertz(double hertz) {
+    public static double hertzToMegaHertz(final double hertz) {
         return hertz / HERTZ_PER_MEGAHERTZ;
     }
 
     /**
      * Converts provided Hertz value to GigaHertz.
+     *
      * @param hertz hertz value.
      * @return same amount of frequency converted to GigaHertz.
      */
-    public static double hertzToGigaHertz(double hertz) {
+    public static double hertzToGigaHertz(final double hertz) {
         return hertz / HERTZ_PER_GIGAHERTZ;
     }
 
     /**
      * Converts provided Hertz value to TeraHertz.
+     *
      * @param hertz hertz value.
      * @return same amount of frequency converted to TeraHertz.
      */
-    public static double hertzToTeraHertz(double hertz) {
+    public static double hertzToTeraHertz(final double hertz) {
         return hertz / HERTZ_PER_TERAHERTZ;
     }
 
     /**
      * Converts provided KiloHertz value to Hertz.
+     *
      * @param kiloHertz KiloHertz value.
      * @return same amount of frequency converted to Hertz.
      */
-    public static double kiloHertzToHertz(double kiloHertz) {
+    public static double kiloHertzToHertz(final double kiloHertz) {
         return kiloHertz * HERTZS_PER_KILOHERTZ;
     }
 
     /**
      * Converts provided MegaHertz value to Hertz.
+     *
      * @param megaHertz MegaHertz value.
      * @return same amount of frequency converted to Hertz.
      */
-    public static double megaHertzToHertz(double megaHertz) {
+    public static double megaHertzToHertz(final double megaHertz) {
         return megaHertz * HERTZ_PER_MEGAHERTZ;
     }
 
     /**
      * Converts provided GigaHertz value to Hertz.
+     *
      * @param gigaHertz GigaHertz value.
      * @return same amount of frequency converted to Hertz.
      */
-    public static double gigaHertzToHertz(double gigaHertz) {
+    public static double gigaHertzToHertz(final double gigaHertz) {
         return gigaHertz * HERTZ_PER_GIGAHERTZ;
     }
 
     /**
      * Converts provided TeraHertz value to Hertz.
+     *
      * @param teraHertz TeraHertz value.
      * @return same amount of frequency converted to Hertz.
      */
-    public static double teraHertzToHertz(double teraHertz) {
+    public static double teraHertzToHertz(final double teraHertz) {
         return teraHertz * HERTZ_PER_TERAHERTZ;
     }
 }

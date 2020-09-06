@@ -15,56 +15,35 @@
  */
 package com.irurueta.units;
 
-import org.junit.*;
+import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 public class FrequencyConverterTest {
 
-    private static final double HERTZS_PER_KILOHERTZ = 1e3;
+    private static final double HERTZ_PER_KILOHERTZ = 1e3;
     private static final double HERTZ_PER_MEGAHERTZ = 1e6;
     private static final double HERTZ_PER_GIGAHERTZ = 1e9;
     private static final double HERTZ_PER_TERAHERTZ = 1e12;
 
     private static final double ERROR = 1e-6;
 
-    public FrequencyConverterTest() { }
-
-    @BeforeClass
-    public static void setUpClass() { }
-
-    @AfterClass
-    public static void tearDownClass() { }
-
-    @Before
-    public void setUp() { }
-
-    @After
-    public void tearDown() { }
-
-    @Test
-    public void testConstructor() {
-        //noinspection all
-        assertNotNull(new FrequencyConverter());
-    }
-
     @Test
     public void testHertzKiloHertz() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
         assertEquals(FrequencyConverter.hertzToKiloHertz(inputValue),
-                inputValue / HERTZS_PER_KILOHERTZ, ERROR);
+                inputValue / HERTZ_PER_KILOHERTZ, ERROR);
         assertEquals(FrequencyConverter.kiloHertzToHertz(inputValue),
-                inputValue * HERTZS_PER_KILOHERTZ, ERROR);
+                inputValue * HERTZ_PER_KILOHERTZ, ERROR);
     }
 
     @Test
     public void testHertzMegaHertz() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
         assertEquals(FrequencyConverter.hertzToMegaHertz(inputValue),
                 inputValue / HERTZ_PER_MEGAHERTZ, ERROR);
@@ -74,7 +53,7 @@ public class FrequencyConverterTest {
 
     @Test
     public void testHertzGigaHertz() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
         assertEquals(FrequencyConverter.hertzToGigaHertz(inputValue),
                 inputValue / HERTZ_PER_GIGAHERTZ, ERROR);
@@ -84,7 +63,7 @@ public class FrequencyConverterTest {
 
     @Test
     public void testHertzTeraHertz() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
         assertEquals(FrequencyConverter.hertzToTeraHertz(inputValue),
                 inputValue / HERTZ_PER_TERAHERTZ, ERROR);
@@ -94,7 +73,7 @@ public class FrequencyConverterTest {
 
     @Test
     public void testConvertDouble() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
         assertEquals(FrequencyConverter.convert(inputValue,
                 FrequencyUnit.HERTZ, FrequencyUnit.HERTZ),
@@ -121,15 +100,15 @@ public class FrequencyConverterTest {
         assertEquals(FrequencyConverter.convert(inputValue,
                 FrequencyUnit.KILOHERTZ, FrequencyUnit.MEGAHERTZ),
                 FrequencyConverter.hertzToMegaHertz(
-                FrequencyConverter.kiloHertzToHertz(inputValue)), ERROR);
+                        FrequencyConverter.kiloHertzToHertz(inputValue)), ERROR);
         assertEquals(FrequencyConverter.convert(inputValue,
                 FrequencyUnit.KILOHERTZ, FrequencyUnit.GIGAHERTZ),
                 FrequencyConverter.hertzToGigaHertz(
-                FrequencyConverter.kiloHertzToHertz(inputValue)), ERROR);
+                        FrequencyConverter.kiloHertzToHertz(inputValue)), ERROR);
         assertEquals(FrequencyConverter.convert(inputValue,
                 FrequencyUnit.KILOHERTZ, FrequencyUnit.TERAHERTZ),
                 FrequencyConverter.hertzToTeraHertz(
-                FrequencyConverter.kiloHertzToHertz(inputValue)), ERROR);
+                        FrequencyConverter.kiloHertzToHertz(inputValue)), ERROR);
 
         assertEquals(FrequencyConverter.convert(inputValue,
                 FrequencyUnit.MEGAHERTZ, FrequencyUnit.HERTZ),
@@ -137,18 +116,18 @@ public class FrequencyConverterTest {
         assertEquals(FrequencyConverter.convert(inputValue,
                 FrequencyUnit.MEGAHERTZ, FrequencyUnit.KILOHERTZ),
                 FrequencyConverter.hertzToKiloHertz(
-                FrequencyConverter.megaHertzToHertz(inputValue)), ERROR);
+                        FrequencyConverter.megaHertzToHertz(inputValue)), ERROR);
         assertEquals(FrequencyConverter.convert(inputValue,
                 FrequencyUnit.MEGAHERTZ, FrequencyUnit.MEGAHERTZ),
                 inputValue, ERROR);
         assertEquals(FrequencyConverter.convert(inputValue,
                 FrequencyUnit.MEGAHERTZ, FrequencyUnit.GIGAHERTZ),
                 FrequencyConverter.hertzToGigaHertz(
-                FrequencyConverter.megaHertzToHertz(inputValue)), ERROR);
+                        FrequencyConverter.megaHertzToHertz(inputValue)), ERROR);
         assertEquals(FrequencyConverter.convert(inputValue,
                 FrequencyUnit.MEGAHERTZ, FrequencyUnit.TERAHERTZ),
                 FrequencyConverter.hertzToTeraHertz(
-                FrequencyConverter.megaHertzToHertz(inputValue)), ERROR);
+                        FrequencyConverter.megaHertzToHertz(inputValue)), ERROR);
 
         assertEquals(FrequencyConverter.convert(inputValue,
                 FrequencyUnit.GIGAHERTZ, FrequencyUnit.HERTZ),
@@ -156,18 +135,18 @@ public class FrequencyConverterTest {
         assertEquals(FrequencyConverter.convert(inputValue,
                 FrequencyUnit.GIGAHERTZ, FrequencyUnit.KILOHERTZ),
                 FrequencyConverter.hertzToKiloHertz(
-                FrequencyConverter.gigaHertzToHertz(inputValue)), ERROR);
+                        FrequencyConverter.gigaHertzToHertz(inputValue)), ERROR);
         assertEquals(FrequencyConverter.convert(inputValue,
                 FrequencyUnit.GIGAHERTZ, FrequencyUnit.MEGAHERTZ),
                 FrequencyConverter.hertzToMegaHertz(
-                FrequencyConverter.gigaHertzToHertz(inputValue)), ERROR);
+                        FrequencyConverter.gigaHertzToHertz(inputValue)), ERROR);
         assertEquals(FrequencyConverter.convert(inputValue,
                 FrequencyUnit.GIGAHERTZ, FrequencyUnit.GIGAHERTZ),
                 inputValue, ERROR);
         assertEquals(FrequencyConverter.convert(inputValue,
                 FrequencyUnit.GIGAHERTZ, FrequencyUnit.TERAHERTZ),
                 FrequencyConverter.hertzToTeraHertz(
-                FrequencyConverter.gigaHertzToHertz(inputValue)), ERROR);
+                        FrequencyConverter.gigaHertzToHertz(inputValue)), ERROR);
 
         assertEquals(FrequencyConverter.convert(inputValue,
                 FrequencyUnit.TERAHERTZ, FrequencyUnit.HERTZ),
@@ -175,15 +154,15 @@ public class FrequencyConverterTest {
         assertEquals(FrequencyConverter.convert(inputValue,
                 FrequencyUnit.TERAHERTZ, FrequencyUnit.KILOHERTZ),
                 FrequencyConverter.hertzToKiloHertz(
-                FrequencyConverter.teraHertzToHertz(inputValue)), ERROR);
+                        FrequencyConverter.teraHertzToHertz(inputValue)), ERROR);
         assertEquals(FrequencyConverter.convert(inputValue,
                 FrequencyUnit.TERAHERTZ, FrequencyUnit.MEGAHERTZ),
                 FrequencyConverter.hertzToMegaHertz(
-                FrequencyConverter.teraHertzToHertz(inputValue)), ERROR);
+                        FrequencyConverter.teraHertzToHertz(inputValue)), ERROR);
         assertEquals(FrequencyConverter.convert(inputValue,
                 FrequencyUnit.TERAHERTZ, FrequencyUnit.GIGAHERTZ),
                 FrequencyConverter.hertzToGigaHertz(
-                FrequencyConverter.teraHertzToHertz(inputValue)), ERROR);
+                        FrequencyConverter.teraHertzToHertz(inputValue)), ERROR);
         assertEquals(FrequencyConverter.convert(inputValue,
                 FrequencyUnit.TERAHERTZ, FrequencyUnit.TERAHERTZ),
                 inputValue, ERROR);
@@ -191,7 +170,7 @@ public class FrequencyConverterTest {
 
     @Test
     public void testConvertNumber() {
-        BigDecimal inputValue = new BigDecimal(new Random().nextDouble());
+        final BigDecimal inputValue = BigDecimal.valueOf(new Random().nextDouble());
 
         assertEquals(FrequencyConverter.convert(inputValue,
                 FrequencyUnit.HERTZ, FrequencyUnit.HERTZ).doubleValue(),
@@ -200,71 +179,71 @@ public class FrequencyConverterTest {
 
     @Test
     public void testConvertFrequency() {
-        double value = new Random().nextDouble();
-        Frequency inputFrequency = new Frequency(value, FrequencyUnit.KILOHERTZ);
+        final double value = new Random().nextDouble();
+        final Frequency inputFrequency = new Frequency(value, FrequencyUnit.KILOHERTZ);
 
-        Frequency outputFrequency = new Frequency();
+        final Frequency outputFrequency = new Frequency();
         FrequencyConverter.convert(inputFrequency, FrequencyUnit.HERTZ,
                 outputFrequency);
 
-        //check
+        // check
         assertEquals(inputFrequency.getValue().doubleValue(), value, 0.0);
         assertEquals(inputFrequency.getUnit(), FrequencyUnit.KILOHERTZ);
 
         assertEquals(outputFrequency.getUnit(), FrequencyUnit.HERTZ);
         assertEquals(outputFrequency.getValue().doubleValue(),
                 FrequencyConverter.convert(value, inputFrequency.getUnit(),
-                outputFrequency.getUnit()), 0.0);
+                        outputFrequency.getUnit()), 0.0);
     }
 
     @Test
     public void testConvertAndUpdateFrequency() {
-        double value = new Random().nextDouble();
-        Frequency frequency = new Frequency(value, FrequencyUnit.KILOHERTZ);
+        final double value = new Random().nextDouble();
+        final Frequency frequency = new Frequency(value, FrequencyUnit.KILOHERTZ);
 
         FrequencyConverter.convert(frequency, FrequencyUnit.HERTZ);
 
-        //check
+        // check
         assertEquals(frequency.getUnit(), FrequencyUnit.HERTZ);
         assertEquals(frequency.getValue().doubleValue(),
                 FrequencyConverter.convert(value, FrequencyUnit.KILOHERTZ,
-                FrequencyUnit.HERTZ), 0.0);
+                        FrequencyUnit.HERTZ), 0.0);
     }
 
     @Test
     public void testConvertAndReturnNewFrequency() {
-        double value = new Random().nextDouble();
-        Frequency inputFrequency = new Frequency(value, FrequencyUnit.KILOHERTZ);
+        final double value = new Random().nextDouble();
+        final Frequency inputFrequency = new Frequency(value, FrequencyUnit.KILOHERTZ);
 
-        Frequency outputFrequency = FrequencyConverter.convertAndReturnNew(
+        final Frequency outputFrequency = FrequencyConverter.convertAndReturnNew(
                 inputFrequency, FrequencyUnit.HERTZ);
 
-        //check
+        // check
         assertEquals(inputFrequency.getValue().doubleValue(), value, 0.0);
         assertEquals(inputFrequency.getUnit(), FrequencyUnit.KILOHERTZ);
 
         assertEquals(outputFrequency.getUnit(), FrequencyUnit.HERTZ);
         assertEquals(outputFrequency.getValue().doubleValue(),
                 FrequencyConverter.convert(value, inputFrequency.getUnit(),
-                outputFrequency.getUnit()), 0.0);
+                        outputFrequency.getUnit()), 0.0);
     }
 
     @Test
     public void testConvertToOutputFrequencyUnit() {
-        double value = new Random().nextDouble();
-        Frequency inputFrequency = new Frequency(value, FrequencyUnit.KILOHERTZ);
+        final double value = new Random().nextDouble();
+        final Frequency inputFrequency = new Frequency(value, FrequencyUnit.KILOHERTZ);
 
-        Frequency outputFrequency = new Frequency();
+        final Frequency outputFrequency = new Frequency();
         outputFrequency.setUnit(FrequencyUnit.HERTZ);
         FrequencyConverter.convert(inputFrequency, outputFrequency);
 
-        //check
+        // check
         assertEquals(inputFrequency.getValue().doubleValue(), value, 0.0);
         assertEquals(inputFrequency.getUnit(), FrequencyUnit.KILOHERTZ);
 
         assertEquals(outputFrequency.getUnit(), FrequencyUnit.HERTZ);
         assertEquals(outputFrequency.getValue().doubleValue(),
                 FrequencyConverter.convert(value, inputFrequency.getUnit(),
-                outputFrequency.getUnit()), 0.0);
+                        outputFrequency.getUnit()), 0.0);
     }
 }

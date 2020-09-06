@@ -28,26 +28,12 @@ import static org.junit.Assert.*;
 
 public class FrequencyFormatterTest {
 
-    public FrequencyFormatterTest() { }
-
-    @BeforeClass
-    public static void setUpClass() { }
-
-    @AfterClass
-    public static void tearDownClass() { }
-
-    @Before
-    public void setUp() { }
-
-    @After
-    public void tearDown() { }
-
     @Test
     public void testConstructor() {
-        //test empty constructor
+        // test empty constructor
         FrequencyFormatter formatter = new FrequencyFormatter();
 
-        //check
+        // check
         assertEquals(formatter.getLocale(), Locale.getDefault());
         assertEquals(formatter.getMaximumFractionDigits(),
                 NumberFormat.getInstance().getMaximumFractionDigits());
@@ -67,11 +53,11 @@ public class FrequencyFormatterTest {
         assertEquals(formatter.getValueAndUnitFormatPattern(),
                 MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
 
-        //test constructor with locale
-        Locale locale = new Locale("es", "ES");
+        // test constructor with locale
+        final Locale locale = new Locale("es", "ES");
         formatter = new FrequencyFormatter(locale);
 
-        //check
+        // check
         assertEquals(formatter.getLocale(), locale);
         assertEquals(formatter.getMaximumFractionDigits(),
                 NumberFormat.getInstance(locale).getMaximumFractionDigits());
@@ -92,20 +78,21 @@ public class FrequencyFormatterTest {
                 MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
 
 
-        //force IllegalArgumentException
+        // force IllegalArgumentException
         formatter = null;
         try {
             formatter = new FrequencyFormatter((Locale) null);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
         assertNull(formatter);
 
 
-        //test copy constructor
+        // test copy constructor
         formatter = new FrequencyFormatter(locale);
-        FrequencyFormatter formatter2 = new FrequencyFormatter(formatter);
+        final FrequencyFormatter formatter2 = new FrequencyFormatter(formatter);
 
-        //check
+        // check
         assertEquals(formatter2.getLocale(), locale);
         assertEquals(formatter2.getMaximumFractionDigits(),
                 NumberFormat.getInstance(locale).getMaximumFractionDigits());
@@ -127,26 +114,27 @@ public class FrequencyFormatterTest {
 
         formatter = null;
         try {
-            //noinspection all
-            formatter = new FrequencyFormatter((FrequencyFormatter)null);
+            // noinspection ConstantConditions
+            formatter = new FrequencyFormatter((FrequencyFormatter) null);
             fail("NullPointerException expected but not thrown");
-        } catch (NullPointerException ignore) { }
+        } catch (final NullPointerException ignore) {
+        }
         assertNull(formatter);
     }
 
     @Test
-    public void testClone() {
-        FrequencyFormatter formatter1 = new FrequencyFormatter();
-        FrequencyFormatter formatter2 = (FrequencyFormatter) formatter1.clone();
+    public void testClone() throws CloneNotSupportedException {
+        final FrequencyFormatter formatter1 = new FrequencyFormatter();
+        final FrequencyFormatter formatter2 = (FrequencyFormatter) formatter1.clone();
 
-        //check
+        // check
         assertNotSame(formatter1, formatter2);
         assertEquals(formatter1, formatter2);
 
-        //test after initializing internal number format
+        // test after initializing internal number format
         assertNotNull(formatter1.format(0.5, FrequencyUnit.HERTZ,
                 new StringBuffer(), new FieldPosition(0)));
-        FrequencyFormatter formatter3 = (FrequencyFormatter) formatter1.clone();
+        final FrequencyFormatter formatter3 = (FrequencyFormatter) formatter1.clone();
 
         assertNotSame(formatter1, formatter3);
         assertEquals(formatter1, formatter3);
@@ -154,26 +142,25 @@ public class FrequencyFormatterTest {
 
     @Test
     public void testEquals() {
-        FrequencyFormatter formatter1 = new FrequencyFormatter(Locale.ENGLISH);
-        FrequencyFormatter formatter2 = new FrequencyFormatter(Locale.ENGLISH);
-        FrequencyFormatter formatter3 = new FrequencyFormatter(Locale.FRENCH);
+        final FrequencyFormatter formatter1 = new FrequencyFormatter(Locale.ENGLISH);
+        final FrequencyFormatter formatter2 = new FrequencyFormatter(Locale.ENGLISH);
+        final FrequencyFormatter formatter3 = new FrequencyFormatter(Locale.FRENCH);
 
-        //check
+        // check
         assertEquals(formatter1, formatter1);
         assertEquals(formatter1, formatter2);
         assertNotEquals(formatter1, formatter3);
 
         assertNotEquals(formatter1, new Object());
 
-        //noinspection all
-        assertFalse(formatter1.equals(null));
+        assertNotEquals(null, formatter1);
     }
 
     @Test
     public void testHashCode() {
-        FrequencyFormatter formatter1 = new FrequencyFormatter(Locale.ENGLISH);
-        FrequencyFormatter formatter2 = new FrequencyFormatter(Locale.ENGLISH);
-        FrequencyFormatter formatter3 = new FrequencyFormatter(Locale.FRENCH);
+        final FrequencyFormatter formatter1 = new FrequencyFormatter(Locale.ENGLISH);
+        final FrequencyFormatter formatter2 = new FrequencyFormatter(Locale.ENGLISH);
+        final FrequencyFormatter formatter3 = new FrequencyFormatter(Locale.FRENCH);
 
         assertEquals(formatter1.hashCode(), formatter1.hashCode());
         assertEquals(formatter1.hashCode(), formatter2.hashCode());
@@ -182,10 +169,10 @@ public class FrequencyFormatterTest {
 
     @Test
     public void testFormatNumber() {
-        double value = 5.50;
-        Locale l = new Locale("es", "ES");
+        final double value = 5.50;
+        final Locale l = new Locale("es", "ES");
 
-        FrequencyFormatter formatter = new FrequencyFormatter(l);
+        final FrequencyFormatter formatter = new FrequencyFormatter(l);
 
         assertEquals(formatter.format(new BigDecimal(value),
                 FrequencyUnit.HERTZ), "5,5 Hz");
@@ -201,10 +188,10 @@ public class FrequencyFormatterTest {
 
     @Test
     public void testFormatNumberAndStringBuffer() {
-        double value = 5.50;
-        Locale l = new Locale("es", "ES");
+        final double value = 5.50;
+        final Locale l = new Locale("es", "ES");
 
-        FrequencyFormatter formatter = new FrequencyFormatter(l);
+        final FrequencyFormatter formatter = new FrequencyFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
         assertEquals(formatter.format(new BigDecimal(value),
@@ -234,10 +221,10 @@ public class FrequencyFormatterTest {
 
     @Test
     public void testFormatDouble() {
-        double value = 5.50;
-        Locale l = new Locale("es", "ES");
+        final double value = 5.50;
+        final Locale l = new Locale("es", "ES");
 
-        FrequencyFormatter formatter = new FrequencyFormatter(l);
+        final FrequencyFormatter formatter = new FrequencyFormatter(l);
 
         assertEquals(formatter.format(value, FrequencyUnit.HERTZ),
                 "5,5 Hz");
@@ -253,10 +240,10 @@ public class FrequencyFormatterTest {
 
     @Test
     public void testFormatDoubleAndStringBuffer() {
-        double value = 5.50;
-        Locale l = new Locale("es", "ES");
+        final double value = 5.50;
+        final Locale l = new Locale("es", "ES");
 
-        FrequencyFormatter formatter = new FrequencyFormatter(l);
+        final FrequencyFormatter formatter = new FrequencyFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
         assertEquals(formatter.format(value, FrequencyUnit.HERTZ, buffer,
@@ -281,10 +268,10 @@ public class FrequencyFormatterTest {
 
     @Test
     public void testFormatFrequency() {
-        double value = 5.50;
-        Locale l = new Locale("es", "ES");
+        final double value = 5.50;
+        final Locale l = new Locale("es", "ES");
 
-        FrequencyFormatter formatter = new FrequencyFormatter(l);
+        final FrequencyFormatter formatter = new FrequencyFormatter(l);
 
         assertEquals(formatter.format(new Frequency(value, FrequencyUnit.HERTZ)),
                 "5,5 Hz");
@@ -300,10 +287,10 @@ public class FrequencyFormatterTest {
 
     @Test
     public void testFormatFrequencyAndStringBuffer() {
-        double value = 5.50;
-        Locale l = new Locale("es", "ES");
+        final double value = 5.50;
+        final Locale l = new Locale("es", "ES");
 
-        FrequencyFormatter formatter = new FrequencyFormatter(l);
+        final FrequencyFormatter formatter = new FrequencyFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
         assertEquals(formatter.format(new Frequency(value, FrequencyUnit.HERTZ),
@@ -328,28 +315,28 @@ public class FrequencyFormatterTest {
 
     @Test
     public void testFormatAndConvertNumber() {
-        Locale l = new Locale("es", "ES");
+        final Locale l = new Locale("es", "ES");
 
-        FrequencyFormatter formatter = new FrequencyFormatter(l);
+        final FrequencyFormatter formatter = new FrequencyFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
                 FrequencyUnit.HERTZ), "5,5 Hz");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5500.00),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5500.00"),
                 FrequencyUnit.HERTZ), "5,5 KHz");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5500000.00),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5500000.00"),
                 FrequencyUnit.HERTZ), "5,5 MHz");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5500.00),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5500.00"),
                 FrequencyUnit.MEGAHERTZ), "5,5 GHz");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5500000.00),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5500000.00"),
                 FrequencyUnit.MEGAHERTZ), "5,5 THz");
     }
 
     @Test
-    public void testFormatAndConvertDouble()  {
-        Locale l = new Locale("es", "ES");
+    public void testFormatAndConvertDouble() {
+        final Locale l = new Locale("es", "ES");
 
-        FrequencyFormatter formatter = new FrequencyFormatter(l);
+        final FrequencyFormatter formatter = new FrequencyFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
         assertEquals(formatter.formatAndConvert(5.50,
@@ -366,9 +353,9 @@ public class FrequencyFormatterTest {
 
     @Test
     public void testFormatAndConvertFrequency() {
-        Locale l = new Locale("es", "ES");
+        final Locale l = new Locale("es", "ES");
 
-        FrequencyFormatter formatter = new FrequencyFormatter(l);
+        final FrequencyFormatter formatter = new FrequencyFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
         assertEquals(formatter.formatAndConvert(new Frequency(5.50,
@@ -385,28 +372,28 @@ public class FrequencyFormatterTest {
 
     @Test
     public void testFormatAndConvertNumberAndUnitSystem() {
-        Locale l = new Locale("es", "ES");
+        final Locale l = new Locale("es", "ES");
 
-        FrequencyFormatter formatter = new FrequencyFormatter(l);
+        final FrequencyFormatter formatter = new FrequencyFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
                 FrequencyUnit.HERTZ, UnitSystem.METRIC), "5,5 Hz");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5500.00),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5500.00"),
                 FrequencyUnit.HERTZ, UnitSystem.METRIC), "5,5 KHz");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5500000.00),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5500000.00"),
                 FrequencyUnit.HERTZ, UnitSystem.METRIC), "5,5 MHz");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5500.00),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5500.00"),
                 FrequencyUnit.MEGAHERTZ, UnitSystem.METRIC), "5,5 GHz");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5500000.00),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5500000.00"),
                 FrequencyUnit.MEGAHERTZ, UnitSystem.METRIC), "5,5 THz");
     }
 
     @Test
     public void testFormatAndConvertDoubleAndUnitSystem() {
-        Locale l = new Locale("es", "ES");
+        final Locale l = new Locale("es", "ES");
 
-        FrequencyFormatter formatter = new FrequencyFormatter(l);
+        final FrequencyFormatter formatter = new FrequencyFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
         assertEquals(formatter.formatAndConvert(5.50,
@@ -423,9 +410,9 @@ public class FrequencyFormatterTest {
 
     @Test
     public void testFormatAndConvertFrequencyAndUnitSystem() {
-        Locale l = new Locale("es", "ES");
+        final Locale l = new Locale("es", "ES");
 
-        FrequencyFormatter formatter = new FrequencyFormatter(l);
+        final FrequencyFormatter formatter = new FrequencyFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
         assertEquals(formatter.formatAndConvert(new Frequency(5.50,
@@ -442,147 +429,148 @@ public class FrequencyFormatterTest {
 
     @Test
     public void testFormatAndConvertMetric() {
-        Locale l = new Locale("es", "ES");
+        final Locale l = new Locale("es", "ES");
 
-        FrequencyFormatter formatter = new FrequencyFormatter(l);
+        final FrequencyFormatter formatter = new FrequencyFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal(5.50),
+        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5.50"),
                 FrequencyUnit.HERTZ), "5,5 Hz");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal(5500.00),
+        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5500.00"),
                 FrequencyUnit.HERTZ), "5,5 KHz");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal(5500000.00),
+        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5500000.00"),
                 FrequencyUnit.HERTZ), "5,5 MHz");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal(5500.00),
+        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5500.00"),
                 FrequencyUnit.MEGAHERTZ), "5,5 GHz");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal(5500000.00),
+        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5500000.00"),
                 FrequencyUnit.MEGAHERTZ), "5,5 THz");
     }
 
     @Test
     public void testGetAvailableLocales() {
-        Locale[] locales = FrequencyFormatter.getAvailableLocales();
+        final Locale[] locales = FrequencyFormatter.getAvailableLocales();
         assertArrayEquals(locales, NumberFormat.getAvailableLocales());
     }
 
     @Test
     public void testGetSetMaximumFractionDigits() {
-        FrequencyFormatter formatter = new FrequencyFormatter();
+        final FrequencyFormatter formatter = new FrequencyFormatter();
 
         assertEquals(formatter.getMaximumFractionDigits(),
                 NumberFormat.getInstance().getMaximumFractionDigits());
 
-        //set new value
+        // set new value
         formatter.setMaximumFractionDigits(2);
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.getMaximumFractionDigits(), 2);
     }
 
     @Test
     public void testGetSetMaximumIntegerDigits() {
-        FrequencyFormatter formatter = new FrequencyFormatter();
+        final FrequencyFormatter formatter = new FrequencyFormatter();
 
         assertEquals(formatter.getMaximumIntegerDigits(),
                 NumberFormat.getInstance().getMaximumIntegerDigits());
 
-        //set new value
+        // set new value
         formatter.setMaximumIntegerDigits(2);
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.getMaximumIntegerDigits(), 2);
     }
 
     @Test
     public void testGetSetMinimumFractionDigits() {
-        FrequencyFormatter formatter = new FrequencyFormatter();
+        final FrequencyFormatter formatter = new FrequencyFormatter();
 
         assertEquals(formatter.getMinimumFractionDigits(),
                 NumberFormat.getInstance().getMinimumFractionDigits());
 
-        //set new value
+        // set new value
         formatter.setMinimumFractionDigits(2);
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.getMinimumFractionDigits(), 2);
     }
 
     @Test
     public void testGetSetMinimumIntegerDigits() {
-        FrequencyFormatter formatter = new FrequencyFormatter();
+        final FrequencyFormatter formatter = new FrequencyFormatter();
 
         assertEquals(formatter.getMinimumIntegerDigits(),
                 NumberFormat.getInstance().getMinimumIntegerDigits());
 
-        //set new value
+        // set new value
         formatter.setMinimumIntegerDigits(2);
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.getMinimumIntegerDigits(), 2);
     }
 
     @Test
     public void testGetSetRoundingMode() {
-        FrequencyFormatter formatter = new FrequencyFormatter();
+        final FrequencyFormatter formatter = new FrequencyFormatter();
 
         assertEquals(formatter.getRoundingMode(),
                 NumberFormat.getInstance().getRoundingMode());
 
-        //set new value
+        // set new value
         formatter.setRoundingMode(RoundingMode.UNNECESSARY);
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.getRoundingMode(), RoundingMode.UNNECESSARY);
     }
 
     @Test
     public void testIsSetGroupingUsed() {
-        FrequencyFormatter formatter = new FrequencyFormatter();
+        final FrequencyFormatter formatter = new FrequencyFormatter();
 
         assertEquals(formatter.isGroupingUsed(),
                 NumberFormat.getInstance().isGroupingUsed());
 
-        //set new value
+        // set new value
         formatter.setGroupingUsed(!formatter.isGroupingUsed());
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.isGroupingUsed(),
                 !NumberFormat.getInstance().isGroupingUsed());
     }
 
     @Test
     public void testIsSetParseIntegerOnly() {
-        FrequencyFormatter formatter = new FrequencyFormatter();
+        final FrequencyFormatter formatter = new FrequencyFormatter();
 
         assertEquals(formatter.isParseIntegerOnly(),
                 NumberFormat.getInstance().isParseIntegerOnly());
 
-        //set new value
+        // set new value
         formatter.setParseIntegerOnly(!formatter.isParseIntegerOnly());
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.isParseIntegerOnly(),
                 !NumberFormat.getInstance().isParseIntegerOnly());
     }
 
     @Test
     public void testGetSetValueAndUnitFormatPattern() {
-        FrequencyFormatter formatter = new FrequencyFormatter();
+        final FrequencyFormatter formatter = new FrequencyFormatter();
 
         assertEquals(formatter.getValueAndUnitFormatPattern(),
                 MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
 
-        //new value
+        // new value
         formatter.setValueAndUnitFormatPattern("{0}{1}");
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.getValueAndUnitFormatPattern(), "{0}{1}");
 
-        //force IllegalArgumentException
+        // force IllegalArgumentException
         try {
             formatter.setValueAndUnitFormatPattern(null);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
     }
 
     @Test
@@ -598,7 +586,7 @@ public class FrequencyFormatterTest {
 
     @Test
     public void testIsValidUnit() {
-        FrequencyFormatter formatter = new FrequencyFormatter();
+        final FrequencyFormatter formatter = new FrequencyFormatter();
 
         assertTrue(formatter.isValidUnit("Hz"));
         assertTrue(formatter.isValidUnit("Hz "));
@@ -620,7 +608,7 @@ public class FrequencyFormatterTest {
 
     @Test
     public void testIsValidMeasurement() {
-        FrequencyFormatter formatter = new FrequencyFormatter(
+        final FrequencyFormatter formatter = new FrequencyFormatter(
                 new Locale("es", "ES"));
 
         String text = "5,5 Hz";
@@ -644,7 +632,7 @@ public class FrequencyFormatterTest {
 
     @Test
     public void testIsMetricUnit() {
-        FrequencyFormatter formatter = new FrequencyFormatter(
+        final FrequencyFormatter formatter = new FrequencyFormatter(
                 new Locale("es", "ES"));
 
         String text = "5,5 Hz";
@@ -665,7 +653,7 @@ public class FrequencyFormatterTest {
 
     @Test
     public void testIsImperialUnit() {
-        FrequencyFormatter formatter = new FrequencyFormatter(
+        final FrequencyFormatter formatter = new FrequencyFormatter(
                 new Locale("es", "ES"));
 
         String text = "5,5 Hz";
@@ -686,7 +674,7 @@ public class FrequencyFormatterTest {
 
     @Test
     public void testGetUnitSystemFromSource() {
-        FrequencyFormatter formatter = new FrequencyFormatter(
+        final FrequencyFormatter formatter = new FrequencyFormatter(
                 new Locale("es", "ES"));
 
         String text = "5,5 Hz";
@@ -710,7 +698,7 @@ public class FrequencyFormatterTest {
 
     @Test
     public void testParse() throws ParseException, UnknownUnitException {
-        FrequencyFormatter formatter = new FrequencyFormatter(
+        final FrequencyFormatter formatter = new FrequencyFormatter(
                 new Locale("es", "ES"));
 
         String text = "5,5 Hz";
@@ -738,23 +726,25 @@ public class FrequencyFormatterTest {
         assertEquals(f.getValue().doubleValue(), 5.5, 0.0);
         assertEquals(f.getUnit(), FrequencyUnit.TERAHERTZ);
 
-        //Force UnknownUnitException
+        // Force UnknownUnitException
         text = "5,5 s";
         try {
             formatter.parse(text);
             fail("UnknownUnitException expected but not thrown");
-        } catch (UnknownUnitException ignore) { }
+        } catch (final UnknownUnitException ignore) {
+        }
 
-        //Force ParseException
+        // Force ParseException
         try {
             formatter.parse("m");
             fail("ParseException expected but not thrown");
-        } catch (ParseException ignore) { }
+        } catch (final ParseException ignore) {
+        }
     }
 
     @Test
     public void testFindUnit() {
-        FrequencyFormatter formatter = new FrequencyFormatter(
+        final FrequencyFormatter formatter = new FrequencyFormatter(
                 new Locale("es", "ES"));
 
         String text = "5,5 Hz";
@@ -778,7 +768,7 @@ public class FrequencyFormatterTest {
 
     @Test
     public void testGetUnitSymbol() {
-        FrequencyFormatter formatter = new FrequencyFormatter();
+        final FrequencyFormatter formatter = new FrequencyFormatter();
 
         assertEquals(formatter.getUnitSymbol(FrequencyUnit.HERTZ),
                 FrequencyFormatter.HERTZ);

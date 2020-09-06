@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.irurueta.units;
 
 import java.text.MessageFormat;
@@ -79,50 +80,42 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> implement
 
     /**
      * Constructor with locale.
+     *
      * @param locale locale.
      * @throws IllegalArgumentException if locale is null.
      */
-    public AngleFormatter(Locale locale) {
+    public AngleFormatter(final Locale locale) {
         super(locale);
     }
 
     /**
      * Copy constructor.
+     *
      * @param formatter input instance to copy from.
      * @throws NullPointerException if provided formatter is null.
      */
-    public AngleFormatter(AngleFormatter formatter) {
+    public AngleFormatter(final AngleFormatter formatter) {
         this(formatter.getLocale());
         mDegreesAndMinutesPattern = formatter.mDegreesAndMinutesPattern;
         mDegreesMinutesAndSecondsPattern = formatter.mDegreesMinutesAndSecondsPattern;
     }
 
     /**
-     * Clones this angle formatter.
-     * @return a copy of this angle formatter.
-     */
-    @Override
-    public Object clone() {
-        AngleFormatter copy = new AngleFormatter();
-        return internalClone(copy);
-    }
-
-    /**
-     * Determines if two angle formatters are equal by comparing all of its internal
-     * parameters.
+     * Determines if two angle formatters are equal by comparing all of its internal parameters.
+     *
      * @param obj another object to compare.
      * @return true if provided object is assumed to be equal to this instance.
      */
     @Override
-    public boolean equals(Object obj) {
-        boolean equals = super.equals(obj);
+    public boolean equals(final Object obj) {
+        final boolean equals = super.equals(obj);
         return (obj instanceof AngleFormatter) && equals;
     }
 
     /**
-     * Hash code generated for this instance.
-     * Hash codes can be internally used by some collections to coarsely compare objects.
-     * This implementation only calls parent implementation to avoid static analyzer warning.
+     * Hash code generated for this instance. Hash codes can be internally used by some collections to coarsely
+     * compare objects. This implementation only calls parent implementation to avoid static analyzer warning.
+     *
      * @return hash code.
      */
     @Override
@@ -131,36 +124,39 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> implement
     }
 
     /**
-     * Gets unit system for detected unit into provided string representation
-     * of a measurement.
+     * Gets unit system for detected unit into provided string representation of a measurement.
+     *
      * @param source a measurement string representation to be checked.
      * @return a unit system (metric) or null if unit cannot be determined.
      */
     @Override
-    public UnitSystem getUnitSystem(String source) {
-        AngleUnit unit = findUnit(source);
+    public UnitSystem getUnitSystem(final String source) {
+        final AngleUnit unit = findUnit(source);
         return unit != null ? UnitSystem.METRIC : null;
     }
 
     /**
      * Parses provided string and tries to determine an angle value and unit.
+     *
      * @param source a string to be parsed.
      * @return an angle containing a value and unit.
-     * @throws ParseException if provided string cannot be parsed.
+     * @throws ParseException       if provided string cannot be parsed.
      * @throws UnknownUnitException if unit cannot be determined.
      */
     @Override
-    public Angle parse(String source) throws ParseException, UnknownUnitException {
+    public Angle parse(final String source)
+            throws ParseException, UnknownUnitException {
         return internalParse(source, new Angle());
     }
 
     /**
      * Attempts to determine an angle unit within a measurement string representation.
+     *
      * @param source an angle measurement string representation.
      * @return an angle unit, or null if none can be determined.
      */
     @Override
-    public AngleUnit findUnit(String source) {
+    public AngleUnit findUnit(final String source) {
         if (source.contains(DEGREE + " ") || source.endsWith(DEGREE)) {
             return AngleUnit.DEGREES;
         }
@@ -171,47 +167,48 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> implement
     }
 
     /**
-     * Formats and converts provided angle value and unit using metric system.
-     * This implementation ignores provided unit system.
-     * @param value a measurment value.
-     * @param unit a measurement unit.
+     * Formats and converts provided angle value and unit using metric system. This implementation ignores provided
+     * unit system.
+     *
+     * @param value  a measurment value.
+     * @param unit   a measurement unit.
      * @param system ignored.
      * @return a string representation of angle value and unit.
      */
     @Override
-    public String formatAndConvert(Number value, AngleUnit unit, UnitSystem system) {
+    public String formatAndConvert(
+            final Number value, final AngleUnit unit,
+            final UnitSystem system) {
         return format(value, unit);
     }
 
     /**
      * Returns unit string representation.
+     *
      * @param unit an angle unit.
      * @return its string representation.
      */
     @Override
     @SuppressWarnings("Duplicates")
-    public String getUnitSymbol(AngleUnit unit) {
-        String unitStr;
+    public String getUnitSymbol(final AngleUnit unit) {
         switch (unit) {
             case DEGREES:
-                unitStr = DEGREE;
-                break;
+                return DEGREE;
             case RADIANS:
             default:
-                unitStr = RADIAN;
-                break;
+                return RADIAN;
         }
-        return unitStr;
     }
 
     /**
      * Formats provided angle into degrees and decimal minutes.
+     *
      * @param angle angle to be formatted.
-     * @return string representation of provided angle expressed as degrees and
-     * decimal minutes.
+     * @return string representation of provided angle expressed as degrees and decimal minutes.
      */
-    public String formatDegreesAndMinutes(Angle angle) {
-        double[] degreesAndMinutes = AngleConverter.toDegreesAndMinutes(angle);
+    public String formatDegreesAndMinutes(final Angle angle) {
+        final double[] degreesAndMinutes = AngleConverter.toDegreesAndMinutes(
+                angle);
         return MessageFormat.format(DEGREES_AND_MINUTES_MESSAGE_PATTERN,
                 mNumberFormat.format(degreesAndMinutes[0]),
                 mNumberFormat.format(degreesAndMinutes[1]));
@@ -219,12 +216,12 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> implement
 
     /**
      * Formats provided angle into degrees, minutes and decimal seconds.
+     *
      * @param angle angle to be formatted.
-     * @return string representation of provided angle expressed as degrees,
-     * minutes and decimal seconds.
+     * @return string representation of provided angle expressed as degrees, minutes and decimal seconds.
      */
-    public String formatDegreesMinutesAndSeconds(Angle angle) {
-        double[] degreesMinutesAndSeconds =
+    public String formatDegreesMinutesAndSeconds(final Angle angle) {
+        final double[] degreesMinutesAndSeconds =
                 AngleConverter.toDegreesMinutesAndSeconds(angle);
         return MessageFormat.format(DEGREES_MINUTES_AND_SECONDS_MESSAGE_PATTERN,
                 mNumberFormat.format(degreesMinutesAndSeconds[0]),
@@ -233,67 +230,84 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> implement
     }
 
     /**
-     * Parses provided string representation using degrees and decimal minutes format.
-     * Note: decimals are not accepted on degrees value.
+     * Parses provided string representation using degrees and decimal minutes format. Note: decimals are not
+     * accepted on degrees value.
+     *
      * @param source string to be parsed.
      * @return parsed angle.
-     * @throws ParseException if parsing fails.
+     * @throws ParseException       if parsing fails.
      * @throws UnknownUnitException if format is not recognized.
      */
     @SuppressWarnings("Duplicates")
-    public Angle parseDegreesAndMinutes(CharSequence source) throws ParseException,
-            UnknownUnitException{
+    public Angle parseDegreesAndMinutes(final CharSequence source)
+            throws ParseException, UnknownUnitException {
         if (mDegreesAndMinutesPattern == null) {
             mDegreesAndMinutesPattern = Pattern.compile(DEGREES_AND_MINUTES_PATTERN);
         }
 
-        Matcher matcher = mDegreesAndMinutesPattern.matcher(source);
+        final Matcher matcher = mDegreesAndMinutesPattern.matcher(source);
         if (!matcher.matches()) {
             throw new UnknownUnitException();
         }
 
-        String degreeString = matcher.group(1);
-        String minuteString = matcher.group(3);
+        final String degreeString = matcher.group(1);
+        final String minuteString = matcher.group(3);
 
-        Number degree = mNumberFormat.parse(degreeString);
-        Number minute = mNumberFormat.parse(minuteString);
+        final Number degree = mNumberFormat.parse(degreeString);
+        final Number minute = mNumberFormat.parse(minuteString);
 
-        double angle = AngleConverter.fromDegreesAndMinutes(degree.intValue(),
-                minute.doubleValue(), AngleUnit.DEGREES);
+        final double angle = AngleConverter.fromDegreesAndMinutes(
+                degree.intValue(), minute.doubleValue(),
+                AngleUnit.DEGREES);
         return new Angle(angle, AngleUnit.DEGREES);
     }
 
     /**
-     * Parses provided string representation using degrees, minutes and decimal
-     * seconds format.
+     * Parses provided string representation using degrees, minutes and decimal seconds format.
+     *
      * @param source string to be parsed.
      * @return parsed angle.
-     * @throws ParseException if parsing fails.
+     * @throws ParseException       if parsing fails.
      * @throws UnknownUnitException if format is not recognized.
      */
     @SuppressWarnings("Duplicates")
-    public Angle parseDegreesMinutesAndSeconds(CharSequence source)
-            throws ParseException, UnknownUnitException {
+    public Angle parseDegreesMinutesAndSeconds(
+            final CharSequence source) throws ParseException,
+            UnknownUnitException {
         if (mDegreesMinutesAndSecondsPattern == null) {
             mDegreesMinutesAndSecondsPattern = Pattern.compile(
                     DEGREES_MINUTES_AND_SECONDS_PATTERN);
         }
 
-        Matcher matcher = mDegreesMinutesAndSecondsPattern.matcher(source);
+        final Matcher matcher = mDegreesMinutesAndSecondsPattern.matcher(
+                source);
         if (!matcher.matches()) {
             throw new UnknownUnitException();
         }
 
-        String degreeString = matcher.group(1);
-        String minuteString = matcher.group(3);
-        String secondString = matcher.group(5);
+        final String degreeString = matcher.group(1);
+        final String minuteString = matcher.group(3);
+        final String secondString = matcher.group(5);
 
-        Number degree = mNumberFormat.parse(degreeString);
-        Number minute = mNumberFormat.parse(minuteString);
-        Number second = mNumberFormat.parse(secondString);
+        final Number degree = mNumberFormat.parse(degreeString);
+        final Number minute = mNumberFormat.parse(minuteString);
+        final Number second = mNumberFormat.parse(secondString);
 
-        double angle = AngleConverter.fromDegreesMinutesAndSeconds(degree.intValue(),
-                minute.intValue(), second.doubleValue(), AngleUnit.DEGREES);
+        final double angle = AngleConverter.fromDegreesMinutesAndSeconds(
+                degree.intValue(), minute.intValue(),
+                second.doubleValue(), AngleUnit.DEGREES);
         return new Angle(angle, AngleUnit.DEGREES);
+    }
+
+    /**
+     * Clones this angle formatter.
+     *
+     * @return a copy of this angle formatter.
+     * @throws CloneNotSupportedException if clone fails for any reason.
+     */
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        final AngleFormatter copy = (AngleFormatter) super.clone();
+        return internalClone(copy);
     }
 }

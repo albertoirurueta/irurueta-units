@@ -30,26 +30,29 @@ public class UnitsException extends Exception {
 
     /**
      * Constructor with String containing message.
+     *
      * @param message message indicating the cause of the exception.
      */
-    public UnitsException(String message) {
+    public UnitsException(final String message) {
         super(message);
     }
 
     /**
      * Constructor with message and cause.
+     *
      * @param message message describing the cause of the exception.
-     * @param cause instance containing the cause of the exception.
+     * @param cause   instance containing the cause of the exception.
      */
-    public UnitsException(String message, Throwable cause) {
+    public UnitsException(final String message, final Throwable cause) {
         super(message, cause);
     }
 
     /**
      * Constructor with cause.
+     *
      * @param cause instance containing the cause of the exception.
      */
-    public UnitsException(Throwable cause) {
+    public UnitsException(final Throwable cause) {
         super(cause);
     }
 }

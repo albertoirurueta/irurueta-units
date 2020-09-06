@@ -59,40 +59,33 @@ public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit>
 
     /**
      * Constructor with locale.
+     *
      * @param locale locale.
      * @throws IllegalArgumentException if locale is null.
      */
-    public SpeedFormatter(Locale locale) {
+    public SpeedFormatter(final Locale locale) {
         super(locale);
     }
 
     /**
      * Copy constructor.
+     *
      * @param formatter input instance to copy from.
      * @throws NullPointerException if provided formatter is null.
      */
-    public SpeedFormatter(SpeedFormatter formatter) {
+    public SpeedFormatter(final SpeedFormatter formatter) {
         this(formatter.getLocale());
-    }
-
-    /**
-     * Clones this speed formatter.
-     * @return a copy of this speed formatter.
-     */
-    @Override
-    public Object clone() {
-        SpeedFormatter copy = new SpeedFormatter();
-        return internalClone(copy);
     }
 
     /**
      * Determines if two speed formatters are equal by comparing all of their internal
      * parameters.
+     *
      * @param obj another object to compare.
      * @return true if provided object is assumed to be equal to this instance.
      */
-    public boolean equals(Object obj) {
-        boolean equals = super.equals(obj);
+    public boolean equals(final Object obj) {
+        final boolean equals = super.equals(obj);
         return (obj instanceof SpeedFormatter) && equals;
     }
 
@@ -100,6 +93,7 @@ public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit>
      * Hash code generated for this instance.
      * Hash codes can be internally used by some collections to coarsely compare objects.
      * This implementation only calls parent implementation to avoid static analyzer warning.
+     *
      * @return hash code.
      */
     @Override
@@ -110,36 +104,39 @@ public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit>
     /**
      * Gets unit system for detected unit into provided string representation
      * of a measurement.
+     *
      * @param source a measurement string representation to be checked.
      * @return a unit system (either metric or imperial) or null if unit
      * cannot be determined.
      */
     @Override
-    public UnitSystem getUnitSystem(String source) {
-        SpeedUnit unit = findUnit(source);
+    public UnitSystem getUnitSystem(final String source) {
+        final SpeedUnit unit = findUnit(source);
         return unit != null ? SpeedUnit.getUnitSystem(unit) : null;
     }
 
     /**
      * Parses provided string and tries to determine speed value and unit.
+     *
      * @param source a string to be parsed.
      * @return a speed containing a value and unit.
-     * @throws ParseException if provided string cannot be parsed.
+     * @throws ParseException       if provided string cannot be parsed.
      * @throws UnknownUnitException if unit cannot be determined.
      */
     @Override
-    public Speed parse(String source) throws ParseException,
+    public Speed parse(final String source) throws ParseException,
             UnknownUnitException {
         return internalParse(source, new Speed());
     }
 
     /**
      * Attempts to determine a speed unit within a measurement string representation.
+     *
      * @param source a measurement string representation.
      * @return a speed unit, or null if none can be determined.
      */
     @Override
-    public SpeedUnit findUnit(String source) {
+    public SpeedUnit findUnit(final String source) {
         if (source.contains(KILOMETERS_PER_HOUR + " ") ||
                 source.endsWith(KILOMETERS_PER_HOUR)) {
             return SpeedUnit.KILOMETERS_PER_HOUR;
@@ -170,13 +167,16 @@ public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit>
      * If provided value is too large for provided unit, this method will
      * convert it to a more appropriate unit using provided unit system (either
      * metric or imperial).
-     * @param value a speed value.
-     * @param unit a speed unit.
+     *
+     * @param value  a speed value.
+     * @param unit   a speed unit.
      * @param system system unit to convert speed to.
      * @return a string representation of speed value and unit.
      */
     @Override
-    public String formatAndConvert(Number value, SpeedUnit unit, UnitSystem system) {
+    public String formatAndConvert(
+            final Number value, final SpeedUnit unit,
+            final UnitSystem system) {
         switch (system) {
             case IMPERIAL:
                 return formatAndConvertImperial(value, unit);
@@ -191,29 +191,31 @@ public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit>
      * system.
      * If provided speed value is too large for provided speed unit,
      * this method will convert it to a more appropriate unit.
+     *
      * @param value a speed value.
-     * @param unit a speed unit.
+     * @param unit  a speed unit.
      * @return a string representation of speed value and unit using metric
      * unit system.
      */
-    public String formatAndConvertMetric(Number value, SpeedUnit unit) {
-        double v = value.doubleValue();
+    public String formatAndConvertMetric(
+            final Number value, final SpeedUnit unit) {
+        final double v = value.doubleValue();
 
-        double metersPerSecond = SpeedConverter.convert(v, unit,
+        final double metersPerSecond = SpeedConverter.convert(v, unit,
                 SpeedUnit.METERS_PER_SECOND);
         if (Math.abs(metersPerSecond) <
                 SpeedConverter.METERS_PER_KILOMETER / SpeedConverter.SECONDS_PER_HOUR) {
             return format(metersPerSecond, SpeedUnit.METERS_PER_SECOND);
         }
 
-        double kilometersPerHour = SpeedConverter.convert(v, unit,
+        final double kilometersPerHour = SpeedConverter.convert(v, unit,
                 SpeedUnit.KILOMETERS_PER_HOUR);
 
         if (Math.abs(kilometersPerHour) < SpeedConverter.SECONDS_PER_HOUR) {
             return format(kilometersPerHour, SpeedUnit.KILOMETERS_PER_HOUR);
         }
 
-        double kilometersPerSecond = SpeedConverter.convert(v, unit,
+        final double kilometersPerSecond = SpeedConverter.convert(v, unit,
                 SpeedUnit.KILOMETERS_PER_SECOND);
         return format(kilometersPerSecond, SpeedUnit.KILOMETERS_PER_SECOND);
     }
@@ -223,52 +225,60 @@ public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit>
      * system.
      * If provided speed value is too large for provided speed unit,
      * this method will convert it to a more appropriate unit.
+     *
      * @param value a speed value.
-     * @param unit a speed unit.
+     * @param unit  a speed unit.
      * @return a string representation of speed value and unit using imperial
      * unit system.
      */
-    public String formatAndConvertImperial(Number value, SpeedUnit unit) {
-        double v = value.doubleValue();
+    public String formatAndConvertImperial(
+            final Number value, final SpeedUnit unit) {
+        final double v = value.doubleValue();
 
-        double feetPerSecond = SpeedConverter.convert(v, unit,
+        final double feetPerSecond = SpeedConverter.convert(v, unit,
                 SpeedUnit.FEET_PER_SECOND);
         if (Math.abs(feetPerSecond) < SpeedConverter.METERS_PER_MILE /
                 SpeedConverter.SECONDS_PER_HOUR / SpeedConverter.METERS_PER_FOOT) {
             return format(feetPerSecond, SpeedUnit.FEET_PER_SECOND);
         }
 
-        double milesPerHour = SpeedConverter.convert(v, unit,
+        final double milesPerHour = SpeedConverter.convert(v, unit,
                 SpeedUnit.MILES_PER_HOUR);
         return format(milesPerHour, SpeedUnit.MILES_PER_HOUR);
     }
 
     /**
      * Returns unit string representation.
+     *
      * @param unit a speed unit.
      * @return its string representation.
      */
     @Override
-    public String getUnitSymbol(SpeedUnit unit) {
-        String unitStr;
+    public String getUnitSymbol(final SpeedUnit unit) {
         switch (unit) {
             case KILOMETERS_PER_HOUR:
-                unitStr = KILOMETERS_PER_HOUR;
-                break;
+                return KILOMETERS_PER_HOUR;
             case KILOMETERS_PER_SECOND:
-                unitStr = KILOMETERS_PER_SECOND;
-                break;
+                return KILOMETERS_PER_SECOND;
             case FEET_PER_SECOND:
-                unitStr = FEET_PER_SECOND;
-                break;
+                return FEET_PER_SECOND;
             case MILES_PER_HOUR:
-                unitStr = MILES_PER_HOUR;
-                break;
+                return MILES_PER_HOUR;
             case METERS_PER_SECOND:
             default:
-                unitStr = METERS_PER_SECOND;
-                break;
+                return METERS_PER_SECOND;
         }
-        return unitStr;
+    }
+
+    /**
+     * Clones this speed formatter.
+     *
+     * @return a copy of this speed formatter.
+     * @throws CloneNotSupportedException if clone fails for any reason.
+     */
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        final SpeedFormatter copy = (SpeedFormatter) super.clone();
+        return internalClone(copy);
     }
 }

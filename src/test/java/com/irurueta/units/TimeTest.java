@@ -15,7 +15,7 @@
  */
 package com.irurueta.units;
 
-import org.junit.*;
+import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.util.Random;
@@ -26,75 +26,61 @@ public class TimeTest {
 
     private static final double ERROR = 1e-6;
 
-    public TimeTest() { }
-
-    @BeforeClass
-    public static void setUpClass() { }
-
-    @AfterClass
-    public static void tearDownClass() { }
-
-    @Before
-    public void setUp() { }
-
-    @After
-    public void tearDown() { }
-
     @Test
     public void testConstructor() {
-        //test empty constructor
+        // test empty constructor
         Time t = new Time();
 
-        //check
+        // check
         assertNull(t.getValue());
         assertNull(t.getUnit());
 
-        //test constructor with value and unit
+        // test constructor with value and unit
         t = new Time(332, TimeUnit.SECOND);
 
-        //check
+        // check
         assertEquals(t.getValue(), 332);
         assertEquals(t.getUnit(), TimeUnit.SECOND);
 
-        //force IllegalArgumentException
+        // force IllegalArgumentException
         t = null;
         try {
             t = new Time(null, TimeUnit.SECOND);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
         try {
             t = new Time(323, null);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
         assertNull(t);
     }
 
     @Test
     public void testEquals() {
-        double value = new Random().nextDouble();
-        Time t1 = new Time(value, TimeUnit.SECOND);
-        Time t2 = new Time(value, TimeUnit.SECOND);
-        Time t3 = new Time(value + 1.0, TimeUnit.SECOND);
-        Time t4 = new Time(value, TimeUnit.MILLISECOND);
+        final double value = new Random().nextDouble();
+        final Time t1 = new Time(value, TimeUnit.SECOND);
+        final Time t2 = new Time(value, TimeUnit.SECOND);
+        final Time t3 = new Time(value + 1.0, TimeUnit.SECOND);
+        final Time t4 = new Time(value, TimeUnit.MILLISECOND);
 
         assertEquals(t1, t1);
         assertEquals(t1, t2);
         assertNotEquals(t1, t3);
         assertNotEquals(t1, t4);
 
-        //noinspection all
-        assertFalse(t1.equals(null));
-        //noinspection all
-        assertFalse(t1.equals(new Object()));
+        assertNotEquals(null, t1);
+        assertNotEquals(t1, new Object());
     }
 
     @Test
     public void testHashCode() {
-        double value = new Random().nextDouble();
-        Time t1 = new Time(value, TimeUnit.SECOND);
-        Time t2 = new Time(value, TimeUnit.SECOND);
-        Time t3 = new Time(value + 1.0, TimeUnit.SECOND);
-        Time t4 = new Time(value, TimeUnit.MILLISECOND);
+        final double value = new Random().nextDouble();
+        final Time t1 = new Time(value, TimeUnit.SECOND);
+        final Time t2 = new Time(value, TimeUnit.SECOND);
+        final Time t3 = new Time(value + 1.0, TimeUnit.SECOND);
+        final Time t4 = new Time(value, TimeUnit.MILLISECOND);
 
         assertEquals(t1.hashCode(), t1.hashCode());
         assertEquals(t1.hashCode(), t2.hashCode());
@@ -104,12 +90,12 @@ public class TimeTest {
 
     @Test
     public void testEqualsWithTolerance() {
-        double value = new Random().nextDouble();
-        Time t1 = new Time(value, TimeUnit.SECOND);
-        Time t2 = new Time(value, TimeUnit.SECOND);
-        Time t3 = new Time(value + 0.5 * ERROR, TimeUnit.SECOND);
-        Time t4 = new Time(value, TimeUnit.MILLISECOND);
-        Time t5 = new Time(value * 1000.0, TimeUnit.MILLISECOND);
+        final double value = new Random().nextDouble();
+        final Time t1 = new Time(value, TimeUnit.SECOND);
+        final Time t2 = new Time(value, TimeUnit.SECOND);
+        final Time t3 = new Time(value + 0.5 * ERROR, TimeUnit.SECOND);
+        final Time t4 = new Time(value, TimeUnit.MILLISECOND);
+        final Time t5 = new Time(value * 1000.0, TimeUnit.MILLISECOND);
 
         assertTrue(t1.equals(t1, 0.0));
         assertTrue(t1.equals(t2, 0.0));
@@ -123,83 +109,85 @@ public class TimeTest {
 
     @Test
     public void testGetSetValue() {
-        Time t = new Time(1, TimeUnit.SECOND);
+        final Time t = new Time(1, TimeUnit.SECOND);
 
-        //check
+        // check
         assertEquals(t.getValue(), 1);
 
-        //set new value
+        // set new value
         t.setValue(2.5);
 
-        //check
+        // check
         assertEquals(t.getValue(), 2.5);
 
-        //force IllegalArgumentException
+        // force IllegalArgumentException
         try {
             t.setValue(null);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
     }
 
     @Test
     public void testGetSetUnit() {
-        Time t = new Time(1, TimeUnit.SECOND);
+        final Time t = new Time(1, TimeUnit.SECOND);
 
-        //check
+        // check
         assertEquals(t.getUnit(), TimeUnit.SECOND);
 
-        //set new value
+        // set new value
         t.setUnit(TimeUnit.DAY);
 
-        //check
+        // check
         assertEquals(t.getUnit(), TimeUnit.DAY);
 
-        //force IllegalArgumentException
+        // force IllegalArgumentException
         try {
             t.setUnit(null);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
     }
 
     @Test
     public void testAdd1() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        double result = Time.add(value1, TimeUnit.SECOND,
+        final double result = Time.add(value1, TimeUnit.SECOND,
                 value2, TimeUnit.SECOND, TimeUnit.MILLISECOND);
 
-        //check
+        // check
         assertEquals((value1 + value2) * 1000.0, result, ERROR);
     }
 
     @Test
     public void testAdd2() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Number result = Time.add(new BigDecimal(value1), TimeUnit.SECOND,
+        final Number result = Time.add(new BigDecimal(value1), TimeUnit.SECOND,
                 new BigDecimal(value2), TimeUnit.SECOND, TimeUnit.MILLISECOND);
 
-        //check
+        // check
         assertEquals((value1 + value2) * 1000.0, result.doubleValue(), ERROR);
     }
 
     @Test
     public void testAdd3() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Time t1 = new Time(value1, TimeUnit.SECOND);
-        Time t2 = new Time(value2, TimeUnit.SECOND);
+        final Time t1 = new Time(value1, TimeUnit.SECOND);
+        final Time t2 = new Time(value2, TimeUnit.SECOND);
 
-        Time result = new Time(0.0, TimeUnit.MILLISECOND);
+        final Time result = new Time(0.0, TimeUnit.MILLISECOND);
         Time.add(t1, t2, result);
 
-        //check
+        // check
         assertEquals(t1.getUnit(), TimeUnit.SECOND);
         assertEquals(t1.getValue().doubleValue(), value1, 0.0);
 
@@ -213,16 +201,16 @@ public class TimeTest {
 
     @Test
     public void testAddAndReturnNew1() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Time t1 = new Time(value1, TimeUnit.SECOND);
-        Time t2 = new Time(value2, TimeUnit.SECOND);
+        final Time t1 = new Time(value1, TimeUnit.SECOND);
+        final Time t2 = new Time(value2, TimeUnit.SECOND);
 
-        Time result = Time.addAndReturnNew(t1, t2, TimeUnit.MILLISECOND);
+        final Time result = Time.addAndReturnNew(t1, t2, TimeUnit.MILLISECOND);
 
-        //check
+        // check
         assertEquals(t1.getUnit(), TimeUnit.SECOND);
         assertEquals(t1.getValue().doubleValue(), value1, 0.0);
 
@@ -236,15 +224,15 @@ public class TimeTest {
 
     @Test
     public void testAddAndReturnNew2() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Time t1 = new Time(value1, TimeUnit.SECOND);
+        final Time t1 = new Time(value1, TimeUnit.SECOND);
 
-        Time result = t1.addAndReturnNew(value2, TimeUnit.SECOND, TimeUnit.MILLISECOND);
+        final Time result = t1.addAndReturnNew(value2, TimeUnit.SECOND, TimeUnit.MILLISECOND);
 
-        //check
+        // check
         assertEquals(t1.getUnit(), TimeUnit.SECOND);
         assertEquals(t1.getValue().doubleValue(), value1, 0.0);
 
@@ -255,16 +243,16 @@ public class TimeTest {
 
     @Test
     public void testAddAndReturnNew3() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Time t1 = new Time(value1, TimeUnit.SECOND);
+        final Time t1 = new Time(value1, TimeUnit.SECOND);
 
-        Time result = t1.addAndReturnNew(new BigDecimal(value2),
+        final Time result = t1.addAndReturnNew(new BigDecimal(value2),
                 TimeUnit.SECOND, TimeUnit.MILLISECOND);
 
-        //check
+        // check
         assertEquals(t1.getUnit(), TimeUnit.SECOND);
         assertEquals(t1.getValue().doubleValue(), value1, 0.0);
 
@@ -275,16 +263,16 @@ public class TimeTest {
 
     @Test
     public void testAddAndReturnNew4() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Time t1 = new Time(value1, TimeUnit.SECOND);
-        Time t2 = new Time(value2, TimeUnit.SECOND);
+        final Time t1 = new Time(value1, TimeUnit.SECOND);
+        final Time t2 = new Time(value2, TimeUnit.SECOND);
 
-        Time result = t1.addAndReturnNew(t2, TimeUnit.MILLISECOND);
+        final Time result = t1.addAndReturnNew(t2, TimeUnit.MILLISECOND);
 
-        //check
+        // check
         assertEquals(t1.getUnit(), TimeUnit.SECOND);
         assertEquals(t1.getValue().doubleValue(), value1, 0.0);
 
@@ -298,15 +286,15 @@ public class TimeTest {
 
     @Test
     public void testAdd4() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Time t1 = new Time(value1, TimeUnit.SECOND);
+        final Time t1 = new Time(value1, TimeUnit.SECOND);
 
         t1.add(value2, TimeUnit.SECOND);
 
-        //check
+        // check
         assertEquals(t1.getUnit(), TimeUnit.SECOND);
         assertEquals(t1.getValue().doubleValue(), value1 + value2,
                 ERROR);
@@ -314,15 +302,15 @@ public class TimeTest {
 
     @Test
     public void testAdd5() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Time t1 = new Time(value1, TimeUnit.SECOND);
+        final Time t1 = new Time(value1, TimeUnit.SECOND);
 
         t1.add(new BigDecimal(value2), TimeUnit.SECOND);
 
-        //check
+        // check
         assertEquals(t1.getUnit(), TimeUnit.SECOND);
         assertEquals(t1.getValue().doubleValue(), value1 + value2,
                 ERROR);
@@ -331,16 +319,16 @@ public class TimeTest {
 
     @Test
     public void testAdd6() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Time t1 = new Time(value1, TimeUnit.SECOND);
-        Time t2 = new Time(value2, TimeUnit.SECOND);
+        final Time t1 = new Time(value1, TimeUnit.SECOND);
+        final Time t2 = new Time(value2, TimeUnit.SECOND);
 
         t1.add(t2);
 
-        //check
+        // check
         assertEquals(t1.getUnit(), TimeUnit.SECOND);
         assertEquals(t1.getValue().doubleValue(), value1 + value2,
                 ERROR);
@@ -351,17 +339,17 @@ public class TimeTest {
 
     @Test
     public void testAdd7() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Time t1 = new Time(value1, TimeUnit.SECOND);
-        Time t2 = new Time(value2, TimeUnit.SECOND);
+        final Time t1 = new Time(value1, TimeUnit.SECOND);
+        final Time t2 = new Time(value2, TimeUnit.SECOND);
 
-        Time result = new Time(0.0, TimeUnit.MILLISECOND);
+        final Time result = new Time(0.0, TimeUnit.MILLISECOND);
         t1.add(t2, result);
 
-        //check
+        // check
         assertEquals(t1.getUnit(), TimeUnit.SECOND);
         assertEquals(t1.getValue().doubleValue(), value1, 0.0);
 
@@ -375,43 +363,43 @@ public class TimeTest {
 
     @Test
     public void testSubtract1() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        double result = Time.subtract(value1, TimeUnit.SECOND,
+        final double result = Time.subtract(value1, TimeUnit.SECOND,
                 value2, TimeUnit.SECOND, TimeUnit.MILLISECOND);
 
-        //check
+        // check
         assertEquals((value1 - value2) * 1000.0, result, ERROR);
     }
 
     @Test
     public void testSubtract2() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Number result = Time.subtract(new BigDecimal(value1), TimeUnit.SECOND,
+        final Number result = Time.subtract(new BigDecimal(value1), TimeUnit.SECOND,
                 new BigDecimal(value2), TimeUnit.SECOND, TimeUnit.MILLISECOND);
 
-        //check
+        // check
         assertEquals((value1 - value2) * 1000.0, result.doubleValue(), ERROR);
     }
 
     @Test
     public void testSubtract3() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Time t1 = new Time(value1, TimeUnit.SECOND);
-        Time t2 = new Time(value2, TimeUnit.SECOND);
+        final Time t1 = new Time(value1, TimeUnit.SECOND);
+        final Time t2 = new Time(value2, TimeUnit.SECOND);
 
-        Time result = new Time(0.0, TimeUnit.MILLISECOND);
+        final Time result = new Time(0.0, TimeUnit.MILLISECOND);
         Time.subtract(t1, t2, result);
 
-        //check
+        // check
         assertEquals(t1.getUnit(), TimeUnit.SECOND);
         assertEquals(t1.getValue().doubleValue(), value1, 0.0);
 
@@ -425,17 +413,17 @@ public class TimeTest {
 
     @Test
     public void testSubtractAndReturnNew1() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Time t1 = new Time(value1, TimeUnit.SECOND);
-        Time t2 = new Time(value2, TimeUnit.SECOND);
+        final Time t1 = new Time(value1, TimeUnit.SECOND);
+        final Time t2 = new Time(value2, TimeUnit.SECOND);
 
-        Time result = Time.subtractAndReturnNew(t1, t2,
+        final Time result = Time.subtractAndReturnNew(t1, t2,
                 TimeUnit.MILLISECOND);
 
-        //check
+        // check
         assertEquals(t1.getUnit(), TimeUnit.SECOND);
         assertEquals(t1.getValue().doubleValue(), value1, 0.0);
 
@@ -449,15 +437,15 @@ public class TimeTest {
 
     @Test
     public void testSubtractAndReturnNew2() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Time t1 = new Time(value1, TimeUnit.SECOND);
+        final Time t1 = new Time(value1, TimeUnit.SECOND);
 
-        Time result = t1.subtractAndReturnNew(value2, TimeUnit.SECOND, TimeUnit.MILLISECOND);
+        final Time result = t1.subtractAndReturnNew(value2, TimeUnit.SECOND, TimeUnit.MILLISECOND);
 
-        //check
+        // check
         assertEquals(t1.getUnit(), TimeUnit.SECOND);
         assertEquals(t1.getValue().doubleValue(), value1, 0.0);
 
@@ -468,16 +456,16 @@ public class TimeTest {
 
     @Test
     public void testSubtractAndReturnNew3() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Time t1 = new Time(value1, TimeUnit.SECOND);
+        final Time t1 = new Time(value1, TimeUnit.SECOND);
 
-        Time result = t1.subtractAndReturnNew(new BigDecimal(value2),
+        final Time result = t1.subtractAndReturnNew(new BigDecimal(value2),
                 TimeUnit.SECOND, TimeUnit.MILLISECOND);
 
-        //check
+        // check
         assertEquals(t1.getUnit(), TimeUnit.SECOND);
         assertEquals(t1.getValue().doubleValue(), value1, 0.0);
 
@@ -488,16 +476,16 @@ public class TimeTest {
 
     @Test
     public void testSubtractAndReturnNew4() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Time t1 = new Time(value1, TimeUnit.SECOND);
-        Time t2 = new Time(value2, TimeUnit.SECOND);
+        final Time t1 = new Time(value1, TimeUnit.SECOND);
+        final Time t2 = new Time(value2, TimeUnit.SECOND);
 
-        Time result = t1.subtractAndReturnNew(t2, TimeUnit.MILLISECOND);
+        final Time result = t1.subtractAndReturnNew(t2, TimeUnit.MILLISECOND);
 
-        //check
+        // check
         assertEquals(t1.getUnit(), TimeUnit.SECOND);
         assertEquals(t1.getValue().doubleValue(), value1, 0.0);
 
@@ -511,15 +499,15 @@ public class TimeTest {
 
     @Test
     public void testSubtract4() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Time t1 = new Time(value1, TimeUnit.SECOND);
+        final Time t1 = new Time(value1, TimeUnit.SECOND);
 
         t1.subtract(value2, TimeUnit.SECOND);
 
-        //check
+        // check
         assertEquals(t1.getUnit(), TimeUnit.SECOND);
         assertEquals(t1.getValue().doubleValue(), value1 - value2,
                 ERROR);
@@ -527,15 +515,15 @@ public class TimeTest {
 
     @Test
     public void testSubtract5() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Time t1 = new Time(value1, TimeUnit.SECOND);
+        final Time t1 = new Time(value1, TimeUnit.SECOND);
 
         t1.subtract(new BigDecimal(value2), TimeUnit.SECOND);
 
-        //check
+        // check
         assertEquals(t1.getUnit(), TimeUnit.SECOND);
         assertEquals(t1.getValue().doubleValue(), value1 - value2,
                 ERROR);
@@ -543,16 +531,16 @@ public class TimeTest {
 
     @Test
     public void testSubtract6() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Time t1 = new Time(value1, TimeUnit.SECOND);
-        Time t2 = new Time(value2, TimeUnit.SECOND);
+        final Time t1 = new Time(value1, TimeUnit.SECOND);
+        final Time t2 = new Time(value2, TimeUnit.SECOND);
 
         t1.subtract(t2);
 
-        //check
+        // check
         assertEquals(t1.getUnit(), TimeUnit.SECOND);
         assertEquals(t1.getValue().doubleValue(), value1 - value2,
                 ERROR);
@@ -563,17 +551,17 @@ public class TimeTest {
 
     @Test
     public void testSubtract7() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Time t1 = new Time(value1, TimeUnit.SECOND);
-        Time t2 = new Time(value2, TimeUnit.SECOND);
+        final Time t1 = new Time(value1, TimeUnit.SECOND);
+        final Time t2 = new Time(value2, TimeUnit.SECOND);
 
-        Time result = new Time(0.0, TimeUnit.MILLISECOND);
+        final Time result = new Time(0.0, TimeUnit.MILLISECOND);
         t1.subtract(t2, result);
 
-        //check
+        // check
         assertEquals(t1.getUnit(), TimeUnit.SECOND);
         assertEquals(t1.getValue().doubleValue(), value1, 0.0);
 

@@ -34,30 +34,9 @@ public class DistanceConverterTest {
 
     private static final double ERROR = 1e-6;
 
-
-    public DistanceConverterTest() { }
-
-    @BeforeClass
-    public static void setUpClass() { }
-
-    @AfterClass
-    public static void tearDownClass() { }
-
-    @Before
-    public void setUp() { }
-
-    @After
-    public void tearDown() { }
-
-    @Test
-    public void testConstructor() {
-        //noinspection all
-        assertNotNull(new DistanceConverter());
-    }
-
     @Test
     public void testMetersMillimeters() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
         assertEquals(DistanceConverter.meterToMillimeter(inputValue),
                 inputValue / METERS_PER_MILLIMETER, ERROR);
@@ -67,7 +46,7 @@ public class DistanceConverterTest {
 
     @Test
     public void testMetersCentimeters() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
         assertEquals(DistanceConverter.meterToCentimeter(inputValue),
                 inputValue / METERS_PER_CENTIMETER, ERROR);
@@ -77,7 +56,7 @@ public class DistanceConverterTest {
 
     @Test
     public void testMetersKilometers() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
         assertEquals(DistanceConverter.meterToKilometer(inputValue),
                 inputValue / METERS_PER_KILOMETER, ERROR);
@@ -87,7 +66,7 @@ public class DistanceConverterTest {
 
     @Test
     public void testMetersInches() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
         assertEquals(DistanceConverter.meterToInch(inputValue),
                 inputValue / METERS_PER_INCH, ERROR);
@@ -97,7 +76,7 @@ public class DistanceConverterTest {
 
     @Test
     public void testMetersFeet() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
         assertEquals(DistanceConverter.meterToFoot(inputValue),
                 inputValue / METERS_PER_FOOT, ERROR);
@@ -107,7 +86,7 @@ public class DistanceConverterTest {
 
     @Test
     public void testMetersYards() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
         assertEquals(DistanceConverter.meterToYard(inputValue),
                 inputValue / METERS_PER_YARD, ERROR);
@@ -117,7 +96,7 @@ public class DistanceConverterTest {
 
     @Test
     public void testMetersMiles() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
         assertEquals(DistanceConverter.meterToMile(inputValue),
                 inputValue / METERS_PER_MILE, ERROR);
@@ -127,7 +106,7 @@ public class DistanceConverterTest {
 
     @Test
     public void testConvertDouble() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
         assertEquals(DistanceConverter.convert(inputValue,
                 DistanceUnit.MILLIMETER, DistanceUnit.MILLIMETER),
@@ -374,7 +353,7 @@ public class DistanceConverterTest {
 
     @Test
     public void testConvertNumber() {
-        BigDecimal inputValue = new BigDecimal(new Random().nextDouble());
+        final BigDecimal inputValue = BigDecimal.valueOf(new Random().nextDouble());
 
         assertEquals(DistanceConverter.convert(inputValue,
                 DistanceUnit.MILLIMETER, DistanceUnit.MILLIMETER).doubleValue(),
@@ -383,65 +362,65 @@ public class DistanceConverterTest {
 
     @Test
     public void testConvertDistance() {
-        double value = new Random().nextDouble();
-        Distance inputDistance = new Distance(value, DistanceUnit.METER);
+        final double value = new Random().nextDouble();
+        final Distance inputDistance = new Distance(value, DistanceUnit.METER);
 
-        Distance outputDistance = new Distance();
+        final Distance outputDistance = new Distance();
         DistanceConverter.convert(inputDistance, DistanceUnit.KILOMETER,
                 outputDistance);
 
-        //check
+        // check
         assertEquals(inputDistance.getValue().doubleValue(), value, 0.0);
         assertEquals(inputDistance.getUnit(), DistanceUnit.METER);
 
         assertEquals(outputDistance.getUnit(), DistanceUnit.KILOMETER);
         assertEquals(outputDistance.getValue().doubleValue(),
                 DistanceConverter.convert(value, inputDistance.getUnit(),
-                outputDistance.getUnit()), 0.0);
+                        outputDistance.getUnit()), 0.0);
     }
 
     @Test
     public void testConvertAndUpdateDistance() {
-        double value = new Random().nextDouble();
-        Distance distance = new Distance(value, DistanceUnit.METER);
+        final double value = new Random().nextDouble();
+        final Distance distance = new Distance(value, DistanceUnit.METER);
 
         DistanceConverter.convert(distance, DistanceUnit.KILOMETER);
 
-        //check
+        // check
         assertEquals(distance.getUnit(), DistanceUnit.KILOMETER);
         assertEquals(distance.getValue().doubleValue(),
                 DistanceConverter.convert(value,
-                DistanceUnit.METER, DistanceUnit.KILOMETER), 0.0);
+                        DistanceUnit.METER, DistanceUnit.KILOMETER), 0.0);
     }
 
     @Test
     public void testConvertAndReturnNewDistance() {
-        double value = new Random().nextDouble();
-        Distance inputDistance = new Distance(value, DistanceUnit.METER);
+        final double value = new Random().nextDouble();
+        final Distance inputDistance = new Distance(value, DistanceUnit.METER);
 
-        Distance outputDistance = DistanceConverter.convertAndReturnNew(
+        final Distance outputDistance = DistanceConverter.convertAndReturnNew(
                 inputDistance, DistanceUnit.KILOMETER);
 
-        //check
+        // check
         assertEquals(inputDistance.getValue().doubleValue(), value, 0.0);
         assertEquals(inputDistance.getUnit(), DistanceUnit.METER);
 
         assertEquals(outputDistance.getUnit(), DistanceUnit.KILOMETER);
         assertEquals(outputDistance.getValue().doubleValue(),
                 DistanceConverter.convert(value, inputDistance.getUnit(),
-                outputDistance.getUnit()), 0.0);
+                        outputDistance.getUnit()), 0.0);
     }
 
     @Test
     public void testConvertToOutputDistanceUnit() {
-        double value = new Random().nextDouble();
-        Distance inputDistance = new Distance(value, DistanceUnit.METER);
+        final double value = new Random().nextDouble();
+        final Distance inputDistance = new Distance(value, DistanceUnit.METER);
 
-        Distance outputDistance = new Distance();
+        final Distance outputDistance = new Distance();
         outputDistance.setUnit(DistanceUnit.KILOMETER);
         DistanceConverter.convert(inputDistance, outputDistance);
 
-        //check
+        // check
         assertEquals(inputDistance.getValue().doubleValue(), value, 0.0);
         assertEquals(inputDistance.getUnit(), DistanceUnit.METER);
 

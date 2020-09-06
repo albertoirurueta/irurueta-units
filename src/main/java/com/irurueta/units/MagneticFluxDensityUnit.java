@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Alberto Irurueta Carro (alberto@irurueta.com)
+ * Copyright (C) 2020 Alberto Irurueta Carro (alberto@irurueta.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,24 +15,42 @@
  */
 package com.irurueta.units;
 
-import org.junit.Test;
+/**
+ * Enumerator containing recognized typical magnetic flux density units.
+ */
+public enum MagneticFluxDensityUnit {
+    /**
+     * Nano Tesla (nT).
+     */
+    NANOTESLA,
 
-import static org.junit.Assert.assertNotNull;
+    /**
+     * Micro Tesla (µT).
+     */
+    MICROTESLA,
 
-public class UnknownUnitExceptionTest {
+    /**
+     * Milli Tesla (mT).
+     */
+    MILLITESLA,
 
-    @Test
-    public void testConstructor() {
-        UnknownUnitException ex = new UnknownUnitException();
-        assertNotNull(ex);
+    /**
+     * Tesla (T).
+     */
+    TESLA,
 
-        ex = new UnknownUnitException("message");
-        assertNotNull(ex);
+    /**
+     * Kilo Tesla (kT).
+     */
+    KILOTESLA,
 
-        ex = new UnknownUnitException(new Exception());
-        assertNotNull(ex);
+    /**
+     * Mega Tesla (MT).
+     */
+    MEGATESLA,
 
-        ex = new UnknownUnitException("message", new Exception());
-        assertNotNull(ex);
-    }
+    /**
+     * Giga Tesla (GT).
+     */
+    GIGATESLA
 }

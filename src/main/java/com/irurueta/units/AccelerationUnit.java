@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.irurueta.units;
 
 /**
@@ -36,11 +37,12 @@ public enum AccelerationUnit {
 
     /**
      * Returns unit system for provided acceleration unit.
+     *
      * @param unit acceleration unit to be checked.
      * @return unit system (metric or imperial).
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static UnitSystem getUnitSystem(AccelerationUnit unit) {
+    public static UnitSystem getUnitSystem(final AccelerationUnit unit) {
         if (unit == null) {
             throw new IllegalArgumentException();
         }
@@ -57,10 +59,11 @@ public enum AccelerationUnit {
 
     /**
      * Gets all supported metric acceleration units.
+     *
      * @return all supported metric acceleration units.
      */
     public static AccelerationUnit[] getMetricUnits() {
-        return new AccelerationUnit[] {
+        return new AccelerationUnit[]{
                 METERS_PER_SQUARED_SECOND,
                 G
         };
@@ -68,31 +71,34 @@ public enum AccelerationUnit {
 
     /**
      * Gets all supported imperial acceleration units.
+     *
      * @return all supported imperial acceleration units.
      */
     public static AccelerationUnit[] getImperialUnits() {
-        return new AccelerationUnit[] {
+        return new AccelerationUnit[]{
                 FEET_PER_SQUARED_SECOND
         };
     }
 
     /**
      * Indicates whether provided unit belongs to the metric unit system.
+     *
      * @param unit acceleration unit to be checked.
      * @return true if unit belongs to metric unit system.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isMetric(AccelerationUnit unit) {
+    public static boolean isMetric(final AccelerationUnit unit) {
         return getUnitSystem(unit) == UnitSystem.METRIC;
     }
 
     /**
      * Indicates whether provided unit belongs to the imperial unit system.
+     *
      * @param unit acceleration unit to be checked.
      * @return true if unit belongs to imperial unit system.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isImperial(AccelerationUnit unit) {
+    public static boolean isImperial(final AccelerationUnit unit) {
         return getUnitSystem(unit) == UnitSystem.IMPERIAL;
     }
 }

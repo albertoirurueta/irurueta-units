@@ -390,20 +390,22 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
 
     /**
      * Constructor with locale.
+     *
      * @param locale locale.
      * @throws IllegalArgumentException if locale is null.
      */
     @SuppressWarnings("WeakerAccess")
-    public TimeFormatter(Locale locale) {
+    public TimeFormatter(final Locale locale) {
         super(locale);
     }
 
     /**
      * Copy constructor.
+     *
      * @param formatter input instance to copy from.
      * @throws NullPointerException if provided formatter is null.
      */
-    public TimeFormatter(TimeFormatter formatter) {
+    public TimeFormatter(final TimeFormatter formatter) {
         this(formatter.getLocale());
         mHourMinutePattern = formatter.mHourMinutePattern;
         mHourMinuteSecondPattern = formatter.mHourMinuteSecondPattern;
@@ -424,23 +426,14 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
     }
 
     /**
-     * Clones this time formatter.
-     * @return a copy of this time formatter.
-     */
-    @Override
-    public Object clone() {
-        TimeFormatter copy = new TimeFormatter();
-        return internalClone(copy);
-    }
-
-    /**
      * Determines if two time formatters are equal by comparing all of its internal parameters.
+     *
      * @param obj another object to compare.
      * @return true if provided object is assumed to be equal to this instance.
      */
     @Override
-    public boolean equals(Object obj) {
-        boolean equals = super.equals(obj);
+    public boolean equals(final Object obj) {
+        final boolean equals = super.equals(obj);
         return (obj instanceof TimeFormatter) && equals;
     }
 
@@ -448,6 +441,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
      * Hash code generated for this instance.
      * Hash codes can be internally used by some collections to coarsely compare objects.
      * This implementation only calls parent implementation to avoid static analyzer warning.
+     *
      * @return hash code.
      */
     @Override
@@ -458,33 +452,35 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
     /**
      * Gets unit system for detected unit into provided string representation
      * of a measurement.
+     *
      * @param source a measurement string representation to be checked.
      * @return returns metric system only for units belonging to the International
      * System of units.
      */
     @Override
-    public UnitSystem getUnitSystem(String source) {
-        TimeUnit unit = findUnit(source);
+    public UnitSystem getUnitSystem(final String source) {
+        final TimeUnit unit = findUnit(source);
         try {
             return unit != null ? TimeUnit.getUnitSystem(unit) : null;
-        } catch (IllegalArgumentException e) {
+        } catch (final IllegalArgumentException e) {
             return null;
         }
     }
 
     /**
      * Formats provided time value and unit into a string representation.
+     *
      * @param value a time value.
-     * @param unit a time unit.
+     * @param unit  a time unit.
      * @return string representation of provided measurement value and unit.
      */
     @Override
-    public String format(Number value, TimeUnit unit) {
+    public String format(final Number value, final TimeUnit unit) {
         if (unit == TimeUnit.CENTURY) {
             double v = value.doubleValue();
 
             String symbol;
-            if(Math.abs(v) <= 1.0) {
+            if (Math.abs(v) <= 1.0) {
                 symbol = FIRST_CENTURY_SYMBOL;
             } else if (Math.abs(v) <= 2.0) {
                 symbol = SECOND_CENTURY_SYMBOL;
@@ -503,20 +499,22 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
     /**
      * Formats provided time value and unit into a string representation
      * and appends the result into provided string buffer.
-     * @param value a time value.
-     * @param unit a time unit.
+     *
+     * @param value      a time value.
+     * @param unit       a time unit.
      * @param toAppendTo buffer to append the result to.
-     * @param pos field position where result will be appended.
+     * @param pos        field position where result will be appended.
      * @return provided string buffer where result is appended.
      */
     @Override
-    public StringBuffer format(Number value, TimeUnit unit,
-                               StringBuffer toAppendTo, FieldPosition pos) {
+    public StringBuffer format(
+            final Number value, final TimeUnit unit,
+            final StringBuffer toAppendTo, final FieldPosition pos) {
         if (unit == TimeUnit.CENTURY) {
             double v = value.doubleValue();
 
             String symbol;
-            if(Math.abs(v) <= 1.0) {
+            if (Math.abs(v) <= 1.0) {
                 symbol = FIRST_CENTURY_SYMBOL;
             } else if (Math.abs(v) <= 2.0) {
                 symbol = SECOND_CENTURY_SYMBOL;
@@ -526,7 +524,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
                 symbol = CENTURY_SYMBOL;
             }
 
-            MessageFormat format = new MessageFormat(CENTURY_FORMAT_PATTERN);
+            final MessageFormat format = new MessageFormat(CENTURY_FORMAT_PATTERN);
             return format.format(new Object[]{mNumberFormat.format(value),
                     symbol}, toAppendTo, pos);
         } else {
@@ -540,79 +538,94 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
      * but some units might not belong to the international system of units.
      * If provided value is too large for provided unit, this method will
      * convert it to a more appropriate unit.
-     * @param value a measurment value.
-     * @param unit a measurement unit.
+     *
+     * @param value  a measurment value.
+     * @param unit   a measurement unit.
      * @param system it is ignored.
      * @return a string representation of measurement value and unit.
      */
     @Override
-    public String formatAndConvert(Number value, TimeUnit unit, UnitSystem system) {
-        double v = value.doubleValue();
+    public String formatAndConvert(
+            final Number value, final TimeUnit unit,
+            final UnitSystem system) {
+        final double v = value.doubleValue();
 
-        double nanoseconds = TimeConverter.convert(v, unit, TimeUnit.NANOSECOND);
+        final double nanoseconds = TimeConverter.convert(v, unit,
+                TimeUnit.NANOSECOND);
         if (Math.abs(nanoseconds) < (TimeConverter.SECONDS_PER_MICROSECOND /
                 TimeConverter.SECONDS_PER_NANOSECOND)) {
             return format(nanoseconds, TimeUnit.NANOSECOND);
         }
 
-        double microseconds = TimeConverter.convert(v, unit, TimeUnit.MICROSECOND);
+        final double microseconds = TimeConverter.convert(v, unit,
+                TimeUnit.MICROSECOND);
         if (Math.abs(microseconds) < (TimeConverter.SECONDS_PER_MILLISECOND /
                 TimeConverter.SECONDS_PER_MICROSECOND)) {
             return format(microseconds, TimeUnit.MICROSECOND);
         }
 
-        double milliseconds = TimeConverter.convert(v, unit, TimeUnit.MILLISECOND);
+        final double milliseconds = TimeConverter.convert(v, unit,
+                TimeUnit.MILLISECOND);
         if (Math.abs(milliseconds) < (1.0 / TimeConverter.SECONDS_PER_MILLISECOND)) {
             return format(milliseconds, TimeUnit.MILLISECOND);
         }
 
-        double seconds = TimeConverter.convert(v, unit, TimeUnit.SECOND);
+        final double seconds = TimeConverter.convert(v, unit,
+                TimeUnit.SECOND);
         if (Math.abs(seconds) < TimeConverter.SECONDS_PER_MINUTE) {
             return format(seconds, TimeUnit.SECOND);
         }
 
-        double minutes = TimeConverter.convert(v, unit, TimeUnit.MINUTE);
+        final double minutes = TimeConverter.convert(v, unit,
+                TimeUnit.MINUTE);
         if (Math.abs(minutes) < (TimeConverter.SECONDS_PER_HOUR /
                 TimeConverter.SECONDS_PER_MINUTE)) {
             return format(minutes, TimeUnit.MINUTE);
         }
 
-        double hours = TimeConverter.convert(v, unit, TimeUnit.HOUR);
+        final double hours = TimeConverter.convert(v, unit,
+                TimeUnit.HOUR);
         if (Math.abs(hours) < (TimeConverter.SECONDS_PER_DAY /
                 TimeConverter.SECONDS_PER_HOUR)) {
             return format(hours, TimeUnit.HOUR);
         }
 
-        double days = TimeConverter.convert(v, unit, TimeUnit.DAY);
+        final double days = TimeConverter.convert(v, unit,
+                TimeUnit.DAY);
         if (Math.abs(days) < (TimeConverter.SECONDS_PER_WEEK /
                 TimeConverter.SECONDS_PER_DAY)) {
             return format(days, TimeUnit.DAY);
         }
 
-        double weeks = TimeConverter.convert(v, unit, TimeUnit.WEEK);
+        final double weeks = TimeConverter.convert(v, unit,
+                TimeUnit.WEEK);
         if (Math.abs(weeks) < (TimeConverter.SECONDS_PER_MONTH /
                 TimeConverter.SECONDS_PER_WEEK)) {
             return format(weeks, TimeUnit.WEEK);
         }
 
-        double months = TimeConverter.convert(v, unit, TimeUnit.MONTH);
+        final double months = TimeConverter.convert(v, unit,
+                TimeUnit.MONTH);
         if (Math.abs(months) < (TimeConverter.SECONDS_PER_YEAR /
                 TimeConverter.SECONDS_PER_MONTH)) {
             return format(months, TimeUnit.MONTH);
         }
 
-        double years = TimeConverter.convert(v, unit, TimeUnit.YEAR);
+        final double years = TimeConverter.convert(v, unit,
+                TimeUnit.YEAR);
         if (Math.abs(years) < (TimeConverter.SECONDS_PER_CENTURY /
                 TimeConverter.SECONDS_PER_YEAR)) {
             return format(years, TimeUnit.YEAR);
         }
 
-        double centuries = TimeConverter.convert(v, unit, TimeUnit.CENTURY);
+        final double centuries = TimeConverter.convert(v, unit,
+                TimeUnit.CENTURY);
         return format(centuries, TimeUnit.CENTURY);
     }
 
     /**
      * Returns unit system this instance will use based on its assigned locale.
+     *
      * @return always returns metric system
      */
     public UnitSystem getUnitSystem() {
@@ -622,12 +635,13 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
 
     /**
      * Parses provided string and tries to determine a time value and unit.
+     *
      * @param source text to be parsed.
      * @return time containing a value and unit.
-     * @throws ParseException if provided string cannot be parsed.
+     * @throws ParseException       if provided string cannot be parsed.
      * @throws UnknownUnitException if unit cannot be determined.
      */
-    public Time parse(String source) throws ParseException,
+    public Time parse(final String source) throws ParseException,
             UnknownUnitException {
         return internalParse(source, new Time());
     }
@@ -635,11 +649,12 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
     /**
      * Attempts to determine a time unit within a measurement string
      * representation.
+     *
      * @param source a measurement string representation.
      * @return a time unit, or null if none can be determined.
      */
     @Override
-    public TimeUnit findUnit(String source) {
+    public TimeUnit findUnit(final String source) {
         if (source.contains(NANOSECOND_SYMBOL + " ") || source.endsWith(NANOSECOND_SYMBOL)) {
             return TimeUnit.NANOSECOND;
         }
@@ -682,73 +697,61 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
 
     /**
      * Returns unit string representation.
+     *
      * @param unit a measure unit.
      * @return its string representation.
      */
     @Override
-    public String getUnitSymbol(TimeUnit unit) {
-        String unitStr;
+    public String getUnitSymbol(final TimeUnit unit) {
         switch (unit) {
             case NANOSECOND:
-                unitStr = NANOSECOND_SYMBOL;
-                break;
+                return NANOSECOND_SYMBOL;
             case MICROSECOND:
-                unitStr = MICROSECOND_SYMBOL;
-                break;
+                return MICROSECOND_SYMBOL;
             case MILLISECOND:
-                unitStr = MILLISECOND_SYMBOL;
-                break;
+                return MILLISECOND_SYMBOL;
             case MINUTE:
-                unitStr = MINUTE_SYMBOL;
-                break;
+                return MINUTE_SYMBOL;
             case HOUR:
-                unitStr = HOUR_SYMBOL;
-                break;
+                return HOUR_SYMBOL;
             case DAY:
-                unitStr = DAY_SYMBOL;
-                break;
+                return DAY_SYMBOL;
             case WEEK:
-                unitStr = WEEK_SYMBOL;
-                break;
+                return WEEK_SYMBOL;
             case MONTH:
-                unitStr = MONTH_SYMBOL;
-                break;
+                return MONTH_SYMBOL;
             case YEAR:
-                unitStr = YEAR_SYMBOL;
-                break;
+                return YEAR_SYMBOL;
             case CENTURY:
-                unitStr = CENTURY_SYMBOL;
-                break;
-
+                return CENTURY_SYMBOL;
             case SECOND:
             default:
-                unitStr = SECOND_SYMBOL;
-                break;
+                return SECOND_SYMBOL;
         }
-        return unitStr;
     }
 
     /**
      * Formats time instance using hour and minute format (hh:mm.ms).
+     *
      * @param time time to be formatted.
      * @return a string representation of provided time instance using hour and
      * minute format (hh:mm.ms).
      */
-    public String formatHourMinute(Time time) {
-        double exactHours = TimeConverter.convert(time.getValue().doubleValue(),
+    public String formatHourMinute(final Time time) {
+        final double exactHours = TimeConverter.convert(time.getValue().doubleValue(),
                 time.getUnit(), TimeUnit.HOUR);
-        double hours = Math.floor(exactHours);
-        double diffHours = exactHours - hours;
+        final double hours = Math.floor(exactHours);
+        final double diffHours = exactHours - hours;
 
-        double minutes = TimeConverter.convert(diffHours, TimeUnit.HOUR,
+        final double minutes = TimeConverter.convert(diffHours, TimeUnit.HOUR,
                 TimeUnit.MINUTE);
 
-        NumberFormat hourFormat = NumberFormat.getInstance(getLocale());
+        final NumberFormat hourFormat = NumberFormat.getInstance(getLocale());
         hourFormat.setMinimumIntegerDigits(INTEGER_DIGITS);
         hourFormat.setMinimumFractionDigits(0);
         hourFormat.setMaximumFractionDigits(0);
 
-        NumberFormat minuteFormat = NumberFormat.getInstance(getLocale());
+        final NumberFormat minuteFormat = NumberFormat.getInstance(getLocale());
         minuteFormat.setMinimumIntegerDigits(INTEGER_DIGITS);
         minuteFormat.setMaximumIntegerDigits(INTEGER_DIGITS);
 
@@ -768,29 +771,30 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
     /**
      * Parses provided string representation using hour and minute format (hh:mm).
      * Note: decimals are not accepted on either hour or minute values.
+     *
      * @param source string to be parsed.
      * @return parsed time.
-     * @throws ParseException if parsing fails.
+     * @throws ParseException       if parsing fails.
      * @throws UnknownUnitException if format is not recognized.
      */
-    public Time parseHourMinute(CharSequence source) throws ParseException,
-            UnknownUnitException {
+    public Time parseHourMinute(final CharSequence source)
+            throws ParseException, UnknownUnitException {
         if (mHourMinutePattern == null) {
             mHourMinutePattern = Pattern.compile(HOUR_MINUTE_PATTERN);
         }
 
-        Matcher matcher = mHourMinutePattern.matcher(source);
-        if(!matcher.matches()) {
+        final Matcher matcher = mHourMinutePattern.matcher(source);
+        if (!matcher.matches()) {
             throw new UnknownUnitException();
         }
 
-        String hourString = matcher.group(1);
-        String minuteString = matcher.group(2);
+        final String hourString = matcher.group(1);
+        final String minuteString = matcher.group(2);
 
-        Number hour = mNumberFormat.parse(hourString);
-        Number minute = mNumberFormat.parse(minuteString);
+        final Number hour = mNumberFormat.parse(hourString);
+        final Number minute = mNumberFormat.parse(minuteString);
 
-        Time result = new Time(hour, TimeUnit.HOUR);
+        final Time result = new Time(hour, TimeUnit.HOUR);
         TimeConverter.convert(result, TimeUnit.MINUTE);
         result.add(new Time(minute, TimeUnit.MINUTE));
         return result;
@@ -798,35 +802,36 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
 
     /**
      * Formats this instance using hour, minute and second format (hh:mm::ss.ms).
+     *
      * @param time time to be formatted.
      * @return a string representation of provided time instance using hour, minute
      * and second format (hh:mm:ss.ms).
      */
-    public String formatHourMinuteSecond(Time time) {
-        double exactHours = TimeConverter.convert(time.getValue().doubleValue(),
+    public String formatHourMinuteSecond(final Time time) {
+        final double exactHours = TimeConverter.convert(time.getValue().doubleValue(),
                 time.getUnit(), TimeUnit.HOUR);
-        double hours = Math.floor(exactHours);
-        double diffHours = exactHours - hours;
+        final double hours = Math.floor(exactHours);
+        final double diffHours = exactHours - hours;
 
-        double exactMinutes = TimeConverter.convert(diffHours, TimeUnit.HOUR,
-                TimeUnit.MINUTE);
-        double minutes = Math.floor(exactMinutes);
-        double diffMinutes = exactMinutes - minutes;
+        final double exactMinutes = TimeConverter.convert(diffHours,
+                TimeUnit.HOUR, TimeUnit.MINUTE);
+        final double minutes = Math.floor(exactMinutes);
+        final double diffMinutes = exactMinutes - minutes;
 
-        double seconds = TimeConverter.convert(diffMinutes, TimeUnit.MINUTE,
-                TimeUnit.SECOND);
+        final double seconds = TimeConverter.convert(diffMinutes,
+                TimeUnit.MINUTE, TimeUnit.SECOND);
 
-        NumberFormat hourFormat = NumberFormat.getInstance(getLocale());
+        final NumberFormat hourFormat = NumberFormat.getInstance(getLocale());
         hourFormat.setMinimumIntegerDigits(INTEGER_DIGITS);
         hourFormat.setMinimumFractionDigits(0);
         hourFormat.setMaximumFractionDigits(0);
 
-        NumberFormat minuteFormat = NumberFormat.getInstance(getLocale());
+        final NumberFormat minuteFormat = NumberFormat.getInstance(getLocale());
         minuteFormat.setMinimumIntegerDigits(INTEGER_DIGITS);
         minuteFormat.setMinimumFractionDigits(0);
         minuteFormat.setMaximumFractionDigits(0);
 
-        NumberFormat secondFormat = NumberFormat.getInstance(getLocale());
+        final NumberFormat secondFormat = NumberFormat.getInstance(getLocale());
         secondFormat.setMinimumIntegerDigits(INTEGER_DIGITS);
         secondFormat.setMaximumIntegerDigits(INTEGER_DIGITS);
 
@@ -851,31 +856,32 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
     /**
      * Parses provided string representation using hour, minute and second format (hh:mm:ss).
      * Note: decimals are not accepted on either hour, minute or seconds values
+     *
      * @param source string to be parsed.
      * @return parsed time.
-     * @throws ParseException if parsing fails.
+     * @throws ParseException       if parsing fails.
      * @throws UnknownUnitException if format is not recognized.
      */
-    public Time parseHourMinuteSecond(CharSequence source) throws ParseException,
-            UnknownUnitException {
+    public Time parseHourMinuteSecond(final CharSequence source)
+            throws ParseException, UnknownUnitException {
         if (mHourMinuteSecondPattern == null) {
             mHourMinuteSecondPattern = Pattern.compile(HOUR_MINUTE_SECOND_PATTERN);
         }
 
-        Matcher matcher = mHourMinuteSecondPattern.matcher(source);
+        final Matcher matcher = mHourMinuteSecondPattern.matcher(source);
         if (!matcher.matches()) {
             throw new UnknownUnitException();
         }
 
-        String hourString = matcher.group(1);
-        String minuteString = matcher.group(2);
-        String secondString = matcher.group(3);
+        final String hourString = matcher.group(1);
+        final String minuteString = matcher.group(2);
+        final String secondString = matcher.group(3);
 
-        Number hour = mNumberFormat.parse(hourString);
-        Number minute = mNumberFormat.parse(minuteString);
-        Number second = mNumberFormat.parse(secondString);
+        final Number hour = mNumberFormat.parse(hourString);
+        final Number minute = mNumberFormat.parse(minuteString);
+        final Number second = mNumberFormat.parse(secondString);
 
-        Time result = new Time(hour, TimeUnit.HOUR);
+        final Time result = new Time(hour, TimeUnit.HOUR);
         TimeConverter.convert(result, TimeUnit.MINUTE);
         result.add(new Time(minute, TimeUnit.MINUTE));
         TimeConverter.convert(result, TimeUnit.SECOND);
@@ -887,32 +893,35 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
      * Formats provided time instance using required units as flags.
      * Flags can be provided as bitwise combinations of FORMAT constants.
      * Only non zero units will be included.
-     * @param time time to be formattd.
+     *
+     * @param time  time to be formattd.
      * @param flags flags indicating units to include.
      * @return formatted time.
      */
-    public String formatMultiple(Time time, int flags) {
+    public String formatMultiple(final Time time, final int flags) {
         return formatMultiple(time, flags, true);
     }
 
     /**
      * Formats provided time instance using required units as flags.
      * Flags can be provided as bitwise combinations of FORMAT constants.
-     * @param time time to be formatted.
-     * @param flags flags indicating units to include.
+     *
+     * @param time        time to be formatted.
+     * @param flags       flags indicating units to include.
      * @param onlyNonZero true indicates to include only non zero units, false to
      *                    include all selected units even if they are zero.
      * @return formatted time.
      */
-    public String formatMultiple(Time time, int flags, boolean onlyNonZero) {
+    public String formatMultiple(
+            final Time time, final int flags, final boolean onlyNonZero) {
 
-        //centuries
-        double exactCenturies = TimeConverter.convert(time.getValue().doubleValue(),
+        // centuries
+        final double exactCenturies = TimeConverter.convert(time.getValue().doubleValue(),
                 time.getUnit(), TimeUnit.CENTURY);
         double centuries = 0.0;
         double diffCenturies;
         if ((flags & FORMAT_CENTURIES) != 0) {
-            if((flags & (FORMAT_YEARS | FORMAT_MONTHS | FORMAT_WEEKS | FORMAT_DAYS |
+            if ((flags & (FORMAT_YEARS | FORMAT_MONTHS | FORMAT_WEEKS | FORMAT_DAYS |
                     FORMAT_HOURS | FORMAT_MINUTES | FORMAT_SECONDS |
                     FORMAT_MILLISECONDS | FORMAT_MICROSECONDS |
                     FORMAT_NANOSECONDS)) != 0) {
@@ -926,9 +935,9 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
             diffCenturies = exactCenturies;
         }
 
-        //years
-        double exactYears = TimeConverter.convert(diffCenturies, TimeUnit.CENTURY,
-                TimeUnit.YEAR);
+        // years
+        final double exactYears = TimeConverter.convert(diffCenturies,
+                TimeUnit.CENTURY, TimeUnit.YEAR);
         double years = 0.0;
         double diffYears;
         if ((flags & FORMAT_YEARS) != 0) {
@@ -946,9 +955,9 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
             diffYears = exactYears;
         }
 
-        //months
-        double exactMonths = TimeConverter.convert(diffYears, TimeUnit.YEAR,
-                TimeUnit.MONTH);
+        // months
+        final double exactMonths = TimeConverter.convert(diffYears,
+                TimeUnit.YEAR, TimeUnit.MONTH);
         double months = 0.0;
         double diffMonths;
         if ((flags & FORMAT_MONTHS) != 0) {
@@ -965,9 +974,9 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
             diffMonths = exactMonths;
         }
 
-        //weeks
-        double exactWeeks = TimeConverter.convert(diffMonths, TimeUnit.MONTH,
-                TimeUnit.WEEK);
+        // weeks
+        final double exactWeeks = TimeConverter.convert(diffMonths,
+                TimeUnit.MONTH, TimeUnit.WEEK);
         double weeks = 0.0;
         double diffWeeks;
         if ((flags & FORMAT_WEEKS) != 0) {
@@ -984,9 +993,9 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
             diffWeeks = exactWeeks;
         }
 
-        //days
-        double exactDays = TimeConverter.convert(diffWeeks, TimeUnit.WEEK,
-                TimeUnit.DAY);
+        // days
+        final double exactDays = TimeConverter.convert(diffWeeks,
+                TimeUnit.WEEK, TimeUnit.DAY);
         double days = 0.0;
         double diffDays;
         if ((flags & FORMAT_DAYS) != 0) {
@@ -1003,9 +1012,9 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
             diffDays = exactDays;
         }
 
-        //hours
-        double exactHours = TimeConverter.convert(diffDays, TimeUnit.DAY,
-                TimeUnit.HOUR);
+        // hours
+        final double exactHours = TimeConverter.convert(diffDays,
+                TimeUnit.DAY, TimeUnit.HOUR);
         double hours = 0.0;
         double diffHours;
         if ((flags & FORMAT_HOURS) != 0) {
@@ -1021,9 +1030,9 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
             diffHours = exactHours;
         }
 
-        //minutes
-        double exactMinutes = TimeConverter.convert(diffHours, TimeUnit.HOUR,
-                TimeUnit.MINUTE);
+        // minutes
+        final double exactMinutes = TimeConverter.convert(diffHours,
+                TimeUnit.HOUR, TimeUnit.MINUTE);
         double minutes = 0.0;
         double diffMinutes;
         if ((flags & FORMAT_MINUTES) != 0) {
@@ -1039,9 +1048,9 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
             diffMinutes = exactMinutes;
         }
 
-        //seconds
-        double exactSeconds = TimeConverter.convert(diffMinutes, TimeUnit.MINUTE,
-                TimeUnit.SECOND);
+        // seconds
+        final double exactSeconds = TimeConverter.convert(diffMinutes,
+                TimeUnit.MINUTE, TimeUnit.SECOND);
         double seconds = 0.0;
         double diffSeconds;
         if ((flags & FORMAT_SECONDS) != 0) {
@@ -1057,9 +1066,9 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
             diffSeconds = exactSeconds;
         }
 
-        //milliseconds
-        double exactMilliseconds = TimeConverter.convert(diffSeconds,
-                TimeUnit.SECOND, TimeUnit.MILLISECOND);
+        // milliseconds
+        final double exactMilliseconds = TimeConverter.convert(
+                diffSeconds, TimeUnit.SECOND, TimeUnit.MILLISECOND);
         double milliseconds = 0.0;
         double diffMilliseconds;
         if ((flags & FORMAT_MILLISECONDS) != 0) {
@@ -1074,9 +1083,10 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
             diffMilliseconds = exactMilliseconds;
         }
 
-        //microseconds
-        double exactMicroseconds = TimeConverter.convert(diffMilliseconds,
-                TimeUnit.MILLISECOND, TimeUnit.MICROSECOND);
+        // microseconds
+        final double exactMicroseconds = TimeConverter.convert(
+                diffMilliseconds, TimeUnit.MILLISECOND,
+                TimeUnit.MICROSECOND);
         double microseconds = 0.0;
         double diffMicroseconds;
         if ((flags & FORMAT_MICROSECONDS) != 0) {
@@ -1090,7 +1100,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
             diffMicroseconds = exactMicroseconds;
         }
 
-        //nanoseconds
+        // nanoseconds
         double nanoseconds = 0.0;
         if ((flags & FORMAT_NANOSECONDS) != 0) {
             nanoseconds = TimeConverter.convert(diffMicroseconds,
@@ -1098,8 +1108,8 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
         }
 
 
-        //format result
-        StringBuilder builder = new StringBuilder();
+        // format result
+        final StringBuilder builder = new StringBuilder();
         if (((flags & FORMAT_CENTURIES) != 0) && (!onlyNonZero || centuries != 0.0)) {
             builder.append(format(centuries, TimeUnit.CENTURY));
         }
@@ -1142,32 +1152,33 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
      * found values as a single Time instance.
      * This method does not allow decimal values with fractions or thousand
      * separators.
+     *
      * @param source string to be parsed.
      * @return summation of all time values that have been parsed.
-     * @throws ParseException if parsing fails.
+     * @throws ParseException       if parsing fails.
      * @throws UnknownUnitException if format is not recognized.
      */
-    public Time parseMultiple(CharSequence source) throws ParseException,
-            UnknownUnitException {
-        String wrapped = " " + source + " ";
+    public Time parseMultiple(final CharSequence source)
+            throws ParseException, UnknownUnitException {
+        final String wrapped = " " + source + " ";
         Time result = null;
 
-        Time firstCentury = parse1stCentury(wrapped);
-        Time secondCentury = parse2ndCentury(wrapped);
-        Time thirdCentury = parse3rdCentury(wrapped);
-        Time century = parseCentury(wrapped);
-        Time year = parseYear(wrapped);
-        Time month = parseMonth(wrapped);
-        Time week = parseWeek(wrapped);
-        Time day = parseDay(wrapped);
-        Time hour = parseHour(wrapped);
-        Time minute = parseMinute(wrapped);
-        Time second = parseSecond(wrapped);
-        Time millisecond = parseMillisecond(wrapped);
-        Time microsecond = parseMicrosecond(wrapped);
-        Time nanosecond = parseNanosecond(wrapped);
+        final Time firstCentury = parse1stCentury(wrapped);
+        final Time secondCentury = parse2ndCentury(wrapped);
+        final Time thirdCentury = parse3rdCentury(wrapped);
+        final Time century = parseCentury(wrapped);
+        final Time year = parseYear(wrapped);
+        final Time month = parseMonth(wrapped);
+        final Time week = parseWeek(wrapped);
+        final Time day = parseDay(wrapped);
+        final Time hour = parseHour(wrapped);
+        final Time minute = parseMinute(wrapped);
+        final Time second = parseSecond(wrapped);
+        final Time millisecond = parseMillisecond(wrapped);
+        final Time microsecond = parseMicrosecond(wrapped);
+        final Time nanosecond = parseNanosecond(wrapped);
 
-        //century
+        // century
         if (firstCentury != null) {
             result = firstCentury;
         }
@@ -1181,7 +1192,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
             result = century;
         }
 
-        //year
+        // year
         if (year != null) {
             if (result == null) {
                 result = year;
@@ -1190,7 +1201,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
             }
         }
 
-        //month
+        // month
         if (month != null) {
             if (result == null) {
                 result = month;
@@ -1199,7 +1210,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
             }
         }
 
-        //week
+        // week
         if (week != null) {
             if (result == null) {
                 result = week;
@@ -1208,7 +1219,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
             }
         }
 
-        //day
+        // day
         if (day != null) {
             if (result == null) {
                 result = day;
@@ -1217,7 +1228,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
             }
         }
 
-        //hour
+        // hour
         if (hour != null) {
             if (result == null) {
                 result = hour;
@@ -1226,7 +1237,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
             }
         }
 
-        //minute
+        // minute
         if (minute != null) {
             if (result == null) {
                 result = minute;
@@ -1235,7 +1246,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
             }
         }
 
-        //second
+        // second
         if (second != null) {
             if (result == null) {
                 result = second;
@@ -1244,7 +1255,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
             }
         }
 
-        //millisecond
+        // millisecond
         if (millisecond != null) {
             if (result == null) {
                 result = millisecond;
@@ -1253,7 +1264,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
             }
         }
 
-        //microsecond
+        // microsecond
         if (microsecond != null) {
             if (result == null) {
                 result = microsecond;
@@ -1262,7 +1273,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
             }
         }
 
-        //nanosecond
+        // nanosecond
         if (nanosecond != null) {
             if (result == null) {
                 result = nanosecond;
@@ -1272,7 +1283,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
         }
 
         if (result == null) {
-            //no valid unit was found
+            // no valid unit was found
             throw new UnknownUnitException();
         }
 
@@ -1280,19 +1291,33 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
     }
 
     /**
+     * Clones this time formatter.
+     *
+     * @return a copy of this time formatter.
+     * @throws CloneNotSupportedException if clone fails for any reason.
+     */
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        final TimeFormatter copy = (TimeFormatter) super.clone();
+        return internalClone(copy);
+    }
+
+    /**
      * Parses string as 1st century format.
      * This method does not allow decimal values with fractions or thousand
      * separators.
+     *
      * @param source string to be parsed.
      * @return parsed time in century units.
      * @throws ParseException if parsing fails.
      */
-    private Time parse1stCentury(CharSequence source) throws ParseException {
+    private Time parse1stCentury(final CharSequence source)
+            throws ParseException {
         if (mFirstCenturyPattern == null) {
             mFirstCenturyPattern = Pattern.compile(FIRST_CENTURY_PATTERN);
         }
 
-        Matcher matcher = mFirstCenturyPattern.matcher(source);
+        final Matcher matcher = mFirstCenturyPattern.matcher(source);
         if (!matcher.matches()) {
             return null;
         }
@@ -1304,16 +1329,18 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
      * Parses string as 2nd century format.
      * This method does not allow decimal values with fractions or thousand
      * separators.
+     *
      * @param source string to be parsed.
      * @return parsed time in century units.
      * @throws ParseException if parsing fails.
      */
-    private Time parse2ndCentury(CharSequence source) throws ParseException {
+    private Time parse2ndCentury(final CharSequence source)
+            throws ParseException {
         if (mSecondCenturyPattern == null) {
             mSecondCenturyPattern = Pattern.compile(SECOND_CENTURY_PATTERN);
         }
 
-        Matcher matcher = mSecondCenturyPattern.matcher(source);
+        final Matcher matcher = mSecondCenturyPattern.matcher(source);
         if (!matcher.matches()) {
             return null;
         }
@@ -1325,205 +1352,234 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
      * Parses string as 3rd century format.
      * This method does not allow decimal values with fractions or thousand
      * separators.
+     *
      * @param source string to be parsed.
      * @return parsed time in century units.
      * @throws ParseException if parsing fails.
      */
-    private Time parse3rdCentury(CharSequence source) throws ParseException {
+    private Time parse3rdCentury(final CharSequence source)
+            throws ParseException {
         if (mThirdCenturyPattern == null) {
             mThirdCenturyPattern = Pattern.compile(THIRD_CENTURY_PATTERN);
         }
 
-        Matcher matcher = mThirdCenturyPattern.matcher(source);
+        final Matcher matcher = mThirdCenturyPattern.matcher(source);
         if (!matcher.matches()) {
             return null;
         }
 
-        return new Time(mNumberFormat.parse(matcher.group(3)), TimeUnit.CENTURY);
+        return new Time(mNumberFormat.parse(matcher.group(3)),
+                TimeUnit.CENTURY);
     }
 
     /**
      * Parses string as n-th century format.
      * This method does not allow decimal values with fractions or thousand
      * separators.
+     *
      * @param source string to be parsed.
      * @return parsed time in century units.
      * @throws ParseException if parsing fails.
      */
-    private Time parseCentury(CharSequence source) throws ParseException {
+    private Time parseCentury(final CharSequence source)
+            throws ParseException {
         if (mCenturyPattern == null) {
             mCenturyPattern = Pattern.compile(CENTURY_PATTERN);
         }
 
-        Matcher matcher = mCenturyPattern.matcher(source);
+        final Matcher matcher = mCenturyPattern.matcher(source);
         if (!matcher.matches()) {
             return null;
         }
 
-        return new Time(mNumberFormat.parse(matcher.group(3)), TimeUnit.CENTURY);
+        return new Time(mNumberFormat.parse(matcher.group(3)),
+                TimeUnit.CENTURY);
     }
 
     /**
      * Parses string as year format.
      * This method does not allow decimal values with fractions or thousand
      * separators.
+     *
      * @param source string to be parsed.
      * @return parsed time in year units.
      * @throws ParseException if parsing fails.
      */
-    private Time parseYear(CharSequence source) throws ParseException {
+    private Time parseYear(final CharSequence source)
+            throws ParseException {
         if (mYearPattern == null) {
             mYearPattern = Pattern.compile(YEAR_PATTERN);
         }
 
-        Matcher matcher = mYearPattern.matcher(source);
+        final Matcher matcher = mYearPattern.matcher(source);
         if (!matcher.matches()) {
             return null;
         }
 
-        return new Time(mNumberFormat.parse(matcher.group(3)), TimeUnit.YEAR);
+        return new Time(mNumberFormat.parse(matcher.group(3)),
+                TimeUnit.YEAR);
     }
 
     /**
      * Parses string as month format.
      * This method does not allow decimal values with fractions or thousand
      * separators.
+     *
      * @param source string to be parsed.
      * @return parsed time in month units.
      * @throws ParseException if parsing fails.
      */
-    private Time parseMonth(CharSequence source) throws ParseException {
+    private Time parseMonth(final CharSequence source)
+            throws ParseException {
         if (mMonthPattern == null) {
             mMonthPattern = Pattern.compile(MONTH_PATTERN);
         }
 
-        Matcher matcher = mMonthPattern.matcher(source);
+        final Matcher matcher = mMonthPattern.matcher(source);
         if (!matcher.matches()) {
             return null;
         }
 
-        return new Time(mNumberFormat.parse(matcher.group(3)), TimeUnit.MONTH);
+        return new Time(mNumberFormat.parse(matcher.group(3)),
+                TimeUnit.MONTH);
     }
 
     /**
      * Parses string as week format.
      * This method does not allow decimal values with fractions or thousand
      * separators.
+     *
      * @param source string to be parsed.
      * @return parsed time in week units.
      * @throws ParseException if parsing fails.
      */
-    private Time parseWeek(CharSequence source) throws ParseException {
+    private Time parseWeek(final CharSequence source)
+            throws ParseException {
         if (mWeekPattern == null) {
             mWeekPattern = Pattern.compile(WEEK_PATTERN);
         }
 
-        Matcher matcher = mWeekPattern.matcher(source);
+        final Matcher matcher = mWeekPattern.matcher(source);
         if (!matcher.matches()) {
             return null;
         }
 
-        return new Time(mNumberFormat.parse(matcher.group(3)), TimeUnit.WEEK);
+        return new Time(mNumberFormat.parse(matcher.group(3)),
+                TimeUnit.WEEK);
     }
 
     /**
      * Parses string as day format.
      * This method does not allow decimal values with fractions or thousand
      * separators.
+     *
      * @param source string to be parsed.
      * @return parsed time in day units.
      * @throws ParseException if parsing fails.
      */
-    private Time parseDay(CharSequence source) throws ParseException {
+    private Time parseDay(final CharSequence source)
+            throws ParseException {
         if (mDayPattern == null) {
             mDayPattern = Pattern.compile(DAY_PATTERN);
         }
 
-        Matcher matcher = mDayPattern.matcher(source);
+        final Matcher matcher = mDayPattern.matcher(source);
         if (!matcher.matches()) {
             return null;
         }
 
-        return new Time(mNumberFormat.parse(matcher.group(3)), TimeUnit.DAY);
+        return new Time(mNumberFormat.parse(matcher.group(3)),
+                TimeUnit.DAY);
     }
 
     /**
      * Parses string as hour format.
      * This method does not allow decimal values with fractions or thousand
      * separators.
+     *
      * @param source string to be parsed.
      * @return parsed time in hour units.
      * @throws ParseException if parsing fails.
      */
-    private Time parseHour(CharSequence source) throws ParseException {
+    private Time parseHour(final CharSequence source)
+            throws ParseException {
         if (mHourPattern == null) {
             mHourPattern = Pattern.compile(HOUR_PATTERN);
         }
 
-        Matcher matcher = mHourPattern.matcher(source);
+        final Matcher matcher = mHourPattern.matcher(source);
         if (!matcher.matches()) {
             return null;
         }
 
-        return new Time(mNumberFormat.parse(matcher.group(3)), TimeUnit.HOUR);
+        return new Time(mNumberFormat.parse(matcher.group(3)),
+                TimeUnit.HOUR);
     }
 
     /**
      * Parses string as minute format.
      * This method does not allow decimal values with fractions or thousand
      * separators.
+     *
      * @param source string to be parsed.
      * @return parsed time in minute units.
      * @throws ParseException if parsing fails.
      */
-    private Time parseMinute(CharSequence source) throws ParseException {
+    private Time parseMinute(final CharSequence source)
+            throws ParseException {
         if (mMinutePattern == null) {
             mMinutePattern = Pattern.compile(MINUTE_PATTERN);
         }
 
-        Matcher matcher = mMinutePattern.matcher(source);
+        final Matcher matcher = mMinutePattern.matcher(source);
         if (!matcher.matches()) {
             return null;
         }
 
-        return new Time(mNumberFormat.parse(matcher.group(3)), TimeUnit.MINUTE);
+        return new Time(mNumberFormat.parse(matcher.group(3)),
+                TimeUnit.MINUTE);
     }
 
     /**
      * Parses string as second format.
      * This method does not allow decimal values with fractions or thousand
      * separators.
+     *
      * @param source string to be parsed.
      * @return parsed time in second units.
      * @throws ParseException if parsing fails.
      */
-    private Time parseSecond(CharSequence source) throws ParseException {
+    private Time parseSecond(final CharSequence source)
+            throws ParseException {
         if (mSecondPattern == null) {
             mSecondPattern = Pattern.compile(SECOND_PATTERN);
         }
 
-        Matcher matcher = mSecondPattern.matcher(source);
+        final Matcher matcher = mSecondPattern.matcher(source);
         if (!matcher.matches()) {
             return null;
         }
 
-        return new Time(mNumberFormat.parse(matcher.group(3)), TimeUnit.SECOND);
+        return new Time(mNumberFormat.parse(matcher.group(3)),
+                TimeUnit.SECOND);
     }
 
     /**
      * Parses string as millisecond format.
      * This method does not allow decimal values with fractions or thousand
      * separators.
+     *
      * @param source string to be parsed.
      * @return parsed time in millisecond units.
      * @throws ParseException if parsing fails.
      */
-    private Time parseMillisecond(CharSequence source) throws ParseException {
+    private Time parseMillisecond(final CharSequence source)
+            throws ParseException {
         if (mMillisecondPattern == null) {
             mMillisecondPattern = Pattern.compile(MILLISECOND_PATTERN);
         }
 
-        Matcher matcher = mMillisecondPattern.matcher(source);
+        final Matcher matcher = mMillisecondPattern.matcher(source);
         if (!matcher.matches()) {
             return null;
         }
@@ -1536,16 +1592,18 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
      * Parses string as microsecond format.
      * This method does not allow decimal values with fractions or thousand
      * separators.
+     *
      * @param source string to be parsed.
      * @return parsed time in microsecond units.
      * @throws ParseException if parsing fails.
      */
-    private Time parseMicrosecond(CharSequence source) throws ParseException {
+    private Time parseMicrosecond(final CharSequence source)
+            throws ParseException {
         if (mMicrosecondPattern == null) {
             mMicrosecondPattern = Pattern.compile(MICROSECOND_PATTERN);
         }
 
-        Matcher matcher = mMicrosecondPattern.matcher(source);
+        final Matcher matcher = mMicrosecondPattern.matcher(source);
         if (!matcher.matches()) {
             return null;
         }
@@ -1558,16 +1616,18 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
      * Parses string as nanosecond format.
      * This method does not allow decimal values with fractions or thousand
      * separators.
+     *
      * @param source string to be parsed.
      * @return parsed time in nanosecond units.
      * @throws ParseException if parsing fails.
      */
-    private Time parseNanosecond(CharSequence source) throws ParseException {
+    private Time parseNanosecond(final CharSequence source)
+            throws ParseException {
         if (mNanosecondPattern == null) {
             mNanosecondPattern = Pattern.compile(NANOSECOND_PATTERN);
         }
 
-        Matcher matcher = mNanosecondPattern.matcher(source);
+        final Matcher matcher = mNanosecondPattern.matcher(source);
         if (!matcher.matches()) {
             return null;
         }
@@ -1578,10 +1638,12 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
 
     /**
      * Appends a space if builder is not empty.
+     *
      * @param builder builder to add space to.
      * @return same instance provided as parameter.
      */
-    private StringBuilder appendSpaceIfNeeded(StringBuilder builder) {
+    private StringBuilder appendSpaceIfNeeded(
+            final StringBuilder builder) {
         if (builder.length() > 0) {
             builder.append(SPACE);
         }

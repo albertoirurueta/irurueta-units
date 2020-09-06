@@ -61,11 +61,12 @@ public enum DistanceUnit {
 
     /**
      * Returns unit system for provided distance unit.
+     *
      * @param unit distance unit to be checked.
      * @return unit system (metric or imperial).
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static UnitSystem getUnitSystem(DistanceUnit unit) {
+    public static UnitSystem getUnitSystem(final DistanceUnit unit) {
         if (unit == null) {
             throw new IllegalArgumentException();
         }
@@ -87,10 +88,11 @@ public enum DistanceUnit {
 
     /**
      * Gets all supported metric distance units.
+     *
      * @return all supported metric distance units.
      */
     public static DistanceUnit[] getMetricUnits() {
-        return new DistanceUnit[] {
+        return new DistanceUnit[]{
                 MILLIMETER,
                 CENTIMETER,
                 METER,
@@ -100,10 +102,11 @@ public enum DistanceUnit {
 
     /**
      * Gets all supported imperial distance units.
+     *
      * @return all supported imperial distance units.
      */
     public static DistanceUnit[] getImperialUnits() {
-        return new DistanceUnit[] {
+        return new DistanceUnit[]{
                 INCH,
                 FOOT,
                 YARD,
@@ -113,21 +116,23 @@ public enum DistanceUnit {
 
     /**
      * Indicates whether provided unit belongs to the metric unit system.
+     *
      * @param unit distance unit to be checked.
      * @return true if unit belongs to metric unit system.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isMetric(DistanceUnit unit) {
+    public static boolean isMetric(final DistanceUnit unit) {
         return getUnitSystem(unit) == UnitSystem.METRIC;
     }
 
     /**
      * Indicates whether provided unit belongs to the imperial unit system.
+     *
      * @param unit distance unit to be checked.
      * @return true if unit belongs to imperial unit system.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isImperial(DistanceUnit unit) {
+    public static boolean isImperial(final DistanceUnit unit) {
         return getUnitSystem(unit) == UnitSystem.IMPERIAL;
     }
 }

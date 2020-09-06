@@ -30,26 +30,12 @@ public class TimeFormatterTest {
 
     private static final double ERROR = 1e-6;
 
-    public TimeFormatterTest() { }
-
-    @BeforeClass
-    public static void setUpClass() { }
-
-    @AfterClass
-    public static void tearDownClass() { }
-
-    @Before
-    public void setUp() { }
-
-    @After
-    public void tearDown() { }
-
     @Test
     public void testConstructor() {
-        //test empty constructor
+        // test empty constructor
         TimeFormatter formatter = new TimeFormatter();
 
-        //check
+        // check
         assertEquals(formatter.getLocale(), Locale.getDefault());
         assertEquals(formatter.getMaximumFractionDigits(),
                 NumberFormat.getInstance().getMaximumFractionDigits());
@@ -69,11 +55,11 @@ public class TimeFormatterTest {
         assertEquals(formatter.getValueAndUnitFormatPattern(),
                 MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
 
-        //test constructor with locale
-        Locale locale = new Locale("es", "ES");
+        // test constructor with locale
+        final Locale locale = new Locale("es", "ES");
         formatter = new TimeFormatter(locale);
 
-        //check
+        // check
         assertEquals(formatter.getLocale(), locale);
         assertEquals(formatter.getMaximumFractionDigits(),
                 NumberFormat.getInstance(locale).getMaximumFractionDigits());
@@ -94,20 +80,21 @@ public class TimeFormatterTest {
                 MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
 
 
-        //force IllegalArgumentException
+        // force IllegalArgumentException
         formatter = null;
         try {
             formatter = new TimeFormatter((Locale) null);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
         assertNull(formatter);
 
 
-        //test copy constructor
+        // test copy constructor
         formatter = new TimeFormatter(locale);
-        TimeFormatter formatter2 = new TimeFormatter(formatter);
+        final TimeFormatter formatter2 = new TimeFormatter(formatter);
 
-        //check
+        // check
         assertEquals(formatter2.getLocale(), locale);
         assertEquals(formatter2.getMaximumFractionDigits(),
                 NumberFormat.getInstance(locale).getMaximumFractionDigits());
@@ -129,26 +116,27 @@ public class TimeFormatterTest {
 
         formatter = null;
         try {
-            //noinspection all
-            formatter = new TimeFormatter((TimeFormatter)null);
+            // noinspection ConstantConditions
+            formatter = new TimeFormatter((TimeFormatter) null);
             fail("NullPointerException expected but not thrown");
-        } catch (NullPointerException ignore) { }
+        } catch (final NullPointerException ignore) {
+        }
         assertNull(formatter);
     }
 
     @Test
-    public void testClone() {
-        TimeFormatter formatter1 = new TimeFormatter();
-        TimeFormatter formatter2 = new TimeFormatter();
+    public void testClone() throws CloneNotSupportedException {
+        final TimeFormatter formatter1 = new TimeFormatter();
+        final TimeFormatter formatter2 = new TimeFormatter();
 
-        //check
+        // check
         assertNotSame(formatter1, formatter2);
         assertEquals(formatter1, formatter2);
 
-        //test after initializing internal number format
+        // test after initializing internal number format
         assertNotNull(formatter1.format(0.5, TimeUnit.SECOND,
                 new StringBuffer(), new FieldPosition(0)));
-        TimeFormatter formatter3 = (TimeFormatter)formatter1.clone();
+        final TimeFormatter formatter3 = (TimeFormatter) formatter1.clone();
 
         assertNotSame(formatter1, formatter3);
         assertEquals(formatter1, formatter3);
@@ -156,26 +144,25 @@ public class TimeFormatterTest {
 
     @Test
     public void testEquals() {
-        TimeFormatter formatter1 = new TimeFormatter(Locale.ENGLISH);
-        TimeFormatter formatter2 = new TimeFormatter(Locale.ENGLISH);
-        TimeFormatter formatter3 = new TimeFormatter(Locale.FRENCH);
+        final TimeFormatter formatter1 = new TimeFormatter(Locale.ENGLISH);
+        final TimeFormatter formatter2 = new TimeFormatter(Locale.ENGLISH);
+        final TimeFormatter formatter3 = new TimeFormatter(Locale.FRENCH);
 
-        //check
+        // check
         assertEquals(formatter1, formatter1);
         assertEquals(formatter1, formatter2);
         assertNotEquals(formatter1, formatter3);
 
         assertNotEquals(formatter1, new Object());
 
-        //noinspection all
-        assertFalse(formatter1.equals(null));
+        assertNotEquals(null, formatter1);
     }
 
     @Test
     public void testHashCode() {
-        TimeFormatter formatter1 = new TimeFormatter(Locale.ENGLISH);
-        TimeFormatter formatter2 = new TimeFormatter(Locale.ENGLISH);
-        TimeFormatter formatter3 = new TimeFormatter(Locale.FRENCH);
+        final TimeFormatter formatter1 = new TimeFormatter(Locale.ENGLISH);
+        final TimeFormatter formatter2 = new TimeFormatter(Locale.ENGLISH);
+        final TimeFormatter formatter3 = new TimeFormatter(Locale.FRENCH);
 
         assertEquals(formatter1.hashCode(), formatter1.hashCode());
         assertEquals(formatter1.hashCode(), formatter2.hashCode());
@@ -184,10 +171,10 @@ public class TimeFormatterTest {
 
     @Test
     public void testFormatNumber() {
-        double value = 3.0;
-        Locale l = new Locale("es", "ES");
+        final double value = 3.0;
+        final Locale l = new Locale("es", "ES");
 
-        TimeFormatter formatter = new TimeFormatter(l);
+        final TimeFormatter formatter = new TimeFormatter(l);
 
         assertEquals(formatter.format(new BigDecimal(value),
                 TimeUnit.NANOSECOND), "3 ns");
@@ -209,22 +196,22 @@ public class TimeFormatterTest {
                 TimeUnit.MONTH), "3 mon");
         assertEquals(formatter.format(new BigDecimal(value),
                 TimeUnit.YEAR), "3 yr");
-        assertEquals(formatter.format(new BigDecimal(1.0),
+        assertEquals(formatter.format(new BigDecimal("1.0"),
                 TimeUnit.CENTURY), "1st c.");
-        assertEquals(formatter.format(new BigDecimal(2.0),
+        assertEquals(formatter.format(new BigDecimal("2.0"),
                 TimeUnit.CENTURY), "2nd c.");
-        assertEquals(formatter.format(new BigDecimal(3.0),
+        assertEquals(formatter.format(new BigDecimal("3.0"),
                 TimeUnit.CENTURY), "3rd c.");
-        assertEquals(formatter.format(new BigDecimal(4.0),
+        assertEquals(formatter.format(new BigDecimal("4.0"),
                 TimeUnit.CENTURY), "4th c.");
     }
 
     @Test
     public void testFormatNumberAndStringBuffer() {
-        double value = 3.0;
-        Locale l = new Locale("es", "ES");
+        final double value = 3.0;
+        final Locale l = new Locale("es", "ES");
 
-        TimeFormatter formatter = new TimeFormatter(l);
+        final TimeFormatter formatter = new TimeFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
         assertEquals(formatter.format(new BigDecimal(value),
@@ -277,32 +264,32 @@ public class TimeFormatterTest {
                 new FieldPosition(0)).toString(), "3 yr");
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(1.0),
+        assertEquals(formatter.format(new BigDecimal("1.0"),
                 TimeUnit.CENTURY, buffer,
                 new FieldPosition(0)).toString(), "1st c.");
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(2.0),
+        assertEquals(formatter.format(new BigDecimal("2.0"),
                 TimeUnit.CENTURY, buffer,
                 new FieldPosition(0)).toString(), "2nd c.");
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(3.0),
+        assertEquals(formatter.format(new BigDecimal("3.0"),
                 TimeUnit.CENTURY, buffer,
                 new FieldPosition(0)).toString(), "3rd c.");
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(4.0),
+        assertEquals(formatter.format(new BigDecimal("4.0"),
                 TimeUnit.CENTURY, buffer,
                 new FieldPosition(0)).toString(), "4th c.");
     }
 
     @Test
     public void testFormatDouble() {
-        double value = 3.0;
-        Locale l = new Locale("es", "ES");
+        final double value = 3.0;
+        final Locale l = new Locale("es", "ES");
 
-        TimeFormatter formatter = new TimeFormatter(l);
+        final TimeFormatter formatter = new TimeFormatter(l);
 
         assertEquals(formatter.format(value, TimeUnit.NANOSECOND),
                 "3 ns");
@@ -336,10 +323,10 @@ public class TimeFormatterTest {
 
     @Test
     public void testFormatDoubleAndStringBuffer() {
-        double value = 3.0;
-        Locale l = new Locale("es", "ES");
+        final double value = 3.0;
+        final Locale l = new Locale("es", "ES");
 
-        TimeFormatter formatter = new TimeFormatter(l);
+        final TimeFormatter formatter = new TimeFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
         assertEquals(formatter.format(value, TimeUnit.NANOSECOND, buffer,
@@ -400,10 +387,10 @@ public class TimeFormatterTest {
 
     @Test
     public void testFormatTime() {
-        double value = 3.0;
-        Locale l = new Locale("es", "ES");
+        final double value = 3.0;
+        final Locale l = new Locale("es", "ES");
 
-        TimeFormatter formatter = new TimeFormatter(l);
+        final TimeFormatter formatter = new TimeFormatter(l);
 
         assertEquals(formatter.format(new Time(value, TimeUnit.NANOSECOND)),
                 "3 ns");
@@ -437,10 +424,10 @@ public class TimeFormatterTest {
 
     @Test
     public void testFormatTimeAndStringBuffer() {
-        double value = 3.0;
-        Locale l = new Locale("es", "ES");
+        final double value = 3.0;
+        final Locale l = new Locale("es", "ES");
 
-        TimeFormatter formatter = new TimeFormatter(l);
+        final TimeFormatter formatter = new TimeFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
         assertEquals(formatter.format(new Time(value, TimeUnit.NANOSECOND),
@@ -501,40 +488,40 @@ public class TimeFormatterTest {
 
     @Test
     public void testFormatAndConvertNumber() {
-        Locale l = new Locale("es", "ES");
+        final Locale l = new Locale("es", "ES");
 
-        TimeFormatter formatter = new TimeFormatter(l);
+        final TimeFormatter formatter = new TimeFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
                 TimeUnit.NANOSECOND), "5,5 ns");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
                 TimeUnit.MICROSECOND), "5,5 µs");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
                 TimeUnit.MILLISECOND), "5,5 ms");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
                 TimeUnit.SECOND), "5,5 s");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
                 TimeUnit.MINUTE), "5,5 min");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
                 TimeUnit.HOUR), "5,5 h");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
                 TimeUnit.DAY), "5,5 d");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(3.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("3.50"),
                 TimeUnit.WEEK), "3,5 wk");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
                 TimeUnit.MONTH), "5,5 mon");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
                 TimeUnit.YEAR), "5,5 yr");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.0),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.0"),
                 TimeUnit.CENTURY), "5th c.");
     }
 
     @Test
     public void testFormatAndConvertDouble() {
-        Locale l = new Locale("es", "ES");
+        final Locale l = new Locale("es", "ES");
 
-        TimeFormatter formatter = new TimeFormatter(l);
+        final TimeFormatter formatter = new TimeFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
         assertEquals(formatter.formatAndConvert(5.50,
@@ -563,9 +550,9 @@ public class TimeFormatterTest {
 
     @Test
     public void testFormatAndConvertTime() {
-        Locale l = new Locale("es", "ES");
+        final Locale l = new Locale("es", "ES");
 
-        TimeFormatter formatter = new TimeFormatter(l);
+        final TimeFormatter formatter = new TimeFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
         assertEquals(formatter.formatAndConvert(new Time(5.50,
@@ -594,40 +581,40 @@ public class TimeFormatterTest {
 
     @Test
     public void testFormatAndConvertNumberAndUnitSystem() {
-        Locale l = new Locale("es", "ES");
+        final Locale l = new Locale("es", "ES");
 
-        TimeFormatter formatter = new TimeFormatter(l);
+        final TimeFormatter formatter = new TimeFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
                 TimeUnit.NANOSECOND, null), "5,5 ns");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
                 TimeUnit.MICROSECOND, null), "5,5 µs");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
                 TimeUnit.MILLISECOND, null), "5,5 ms");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
                 TimeUnit.SECOND, null), "5,5 s");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
                 TimeUnit.MINUTE, null), "5,5 min");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
                 TimeUnit.HOUR, null), "5,5 h");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
                 TimeUnit.DAY, null), "5,5 d");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(3.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("3.50"),
                 TimeUnit.WEEK, null), "3,5 wk");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
                 TimeUnit.MONTH, null), "5,5 mon");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
                 TimeUnit.YEAR, null), "5,5 yr");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.0),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.0"),
                 TimeUnit.CENTURY, null), "5th c.");
     }
 
     @Test
     public void testFormatAndConvertDoubleAndUnitSystem() {
-        Locale l = new Locale("es", "ES");
+        final Locale l = new Locale("es", "ES");
 
-        TimeFormatter formatter = new TimeFormatter(l);
+        final TimeFormatter formatter = new TimeFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
         assertEquals(formatter.formatAndConvert(5.50,
@@ -656,9 +643,9 @@ public class TimeFormatterTest {
 
     @Test
     public void testFormatAndConvertTimeAndUnitSystem() {
-        Locale l = new Locale("es", "ES");
+        final Locale l = new Locale("es", "ES");
 
-        TimeFormatter formatter = new TimeFormatter(l);
+        final TimeFormatter formatter = new TimeFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
         assertEquals(formatter.formatAndConvert(new Time(5.50,
@@ -687,128 +674,129 @@ public class TimeFormatterTest {
 
     @Test
     public void testGetAvailableLocales() {
-        Locale[] locales = TimeFormatter.getAvailableLocales();
+        final Locale[] locales = TimeFormatter.getAvailableLocales();
         assertArrayEquals(locales, NumberFormat.getAvailableLocales());
     }
 
     @Test
     public void testGetSetMaximumFractionDigits() {
-        TimeFormatter formatter = new TimeFormatter();
+        final TimeFormatter formatter = new TimeFormatter();
 
         assertEquals(formatter.getMaximumFractionDigits(),
                 NumberFormat.getInstance().getMaximumFractionDigits());
 
-        //set new value
+        // set new value
         formatter.setMaximumFractionDigits(2);
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.getMaximumFractionDigits(), 2);
     }
 
     @Test
     public void testGetSetMaximumIntegerDigits() {
-        TimeFormatter formatter = new TimeFormatter();
+        final TimeFormatter formatter = new TimeFormatter();
 
         assertEquals(formatter.getMaximumIntegerDigits(),
                 NumberFormat.getInstance().getMaximumIntegerDigits());
 
-        //set new value
+        // set new value
         formatter.setMaximumIntegerDigits(2);
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.getMaximumIntegerDigits(), 2);
     }
 
     @Test
     public void testGetSetMinimumFractionDigits() {
-        TimeFormatter formatter = new TimeFormatter();
+        final TimeFormatter formatter = new TimeFormatter();
 
         assertEquals(formatter.getMinimumFractionDigits(),
                 NumberFormat.getInstance().getMinimumFractionDigits());
 
-        //set new value
+        // set new value
         formatter.setMinimumFractionDigits(2);
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.getMinimumFractionDigits(), 2);
     }
 
     @Test
     public void testGetSetMinimumIntegerDigits() {
-        TimeFormatter formatter = new TimeFormatter();
+        final TimeFormatter formatter = new TimeFormatter();
 
         assertEquals(formatter.getMinimumIntegerDigits(),
                 NumberFormat.getInstance().getMinimumIntegerDigits());
 
-        //set new value
+        // set new value
         formatter.setMinimumIntegerDigits(2);
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.getMinimumIntegerDigits(), 2);
     }
 
     @Test
     public void testGetSetRoundingMode() {
-        TimeFormatter formatter = new TimeFormatter();
+        final TimeFormatter formatter = new TimeFormatter();
 
         assertEquals(formatter.getRoundingMode(),
                 NumberFormat.getInstance().getRoundingMode());
 
-        //set new value
+        // set new value
         formatter.setRoundingMode(RoundingMode.UNNECESSARY);
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.getRoundingMode(), RoundingMode.UNNECESSARY);
     }
 
     @Test
     public void testIsSetGroupingUsed() {
-        TimeFormatter formatter = new TimeFormatter();
+        final TimeFormatter formatter = new TimeFormatter();
 
         assertEquals(formatter.isGroupingUsed(),
                 NumberFormat.getInstance().isGroupingUsed());
 
-        //set new value
+        // set new value
         formatter.setGroupingUsed(!formatter.isGroupingUsed());
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.isGroupingUsed(),
                 !NumberFormat.getInstance().isGroupingUsed());
     }
 
     @Test
     public void testIsSetParseIntegerOnly() {
-        TimeFormatter formatter = new TimeFormatter();
+        final TimeFormatter formatter = new TimeFormatter();
 
         assertEquals(formatter.isParseIntegerOnly(),
                 NumberFormat.getInstance().isParseIntegerOnly());
 
-        //set new value
+        // set new value
         formatter.setParseIntegerOnly(!formatter.isParseIntegerOnly());
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.isParseIntegerOnly(),
                 !NumberFormat.getInstance().isParseIntegerOnly());
     }
 
     @Test
     public void testGetSetValueAndUnitFormatPattern() {
-        TimeFormatter formatter = new TimeFormatter();
+        final TimeFormatter formatter = new TimeFormatter();
 
         assertEquals(formatter.getValueAndUnitFormatPattern(),
                 MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
 
-        //new value
+        // new value
         formatter.setValueAndUnitFormatPattern("{0}{1}");
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.getValueAndUnitFormatPattern(), "{0}{1}");
 
-        //force IllegalArgumentException
+        // force IllegalArgumentException
         try {
             formatter.setValueAndUnitFormatPattern(null);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
     }
 
     @Test
@@ -824,7 +812,7 @@ public class TimeFormatterTest {
 
     @Test
     public void testIsValidUnit() {
-        TimeFormatter formatter = new TimeFormatter();
+        final TimeFormatter formatter = new TimeFormatter();
 
         assertTrue(formatter.isValidUnit("ns"));
         assertTrue(formatter.isValidUnit("µs"));
@@ -843,7 +831,7 @@ public class TimeFormatterTest {
 
     @Test
     public void testIsValidMeasurement() {
-        TimeFormatter formatter = new TimeFormatter(
+        final TimeFormatter formatter = new TimeFormatter(
                 new Locale("es", "ES"));
 
         String text = "5 ns";
@@ -895,7 +883,7 @@ public class TimeFormatterTest {
 
     @Test
     public void testIsMetricUnit() {
-        TimeFormatter formatter = new TimeFormatter(
+        final TimeFormatter formatter = new TimeFormatter(
                 new Locale("es", "ES"));
 
         String text = "5 ns";
@@ -934,7 +922,7 @@ public class TimeFormatterTest {
 
     @Test
     public void testGetUnitSystemFromSource() {
-        TimeFormatter formatter = new TimeFormatter(
+        final TimeFormatter formatter = new TimeFormatter(
                 new Locale("es", "ES"));
 
         String text = "5 ns";
@@ -973,7 +961,7 @@ public class TimeFormatterTest {
 
     @Test
     public void testParse() throws ParseException, UnknownUnitException {
-        TimeFormatter formatter = new TimeFormatter(
+        final TimeFormatter formatter = new TimeFormatter(
                 new Locale("es", "ES"));
 
         String text = "5 ns";
@@ -1046,23 +1034,25 @@ public class TimeFormatterTest {
         assertEquals(t.getValue().doubleValue(), 5.0, 0.0);
         assertEquals(t.getUnit(), TimeUnit.CENTURY);
 
-        //Force UnknownUnitException
+        // Force UnknownUnitException
         text = "5,5 m";
         try {
             formatter.parse(text);
             fail("UnknownUnitException expected but not thrown");
-        } catch (UnknownUnitException ignore) { }
+        } catch (final UnknownUnitException ignore) {
+        }
 
-        //Force ParseException
+        // Force ParseException
         try {
             formatter.parse("m");
             fail("ParseException expected but not thrown");
-        } catch (ParseException ignore) { }
+        } catch (final ParseException ignore) {
+        }
     }
 
     @Test
     public void testFindUnit() {
-        TimeFormatter formatter = new TimeFormatter(
+        final TimeFormatter formatter = new TimeFormatter(
                 new Locale("es", "ES"));
 
         String text = "5 ns";
@@ -1110,7 +1100,7 @@ public class TimeFormatterTest {
 
     @Test
     public void testGetUnitSymbol() {
-        TimeFormatter formatter = new TimeFormatter();
+        final TimeFormatter formatter = new TimeFormatter();
 
         assertEquals(formatter.getUnitSymbol(TimeUnit.NANOSECOND),
                 TimeFormatter.NANOSECOND_SYMBOL);
@@ -1138,21 +1128,21 @@ public class TimeFormatterTest {
 
     @Test
     public void testFormatHourMinute() {
-        TimeFormatter formatter = new TimeFormatter(
+        final TimeFormatter formatter = new TimeFormatter(
                 new Locale("es", "ES"));
 
-        Time t1 = new Time(3.25, TimeUnit.HOUR);
-        Time t2 = new Time(3.5, TimeUnit.HOUR);
-        Time t3 = new Time(4.0, TimeUnit.HOUR);
-        Time t4 = new Time(12.0, TimeUnit.HOUR);
-        Time t5 = new Time(123.0, TimeUnit.HOUR);
-        Time t6 = new Time(3.425, TimeUnit.HOUR);
-        Time t7 = new Time(3.0, TimeUnit.HOUR).
+        final Time t1 = new Time(3.25, TimeUnit.HOUR);
+        final Time t2 = new Time(3.5, TimeUnit.HOUR);
+        final Time t3 = new Time(4.0, TimeUnit.HOUR);
+        final Time t4 = new Time(12.0, TimeUnit.HOUR);
+        final Time t5 = new Time(123.0, TimeUnit.HOUR);
+        final Time t6 = new Time(3.425, TimeUnit.HOUR);
+        final Time t7 = new Time(3.0, TimeUnit.HOUR).
                 addAndReturnNew(new Time(61.0, TimeUnit.MINUTE),
                         TimeUnit.HOUR);
 
 
-        //check
+        // check
         assertEquals(formatter.formatHourMinute(t1), "03:15");
         assertEquals(formatter.formatHourMinute(t2), "03:30");
         assertEquals(formatter.formatHourMinute(t3), "04:00");
@@ -1164,71 +1154,72 @@ public class TimeFormatterTest {
 
     @Test
     public void testParseHourMinute() throws ParseException, UnknownUnitException {
-        TimeFormatter formatter = new TimeFormatter(
+        final TimeFormatter formatter = new TimeFormatter(
                 new Locale("es", "ES"));
 
-        Time t1 = TimeConverter.convertAndReturnNew(
+        final Time t1 = TimeConverter.convertAndReturnNew(
                 formatter.parseHourMinute("03:15"), TimeUnit.HOUR);
 
-        //check
+        // check
         assertEquals(t1.getValue().doubleValue(), 3.25, ERROR);
 
 
-        Time t2 = TimeConverter.convertAndReturnNew(
+        final Time t2 = TimeConverter.convertAndReturnNew(
                 formatter.parseHourMinute("03:30"), TimeUnit.HOUR);
 
-        //check
+        // check
         assertEquals(t2.getValue().doubleValue(), 3.5, ERROR);
 
 
-        Time t3 = TimeConverter.convertAndReturnNew(
+        final Time t3 = TimeConverter.convertAndReturnNew(
                 formatter.parseHourMinute("04:00"), TimeUnit.HOUR);
 
-        //check
+        // check
         assertEquals(t3.getValue().doubleValue(), 4.0, ERROR);
 
 
-        Time t4 = TimeConverter.convertAndReturnNew(
+        final Time t4 = TimeConverter.convertAndReturnNew(
                 formatter.parseHourMinute("12:00"), TimeUnit.HOUR);
 
-        //check
+        // check
         assertEquals(t4.getValue().doubleValue(), 12.0, ERROR);
 
 
-        Time t5 = TimeConverter.convertAndReturnNew(
+        final Time t5 = TimeConverter.convertAndReturnNew(
                 formatter.parseHourMinute("123:00"), TimeUnit.HOUR);
 
-        //check
+        // check
         assertEquals(t5.getValue().doubleValue(), 123.0, ERROR);
 
 
-        //Force UnknownUnitException
+        // Force UnknownUnitException
         Time t6 = null;
         try {
             t6 = TimeConverter.convertAndReturnNew(
                     formatter.parseHourMinute("03:25,5"), TimeUnit.HOUR);
             fail("UnknownUnitException expected but not thrown");
-        } catch (UnknownUnitException ignore) { }
+        } catch (final UnknownUnitException ignore) {
+        }
         assertNull(t6);
     }
 
     @Test
     public void testFormatHourMinuteSecond() {
-        TimeFormatter formatter = new TimeFormatter(
+        final TimeFormatter formatter = new TimeFormatter(
                 new Locale("es", "ES"));
 
-        Time t1 = new Time(3.25, TimeUnit.HOUR);
-        Time t2 = new Time(3.5, TimeUnit.HOUR);
-        Time t3 = new Time(4.0, TimeUnit.HOUR);
-        Time t4 = new Time(12.0, TimeUnit.HOUR);
-        Time t5 = new Time(123.0, TimeUnit.HOUR);
-        Time t6 = new Time(3.425, TimeUnit.HOUR);
-        Time t7 = new Time(3.0 + (25.0 + (30.5/60.0))/60.0, TimeUnit.HOUR);
-        Time t8 = new Time(3.0, TimeUnit.HOUR).
+        final Time t1 = new Time(3.25, TimeUnit.HOUR);
+        final Time t2 = new Time(3.5, TimeUnit.HOUR);
+        final Time t3 = new Time(4.0, TimeUnit.HOUR);
+        final Time t4 = new Time(12.0, TimeUnit.HOUR);
+        final Time t5 = new Time(123.0, TimeUnit.HOUR);
+        final Time t6 = new Time(3.425, TimeUnit.HOUR);
+        final Time t7 = new Time(3.0 + (25.0 + (30.5 / 60.0)) / 60.0, TimeUnit.HOUR);
+        final Time t8 = new Time(3.0, TimeUnit.HOUR).
                 addAndReturnNew(new Time(61, TimeUnit.MINUTE), TimeUnit.HOUR).
                 addAndReturnNew(new Time(61, TimeUnit.SECOND), TimeUnit.HOUR);
 
-        //check
+        // check
         assertEquals(formatter.formatHourMinuteSecond(t1), "03:15:00");
         assertEquals(formatter.formatHourMinuteSecond(t2), "03:30:00");
         assertEquals(formatter.formatHourMinuteSecond(t3), "04:00:00");
@@ -1241,77 +1232,78 @@ public class TimeFormatterTest {
 
     @Test
     public void testParseHourMinuteSecond() throws ParseException, UnknownUnitException {
-        TimeFormatter formatter = new TimeFormatter(
+        final TimeFormatter formatter = new TimeFormatter(
                 new Locale("es", "ES"));
 
-        Time t1 = TimeConverter.convertAndReturnNew(
+        final Time t1 = TimeConverter.convertAndReturnNew(
                 formatter.parseHourMinuteSecond("03:15:00"), TimeUnit.HOUR);
 
-        //check
+        // check
         assertEquals(t1.getValue().doubleValue(), 3.25, ERROR);
 
 
-        Time t2 = TimeConverter.convertAndReturnNew(
+        final Time t2 = TimeConverter.convertAndReturnNew(
                 formatter.parseHourMinuteSecond("03:30:00"), TimeUnit.HOUR);
 
-        //check
+        // check
         assertEquals(t2.getValue().doubleValue(), 3.5, ERROR);
 
 
-        Time t3 = TimeConverter.convertAndReturnNew(
+        final Time t3 = TimeConverter.convertAndReturnNew(
                 formatter.parseHourMinuteSecond("04:00:00"), TimeUnit.HOUR);
 
-        //check
+        // check
         assertEquals(t3.getValue().doubleValue(), 4.0, ERROR);
 
 
-        Time t4 = TimeConverter.convertAndReturnNew(
+        final Time t4 = TimeConverter.convertAndReturnNew(
                 formatter.parseHourMinuteSecond("12:00:00"), TimeUnit.HOUR);
 
-        //check
+        // check
         assertEquals(t4.getValue().doubleValue(), 12.0, ERROR);
 
 
-        Time t5 = TimeConverter.convertAndReturnNew(
+        final Time t5 = TimeConverter.convertAndReturnNew(
                 formatter.parseHourMinuteSecond("123:00:00"), TimeUnit.HOUR);
 
-        //check
+        // check
         assertEquals(t5.getValue().doubleValue(), 123.0, ERROR);
 
 
-        Time t6 = TimeConverter.convertAndReturnNew(
+        final Time t6 = TimeConverter.convertAndReturnNew(
                 formatter.parseHourMinuteSecond("03:25:30"), TimeUnit.HOUR);
 
-        //check
+        // check
         assertEquals(t6.getValue().doubleValue(), 3.425, ERROR);
 
 
-        double value = new Time(3.0, TimeUnit.HOUR).
+        final double value = new Time(3.0, TimeUnit.HOUR).
                 addAndReturnNew(new Time(61, TimeUnit.MINUTE), TimeUnit.HOUR).
                 addAndReturnNew(new Time(61, TimeUnit.SECOND), TimeUnit.HOUR).
                 getValue().doubleValue();
 
-        Time t7 = TimeConverter.convertAndReturnNew(
+        final Time t7 = TimeConverter.convertAndReturnNew(
                 formatter.parseHourMinuteSecond("04:02:01"), TimeUnit.HOUR);
 
-        //check
+        // check
         assertEquals(t7.getValue().doubleValue(), value, ERROR);
 
 
-        //Force UnknownUnitException
+        // Force UnknownUnitException
         Time t8 = null;
         try {
             t8 = formatter.parseHourMinuteSecond("03:25:30,5");
-        } catch (UnknownUnitException ignore) { }
+        } catch (final UnknownUnitException ignore) {
+        }
         assertNull(t8);
     }
 
     @Test
     public void testFormatMultiple() {
-        TimeFormatter formatter = new TimeFormatter(
+        final TimeFormatter formatter = new TimeFormatter(
                 new Locale("es", "ES"));
 
-        //format all
+        // format all
         Time t = new Time(1.0, TimeUnit.CENTURY);
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_ALL),
                 "1st c.");
@@ -1369,62 +1361,62 @@ public class TimeFormatterTest {
                 "1 ns");
 
 
-        //format centuries
+        // format centuries
         t = new Time(1.5, TimeUnit.CENTURY);
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_CENTURIES),
                 "1,5nd c.");
 
-        //format years
+        // format years
         t = new Time(1.5, TimeUnit.CENTURY);
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_YEARS),
                 "150 yr");
 
-        //format months
+        // format months
         t = new Time(1.5, TimeUnit.YEAR);
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_MONTHS),
                 "18,25 mon");
 
-        //format weeks
+        // format weeks
         t = new Time(1.5, TimeUnit.MONTH);
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_WEEKS),
                 "6,429 wk");
 
-        //format days
+        // format days
         t = new Time(1.5, TimeUnit.WEEK);
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_DAYS),
                 "10,5 d");
 
-        //format hours
+        // format hours
         t = new Time(1.5, TimeUnit.DAY);
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_HOURS),
                 "36 h");
 
-        //format minute
+        // format minute
         t = new Time(1.5, TimeUnit.HOUR);
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_MINUTES),
                 "90 min");
 
-        //format seconds
+        // format seconds
         t = new Time(1.5, TimeUnit.MINUTE);
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_SECONDS),
                 "90 s");
 
-        //format milliseconds
+        // format milliseconds
         t = new Time(1.5, TimeUnit.SECOND);
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_MILLISECONDS),
                 "1.500 ms");
 
-        //format microseconds
+        // format microseconds
         t = new Time(1.5, TimeUnit.MILLISECOND);
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_MICROSECONDS),
                 "1.500 µs");
 
-        //format nanoseconds
+        // format nanoseconds
         t = new Time(1.5, TimeUnit.MICROSECOND);
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_NANOSECONDS),
                 "1.500 ns");
 
-        //format time all
+        // format time all
         t = new Time(3.0, TimeUnit.DAY).
                 addAndReturnNew(new Time(7.0, TimeUnit.HOUR), TimeUnit.DAY).
                 addAndReturnNew(new Time(48.0, TimeUnit.MINUTE), TimeUnit.DAY).
@@ -1435,11 +1427,11 @@ public class TimeFormatterTest {
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_TIME_ALL),
                 "79 h 48 min 22 s 138 ms 385 µs 460,466 ns");
 
-        //format time standard
+        // format time standard
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_TIME_STANDARD),
                 "79 h 48 min 22,138 s");
 
-        //format date all
+        // format date all
         t = new Time(1.0, TimeUnit.CENTURY).
                 addAndReturnNew(new Time(2.0, TimeUnit.YEAR), TimeUnit.DAY).
                 addAndReturnNew(new Time(3.0, TimeUnit.MONTH), TimeUnit.DAY).
@@ -1448,17 +1440,17 @@ public class TimeFormatterTest {
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_DATE_ALL),
                 "1st c. 2 yr 3 mon 1 wk 2 d");
 
-        //format date standard
+        // format date standard
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_DATE_STANDARD),
                 "102 yr 3 mon 9 d");
     }
 
     @Test
     public void testFormatMultipleIncludingZeroValues() {
-        TimeFormatter formatter = new TimeFormatter(
+        final TimeFormatter formatter = new TimeFormatter(
                 new Locale("es", "ES"));
 
-        //format all
+        // format all
         Time t = new Time(1.0, TimeUnit.CENTURY);
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_ALL, false),
                 "1st c. 0 yr 0 mon 0 wk 0 d 0 h 0 min 0 s 0 ms 0 µs 0 ns");
@@ -1516,62 +1508,62 @@ public class TimeFormatterTest {
                 "0st c. 0 yr 0 mon 0 wk 0 d 0 h 0 min 0 s 0 ms 0 µs 1 ns");
 
 
-        //format centuries
+        // format centuries
         t = new Time(1.5, TimeUnit.CENTURY);
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_CENTURIES, false),
                 "1,5nd c.");
 
-        //format years
+        // format years
         t = new Time(1.5, TimeUnit.CENTURY);
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_YEARS, false),
                 "150 yr");
 
-        //format months
+        // format months
         t = new Time(1.5, TimeUnit.YEAR);
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_MONTHS, false),
                 "18,25 mon");
 
-        //format weeks
+        // format weeks
         t = new Time(1.5, TimeUnit.MONTH);
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_WEEKS, false),
                 "6,429 wk");
 
-        //format days
+        // format days
         t = new Time(1.5, TimeUnit.WEEK);
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_DAYS, false),
                 "10,5 d");
 
-        //format hours
+        // format hours
         t = new Time(1.5, TimeUnit.DAY);
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_HOURS, false),
                 "36 h");
 
-        //format minute
+        // format minute
         t = new Time(1.5, TimeUnit.HOUR);
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_MINUTES, false),
                 "90 min");
 
-        //format seconds
+        // format seconds
         t = new Time(1.5, TimeUnit.MINUTE);
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_SECONDS, false),
                 "90 s");
 
-        //format milliseconds
+        // format milliseconds
         t = new Time(1.5, TimeUnit.SECOND);
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_MILLISECONDS, false),
                 "1.500 ms");
 
-        //format microseconds
+        // format microseconds
         t = new Time(1.5, TimeUnit.MILLISECOND);
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_MICROSECONDS, false),
                 "1.500 µs");
 
-        //format nanoseconds
+        // format nanoseconds
         t = new Time(1.5, TimeUnit.MICROSECOND);
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_NANOSECONDS, false),
                 "1.500 ns");
 
-        //format time all
+        // format time all
         t = new Time(3.0, TimeUnit.DAY).
                 addAndReturnNew(new Time(7.0, TimeUnit.HOUR), TimeUnit.DAY).
                 addAndReturnNew(new Time(48.0, TimeUnit.MINUTE), TimeUnit.DAY).
@@ -1582,11 +1574,11 @@ public class TimeFormatterTest {
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_TIME_ALL, false),
                 "79 h 48 min 22 s 138 ms 385 µs 460,466 ns");
 
-        //format time standard
+        // format time standard
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_TIME_STANDARD, false),
                 "79 h 48 min 22,138 s");
 
-        //format date all
+        // format date all
         t = new Time(1.0, TimeUnit.CENTURY).
                 addAndReturnNew(new Time(2.0, TimeUnit.YEAR), TimeUnit.DAY).
                 addAndReturnNew(new Time(3.0, TimeUnit.MONTH), TimeUnit.DAY).
@@ -1595,14 +1587,14 @@ public class TimeFormatterTest {
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_DATE_ALL, false),
                 "1st c. 2 yr 3 mon 0 wk 2 d");
 
-        //format date standard
+        // format date standard
         assertEquals(formatter.formatMultiple(t, TimeFormatter.FORMAT_DATE_STANDARD, false),
                 "102 yr 3 mon 2 d");
     }
 
     @Test
     public void testParseMultiple() throws ParseException, UnknownUnitException {
-        TimeFormatter formatter = new TimeFormatter(
+        final TimeFormatter formatter = new TimeFormatter(
                 new Locale("es", "ES"));
 
         Time t = TimeConverter.convertAndReturnNew(
@@ -1693,30 +1685,30 @@ public class TimeFormatterTest {
                 formatter.parseMultiple("79 h 48 min 22 s 138 ms 385 µs 460 ns"),
                 TimeUnit.DAY);
         assertTrue(t.equals(new Time(3.0, TimeUnit.DAY).
-                addAndReturnNew(new Time(7.0, TimeUnit.HOUR), TimeUnit.DAY).
-                addAndReturnNew(new Time(48.0, TimeUnit.MINUTE), TimeUnit.DAY).
-                addAndReturnNew(new Time(22.0, TimeUnit.SECOND), TimeUnit.DAY).
-                addAndReturnNew(new Time(138.0, TimeUnit.MILLISECOND), TimeUnit.DAY).
-                addAndReturnNew(new Time(385.0, TimeUnit.MICROSECOND), TimeUnit.DAY).
-                addAndReturnNew(new Time(460.0, TimeUnit.NANOSECOND), TimeUnit.DAY),
+                        addAndReturnNew(new Time(7.0, TimeUnit.HOUR), TimeUnit.DAY).
+                        addAndReturnNew(new Time(48.0, TimeUnit.MINUTE), TimeUnit.DAY).
+                        addAndReturnNew(new Time(22.0, TimeUnit.SECOND), TimeUnit.DAY).
+                        addAndReturnNew(new Time(138.0, TimeUnit.MILLISECOND), TimeUnit.DAY).
+                        addAndReturnNew(new Time(385.0, TimeUnit.MICROSECOND), TimeUnit.DAY).
+                        addAndReturnNew(new Time(460.0, TimeUnit.NANOSECOND), TimeUnit.DAY),
                 ERROR));
 
         t = TimeConverter.convertAndReturnNew(
                 formatter.parseMultiple("79 h 48 min 22 s"),
                 TimeUnit.DAY);
         assertTrue(t.equals(new Time(3.0, TimeUnit.DAY).
-                addAndReturnNew(new Time(7.0, TimeUnit.HOUR), TimeUnit.DAY).
-                addAndReturnNew(new Time(48.0, TimeUnit.MINUTE), TimeUnit.DAY).
-                addAndReturnNew(new Time(22.0, TimeUnit.SECOND), TimeUnit.DAY),
+                        addAndReturnNew(new Time(7.0, TimeUnit.HOUR), TimeUnit.DAY).
+                        addAndReturnNew(new Time(48.0, TimeUnit.MINUTE), TimeUnit.DAY).
+                        addAndReturnNew(new Time(22.0, TimeUnit.SECOND), TimeUnit.DAY),
                 ERROR));
 
         t = TimeConverter.convertAndReturnNew(
                 formatter.parseMultiple("1st c. 2 yr 3 mon 0 wk 2 d"),
                 TimeUnit.DAY);
         assertTrue(t.equals(new Time(1.0, TimeUnit.CENTURY).
-                addAndReturnNew(new Time(2.0, TimeUnit.YEAR), TimeUnit.DAY).
-                addAndReturnNew(new Time(3.0, TimeUnit.MONTH), TimeUnit.DAY).
-                addAndReturnNew(new Time(2.0, TimeUnit.DAY), TimeUnit.DAY),
+                        addAndReturnNew(new Time(2.0, TimeUnit.YEAR), TimeUnit.DAY).
+                        addAndReturnNew(new Time(3.0, TimeUnit.MONTH), TimeUnit.DAY).
+                        addAndReturnNew(new Time(2.0, TimeUnit.DAY), TimeUnit.DAY),
                 ERROR));
 
         t = TimeConverter.convertAndReturnNew(
@@ -1731,56 +1723,63 @@ public class TimeFormatterTest {
         assertTrue(t.equals(new Time(7.0, TimeUnit.DAY).
                 addAndReturnNew(new Time(3.0, TimeUnit.HOUR), TimeUnit.DAY), ERROR));
 
-        //components with decimals or thousand separators are ignored
+        // components with decimals or thousand separators are ignored
         t = TimeConverter.convertAndReturnNew(
                 formatter.parseMultiple("79 h 48 min 22 s 138 ms 385 µs 460,466 ns"),
                 TimeUnit.DAY);
         assertTrue(t.equals(new Time(3.0, TimeUnit.DAY).
-                addAndReturnNew(new Time(7.0, TimeUnit.HOUR), TimeUnit.DAY).
-                addAndReturnNew(new Time(48.0, TimeUnit.MINUTE), TimeUnit.DAY).
-                addAndReturnNew(new Time(22.0, TimeUnit.SECOND), TimeUnit.DAY).
-                addAndReturnNew(new Time(138.0, TimeUnit.MILLISECOND), TimeUnit.DAY).
-                addAndReturnNew(new Time(385.0, TimeUnit.MICROSECOND), TimeUnit.DAY),
+                        addAndReturnNew(new Time(7.0, TimeUnit.HOUR), TimeUnit.DAY).
+                        addAndReturnNew(new Time(48.0, TimeUnit.MINUTE), TimeUnit.DAY).
+                        addAndReturnNew(new Time(22.0, TimeUnit.SECOND), TimeUnit.DAY).
+                        addAndReturnNew(new Time(138.0, TimeUnit.MILLISECOND), TimeUnit.DAY).
+                        addAndReturnNew(new Time(385.0, TimeUnit.MICROSECOND), TimeUnit.DAY),
                 ERROR));
         t = TimeConverter.convertAndReturnNew(
                 formatter.parseMultiple("79 h 48 min 22,138 s"),
                 TimeUnit.DAY);
         assertTrue(t.equals(new Time(3.0, TimeUnit.DAY).
-                addAndReturnNew(new Time(7.0, TimeUnit.HOUR), TimeUnit.DAY).
-                addAndReturnNew(new Time(48.0, TimeUnit.MINUTE), TimeUnit.DAY),
+                        addAndReturnNew(new Time(7.0, TimeUnit.HOUR), TimeUnit.DAY).
+                        addAndReturnNew(new Time(48.0, TimeUnit.MINUTE), TimeUnit.DAY),
                 ERROR));
 
 
-        //force UnknownUnitException (decimals or thousand separators are not allowed)
+        // force UnknownUnitException (decimals or thousand separators are not allowed)
         t = null;
         try {
             t = formatter.parseMultiple("1,5nd c.");
             fail("UnknownUnitException expected but not thrown");
-        } catch (UnknownUnitException ignore) { }
+        } catch (final UnknownUnitException ignore) {
+        }
         try {
             t = formatter.parseMultiple("18,25 mon");
             fail("UnknownUnitException expected but not thrown");
-        } catch (UnknownUnitException ignore) { }
+        } catch (final UnknownUnitException ignore) {
+        }
         try {
             t = formatter.parseMultiple("6,429 wk");
             fail("UnknownUnitException expected but not thrown");
-        } catch (UnknownUnitException ignore) { }
+        } catch (final UnknownUnitException ignore) {
+        }
         try {
             t = formatter.parseMultiple("10,5 d");
             fail("UnknownUnitException expected but not thrown");
-        } catch (UnknownUnitException ignore) { }
+        } catch (final UnknownUnitException ignore) {
+        }
         try {
             t = formatter.parseMultiple("1.500 ms");
             fail("UnknownUnitException expected but not thrown");
-        } catch (UnknownUnitException ignore) { }
+        } catch (final UnknownUnitException ignore) {
+        }
         try {
             t = formatter.parseMultiple("1.500 µs");
             fail("UnknownUnitException expected but not thrown");
-        } catch (UnknownUnitException ignore) { }
+        } catch (final UnknownUnitException ignore) {
+        }
         try {
             t = formatter.parseMultiple("1.500 ns");
             fail("UnknownUnitException expected but not thrown");
-        } catch (UnknownUnitException ignore) { }
+        } catch (final UnknownUnitException ignore) {
+        }
         assertNull(t);
     }
 }

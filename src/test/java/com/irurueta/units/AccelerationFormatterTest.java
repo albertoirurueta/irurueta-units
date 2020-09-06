@@ -28,26 +28,12 @@ import static org.junit.Assert.*;
 
 public class AccelerationFormatterTest {
 
-    public AccelerationFormatterTest() { }
-
-    @BeforeClass
-    public static void setUpClass() { }
-
-    @AfterClass
-    public static void tearDownClass() { }
-
-    @Before
-    public void setUp() { }
-
-    @After
-    public void tearDown() { }
-
     @Test
     public void testConstructor() {
-        //test empty constructor
+        // test empty constructor
         AccelerationFormatter formatter = new AccelerationFormatter();
 
-        //check
+        // check
         assertEquals(formatter.getLocale(), Locale.getDefault());
         assertEquals(formatter.getMaximumFractionDigits(),
                 NumberFormat.getInstance().getMaximumFractionDigits());
@@ -67,11 +53,11 @@ public class AccelerationFormatterTest {
         assertEquals(formatter.getValueAndUnitFormatPattern(),
                 MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
 
-        //test constructor with locale
-        Locale locale = new Locale("es", "ES");
+        // test constructor with locale
+        final Locale locale = new Locale("es", "ES");
         formatter = new AccelerationFormatter(locale);
 
-        //check
+        // check
         assertEquals(formatter.getLocale(), locale);
         assertEquals(formatter.getMaximumFractionDigits(),
                 NumberFormat.getInstance(locale).getMaximumFractionDigits());
@@ -91,20 +77,21 @@ public class AccelerationFormatterTest {
         assertEquals(formatter.getValueAndUnitFormatPattern(),
                 MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
 
-        //force IllegalArgumentException
+        // force IllegalArgumentException
         formatter = null;
         try {
             formatter = new AccelerationFormatter((Locale) null);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
         assertNull(formatter);
 
 
-        //test copy constructor
+        // test copy constructor
         formatter = new AccelerationFormatter(locale);
-        AccelerationFormatter formatter2 = new AccelerationFormatter(formatter);
+        final AccelerationFormatter formatter2 = new AccelerationFormatter(formatter);
 
-        //check
+        // check
         assertEquals(formatter2.getLocale(), locale);
         assertEquals(formatter2.getMaximumFractionDigits(),
                 NumberFormat.getInstance(locale).getMaximumFractionDigits());
@@ -126,26 +113,27 @@ public class AccelerationFormatterTest {
 
         formatter = null;
         try {
-            //noinspection all
-            formatter = new AccelerationFormatter((AccelerationFormatter)null);
+            //noinspection ConstantConditions
+            formatter = new AccelerationFormatter((AccelerationFormatter) null);
             fail("NullPointerException expected but not thrown");
-        } catch (NullPointerException ignore) { }
+        } catch (final NullPointerException ignore) {
+        }
         assertNull(formatter);
     }
 
     @Test
-    public void testClone() {
-        AccelerationFormatter formatter1 = new AccelerationFormatter();
-        AccelerationFormatter formatter2 = (AccelerationFormatter) formatter1.clone();
+    public void testClone() throws CloneNotSupportedException {
+        final AccelerationFormatter formatter1 = new AccelerationFormatter();
+        final AccelerationFormatter formatter2 = (AccelerationFormatter) formatter1.clone();
 
-        //check
+        // check
         assertNotSame(formatter1, formatter2);
         assertEquals(formatter1, formatter2);
 
-        //test after initializing internal number format
+        // test after initializing internal number format
         assertNotNull(formatter1.format(0.5, AccelerationUnit.METERS_PER_SQUARED_SECOND,
                 new StringBuffer(), new FieldPosition(0)));
-        AccelerationFormatter formatter3 = (AccelerationFormatter) formatter1.clone();
+        final AccelerationFormatter formatter3 = (AccelerationFormatter) formatter1.clone();
 
         assertNotSame(formatter1, formatter3);
         assertEquals(formatter1, formatter3);
@@ -153,26 +141,25 @@ public class AccelerationFormatterTest {
 
     @Test
     public void testEquals() {
-        AccelerationFormatter formatter1 = new AccelerationFormatter(Locale.ENGLISH);
-        AccelerationFormatter formatter2 = new AccelerationFormatter(Locale.ENGLISH);
-        AccelerationFormatter formatter3 = new AccelerationFormatter(Locale.FRENCH);
+        final AccelerationFormatter formatter1 = new AccelerationFormatter(Locale.ENGLISH);
+        final AccelerationFormatter formatter2 = new AccelerationFormatter(Locale.ENGLISH);
+        final AccelerationFormatter formatter3 = new AccelerationFormatter(Locale.FRENCH);
 
-        //check
+        // check
         assertEquals(formatter1, formatter1);
         assertEquals(formatter1, formatter2);
         assertNotEquals(formatter1, formatter3);
 
         assertNotEquals(formatter1, new Object());
 
-        //noinspection all
-        assertFalse(formatter1.equals(null));
+        assertNotEquals(null, formatter1);
     }
 
     @Test
     public void testHashCode() {
-        AccelerationFormatter formatter1 = new AccelerationFormatter(Locale.ENGLISH);
-        AccelerationFormatter formatter2 = new AccelerationFormatter(Locale.ENGLISH);
-        AccelerationFormatter formatter3 = new AccelerationFormatter(Locale.FRENCH);
+        final AccelerationFormatter formatter1 = new AccelerationFormatter(Locale.ENGLISH);
+        final AccelerationFormatter formatter2 = new AccelerationFormatter(Locale.ENGLISH);
+        final AccelerationFormatter formatter3 = new AccelerationFormatter(Locale.FRENCH);
 
         assertEquals(formatter1.hashCode(), formatter1.hashCode());
         assertEquals(formatter1.hashCode(), formatter2.hashCode());
@@ -181,10 +168,10 @@ public class AccelerationFormatterTest {
 
     @Test
     public void testFormatNumber() {
-        double value = 5.50;
-        Locale l = new Locale("es", "ES");
+        final double value = 5.50;
+        final Locale l = new Locale("es", "ES");
 
-        AccelerationFormatter formatter = new AccelerationFormatter(l);
+        final AccelerationFormatter formatter = new AccelerationFormatter(l);
 
         assertEquals(formatter.format(new BigDecimal(value),
                 AccelerationUnit.METERS_PER_SQUARED_SECOND), "5,5 m/s²");
@@ -196,10 +183,10 @@ public class AccelerationFormatterTest {
 
     @Test
     public void testFormatNumberAndStringBuffer() {
-        double value = 5.50;
-        Locale l = new Locale("es", "ES");
+        final double value = 5.50;
+        final Locale l = new Locale("es", "ES");
 
-        AccelerationFormatter formatter = new AccelerationFormatter(l);
+        final AccelerationFormatter formatter = new AccelerationFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
         assertEquals(formatter.format(new BigDecimal(value),
@@ -219,10 +206,10 @@ public class AccelerationFormatterTest {
 
     @Test
     public void testFormatDouble() {
-        double value = 5.50;
-        Locale l = new Locale("es", "ES");
+        final double value = 5.50;
+        final Locale l = new Locale("es", "ES");
 
-        AccelerationFormatter formatter = new AccelerationFormatter(l);
+        final AccelerationFormatter formatter = new AccelerationFormatter(l);
 
         assertEquals(formatter.format(value,
                 AccelerationUnit.METERS_PER_SQUARED_SECOND), "5,5 m/s²");
@@ -234,10 +221,10 @@ public class AccelerationFormatterTest {
 
     @Test
     public void testFormatDoubleAndStringBuffer() {
-        double value = 5.50;
-        Locale l = new Locale("es", "ES");
+        final double value = 5.50;
+        final Locale l = new Locale("es", "ES");
 
-        AccelerationFormatter formatter = new AccelerationFormatter(l);
+        final AccelerationFormatter formatter = new AccelerationFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
         assertEquals(formatter.format(value,
@@ -257,10 +244,10 @@ public class AccelerationFormatterTest {
 
     @Test
     public void testFormatAcceleration() {
-        double value = 5.50;
-        Locale l = new Locale("es", "ES");
+        final double value = 5.50;
+        final Locale l = new Locale("es", "ES");
 
-        AccelerationFormatter formatter = new AccelerationFormatter(l);
+        final AccelerationFormatter formatter = new AccelerationFormatter(l);
 
         assertEquals(formatter.format(new Acceleration(value,
                 AccelerationUnit.METERS_PER_SQUARED_SECOND)), "5,5 m/s²");
@@ -272,36 +259,36 @@ public class AccelerationFormatterTest {
 
     @Test
     public void testFormatAccelerationAndStringBuffer() {
-        double value = 5.50;
-        Locale l = new Locale("es", "ES");
+        final double value = 5.50;
+        final Locale l = new Locale("es", "ES");
 
-        AccelerationFormatter formatter = new AccelerationFormatter(l);
+        final AccelerationFormatter formatter = new AccelerationFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
         assertEquals(formatter.format(new Acceleration(value,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND), buffer,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND), buffer,
                 new FieldPosition(0)).toString(), "5,5 m/s²");
 
         buffer = new StringBuffer();
         assertEquals(formatter.format(new Acceleration(value,
-                AccelerationUnit.G), buffer,
+                        AccelerationUnit.G), buffer,
                 new FieldPosition(0)).toString(), "5,5 g₀");
 
         buffer = new StringBuffer();
         assertEquals(formatter.format(new Acceleration(value,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND), buffer,
+                        AccelerationUnit.FEET_PER_SQUARED_SECOND), buffer,
                 new FieldPosition(0)).toString(), "5,5 ft/s²");
     }
 
     @Test
     public void testFormatAndConvertNumber() {
-        //test for metric system
+        // test for metric system
         Locale l = new Locale("es", "ES");
 
         AccelerationFormatter formatter = new AccelerationFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.5),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.5"),
                 AccelerationUnit.METERS_PER_SQUARED_SECOND), "5,5 m/s²");
         assertEquals(formatter.formatAndConvert(new BigDecimal(1),
                 AccelerationUnit.G), "9,81 m/s²");
@@ -312,13 +299,13 @@ public class AccelerationFormatterTest {
         formatter = new AccelerationFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.5),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.5"),
                 AccelerationUnit.FEET_PER_SQUARED_SECOND), "5.5 ft/s²");
     }
 
     @Test
     public void testFormatAndConvertDouble() {
-        //test for metric system
+        // test for metric system
         Locale l = new Locale("es", "ES");
 
         AccelerationFormatter formatter = new AccelerationFormatter(l);
@@ -341,7 +328,7 @@ public class AccelerationFormatterTest {
 
     @Test
     public void testFormatAndConvertAcceleration() {
-        //test for metric system
+        // test for metric system
         Locale l = new Locale("es", "ES");
 
         AccelerationFormatter formatter = new AccelerationFormatter(l);
@@ -369,13 +356,13 @@ public class AccelerationFormatterTest {
         AccelerationFormatter formatter = new AccelerationFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.5),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.5"),
                 AccelerationUnit.METERS_PER_SQUARED_SECOND, UnitSystem.METRIC),
                 "5,5 m/s²");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("1.0"),
                 AccelerationUnit.G, UnitSystem.METRIC), "9,81 m/s²");
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.5),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.5"),
                 AccelerationUnit.FEET_PER_SQUARED_SECOND, UnitSystem.METRIC),
                 "1,68 m/s²");
 
@@ -386,14 +373,14 @@ public class AccelerationFormatterTest {
         formatter = new AccelerationFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.5),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.5"),
                 AccelerationUnit.FEET_PER_SQUARED_SECOND, UnitSystem.IMPERIAL),
                 "5.5 ft/s²");
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.5),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.5"),
                 AccelerationUnit.METERS_PER_SQUARED_SECOND, UnitSystem.IMPERIAL),
                 "18.04 ft/s²");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("1.0"),
                 AccelerationUnit.G, UnitSystem.IMPERIAL), "32.17 ft/s²");
     }
 
@@ -440,13 +427,13 @@ public class AccelerationFormatterTest {
         formatter.setMaximumFractionDigits(2);
 
         assertEquals(formatter.formatAndConvert(new Acceleration(5.5,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND), UnitSystem.METRIC),
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND), UnitSystem.METRIC),
                 "5,5 m/s²");
         assertEquals(formatter.formatAndConvert(new Acceleration(1.0,
                 AccelerationUnit.G), UnitSystem.METRIC), "9,81 m/s²");
 
         assertEquals(formatter.formatAndConvert(new Acceleration(5.5,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND), UnitSystem.METRIC),
+                        AccelerationUnit.FEET_PER_SQUARED_SECOND), UnitSystem.METRIC),
                 "1,68 m/s²");
 
 
@@ -457,11 +444,11 @@ public class AccelerationFormatterTest {
         formatter.setMaximumFractionDigits(2);
 
         assertEquals(formatter.formatAndConvert(new Acceleration(5.5,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND), UnitSystem.IMPERIAL),
+                        AccelerationUnit.FEET_PER_SQUARED_SECOND), UnitSystem.IMPERIAL),
                 "5.5 ft/s²");
 
         assertEquals(formatter.formatAndConvert(new Acceleration(5.5,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND), UnitSystem.IMPERIAL),
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND), UnitSystem.IMPERIAL),
                 "18.04 ft/s²");
         assertEquals(formatter.formatAndConvert(new Acceleration(1.0,
                 AccelerationUnit.G), UnitSystem.IMPERIAL), "32.17 ft/s²");
@@ -469,164 +456,165 @@ public class AccelerationFormatterTest {
 
     @Test
     public void testFormatAndConvertMetric() {
-        Locale l = new Locale("es", "ES");
+        final Locale l = new Locale("es", "ES");
 
-        AccelerationFormatter formatter = new AccelerationFormatter(l);
+        final AccelerationFormatter formatter = new AccelerationFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal(5.5),
+        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5.5"),
                 AccelerationUnit.METERS_PER_SQUARED_SECOND),
                 "5,5 m/s²");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("1.0"),
                 AccelerationUnit.G), "9,81 m/s²");
 
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal(5.5),
+        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5.5"),
                 AccelerationUnit.FEET_PER_SQUARED_SECOND),
                 "1,68 m/s²");
     }
 
     @Test
     public void testFormatAndConvertImperial() {
-        Locale l = new Locale("en", "US");
+        final Locale l = new Locale("en", "US");
 
-        AccelerationFormatter formatter = new AccelerationFormatter(l);
+        final AccelerationFormatter formatter = new AccelerationFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal(5.5),
+        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("5.5"),
                 AccelerationUnit.FEET_PER_SQUARED_SECOND),
                 "5.5 ft/s²");
 
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal(5.5),
+        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("5.5"),
                 AccelerationUnit.METERS_PER_SQUARED_SECOND),
                 "18.04 ft/s²");
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("1.0"),
                 AccelerationUnit.G), "32.17 ft/s²");
     }
 
     @Test
     public void testGetAvailableLocales() {
-        Locale[] locales = AccelerationFormatter.getAvailableLocales();
+        final Locale[] locales = AccelerationFormatter.getAvailableLocales();
         assertArrayEquals(locales, NumberFormat.getAvailableLocales());
     }
 
     @Test
     public void testGetSetMaximumFractionDigits() {
-        AccelerationFormatter formatter = new AccelerationFormatter();
+        final AccelerationFormatter formatter = new AccelerationFormatter();
 
         assertEquals(formatter.getMaximumFractionDigits(),
                 NumberFormat.getInstance().getMaximumFractionDigits());
 
-        //set new value
+        // set new value
         formatter.setMaximumFractionDigits(2);
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.getMaximumFractionDigits(), 2);
     }
 
     @Test
     public void testGetSetMaximumIntegerDigits() {
-        AccelerationFormatter formatter = new AccelerationFormatter();
+        final AccelerationFormatter formatter = new AccelerationFormatter();
 
         assertEquals(formatter.getMaximumIntegerDigits(),
                 NumberFormat.getInstance().getMaximumIntegerDigits());
 
-        //set new value
+        // set new value
         formatter.setMaximumIntegerDigits(2);
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.getMaximumIntegerDigits(), 2);
     }
 
     @Test
     public void testGetSetMinimumFractionDigits() {
-        AccelerationFormatter formatter = new AccelerationFormatter();
+        final AccelerationFormatter formatter = new AccelerationFormatter();
 
         assertEquals(formatter.getMinimumFractionDigits(),
                 NumberFormat.getInstance().getMinimumFractionDigits());
 
-        //set new value
+        // set new value
         formatter.setMinimumFractionDigits(2);
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.getMinimumFractionDigits(), 2);
     }
 
     @Test
     public void testGetSetMinimumIntegerDigits() {
-        AccelerationFormatter formatter = new AccelerationFormatter();
+        final AccelerationFormatter formatter = new AccelerationFormatter();
 
         assertEquals(formatter.getMinimumIntegerDigits(),
                 NumberFormat.getInstance().getMinimumIntegerDigits());
 
-        //set new value
+        // set new value
         formatter.setMinimumIntegerDigits(2);
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.getMinimumIntegerDigits(), 2);
     }
 
     @Test
     public void testGetSetRoundingMode() {
-        AccelerationFormatter formatter = new AccelerationFormatter();
+        final AccelerationFormatter formatter = new AccelerationFormatter();
 
         assertEquals(formatter.getRoundingMode(),
                 NumberFormat.getInstance().getRoundingMode());
 
-        //set new value
+        // set new value
         formatter.setRoundingMode(RoundingMode.UNNECESSARY);
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.getRoundingMode(), RoundingMode.UNNECESSARY);
     }
 
     @Test
     public void testIsSetGroupingUsed() {
-        AccelerationFormatter formatter = new AccelerationFormatter();
+        final AccelerationFormatter formatter = new AccelerationFormatter();
 
         assertEquals(formatter.isGroupingUsed(),
                 NumberFormat.getInstance().isGroupingUsed());
 
-        //set new value
+        // set new value
         formatter.setGroupingUsed(!formatter.isGroupingUsed());
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.isGroupingUsed(),
                 !NumberFormat.getInstance().isGroupingUsed());
     }
 
     @Test
     public void testIsSetParseIntegerOnly() {
-        AccelerationFormatter formatter = new AccelerationFormatter();
+        final AccelerationFormatter formatter = new AccelerationFormatter();
 
         assertEquals(formatter.isParseIntegerOnly(),
                 NumberFormat.getInstance().isParseIntegerOnly());
 
-        //set new value
+        // set new value
         formatter.setParseIntegerOnly(!formatter.isParseIntegerOnly());
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.isParseIntegerOnly(),
                 !NumberFormat.getInstance().isParseIntegerOnly());
     }
 
     @Test
     public void testGetSetValueAndUnitFormatPattern() {
-        AccelerationFormatter formatter = new AccelerationFormatter();
+        final AccelerationFormatter formatter = new AccelerationFormatter();
 
         assertEquals(formatter.getValueAndUnitFormatPattern(),
                 MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
 
-        //new value
+        // new value
         formatter.setValueAndUnitFormatPattern("{0}{1}");
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.getValueAndUnitFormatPattern(), "{0}{1}");
 
-        //force IllegalArgumentException
+        // force IllegalArgumentException
         try {
             formatter.setValueAndUnitFormatPattern(null);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
     }
 
     @Test
@@ -642,7 +630,7 @@ public class AccelerationFormatterTest {
 
     @Test
     public void testIsValidUnit() {
-        AccelerationFormatter formatter = new AccelerationFormatter();
+        final AccelerationFormatter formatter = new AccelerationFormatter();
 
         assertTrue(formatter.isValidUnit("m/s²"));
         assertTrue(formatter.isValidUnit("m/s² "));
@@ -656,7 +644,7 @@ public class AccelerationFormatterTest {
 
     @Test
     public void testIsValidMeasurement() {
-        AccelerationFormatter formatter = new AccelerationFormatter(
+        final AccelerationFormatter formatter = new AccelerationFormatter(
                 new Locale("es", "ES"));
 
         String text = "5,5 m/s²";
@@ -677,7 +665,7 @@ public class AccelerationFormatterTest {
 
     @Test
     public void testIsMetricUnit() {
-        AccelerationFormatter formatter = new AccelerationFormatter(
+        final AccelerationFormatter formatter = new AccelerationFormatter(
                 new Locale("es", "ES"));
 
         String text = "5,5 m/s²";
@@ -695,7 +683,7 @@ public class AccelerationFormatterTest {
 
     @Test
     public void testIsImperialUnit() {
-        AccelerationFormatter formatter = new AccelerationFormatter(
+        final AccelerationFormatter formatter = new AccelerationFormatter(
                 new Locale("es", "ES"));
 
         String text = "5,5 m/s²";
@@ -713,7 +701,7 @@ public class AccelerationFormatterTest {
 
     @Test
     public void testGetUnitSystemFromSource() {
-        AccelerationFormatter formatter = new AccelerationFormatter(
+        final AccelerationFormatter formatter = new AccelerationFormatter(
                 new Locale("es", "ES"));
 
         String text = "5,5 m/s²";
@@ -731,7 +719,7 @@ public class AccelerationFormatterTest {
 
     @Test
     public void testParse() throws ParseException, UnknownUnitException {
-        AccelerationFormatter formatter = new AccelerationFormatter(
+        final AccelerationFormatter formatter = new AccelerationFormatter(
                 new Locale("es", "ES"));
 
         String text = "5,5 m/s²";
@@ -749,23 +737,25 @@ public class AccelerationFormatterTest {
         assertEquals(a.getValue().doubleValue(), 5.5, 0.0);
         assertEquals(a.getUnit(), AccelerationUnit.FEET_PER_SQUARED_SECOND);
 
-        //Force UnknownUnitException
+        // Force UnknownUnitException
         text = "5,5 s";
         try {
             formatter.parse(text);
             fail("UnknownUnitException expected but not thrown");
-        } catch (UnknownUnitException ignore) { }
+        } catch (final UnknownUnitException ignore) {
+        }
 
-        //Force ParseException
+        // Force ParseException
         try {
             formatter.parse("m");
             fail("ParseException expected but not thrown");
-        } catch (ParseException ignore) { }
+        } catch (final ParseException ignore) {
+        }
     }
 
     @Test
     public void testFindUnit() {
-        AccelerationFormatter formatter = new AccelerationFormatter(
+        final AccelerationFormatter formatter = new AccelerationFormatter(
                 new Locale("es", "ES"));
 
         String text = "5,5 m/s²";
@@ -785,7 +775,7 @@ public class AccelerationFormatterTest {
 
     @Test
     public void testGetUnitSymbol() {
-        AccelerationFormatter formatter = new AccelerationFormatter();
+        final AccelerationFormatter formatter = new AccelerationFormatter();
 
         assertEquals(formatter.getUnitSymbol(AccelerationUnit.METERS_PER_SQUARED_SECOND),
                 AccelerationFormatter.METERS_PER_SQUARED_SECOND);

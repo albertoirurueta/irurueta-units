@@ -46,11 +46,13 @@ public enum SpeedUnit {
 
     /**
      * Returns unit system for provided speed unit.
+     *
      * @param unit speed unit to be checked.
      * @return unit system (metric or imperial).
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static UnitSystem getUnitSystem(SpeedUnit unit) {
+    public static UnitSystem getUnitSystem(
+            final SpeedUnit unit) {
         if (unit == null) {
             throw new IllegalArgumentException();
         }
@@ -69,10 +71,11 @@ public enum SpeedUnit {
 
     /**
      * Gets all supported metric speed units.
+     *
      * @return all supported metric speed units.
      */
     public static SpeedUnit[] getMetricUnits() {
-        return new SpeedUnit[] {
+        return new SpeedUnit[]{
                 METERS_PER_SECOND,
                 KILOMETERS_PER_HOUR,
                 KILOMETERS_PER_SECOND
@@ -81,10 +84,11 @@ public enum SpeedUnit {
 
     /**
      * Gets all supported imperial speed units.
+     *
      * @return all supported imperial speed units.
      */
     public static SpeedUnit[] getImperialUnits() {
-        return new SpeedUnit[] {
+        return new SpeedUnit[]{
                 FEET_PER_SECOND,
                 MILES_PER_HOUR
         };
@@ -92,21 +96,25 @@ public enum SpeedUnit {
 
     /**
      * Indicates whether provided unit belongs to the metric unit system.
+     *
      * @param unit speed unit to be checked.
      * @return true if unit belongs to metric unit system.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isMetric(SpeedUnit unit) {
+    public static boolean isMetric(
+            final SpeedUnit unit) {
         return getUnitSystem(unit) == UnitSystem.METRIC;
     }
 
     /**
      * Indicates whether provided unit belongs to the imperial unit system.
+     *
      * @param unit speed unit to be checked.
      * @return true if unit belongs to imperial unit system.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isImperial(SpeedUnit unit) {
+    public static boolean isImperial(
+            final SpeedUnit unit) {
         return getUnitSystem(unit) == UnitSystem.IMPERIAL;
     }
 }

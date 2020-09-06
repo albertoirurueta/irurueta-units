@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.irurueta.units;
 
 import java.text.ParseException;
@@ -49,47 +50,39 @@ public class AccelerationFormatter extends
 
     /**
      * Constructor with locale.
+     *
      * @param locale locale.
      * @throws IllegalArgumentException if locale is null.
      */
-    public AccelerationFormatter(Locale locale) {
+    public AccelerationFormatter(final Locale locale) {
         super(locale);
     }
 
     /**
      * Copy constructor.
+     *
      * @param formatter input instance to copy from.
      * @throws NullPointerException if provided formatter is null.
      */
-    public AccelerationFormatter(AccelerationFormatter formatter) {
+    public AccelerationFormatter(final AccelerationFormatter formatter) {
         this(formatter.getLocale());
     }
 
     /**
-     * Clones this acceleration formatter.
-     * @return a copy of this acceleration formatter.
-     */
-    @Override
-    public Object clone() {
-        AccelerationFormatter copy = new AccelerationFormatter();
-        return internalClone(copy);
-    }
-
-    /**
-     * Determines if two acceleration formatters are equal by comparing all of their
-     * internal parameters.
+     * Determines if two acceleration formatters are equal by comparing all of their internal parameters.
+     *
      * @param obj another object to compare.
      * @return true if provided object is assumed to be equal to this instance.
      */
-    public boolean equals(Object obj) {
-        boolean equals = super.equals(obj);
+    public boolean equals(final Object obj) {
+        final boolean equals = super.equals(obj);
         return (obj instanceof AccelerationFormatter) && equals;
     }
 
     /**
-     * Hash code generated for this instance.
-     * Hash codes can be internally used by some collections to coarsely compare objects.
-     * This implementation only calls parent implementation to avoid static analyzer warning.
+     * Hash code generated for this instance. Hash codes can be internally used by some collections to coarsely
+     * compare objects. This implementation only calls parent implementation to avoid static analyzer warning.
+     *
      * @return hash code.
      */
     @Override
@@ -98,38 +91,38 @@ public class AccelerationFormatter extends
     }
 
     /**
-     * Gets unit system for detected unit into provided string representation
-     * of a measurement.
+     * Gets unit system for detected unit into provided string representation of a measurement.
+     *
      * @param source a measurement string representation to be checked.
-     * @return a unit system (either metric or imperial) or null if unit
-     * cannot be determined.
+     * @return a unit system (either metric or imperial) or null if unit cannot be determined.
      */
-    public UnitSystem getUnitSystem(String source) {
-        AccelerationUnit unit = findUnit(source);
+    public UnitSystem getUnitSystem(final String source) {
+        final AccelerationUnit unit = findUnit(source);
         return unit != null ? AccelerationUnit.getUnitSystem(unit) : null;
     }
 
     /**
      * Parses provided string and tries to determine acceleration value and unit.
+     *
      * @param source a string to be parsed.
      * @return an acceleration containing a value and unit.
-     * @throws ParseException if provided string cannot be parsed.
+     * @throws ParseException       if provided string cannot be parsed.
      * @throws UnknownUnitException if unit cannot be determined.
      */
     @Override
-    public Acceleration parse(String source) throws ParseException,
+    public Acceleration parse(final String source) throws ParseException,
             UnknownUnitException {
         return internalParse(source, new Acceleration());
     }
 
     /**
-     * Attempts to determine an acceleration unit within a measurement string
-     * representation.
+     * Attempts to determine an acceleration unit within a measurement string representation.
+     *
      * @param source a measurement string representation.
      * @return an acceleration unit, or null if none can be determined.
      */
     @Override
-    public AccelerationUnit findUnit(String source) {
+    public AccelerationUnit findUnit(final String source) {
         if (source.contains(METERS_PER_SQUARED_SECOND + " ") ||
                 source.endsWith(METERS_PER_SQUARED_SECOND)) {
             return AccelerationUnit.METERS_PER_SQUARED_SECOND;
@@ -145,18 +138,18 @@ public class AccelerationFormatter extends
     }
 
     /**
-     * Formats and converts provided acceleration value and unit using provided
-     * unit system.
-     * If provided value is too large for provided unit, this method will
-     * convert it to a more appropriate unit using provided unit system (either
-     * metric or imperial).
-     * @param value an acceleration value.
-     * @param unit an acceleration unit.
+     * Formats and converts provided acceleration value and unit using provided unit system. If provided value is
+     * too large for provided unit, this method will convert it to a more appropriate unit using provided unit
+     * system (either metric or imperial).
+     *
+     * @param value  an acceleration value.
+     * @param unit   an acceleration unit.
      * @param system system unit to convert measurement to.
      * @return a string representation of acceleration value and unit.
      */
-    public String formatAndConvert(Number value, AccelerationUnit unit,
-                                   UnitSystem system) {
+    public String formatAndConvert(
+            final Number value, final AccelerationUnit unit,
+            final UnitSystem system) {
         switch (system) {
             case IMPERIAL:
                 return formatAndConvertImperial(value, unit);
@@ -167,14 +160,14 @@ public class AccelerationFormatter extends
     }
 
     /**
-     * Formats and converts provided acceleration value and unit using metric unit
-     * system.
+     * Formats and converts provided acceleration value and unit using metric unit system.
+     *
      * @param value an acceleration value.
-     * @param unit an acceleration unit.
-     * @return a string representation of acceleration value and unit using metric
-     * unit system.
+     * @param unit  an acceleration unit.
+     * @return a string representation of acceleration value and unit using metric unit system.
      */
-    public String formatAndConvertMetric(Number value, AccelerationUnit unit) {
+    public String formatAndConvertMetric(
+            final Number value, final AccelerationUnit unit) {
         //always format as meters per squared second
         return format(AccelerationConverter.convert(value, unit,
                 AccelerationUnit.METERS_PER_SQUARED_SECOND),
@@ -182,14 +175,14 @@ public class AccelerationFormatter extends
     }
 
     /**
-     * Formats and converts provided acceleration value and unit using imperial unit
-     * system.
+     * Formats and converts provided acceleration value and unit using imperial unit system.
+     *
      * @param value an acceleration value.
-     * @param unit an acceleration unit.
-     * @return a string representation of acceleration value and unit using imperial
-     * unit system.
+     * @param unit  an acceleration unit.
+     * @return a string representation of acceleration value and unit using imperial unit system.
      */
-    public String formatAndConvertImperial(Number value, AccelerationUnit unit) {
+    public String formatAndConvertImperial(
+            final Number value, final AccelerationUnit unit) {
         //always format as feet per squared second
         return format(AccelerationConverter.convert(value, unit,
                 AccelerationUnit.FEET_PER_SQUARED_SECOND),
@@ -198,24 +191,32 @@ public class AccelerationFormatter extends
 
     /**
      * Returns unit string representation.
+     *
      * @param unit an acceleration unit.
      * @return its string representation.
      */
     @Override
-    public String getUnitSymbol(AccelerationUnit unit) {
-        String unitStr;
+    public String getUnitSymbol(final AccelerationUnit unit) {
         switch (unit) {
             case FEET_PER_SQUARED_SECOND:
-                unitStr = FEET_PER_SQUARED_SECOND;
-                break;
+                return FEET_PER_SQUARED_SECOND;
             case G:
-                unitStr = G;
-                break;
+                return G;
             case METERS_PER_SQUARED_SECOND:
             default:
-                unitStr = METERS_PER_SQUARED_SECOND;
-                break;
+                return METERS_PER_SQUARED_SECOND;
         }
-        return unitStr;
+    }
+
+    /**
+     * Clones this acceleration formatter.
+     *
+     * @return a copy of this acceleration formatter.
+     * @throws CloneNotSupportedException if clone fails for any reason.
+     */
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        final AccelerationFormatter copy = (AccelerationFormatter) super.clone();
+        return internalClone(copy);
     }
 }

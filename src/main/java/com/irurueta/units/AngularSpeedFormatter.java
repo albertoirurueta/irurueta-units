@@ -44,41 +44,34 @@ public class AngularSpeedFormatter extends
 
     /**
      * Constructor with locale.
+     *
      * @param locale locale.
      * @throws IllegalArgumentException if locale is null.
      */
-    public AngularSpeedFormatter(Locale locale) {
+    public AngularSpeedFormatter(final Locale locale) {
         super(locale);
     }
 
     /**
      * Copy constructor.
+     *
      * @param formatter input instance to copy from.
      * @throws NullPointerException if provided formatter is null.
      */
-    public AngularSpeedFormatter(AngularSpeedFormatter formatter) {
+    public AngularSpeedFormatter(final AngularSpeedFormatter formatter) {
         this(formatter.getLocale());
-    }
-
-    /**
-     * Clones this angular speed formatter.
-     * @return a copy of this angular speed formatter.
-     */
-    @Override
-    public Object clone() {
-        AngularSpeedFormatter copy = new AngularSpeedFormatter();
-        return internalClone(copy);
     }
 
     /**
      * Determines if two angular speed formatters are equal by comparing all of its
      * internal parameters.
+     *
      * @param obj another object to compare.
      * @return true if provided object is assumed to be equal to this instance.
      */
     @Override
-    public boolean equals(Object obj) {
-        boolean equals = super.equals(obj);
+    public boolean equals(final Object obj) {
+        final boolean equals = super.equals(obj);
         return (obj instanceof AngularSpeedFormatter) && equals;
     }
 
@@ -86,6 +79,7 @@ public class AngularSpeedFormatter extends
      * Hash code generated for this instance.
      * Hash codes can be internally used by some collections to coarsely compare objects.
      * This implementation only calls parent implementation to avoid static analyzer warning.
+     *
      * @return hash code.
      */
     @Override
@@ -96,24 +90,26 @@ public class AngularSpeedFormatter extends
     /**
      * Gets unit system for detected unit into provided string representation
      * of a measurement.
+     *
      * @param source a measurement string representation to be checked.
      * @return a unit system (metric) or null if unit cannot be determined.
      */
     @Override
-    public UnitSystem getUnitSystem(String source) {
-        AngularSpeedUnit unit = findUnit(source);
+    public UnitSystem getUnitSystem(final String source) {
+        final AngularSpeedUnit unit = findUnit(source);
         return unit != null ? UnitSystem.METRIC : null;
     }
 
     /**
      * Parses provided string and tries to determine an angular speed value and unit.
+     *
      * @param source a string to be parsed.
      * @return an angular speed containing a value and unit.
-     * @throws ParseException if provided string cannot be parsed.
+     * @throws ParseException       if provided string cannot be parsed.
      * @throws UnknownUnitException if unit cannot be determined.
      */
     @Override
-    public AngularSpeed parse(String source) throws ParseException,
+    public AngularSpeed parse(final String source) throws ParseException,
             UnknownUnitException {
         return internalParse(source, new AngularSpeed());
     }
@@ -121,11 +117,12 @@ public class AngularSpeedFormatter extends
     /**
      * Attempts to determine an angular speed unit within a measurement string
      * representation.
+     *
      * @param source an angular speed measurement string representation.
      * @return an angular speed unit, or null if none can be determined.
      */
     @Override
-    public AngularSpeedUnit findUnit(String source) {
+    public AngularSpeedUnit findUnit(final String source) {
         if (source.contains(DEGREES_PER_SECOND + " ") ||
                 source.endsWith(DEGREES_PER_SECOND)) {
             return AngularSpeedUnit.DEGREES_PER_SECOND;
@@ -141,35 +138,46 @@ public class AngularSpeedFormatter extends
      * Formats and converts provided angular speed value and unit using metric
      * system.
      * This implementation ignored provided unit system.
-     * @param value a measurment value.
-     * @param unit a measurement unit.
+     *
+     * @param value  a measurment value.
+     * @param unit   a measurement unit.
      * @param system ignored.
      * @return a string representation of angular speed value and unit.
      */
     @Override
-    public String formatAndConvert(Number value, AngularSpeedUnit unit,
-                                   UnitSystem system) {
+    public String formatAndConvert(
+            final Number value, final AngularSpeedUnit unit,
+            final UnitSystem system) {
         return format(value, unit);
     }
 
     /**
      * Returns unit string representation.
+     *
      * @param unit an angular speed unit.
      * @return its string representation.
      */
     @Override
     @SuppressWarnings("Duplicates")
-    public String getUnitSymbol(AngularSpeedUnit unit) {
-        String unitStr;
+    public String getUnitSymbol(final AngularSpeedUnit unit) {
         switch (unit) {
             case DEGREES_PER_SECOND:
-                unitStr = DEGREES_PER_SECOND;
-                break;
+                return DEGREES_PER_SECOND;
             case RADIANS_PER_SECOND:
             default:
-                unitStr = RADIANS_PER_SECOND;
-                break;
+                return RADIANS_PER_SECOND;
         }
-        return unitStr;
+    }
+
+    /**
+     * Clones this angular speed formatter.
+     *
+     * @return a copy of this angular speed formatter.
+     * @throws CloneNotSupportedException if clone fails for any reason.
+     */
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        final AngularSpeedFormatter copy = (AngularSpeedFormatter) super.clone();
+        return internalClone(copy);
     }
 }

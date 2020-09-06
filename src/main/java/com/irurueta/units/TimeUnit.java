@@ -76,13 +76,14 @@ public enum TimeUnit {
 
     /**
      * Returns unit system for provided time unit.
+     *
      * @param unit time unit to be checked.
      * @return returns metric system only for units belonging to the International
      * System of units.
      * @throws IllegalArgumentException if unit is null or does not belong to the
-     * international system of units.
+     *                                  international system of units.
      */
-    public static UnitSystem getUnitSystem(TimeUnit unit) {
+    public static UnitSystem getUnitSystem(final TimeUnit unit) {
         if (unit == null) {
             throw new IllegalArgumentException();
         }
@@ -100,10 +101,11 @@ public enum TimeUnit {
 
     /**
      * Gets all supported metric time units.
+     *
      * @return all supported metric time units.
      */
     public static TimeUnit[] getMetricUnits() {
-        return new TimeUnit[] {
+        return new TimeUnit[]{
                 NANOSECOND,
                 MICROSECOND,
                 MILLISECOND,
@@ -114,10 +116,11 @@ public enum TimeUnit {
     /**
      * Gets all supported units not belonging to the International System
      * of Units.
+     *
      * @return all units not belonging to the International System of Units.
      */
     public static TimeUnit[] getNonInternationalSystemUnits() {
-        return new TimeUnit[] {
+        return new TimeUnit[]{
                 MINUTE,
                 HOUR,
                 DAY,
@@ -130,11 +133,12 @@ public enum TimeUnit {
 
     /**
      * Indicates whether provided unit belongs to the metric unit system.
+     *
      * @param unit time unit to be checked.
      * @return true if unit belongs to metric unit system.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isMetric(TimeUnit unit) {
+    public static boolean isMetric(final TimeUnit unit) {
         if (unit == null) {
             throw new IllegalArgumentException();
         }
@@ -149,12 +153,13 @@ public enum TimeUnit {
     /**
      * Indicates whether provided unit belongs to the International System of
      * units.
+     *
      * @param unit time unit to be checked.
      * @return true if unit does not belong to the International System of units,
      * false otherwise.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isNonInternationalSystem(TimeUnit unit) {
+    public static boolean isNonInternationalSystem(final TimeUnit unit) {
         if (unit == null) {
             throw new IllegalArgumentException();
         }

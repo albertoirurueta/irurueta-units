@@ -26,29 +26,9 @@ public class AngleConverterTest {
 
     private static final double ERROR = 1e-6;
 
-    public AngleConverterTest() { }
-
-    @BeforeClass
-    public static void setUpClass() { }
-
-    @AfterClass
-    public static void tearDownClass() { }
-
-    @Before
-    public void setUp() { }
-
-    @After
-    public void tearDown() { }
-
-    @Test
-    public void testConstructor() {
-        //noinspection all
-        assertNotNull(new AngleConverter());
-    }
-
     @Test
     public void testRadiansDegrees() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
         assertEquals(AngleConverter.radianToDegree(inputValue),
                 inputValue * 180.0 / Math.PI, ERROR);
@@ -58,101 +38,103 @@ public class AngleConverterTest {
 
     @Test
     public void testToDegreesAndMinutes1() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
-        //test degrees
-        double[] degreesAndMinutes = new double[2];
+        // test degrees
+        final double[] degreesAndMinutes = new double[2];
         AngleConverter.toDegreesAndMinutes(inputValue, AngleUnit.DEGREES,
                 degreesAndMinutes);
 
         double outputValue = AngleConverter.fromDegreesAndMinutes(
-                (int)degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.DEGREES);
+                (int) degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.DEGREES);
 
         assertEquals(inputValue, outputValue, ERROR);
 
-        //test radians
+        // test radians
         AngleConverter.toDegreesAndMinutes(inputValue, AngleUnit.RADIANS,
                 degreesAndMinutes);
 
         outputValue = AngleConverter.fromDegreesAndMinutes(
-                (int)degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.RADIANS);
+                (int) degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.RADIANS);
 
         assertEquals(inputValue, outputValue, ERROR);
 
 
-        //force IllegalArgumentException
+        // force IllegalArgumentException
         try {
             AngleConverter.toDegreesAndMinutes(inputValue, AngleUnit.DEGREES,
                     new double[1]);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
     }
 
     @Test
     public void testToDegreesAndMinutes2() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
-        //test degrees
+        // test degrees
         double[] degreesAndMinutes = AngleConverter.toDegreesAndMinutes(
                 inputValue, AngleUnit.DEGREES);
 
         double outputValue = AngleConverter.fromDegreesAndMinutes(
-                (int)degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.DEGREES);
+                (int) degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.DEGREES);
 
         assertEquals(inputValue, outputValue, ERROR);
 
-        //test radians
+        // test radians
         degreesAndMinutes = AngleConverter.toDegreesAndMinutes(
                 inputValue, AngleUnit.RADIANS);
 
         outputValue = AngleConverter.fromDegreesAndMinutes(
-                (int)degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.RADIANS);
+                (int) degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.RADIANS);
 
         assertEquals(inputValue, outputValue, ERROR);
     }
 
     @Test
     public void testToDegreesAndMinutes3() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
-        //test degrees
-        double[] degreesAndMinutes = new double[2];
+        // test degrees
+        final double[] degreesAndMinutes = new double[2];
         AngleConverter.toDegreesAndMinutes(new BigDecimal(inputValue),
                 AngleUnit.DEGREES, degreesAndMinutes);
 
         double outputValue = AngleConverter.fromDegreesAndMinutes(
-                (int)degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.DEGREES);
+                (int) degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.DEGREES);
 
         assertEquals(inputValue, outputValue, ERROR);
 
-        //test radians
+        // test radians
         AngleConverter.toDegreesAndMinutes(inputValue, AngleUnit.RADIANS,
                 degreesAndMinutes);
 
         outputValue = AngleConverter.fromDegreesAndMinutes(
-                (int)degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.RADIANS);
+                (int) degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.RADIANS);
 
         assertEquals(inputValue, outputValue, ERROR);
 
 
-        //force IllegalArgumentException
+        // force IllegalArgumentException
         try {
             AngleConverter.toDegreesAndMinutes(new BigDecimal(inputValue),
                     AngleUnit.DEGREES, new double[1]);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
     }
 
     @Test
     public void testToDegreesAndMinutes4() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
-        //test degrees
+        // test degrees
         double[] degreesAndMinutes = AngleConverter.toDegreesAndMinutes(
                 new BigDecimal(inputValue), AngleUnit.DEGREES);
 
         double outputValue = AngleConverter.fromDegreesAndMinutes(
-                (int)degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.DEGREES);
+                (int) degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.DEGREES);
 
         assertEquals(inputValue, outputValue, ERROR);
 
@@ -161,219 +143,224 @@ public class AngleConverterTest {
                 new BigDecimal(inputValue), AngleUnit.RADIANS);
 
         outputValue = AngleConverter.fromDegreesAndMinutes(
-                (int)degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.RADIANS);
+                (int) degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.RADIANS);
 
         assertEquals(inputValue, outputValue, ERROR);
     }
 
     @Test
     public void testToDegreesAndMinutes5() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
-        //test degrees
-        double[] degreesAndMinutes = new double[2];
+        // test degrees
+        final double[] degreesAndMinutes = new double[2];
         Angle angle = new Angle(inputValue, AngleUnit.DEGREES);
         AngleConverter.toDegreesAndMinutes(angle, degreesAndMinutes);
 
         double outputValue = AngleConverter.fromDegreesAndMinutes(
-                (int)degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.DEGREES);
+                (int) degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.DEGREES);
 
         assertEquals(inputValue, outputValue, ERROR);
 
-        //test radians
+        // test radians
         angle = new Angle(inputValue, AngleUnit.RADIANS);
         AngleConverter.toDegreesAndMinutes(angle, degreesAndMinutes);
 
         outputValue = AngleConverter.fromDegreesAndMinutes(
-                (int)degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.RADIANS);
+                (int) degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.RADIANS);
 
         assertEquals(inputValue, outputValue, ERROR);
 
-        //force IllegalArgumentException
+        // force IllegalArgumentException
         try {
             AngleConverter.toDegreesAndMinutes(angle, new double[1]);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
     }
 
     @Test
     public void testToDegreesAndMinutes6() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
-        //test degrees
+        // test degrees
         Angle angle = new Angle(inputValue, AngleUnit.DEGREES);
         double[] degreesAndMinutes = AngleConverter.toDegreesAndMinutes(angle);
 
         double outputValue = AngleConverter.fromDegreesAndMinutes(
-                (int)degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.DEGREES);
+                (int) degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.DEGREES);
 
         assertEquals(inputValue, outputValue, ERROR);
 
-        //test radians
+        // test radians
         angle = new Angle(inputValue, AngleUnit.RADIANS);
         degreesAndMinutes = AngleConverter.toDegreesAndMinutes(angle);
 
         outputValue = AngleConverter.fromDegreesAndMinutes(
-                (int)degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.RADIANS);
+                (int) degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.RADIANS);
 
         assertEquals(inputValue, outputValue, ERROR);
     }
 
     @Test
     public void testFromDegreesAndMinutes1() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
-        //test degrees
-        double[] degreesAndMinutes = new double[2];
+        // test degrees
+        final double[] degreesAndMinutes = new double[2];
         AngleConverter.toDegreesAndMinutes(inputValue, AngleUnit.DEGREES,
                 degreesAndMinutes);
 
         double outputValue = AngleConverter.fromDegreesAndMinutes(
-                (int)degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.DEGREES);
+                (int) degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.DEGREES);
 
         assertEquals(inputValue, outputValue, ERROR);
 
-        //test radians
+        // test radians
         AngleConverter.toDegreesAndMinutes(inputValue, AngleUnit.RADIANS,
                 degreesAndMinutes);
 
         outputValue = AngleConverter.fromDegreesAndMinutes(
-                (int)degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.RADIANS);
+                (int) degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.RADIANS);
 
         assertEquals(inputValue, outputValue, ERROR);
 
 
-        //force IllegalArgumentException
+        // force IllegalArgumentException
         try {
-            AngleConverter.fromDegreesAndMinutes((int)degreesAndMinutes[0],
+            AngleConverter.fromDegreesAndMinutes((int) degreesAndMinutes[0],
                     -degreesAndMinutes[1], AngleUnit.DEGREES);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
     }
 
     @Test
     public void testFromDegreesAndMinutes2() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
-        //test degrees
-        double[] degreesAndMinutes = new double[2];
+        // test degrees
+        final double[] degreesAndMinutes = new double[2];
         AngleConverter.toDegreesAndMinutes(inputValue, AngleUnit.DEGREES,
                 degreesAndMinutes);
 
         Angle angle = new Angle(0.0, AngleUnit.DEGREES);
-        AngleConverter.fromDegreesAndMinutes((int)degreesAndMinutes[0],
+        AngleConverter.fromDegreesAndMinutes((int) degreesAndMinutes[0],
                 degreesAndMinutes[1], angle);
 
         assertEquals(inputValue, angle.getValue().doubleValue(), ERROR);
 
-        //test radians
+        // test radians
         AngleConverter.toDegreesAndMinutes(inputValue, AngleUnit.RADIANS,
                 degreesAndMinutes);
 
         angle = new Angle(0.0, AngleUnit.RADIANS);
         AngleConverter.fromDegreesAndMinutes(
-                (int)degreesAndMinutes[0], degreesAndMinutes[1], angle);
+                (int) degreesAndMinutes[0], degreesAndMinutes[1], angle);
 
         assertEquals(inputValue, angle.getValue().doubleValue(), ERROR);
 
 
-        //force IllegalArgumentException
+        // force IllegalArgumentException
         try {
-            AngleConverter.fromDegreesAndMinutes((int)degreesAndMinutes[0],
+            AngleConverter.fromDegreesAndMinutes((int) degreesAndMinutes[0],
                     -degreesAndMinutes[1], angle);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
     }
 
     @Test
     public void testFromDegreesAndMinutesAndReturnNew() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
-        //test degrees
-        double[] degreesAndMinutes = new double[2];
+        // test degrees
+        final double[] degreesAndMinutes = new double[2];
         AngleConverter.toDegreesAndMinutes(inputValue, AngleUnit.DEGREES,
                 degreesAndMinutes);
 
         Angle angle = AngleConverter.fromDegreesAndMinutesAndReturnNew(
-                (int)degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.DEGREES);
+                (int) degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.DEGREES);
 
         assertEquals(inputValue, angle.getValue().doubleValue(), ERROR);
 
-        //test radians
+        // test radians
         AngleConverter.toDegreesAndMinutes(inputValue, AngleUnit.RADIANS,
                 degreesAndMinutes);
 
         angle = AngleConverter.fromDegreesAndMinutesAndReturnNew(
-                (int)degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.RADIANS);
+                (int) degreesAndMinutes[0], degreesAndMinutes[1], AngleUnit.RADIANS);
 
         assertEquals(inputValue, angle.getValue().doubleValue(), ERROR);
 
 
-        //force IllegalArgumentException
+        // force IllegalArgumentException
         angle = null;
         try {
             angle = AngleConverter.fromDegreesAndMinutesAndReturnNew(
-                    (int)degreesAndMinutes[0], -degreesAndMinutes[1],
+                    (int) degreesAndMinutes[0], -degreesAndMinutes[1],
                     AngleUnit.DEGREES);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
         assertNull(angle);
     }
 
     @Test
     public void testToDegreesMinutesAndSeconds1() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
-        //test degrees
-        double[] degreesMinutesAndSeconds = new double[3];
+        // test degrees
+        final double[] degreesMinutesAndSeconds = new double[3];
         AngleConverter.toDegreesMinutesAndSeconds(inputValue, AngleUnit.DEGREES,
                 degreesMinutesAndSeconds);
 
         double outputValue = AngleConverter.fromDegreesMinutesAndSeconds(
-                (int)degreesMinutesAndSeconds[0], (int)degreesMinutesAndSeconds[1],
+                (int) degreesMinutesAndSeconds[0], (int) degreesMinutesAndSeconds[1],
                 degreesMinutesAndSeconds[2], AngleUnit.DEGREES);
 
         assertEquals(inputValue, outputValue, ERROR);
 
-        //test radians
+        // test radians
         AngleConverter.toDegreesMinutesAndSeconds(inputValue, AngleUnit.RADIANS,
                 degreesMinutesAndSeconds);
 
         outputValue = AngleConverter.fromDegreesMinutesAndSeconds(
-                (int)degreesMinutesAndSeconds[0], (int)degreesMinutesAndSeconds[1],
+                (int) degreesMinutesAndSeconds[0], (int) degreesMinutesAndSeconds[1],
                 degreesMinutesAndSeconds[2], AngleUnit.RADIANS);
 
         assertEquals(inputValue, outputValue, ERROR);
 
 
-        //force IllegalArgumentException
+        // force IllegalArgumentException
         try {
             AngleConverter.toDegreesMinutesAndSeconds(inputValue, AngleUnit.DEGREES,
                     new double[1]);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
     }
 
     @Test
     public void testToDegreesMinutesAndSeconds2() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
-        //test degrees
+        // test degrees
         double[] degreesMinutesAndSeconds = AngleConverter.toDegreesMinutesAndSeconds(
                 inputValue, AngleUnit.DEGREES);
 
         double outputValue = AngleConverter.fromDegreesMinutesAndSeconds(
-                (int)degreesMinutesAndSeconds[0], (int)degreesMinutesAndSeconds[1],
+                (int) degreesMinutesAndSeconds[0], (int) degreesMinutesAndSeconds[1],
                 degreesMinutesAndSeconds[2], AngleUnit.DEGREES);
 
         assertEquals(inputValue, outputValue, ERROR);
 
-        //test radians
+        // test radians
         degreesMinutesAndSeconds = AngleConverter.toDegreesMinutesAndSeconds(
                 inputValue, AngleUnit.RADIANS);
 
         outputValue = AngleConverter.fromDegreesMinutesAndSeconds(
-                (int)degreesMinutesAndSeconds[0], (int)degreesMinutesAndSeconds[1],
+                (int) degreesMinutesAndSeconds[0], (int) degreesMinutesAndSeconds[1],
                 degreesMinutesAndSeconds[2], AngleUnit.RADIANS);
 
         assertEquals(inputValue, outputValue, ERROR);
@@ -381,58 +368,59 @@ public class AngleConverterTest {
 
     @Test
     public void testToDegreesMinutesAndSeconds3() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
-        //test degrees
-        double[] degreesMinutesAndSeconds = new double[3];
+        // test degrees
+        final double[] degreesMinutesAndSeconds = new double[3];
         AngleConverter.toDegreesMinutesAndSeconds(new BigDecimal(inputValue),
                 AngleUnit.DEGREES, degreesMinutesAndSeconds);
 
         double outputValue = AngleConverter.fromDegreesMinutesAndSeconds(
-                (int)degreesMinutesAndSeconds[0], (int)degreesMinutesAndSeconds[1],
+                (int) degreesMinutesAndSeconds[0], (int) degreesMinutesAndSeconds[1],
                 degreesMinutesAndSeconds[2], AngleUnit.DEGREES);
 
         assertEquals(inputValue, outputValue, ERROR);
 
-        //test radians
+        // test radians
         AngleConverter.toDegreesMinutesAndSeconds(new BigDecimal(inputValue),
                 AngleUnit.RADIANS, degreesMinutesAndSeconds);
 
         outputValue = AngleConverter.fromDegreesMinutesAndSeconds(
-                (int)degreesMinutesAndSeconds[0], (int)degreesMinutesAndSeconds[1],
+                (int) degreesMinutesAndSeconds[0], (int) degreesMinutesAndSeconds[1],
                 degreesMinutesAndSeconds[2], AngleUnit.RADIANS);
 
         assertEquals(inputValue, outputValue, ERROR);
 
 
-        //force IllegalArgumentException
+        // force IllegalArgumentException
         try {
             AngleConverter.toDegreesMinutesAndSeconds(new BigDecimal(inputValue),
                     AngleUnit.DEGREES, new double[1]);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
     }
 
     @Test
     public void testToDegreesMinutesAndSeconds4() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
-        //test degrees
+        // test degrees
         double[] degreesMinutesAndSeconds = AngleConverter.toDegreesMinutesAndSeconds(
                 new BigDecimal(inputValue), AngleUnit.DEGREES);
 
         double outputValue = AngleConverter.fromDegreesMinutesAndSeconds(
-                (int)degreesMinutesAndSeconds[0], (int)degreesMinutesAndSeconds[1],
+                (int) degreesMinutesAndSeconds[0], (int) degreesMinutesAndSeconds[1],
                 degreesMinutesAndSeconds[2], AngleUnit.DEGREES);
 
         assertEquals(inputValue, outputValue, ERROR);
 
-        //test radians
+        // test radians
         degreesMinutesAndSeconds = AngleConverter.toDegreesMinutesAndSeconds(
                 new BigDecimal(inputValue), AngleUnit.RADIANS);
 
         outputValue = AngleConverter.fromDegreesMinutesAndSeconds(
-                (int)degreesMinutesAndSeconds[0], (int)degreesMinutesAndSeconds[1],
+                (int) degreesMinutesAndSeconds[0], (int) degreesMinutesAndSeconds[1],
                 degreesMinutesAndSeconds[2], AngleUnit.RADIANS);
 
         assertEquals(inputValue, outputValue, ERROR);
@@ -440,58 +428,59 @@ public class AngleConverterTest {
 
     @Test
     public void testToDegreesMinutesAndSeconds5() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
-        //test degrees
-        double[] degreesMinutesAndSeconds = new double[3];
+        // test degrees
+        final double[] degreesMinutesAndSeconds = new double[3];
         Angle angle = new Angle(inputValue, AngleUnit.DEGREES);
         AngleConverter.toDegreesMinutesAndSeconds(angle, degreesMinutesAndSeconds);
 
         double outputValue = AngleConverter.fromDegreesMinutesAndSeconds(
-                (int)degreesMinutesAndSeconds[0], (int)degreesMinutesAndSeconds[1],
+                (int) degreesMinutesAndSeconds[0], (int) degreesMinutesAndSeconds[1],
                 degreesMinutesAndSeconds[2], AngleUnit.DEGREES);
 
         assertEquals(inputValue, outputValue, ERROR);
 
-        //test radians
+        // test radians
         angle = new Angle(inputValue, AngleUnit.RADIANS);
         AngleConverter.toDegreesMinutesAndSeconds(angle, degreesMinutesAndSeconds);
 
         outputValue = AngleConverter.fromDegreesMinutesAndSeconds(
-                (int)degreesMinutesAndSeconds[0], (int)degreesMinutesAndSeconds[1],
+                (int) degreesMinutesAndSeconds[0], (int) degreesMinutesAndSeconds[1],
                 degreesMinutesAndSeconds[2], AngleUnit.RADIANS);
 
         assertEquals(inputValue, outputValue, ERROR);
 
 
-        //force IllegalArgumentException
+        // force IllegalArgumentException
         try {
             AngleConverter.toDegreesMinutesAndSeconds(angle, new double[1]);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
     }
 
     @Test
     public void testToDegreesMinutesAndSeconds6() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
-        //test degrees
+        // test degrees
         Angle angle = new Angle(inputValue, AngleUnit.DEGREES);
         double[] degreesMinutesAndSeconds = AngleConverter.toDegreesMinutesAndSeconds(
                 angle);
 
         double outputValue = AngleConverter.fromDegreesMinutesAndSeconds(
-                (int)degreesMinutesAndSeconds[0], (int)degreesMinutesAndSeconds[1],
+                (int) degreesMinutesAndSeconds[0], (int) degreesMinutesAndSeconds[1],
                 degreesMinutesAndSeconds[2], AngleUnit.DEGREES);
 
         assertEquals(inputValue, outputValue, ERROR);
 
-        //test radians
+        // test radians
         angle = new Angle(inputValue, AngleUnit.RADIANS);
         degreesMinutesAndSeconds = AngleConverter.toDegreesMinutesAndSeconds(angle);
 
         outputValue = AngleConverter.fromDegreesMinutesAndSeconds(
-                (int)degreesMinutesAndSeconds[0], (int)degreesMinutesAndSeconds[1],
+                (int) degreesMinutesAndSeconds[0], (int) degreesMinutesAndSeconds[1],
                 degreesMinutesAndSeconds[2], AngleUnit.RADIANS);
 
         assertEquals(inputValue, outputValue, ERROR);
@@ -499,136 +488,142 @@ public class AngleConverterTest {
 
     @Test
     public void testFromDegreesMinutesAndSeconds1() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
-        //test degrees
-        double[] degreesMinutesAndSeconds = new double[3];
+        // test degrees
+        final double[] degreesMinutesAndSeconds = new double[3];
         AngleConverter.toDegreesMinutesAndSeconds(inputValue, AngleUnit.DEGREES,
                 degreesMinutesAndSeconds);
 
         double outputValue = AngleConverter.fromDegreesMinutesAndSeconds(
-                (int)degreesMinutesAndSeconds[0], (int)degreesMinutesAndSeconds[1],
+                (int) degreesMinutesAndSeconds[0], (int) degreesMinutesAndSeconds[1],
                 degreesMinutesAndSeconds[2], AngleUnit.DEGREES);
 
         assertEquals(inputValue, outputValue, ERROR);
 
-        //test radians
+        // test radians
         AngleConverter.toDegreesMinutesAndSeconds(inputValue, AngleUnit.RADIANS,
                 degreesMinutesAndSeconds);
 
         outputValue = AngleConverter.fromDegreesMinutesAndSeconds(
-                (int)degreesMinutesAndSeconds[0], (int)degreesMinutesAndSeconds[1],
+                (int) degreesMinutesAndSeconds[0], (int) degreesMinutesAndSeconds[1],
                 degreesMinutesAndSeconds[2], AngleUnit.RADIANS);
 
         assertEquals(inputValue, outputValue, ERROR);
 
 
-        //force IllegalArgumentException
+        // force IllegalArgumentException
         try {
-            AngleConverter.fromDegreesMinutesAndSeconds((int)degreesMinutesAndSeconds[0],
+            AngleConverter.fromDegreesMinutesAndSeconds((int) degreesMinutesAndSeconds[0],
                     -1, degreesMinutesAndSeconds[2],
                     AngleUnit.DEGREES);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
         try {
-            AngleConverter.fromDegreesMinutesAndSeconds((int)degreesMinutesAndSeconds[0],
-                    (int)degreesMinutesAndSeconds[1], -1.0,
+            AngleConverter.fromDegreesMinutesAndSeconds((int) degreesMinutesAndSeconds[0],
+                    (int) degreesMinutesAndSeconds[1], -1.0,
                     AngleUnit.DEGREES);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
     }
 
     @Test
     public void testFromDegreesMinutesAndSeconds2() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
-        //test degrees
-        double[] degreesMinutesAndSeconds = new double[3];
+        // test degrees
+        final double[] degreesMinutesAndSeconds = new double[3];
         AngleConverter.toDegreesMinutesAndSeconds(inputValue, AngleUnit.DEGREES,
                 degreesMinutesAndSeconds);
 
         Angle angle = new Angle(0.0, AngleUnit.DEGREES);
-        AngleConverter.fromDegreesMinutesAndSeconds((int)degreesMinutesAndSeconds[0],
-                (int)degreesMinutesAndSeconds[1], degreesMinutesAndSeconds[2],
+        AngleConverter.fromDegreesMinutesAndSeconds((int) degreesMinutesAndSeconds[0],
+                (int) degreesMinutesAndSeconds[1], degreesMinutesAndSeconds[2],
                 angle);
 
         assertEquals(inputValue, angle.getValue().doubleValue(), ERROR);
 
-        //test radians
+        // test radians
         AngleConverter.toDegreesMinutesAndSeconds(inputValue, AngleUnit.RADIANS,
                 degreesMinutesAndSeconds);
 
         angle = new Angle(0.0, AngleUnit.RADIANS);
-        AngleConverter.fromDegreesMinutesAndSeconds((int)degreesMinutesAndSeconds[0],
-                (int)degreesMinutesAndSeconds[1], degreesMinutesAndSeconds[2],
+        AngleConverter.fromDegreesMinutesAndSeconds((int) degreesMinutesAndSeconds[0],
+                (int) degreesMinutesAndSeconds[1], degreesMinutesAndSeconds[2],
                 angle);
 
         assertEquals(inputValue, angle.getValue().doubleValue(), ERROR);
 
 
-        //force IllegalArgumentException
+        // force IllegalArgumentException
         try {
-            AngleConverter.fromDegreesMinutesAndSeconds((int)degreesMinutesAndSeconds[0],
+            AngleConverter.fromDegreesMinutesAndSeconds((int) degreesMinutesAndSeconds[0],
                     -1, degreesMinutesAndSeconds[2],
                     angle);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
         try {
-            AngleConverter.fromDegreesMinutesAndSeconds((int)degreesMinutesAndSeconds[0],
-                    (int)degreesMinutesAndSeconds[1], -1.0,
+            AngleConverter.fromDegreesMinutesAndSeconds((int) degreesMinutesAndSeconds[0],
+                    (int) degreesMinutesAndSeconds[1], -1.0,
                     angle);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
     }
 
     @Test
     public void testFromDegreesMinutesAndSecondsAndReturnNew() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
-        //test degrees
-        double[] degreesMinutesAndSeconds = new double[3];
+        // test degrees
+        final double[] degreesMinutesAndSeconds = new double[3];
         AngleConverter.toDegreesMinutesAndSeconds(inputValue, AngleUnit.DEGREES,
                 degreesMinutesAndSeconds);
 
         Angle angle = AngleConverter.fromDegreesMinutesAndSecondsAndReturnNew(
-                (int)degreesMinutesAndSeconds[0], (int)degreesMinutesAndSeconds[1],
+                (int) degreesMinutesAndSeconds[0], (int) degreesMinutesAndSeconds[1],
                 degreesMinutesAndSeconds[2], AngleUnit.DEGREES);
 
         assertEquals(inputValue, angle.getValue().doubleValue(), ERROR);
 
-        //test radians
+        // test radians
         AngleConverter.toDegreesMinutesAndSeconds(inputValue, AngleUnit.RADIANS,
                 degreesMinutesAndSeconds);
 
         angle = AngleConverter.fromDegreesMinutesAndSecondsAndReturnNew(
-                (int)degreesMinutesAndSeconds[0], (int)degreesMinutesAndSeconds[1],
+                (int) degreesMinutesAndSeconds[0], (int) degreesMinutesAndSeconds[1],
                 degreesMinutesAndSeconds[2], AngleUnit.RADIANS);
 
         assertEquals(inputValue, angle.getValue().doubleValue(), ERROR);
 
 
-        //force IllegalArgumentException
+        // force IllegalArgumentException
         angle = null;
         try {
             angle = AngleConverter.fromDegreesMinutesAndSecondsAndReturnNew(
-                    (int)degreesMinutesAndSeconds[0],
+                    (int) degreesMinutesAndSeconds[0],
                     -1, degreesMinutesAndSeconds[2],
                     AngleUnit.DEGREES);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
         try {
             angle = AngleConverter.fromDegreesMinutesAndSecondsAndReturnNew(
-                    (int)degreesMinutesAndSeconds[0],
-                    (int)degreesMinutesAndSeconds[1], -1.0,
+                    (int) degreesMinutesAndSeconds[0],
+                    (int) degreesMinutesAndSeconds[1], -1.0,
                     AngleUnit.DEGREES);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
         assertNull(angle);
     }
 
     @Test
     public void testConvertDouble() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
         assertEquals(AngleConverter.convert(inputValue,
                 AngleUnit.DEGREES, AngleUnit.DEGREES), inputValue, ERROR);
@@ -645,7 +640,7 @@ public class AngleConverterTest {
 
     @Test
     public void testConvertNumber() {
-        BigDecimal inputValue = new BigDecimal(new Random().nextDouble());
+        final BigDecimal inputValue = BigDecimal.valueOf(new Random().nextDouble());
 
         assertEquals(AngleConverter.convert(inputValue,
                 AngleUnit.DEGREES, AngleUnit.DEGREES).doubleValue(),
@@ -664,13 +659,13 @@ public class AngleConverterTest {
 
     @Test
     public void testConvertAngle() {
-        double value = new Random().nextDouble();
-        Angle inputAngle = new Angle(value, AngleUnit.DEGREES);
+        final double value = new Random().nextDouble();
+        final Angle inputAngle = new Angle(value, AngleUnit.DEGREES);
 
-        Angle outputAngle = new Angle();
+        final Angle outputAngle = new Angle();
         AngleConverter.convert(inputAngle, AngleUnit.RADIANS, outputAngle);
 
-        //check
+        // check
         assertEquals(inputAngle.getValue().doubleValue(), value, 0.0);
         assertEquals(inputAngle.getUnit(), AngleUnit.DEGREES);
 
@@ -682,12 +677,12 @@ public class AngleConverterTest {
 
     @Test
     public void testConvertAndUpdateAngle() {
-        double value = new Random().nextDouble();
-        Angle angle = new Angle(value, AngleUnit.DEGREES);
+        final double value = new Random().nextDouble();
+        final Angle angle = new Angle(value, AngleUnit.DEGREES);
 
         AngleConverter.convert(angle, AngleUnit.RADIANS);
 
-        //check
+        // check
         assertEquals(angle.getUnit(), AngleUnit.RADIANS);
         assertEquals(angle.getValue().doubleValue(),
                 AngleConverter.convert(value, AngleUnit.DEGREES,
@@ -696,13 +691,13 @@ public class AngleConverterTest {
 
     @Test
     public void testConvertAndReturnNewAngle() {
-        double value = new Random().nextDouble();
-        Angle inputAngle = new Angle(value, AngleUnit.DEGREES);
+        final double value = new Random().nextDouble();
+        final Angle inputAngle = new Angle(value, AngleUnit.DEGREES);
 
-        Angle outputAngle = AngleConverter.convertAndReturnNew(inputAngle,
+        final Angle outputAngle = AngleConverter.convertAndReturnNew(inputAngle,
                 AngleUnit.RADIANS);
 
-        //check
+        // check
         assertEquals(inputAngle.getValue().doubleValue(), value, 0.0);
         assertEquals(inputAngle.getUnit(), AngleUnit.DEGREES);
 
@@ -714,14 +709,14 @@ public class AngleConverterTest {
 
     @Test
     public void testConvertToOutputAngleUnit() {
-        double value = new Random().nextDouble();
-        Angle inputAngle = new Angle(value, AngleUnit.DEGREES);
+        final double value = new Random().nextDouble();
+        final Angle inputAngle = new Angle(value, AngleUnit.DEGREES);
 
-        Angle outputAngle = new Angle();
+        final Angle outputAngle = new Angle();
         outputAngle.setUnit(AngleUnit.RADIANS);
         AngleConverter.convert(inputAngle, outputAngle);
 
-        //check
+        // check
         assertEquals(inputAngle.getValue().doubleValue(), value, 0.0);
         assertEquals(inputAngle.getUnit(), AngleUnit.DEGREES);
 
@@ -730,5 +725,4 @@ public class AngleConverterTest {
                 AngleConverter.convert(value, inputAngle.getUnit(),
                         outputAngle.getUnit()), 0.0);
     }
-
 }

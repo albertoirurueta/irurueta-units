@@ -86,11 +86,12 @@ public enum SurfaceUnit {
 
     /**
      * Returns unit system for provided surface unit.
+     *
      * @param unit surface unit to be checked.
      * @return unit system (metric or imperial).
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static UnitSystem getUnitSystem(SurfaceUnit unit) {
+    public static UnitSystem getUnitSystem(final SurfaceUnit unit) {
         if (unit == null) {
             throw new IllegalArgumentException();
         }
@@ -117,10 +118,11 @@ public enum SurfaceUnit {
 
     /**
      * Gets all supported metric surface units.
+     *
      * @return all supported metric surface units.
      */
     public static SurfaceUnit[] getMetricUnits() {
-        return new SurfaceUnit[] {
+        return new SurfaceUnit[]{
                 SQUARE_MILLIMETER,
                 SQUARE_CENTIMETER,
                 SQUARE_METER,
@@ -134,10 +136,11 @@ public enum SurfaceUnit {
 
     /**
      * Gets all supported imperial distance units.
+     *
      * @return all supported imperial distance units.
      */
     public static SurfaceUnit[] getImperialUnits() {
-        return new SurfaceUnit[] {
+        return new SurfaceUnit[]{
                 SQUARE_INCH,
                 SQUARE_FOOT,
                 SQUARE_YARD,
@@ -148,21 +151,23 @@ public enum SurfaceUnit {
 
     /**
      * Indicates whether provided unit belongs to the metric unit system.
+     *
      * @param unit distance unit to be checked.
      * @return true if unit belongs to metric unit system.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isMetric(SurfaceUnit unit) {
+    public static boolean isMetric(final SurfaceUnit unit) {
         return getUnitSystem(unit) == UnitSystem.METRIC;
     }
 
     /**
      * Indicates whether provided unit belongs to the imperial unit system.
+     *
      * @param unit distance unit to be checked.
      * @return true if unit belongs to imperial unit system.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isImperial(SurfaceUnit unit) {
+    public static boolean isImperial(final SurfaceUnit unit) {
         return getUnitSystem(unit) == UnitSystem.IMPERIAL;
     }
 }

@@ -28,26 +28,12 @@ import static org.junit.Assert.*;
 
 public class SurfaceFormatterTest {
 
-    public SurfaceFormatterTest() { }
-
-    @BeforeClass
-    public static void setUpClass() { }
-
-    @AfterClass
-    public static void tearDownClass() { }
-
-    @Before
-    public void setUp() { }
-
-    @After
-    public void tearDown() { }
-
     @Test
     public void testConstructor() {
-        //test empty constructor
+        // test empty constructor
         SurfaceFormatter formatter = new SurfaceFormatter();
 
-        //check
+        // check
         assertEquals(formatter.getLocale(), Locale.getDefault());
         assertEquals(formatter.getMaximumFractionDigits(),
                 NumberFormat.getInstance().getMaximumFractionDigits());
@@ -67,11 +53,11 @@ public class SurfaceFormatterTest {
         assertEquals(formatter.getValueAndUnitFormatPattern(),
                 MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
 
-        //test constructor with locale
-        Locale locale = new Locale("es", "ES");
+        // test constructor with locale
+        final Locale locale = new Locale("es", "ES");
         formatter = new SurfaceFormatter(locale);
 
-        //check
+        // check
         assertEquals(formatter.getLocale(), locale);
         assertEquals(formatter.getMaximumFractionDigits(),
                 NumberFormat.getInstance(locale).getMaximumFractionDigits());
@@ -92,20 +78,21 @@ public class SurfaceFormatterTest {
                 MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
 
 
-        //force IllegalArgumentException
+        // force IllegalArgumentException
         formatter = null;
         try {
             formatter = new SurfaceFormatter((Locale) null);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
         assertNull(formatter);
 
 
-        //test copy constructor
+        // test copy constructor
         formatter = new SurfaceFormatter(locale);
-        SurfaceFormatter formatter2 = new SurfaceFormatter(formatter);
+        final SurfaceFormatter formatter2 = new SurfaceFormatter(formatter);
 
-        //check
+        // check
         assertEquals(formatter2.getLocale(), locale);
         assertEquals(formatter2.getMaximumFractionDigits(),
                 NumberFormat.getInstance(locale).getMaximumFractionDigits());
@@ -127,26 +114,27 @@ public class SurfaceFormatterTest {
 
         formatter = null;
         try {
-            //noinspection all
-            formatter = new SurfaceFormatter((SurfaceFormatter)null);
+            // noinspection ConstantConditions
+            formatter = new SurfaceFormatter((SurfaceFormatter) null);
             fail("NullPointerException expected but not thrown");
-        } catch (NullPointerException ignore) { }
+        } catch (final NullPointerException ignore) {
+        }
         assertNull(formatter);
     }
 
     @Test
-    public void testClone() {
-        SurfaceFormatter formatter1 = new SurfaceFormatter();
-        SurfaceFormatter formatter2 = (SurfaceFormatter)formatter1.clone();
+    public void testClone() throws CloneNotSupportedException {
+        final SurfaceFormatter formatter1 = new SurfaceFormatter();
+        final SurfaceFormatter formatter2 = (SurfaceFormatter) formatter1.clone();
 
-        //check
+        // check
         assertNotSame(formatter1, formatter2);
         assertEquals(formatter1, formatter2);
 
-        //test after initializing internal number format
+        // test after initializing internal number format
         assertNotNull(formatter1.format(0.5, SurfaceUnit.SQUARE_METER,
                 new StringBuffer(), new FieldPosition(0)));
-        SurfaceFormatter formatter3 = (SurfaceFormatter)formatter1.clone();
+        final SurfaceFormatter formatter3 = (SurfaceFormatter) formatter1.clone();
 
         assertNotSame(formatter1, formatter3);
         assertEquals(formatter1, formatter3);
@@ -154,26 +142,25 @@ public class SurfaceFormatterTest {
 
     @Test
     public void testEquals() {
-        SurfaceFormatter formatter1 = new SurfaceFormatter(Locale.ENGLISH);
-        SurfaceFormatter formatter2 = new SurfaceFormatter(Locale.ENGLISH);
-        SurfaceFormatter formatter3 = new SurfaceFormatter(Locale.FRENCH);
+        final SurfaceFormatter formatter1 = new SurfaceFormatter(Locale.ENGLISH);
+        final SurfaceFormatter formatter2 = new SurfaceFormatter(Locale.ENGLISH);
+        final SurfaceFormatter formatter3 = new SurfaceFormatter(Locale.FRENCH);
 
-        //chekc
+        // check
         assertEquals(formatter1, formatter1);
         assertEquals(formatter1, formatter2);
         assertNotEquals(formatter1, formatter3);
 
         assertNotEquals(formatter1, new Object());
 
-        //noinspection all
-        assertFalse(formatter1.equals(null));
+        assertNotEquals(null, formatter1);
     }
 
     @Test
     public void testHashCode() {
-        SurfaceFormatter formatter1 = new SurfaceFormatter(Locale.ENGLISH);
-        SurfaceFormatter formatter2 = new SurfaceFormatter(Locale.ENGLISH);
-        SurfaceFormatter formatter3 = new SurfaceFormatter(Locale.FRENCH);
+        final SurfaceFormatter formatter1 = new SurfaceFormatter(Locale.ENGLISH);
+        final SurfaceFormatter formatter2 = new SurfaceFormatter(Locale.ENGLISH);
+        final SurfaceFormatter formatter3 = new SurfaceFormatter(Locale.FRENCH);
 
         assertEquals(formatter1.hashCode(), formatter1.hashCode());
         assertEquals(formatter1.hashCode(), formatter2.hashCode());
@@ -182,10 +169,10 @@ public class SurfaceFormatterTest {
 
     @Test
     public void testFormatNumber() {
-        double value = 5.50;
-        Locale l = new Locale("es", "ES");
+        final double value = 5.50;
+        final Locale l = new Locale("es", "ES");
 
-        SurfaceFormatter formatter = new SurfaceFormatter(l);
+        final SurfaceFormatter formatter = new SurfaceFormatter(l);
 
         assertEquals(formatter.format(new BigDecimal(value),
                 SurfaceUnit.SQUARE_MILLIMETER), "5,5 mm²");
@@ -217,10 +204,10 @@ public class SurfaceFormatterTest {
 
     @Test
     public void testFormatNumberAndStringBuffer() {
-        double value = 5.50;
-        Locale l = new Locale("es", "ES");
+        final double value = 5.50;
+        final Locale l = new Locale("es", "ES");
 
-        SurfaceFormatter formatter = new SurfaceFormatter(l);
+        final SurfaceFormatter formatter = new SurfaceFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
         assertEquals(formatter.format(new BigDecimal(value),
@@ -290,10 +277,10 @@ public class SurfaceFormatterTest {
 
     @Test
     public void testFormatDouble() {
-        double value = 5.50;
-        Locale l = new Locale("es", "ES");
+        final double value = 5.50;
+        final Locale l = new Locale("es", "ES");
 
-        SurfaceFormatter formatter = new SurfaceFormatter(l);
+        final SurfaceFormatter formatter = new SurfaceFormatter(l);
 
         assertEquals(formatter.format(value, SurfaceUnit.SQUARE_MILLIMETER),
                 "5,5 mm²");
@@ -325,10 +312,10 @@ public class SurfaceFormatterTest {
 
     @Test
     public void testFormatDoubleAndStringBuffer() {
-        double value = 5.50;
-        Locale l = new Locale("es", "ES");
+        final double value = 5.50;
+        final Locale l = new Locale("es", "ES");
 
-        SurfaceFormatter formatter = new SurfaceFormatter(l);
+        final SurfaceFormatter formatter = new SurfaceFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
         assertEquals(formatter.format(value,
@@ -411,10 +398,10 @@ public class SurfaceFormatterTest {
 
     @Test
     public void testFormatSurface() {
-        double value = 5.50;
-        Locale l = new Locale("es", "ES");
+        final double value = 5.50;
+        final Locale l = new Locale("es", "ES");
 
-        SurfaceFormatter formatter = new SurfaceFormatter(l);
+        final SurfaceFormatter formatter = new SurfaceFormatter(l);
 
         assertEquals(formatter.format(
                 new Surface(value, SurfaceUnit.SQUARE_MILLIMETER)),
@@ -459,10 +446,10 @@ public class SurfaceFormatterTest {
 
     @Test
     public void testFormatSurfaceAndStringBuffer() {
-        double value = 5.50;
-        Locale l = new Locale("es", "ES");
+        final double value = 5.50;
+        final Locale l = new Locale("es", "ES");
 
-        SurfaceFormatter formatter = new SurfaceFormatter(l);
+        final SurfaceFormatter formatter = new SurfaceFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
         assertEquals(formatter.format(
@@ -545,60 +532,60 @@ public class SurfaceFormatterTest {
 
     @Test
     public void testFormatAndConvertNumber() {
-        //test for metric system
+        // test for metric system
         Locale l = new Locale("es", "ES");
 
         SurfaceFormatter formatter = new SurfaceFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
                 SurfaceUnit.SQUARE_MILLIMETER), "5,5 mm²");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(505.00),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("505.00"),
                 SurfaceUnit.SQUARE_MILLIMETER), "5,05 cm²");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5000005.00),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5000005.00"),
                 SurfaceUnit.SQUARE_MILLIMETER), "5 m²");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5000000000000.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5000000000000.50"),
                 SurfaceUnit.SQUARE_MILLIMETER), "5 Km²");
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("1.0"),
                 SurfaceUnit.SQUARE_INCH), "6,45 cm²");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("1.0"),
                 SurfaceUnit.SQUARE_FOOT), "929,03 cm²");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("1.0"),
                 SurfaceUnit.SQUARE_YARD), "8.361,27 cm²");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("1.0"),
                 SurfaceUnit.SQUARE_MILE), "2,59 Km²");
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("1.0"),
                 SurfaceUnit.CENTIARE), "1 m²");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("1.0"),
                 SurfaceUnit.ARE), "100 m²");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("1.0"),
                 SurfaceUnit.DECARE), "1.000 m²");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("1.0"),
                 SurfaceUnit.HECTARE), "10.000 m²");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("1.0"),
                 SurfaceUnit.ACRE), "4.046,86 m²");
 
-        //test for imperial system
+        // test for imperial system
         l = new Locale("en", "US");
 
         formatter = new SurfaceFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
                 SurfaceUnit.SQUARE_INCH), "5.5 sq in");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(180.0),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("180.0"),
                 SurfaceUnit.SQUARE_INCH), "1.25 sq ft");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(16.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("16.50"),
                 SurfaceUnit.SQUARE_FOOT), "1.83 sq yd");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(3520.0),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("3520.0"),
                 SurfaceUnit.ACRE), "5.5 sq mi");
     }
 
     @Test
     public void testFormatAndConvertDouble() {
-        //test for metric system
+        // test for metric system
         Locale l = new Locale("es", "ES");
 
         SurfaceFormatter formatter = new SurfaceFormatter(l);
@@ -633,7 +620,7 @@ public class SurfaceFormatterTest {
         assertEquals(formatter.formatAndConvert(1.0,
                 SurfaceUnit.ACRE), "4.046,86 m²");
 
-        //test for imperial system
+        // test for imperial system
         l = new Locale("en", "US");
 
         formatter = new SurfaceFormatter(l);
@@ -651,7 +638,7 @@ public class SurfaceFormatterTest {
 
     @Test
     public void testFormatAndConvertSurface() {
-        //test for metric system
+        // test for metric system
         Locale l = new Locale("es", "ES");
 
         SurfaceFormatter formatter = new SurfaceFormatter(l);
@@ -659,47 +646,47 @@ public class SurfaceFormatterTest {
 
         assertEquals(formatter.formatAndConvert(
                 new Surface(5.50,
-                SurfaceUnit.SQUARE_MILLIMETER)), "5,5 mm²");
+                        SurfaceUnit.SQUARE_MILLIMETER)), "5,5 mm²");
         assertEquals(formatter.formatAndConvert(
                 new Surface(505.00,
-                SurfaceUnit.SQUARE_MILLIMETER)), "5,05 cm²");
+                        SurfaceUnit.SQUARE_MILLIMETER)), "5,05 cm²");
         assertEquals(formatter.formatAndConvert(
                 new Surface(5000005.00,
-                SurfaceUnit.SQUARE_MILLIMETER)), "5 m²");
+                        SurfaceUnit.SQUARE_MILLIMETER)), "5 m²");
         assertEquals(formatter.formatAndConvert(
                 new Surface(5000000000000.50,
-                SurfaceUnit.SQUARE_MILLIMETER)), "5 Km²");
+                        SurfaceUnit.SQUARE_MILLIMETER)), "5 Km²");
 
         assertEquals(formatter.formatAndConvert(
                 new Surface(1.0,
-                SurfaceUnit.SQUARE_INCH)), "6,45 cm²");
+                        SurfaceUnit.SQUARE_INCH)), "6,45 cm²");
         assertEquals(formatter.formatAndConvert(
                 new Surface(1.0,
-                SurfaceUnit.SQUARE_FOOT)), "929,03 cm²");
+                        SurfaceUnit.SQUARE_FOOT)), "929,03 cm²");
         assertEquals(formatter.formatAndConvert(
                 new Surface(1.0,
-                SurfaceUnit.SQUARE_YARD)), "8.361,27 cm²");
+                        SurfaceUnit.SQUARE_YARD)), "8.361,27 cm²");
         assertEquals(formatter.formatAndConvert(
                 new Surface(1.0,
-                SurfaceUnit.SQUARE_MILE)), "2,59 Km²");
+                        SurfaceUnit.SQUARE_MILE)), "2,59 Km²");
 
         assertEquals(formatter.formatAndConvert(
                 new Surface(1.0,
-                SurfaceUnit.CENTIARE)), "1 m²");
+                        SurfaceUnit.CENTIARE)), "1 m²");
         assertEquals(formatter.formatAndConvert(
                 new Surface(1.0,
-                SurfaceUnit.ARE)), "100 m²");
+                        SurfaceUnit.ARE)), "100 m²");
         assertEquals(formatter.formatAndConvert(
                 new Surface(1.0,
-                SurfaceUnit.DECARE)), "1.000 m²");
+                        SurfaceUnit.DECARE)), "1.000 m²");
         assertEquals(formatter.formatAndConvert(
                 new Surface(1.0,
-                SurfaceUnit.HECTARE)), "10.000 m²");
+                        SurfaceUnit.HECTARE)), "10.000 m²");
         assertEquals(formatter.formatAndConvert(
                 new Surface(1.0,
-                SurfaceUnit.ACRE)), "4.046,86 m²");
+                        SurfaceUnit.ACRE)), "4.046,86 m²");
 
-        //test for imperial system
+        // test for imperial system
         l = new Locale("en", "US");
 
         formatter = new SurfaceFormatter(l);
@@ -707,57 +694,57 @@ public class SurfaceFormatterTest {
 
         assertEquals(formatter.formatAndConvert(
                 new Surface(5.50,
-                SurfaceUnit.SQUARE_INCH)), "5.5 sq in");
+                        SurfaceUnit.SQUARE_INCH)), "5.5 sq in");
         assertEquals(formatter.formatAndConvert(
                 new Surface(180.0,
-                SurfaceUnit.SQUARE_INCH)), "1.25 sq ft");
+                        SurfaceUnit.SQUARE_INCH)), "1.25 sq ft");
         assertEquals(formatter.formatAndConvert(
                 new Surface(16.50,
-                SurfaceUnit.SQUARE_FOOT)), "1.83 sq yd");
+                        SurfaceUnit.SQUARE_FOOT)), "1.83 sq yd");
         assertEquals(formatter.formatAndConvert(
                 new Surface(3520.0,
-                SurfaceUnit.ACRE)), "5.5 sq mi");
+                        SurfaceUnit.ACRE)), "5.5 sq mi");
     }
 
     @Test
     public void testFormatAndConvertNumberAndUnitSystem() {
-        Locale l = new Locale("es", "ES");
+        final Locale l = new Locale("es", "ES");
 
-        SurfaceFormatter formatter = new SurfaceFormatter(l);
+        final SurfaceFormatter formatter = new SurfaceFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
         assertEquals(formatter.formatAndConvert(
-                new BigDecimal(5.50), SurfaceUnit.SQUARE_MILLIMETER,
+                new BigDecimal("5.50"), SurfaceUnit.SQUARE_MILLIMETER,
                 UnitSystem.METRIC), "5,5 mm²");
         assertEquals(formatter.formatAndConvert(
-                new BigDecimal(505.00), SurfaceUnit.SQUARE_MILLIMETER,
+                new BigDecimal("505.00"), SurfaceUnit.SQUARE_MILLIMETER,
                 UnitSystem.METRIC), "5,05 cm²");
         assertEquals(formatter.formatAndConvert(
-                new BigDecimal(5000005.00),
+                new BigDecimal("5000005.00"),
                 SurfaceUnit.SQUARE_MILLIMETER, UnitSystem.METRIC), "5 m²");
         assertEquals(formatter.formatAndConvert(
-                new BigDecimal(5000000000000.50),
+                new BigDecimal("5000000000000.50"),
                 SurfaceUnit.SQUARE_MILLIMETER, UnitSystem.METRIC), "5 Km²");
 
         assertEquals(formatter.formatAndConvert(
-                new BigDecimal(1.0),
+                new BigDecimal("1.0"),
                 SurfaceUnit.SQUARE_INCH, UnitSystem.IMPERIAL), "1 sq in");
         assertEquals(formatter.formatAndConvert(
-                new BigDecimal(1.0),
+                new BigDecimal("1.0"),
                 SurfaceUnit.SQUARE_FOOT, UnitSystem.IMPERIAL), "1 sq ft");
         assertEquals(formatter.formatAndConvert(
-                new BigDecimal(1.0),
+                new BigDecimal("1.0"),
                 SurfaceUnit.SQUARE_YARD, UnitSystem.IMPERIAL), "1 sq yd");
         assertEquals(formatter.formatAndConvert(
-                new BigDecimal(1.0),
+                new BigDecimal("1.0"),
                 SurfaceUnit.SQUARE_MILE, UnitSystem.IMPERIAL), "1 sq mi");
     }
 
     @Test
     public void testFormatAndConvertDoubleAndUnitSystem() {
-        Locale l = new Locale("es", "ES");
+        final Locale l = new Locale("es", "ES");
 
-        SurfaceFormatter formatter = new SurfaceFormatter(l);
+        final SurfaceFormatter formatter = new SurfaceFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
         assertEquals(formatter.formatAndConvert(
@@ -789,9 +776,9 @@ public class SurfaceFormatterTest {
 
     @Test
     public void testFormatAndConvertSurfaceAndUnitSystem() {
-        Locale l = new Locale("es", "ES");
+        final Locale l = new Locale("es", "ES");
 
-        SurfaceFormatter formatter = new SurfaceFormatter(l);
+        final SurfaceFormatter formatter = new SurfaceFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
         assertEquals(formatter.formatAndConvert(
@@ -823,182 +810,183 @@ public class SurfaceFormatterTest {
 
     @Test
     public void testFormatAndConvertMetric() {
-        Locale l = new Locale("es", "ES");
+        final Locale l = new Locale("es", "ES");
 
-        SurfaceFormatter formatter = new SurfaceFormatter(l);
+        final SurfaceFormatter formatter = new SurfaceFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal(5.50),
+        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5.50"),
                 SurfaceUnit.SQUARE_MILLIMETER), "5,5 mm²");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal(505.00),
+        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("505.00"),
                 SurfaceUnit.SQUARE_MILLIMETER), "5,05 cm²");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal(5000005.00),
+        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5000005.00"),
                 SurfaceUnit.SQUARE_MILLIMETER), "5 m²");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal(5000000000000.50),
+        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5000000000000.50"),
                 SurfaceUnit.SQUARE_MILLIMETER), "5 Km²");
 
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("1.0"),
                 SurfaceUnit.SQUARE_INCH), "6,45 cm²");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("1.0"),
                 SurfaceUnit.SQUARE_FOOT), "929,03 cm²");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("1.0"),
                 SurfaceUnit.SQUARE_YARD), "8.361,27 cm²");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("1.0"),
                 SurfaceUnit.SQUARE_MILE), "2,59 Km²");
 
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("1.0"),
                 SurfaceUnit.CENTIARE), "1 m²");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("1.0"),
                 SurfaceUnit.ARE), "100 m²");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("1.0"),
                 SurfaceUnit.DECARE), "1.000 m²");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("1.0"),
                 SurfaceUnit.HECTARE), "10.000 m²");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("1.0"),
                 SurfaceUnit.ACRE), "4.046,86 m²");
     }
 
     @Test
     public void testFormatAndConvertImperial() {
-        Locale l = new Locale("en", "US");
+        final Locale l = new Locale("en", "US");
 
-        SurfaceFormatter formatter = new SurfaceFormatter(l);
+        final SurfaceFormatter formatter = new SurfaceFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal(5.50),
+        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("5.50"),
                 SurfaceUnit.SQUARE_INCH), "5.5 sq in");
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal(180.0),
+        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("180.0"),
                 SurfaceUnit.SQUARE_INCH), "1.25 sq ft");
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal(16.50),
+        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("16.50"),
                 SurfaceUnit.SQUARE_FOOT), "1.83 sq yd");
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal(3520.0),
+        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("3520.0"),
                 SurfaceUnit.ACRE), "5.5 sq mi");
     }
 
     @Test
     public void testGetAvailableLocales() {
-        Locale[] locales = SurfaceFormatter.getAvailableLocales();
+        final Locale[] locales = SurfaceFormatter.getAvailableLocales();
         assertArrayEquals(locales, NumberFormat.getAvailableLocales());
     }
 
     @Test
     public void testGetSetMaximumFractionDigits() {
-        SurfaceFormatter formatter = new SurfaceFormatter();
+        final SurfaceFormatter formatter = new SurfaceFormatter();
 
         assertEquals(formatter.getMaximumFractionDigits(),
                 NumberFormat.getInstance().getMaximumFractionDigits());
 
-        //set new value
+        // set new value
         formatter.setMaximumFractionDigits(2);
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.getMaximumFractionDigits(), 2);
     }
 
     @Test
     public void testGetSetMaximumIntegerDigits() {
-        SurfaceFormatter formatter = new SurfaceFormatter();
+        final SurfaceFormatter formatter = new SurfaceFormatter();
 
         assertEquals(formatter.getMaximumIntegerDigits(),
                 NumberFormat.getInstance().getMaximumIntegerDigits());
 
-        //set new value
+        // set new value
         formatter.setMaximumIntegerDigits(2);
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.getMaximumIntegerDigits(), 2);
     }
 
     @Test
     public void testGetSetMinimumFractionDigits() {
-        SurfaceFormatter formatter = new SurfaceFormatter();
+        final SurfaceFormatter formatter = new SurfaceFormatter();
 
         assertEquals(formatter.getMinimumFractionDigits(),
                 NumberFormat.getInstance().getMinimumFractionDigits());
 
-        //set new value
+        // set new value
         formatter.setMinimumFractionDigits(2);
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.getMinimumFractionDigits(), 2);
     }
 
     @Test
     public void testGetSetMinimumIntegerDigits() {
-        SurfaceFormatter formatter = new SurfaceFormatter();
+        final SurfaceFormatter formatter = new SurfaceFormatter();
 
         assertEquals(formatter.getMinimumIntegerDigits(),
                 NumberFormat.getInstance().getMinimumIntegerDigits());
 
-        //set new value
+        // set new value
         formatter.setMinimumIntegerDigits(2);
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.getMinimumIntegerDigits(), 2);
     }
 
     @Test
     public void testGetSetRoundingMode() {
-        SurfaceFormatter formatter = new SurfaceFormatter();
+        final SurfaceFormatter formatter = new SurfaceFormatter();
 
         assertEquals(formatter.getRoundingMode(),
                 NumberFormat.getInstance().getRoundingMode());
 
-        //set new value
+        // set new value
         formatter.setRoundingMode(RoundingMode.UNNECESSARY);
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.getRoundingMode(), RoundingMode.UNNECESSARY);
     }
 
     @Test
     public void testIsSetGroupingUsed() {
-        SurfaceFormatter formatter = new SurfaceFormatter();
+        final SurfaceFormatter formatter = new SurfaceFormatter();
 
         assertEquals(formatter.isGroupingUsed(),
                 NumberFormat.getInstance().isGroupingUsed());
 
-        //set new value
+        // set new value
         formatter.setGroupingUsed(!formatter.isGroupingUsed());
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.isGroupingUsed(),
                 !NumberFormat.getInstance().isGroupingUsed());
     }
 
     @Test
     public void testIsSetParseIntegerOnly() {
-        SurfaceFormatter formatter = new SurfaceFormatter();
+        final SurfaceFormatter formatter = new SurfaceFormatter();
 
         assertEquals(formatter.isParseIntegerOnly(),
                 NumberFormat.getInstance().isParseIntegerOnly());
 
-        //set new value
+        // set new value
         formatter.setParseIntegerOnly(!formatter.isParseIntegerOnly());
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.isParseIntegerOnly(),
                 !NumberFormat.getInstance().isParseIntegerOnly());
     }
 
     @Test
     public void testGetSetValueAndUnitFormatPattern() {
-        SurfaceFormatter formatter = new SurfaceFormatter();
+        final SurfaceFormatter formatter = new SurfaceFormatter();
 
         assertEquals(formatter.getValueAndUnitFormatPattern(),
                 MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
 
-        //new value
+        // new value
         formatter.setValueAndUnitFormatPattern("{0}{1}");
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.getValueAndUnitFormatPattern(), "{0}{1}");
 
-        //force IllegalArgumentException
+        // force IllegalArgumentException
         try {
             formatter.setValueAndUnitFormatPattern(null);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
     }
 
     @Test
@@ -1014,7 +1002,7 @@ public class SurfaceFormatterTest {
 
     @Test
     public void testIsValidUnit() {
-        SurfaceFormatter formatter = new SurfaceFormatter();
+        final SurfaceFormatter formatter = new SurfaceFormatter();
 
         assertTrue(formatter.isValidUnit("mm²"));
         assertTrue(formatter.isValidUnit("mm² "));
@@ -1055,7 +1043,7 @@ public class SurfaceFormatterTest {
     @Test
     public void testIsValidMeasurement() {
 
-        SurfaceFormatter formatter = new SurfaceFormatter(
+        final SurfaceFormatter formatter = new SurfaceFormatter(
                 new Locale("es", "ES"));
 
         String text = "5,5 mm²";
@@ -1106,7 +1094,7 @@ public class SurfaceFormatterTest {
 
     @Test
     public void testIsMetricUnit() {
-        SurfaceFormatter formatter = new SurfaceFormatter(
+        final SurfaceFormatter formatter = new SurfaceFormatter(
                 new Locale("es", "ES"));
 
         String text = "5,5 mm²";
@@ -1154,7 +1142,7 @@ public class SurfaceFormatterTest {
 
     @Test
     public void testIsImperialUnit() {
-        SurfaceFormatter formatter = new SurfaceFormatter(
+        final SurfaceFormatter formatter = new SurfaceFormatter(
                 new Locale("es", "ES"));
 
         String text = "5,5 mm²";
@@ -1202,7 +1190,7 @@ public class SurfaceFormatterTest {
 
     @Test
     public void testGetUnitSystemFromSource() {
-        SurfaceFormatter formatter = new SurfaceFormatter(
+        final SurfaceFormatter formatter = new SurfaceFormatter(
                 new Locale("es", "ES"));
 
         String text = "5,5 mm²";
@@ -1250,7 +1238,7 @@ public class SurfaceFormatterTest {
 
     @Test
     public void testParse() throws ParseException, UnknownUnitException {
-        SurfaceFormatter formatter = new SurfaceFormatter(
+        final SurfaceFormatter formatter = new SurfaceFormatter(
                 new Locale("es", "ES"));
 
         String text = "5,5 mm²";
@@ -1322,18 +1310,20 @@ public class SurfaceFormatterTest {
         try {
             formatter.parse(text);
             fail("UnknownUnitException expected but not thrown");
-        } catch (UnknownUnitException ignore) { }
+        } catch (final UnknownUnitException ignore) {
+        }
 
-        //Force ParseException
+        // Force ParseException
         try {
             formatter.parse("m");
             fail("ParseException expected but not thrown");
-        } catch (ParseException ignore) { }
+        } catch (final ParseException ignore) {
+        }
     }
 
     @Test
     public void testFindUnit() {
-        SurfaceFormatter formatter = new SurfaceFormatter(
+        final SurfaceFormatter formatter = new SurfaceFormatter(
                 new Locale("es", "ES"));
 
         String text = "5,5 mm²";
@@ -1381,7 +1371,7 @@ public class SurfaceFormatterTest {
 
     @Test
     public void testGetUnitSymbol() {
-        SurfaceFormatter formatter = new SurfaceFormatter(
+        final SurfaceFormatter formatter = new SurfaceFormatter(
                 new Locale("es", "ES"));
 
         assertEquals(formatter.getUnitSymbol(SurfaceUnit.SQUARE_MILLIMETER),

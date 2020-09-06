@@ -64,72 +64,87 @@ public class DistanceConverter {
      * Constructor.
      * Prevents instantiation of helper class.
      */
-    DistanceConverter() { }
+    private DistanceConverter() {
+    }
 
     /**
      * Converts a distance to provided output distance unit.
-     * @param input input distance to be converted.
+     *
+     * @param input  input distance to be converted.
      * @param output output distance where result will be stored and
      *               containing output unit.
      */
-    public static void convert(Distance input, Distance output) {
+    public static void convert(
+            final Distance input, final Distance output) {
         convert(input, output.getUnit(), output);
     }
 
     /**
      * Converts a distance to requested output unit.
-     * @param input input distance to be converted.
+     *
+     * @param input      input distance to be converted.
      * @param outputUnit requested output unit.
      * @return converted distance.
      */
-    public static Distance convertAndReturnNew(Distance input, DistanceUnit outputUnit) {
-        Distance result = new Distance();
+    public static Distance convertAndReturnNew(
+            final Distance input, final DistanceUnit outputUnit) {
+        final Distance result = new Distance();
         convert(input, outputUnit, result);
         return result;
     }
 
     /**
      * Converts and updates a distance to requested output unit.
-     * @param distance input distance to be converted and updated.
+     *
+     * @param distance   input distance to be converted and updated.
      * @param outputUnit requested output unit.
      */
-    public static void convert(Distance distance, DistanceUnit outputUnit) {
+    public static void convert(
+            final Distance distance, final DistanceUnit outputUnit) {
         convert(distance, outputUnit, distance);
     }
 
     /**
      * Converts a distance to requested output unit.
-     * @param input input distance to be converted.
+     *
+     * @param input      input distance to be converted.
      * @param outputUnit requested output unit.
-     * @param result distance instance where result will be stored.
+     * @param result     distance instance where result will be stored.
      */
-    public static void convert(Distance input, DistanceUnit outputUnit, Distance result) {
-        Number value = convert(input.getValue(), input.getUnit(), outputUnit);
+    public static void convert(
+            final Distance input, final DistanceUnit outputUnit,
+            final Distance result) {
+        final Number value = convert(input.getValue(), input.getUnit(),
+                outputUnit);
         result.setValue(value);
         result.setUnit(outputUnit);
     }
 
     /**
      * Converts a distance value from input unit to provided output unit.
-     * @param input distance value.
-     * @param inputUnit input distance unit.
+     *
+     * @param input      distance value.
+     * @param inputUnit  input distance unit.
      * @param outputUnit output distance unit.
      * @return converted distance value.
      */
-    public static Number convert(Number input, DistanceUnit inputUnit,
-                                 DistanceUnit outputUnit) {
-        return new BigDecimal(convert(input.doubleValue(), inputUnit, outputUnit));
+    public static Number convert(
+            final Number input, final DistanceUnit inputUnit,
+            final DistanceUnit outputUnit) {
+        return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit, outputUnit));
     }
 
     /**
      * Converts a distance value from input unit to provided output unit.
-     * @param input distance value.
-     * @param inputUnit input distance unit.
+     *
+     * @param input      distance value.
+     * @param inputUnit  input distance unit.
      * @param outputUnit output distance unit.
      * @return converted distance value.
      */
-    public static double convert(double input, DistanceUnit inputUnit,
-                                 DistanceUnit outputUnit) {
+    public static double convert(
+            final double input, final DistanceUnit inputUnit,
+            final DistanceUnit outputUnit) {
         double meters;
 
         //convert to meters
@@ -188,127 +203,141 @@ public class DistanceConverter {
 
     /**
      * Converts provided meter value to milimeters.
+     *
      * @param meter meter value.
      * @return same distance converted to milimeters.
      */
-    public static double meterToMillimeter(double meter) {
+    public static double meterToMillimeter(final double meter) {
         return meter / METERS_PER_MILLIMETER;
     }
 
     /**
      * Converts provided milimeter value to meters.
+     *
      * @param millimeter milimeter value.
      * @return same distance conterted to meters.
      */
-    public static double millimeterToMeter(double millimeter) {
+    public static double millimeterToMeter(final double millimeter) {
         return millimeter * METERS_PER_MILLIMETER;
     }
 
     /**
      * Converts provided meter value to centimeters.
+     *
      * @param meter meter value.
      * @return same distance converted to centimeters.
      */
-    public static double meterToCentimeter(double meter) {
+    public static double meterToCentimeter(final double meter) {
         return meter / METERS_PER_CENTIMETER;
     }
 
     /**
      * Converts provided centimeter value to meters.
+     *
      * @param centimeter centimeter value.
      * @return same distance converted to meters.
      */
-    public static double centimeterToMeter(double centimeter) {
+    public static double centimeterToMeter(final double centimeter) {
         return centimeter * METERS_PER_CENTIMETER;
     }
 
     /**
      * Converts provided meter value to kilometers.
+     *
      * @param meter meter value.
      * @return same distance converted to kilometer.
      */
-    public static double meterToKilometer(double meter) {
+    public static double meterToKilometer(final double meter) {
         return meter / METERS_PER_KILOMETER;
     }
 
     /**
      * Converts provided kilometer value to meters.
+     *
      * @param kilometer kilometer value.
      * @return same distance converted to meters.
      */
-    public static double kilometerToMeter(double kilometer) {
+    public static double kilometerToMeter(final double kilometer) {
         return kilometer * METERS_PER_KILOMETER;
     }
 
     /**
      * Converts provided meter value to inches.
+     *
      * @param meter meter value.
      * @return same distance converted to inches.
      */
-    public static double meterToInch(double meter) {
+    public static double meterToInch(final double meter) {
         return meter / METERS_PER_INCH;
     }
 
     /**
      * Converts provided inch value to meters.
+     *
      * @param inch inch value.
      * @return same distance converted to meters.
      */
-    public static double inchToMeter(double inch) {
+    public static double inchToMeter(final double inch) {
         return inch * METERS_PER_INCH;
     }
 
     /**
      * Converts provided meter value to feet.
+     *
      * @param meter meter value.
      * @return same distance converted to feet.
      */
-    public static double meterToFoot(double meter) {
+    public static double meterToFoot(final double meter) {
         return meter / METERS_PER_FOOT;
     }
 
     /**
      * Converts provided foot value to meters.
+     *
      * @param foot foot value.
      * @return same distance converted to meters.
      */
-    public static double footToMeter(double foot) {
+    public static double footToMeter(final double foot) {
         return foot * METERS_PER_FOOT;
     }
 
     /**
      * Converts provided meter value to yards.
+     *
      * @param meter meter value.
      * @return same distance converted to yards.
      */
-    public static double meterToYard(double meter) {
+    public static double meterToYard(final double meter) {
         return meter / METERS_PER_YARD;
     }
 
     /**
      * Converts provided yard value to meters.
+     *
      * @param yard yard value.
      * @return same distance converted to meters.
      */
-    public static double yardToMeter(double yard) {
+    public static double yardToMeter(final double yard) {
         return yard * METERS_PER_YARD;
     }
 
     /**
      * Converts provided meter value to miles.
+     *
      * @param meter meter value.
      * @return same distance converted to miles.
      */
-    public static double meterToMile(double meter) {
+    public static double meterToMile(final double meter) {
         return meter / METERS_PER_MILE;
     }
 
     /**
      * Converts provided mile value to meters.
+     *
      * @param mile mile value.
      * @return same distance converted to meters.
      */
-    public static double mileToMeter(double mile) {
+    public static double mileToMeter(final double mile) {
         return mile * METERS_PER_MILE;
     }
 }

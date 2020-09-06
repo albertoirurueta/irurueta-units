@@ -26,29 +26,9 @@ public class AngularSpeedConverterTest {
 
     private static final double ERROR = 1e-6;
 
-    public AngularSpeedConverterTest() { }
-
-    @BeforeClass
-    public static void setUpClass() { }
-
-    @AfterClass
-    public static void tearDownClass() { }
-
-    @Before
-    public void setUp() { }
-
-    @After
-    public void tearDown() { }
-
-    @Test
-    public void testConstructor() {
-        //noinspection all
-        assertNotNull(new AngularSpeedConverter());
-    }
-
     @Test
     public void testRadiansPerSecondDegreesPerSecond() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
         assertEquals(AngularSpeedConverter.radiansPerSecondToDegreesPerSecond(
                 inputValue), inputValue * 180.0 / Math.PI, ERROR);
@@ -58,7 +38,7 @@ public class AngularSpeedConverterTest {
 
     @Test
     public void testConvertDouble() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
         assertEquals(AngularSpeedConverter.convert(inputValue,
                 AngularSpeedUnit.DEGREES_PER_SECOND,
@@ -82,7 +62,7 @@ public class AngularSpeedConverterTest {
 
     @Test
     public void testConvertNumber() {
-        BigDecimal inputValue = new BigDecimal(new Random().nextDouble());
+        final BigDecimal inputValue = BigDecimal.valueOf(new Random().nextDouble());
 
         assertEquals(AngularSpeedConverter.convert(inputValue,
                 AngularSpeedUnit.DEGREES_PER_SECOND,
@@ -107,15 +87,15 @@ public class AngularSpeedConverterTest {
 
     @Test
     public void testConvertAngularSpeed() {
-        double value = new Random().nextDouble();
-        AngularSpeed input = new AngularSpeed(value,
+        final double value = new Random().nextDouble();
+        final AngularSpeed input = new AngularSpeed(value,
                 AngularSpeedUnit.DEGREES_PER_SECOND);
 
-        AngularSpeed output = new AngularSpeed();
+        final AngularSpeed output = new AngularSpeed();
         AngularSpeedConverter.convert(input, AngularSpeedUnit.RADIANS_PER_SECOND,
                 output);
 
-        //check
+        // check
         assertEquals(input.getValue().doubleValue(), value, 0.0);
         assertEquals(input.getUnit(), AngularSpeedUnit.DEGREES_PER_SECOND);
 
@@ -127,14 +107,14 @@ public class AngularSpeedConverterTest {
 
     @Test
     public void testConvertAndUpdateAngularSpeed() {
-        double value = new Random().nextDouble();
-        AngularSpeed angularSpeed = new AngularSpeed(value,
+        final double value = new Random().nextDouble();
+        final AngularSpeed angularSpeed = new AngularSpeed(value,
                 AngularSpeedUnit.DEGREES_PER_SECOND);
 
         AngularSpeedConverter.convert(angularSpeed,
                 AngularSpeedUnit.RADIANS_PER_SECOND);
 
-        //check
+        // check
         assertEquals(angularSpeed.getUnit(), AngularSpeedUnit.RADIANS_PER_SECOND);
         assertEquals(angularSpeed.getValue().doubleValue(),
                 AngularSpeedConverter.convert(value,
@@ -144,14 +124,14 @@ public class AngularSpeedConverterTest {
 
     @Test
     public void testConvertAndReturnNewAngularSpeed() {
-        double value = new Random().nextDouble();
-        AngularSpeed input = new AngularSpeed(value,
+        final double value = new Random().nextDouble();
+        final AngularSpeed input = new AngularSpeed(value,
                 AngularSpeedUnit.DEGREES_PER_SECOND);
 
-        AngularSpeed output = AngularSpeedConverter.convertAndReturnNew(input,
+        final AngularSpeed output = AngularSpeedConverter.convertAndReturnNew(input,
                 AngularSpeedUnit.RADIANS_PER_SECOND);
 
-        //check
+        // check
         assertEquals(input.getValue().doubleValue(), value, 0.0);
         assertEquals(input.getUnit(), AngularSpeedUnit.DEGREES_PER_SECOND);
 
@@ -163,15 +143,15 @@ public class AngularSpeedConverterTest {
 
     @Test
     public void testConvertToOutputAngularSpeedUnit() {
-        double value = new Random().nextDouble();
-        AngularSpeed input = new AngularSpeed(value,
+        final double value = new Random().nextDouble();
+        final AngularSpeed input = new AngularSpeed(value,
                 AngularSpeedUnit.DEGREES_PER_SECOND);
 
-        AngularSpeed output = new AngularSpeed();
+        final AngularSpeed output = new AngularSpeed();
         output.setUnit(AngularSpeedUnit.RADIANS_PER_SECOND);
         AngularSpeedConverter.convert(input, output);
 
-        //check
+        // check
         assertEquals(input.getValue().doubleValue(), value, 0.0);
         assertEquals(input.getUnit(), AngularSpeedUnit.DEGREES_PER_SECOND);
 

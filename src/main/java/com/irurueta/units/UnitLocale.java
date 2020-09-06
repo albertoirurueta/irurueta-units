@@ -45,10 +45,12 @@ public class UnitLocale {
      * Constructor.
      * Prevent instantiation of utility class.
      */
-    UnitLocale() { }
+    private UnitLocale() {
+    }
 
     /**
      * Returns unit system for default locale.
+     *
      * @return unit system.
      */
     public static UnitSystem getDefault() {
@@ -57,12 +59,13 @@ public class UnitLocale {
 
     /**
      * Returns unit system for provided locale.
+     *
      * @param locale a locale indicating at least a country, if no country is
-     * indicated then metric system will be assumed.
+     *               indicated then metric system will be assumed.
      * @return unis system.
      */
-    public static UnitSystem getFrom(Locale locale) {
-        String countryCode = locale.getCountry();
+    public static UnitSystem getFrom(final Locale locale) {
+        final String countryCode = locale.getCountry();
         if (USA.equals(countryCode)) {
             //USA
             return UnitSystem.IMPERIAL;

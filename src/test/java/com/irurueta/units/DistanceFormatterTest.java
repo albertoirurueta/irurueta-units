@@ -28,26 +28,12 @@ import static org.junit.Assert.*;
 
 public class DistanceFormatterTest {
 
-    public DistanceFormatterTest() { }
-
-    @BeforeClass
-    public static void setUpClass() { }
-
-    @AfterClass
-    public static void tearDownClass() { }
-
-    @Before
-    public void setUp() { }
-
-    @After
-    public void tearDown() { }
-
     @Test
     public void testConstructor() {
-        //test empty constructor
+        // test empty constructor
         DistanceFormatter formatter = new DistanceFormatter();
 
-        //check
+        // check
         assertEquals(formatter.getLocale(), Locale.getDefault());
         assertEquals(formatter.getMaximumFractionDigits(),
                 NumberFormat.getInstance().getMaximumFractionDigits());
@@ -67,11 +53,11 @@ public class DistanceFormatterTest {
         assertEquals(formatter.getValueAndUnitFormatPattern(),
                 MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
 
-        //test constructor with locale
-        Locale locale = new Locale("es", "ES");
+        // test constructor with locale
+        final Locale locale = new Locale("es", "ES");
         formatter = new DistanceFormatter(locale);
 
-        //check
+        // check
         assertEquals(formatter.getLocale(), locale);
         assertEquals(formatter.getMaximumFractionDigits(),
                 NumberFormat.getInstance(locale).getMaximumFractionDigits());
@@ -92,20 +78,21 @@ public class DistanceFormatterTest {
                 MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
 
 
-        //force IllegalArgumentException
+        // force IllegalArgumentException
         formatter = null;
         try {
             formatter = new DistanceFormatter((Locale) null);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
         assertNull(formatter);
 
 
-        //test copy constructor
+        // test copy constructor
         formatter = new DistanceFormatter(locale);
-        DistanceFormatter formatter2 = new DistanceFormatter(formatter);
+        final DistanceFormatter formatter2 = new DistanceFormatter(formatter);
 
-        //check
+        // check
         assertEquals(formatter2.getLocale(), locale);
         assertEquals(formatter2.getMaximumFractionDigits(),
                 NumberFormat.getInstance(locale).getMaximumFractionDigits());
@@ -127,26 +114,27 @@ public class DistanceFormatterTest {
 
         formatter = null;
         try {
-            //noinspection all
-            formatter = new DistanceFormatter((DistanceFormatter)null);
+            // noinspection ConstantConditions
+            formatter = new DistanceFormatter((DistanceFormatter) null);
             fail("NullPointerException expected but not thrown");
-        } catch (NullPointerException ignore) { }
+        } catch (final NullPointerException ignore) {
+        }
         assertNull(formatter);
     }
 
     @Test
-    public void testClone() {
-        DistanceFormatter formatter1 = new DistanceFormatter();
-        DistanceFormatter formatter2 = (DistanceFormatter)formatter1.clone();
+    public void testClone() throws CloneNotSupportedException {
+        final DistanceFormatter formatter1 = new DistanceFormatter();
+        final DistanceFormatter formatter2 = (DistanceFormatter) formatter1.clone();
 
-        //check
+        // check
         assertNotSame(formatter1, formatter2);
         assertEquals(formatter1, formatter2);
 
-        //test after initializing internal number format
+        // test after initializing internal number format
         assertNotNull(formatter1.format(0.5, DistanceUnit.METER,
                 new StringBuffer(), new FieldPosition(0)));
-        DistanceFormatter formatter3 = (DistanceFormatter)formatter1.clone();
+        final DistanceFormatter formatter3 = (DistanceFormatter) formatter1.clone();
 
         assertNotSame(formatter1, formatter3);
         assertEquals(formatter1, formatter3);
@@ -154,26 +142,25 @@ public class DistanceFormatterTest {
 
     @Test
     public void testEquals() {
-        DistanceFormatter formatter1 = new DistanceFormatter(Locale.ENGLISH);
-        DistanceFormatter formatter2 = new DistanceFormatter(Locale.ENGLISH);
-        DistanceFormatter formatter3 = new DistanceFormatter(Locale.FRENCH);
+        final DistanceFormatter formatter1 = new DistanceFormatter(Locale.ENGLISH);
+        final DistanceFormatter formatter2 = new DistanceFormatter(Locale.ENGLISH);
+        final DistanceFormatter formatter3 = new DistanceFormatter(Locale.FRENCH);
 
-        //check
+        // check
         assertEquals(formatter1, formatter1);
         assertEquals(formatter1, formatter2);
         assertNotEquals(formatter1, formatter3);
 
         assertNotEquals(formatter1, new Object());
 
-        //noinspection all
-        assertFalse(formatter1.equals(null));
+        assertNotEquals(null, formatter1);
     }
 
     @Test
     public void testHashCode() {
-        DistanceFormatter formatter1 = new DistanceFormatter(Locale.ENGLISH);
-        DistanceFormatter formatter2 = new DistanceFormatter(Locale.ENGLISH);
-        DistanceFormatter formatter3 = new DistanceFormatter(Locale.FRENCH);
+        final DistanceFormatter formatter1 = new DistanceFormatter(Locale.ENGLISH);
+        final DistanceFormatter formatter2 = new DistanceFormatter(Locale.ENGLISH);
+        final DistanceFormatter formatter3 = new DistanceFormatter(Locale.FRENCH);
 
         assertEquals(formatter1.hashCode(), formatter1.hashCode());
         assertEquals(formatter1.hashCode(), formatter2.hashCode());
@@ -182,10 +169,10 @@ public class DistanceFormatterTest {
 
     @Test
     public void testFormatNumber() {
-        double value = 5.50;
-        Locale l = new Locale("es", "ES");
+        final double value = 5.50;
+        final Locale l = new Locale("es", "ES");
 
-        DistanceFormatter formatter = new DistanceFormatter(l);
+        final DistanceFormatter formatter = new DistanceFormatter(l);
 
         assertEquals(formatter.format(new BigDecimal(value),
                 DistanceUnit.MILLIMETER), "5,5 mm");
@@ -207,10 +194,10 @@ public class DistanceFormatterTest {
 
     @Test
     public void testFormatNumberAndStringBuffer() {
-        double value = 5.50;
-        Locale l = new Locale("es", "ES");
+        final double value = 5.50;
+        final Locale l = new Locale("es", "ES");
 
-        DistanceFormatter formatter = new DistanceFormatter(l);
+        final DistanceFormatter formatter = new DistanceFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
         assertEquals(formatter.format(new BigDecimal(value),
@@ -255,10 +242,10 @@ public class DistanceFormatterTest {
 
     @Test
     public void testFormatDouble() {
-        double value = 5.50;
-        Locale l = new Locale("es", "ES");
+        final double value = 5.50;
+        final Locale l = new Locale("es", "ES");
 
-        DistanceFormatter formatter = new DistanceFormatter(l);
+        final DistanceFormatter formatter = new DistanceFormatter(l);
 
         assertEquals(formatter.format(value, DistanceUnit.MILLIMETER),
                 "5,5 mm");
@@ -280,10 +267,10 @@ public class DistanceFormatterTest {
 
     @Test
     public void testFormatDoubleAndStringBuffer() {
-        double value = 5.50;
-        Locale l = new Locale("es", "ES");
+        final double value = 5.50;
+        final Locale l = new Locale("es", "ES");
 
-        DistanceFormatter formatter = new DistanceFormatter(l);
+        final DistanceFormatter formatter = new DistanceFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
         assertEquals(formatter.format(value, DistanceUnit.MILLIMETER, buffer,
@@ -320,10 +307,10 @@ public class DistanceFormatterTest {
 
     @Test
     public void testFormatDistance() {
-        double value = 5.50;
-        Locale l = new Locale("es", "ES");
+        final double value = 5.50;
+        final Locale l = new Locale("es", "ES");
 
-        DistanceFormatter formatter = new DistanceFormatter(l);
+        final DistanceFormatter formatter = new DistanceFormatter(l);
 
         assertEquals(formatter.format(
                 new Distance(value, DistanceUnit.MILLIMETER)), "5,5 mm");
@@ -345,10 +332,10 @@ public class DistanceFormatterTest {
 
     @Test
     public void testFormatDistanceAndStringBuffer() {
-        double value = 5.50;
-        Locale l = new Locale("es", "ES");
+        final double value = 5.50;
+        final Locale l = new Locale("es", "ES");
 
-        DistanceFormatter formatter = new DistanceFormatter(l);
+        final DistanceFormatter formatter = new DistanceFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
         assertEquals(formatter.format(
@@ -393,49 +380,49 @@ public class DistanceFormatterTest {
 
     @Test
     public void testFormatAndConvertNumber() {
-        //test for metric system
+        // test for metric system
         Locale l = new Locale("es", "ES");
 
         DistanceFormatter formatter = new DistanceFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
                 DistanceUnit.MILLIMETER), "5,5 mm");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(50.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("50.50"),
                 DistanceUnit.MILLIMETER), "5,05 cm");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5000.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5000.50"),
                 DistanceUnit.MILLIMETER), "5 m");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5000000.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5000000.50"),
                 DistanceUnit.MILLIMETER), "5 Km");
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("1.0"),
                 DistanceUnit.INCH), "2,54 cm");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("1.0"),
                 DistanceUnit.FOOT), "30,48 cm");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("1.0"),
                 DistanceUnit.YARD), "91,44 cm");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("1.0"),
                 DistanceUnit.MILE), "1,61 Km");
 
-        //test for imperial system
+        // test for imperial system
         l = new Locale("en", "US");
 
         formatter = new DistanceFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
                 DistanceUnit.INCH), "5.5 in");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(18.0),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("18.0"),
                 DistanceUnit.INCH), "1.5 ft");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(16.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("16.50"),
                 DistanceUnit.FOOT), "5.5 yd");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(348480.0),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("348480.0"),
                 DistanceUnit.INCH), "5.5 mi");
     }
 
     @Test
     public void testFormatAndConvertDouble() {
-        //test for metric system
+        // test for metric system
         Locale l = new Locale("es", "ES");
 
         DistanceFormatter formatter = new DistanceFormatter(l);
@@ -459,7 +446,7 @@ public class DistanceFormatterTest {
         assertEquals(formatter.formatAndConvert(1.0,
                 DistanceUnit.MILE), "1,61 Km");
 
-        //test for imperial system
+        // test for imperial system
         l = new Locale("en", "US");
 
         formatter = new DistanceFormatter(l);
@@ -477,7 +464,7 @@ public class DistanceFormatterTest {
 
     @Test
     public void testFormatAndConvertDistance() {
-        //test for metric system
+        // test for metric system
         Locale l = new Locale("es", "ES");
 
         DistanceFormatter formatter = new DistanceFormatter(l);
@@ -501,7 +488,7 @@ public class DistanceFormatterTest {
         assertEquals(formatter.formatAndConvert(new Distance(1.0,
                 DistanceUnit.MILE)), "1,61 Km");
 
-        //test for imperial system
+        // test for imperial system
         l = new Locale("en", "US");
 
         formatter = new DistanceFormatter(l);
@@ -519,35 +506,35 @@ public class DistanceFormatterTest {
 
     @Test
     public void testFormatAnConvertNumberAndUnitSystem() {
-        Locale l = new Locale("es", "ES");
+        final Locale l = new Locale("es", "ES");
 
-        DistanceFormatter formatter = new DistanceFormatter(l);
+        final DistanceFormatter formatter = new DistanceFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
                 DistanceUnit.MILLIMETER, UnitSystem.METRIC), "5,5 mm");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(50.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("50.50"),
                 DistanceUnit.MILLIMETER, UnitSystem.METRIC), "5,05 cm");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5000.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5000.50"),
                 DistanceUnit.MILLIMETER, UnitSystem.METRIC), "5 m");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(5000000.50),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("5000000.50"),
                 DistanceUnit.MILLIMETER, UnitSystem.METRIC), "5 Km");
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("1.0"),
                 DistanceUnit.INCH, UnitSystem.IMPERIAL), "1 in");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("1.0"),
                 DistanceUnit.FOOT, UnitSystem.IMPERIAL), "1 ft");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("1.0"),
                 DistanceUnit.YARD, UnitSystem.IMPERIAL), "1 yd");
-        assertEquals(formatter.formatAndConvert(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvert(new BigDecimal("1.0"),
                 DistanceUnit.MILE, UnitSystem.IMPERIAL), "1 mi");
     }
 
     @Test
     public void testFormatAndConvertDoubleAndUnitSystem() {
-        Locale l = new Locale("es", "ES");
+        final Locale l = new Locale("es", "ES");
 
-        DistanceFormatter formatter = new DistanceFormatter(l);
+        final DistanceFormatter formatter = new DistanceFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
         assertEquals(formatter.formatAndConvert(5.50,
@@ -571,9 +558,9 @@ public class DistanceFormatterTest {
 
     @Test
     public void testFormatAndConvertDistanceAndUnitSystem() {
-        Locale l = new Locale("es", "ES");
+        final Locale l = new Locale("es", "ES");
 
-        DistanceFormatter formatter = new DistanceFormatter(l);
+        final DistanceFormatter formatter = new DistanceFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
         assertEquals(formatter.formatAndConvert(new Distance(5.50,
@@ -597,171 +584,172 @@ public class DistanceFormatterTest {
 
     @Test
     public void testFormatAndConvertMetric() {
-        Locale l = new Locale("es", "ES");
+        final Locale l = new Locale("es", "ES");
 
-        DistanceFormatter formatter = new DistanceFormatter(l);
+        final DistanceFormatter formatter = new DistanceFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal(5.50),
+        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5.50"),
                 DistanceUnit.MILLIMETER), "5,5 mm");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal(50.50),
+        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("50.50"),
                 DistanceUnit.MILLIMETER), "5,05 cm");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal(5000.50),
+        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5000.50"),
                 DistanceUnit.MILLIMETER), "5 m");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal(5000000.50),
+        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5000000.50"),
                 DistanceUnit.MILLIMETER), "5 Km");
 
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("1.0"),
                 DistanceUnit.INCH), "2,54 cm");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("1.0"),
                 DistanceUnit.FOOT), "30,48 cm");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("1.0"),
                 DistanceUnit.YARD), "91,44 cm");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal(1.0),
+        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("1.0"),
                 DistanceUnit.MILE), "1,61 Km");
     }
 
     @Test
     public void testFormatAndConvertImperial() {
-        Locale l = new Locale("es", "ES");
+        final Locale l = new Locale("es", "ES");
 
-        DistanceFormatter formatter = new DistanceFormatter(l);
+        final DistanceFormatter formatter = new DistanceFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal(5.50),
+        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("5.50"),
                 DistanceUnit.INCH), "5,5 in");
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal(18.0),
+        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("18.0"),
                 DistanceUnit.INCH), "1,5 ft");
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal(16.50),
+        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("16.50"),
                 DistanceUnit.FOOT), "5,5 yd");
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal(348480.0),
+        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("348480.0"),
                 DistanceUnit.INCH), "5,5 mi");
     }
 
     @Test
     public void testGetAvailableLocales() {
-        Locale[] locales = DistanceFormatter.getAvailableLocales();
+        final Locale[] locales = DistanceFormatter.getAvailableLocales();
         assertArrayEquals(locales, NumberFormat.getAvailableLocales());
     }
 
     @Test
     public void testGetSetMaximumFractionDigits() {
-        DistanceFormatter formatter = new DistanceFormatter();
+        final DistanceFormatter formatter = new DistanceFormatter();
 
         assertEquals(formatter.getMaximumFractionDigits(),
                 NumberFormat.getInstance().getMaximumFractionDigits());
 
-        //set new value
+        // set new value
         formatter.setMaximumFractionDigits(2);
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.getMaximumFractionDigits(), 2);
     }
 
     @Test
     public void testGetSetMaximumIntegerDigits() {
-        DistanceFormatter formatter = new DistanceFormatter();
+        final DistanceFormatter formatter = new DistanceFormatter();
 
         assertEquals(formatter.getMaximumIntegerDigits(),
                 NumberFormat.getInstance().getMaximumIntegerDigits());
 
-        //set new value
+        // set new value
         formatter.setMaximumIntegerDigits(2);
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.getMaximumIntegerDigits(), 2);
     }
 
     @Test
     public void testGetSetMinimumFractionDigits() {
-        DistanceFormatter formatter = new DistanceFormatter();
+        final DistanceFormatter formatter = new DistanceFormatter();
 
         assertEquals(formatter.getMinimumFractionDigits(),
                 NumberFormat.getInstance().getMinimumFractionDigits());
 
-        //set new value
+        // set new value
         formatter.setMinimumFractionDigits(2);
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.getMinimumFractionDigits(), 2);
     }
 
     @Test
     public void testGetSetMinimumIntegerDigits() {
-        DistanceFormatter formatter = new DistanceFormatter();
+        final DistanceFormatter formatter = new DistanceFormatter();
 
         assertEquals(formatter.getMinimumIntegerDigits(),
                 NumberFormat.getInstance().getMinimumIntegerDigits());
 
-        //set new value
+        // set new value
         formatter.setMinimumIntegerDigits(2);
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.getMinimumIntegerDigits(), 2);
     }
 
     @Test
     public void testGetSetRoundingMode() {
-        DistanceFormatter formatter = new DistanceFormatter();
+        final DistanceFormatter formatter = new DistanceFormatter();
 
         assertEquals(formatter.getRoundingMode(),
                 NumberFormat.getInstance().getRoundingMode());
 
-        //set new value
+        // set new value
         formatter.setRoundingMode(RoundingMode.UNNECESSARY);
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.getRoundingMode(), RoundingMode.UNNECESSARY);
     }
 
     @Test
     public void testIsSetGroupingUsed() {
-        DistanceFormatter formatter = new DistanceFormatter();
+        final DistanceFormatter formatter = new DistanceFormatter();
 
         assertEquals(formatter.isGroupingUsed(),
                 NumberFormat.getInstance().isGroupingUsed());
 
-        //set new value
+        // set new value
         formatter.setGroupingUsed(!formatter.isGroupingUsed());
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.isGroupingUsed(),
                 !NumberFormat.getInstance().isGroupingUsed());
     }
 
     @Test
     public void testIsSetParseIntegerOnly() {
-        DistanceFormatter formatter = new DistanceFormatter();
+        final DistanceFormatter formatter = new DistanceFormatter();
 
         assertEquals(formatter.isParseIntegerOnly(),
                 NumberFormat.getInstance().isParseIntegerOnly());
 
-        //set new value
+        // set new value
         formatter.setParseIntegerOnly(!formatter.isParseIntegerOnly());
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.isParseIntegerOnly(),
                 !NumberFormat.getInstance().isParseIntegerOnly());
     }
 
     @Test
     public void testGetSetValueAndUnitFormatPattern() {
-        DistanceFormatter formatter = new DistanceFormatter();
+        final DistanceFormatter formatter = new DistanceFormatter();
 
         assertEquals(formatter.getValueAndUnitFormatPattern(),
                 MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
 
-        //new value
+        // new value
         formatter.setValueAndUnitFormatPattern("{0}{1}");
 
-        //check correctness
+        // check correctness
         assertEquals(formatter.getValueAndUnitFormatPattern(), "{0}{1}");
 
-        //force IllegalArgumentException
+        // force IllegalArgumentException
         try {
             formatter.setValueAndUnitFormatPattern(null);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
     }
 
     @Test
@@ -777,7 +765,7 @@ public class DistanceFormatterTest {
 
     @Test
     public void testIsValidUnit() {
-        DistanceFormatter formatter = new DistanceFormatter();
+        final DistanceFormatter formatter = new DistanceFormatter();
 
         assertTrue(formatter.isValidUnit("mm"));
         assertTrue(formatter.isValidUnit("mm "));
@@ -808,7 +796,7 @@ public class DistanceFormatterTest {
 
     @Test
     public void testIsValidMeasurement() {
-        DistanceFormatter formatter = new DistanceFormatter(
+        final DistanceFormatter formatter = new DistanceFormatter(
                 new Locale("es", "ES"));
 
         String text = "5,5 mm";
@@ -844,7 +832,7 @@ public class DistanceFormatterTest {
 
     @Test
     public void testIsMetricUnit() {
-        DistanceFormatter formatter = new DistanceFormatter(
+        final DistanceFormatter formatter = new DistanceFormatter(
                 new Locale("es", "ES"));
 
         String text = "5,5 mm";
@@ -877,7 +865,7 @@ public class DistanceFormatterTest {
 
     @Test
     public void testIsImperialUnit() {
-        DistanceFormatter formatter = new DistanceFormatter(
+        final DistanceFormatter formatter = new DistanceFormatter(
                 new Locale("es", "ES"));
 
         String text = "5,5 mm";
@@ -910,7 +898,7 @@ public class DistanceFormatterTest {
 
     @Test
     public void testGetUnitSystemFromSource() {
-        DistanceFormatter formatter = new DistanceFormatter(
+        final DistanceFormatter formatter = new DistanceFormatter(
                 new Locale("es", "ES"));
 
         String text = "5,5 mm";
@@ -943,7 +931,7 @@ public class DistanceFormatterTest {
 
     @Test
     public void testParse() throws ParseException, UnknownUnitException {
-        DistanceFormatter formatter = new DistanceFormatter(
+        final DistanceFormatter formatter = new DistanceFormatter(
                 new Locale("es", "ES"));
 
         String text = "5,5 mm";
@@ -986,23 +974,25 @@ public class DistanceFormatterTest {
         assertEquals(d.getValue().doubleValue(), 5.5, 0.0);
         assertEquals(d.getUnit(), DistanceUnit.MILE);
 
-        //Force UnknownUnitException
+        // Force UnknownUnitException
         text = "5,5 s";
         try {
             formatter.parse(text);
             fail("UnknownUnitException expected but not thrown");
-        } catch (UnknownUnitException ignore) { }
+        } catch (final UnknownUnitException ignore) {
+        }
 
-        //Force ParseException
+        // Force ParseException
         try {
             formatter.parse("m");
             fail("ParseException expected but not thrown");
-        } catch (ParseException ignore) { }
+        } catch (final ParseException ignore) {
+        }
     }
 
     @Test
     public void testFindUnit() {
-        DistanceFormatter formatter = new DistanceFormatter(
+        final DistanceFormatter formatter = new DistanceFormatter(
                 new Locale("es", "ES"));
 
         String text = "5,5 mm";
@@ -1035,7 +1025,7 @@ public class DistanceFormatterTest {
 
     @Test
     public void testGetUnitSymbol() {
-        DistanceFormatter formatter = new DistanceFormatter();
+        final DistanceFormatter formatter = new DistanceFormatter();
 
         assertEquals(formatter.getUnitSymbol(DistanceUnit.MILLIMETER),
                 DistanceFormatter.MILLIMETER);

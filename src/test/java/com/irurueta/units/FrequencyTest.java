@@ -26,75 +26,61 @@ public class FrequencyTest {
 
     private static final double ERROR = 1e-6;
 
-    public FrequencyTest() { }
-
-    @BeforeClass
-    public static void setUpClass() { }
-
-    @AfterClass
-    public static void tearDownClass() { }
-
-    @Before
-    public void setUp() { }
-
-    @After
-    public void tearDown() { }
-
     @Test
     public void testConstructor() {
-        //test empty constructor
+        // test empty constructor
         Frequency f = new Frequency();
 
-        //check
+        // check
         assertNull(f.getValue());
         assertNull(f.getUnit());
 
-        //test constructor with value and unit
+        // test constructor with value and unit
         f = new Frequency(1000, FrequencyUnit.HERTZ);
 
-        //check
+        // check
         assertEquals(f.getValue(), 1000);
         assertEquals(f.getUnit(), FrequencyUnit.HERTZ);
 
-        //force IllegalArgumentException
+        // force IllegalArgumentException
         f = null;
         try {
             f = new Frequency(null, FrequencyUnit.GIGAHERTZ);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
         try {
             f = new Frequency(1000, null);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
         assertNull(f);
     }
 
     @Test
     public void testEquals() {
-        double value = new Random().nextDouble();
-        Frequency f1 = new Frequency(value, FrequencyUnit.HERTZ);
-        Frequency f2 = new Frequency(value, FrequencyUnit.HERTZ);
-        Frequency f3 = new Frequency(value + 1.0, FrequencyUnit.HERTZ);
-        Frequency f4 = new Frequency(value, FrequencyUnit.KILOHERTZ);
+        final double value = new Random().nextDouble();
+        final Frequency f1 = new Frequency(value, FrequencyUnit.HERTZ);
+        final Frequency f2 = new Frequency(value, FrequencyUnit.HERTZ);
+        final Frequency f3 = new Frequency(value + 1.0, FrequencyUnit.HERTZ);
+        final Frequency f4 = new Frequency(value, FrequencyUnit.KILOHERTZ);
 
         assertEquals(f1, f1);
         assertEquals(f1, f2);
         assertNotEquals(f1, f3);
         assertNotEquals(f1, f4);
 
-        //noinespection all
         assertNotEquals(null, f1);
-        //noinspection all
-        assertFalse(f1.equals(new Object()));
+        assertNotEquals(f1, new Object());
     }
 
     @Test
     public void testHashCode() {
-        double value = new Random().nextDouble();
-        Frequency f1 = new Frequency(value, FrequencyUnit.HERTZ);
-        Frequency f2 = new Frequency(value, FrequencyUnit.HERTZ);
-        Frequency f3 = new Frequency(value + 1.0, FrequencyUnit.HERTZ);
-        Frequency f4 = new Frequency(value, FrequencyUnit.KILOHERTZ);
+        final double value = new Random().nextDouble();
+        final Frequency f1 = new Frequency(value, FrequencyUnit.HERTZ);
+        final Frequency f2 = new Frequency(value, FrequencyUnit.HERTZ);
+        final Frequency f3 = new Frequency(value + 1.0, FrequencyUnit.HERTZ);
+        final Frequency f4 = new Frequency(value, FrequencyUnit.KILOHERTZ);
 
         assertEquals(f1.hashCode(), f1.hashCode());
         assertEquals(f1.hashCode(), f2.hashCode());
@@ -104,12 +90,14 @@ public class FrequencyTest {
 
     @Test
     public void testEqualsWithTolerance() {
-        double value = new Random().nextDouble();
-        Frequency f1 = new Frequency(value, FrequencyUnit.KILOHERTZ);
-        Frequency f2 = new Frequency(value, FrequencyUnit.KILOHERTZ);
-        Frequency f3 = new Frequency(value + 0.5 * ERROR, FrequencyUnit.KILOHERTZ);
-        Frequency f4 = new Frequency(value, FrequencyUnit.HERTZ);
-        Frequency f5 = new Frequency(value * 1000.0 , FrequencyUnit.HERTZ);
+        final double value = new Random().nextDouble();
+        final Frequency f1 = new Frequency(value, FrequencyUnit.KILOHERTZ);
+        final Frequency f2 = new Frequency(value, FrequencyUnit.KILOHERTZ);
+        final Frequency f3 = new Frequency(value + 0.5 * ERROR,
+                FrequencyUnit.KILOHERTZ);
+        final Frequency f4 = new Frequency(value, FrequencyUnit.HERTZ);
+        final Frequency f5 = new Frequency(value * 1000.0,
+                FrequencyUnit.HERTZ);
 
         assertTrue(f1.equals(f1, 0.0));
         assertTrue(f1.equals(f2, 0.0));
@@ -123,83 +111,85 @@ public class FrequencyTest {
 
     @Test
     public void testGetSetValue() {
-        Frequency f = new Frequency(1, FrequencyUnit.HERTZ);
+        final Frequency f = new Frequency(1, FrequencyUnit.HERTZ);
 
-        //check
+        // check
         assertEquals(f.getValue(), 1);
 
-        //set new value
+        // set new value
         f.setValue(2.5);
 
-        //check
+        // check
         assertEquals(f.getValue(), 2.5);
 
-        //force IllegalArgumentException
+        // force IllegalArgumentException
         try {
             f.setValue(null);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+        } catch (final IllegalArgumentException ignore) {
+        }
     }
 
     @Test
     public void testGetSetUnit() {
-        Frequency f = new Frequency(1, FrequencyUnit.HERTZ);
+        final Frequency f = new Frequency(1, FrequencyUnit.HERTZ);
 
-        //check
+        // check
         assertEquals(f.getUnit(), FrequencyUnit.HERTZ);
 
-        //set new value
+        // set new value
         f.setUnit(FrequencyUnit.HERTZ);
 
-        //check
+        // check
         assertEquals(f.getUnit(), FrequencyUnit.HERTZ);
 
-        //force IllegalArgumentException
+        // force IllegalArgumentException
         try {
             f.setUnit(null);
-            fail("IllegalARgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+            fail("IllegalArgumentException expected but not thrown");
+        } catch (final IllegalArgumentException ignore) {
+        }
     }
 
     @Test
     public void testAdd1() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        double result = Frequency.add(value1, FrequencyUnit.KILOHERTZ,
+        final double result = Frequency.add(value1, FrequencyUnit.KILOHERTZ,
                 value2, FrequencyUnit.KILOHERTZ, FrequencyUnit.HERTZ);
 
-        //check
+        // check
         assertEquals((value1 + value2) * 1000.0, result, ERROR);
     }
 
     @Test
     public void testAdd2() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Number result = Frequency.add(new BigDecimal(value1), FrequencyUnit.KILOHERTZ,
+        final Number result = Frequency.add(new BigDecimal(value1), FrequencyUnit.KILOHERTZ,
                 new BigDecimal(value2), FrequencyUnit.KILOHERTZ, FrequencyUnit.HERTZ);
 
-        //check
+        // check
         assertEquals((value1 + value2) * 1000.0, result.doubleValue(), ERROR);
     }
 
     @Test
     public void testAdd3() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Frequency f1 = new Frequency(value1, FrequencyUnit.KILOHERTZ);
-        Frequency f2 = new Frequency(value2, FrequencyUnit.KILOHERTZ);
+        final Frequency f1 = new Frequency(value1, FrequencyUnit.KILOHERTZ);
+        final Frequency f2 = new Frequency(value2, FrequencyUnit.KILOHERTZ);
 
-        Frequency result = new Frequency(0.0, FrequencyUnit.HERTZ);
+        final Frequency result = new Frequency(0.0, FrequencyUnit.HERTZ);
         Frequency.add(f1, f2, result);
 
-        //check
+        // check
         assertEquals(f1.getUnit(), FrequencyUnit.KILOHERTZ);
         assertEquals(f1.getValue().doubleValue(), value1, 0.0);
 
@@ -213,16 +203,16 @@ public class FrequencyTest {
 
     @Test
     public void testAddAndReturnNew1() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Frequency f1 = new Frequency(value1, FrequencyUnit.KILOHERTZ);
-        Frequency f2 = new Frequency(value2, FrequencyUnit.KILOHERTZ);
+        final Frequency f1 = new Frequency(value1, FrequencyUnit.KILOHERTZ);
+        final Frequency f2 = new Frequency(value2, FrequencyUnit.KILOHERTZ);
 
-        Frequency result = Frequency.addAndReturnNew(f1, f2, FrequencyUnit.HERTZ);
+        final Frequency result = Frequency.addAndReturnNew(f1, f2, FrequencyUnit.HERTZ);
 
-        //check
+        // check
         assertEquals(f1.getUnit(), FrequencyUnit.KILOHERTZ);
         assertEquals(f1.getValue().doubleValue(), value1, 0.0);
 
@@ -236,16 +226,16 @@ public class FrequencyTest {
 
     @Test
     public void testAddAndReturnNew2() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Frequency f1 = new Frequency(value1, FrequencyUnit.KILOHERTZ);
+        final Frequency f1 = new Frequency(value1, FrequencyUnit.KILOHERTZ);
 
-        Frequency result = f1.addAndReturnNew(value2, FrequencyUnit.KILOHERTZ,
+        final Frequency result = f1.addAndReturnNew(value2, FrequencyUnit.KILOHERTZ,
                 FrequencyUnit.HERTZ);
 
-        //check
+        // check
         assertEquals(f1.getUnit(), FrequencyUnit.KILOHERTZ);
         assertEquals(f1.getValue().doubleValue(), value1, 0.0);
 
@@ -256,16 +246,16 @@ public class FrequencyTest {
 
     @Test
     public void testAddAndReturnNew3() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Frequency f1 = new Frequency(value1, FrequencyUnit.KILOHERTZ);
+        final Frequency f1 = new Frequency(value1, FrequencyUnit.KILOHERTZ);
 
-        Frequency result = f1.addAndReturnNew(new BigDecimal(value2),
+        final Frequency result = f1.addAndReturnNew(new BigDecimal(value2),
                 FrequencyUnit.KILOHERTZ, FrequencyUnit.HERTZ);
 
-        //check
+        // check
         assertEquals(f1.getUnit(), FrequencyUnit.KILOHERTZ);
         assertEquals(f1.getValue().doubleValue(), value1, 0.0);
 
@@ -276,16 +266,16 @@ public class FrequencyTest {
 
     @Test
     public void testAddAndReturnNew4() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Frequency f1 = new Frequency(value1, FrequencyUnit.KILOHERTZ);
-        Frequency f2 = new Frequency(value2, FrequencyUnit.KILOHERTZ);
+        final Frequency f1 = new Frequency(value1, FrequencyUnit.KILOHERTZ);
+        final Frequency f2 = new Frequency(value2, FrequencyUnit.KILOHERTZ);
 
-        Frequency result = f1.addAndReturnNew(f2, FrequencyUnit.HERTZ);
+        final Frequency result = f1.addAndReturnNew(f2, FrequencyUnit.HERTZ);
 
-        //check
+        // check
         assertEquals(f1.getUnit(), FrequencyUnit.KILOHERTZ);
         assertEquals(f1.getValue().doubleValue(), value1, 0.0);
 
@@ -299,15 +289,15 @@ public class FrequencyTest {
 
     @Test
     public void testAdd4() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Frequency f1 = new Frequency(value1, FrequencyUnit.HERTZ);
+        final Frequency f1 = new Frequency(value1, FrequencyUnit.HERTZ);
 
         f1.add(value2, FrequencyUnit.HERTZ);
 
-        //check
+        // check
         assertEquals(f1.getUnit(), FrequencyUnit.HERTZ);
         assertEquals(f1.getValue().doubleValue(), value1 + value2,
                 ERROR);
@@ -315,15 +305,15 @@ public class FrequencyTest {
 
     @Test
     public void testAdd5() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Frequency f1 = new Frequency(value1, FrequencyUnit.HERTZ);
+        final Frequency f1 = new Frequency(value1, FrequencyUnit.HERTZ);
 
         f1.add(new BigDecimal(value2), FrequencyUnit.HERTZ);
 
-        //check
+        // check
         assertEquals(f1.getUnit(), FrequencyUnit.HERTZ);
         assertEquals(f1.getValue().doubleValue(), value1 + value2,
                 ERROR);
@@ -331,16 +321,16 @@ public class FrequencyTest {
 
     @Test
     public void testAdd6() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Frequency f1 = new Frequency(value1, FrequencyUnit.HERTZ);
-        Frequency f2 = new Frequency(value2, FrequencyUnit.HERTZ);
+        final Frequency f1 = new Frequency(value1, FrequencyUnit.HERTZ);
+        final Frequency f2 = new Frequency(value2, FrequencyUnit.HERTZ);
 
         f1.add(f2);
 
-        //check
+        // check
         assertEquals(f1.getUnit(), FrequencyUnit.HERTZ);
         assertEquals(f1.getValue().doubleValue(), value1 + value2,
                 ERROR);
@@ -351,17 +341,17 @@ public class FrequencyTest {
 
     @Test
     public void testAdd7() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Frequency f1 = new Frequency(value1, FrequencyUnit.KILOHERTZ);
-        Frequency f2 = new Frequency(value2, FrequencyUnit.KILOHERTZ);
+        final Frequency f1 = new Frequency(value1, FrequencyUnit.KILOHERTZ);
+        final Frequency f2 = new Frequency(value2, FrequencyUnit.KILOHERTZ);
 
-        Frequency result = new Frequency(0.0, FrequencyUnit.HERTZ);
+        final Frequency result = new Frequency(0.0, FrequencyUnit.HERTZ);
         f1.add(f2, result);
 
-        //check
+        // check
         assertEquals(f1.getUnit(), FrequencyUnit.KILOHERTZ);
         assertEquals(f1.getValue().doubleValue(), value1, 0.0);
 
@@ -375,43 +365,43 @@ public class FrequencyTest {
 
     @Test
     public void testSubtract1() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        double result = Frequency.subtract(value1, FrequencyUnit.KILOHERTZ,
+        final double result = Frequency.subtract(value1, FrequencyUnit.KILOHERTZ,
                 value2, FrequencyUnit.KILOHERTZ, FrequencyUnit.HERTZ);
 
-        //check
+        // check
         assertEquals((value1 - value2) * 1000.0, result, ERROR);
     }
 
     @Test
     public void testSubtract2() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Number result = Frequency.subtract(new BigDecimal(value1), FrequencyUnit.KILOHERTZ,
+        final Number result = Frequency.subtract(new BigDecimal(value1), FrequencyUnit.KILOHERTZ,
                 new BigDecimal(value2), FrequencyUnit.KILOHERTZ, FrequencyUnit.HERTZ);
 
-        //check
+        // check
         assertEquals((value1 - value2) * 1000.0, result.doubleValue(), ERROR);
     }
 
     @Test
     public void testSubtract3() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Frequency f1 = new Frequency(value1, FrequencyUnit.KILOHERTZ);
-        Frequency f2 = new Frequency(value2, FrequencyUnit.KILOHERTZ);
+        final Frequency f1 = new Frequency(value1, FrequencyUnit.KILOHERTZ);
+        final Frequency f2 = new Frequency(value2, FrequencyUnit.KILOHERTZ);
 
-        Frequency result = new Frequency(0.0, FrequencyUnit.HERTZ);
+        final Frequency result = new Frequency(0.0, FrequencyUnit.HERTZ);
         Frequency.subtract(f1, f2, result);
 
-        //check
+        // check
         assertEquals(f1.getUnit(), FrequencyUnit.KILOHERTZ);
         assertEquals(f1.getValue().doubleValue(), value1, 0.0);
 
@@ -425,17 +415,17 @@ public class FrequencyTest {
 
     @Test
     public void testSubtractAndReturnNew1() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Frequency f1 = new Frequency(value1, FrequencyUnit.KILOHERTZ);
-        Frequency f2 = new Frequency(value2, FrequencyUnit.KILOHERTZ);
+        final Frequency f1 = new Frequency(value1, FrequencyUnit.KILOHERTZ);
+        final Frequency f2 = new Frequency(value2, FrequencyUnit.KILOHERTZ);
 
-        Frequency result = Frequency.subtractAndReturnNew(f1, f2,
+        final Frequency result = Frequency.subtractAndReturnNew(f1, f2,
                 FrequencyUnit.HERTZ);
 
-        //check
+        // check
         assertEquals(f1.getUnit(), FrequencyUnit.KILOHERTZ);
         assertEquals(f1.getValue().doubleValue(), value1, 0.0);
 
@@ -449,16 +439,16 @@ public class FrequencyTest {
 
     @Test
     public void testSubtractAndReturnNew2() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Frequency f1 = new Frequency(value1, FrequencyUnit.KILOHERTZ);
+        final Frequency f1 = new Frequency(value1, FrequencyUnit.KILOHERTZ);
 
-        Frequency result = f1.subtractAndReturnNew(value2,
+        final Frequency result = f1.subtractAndReturnNew(value2,
                 FrequencyUnit.KILOHERTZ, FrequencyUnit.HERTZ);
 
-        //check
+        // check
         assertEquals(f1.getUnit(), FrequencyUnit.KILOHERTZ);
         assertEquals(f1.getValue().doubleValue(), value1, 0.0);
 
@@ -469,16 +459,16 @@ public class FrequencyTest {
 
     @Test
     public void testSubtractAndReturnNew3() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Frequency f1 = new Frequency(value1, FrequencyUnit.KILOHERTZ);
+        final Frequency f1 = new Frequency(value1, FrequencyUnit.KILOHERTZ);
 
-        Frequency result = f1.subtractAndReturnNew(new BigDecimal(value2),
+        final Frequency result = f1.subtractAndReturnNew(new BigDecimal(value2),
                 FrequencyUnit.KILOHERTZ, FrequencyUnit.HERTZ);
 
-        //check
+        // check
         assertEquals(f1.getUnit(), FrequencyUnit.KILOHERTZ);
         assertEquals(f1.getValue().doubleValue(), value1, 0.0);
 
@@ -489,16 +479,16 @@ public class FrequencyTest {
 
     @Test
     public void testSubtractAndReturnNew4() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Frequency f1 = new Frequency(value1, FrequencyUnit.KILOHERTZ);
-        Frequency f2 = new Frequency(value2, FrequencyUnit.KILOHERTZ);
+        final Frequency f1 = new Frequency(value1, FrequencyUnit.KILOHERTZ);
+        final Frequency f2 = new Frequency(value2, FrequencyUnit.KILOHERTZ);
 
-        Frequency result = f1.subtractAndReturnNew(f2, FrequencyUnit.HERTZ);
+        final Frequency result = f1.subtractAndReturnNew(f2, FrequencyUnit.HERTZ);
 
-        //check
+        // check
         assertEquals(f1.getUnit(), FrequencyUnit.KILOHERTZ);
         assertEquals(f1.getValue().doubleValue(), value1, 0.0);
 
@@ -512,15 +502,15 @@ public class FrequencyTest {
 
     @Test
     public void testSubtract4() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Frequency f1 = new Frequency(value1, FrequencyUnit.HERTZ);
+        final Frequency f1 = new Frequency(value1, FrequencyUnit.HERTZ);
 
         f1.subtract(value2, FrequencyUnit.HERTZ);
 
-        //check
+        // check
         assertEquals(f1.getUnit(), FrequencyUnit.HERTZ);
         assertEquals(f1.getValue().doubleValue(), value1 - value2,
                 ERROR);
@@ -528,15 +518,15 @@ public class FrequencyTest {
 
     @Test
     public void testSubtract5() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Frequency f1 = new Frequency(value1, FrequencyUnit.HERTZ);
+        final Frequency f1 = new Frequency(value1, FrequencyUnit.HERTZ);
 
         f1.subtract(new BigDecimal(value2), FrequencyUnit.HERTZ);
 
-        //check
+        // check
         assertEquals(f1.getUnit(), FrequencyUnit.HERTZ);
         assertEquals(f1.getValue().doubleValue(), value1 - value2,
                 ERROR);
@@ -544,16 +534,16 @@ public class FrequencyTest {
 
     @Test
     public void testSubtract6() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Frequency f1 = new Frequency(value1, FrequencyUnit.HERTZ);
-        Frequency f2 = new Frequency(value2, FrequencyUnit.HERTZ);
+        final Frequency f1 = new Frequency(value1, FrequencyUnit.HERTZ);
+        final Frequency f2 = new Frequency(value2, FrequencyUnit.HERTZ);
 
         f1.subtract(f2);
 
-        //check
+        // check
         assertEquals(f1.getUnit(), FrequencyUnit.HERTZ);
         assertEquals(f1.getValue().doubleValue(), value1 - value2,
                 ERROR);
@@ -564,17 +554,17 @@ public class FrequencyTest {
 
     @Test
     public void testSubtract7() {
-        Random r = new Random();
-        double value1 = r.nextDouble();
-        double value2 = r.nextDouble();
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
 
-        Frequency f1 = new Frequency(value1, FrequencyUnit.KILOHERTZ);
-        Frequency f2 = new Frequency(value2, FrequencyUnit.KILOHERTZ);
+        final Frequency f1 = new Frequency(value1, FrequencyUnit.KILOHERTZ);
+        final Frequency f2 = new Frequency(value2, FrequencyUnit.KILOHERTZ);
 
-        Frequency result = new Frequency(0.0, FrequencyUnit.HERTZ);
+        final Frequency result = new Frequency(0.0, FrequencyUnit.HERTZ);
         f1.subtract(f2, result);
 
-        //check
+        // check
         assertEquals(f1.getUnit(), FrequencyUnit.KILOHERTZ);
         assertEquals(f1.getValue().doubleValue(), value1, 0.0);
 

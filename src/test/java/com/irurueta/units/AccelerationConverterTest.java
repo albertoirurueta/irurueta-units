@@ -15,41 +15,21 @@
  */
 package com.irurueta.units;
 
-import org.junit.*;
+import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.util.Random;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class AccelerationConverterTest {
     private static final double METERS_PER_FOOT = 0.3048;
 
     private static final double ERROR = 1e-6;
 
-    public AccelerationConverterTest() { }
-
-    @BeforeClass
-    public static void setUpClass() { }
-
-    @AfterClass
-    public static void tearDownClass() { }
-
-    @Before
-    public void setUp() { }
-
-    @After
-    public void tearDown() { }
-
-    @Test
-    public void testConstructor() {
-        //noinspection all
-        assertNotNull(new AccelerationConverter());
-    }
-
     @Test
     public void testMeterPerSquaredSecondFeetPerSquaredSecond() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
         assertEquals(AccelerationConverter.metersPerSquaredSecondToFeetPerSquaredSecond(
                 inputValue), inputValue / METERS_PER_FOOT, ERROR);
@@ -59,7 +39,7 @@ public class AccelerationConverterTest {
 
     @Test
     public void testMetersPerSquaredSecondGravity() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
         assertEquals(AccelerationConverter.metersPerSquaredSecondToGravity(inputValue),
                 inputValue / AccelerationConverter.STANDARD_GRAVITY, ERROR);
@@ -69,7 +49,7 @@ public class AccelerationConverterTest {
 
     @Test
     public void testConvertDouble() {
-        double inputValue = new Random().nextDouble();
+        final double inputValue = new Random().nextDouble();
 
         assertEquals(AccelerationConverter.convert(inputValue,
                 AccelerationUnit.METERS_PER_SQUARED_SECOND,
@@ -83,7 +63,7 @@ public class AccelerationConverterTest {
         assertEquals(AccelerationConverter.convert(inputValue,
                 AccelerationUnit.METERS_PER_SQUARED_SECOND,
                 AccelerationUnit.G), AccelerationConverter.metersPerSquaredSecondToGravity(
-                        inputValue), ERROR);
+                inputValue), ERROR);
 
         assertEquals(AccelerationConverter.convert(inputValue,
                 AccelerationUnit.FEET_PER_SQUARED_SECOND,
@@ -97,8 +77,8 @@ public class AccelerationConverterTest {
         assertEquals(AccelerationConverter.convert(inputValue,
                 AccelerationUnit.FEET_PER_SQUARED_SECOND,
                 AccelerationUnit.G), AccelerationConverter.metersPerSquaredSecondToGravity(
-                        AccelerationConverter.feetPerSquaredSecondToMetersPerSquaredSecond(
-                                inputValue)), ERROR);
+                AccelerationConverter.feetPerSquaredSecondToMetersPerSquaredSecond(
+                        inputValue)), ERROR);
 
         assertEquals(AccelerationConverter.convert(inputValue,
                 AccelerationUnit.G,
@@ -117,7 +97,7 @@ public class AccelerationConverterTest {
 
     @Test
     public void testConvertNumber() {
-        BigDecimal inputValue = new BigDecimal(new Random().nextDouble());
+        final BigDecimal inputValue = BigDecimal.valueOf(new Random().nextDouble());
 
         assertEquals(AccelerationConverter.convert(inputValue,
                 AccelerationUnit.METERS_PER_SQUARED_SECOND,
@@ -127,15 +107,15 @@ public class AccelerationConverterTest {
 
     @Test
     public void testConvertAcceleration() {
-        double value = new Random().nextDouble();
-        Acceleration inputAcceleration = new Acceleration(value,
+        final double value = new Random().nextDouble();
+        final Acceleration inputAcceleration = new Acceleration(value,
                 AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
-        Acceleration outputAcceleration = new Acceleration();
+        final Acceleration outputAcceleration = new Acceleration();
         AccelerationConverter.convert(inputAcceleration,
                 AccelerationUnit.FEET_PER_SQUARED_SECOND, outputAcceleration);
 
-        //check
+        // check
         assertEquals(inputAcceleration.getValue().doubleValue(), value, 0.0);
         assertEquals(inputAcceleration.getUnit(),
                 AccelerationUnit.METERS_PER_SQUARED_SECOND);
@@ -149,14 +129,14 @@ public class AccelerationConverterTest {
 
     @Test
     public void testConvertAndUpdateAcceleration() {
-        double value = new Random().nextDouble();
-        Acceleration inputAcceleration = new Acceleration(value,
+        final double value = new Random().nextDouble();
+        final Acceleration inputAcceleration = new Acceleration(value,
                 AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
-        Acceleration outputAcceleration = AccelerationConverter.convertAndReturnNew(
+        final Acceleration outputAcceleration = AccelerationConverter.convertAndReturnNew(
                 inputAcceleration, AccelerationUnit.FEET_PER_SQUARED_SECOND);
 
-        //check
+        // check
         assertEquals(inputAcceleration.getValue().doubleValue(), value, 0.0);
         assertEquals(inputAcceleration.getUnit(),
                 AccelerationUnit.METERS_PER_SQUARED_SECOND);
@@ -170,15 +150,15 @@ public class AccelerationConverterTest {
 
     @Test
     public void testConvertToOutputAccelerationUnit() {
-        double value = new Random().nextDouble();
-        Acceleration inputAcceleration = new Acceleration(value,
+        final double value = new Random().nextDouble();
+        final Acceleration inputAcceleration = new Acceleration(value,
                 AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
-        Acceleration outputAcceleration = new Acceleration();
+        final Acceleration outputAcceleration = new Acceleration();
         outputAcceleration.setUnit(AccelerationUnit.FEET_PER_SQUARED_SECOND);
         AccelerationConverter.convert(inputAcceleration, outputAcceleration);
 
-        //check
+        // check
         assertEquals(inputAcceleration.getValue().doubleValue(), value, 0.0);
         assertEquals(inputAcceleration.getUnit(),
                 AccelerationUnit.METERS_PER_SQUARED_SECOND);

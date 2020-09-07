@@ -92,7 +92,7 @@ public enum DistanceUnit {
      * @return all supported metric distance units.
      */
     public static DistanceUnit[] getMetricUnits() {
-        return new DistanceUnit[]{
+        return new DistanceUnit[] {
                 MILLIMETER,
                 CENTIMETER,
                 METER,
@@ -106,7 +106,7 @@ public enum DistanceUnit {
      * @return all supported imperial distance units.
      */
     public static DistanceUnit[] getImperialUnits() {
-        return new DistanceUnit[]{
+        return new DistanceUnit[] {
                 INCH,
                 FOOT,
                 YARD,

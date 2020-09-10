@@ -63,7 +63,7 @@ public class AngularSpeed extends Measurement<AngularSpeedUnit> {
 
         final double otherValue = AngularSpeedConverter.convert(other.getValue().doubleValue(),
                 other.getUnit(), getUnit());
-        return (Math.abs(getValue().doubleValue() - otherValue)) <= tolerance;
+        return Math.abs(getValue().doubleValue() - otherValue) <= tolerance;
     }
 
     /**

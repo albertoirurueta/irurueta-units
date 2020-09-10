@@ -58,7 +58,7 @@ public class Distance extends Measurement<DistanceUnit> {
             return true;
         }
 
-        //attempt conversion to common units
+        // attempt conversion to common units
         if (other == null) {
             return false;
         }
@@ -66,7 +66,7 @@ public class Distance extends Measurement<DistanceUnit> {
         final double otherValue = DistanceConverter.convert(
                 other.getValue().doubleValue(), other.getUnit(),
                 getUnit());
-        return (Math.abs(getValue().doubleValue() - otherValue)) <= tolerance;
+        return Math.abs(getValue().doubleValue() - otherValue) <= tolerance;
     }
 
     /**
@@ -80,8 +80,8 @@ public class Distance extends Measurement<DistanceUnit> {
      * @return result of addition.
      */
     public static double add(
-            final double value1, DistanceUnit unit1,
-            final double value2, DistanceUnit unit2,
+            final double value1, final DistanceUnit unit1,
+            final double value2, final DistanceUnit unit2,
             final DistanceUnit resultUnit) {
         final double v1 = DistanceConverter.convert(value1, unit1, resultUnit);
         final double v2 = DistanceConverter.convert(value2, unit2, resultUnit);
@@ -245,7 +245,7 @@ public class Distance extends Measurement<DistanceUnit> {
     }
 
     /**
-     * Subtracts two distance value and units and returns the result.
+     * Subtracts two distance values and units and returns the result.
      *
      * @param value1     1st argument value.
      * @param unit1      1st argument unit.
@@ -331,7 +331,7 @@ public class Distance extends Measurement<DistanceUnit> {
     }
 
     /**
-     * Subtracts provided distance to current instance and returns a new
+     * Subtracts provided distance from current instance and returns a new
      * distance.
      *
      * @param d    distance to be subtracted.

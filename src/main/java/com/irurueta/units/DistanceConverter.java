@@ -147,7 +147,7 @@ public class DistanceConverter {
             final DistanceUnit outputUnit) {
         double meters;
 
-        //convert to meters
+        // convert to meters
         switch (inputUnit) {
             case MILLIMETER:
                 meters = millimeterToMeter(input);
@@ -177,7 +177,7 @@ public class DistanceConverter {
                 break;
         }
 
-        //convert from meter to required output unit
+        // convert from meter to required output unit
         switch (outputUnit) {
             case MILLIMETER:
                 return meterToMillimeter(meters);
@@ -215,7 +215,7 @@ public class DistanceConverter {
      * Converts provided milimeter value to meters.
      *
      * @param millimeter milimeter value.
-     * @return same distance conterted to meters.
+     * @return same distance converted to meters.
      */
     public static double millimeterToMeter(final double millimeter) {
         return millimeter * METERS_PER_MILLIMETER;

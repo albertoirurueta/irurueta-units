@@ -64,7 +64,7 @@ public class Angle extends Measurement<AngleUnit> {
 
         final double otherValue = AngleConverter.convert(other.getValue().doubleValue(),
                 other.getUnit(), getUnit());
-        return (Math.abs(getValue().doubleValue() - otherValue)) <= tolerance;
+        return Math.abs(getValue().doubleValue() - otherValue) <= tolerance;
     }
 
     /**

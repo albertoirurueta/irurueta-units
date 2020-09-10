@@ -65,7 +65,7 @@ public class Surface extends Measurement<SurfaceUnit> {
         final double otherValue = SurfaceConverter.convert(
                 other.getValue().doubleValue(), other.getUnit(),
                 getUnit());
-        return (Math.abs(getValue().doubleValue() - otherValue)) <= tolerance;
+        return Math.abs(getValue().doubleValue() - otherValue) <= tolerance;
     }
 
     /**

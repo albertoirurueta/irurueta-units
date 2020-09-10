@@ -66,7 +66,7 @@ public class Frequency extends Measurement<FrequencyUnit> {
         final double otherValue = FrequencyConverter.convert(
                 other.getValue().doubleValue(),
                 other.getUnit(), getUnit());
-        return (Math.abs(getValue().doubleValue() - otherValue)) <= tolerance;
+        return Math.abs(getValue().doubleValue() - otherValue) <= tolerance;
     }
 
     /**

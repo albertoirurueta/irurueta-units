@@ -92,7 +92,7 @@ public class DistanceFormatter extends MeasureFormatter<Distance, DistanceUnit> 
     }
 
     /**
-     * Determines if two distance formatters are equal by comparing all of its internal parameters.
+     * Determines if two distance formatters are equal by comparing all of their internal parameters.
      *
      * @param obj another object to compare.
      * @return true if provided object is assumed to be equal to this instance.

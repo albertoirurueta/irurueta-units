@@ -65,7 +65,7 @@ public class Time extends Measurement<TimeUnit> {
         final double otherValue = TimeConverter.convert(
                 other.getValue().doubleValue(), other.getUnit(),
                 getUnit());
-        return (Math.abs(getValue().doubleValue() - otherValue)) <= tolerance;
+        return Math.abs(getValue().doubleValue() - otherValue) <= tolerance;
     }
 
     /**

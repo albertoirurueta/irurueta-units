@@ -65,7 +65,7 @@ public class Acceleration extends Measurement<AccelerationUnit> {
 
         final double otherValue = AccelerationConverter.convert(other.getValue().doubleValue(),
                 other.getUnit(), getUnit());
-        return (Math.abs(getValue().doubleValue() - otherValue)) <= tolerance;
+        return Math.abs(getValue().doubleValue() - otherValue) <= tolerance;
     }
 
     /**

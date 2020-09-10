@@ -45,7 +45,8 @@ public class TemperatureFormatterTest {
                 NumberFormat.getInstance().getMinimumIntegerDigits());
         assertEquals(formatter.getRoundingMode(),
                 NumberFormat.getInstance().getRoundingMode());
-        assertEquals(formatter.getUnitSystem(), UnitSystem.METRIC);
+        assertEquals(formatter.getUnitSystem(),
+                UnitLocale.getFrom(Locale.getDefault()));
         assertEquals(formatter.isGroupingUsed(),
                 NumberFormat.getInstance().isGroupingUsed());
         assertEquals(formatter.isParseIntegerOnly(),

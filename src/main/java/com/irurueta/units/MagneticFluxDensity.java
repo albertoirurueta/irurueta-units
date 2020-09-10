@@ -65,7 +65,7 @@ public class MagneticFluxDensity extends Measurement<MagneticFluxDensityUnit> {
         final double otherValue = MagneticFluxDensityConverter.convert(
                 other.getValue().doubleValue(),
                 other.getUnit(), getUnit());
-        return (Math.abs(getValue().doubleValue() - otherValue)) <= tolerance;
+        return Math.abs(getValue().doubleValue() - otherValue) <= tolerance;
     }
 
     /**

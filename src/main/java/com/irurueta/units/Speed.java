@@ -65,7 +65,7 @@ public class Speed extends Measurement<SpeedUnit> {
         final double otherValue = SpeedConverter.convert(
                 other.getValue().doubleValue(),
                 other.getUnit(), getUnit());
-        return (Math.abs(getValue().doubleValue() - otherValue)) <= tolerance;
+        return Math.abs(getValue().doubleValue() - otherValue) <= tolerance;
     }
 
     /**

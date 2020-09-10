@@ -65,7 +65,7 @@ public class Acceleration extends Measurement&lt;AccelerationUnit&gt; {
 
 <span class="fc" id="L66">        final double otherValue = AccelerationConverter.convert(other.getValue().doubleValue(),</span>
 <span class="fc" id="L67">                other.getUnit(), getUnit());</span>
-<span class="fc bfc" id="L68" title="All 2 branches covered.">        return (Math.abs(getValue().doubleValue() - otherValue)) &lt;= tolerance;</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">        return Math.abs(getValue().doubleValue() - otherValue) &lt;= tolerance;</span>
     }
 
     /**

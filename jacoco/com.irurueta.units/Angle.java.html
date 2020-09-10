@@ -64,7 +64,7 @@ public class Angle extends Measurement&lt;AngleUnit&gt; {
 
 <span class="fc" id="L65">        final double otherValue = AngleConverter.convert(other.getValue().doubleValue(),</span>
 <span class="fc" id="L66">                other.getUnit(), getUnit());</span>
-<span class="fc bfc" id="L67" title="All 2 branches covered.">        return (Math.abs(getValue().doubleValue() - otherValue)) &lt;= tolerance;</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">        return Math.abs(getValue().doubleValue() - otherValue) &lt;= tolerance;</span>
     }
 
     /**

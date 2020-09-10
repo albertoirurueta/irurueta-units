@@ -58,7 +58,7 @@ public class Distance extends Measurement&lt;DistanceUnit&gt; {
 <span class="fc" id="L58">            return true;</span>
         }
 
-        //attempt conversion to common units
+        // attempt conversion to common units
 <span class="fc bfc" id="L62" title="All 2 branches covered.">        if (other == null) {</span>
 <span class="fc" id="L63">            return false;</span>
         }
@@ -66,7 +66,7 @@ public class Distance extends Measurement&lt;DistanceUnit&gt; {
 <span class="fc" id="L66">        final double otherValue = DistanceConverter.convert(</span>
 <span class="fc" id="L67">                other.getValue().doubleValue(), other.getUnit(),</span>
 <span class="fc" id="L68">                getUnit());</span>
-<span class="fc bfc" id="L69" title="All 2 branches covered.">        return (Math.abs(getValue().doubleValue() - otherValue)) &lt;= tolerance;</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">        return Math.abs(getValue().doubleValue() - otherValue) &lt;= tolerance;</span>
     }
 
     /**
@@ -80,8 +80,8 @@ public class Distance extends Measurement&lt;DistanceUnit&gt; {
      * @return result of addition.
      */
     public static double add(
-            final double value1, DistanceUnit unit1,
-            final double value2, DistanceUnit unit2,
+            final double value1, final DistanceUnit unit1,
+            final double value2, final DistanceUnit unit2,
             final DistanceUnit resultUnit) {
 <span class="fc" id="L86">        final double v1 = DistanceConverter.convert(value1, unit1, resultUnit);</span>
 <span class="fc" id="L87">        final double v2 = DistanceConverter.convert(value2, unit2, resultUnit);</span>
@@ -245,7 +245,7 @@ public class Distance extends Measurement&lt;DistanceUnit&gt; {
     }
 
     /**
-     * Subtracts two distance value and units and returns the result.
+     * Subtracts two distance values and units and returns the result.
      *
      * @param value1     1st argument value.
      * @param unit1      1st argument unit.
@@ -331,7 +331,7 @@ public class Distance extends Measurement&lt;DistanceUnit&gt; {
     }
 
     /**
-     * Subtracts provided distance to current instance and returns a new
+     * Subtracts provided distance from current instance and returns a new
      * distance.
      *
      * @param d    distance to be subtracted.

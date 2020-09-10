@@ -155,7 +155,7 @@
 <a class="jxr_linenumber" name="L147" href="#L147">147</a>             <strong class="jxr_keyword">final</strong> <a href="../../../com/irurueta/units/DistanceUnit.html">DistanceUnit</a> outputUnit) {
 <a class="jxr_linenumber" name="L148" href="#L148">148</a>         <strong class="jxr_keyword">double</strong> meters;
 <a class="jxr_linenumber" name="L149" href="#L149">149</a> 
-<a class="jxr_linenumber" name="L150" href="#L150">150</a>         <em class="jxr_comment">//convert to meters</em>
+<a class="jxr_linenumber" name="L150" href="#L150">150</a>         <em class="jxr_comment">// convert to meters</em>
 <a class="jxr_linenumber" name="L151" href="#L151">151</a>         <strong class="jxr_keyword">switch</strong> (inputUnit) {
 <a class="jxr_linenumber" name="L152" href="#L152">152</a>             <strong class="jxr_keyword">case</strong> MILLIMETER:
 <a class="jxr_linenumber" name="L153" href="#L153">153</a>                 meters = millimeterToMeter(input);
@@ -185,7 +185,7 @@
 <a class="jxr_linenumber" name="L177" href="#L177">177</a>                 <strong class="jxr_keyword">break</strong>;
 <a class="jxr_linenumber" name="L178" href="#L178">178</a>         }
 <a class="jxr_linenumber" name="L179" href="#L179">179</a> 
-<a class="jxr_linenumber" name="L180" href="#L180">180</a>         <em class="jxr_comment">//convert from meter to required output unit</em>
+<a class="jxr_linenumber" name="L180" href="#L180">180</a>         <em class="jxr_comment">// convert from meter to required output unit</em>
 <a class="jxr_linenumber" name="L181" href="#L181">181</a>         <strong class="jxr_keyword">switch</strong> (outputUnit) {
 <a class="jxr_linenumber" name="L182" href="#L182">182</a>             <strong class="jxr_keyword">case</strong> MILLIMETER:
 <a class="jxr_linenumber" name="L183" href="#L183">183</a>                 <strong class="jxr_keyword">return</strong> meterToMillimeter(meters);
@@ -223,7 +223,7 @@
 <a class="jxr_linenumber" name="L215" href="#L215">215</a> <em class="jxr_javadoccomment">     * Converts provided milimeter value to meters.</em>
 <a class="jxr_linenumber" name="L216" href="#L216">216</a> <em class="jxr_javadoccomment">     *</em>
 <a class="jxr_linenumber" name="L217" href="#L217">217</a> <em class="jxr_javadoccomment">     * @param millimeter milimeter value.</em>
-<a class="jxr_linenumber" name="L218" href="#L218">218</a> <em class="jxr_javadoccomment">     * @return same distance conterted to meters.</em>
+<a class="jxr_linenumber" name="L218" href="#L218">218</a> <em class="jxr_javadoccomment">     * @return same distance converted to meters.</em>
 <a class="jxr_linenumber" name="L219" href="#L219">219</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L220" href="#L220">220</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">double</strong> millimeterToMeter(<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">double</strong> millimeter) {
 <a class="jxr_linenumber" name="L221" href="#L221">221</a>         <strong class="jxr_keyword">return</strong> millimeter * METERS_PER_MILLIMETER;

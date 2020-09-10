@@ -147,7 +147,7 @@ public class DistanceConverter {
             final DistanceUnit outputUnit) {
         double meters;
 
-        //convert to meters
+        // convert to meters
 <span class="fc bfc" id="L151" title="All 8 branches covered.">        switch (inputUnit) {</span>
             case MILLIMETER:
 <span class="fc" id="L153">                meters = millimeterToMeter(input);</span>
@@ -177,7 +177,7 @@ public class DistanceConverter {
                 break;
         }
 
-        //convert from meter to required output unit
+        // convert from meter to required output unit
 <span class="fc bfc" id="L181" title="All 8 branches covered.">        switch (outputUnit) {</span>
             case MILLIMETER:
 <span class="fc" id="L183">                return meterToMillimeter(meters);</span>
@@ -215,7 +215,7 @@ public class DistanceConverter {
      * Converts provided milimeter value to meters.
      *
      * @param millimeter milimeter value.
-     * @return same distance conterted to meters.
+     * @return same distance converted to meters.
      */
     public static double millimeterToMeter(final double millimeter) {
 <span class="fc" id="L221">        return millimeter * METERS_PER_MILLIMETER;</span>

@@ -65,7 +65,7 @@ public class Time extends Measurement&lt;TimeUnit&gt; {
 <span class="fc" id="L65">        final double otherValue = TimeConverter.convert(</span>
 <span class="fc" id="L66">                other.getValue().doubleValue(), other.getUnit(),</span>
 <span class="fc" id="L67">                getUnit());</span>
-<span class="fc bfc" id="L68" title="All 2 branches covered.">        return (Math.abs(getValue().doubleValue() - otherValue)) &lt;= tolerance;</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">        return Math.abs(getValue().doubleValue() - otherValue) &lt;= tolerance;</span>
     }
 
     /**

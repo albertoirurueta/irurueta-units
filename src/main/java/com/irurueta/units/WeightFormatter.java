@@ -373,6 +373,8 @@ public class WeightFormatter extends MeasureFormatter<Weight, WeightUnit> implem
                 return POUND;
             case OUNCE:
                 return OUNCE;
+
+            case GRAM:
             default:
                 return GRAM;
         }

@@ -204,7 +204,7 @@ public class Weight extends Measurement<WeightUnit> {
     /**
      * Adds provided weight and updates current weight.
      *
-     * @param weight weght to be added.
+     * @param weight weight to be added.
      */
     public void add(final Weight weight) {
         add(this, weight, this);

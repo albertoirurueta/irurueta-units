@@ -4,6 +4,7 @@ com.irurueta:irurueta-units,com.irurueta.units,AngularSpeed,0,323,0,6,0,69,0,28,
 com.irurueta:irurueta-units,com.irurueta.units,BuildInfo,12,113,2,4,4,30,2,11,0,10
 com.irurueta:irurueta-units,com.irurueta.units,Speed,0,323,0,6,0,70,0,28,0,25
 com.irurueta:irurueta-units,com.irurueta.units,Time,0,323,0,6,0,70,0,28,0,25
+com.irurueta:irurueta-units,com.irurueta.units,VolumeUnit,0,195,0,8,0,21,0,10,0,6
 com.irurueta:irurueta-units,com.irurueta.units,Angle,0,323,0,6,0,69,0,28,0,25
 com.irurueta:irurueta-units,com.irurueta.units,UnknownUnitException,0,16,0,0,0,8,0,4,0,4
 com.irurueta:irurueta-units,com.irurueta.units,TemperatureFormatter,1,102,1,20,0,26,1,21,0,11
@@ -24,6 +25,7 @@ com.irurueta:irurueta-units,com.irurueta.units,AngularSpeedConverter,0,71,0,4,0,
 com.irurueta:irurueta-units,com.irurueta.units,UnitSystem,0,24,0,0,0,3,0,1,0,1
 com.irurueta:irurueta-units,com.irurueta.units,SpeedConverter,0,126,0,10,0,36,0,22,0,14
 com.irurueta:irurueta-units,com.irurueta.units,SpeedUnit,0,111,0,8,0,15,0,10,0,6
+com.irurueta:irurueta-units,com.irurueta.units,Volume,0,323,0,6,0,70,0,28,0,25
 com.irurueta:irurueta-units,com.irurueta.units,SpeedFormatter,0,208,1,38,0,54,1,33,0,13
 com.irurueta:irurueta-units,com.irurueta.units,FrequencyConverter,0,118,0,10,0,36,0,22,0,14
 com.irurueta:irurueta-units,com.irurueta.units,AngularSpeedFormatter,8,82,0,16,2,23,1,18,1,10
@@ -34,6 +36,7 @@ com.irurueta:irurueta-units,com.irurueta.units,TimeFormatter,1,2026,13,316,0,474
 com.irurueta:irurueta-units,com.irurueta.units,TemperatureConverter,0,96,0,6,0,26,0,14,0,10
 com.irurueta:irurueta-units,com.irurueta.units,WeightFormatter,22,388,4,83,5,89,3,58,0,13
 com.irurueta:irurueta-units,com.irurueta.units,Temperature,0,319,0,6,0,68,0,28,0,25
+com.irurueta:irurueta-units,com.irurueta.units,VolumeConverter,44,164,0,22,12,54,5,41,5,21
 com.irurueta:irurueta-units,com.irurueta.units,AngularAccelerationConverter,0,71,0,4,0,21,0,10,0,8
 com.irurueta:irurueta-units,com.irurueta.units,Frequency,0,323,0,6,0,70,0,28,0,25
 com.irurueta:irurueta-units,com.irurueta.units,TimeUnit,1,210,1,11,0,27,1,11,0,6
@@ -42,6 +45,7 @@ com.irurueta:irurueta-units,com.irurueta.units,Acceleration,15,308,0,6,2,67,1,27
 com.irurueta:irurueta-units,com.irurueta.units,AccelerationFormatter,0,129,0,23,0,32,0,25,0,13
 com.irurueta:irurueta-units,com.irurueta.units,UnitsException,0,16,0,0,0,8,0,4,0,4
 com.irurueta:irurueta-units,com.irurueta.units,AngularAcceleration,0,323,0,6,0,69,0,28,0,25
+com.irurueta:irurueta-units,com.irurueta.units,VolumeFormatter,0,340,0,77,0,79,0,56,0,13
 com.irurueta:irurueta-units,com.irurueta.units,AccelerationUnit,0,83,0,8,0,13,0,10,0,6
 com.irurueta:irurueta-units,com.irurueta.units,TemperatureUnit,0,83,0,8,0,13,0,10,0,6
 com.irurueta:irurueta-units,com.irurueta.units,AngleUnit,0,24,0,0,0,3,0,1,0,1

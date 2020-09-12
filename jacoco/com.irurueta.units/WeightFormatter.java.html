@@ -373,8 +373,10 @@ public class WeightFormatter extends MeasureFormatter&lt;Weight, WeightUnit&gt; 
 <span class="fc" id="L373">                return POUND;</span>
             case OUNCE:
 <span class="fc" id="L375">                return OUNCE;</span>
+
+            case GRAM:
             default:
-<span class="fc" id="L377">                return GRAM;</span>
+<span class="fc" id="L379">                return GRAM;</span>
         }
     }
 
@@ -386,8 +388,8 @@ public class WeightFormatter extends MeasureFormatter&lt;Weight, WeightUnit&gt; 
      */
     @Override
     protected Object clone() throws CloneNotSupportedException {
-<span class="fc" id="L389">        final WeightFormatter copy = (WeightFormatter) super.clone();</span>
-<span class="fc" id="L390">        return internalClone(copy);</span>
+<span class="fc" id="L391">        final WeightFormatter copy = (WeightFormatter) super.clone();</span>
+<span class="fc" id="L392">        return internalClone(copy);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

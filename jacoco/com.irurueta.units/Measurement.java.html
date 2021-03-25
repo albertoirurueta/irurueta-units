@@ -42,21 +42,20 @@ public abstract class Measurement&lt;T extends Enum&lt;?&gt;&gt; implements Seri
      * @param unit  measurement unit.
      * @throws IllegalArgumentException if either value or unit is null.
      */
-    @SuppressWarnings(&quot;WeakerAccess&quot;)
-<span class="fc" id="L46">    public Measurement(final Number value, final T unit) {</span>
-<span class="fc bfc" id="L47" title="All 4 branches covered.">        if (value == null || unit == null) {</span>
-<span class="fc" id="L48">            throw new IllegalArgumentException();</span>
+<span class="fc" id="L45">    protected Measurement(final Number value, final T unit) {</span>
+<span class="fc bfc" id="L46" title="All 4 branches covered.">        if (value == null || unit == null) {</span>
+<span class="fc" id="L47">            throw new IllegalArgumentException();</span>
         }
 
-<span class="fc" id="L51">        mValue = value;</span>
-<span class="fc" id="L52">        mUnit = unit;</span>
-<span class="fc" id="L53">    }</span>
+<span class="fc" id="L50">        mValue = value;</span>
+<span class="fc" id="L51">        mUnit = unit;</span>
+<span class="fc" id="L52">    }</span>
 
     /**
      * Constructor.
      */
-<span class="fc" id="L58">    Measurement() {</span>
-<span class="fc" id="L59">    }</span>
+<span class="fc" id="L57">    Measurement() {</span>
+<span class="fc" id="L58">    }</span>
 
     /**
      * Determines if two measurements are equal.
@@ -66,21 +65,21 @@ public abstract class Measurement&lt;T extends Enum&lt;?&gt;&gt; implements Seri
      */
     @Override
     public boolean equals(final Object obj) {
-<span class="pc bpc" id="L69" title="1 of 2 branches missed.">        if (obj == null) {</span>
-<span class="nc" id="L70">            return false;</span>
+<span class="pc bpc" id="L68" title="1 of 2 branches missed.">        if (obj == null) {</span>
+<span class="nc" id="L69">            return false;</span>
         }
-<span class="fc bfc" id="L72" title="All 2 branches covered.">        if (!(obj instanceof Measurement)) {</span>
-<span class="fc" id="L73">            return false;</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">        if (!(obj instanceof Measurement)) {</span>
+<span class="fc" id="L72">            return false;</span>
         }
-<span class="fc bfc" id="L75" title="All 2 branches covered.">        if (this == obj) {</span>
-<span class="fc" id="L76">            return true;</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">        if (this == obj) {</span>
+<span class="fc" id="L75">            return true;</span>
         }
 
         //noinspection unchecked
-<span class="fc" id="L80">        final Measurement&lt;T&gt; other = (Measurement&lt;T&gt;) obj;</span>
-<span class="pc bpc" id="L81" title="4 of 8 branches missed.">        return mValue != null &amp;&amp; mUnit != null &amp;&amp;</span>
+<span class="fc" id="L79">        final Measurement&lt;T&gt; other = (Measurement&lt;T&gt;) obj;</span>
+<span class="pc bpc" id="L80" title="4 of 8 branches missed.">        return mValue != null &amp;&amp; mUnit != null &amp;&amp;</span>
                 other.mValue != null &amp;&amp; other.mUnit != null &amp;&amp;
-<span class="fc bfc" id="L83" title="All 4 branches covered.">                mValue.equals(other.mValue) &amp;&amp; mUnit == other.mUnit;</span>
+<span class="fc bfc" id="L82" title="All 4 branches covered.">                mValue.equals(other.mValue) &amp;&amp; mUnit == other.mUnit;</span>
     }
 
     /**
@@ -91,10 +90,10 @@ public abstract class Measurement&lt;T extends Enum&lt;?&gt;&gt; implements Seri
      */
     @Override
     public int hashCode() {
-<span class="fc" id="L94">        int hash = 7;</span>
-<span class="pc bpc" id="L95" title="1 of 2 branches missed.">        hash = 19 * hash + (mValue != null ? mValue.hashCode() : 0);</span>
-<span class="pc bpc" id="L96" title="1 of 2 branches missed.">        hash = 19 * hash + (mUnit != null ? mUnit.hashCode() : 0);</span>
-<span class="fc" id="L97">        return hash;</span>
+<span class="fc" id="L93">        int hash = 7;</span>
+<span class="pc bpc" id="L94" title="1 of 2 branches missed.">        hash = 19 * hash + (mValue != null ? mValue.hashCode() : 0);</span>
+<span class="pc bpc" id="L95" title="1 of 2 branches missed.">        hash = 19 * hash + (mUnit != null ? mUnit.hashCode() : 0);</span>
+<span class="fc" id="L96">        return hash;</span>
     }
 
     /**
@@ -106,10 +105,10 @@ public abstract class Measurement&lt;T extends Enum&lt;?&gt;&gt; implements Seri
      */
     public boolean equals(final Measurement&lt;T&gt; other,
                           final double tolerance) {
-<span class="pc bpc" id="L109" title="4 of 12 branches missed.">        return mValue != null &amp;&amp; mUnit != null &amp;&amp; other != null &amp;&amp;</span>
+<span class="pc bpc" id="L108" title="4 of 12 branches missed.">        return mValue != null &amp;&amp; mUnit != null &amp;&amp; other != null &amp;&amp;</span>
                 other.mValue != null &amp;&amp; other.mUnit != null &amp;&amp;
                 mUnit == other.mUnit &amp;&amp;
-<span class="fc bfc" id="L112" title="All 2 branches covered.">                (Math.abs(mValue.doubleValue() - other.mValue.doubleValue()) &lt;= tolerance);</span>
+<span class="fc bfc" id="L111" title="All 2 branches covered.">                (Math.abs(mValue.doubleValue() - other.mValue.doubleValue()) &lt;= tolerance);</span>
     }
 
     /**
@@ -118,7 +117,7 @@ public abstract class Measurement&lt;T extends Enum&lt;?&gt;&gt; implements Seri
      * @return measurement value.
      */
     public Number getValue() {
-<span class="fc" id="L121">        return mValue;</span>
+<span class="fc" id="L120">        return mValue;</span>
     }
 
     /**
@@ -128,12 +127,12 @@ public abstract class Measurement&lt;T extends Enum&lt;?&gt;&gt; implements Seri
      * @throws IllegalArgumentException if measurement value is null.
      */
     public void setValue(final Number value) {
-<span class="fc bfc" id="L131" title="All 2 branches covered.">        if (value == null) {</span>
-<span class="fc" id="L132">            throw new IllegalArgumentException();</span>
+<span class="fc bfc" id="L130" title="All 2 branches covered.">        if (value == null) {</span>
+<span class="fc" id="L131">            throw new IllegalArgumentException();</span>
         }
 
-<span class="fc" id="L135">        mValue = value;</span>
-<span class="fc" id="L136">    }</span>
+<span class="fc" id="L134">        mValue = value;</span>
+<span class="fc" id="L135">    }</span>
 
     /**
      * Returns measurement unit.
@@ -141,7 +140,7 @@ public abstract class Measurement&lt;T extends Enum&lt;?&gt;&gt; implements Seri
      * @return measurement unit.
      */
     public T getUnit() {
-<span class="fc" id="L144">        return mUnit;</span>
+<span class="fc" id="L143">        return mUnit;</span>
     }
 
     /**
@@ -151,11 +150,11 @@ public abstract class Measurement&lt;T extends Enum&lt;?&gt;&gt; implements Seri
      * @throws IllegalArgumentException if measurement unit is null.
      */
     public void setUnit(final T unit) {
-<span class="fc bfc" id="L154" title="All 2 branches covered.">        if (unit == null) {</span>
-<span class="fc" id="L155">            throw new IllegalArgumentException();</span>
+<span class="fc bfc" id="L153" title="All 2 branches covered.">        if (unit == null) {</span>
+<span class="fc" id="L154">            throw new IllegalArgumentException();</span>
         }
 
-<span class="fc" id="L158">        mUnit = unit;</span>
-<span class="fc" id="L159">    }</span>
+<span class="fc" id="L157">        mUnit = unit;</span>
+<span class="fc" id="L158">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

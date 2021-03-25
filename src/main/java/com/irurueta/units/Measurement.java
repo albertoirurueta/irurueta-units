@@ -42,8 +42,7 @@ public abstract class Measurement<T extends Enum<?>> implements Serializable {
      * @param unit  measurement unit.
      * @throws IllegalArgumentException if either value or unit is null.
      */
-    @SuppressWarnings("WeakerAccess")
-    public Measurement(final Number value, final T unit) {
+    protected Measurement(final Number value, final T unit) {
         if (value == null || unit == null) {
             throw new IllegalArgumentException();
         }

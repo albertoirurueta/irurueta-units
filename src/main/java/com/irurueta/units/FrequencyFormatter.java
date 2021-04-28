@@ -21,7 +21,6 @@ import java.util.Locale;
 /**
  * Formats and parses frequency value and unit.
  */
-@SuppressWarnings("WeakerAccess")
 public class FrequencyFormatter extends MeasureFormatter<Frequency, FrequencyUnit>
         implements Cloneable {
 
@@ -88,6 +87,18 @@ public class FrequencyFormatter extends MeasureFormatter<Frequency, FrequencyUni
     public boolean equals(final Object obj) {
         final boolean equals = super.equals(obj);
         return (obj instanceof FrequencyFormatter) && equals;
+    }
+
+    /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare objects.
+     * This implementation only calls parent implementation to avoid static analyzer warning.
+     *
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
     
     /**

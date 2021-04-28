@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
 /**
  * Formats and parses time value and unit.
  */
-@SuppressWarnings({"WeakerAccess", "Duplicates"})
+@SuppressWarnings("DuplicatedCode")
 public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements Cloneable {
 
     /**
@@ -435,6 +435,18 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
     public boolean equals(final Object obj) {
         final boolean equals = super.equals(obj);
         return (obj instanceof TimeFormatter) && equals;
+    }
+
+    /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare objects.
+     * This implementation only calls parent implementation to avoid static analyzer warning.
+     *
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
     /**

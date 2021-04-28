@@ -25,7 +25,6 @@ import java.util.regex.Pattern;
 /**
  * Formats and parses angle value and unit.
  */
-@SuppressWarnings("WeakerAccess")
 public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> implements Cloneable {
 
     /**
@@ -110,6 +109,17 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> implement
     public boolean equals(final Object obj) {
         final boolean equals = super.equals(obj);
         return (obj instanceof AngleFormatter) && equals;
+    }
+
+    /**
+     * Hash code generated for this instance. Hash codes can be internally used by some collections to coarsely
+     * compare objects. This implementation only calls parent implementation to avoid static analyzer warning.
+     *
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
     /**

@@ -98,6 +98,18 @@ public class MagneticFluxDensityFormatter extends MeasureFormatter<MagneticFluxD
         final boolean equals = super.equals(obj);
         return (obj instanceof MagneticFluxDensityFormatter) && equals;
     }
+
+    /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare objects.
+     * This implementation only calls parent implementation to avoid static analyzer warning.
+     *
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
     
     /**
      * Gets unit system for detected unit into provided string representation

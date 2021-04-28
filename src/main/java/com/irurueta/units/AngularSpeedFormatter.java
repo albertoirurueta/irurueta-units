@@ -21,7 +21,6 @@ import java.util.Locale;
 /**
  * Formats and parses angular speed value and unit.
  */
-@SuppressWarnings("WeakerAccess")
 public class AngularSpeedFormatter extends
         MeasureFormatter<AngularSpeed, AngularSpeedUnit> implements Cloneable {
 
@@ -73,6 +72,18 @@ public class AngularSpeedFormatter extends
     public boolean equals(final Object obj) {
         final boolean equals = super.equals(obj);
         return (obj instanceof AngularSpeedFormatter) && equals;
+    }
+
+    /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare objects.
+     * This implementation only calls parent implementation to avoid static analyzer warning.
+     *
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
     /**

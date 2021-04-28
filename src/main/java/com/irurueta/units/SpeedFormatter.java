@@ -21,7 +21,6 @@ import java.util.Locale;
 /**
  * Formats and parses speed value and unit.
  */
-@SuppressWarnings({"WeakerAccess", "Duplicates"})
 public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit>
         implements Cloneable {
 
@@ -87,6 +86,18 @@ public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit>
     public boolean equals(final Object obj) {
         final boolean equals = super.equals(obj);
         return (obj instanceof SpeedFormatter) && equals;
+    }
+
+    /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare objects.
+     * This implementation only calls parent implementation to avoid static analyzer warning.
+     *
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
     /**
@@ -241,6 +252,7 @@ public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit>
      * @param unit a speed unit.
      * @return its string representation.
      */
+    @SuppressWarnings("DuplicatedCode")
     @Override
     public String getUnitSymbol(final SpeedUnit unit) {
         switch (unit) {

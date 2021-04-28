@@ -73,9 +73,21 @@ public class AccelerationFormatter extends
      * @param obj another object to compare.
      * @return true if provided object is assumed to be equal to this instance.
      */
+    @Override
     public boolean equals(final Object obj) {
         final boolean equals = super.equals(obj);
         return (obj instanceof AccelerationFormatter) && equals;
+    }
+
+    /**
+     * Hash code generated for this instance. Hash codes can be internally used by some collections to coarsely
+     * compare objects. This implementation only calls parent implementation to avoid static analyzer warning.
+     *
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
     /**

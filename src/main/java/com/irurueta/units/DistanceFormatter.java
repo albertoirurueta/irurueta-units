@@ -103,6 +103,18 @@ public class DistanceFormatter extends MeasureFormatter<Distance, DistanceUnit> 
     }
 
     /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare objects.
+     * This implementation only calls parent implementation to avoid static analyzer warning.
+     *
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    /**
      * Gets unit system for detected unit into provided string representation
      * of a measurement.
      *

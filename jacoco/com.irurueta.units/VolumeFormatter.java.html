@@ -119,6 +119,18 @@ public class VolumeFormatter extends MeasureFormatter&lt;Volume, VolumeUnit&gt; 
     }
 
     /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare objects.
+     * This implementation only calls parent implementation to avoid static analyzer warning.
+     *
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+<span class="fc" id="L130">        return super.hashCode();</span>
+    }
+
+    /**
      * Gets unit system for detected unit into provided string representation
      * of a measurement.
      *
@@ -127,8 +139,8 @@ public class VolumeFormatter extends MeasureFormatter&lt;Volume, VolumeUnit&gt; 
      */
     @Override
     public UnitSystem getUnitSystem(final String source) {
-<span class="fc" id="L130">        final VolumeUnit unit = findUnit(source);</span>
-<span class="fc bfc" id="L131" title="All 2 branches covered.">        return unit != null ? VolumeUnit.getUnitSystem(unit) : null;</span>
+<span class="fc" id="L142">        final VolumeUnit unit = findUnit(source);</span>
+<span class="fc bfc" id="L143" title="All 2 branches covered.">        return unit != null ? VolumeUnit.getUnitSystem(unit) : null;</span>
     }
 
     /**
@@ -141,7 +153,7 @@ public class VolumeFormatter extends MeasureFormatter&lt;Volume, VolumeUnit&gt; 
      */
     @Override
     public Volume parse(final String source) throws ParseException, UnknownUnitException {
-<span class="fc" id="L144">        return internalParse(source, new Volume());</span>
+<span class="fc" id="L156">        return internalParse(source, new Volume());</span>
     }
 
     /**
@@ -152,41 +164,41 @@ public class VolumeFormatter extends MeasureFormatter&lt;Volume, VolumeUnit&gt; 
      */
     @Override
     public VolumeUnit findUnit(final String source) {
-<span class="fc bfc" id="L155" title="All 4 branches covered.">        if (source.contains(CUBIC_CENTIMETER + &quot; &quot;) || source.endsWith(CUBIC_CENTIMETER)) {</span>
-<span class="fc" id="L156">            return VolumeUnit.CUBIC_CENTIMETER;</span>
+<span class="fc bfc" id="L167" title="All 4 branches covered.">        if (source.contains(CUBIC_CENTIMETER + &quot; &quot;) || source.endsWith(CUBIC_CENTIMETER)) {</span>
+<span class="fc" id="L168">            return VolumeUnit.CUBIC_CENTIMETER;</span>
         }
-<span class="fc bfc" id="L158" title="All 4 branches covered.">        if (source.contains(MILLILITER + &quot; &quot;) || source.endsWith(MILLILITER)) {</span>
-<span class="fc" id="L159">            return VolumeUnit.MILLILITER;</span>
+<span class="fc bfc" id="L170" title="All 4 branches covered.">        if (source.contains(MILLILITER + &quot; &quot;) || source.endsWith(MILLILITER)) {</span>
+<span class="fc" id="L171">            return VolumeUnit.MILLILITER;</span>
         }
-<span class="fc bfc" id="L161" title="All 4 branches covered.">        if (source.contains(CUBIC_DECIMETER + &quot; &quot;) || source.endsWith(CUBIC_DECIMETER)) {</span>
-<span class="fc" id="L162">            return VolumeUnit.CUBIC_DECIMETER;</span>
+<span class="fc bfc" id="L173" title="All 4 branches covered.">        if (source.contains(CUBIC_DECIMETER + &quot; &quot;) || source.endsWith(CUBIC_DECIMETER)) {</span>
+<span class="fc" id="L174">            return VolumeUnit.CUBIC_DECIMETER;</span>
         }
-<span class="fc bfc" id="L164" title="All 4 branches covered.">        if (source.contains(HECTOLITER + &quot; &quot;) || source.endsWith(HECTOLITER)) {</span>
-<span class="fc" id="L165">            return VolumeUnit.HECTOLITER;</span>
+<span class="fc bfc" id="L176" title="All 4 branches covered.">        if (source.contains(HECTOLITER + &quot; &quot;) || source.endsWith(HECTOLITER)) {</span>
+<span class="fc" id="L177">            return VolumeUnit.HECTOLITER;</span>
         }
-<span class="fc bfc" id="L167" title="All 4 branches covered.">        if (source.contains(LITER + &quot; &quot;) || source.endsWith(LITER)) {</span>
-<span class="fc" id="L168">            return VolumeUnit.LITER;</span>
+<span class="fc bfc" id="L179" title="All 4 branches covered.">        if (source.contains(LITER + &quot; &quot;) || source.endsWith(LITER)) {</span>
+<span class="fc" id="L180">            return VolumeUnit.LITER;</span>
         }
-<span class="fc bfc" id="L170" title="All 4 branches covered.">        if (source.contains(CUBIC_METER + &quot; &quot;) || source.endsWith(CUBIC_METER)) {</span>
-<span class="fc" id="L171">            return VolumeUnit.CUBIC_METER;</span>
+<span class="fc bfc" id="L182" title="All 4 branches covered.">        if (source.contains(CUBIC_METER + &quot; &quot;) || source.endsWith(CUBIC_METER)) {</span>
+<span class="fc" id="L183">            return VolumeUnit.CUBIC_METER;</span>
         }
-<span class="fc bfc" id="L173" title="All 4 branches covered.">        if (source.contains(CUBIC_INCH + &quot; &quot;) || source.endsWith(CUBIC_INCH)) {</span>
-<span class="fc" id="L174">            return VolumeUnit.CUBIC_INCH;</span>
+<span class="fc bfc" id="L185" title="All 4 branches covered.">        if (source.contains(CUBIC_INCH + &quot; &quot;) || source.endsWith(CUBIC_INCH)) {</span>
+<span class="fc" id="L186">            return VolumeUnit.CUBIC_INCH;</span>
         }
-<span class="fc bfc" id="L176" title="All 4 branches covered.">        if (source.contains(PINT + &quot; &quot;) || source.endsWith(PINT)) {</span>
-<span class="fc" id="L177">            return VolumeUnit.PINT;</span>
+<span class="fc bfc" id="L188" title="All 4 branches covered.">        if (source.contains(PINT + &quot; &quot;) || source.endsWith(PINT)) {</span>
+<span class="fc" id="L189">            return VolumeUnit.PINT;</span>
         }
-<span class="fc bfc" id="L179" title="All 4 branches covered.">        if (source.contains(GALLON + &quot; &quot;) || source.endsWith(GALLON)) {</span>
-<span class="fc" id="L180">            return VolumeUnit.GALLON;</span>
+<span class="fc bfc" id="L191" title="All 4 branches covered.">        if (source.contains(GALLON + &quot; &quot;) || source.endsWith(GALLON)) {</span>
+<span class="fc" id="L192">            return VolumeUnit.GALLON;</span>
         }
-<span class="fc bfc" id="L182" title="All 4 branches covered.">        if (source.contains(CUBIC_FOOT + &quot; &quot;) || source.endsWith(CUBIC_FOOT)) {</span>
-<span class="fc" id="L183">            return VolumeUnit.CUBIC_FOOT;</span>
+<span class="fc bfc" id="L194" title="All 4 branches covered.">        if (source.contains(CUBIC_FOOT + &quot; &quot;) || source.endsWith(CUBIC_FOOT)) {</span>
+<span class="fc" id="L195">            return VolumeUnit.CUBIC_FOOT;</span>
         }
-<span class="fc bfc" id="L185" title="All 4 branches covered.">        if (source.contains(BARREL + &quot; &quot;) || source.endsWith(BARREL)) {</span>
-<span class="fc" id="L186">            return VolumeUnit.BARREL;</span>
+<span class="fc bfc" id="L197" title="All 4 branches covered.">        if (source.contains(BARREL + &quot; &quot;) || source.endsWith(BARREL)) {</span>
+<span class="fc" id="L198">            return VolumeUnit.BARREL;</span>
         }
 
-<span class="fc" id="L189">        return null;</span>
+<span class="fc" id="L201">        return null;</span>
     }
 
     /**
@@ -202,12 +214,12 @@ public class VolumeFormatter extends MeasureFormatter&lt;Volume, VolumeUnit&gt; 
     @Override
     public String formatAndConvert(final Number value, final VolumeUnit unit,
                                    final UnitSystem system) {
-<span class="fc bfc" id="L205" title="All 2 branches covered.">        switch (system) {</span>
+<span class="fc bfc" id="L217" title="All 2 branches covered.">        switch (system) {</span>
             case IMPERIAL:
-<span class="fc" id="L207">                return formatAndConvertImperial(value, unit);</span>
+<span class="fc" id="L219">                return formatAndConvertImperial(value, unit);</span>
             case METRIC:
             default:
-<span class="fc" id="L210">                return formatAndConvertMetric(value, unit);</span>
+<span class="fc" id="L222">                return formatAndConvertMetric(value, unit);</span>
         }
     }
 
@@ -222,28 +234,28 @@ public class VolumeFormatter extends MeasureFormatter&lt;Volume, VolumeUnit&gt; 
      * system.
      */
     public String formatAndConvertMetric(final Number value, final VolumeUnit unit) {
-<span class="fc" id="L225">        final double v = value.doubleValue();</span>
+<span class="fc" id="L237">        final double v = value.doubleValue();</span>
 
-<span class="fc" id="L227">        final double cubicCentimeter = VolumeConverter.convert(v, unit,</span>
+<span class="fc" id="L239">        final double cubicCentimeter = VolumeConverter.convert(v, unit,</span>
                 VolumeUnit.CUBIC_CENTIMETER);
-<span class="fc bfc" id="L229" title="All 2 branches covered.">        if (Math.abs(cubicCentimeter) &lt; (VolumeConverter.CUBIC_METER_PER_LITER /</span>
+<span class="fc bfc" id="L241" title="All 2 branches covered.">        if (Math.abs(cubicCentimeter) &lt; (VolumeConverter.CUBIC_METER_PER_LITER /</span>
                 VolumeConverter.CUBIC_METER_PER_CUBIC_CENTIMETER)) {
-<span class="fc" id="L231">            return format(cubicCentimeter, VolumeUnit.CUBIC_CENTIMETER);</span>
+<span class="fc" id="L243">            return format(cubicCentimeter, VolumeUnit.CUBIC_CENTIMETER);</span>
         }
 
-<span class="fc" id="L234">        final double liter = VolumeConverter.convert(v, unit, VolumeUnit.LITER);</span>
-<span class="fc bfc" id="L235" title="All 2 branches covered.">        if (Math.abs(liter) &lt; (VolumeConverter.CUBIC_METER_PER_HECTOLITER /</span>
+<span class="fc" id="L246">        final double liter = VolumeConverter.convert(v, unit, VolumeUnit.LITER);</span>
+<span class="fc bfc" id="L247" title="All 2 branches covered.">        if (Math.abs(liter) &lt; (VolumeConverter.CUBIC_METER_PER_HECTOLITER /</span>
                 VolumeConverter.CUBIC_METER_PER_LITER)) {
-<span class="fc" id="L237">            return format(liter, VolumeUnit.LITER);</span>
+<span class="fc" id="L249">            return format(liter, VolumeUnit.LITER);</span>
         }
 
-<span class="fc" id="L240">        final double hectoliter = VolumeConverter.convert(v, unit, VolumeUnit.HECTOLITER);</span>
-<span class="fc bfc" id="L241" title="All 2 branches covered.">        if (Math.abs(hectoliter) &lt; (1.0 / VolumeConverter.CUBIC_METER_PER_HECTOLITER)) {</span>
-<span class="fc" id="L242">            return format(hectoliter, VolumeUnit.HECTOLITER);</span>
+<span class="fc" id="L252">        final double hectoliter = VolumeConverter.convert(v, unit, VolumeUnit.HECTOLITER);</span>
+<span class="fc bfc" id="L253" title="All 2 branches covered.">        if (Math.abs(hectoliter) &lt; (1.0 / VolumeConverter.CUBIC_METER_PER_HECTOLITER)) {</span>
+<span class="fc" id="L254">            return format(hectoliter, VolumeUnit.HECTOLITER);</span>
         }
 
-<span class="fc" id="L245">        final double cubicMeter = VolumeConverter.convert(v, unit, VolumeUnit.CUBIC_METER);</span>
-<span class="fc" id="L246">        return format(cubicMeter, VolumeUnit.CUBIC_METER);</span>
+<span class="fc" id="L257">        final double cubicMeter = VolumeConverter.convert(v, unit, VolumeUnit.CUBIC_METER);</span>
+<span class="fc" id="L258">        return format(cubicMeter, VolumeUnit.CUBIC_METER);</span>
     }
 
     /**
@@ -257,34 +269,34 @@ public class VolumeFormatter extends MeasureFormatter&lt;Volume, VolumeUnit&gt; 
      * system.
      */
     public String formatAndConvertImperial(final Number value, final VolumeUnit unit) {
-<span class="fc" id="L260">        final double v = value.doubleValue();</span>
+<span class="fc" id="L272">        final double v = value.doubleValue();</span>
 
-<span class="fc" id="L262">        final double cubicInch = VolumeConverter.convert(v, unit, VolumeUnit.CUBIC_INCH);</span>
-<span class="fc bfc" id="L263" title="All 2 branches covered.">        if (Math.abs(cubicInch) &lt; (VolumeConverter.CUBIC_METER_PER_PINT /</span>
+<span class="fc" id="L274">        final double cubicInch = VolumeConverter.convert(v, unit, VolumeUnit.CUBIC_INCH);</span>
+<span class="fc bfc" id="L275" title="All 2 branches covered.">        if (Math.abs(cubicInch) &lt; (VolumeConverter.CUBIC_METER_PER_PINT /</span>
                 VolumeConverter.CUBIC_METER_PER_CUBIC_INCH)) {
-<span class="fc" id="L265">            return format(cubicInch, VolumeUnit.CUBIC_INCH);</span>
+<span class="fc" id="L277">            return format(cubicInch, VolumeUnit.CUBIC_INCH);</span>
         }
 
-<span class="fc" id="L268">        final double pint = VolumeConverter.convert(v, unit, VolumeUnit.PINT);</span>
-<span class="fc bfc" id="L269" title="All 2 branches covered.">        if (Math.abs(pint) &lt; (VolumeConverter.CUBIC_METER_PER_GALLON /</span>
+<span class="fc" id="L280">        final double pint = VolumeConverter.convert(v, unit, VolumeUnit.PINT);</span>
+<span class="fc bfc" id="L281" title="All 2 branches covered.">        if (Math.abs(pint) &lt; (VolumeConverter.CUBIC_METER_PER_GALLON /</span>
                 VolumeConverter.CUBIC_METER_PER_PINT)) {
-<span class="fc" id="L271">            return format(pint, VolumeUnit.PINT);</span>
+<span class="fc" id="L283">            return format(pint, VolumeUnit.PINT);</span>
         }
 
-<span class="fc" id="L274">        final double gallon = VolumeConverter.convert(v, unit, VolumeUnit.GALLON);</span>
-<span class="fc bfc" id="L275" title="All 2 branches covered.">        if (Math.abs(gallon) &lt; (VolumeConverter.CUBIC_METER_PER_CUBIC_FOOT /</span>
+<span class="fc" id="L286">        final double gallon = VolumeConverter.convert(v, unit, VolumeUnit.GALLON);</span>
+<span class="fc bfc" id="L287" title="All 2 branches covered.">        if (Math.abs(gallon) &lt; (VolumeConverter.CUBIC_METER_PER_CUBIC_FOOT /</span>
                 VolumeConverter.CUBIC_METER_PER_GALLON)) {
-<span class="fc" id="L277">            return format(gallon, VolumeUnit.GALLON);</span>
+<span class="fc" id="L289">            return format(gallon, VolumeUnit.GALLON);</span>
         }
 
-<span class="fc" id="L280">        final double cubicFoot = VolumeConverter.convert(v, unit, VolumeUnit.CUBIC_FOOT);</span>
-<span class="fc bfc" id="L281" title="All 2 branches covered.">        if (Math.abs(cubicFoot) &lt; (VolumeConverter.CUBIC_METER_PER_BARREL /</span>
+<span class="fc" id="L292">        final double cubicFoot = VolumeConverter.convert(v, unit, VolumeUnit.CUBIC_FOOT);</span>
+<span class="fc bfc" id="L293" title="All 2 branches covered.">        if (Math.abs(cubicFoot) &lt; (VolumeConverter.CUBIC_METER_PER_BARREL /</span>
                 VolumeConverter.CUBIC_METER_PER_CUBIC_FOOT)) {
-<span class="fc" id="L283">            return format(cubicFoot, VolumeUnit.CUBIC_FOOT);</span>
+<span class="fc" id="L295">            return format(cubicFoot, VolumeUnit.CUBIC_FOOT);</span>
         }
 
-<span class="fc" id="L286">        final double barrel = VolumeConverter.convert(v, unit, VolumeUnit.BARREL);</span>
-<span class="fc" id="L287">        return format(barrel, VolumeUnit.BARREL);</span>
+<span class="fc" id="L298">        final double barrel = VolumeConverter.convert(v, unit, VolumeUnit.BARREL);</span>
+<span class="fc" id="L299">        return format(barrel, VolumeUnit.BARREL);</span>
     }
 
     /**
@@ -296,31 +308,31 @@ public class VolumeFormatter extends MeasureFormatter&lt;Volume, VolumeUnit&gt; 
     @SuppressWarnings(&quot;DuplicatedCode&quot;)
     @Override
     public String getUnitSymbol(final VolumeUnit unit) {
-<span class="fc bfc" id="L299" title="All 11 branches covered.">        switch (unit) {</span>
+<span class="fc bfc" id="L311" title="All 11 branches covered.">        switch (unit) {</span>
             case CUBIC_CENTIMETER:
-<span class="fc" id="L301">                return CUBIC_CENTIMETER;</span>
+<span class="fc" id="L313">                return CUBIC_CENTIMETER;</span>
             case MILLILITER:
-<span class="fc" id="L303">                return MILLILITER;</span>
+<span class="fc" id="L315">                return MILLILITER;</span>
             case CUBIC_DECIMETER:
-<span class="fc" id="L305">                return CUBIC_DECIMETER;</span>
+<span class="fc" id="L317">                return CUBIC_DECIMETER;</span>
             case LITER:
-<span class="fc" id="L307">                return LITER;</span>
+<span class="fc" id="L319">                return LITER;</span>
             case HECTOLITER:
-<span class="fc" id="L309">                return HECTOLITER;</span>
+<span class="fc" id="L321">                return HECTOLITER;</span>
             case CUBIC_INCH:
-<span class="fc" id="L311">                return CUBIC_INCH;</span>
+<span class="fc" id="L323">                return CUBIC_INCH;</span>
             case PINT:
-<span class="fc" id="L313">                return PINT;</span>
+<span class="fc" id="L325">                return PINT;</span>
             case GALLON:
-<span class="fc" id="L315">                return GALLON;</span>
+<span class="fc" id="L327">                return GALLON;</span>
             case CUBIC_FOOT:
-<span class="fc" id="L317">                return CUBIC_FOOT;</span>
+<span class="fc" id="L329">                return CUBIC_FOOT;</span>
             case BARREL:
-<span class="fc" id="L319">                return BARREL;</span>
+<span class="fc" id="L331">                return BARREL;</span>
 
             case CUBIC_METER:
             default:
-<span class="fc" id="L323">                return CUBIC_METER;</span>
+<span class="fc" id="L335">                return CUBIC_METER;</span>
 
         }
     }
@@ -333,8 +345,8 @@ public class VolumeFormatter extends MeasureFormatter&lt;Volume, VolumeUnit&gt; 
      */
     @Override
     protected Object clone() throws CloneNotSupportedException {
-<span class="fc" id="L336">        final VolumeFormatter copy = (VolumeFormatter) super.clone();</span>
-<span class="fc" id="L337">        return internalClone(copy);</span>
+<span class="fc" id="L348">        final VolumeFormatter copy = (VolumeFormatter) super.clone();</span>
+<span class="fc" id="L349">        return internalClone(copy);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

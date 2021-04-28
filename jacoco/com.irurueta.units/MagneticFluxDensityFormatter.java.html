@@ -98,6 +98,18 @@ public class MagneticFluxDensityFormatter extends MeasureFormatter&lt;MagneticFl
 <span class="fc" id="L98">        final boolean equals = super.equals(obj);</span>
 <span class="fc bfc" id="L99" title="All 4 branches covered.">        return (obj instanceof MagneticFluxDensityFormatter) &amp;&amp; equals;</span>
     }
+
+    /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare objects.
+     * This implementation only calls parent implementation to avoid static analyzer warning.
+     *
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+<span class="fc" id="L111">        return super.hashCode();</span>
+    }
     
     /**
      * Gets unit system for detected unit into provided string representation
@@ -109,7 +121,7 @@ public class MagneticFluxDensityFormatter extends MeasureFormatter&lt;MagneticFl
      */
     @Override
     public UnitSystem getUnitSystem(final String source) {
-<span class="fc" id="L112">        return UnitSystem.METRIC;</span>
+<span class="fc" id="L124">        return UnitSystem.METRIC;</span>
     }
 
     /**
@@ -124,7 +136,7 @@ public class MagneticFluxDensityFormatter extends MeasureFormatter&lt;MagneticFl
     @Override
     public MagneticFluxDensity parse(final String source)
             throws ParseException, UnknownUnitException {
-<span class="fc" id="L127">        return internalParse(source, new MagneticFluxDensity());</span>
+<span class="fc" id="L139">        return internalParse(source, new MagneticFluxDensity());</span>
     }
 
     /**
@@ -137,29 +149,29 @@ public class MagneticFluxDensityFormatter extends MeasureFormatter&lt;MagneticFl
      */
     @Override
     public MagneticFluxDensityUnit findUnit(final String source) {
-<span class="fc bfc" id="L140" title="All 4 branches covered.">        if (source.contains(NANOTESLA + &quot; &quot;) || source.endsWith(NANOTESLA)) {</span>
-<span class="fc" id="L141">            return MagneticFluxDensityUnit.NANOTESLA;</span>
+<span class="fc bfc" id="L152" title="All 4 branches covered.">        if (source.contains(NANOTESLA + &quot; &quot;) || source.endsWith(NANOTESLA)) {</span>
+<span class="fc" id="L153">            return MagneticFluxDensityUnit.NANOTESLA;</span>
         }
-<span class="fc bfc" id="L143" title="All 4 branches covered.">        if (source.contains(MICROTESLA + &quot; &quot;) || source.endsWith(MICROTESLA)) {</span>
-<span class="fc" id="L144">            return MagneticFluxDensityUnit.MICROTESLA;</span>
+<span class="fc bfc" id="L155" title="All 4 branches covered.">        if (source.contains(MICROTESLA + &quot; &quot;) || source.endsWith(MICROTESLA)) {</span>
+<span class="fc" id="L156">            return MagneticFluxDensityUnit.MICROTESLA;</span>
         }
-<span class="fc bfc" id="L146" title="All 4 branches covered.">        if (source.contains(MILLITESLA + &quot; &quot;) || source.endsWith(MILLITESLA)) {</span>
-<span class="fc" id="L147">            return MagneticFluxDensityUnit.MILLITESLA;</span>
+<span class="fc bfc" id="L158" title="All 4 branches covered.">        if (source.contains(MILLITESLA + &quot; &quot;) || source.endsWith(MILLITESLA)) {</span>
+<span class="fc" id="L159">            return MagneticFluxDensityUnit.MILLITESLA;</span>
         }
-<span class="fc bfc" id="L149" title="All 4 branches covered.">        if (source.contains(KILOTESLA + &quot; &quot;) || source.endsWith(KILOTESLA)) {</span>
-<span class="fc" id="L150">            return MagneticFluxDensityUnit.KILOTESLA;</span>
+<span class="fc bfc" id="L161" title="All 4 branches covered.">        if (source.contains(KILOTESLA + &quot; &quot;) || source.endsWith(KILOTESLA)) {</span>
+<span class="fc" id="L162">            return MagneticFluxDensityUnit.KILOTESLA;</span>
         }
-<span class="fc bfc" id="L152" title="All 4 branches covered.">        if (source.contains(MEGATESLA + &quot; &quot;) || source.endsWith(MEGATESLA)) {</span>
-<span class="fc" id="L153">            return MagneticFluxDensityUnit.MEGATESLA;</span>
+<span class="fc bfc" id="L164" title="All 4 branches covered.">        if (source.contains(MEGATESLA + &quot; &quot;) || source.endsWith(MEGATESLA)) {</span>
+<span class="fc" id="L165">            return MagneticFluxDensityUnit.MEGATESLA;</span>
         }
-<span class="fc bfc" id="L155" title="All 4 branches covered.">        if (source.contains(GIGATESLA + &quot; &quot;) || source.endsWith(GIGATESLA)) {</span>
-<span class="fc" id="L156">            return MagneticFluxDensityUnit.GIGATESLA;</span>
+<span class="fc bfc" id="L167" title="All 4 branches covered.">        if (source.contains(GIGATESLA + &quot; &quot;) || source.endsWith(GIGATESLA)) {</span>
+<span class="fc" id="L168">            return MagneticFluxDensityUnit.GIGATESLA;</span>
         }
 
-<span class="fc bfc" id="L159" title="All 4 branches covered.">        if (source.contains(TESLA + &quot; &quot;) || source.endsWith(TESLA)) {</span>
-<span class="fc" id="L160">            return MagneticFluxDensityUnit.TESLA;</span>
+<span class="fc bfc" id="L171" title="All 4 branches covered.">        if (source.contains(TESLA + &quot; &quot;) || source.endsWith(TESLA)) {</span>
+<span class="fc" id="L172">            return MagneticFluxDensityUnit.TESLA;</span>
         }
-<span class="fc" id="L162">        return null;</span>
+<span class="fc" id="L174">        return null;</span>
     }
 
     /**
@@ -178,7 +190,7 @@ public class MagneticFluxDensityFormatter extends MeasureFormatter&lt;MagneticFl
     public String formatAndConvert(
             final Number value, final MagneticFluxDensityUnit unit,
             final UnitSystem system) {
-<span class="fc" id="L181">        return formatAndConvertMetric(value, unit);</span>
+<span class="fc" id="L193">        return formatAndConvertMetric(value, unit);</span>
     }
 
     /**
@@ -195,51 +207,51 @@ public class MagneticFluxDensityFormatter extends MeasureFormatter&lt;MagneticFl
      */
     public String formatAndConvertMetric(
             final Number value, final MagneticFluxDensityUnit unit) {
-<span class="fc" id="L198">        final double v = value.doubleValue();</span>
+<span class="fc" id="L210">        final double v = value.doubleValue();</span>
 
-<span class="fc" id="L200">        final double nanoTesla = MagneticFluxDensityConverter.convert(</span>
+<span class="fc" id="L212">        final double nanoTesla = MagneticFluxDensityConverter.convert(</span>
                 v, unit, MagneticFluxDensityUnit.NANOTESLA);
-<span class="fc bfc" id="L202" title="All 2 branches covered.">        if (Math.abs(nanoTesla) &lt; MagneticFluxDensityConverter.TESLAS_PER_MICROTESLA</span>
+<span class="fc bfc" id="L214" title="All 2 branches covered.">        if (Math.abs(nanoTesla) &lt; MagneticFluxDensityConverter.TESLAS_PER_MICROTESLA</span>
                 / MagneticFluxDensityConverter.TESLAS_PER_NANOTESLA) {
-<span class="fc" id="L204">            return format(nanoTesla, MagneticFluxDensityUnit.NANOTESLA);</span>
+<span class="fc" id="L216">            return format(nanoTesla, MagneticFluxDensityUnit.NANOTESLA);</span>
         }
 
-<span class="fc" id="L207">        final double microTesla = MagneticFluxDensityConverter.convert(</span>
+<span class="fc" id="L219">        final double microTesla = MagneticFluxDensityConverter.convert(</span>
                 v, unit, MagneticFluxDensityUnit.MICROTESLA);
-<span class="fc bfc" id="L209" title="All 2 branches covered.">        if (Math.abs(microTesla) &lt; (MagneticFluxDensityConverter.TESLAS_PER_MILLITESLA /</span>
+<span class="fc bfc" id="L221" title="All 2 branches covered.">        if (Math.abs(microTesla) &lt; (MagneticFluxDensityConverter.TESLAS_PER_MILLITESLA /</span>
                 MagneticFluxDensityConverter.TESLAS_PER_MICROTESLA)) {
-<span class="fc" id="L211">            return format(microTesla, MagneticFluxDensityUnit.MICROTESLA);</span>
+<span class="fc" id="L223">            return format(microTesla, MagneticFluxDensityUnit.MICROTESLA);</span>
         }
 
-<span class="fc" id="L214">        final double milliTesla = MagneticFluxDensityConverter.convert(</span>
+<span class="fc" id="L226">        final double milliTesla = MagneticFluxDensityConverter.convert(</span>
                 v, unit, MagneticFluxDensityUnit.MILLITESLA);
-<span class="fc bfc" id="L216" title="All 2 branches covered.">        if (Math.abs(milliTesla) &lt; (1.0 / MagneticFluxDensityConverter.TESLAS_PER_MILLITESLA)) {</span>
-<span class="fc" id="L217">            return format(milliTesla, MagneticFluxDensityUnit.MILLITESLA);</span>
+<span class="fc bfc" id="L228" title="All 2 branches covered.">        if (Math.abs(milliTesla) &lt; (1.0 / MagneticFluxDensityConverter.TESLAS_PER_MILLITESLA)) {</span>
+<span class="fc" id="L229">            return format(milliTesla, MagneticFluxDensityUnit.MILLITESLA);</span>
         }
 
-<span class="fc" id="L220">        final double tesla = MagneticFluxDensityConverter.convert(</span>
+<span class="fc" id="L232">        final double tesla = MagneticFluxDensityConverter.convert(</span>
                 v, unit, MagneticFluxDensityUnit.TESLA);
-<span class="fc bfc" id="L222" title="All 2 branches covered.">        if (Math.abs(tesla) &lt; MagneticFluxDensityConverter.TESLAS_PER_KILOTESLA) {</span>
-<span class="fc" id="L223">            return format(tesla, MagneticFluxDensityUnit.TESLA);</span>
+<span class="fc bfc" id="L234" title="All 2 branches covered.">        if (Math.abs(tesla) &lt; MagneticFluxDensityConverter.TESLAS_PER_KILOTESLA) {</span>
+<span class="fc" id="L235">            return format(tesla, MagneticFluxDensityUnit.TESLA);</span>
         }
 
-<span class="fc" id="L226">        final double kiloTesla = MagneticFluxDensityConverter.convert(</span>
+<span class="fc" id="L238">        final double kiloTesla = MagneticFluxDensityConverter.convert(</span>
                 v, unit, MagneticFluxDensityUnit.KILOTESLA);
-<span class="fc bfc" id="L228" title="All 2 branches covered.">        if (Math.abs(kiloTesla) &lt; (MagneticFluxDensityConverter.TESLAS_PER_MEGATESLA /</span>
+<span class="fc bfc" id="L240" title="All 2 branches covered.">        if (Math.abs(kiloTesla) &lt; (MagneticFluxDensityConverter.TESLAS_PER_MEGATESLA /</span>
                 MagneticFluxDensityConverter.TESLAS_PER_KILOTESLA)) {
-<span class="fc" id="L230">            return format(kiloTesla, MagneticFluxDensityUnit.KILOTESLA);</span>
+<span class="fc" id="L242">            return format(kiloTesla, MagneticFluxDensityUnit.KILOTESLA);</span>
         }
 
-<span class="fc" id="L233">        final double megaTesla = MagneticFluxDensityConverter.convert(</span>
+<span class="fc" id="L245">        final double megaTesla = MagneticFluxDensityConverter.convert(</span>
                 v, unit, MagneticFluxDensityUnit.MEGATESLA);
-<span class="fc bfc" id="L235" title="All 2 branches covered.">        if (Math.abs(megaTesla) &lt; (MagneticFluxDensityConverter.TESLAS_PER_GIGATESLA /</span>
+<span class="fc bfc" id="L247" title="All 2 branches covered.">        if (Math.abs(megaTesla) &lt; (MagneticFluxDensityConverter.TESLAS_PER_GIGATESLA /</span>
                 MagneticFluxDensityConverter.TESLAS_PER_MEGATESLA)) {
-<span class="fc" id="L237">            return format(megaTesla, MagneticFluxDensityUnit.MEGATESLA);</span>
+<span class="fc" id="L249">            return format(megaTesla, MagneticFluxDensityUnit.MEGATESLA);</span>
         }
 
-<span class="fc" id="L240">        final double gigaTesla = MagneticFluxDensityConverter.convert(</span>
+<span class="fc" id="L252">        final double gigaTesla = MagneticFluxDensityConverter.convert(</span>
                 v, unit, MagneticFluxDensityUnit.GIGATESLA);
-<span class="fc" id="L242">        return format(gigaTesla, MagneticFluxDensityUnit.GIGATESLA);</span>
+<span class="fc" id="L254">        return format(gigaTesla, MagneticFluxDensityUnit.GIGATESLA);</span>
     }
 
     /**
@@ -250,22 +262,22 @@ public class MagneticFluxDensityFormatter extends MeasureFormatter&lt;MagneticFl
      */
     @Override
     public String getUnitSymbol(MagneticFluxDensityUnit unit) {
-<span class="fc bfc" id="L253" title="All 7 branches covered.">        switch (unit) {</span>
+<span class="fc bfc" id="L265" title="All 7 branches covered.">        switch (unit) {</span>
             case NANOTESLA:
-<span class="fc" id="L255">                return NANOTESLA;</span>
+<span class="fc" id="L267">                return NANOTESLA;</span>
             case MICROTESLA:
-<span class="fc" id="L257">                return MICROTESLA;</span>
+<span class="fc" id="L269">                return MICROTESLA;</span>
             case MILLITESLA:
-<span class="fc" id="L259">                return MILLITESLA;</span>
+<span class="fc" id="L271">                return MILLITESLA;</span>
             case KILOTESLA:
-<span class="fc" id="L261">                return KILOTESLA;</span>
+<span class="fc" id="L273">                return KILOTESLA;</span>
             case MEGATESLA:
-<span class="fc" id="L263">                return MEGATESLA;</span>
+<span class="fc" id="L275">                return MEGATESLA;</span>
             case GIGATESLA:
-<span class="fc" id="L265">                return GIGATESLA;</span>
+<span class="fc" id="L277">                return GIGATESLA;</span>
             case TESLA:
             default:
-<span class="fc" id="L268">                return TESLA;</span>
+<span class="fc" id="L280">                return TESLA;</span>
         }
     }
 
@@ -278,7 +290,7 @@ public class MagneticFluxDensityFormatter extends MeasureFormatter&lt;MagneticFl
      */
     @Override
     public UnitSystem getUnitSystem() {
-<span class="fc" id="L281">        return UnitSystem.METRIC;</span>
+<span class="fc" id="L293">        return UnitSystem.METRIC;</span>
     }
 
     /**
@@ -289,8 +301,8 @@ public class MagneticFluxDensityFormatter extends MeasureFormatter&lt;MagneticFl
      */
     @Override
     protected Object clone() throws CloneNotSupportedException {
-<span class="fc" id="L292">        final MagneticFluxDensityFormatter copy = (MagneticFluxDensityFormatter) super.clone();</span>
-<span class="fc" id="L293">        return internalClone(copy);</span>
+<span class="fc" id="L304">        final MagneticFluxDensityFormatter copy = (MagneticFluxDensityFormatter) super.clone();</span>
+<span class="fc" id="L305">        return internalClone(copy);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

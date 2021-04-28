@@ -119,6 +119,18 @@ public class WeightFormatter extends MeasureFormatter&lt;Weight, WeightUnit&gt; 
     }
 
     /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare objects.
+     * This implementation only calls parent implementation to avoid static analyzer warning.
+     *
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+<span class="fc" id="L130">        return super.hashCode();</span>
+    }
+
+    /**
      * Gets unit system for detected unit into provided string representation
      * of a measurement.
      *
@@ -128,8 +140,8 @@ public class WeightFormatter extends MeasureFormatter&lt;Weight, WeightUnit&gt; 
      */
     @Override
     public UnitSystem getUnitSystem(final String source) {
-<span class="fc" id="L131">        final WeightUnit unit = findUnit(source);</span>
-<span class="fc bfc" id="L132" title="All 2 branches covered.">        return unit != null ? WeightUnit.getUnitSystem(unit) : null;</span>
+<span class="fc" id="L143">        final WeightUnit unit = findUnit(source);</span>
+<span class="fc bfc" id="L144" title="All 2 branches covered.">        return unit != null ? WeightUnit.getUnitSystem(unit) : null;</span>
     }
 
     /**
@@ -142,7 +154,7 @@ public class WeightFormatter extends MeasureFormatter&lt;Weight, WeightUnit&gt; 
      */
     @Override
     public Weight parse(final String source) throws ParseException, UnknownUnitException {
-<span class="fc" id="L145">        return internalParse(source, new Weight());</span>
+<span class="fc" id="L157">        return internalParse(source, new Weight());</span>
     }
 
     /**
@@ -154,50 +166,50 @@ public class WeightFormatter extends MeasureFormatter&lt;Weight, WeightUnit&gt; 
      */
     @Override
     public WeightUnit findUnit(final String source) {
-<span class="fc bfc" id="L157" title="All 4 branches covered.">        if (source.contains(PICOGRAM + &quot; &quot;) || source.endsWith(PICOGRAM)) {</span>
-<span class="fc" id="L158">            return WeightUnit.PICOGRAM;</span>
+<span class="fc bfc" id="L169" title="All 4 branches covered.">        if (source.contains(PICOGRAM + &quot; &quot;) || source.endsWith(PICOGRAM)) {</span>
+<span class="fc" id="L170">            return WeightUnit.PICOGRAM;</span>
         }
-<span class="fc bfc" id="L160" title="All 4 branches covered.">        if (source.contains(NANOGRAM + &quot; &quot;) || source.endsWith(NANOGRAM)) {</span>
-<span class="fc" id="L161">            return WeightUnit.NANOGRAM;</span>
+<span class="fc bfc" id="L172" title="All 4 branches covered.">        if (source.contains(NANOGRAM + &quot; &quot;) || source.endsWith(NANOGRAM)) {</span>
+<span class="fc" id="L173">            return WeightUnit.NANOGRAM;</span>
         }
-<span class="fc bfc" id="L163" title="All 4 branches covered.">        if (source.contains(MICROGRAM + &quot; &quot;) || source.endsWith(MICROGRAM)) {</span>
-<span class="fc" id="L164">            return WeightUnit.MICROGRAM;</span>
+<span class="fc bfc" id="L175" title="All 4 branches covered.">        if (source.contains(MICROGRAM + &quot; &quot;) || source.endsWith(MICROGRAM)) {</span>
+<span class="fc" id="L176">            return WeightUnit.MICROGRAM;</span>
         }
-<span class="fc bfc" id="L166" title="All 4 branches covered.">        if (source.contains(MILLIGRAM + &quot; &quot;) || source.endsWith(MILLIGRAM)) {</span>
-<span class="fc" id="L167">            return WeightUnit.MILLIGRAM;</span>
+<span class="fc bfc" id="L178" title="All 4 branches covered.">        if (source.contains(MILLIGRAM + &quot; &quot;) || source.endsWith(MILLIGRAM)) {</span>
+<span class="fc" id="L179">            return WeightUnit.MILLIGRAM;</span>
         }
-<span class="fc bfc" id="L169" title="All 4 branches covered.">        if (source.contains(KILOGRAM + &quot; &quot;) || source.endsWith(KILOGRAM)) {</span>
-<span class="fc" id="L170">            return WeightUnit.KILOGRAM;</span>
+<span class="fc bfc" id="L181" title="All 4 branches covered.">        if (source.contains(KILOGRAM + &quot; &quot;) || source.endsWith(KILOGRAM)) {</span>
+<span class="fc" id="L182">            return WeightUnit.KILOGRAM;</span>
         }
-<span class="fc bfc" id="L172" title="All 4 branches covered.">        if (source.contains(MEGATONNE + &quot; &quot;) || source.endsWith(MEGATONNE)) {</span>
-<span class="fc" id="L173">            return WeightUnit.MEGATONNE;</span>
+<span class="fc bfc" id="L184" title="All 4 branches covered.">        if (source.contains(MEGATONNE + &quot; &quot;) || source.endsWith(MEGATONNE)) {</span>
+<span class="fc" id="L185">            return WeightUnit.MEGATONNE;</span>
         }
-<span class="fc bfc" id="L175" title="All 4 branches covered.">        if (source.contains(POUND + &quot; &quot;) || source.endsWith(POUND)) {</span>
-<span class="fc" id="L176">            return WeightUnit.POUND;</span>
+<span class="fc bfc" id="L187" title="All 4 branches covered.">        if (source.contains(POUND + &quot; &quot;) || source.endsWith(POUND)) {</span>
+<span class="fc" id="L188">            return WeightUnit.POUND;</span>
         }
-<span class="fc bfc" id="L178" title="All 4 branches covered.">        if (source.contains(OUNCE + &quot; &quot;) || source.endsWith(OUNCE)) {</span>
-<span class="fc" id="L179">            return WeightUnit.OUNCE;</span>
+<span class="fc bfc" id="L190" title="All 4 branches covered.">        if (source.contains(OUNCE + &quot; &quot;) || source.endsWith(OUNCE)) {</span>
+<span class="fc" id="L191">            return WeightUnit.OUNCE;</span>
         }
 
-<span class="fc bfc" id="L182" title="All 4 branches covered.">        if (source.contains(US_UK_TON + &quot; &quot;) || source.endsWith(US_UK_TON)) {</span>
-<span class="fc" id="L183">            final Locale locale = getLocale();</span>
-<span class="pc bpc" id="L184" title="1 of 2 branches missed.">            if (Locale.UK.getCountry().equals(locale.getCountry())) {</span>
+<span class="fc bfc" id="L194" title="All 4 branches covered.">        if (source.contains(US_UK_TON + &quot; &quot;) || source.endsWith(US_UK_TON)) {</span>
+<span class="fc" id="L195">            final Locale locale = getLocale();</span>
+<span class="pc bpc" id="L196" title="1 of 2 branches missed.">            if (Locale.UK.getCountry().equals(locale.getCountry())) {</span>
                 // UK
-<span class="nc" id="L186">                return WeightUnit.UK_TON;</span>
+<span class="nc" id="L198">                return WeightUnit.UK_TON;</span>
             } else {
                 // US
-<span class="fc" id="L189">                return WeightUnit.US_TON;</span>
+<span class="fc" id="L201">                return WeightUnit.US_TON;</span>
             }
         }
 
-<span class="fc bfc" id="L193" title="All 4 branches covered.">        if (source.contains(TONNE + &quot; &quot;) || source.endsWith(TONNE)) {</span>
-<span class="fc" id="L194">            return WeightUnit.TONNE;</span>
+<span class="fc bfc" id="L205" title="All 4 branches covered.">        if (source.contains(TONNE + &quot; &quot;) || source.endsWith(TONNE)) {</span>
+<span class="fc" id="L206">            return WeightUnit.TONNE;</span>
         }
-<span class="fc bfc" id="L196" title="All 4 branches covered.">        if (source.contains(GRAM + &quot; &quot;) || source.endsWith(GRAM)) {</span>
-<span class="fc" id="L197">            return WeightUnit.GRAM;</span>
+<span class="fc bfc" id="L208" title="All 4 branches covered.">        if (source.contains(GRAM + &quot; &quot;) || source.endsWith(GRAM)) {</span>
+<span class="fc" id="L209">            return WeightUnit.GRAM;</span>
         }
 
-<span class="fc" id="L200">        return null;</span>
+<span class="fc" id="L212">        return null;</span>
     }
 
     /**
@@ -216,12 +228,12 @@ public class WeightFormatter extends MeasureFormatter&lt;Weight, WeightUnit&gt; 
     public String formatAndConvert(
             final Number value, final WeightUnit unit,
             final UnitSystem system) {
-<span class="fc bfc" id="L219" title="All 2 branches covered.">        switch (system) {</span>
+<span class="fc bfc" id="L231" title="All 2 branches covered.">        switch (system) {</span>
             case IMPERIAL:
-<span class="fc" id="L221">                return formatAndConvertImperial(value, unit);</span>
+<span class="fc" id="L233">                return formatAndConvertImperial(value, unit);</span>
             case METRIC:
             default:
-<span class="fc" id="L224">                return formatAndConvertMetric(value, unit);</span>
+<span class="fc" id="L236">                return formatAndConvertMetric(value, unit);</span>
         }
     }
 
@@ -238,54 +250,54 @@ public class WeightFormatter extends MeasureFormatter&lt;Weight, WeightUnit&gt; 
      */
     public String formatAndConvertMetric(
             final Number value, final WeightUnit unit) {
-<span class="fc" id="L241">        final double v = value.doubleValue();</span>
+<span class="fc" id="L253">        final double v = value.doubleValue();</span>
 
-<span class="fc" id="L243">        final double picogram = WeightConverter.convert(v, unit,</span>
+<span class="fc" id="L255">        final double picogram = WeightConverter.convert(v, unit,</span>
                 WeightUnit.PICOGRAM);
-<span class="fc bfc" id="L245" title="All 2 branches covered.">        if (Math.abs(picogram) &lt; (WeightConverter.GRAMS_PER_NANOGRAM /</span>
+<span class="fc bfc" id="L257" title="All 2 branches covered.">        if (Math.abs(picogram) &lt; (WeightConverter.GRAMS_PER_NANOGRAM /</span>
                 WeightConverter.GRAMS_PER_PICOGRAM)) {
-<span class="fc" id="L247">            return format(picogram, WeightUnit.PICOGRAM);</span>
+<span class="fc" id="L259">            return format(picogram, WeightUnit.PICOGRAM);</span>
         }
 
-<span class="fc" id="L250">        final double nanogram = WeightConverter.convert(v, unit,</span>
+<span class="fc" id="L262">        final double nanogram = WeightConverter.convert(v, unit,</span>
                 WeightUnit.NANOGRAM);
-<span class="fc bfc" id="L252" title="All 2 branches covered.">        if (Math.abs(nanogram) &lt; (WeightConverter.GRAMS_PER_MICROGRAM /</span>
+<span class="fc bfc" id="L264" title="All 2 branches covered.">        if (Math.abs(nanogram) &lt; (WeightConverter.GRAMS_PER_MICROGRAM /</span>
                 WeightConverter.GRAMS_PER_NANOGRAM)) {
-<span class="fc" id="L254">            return format(nanogram, WeightUnit.NANOGRAM);</span>
+<span class="fc" id="L266">            return format(nanogram, WeightUnit.NANOGRAM);</span>
         }
 
-<span class="fc" id="L257">        final double microgram = WeightConverter.convert(v, unit,</span>
+<span class="fc" id="L269">        final double microgram = WeightConverter.convert(v, unit,</span>
                 WeightUnit.MICROGRAM);
-<span class="fc bfc" id="L259" title="All 2 branches covered.">        if (Math.abs(microgram) &lt; (WeightConverter.GRAMS_PER_MILLIGRAM /</span>
+<span class="fc bfc" id="L271" title="All 2 branches covered.">        if (Math.abs(microgram) &lt; (WeightConverter.GRAMS_PER_MILLIGRAM /</span>
                 WeightConverter.GRAMS_PER_MICROGRAM)) {
-<span class="fc" id="L261">            return format(microgram, WeightUnit.MICROGRAM);</span>
+<span class="fc" id="L273">            return format(microgram, WeightUnit.MICROGRAM);</span>
         }
 
-<span class="fc" id="L264">        final double milligram = WeightConverter.convert(v, unit,</span>
+<span class="fc" id="L276">        final double milligram = WeightConverter.convert(v, unit,</span>
                 WeightUnit.MILLIGRAM);
-<span class="fc bfc" id="L266" title="All 2 branches covered.">        if (Math.abs(milligram) &lt; (1.0 / WeightConverter.GRAMS_PER_MILLIGRAM)) {</span>
-<span class="fc" id="L267">            return format(milligram, WeightUnit.MILLIGRAM);</span>
+<span class="fc bfc" id="L278" title="All 2 branches covered.">        if (Math.abs(milligram) &lt; (1.0 / WeightConverter.GRAMS_PER_MILLIGRAM)) {</span>
+<span class="fc" id="L279">            return format(milligram, WeightUnit.MILLIGRAM);</span>
         }
 
-<span class="fc" id="L270">        final double gram = WeightConverter.convert(v, unit, WeightUnit.GRAM);</span>
-<span class="fc bfc" id="L271" title="All 2 branches covered.">        if (Math.abs(gram) &lt; WeightConverter.GRAMS_PER_KILOGRAM) {</span>
-<span class="fc" id="L272">            return format(gram, WeightUnit.GRAM);</span>
+<span class="fc" id="L282">        final double gram = WeightConverter.convert(v, unit, WeightUnit.GRAM);</span>
+<span class="fc bfc" id="L283" title="All 2 branches covered.">        if (Math.abs(gram) &lt; WeightConverter.GRAMS_PER_KILOGRAM) {</span>
+<span class="fc" id="L284">            return format(gram, WeightUnit.GRAM);</span>
         }
 
-<span class="fc" id="L275">        final double kilogram = WeightConverter.convert(v, unit, WeightUnit.KILOGRAM);</span>
-<span class="fc bfc" id="L276" title="All 2 branches covered.">        if (Math.abs(kilogram) &lt; (WeightConverter.GRAMS_PER_TONNE /</span>
+<span class="fc" id="L287">        final double kilogram = WeightConverter.convert(v, unit, WeightUnit.KILOGRAM);</span>
+<span class="fc bfc" id="L288" title="All 2 branches covered.">        if (Math.abs(kilogram) &lt; (WeightConverter.GRAMS_PER_TONNE /</span>
                 WeightConverter.GRAMS_PER_KILOGRAM)) {
-<span class="fc" id="L278">            return format(kilogram, WeightUnit.KILOGRAM);</span>
+<span class="fc" id="L290">            return format(kilogram, WeightUnit.KILOGRAM);</span>
         }
 
-<span class="fc" id="L281">        final double tonne = WeightConverter.convert(v, unit, WeightUnit.TONNE);</span>
-<span class="fc bfc" id="L282" title="All 2 branches covered.">        if (Math.abs(tonne) &lt; (WeightConverter.GRAMS_PER_MEGATONNE /</span>
+<span class="fc" id="L293">        final double tonne = WeightConverter.convert(v, unit, WeightUnit.TONNE);</span>
+<span class="fc bfc" id="L294" title="All 2 branches covered.">        if (Math.abs(tonne) &lt; (WeightConverter.GRAMS_PER_MEGATONNE /</span>
                 WeightConverter.GRAMS_PER_TONNE)) {
-<span class="fc" id="L284">            return format(tonne, WeightUnit.TONNE);</span>
+<span class="fc" id="L296">            return format(tonne, WeightUnit.TONNE);</span>
         }
 
-<span class="fc" id="L287">        final double megatonne = WeightConverter.convert(v, unit, WeightUnit.MEGATONNE);</span>
-<span class="fc" id="L288">        return format(megatonne, WeightUnit.MEGATONNE);</span>
+<span class="fc" id="L299">        final double megatonne = WeightConverter.convert(v, unit, WeightUnit.MEGATONNE);</span>
+<span class="fc" id="L300">        return format(megatonne, WeightUnit.MEGATONNE);</span>
     }
 
 
@@ -301,33 +313,33 @@ public class WeightFormatter extends MeasureFormatter&lt;Weight, WeightUnit&gt; 
      * unit system.
      */
     public String formatAndConvertImperial(final Number value, final WeightUnit unit) {
-<span class="fc" id="L304">        final double v = value.doubleValue();</span>
+<span class="fc" id="L316">        final double v = value.doubleValue();</span>
 
-<span class="fc" id="L306">        final double ounce = WeightConverter.convert(v, unit, WeightUnit.OUNCE);</span>
-<span class="fc bfc" id="L307" title="All 2 branches covered.">        if (Math.abs(ounce) &lt; (WeightConverter.GRAMS_PER_POUND /</span>
+<span class="fc" id="L318">        final double ounce = WeightConverter.convert(v, unit, WeightUnit.OUNCE);</span>
+<span class="fc bfc" id="L319" title="All 2 branches covered.">        if (Math.abs(ounce) &lt; (WeightConverter.GRAMS_PER_POUND /</span>
                 WeightConverter.GRAMS_PER_OUNCE)) {
-<span class="fc" id="L309">            return format(ounce, WeightUnit.OUNCE);</span>
+<span class="fc" id="L321">            return format(ounce, WeightUnit.OUNCE);</span>
         }
 
-<span class="fc" id="L312">        final double pound = WeightConverter.convert(v, unit, WeightUnit.POUND);</span>
+<span class="fc" id="L324">        final double pound = WeightConverter.convert(v, unit, WeightUnit.POUND);</span>
 
-<span class="fc" id="L314">        final Locale locale = getLocale();</span>
-<span class="pc bpc" id="L315" title="1 of 2 branches missed.">        if (Locale.UK.getCountry().equals(locale.getCountry())) {</span>
+<span class="fc" id="L326">        final Locale locale = getLocale();</span>
+<span class="pc bpc" id="L327" title="1 of 2 branches missed.">        if (Locale.UK.getCountry().equals(locale.getCountry())) {</span>
             // UK
-<span class="nc bnc" id="L317" title="All 2 branches missed.">            if (Math.abs(pound) &lt; (WeightConverter.GRAMS_PER_UK_TON / WeightConverter.GRAMS_PER_POUND)) {</span>
-<span class="nc" id="L318">                return format(pound, WeightUnit.POUND);</span>
+<span class="nc bnc" id="L329" title="All 2 branches missed.">            if (Math.abs(pound) &lt; (WeightConverter.GRAMS_PER_UK_TON / WeightConverter.GRAMS_PER_POUND)) {</span>
+<span class="nc" id="L330">                return format(pound, WeightUnit.POUND);</span>
             }
 
-<span class="nc" id="L321">            final double ton = WeightConverter.convert(v, unit, WeightUnit.UK_TON);</span>
-<span class="nc" id="L322">            return format(ton, WeightUnit.UK_TON);</span>
+<span class="nc" id="L333">            final double ton = WeightConverter.convert(v, unit, WeightUnit.UK_TON);</span>
+<span class="nc" id="L334">            return format(ton, WeightUnit.UK_TON);</span>
         } else {
             // US
-<span class="fc bfc" id="L325" title="All 2 branches covered.">            if (Math.abs(pound) &lt; (WeightConverter.GRAMS_PER_US_TON / WeightConverter.GRAMS_PER_POUND)) {</span>
-<span class="fc" id="L326">                return format(pound, WeightUnit.POUND);</span>
+<span class="fc bfc" id="L337" title="All 2 branches covered.">            if (Math.abs(pound) &lt; (WeightConverter.GRAMS_PER_US_TON / WeightConverter.GRAMS_PER_POUND)) {</span>
+<span class="fc" id="L338">                return format(pound, WeightUnit.POUND);</span>
             }
 
-<span class="fc" id="L329">            final double ton = WeightConverter.convert(v, unit, WeightUnit.US_TON);</span>
-<span class="fc" id="L330">            return format(ton, WeightUnit.US_TON);</span>
+<span class="fc" id="L341">            final double ton = WeightConverter.convert(v, unit, WeightUnit.US_TON);</span>
+<span class="fc" id="L342">            return format(ton, WeightUnit.US_TON);</span>
         }
     }
 
@@ -339,32 +351,32 @@ public class WeightFormatter extends MeasureFormatter&lt;Weight, WeightUnit&gt; 
      */
     @Override
     public String getUnitSymbol(final WeightUnit unit) {
-<span class="fc bfc" id="L342" title="All 11 branches covered.">        switch (unit) {</span>
+<span class="fc bfc" id="L354" title="All 11 branches covered.">        switch (unit) {</span>
             case PICOGRAM:
-<span class="fc" id="L344">                return PICOGRAM;</span>
+<span class="fc" id="L356">                return PICOGRAM;</span>
             case NANOGRAM:
-<span class="fc" id="L346">                return NANOGRAM;</span>
+<span class="fc" id="L358">                return NANOGRAM;</span>
             case MICROGRAM:
-<span class="fc" id="L348">                return MICROGRAM;</span>
+<span class="fc" id="L360">                return MICROGRAM;</span>
             case MILLIGRAM:
-<span class="fc" id="L350">                return MILLIGRAM;</span>
+<span class="fc" id="L362">                return MILLIGRAM;</span>
             case KILOGRAM:
-<span class="fc" id="L352">                return KILOGRAM;</span>
+<span class="fc" id="L364">                return KILOGRAM;</span>
             case TONNE:
-<span class="fc" id="L354">                return TONNE;</span>
+<span class="fc" id="L366">                return TONNE;</span>
             case MEGATONNE:
-<span class="fc" id="L356">                return MEGATONNE;</span>
+<span class="fc" id="L368">                return MEGATONNE;</span>
             case US_TON:
             case UK_TON:
-<span class="fc" id="L359">                return US_UK_TON;</span>
+<span class="fc" id="L371">                return US_UK_TON;</span>
             case POUND:
-<span class="fc" id="L361">                return POUND;</span>
+<span class="fc" id="L373">                return POUND;</span>
             case OUNCE:
-<span class="fc" id="L363">                return OUNCE;</span>
+<span class="fc" id="L375">                return OUNCE;</span>
 
             case GRAM:
             default:
-<span class="fc" id="L367">                return GRAM;</span>
+<span class="fc" id="L379">                return GRAM;</span>
         }
     }
 
@@ -376,8 +388,8 @@ public class WeightFormatter extends MeasureFormatter&lt;Weight, WeightUnit&gt; 
      */
     @Override
     protected Object clone() throws CloneNotSupportedException {
-<span class="fc" id="L379">        final WeightFormatter copy = (WeightFormatter) super.clone();</span>
-<span class="fc" id="L380">        return internalClone(copy);</span>
+<span class="fc" id="L391">        final WeightFormatter copy = (WeightFormatter) super.clone();</span>
+<span class="fc" id="L392">        return internalClone(copy);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -73,9 +73,21 @@ public class AccelerationFormatter extends
      * @param obj another object to compare.
      * @return true if provided object is assumed to be equal to this instance.
      */
+    @Override
     public boolean equals(final Object obj) {
-<span class="fc" id="L77">        final boolean equals = super.equals(obj);</span>
-<span class="fc bfc" id="L78" title="All 4 branches covered.">        return (obj instanceof AccelerationFormatter) &amp;&amp; equals;</span>
+<span class="fc" id="L78">        final boolean equals = super.equals(obj);</span>
+<span class="fc bfc" id="L79" title="All 4 branches covered.">        return (obj instanceof AccelerationFormatter) &amp;&amp; equals;</span>
+    }
+
+    /**
+     * Hash code generated for this instance. Hash codes can be internally used by some collections to coarsely
+     * compare objects. This implementation only calls parent implementation to avoid static analyzer warning.
+     *
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+<span class="fc" id="L90">        return super.hashCode();</span>
     }
 
     /**
@@ -85,8 +97,8 @@ public class AccelerationFormatter extends
      * @return a unit system (either metric or imperial) or null if unit cannot be determined.
      */
     public UnitSystem getUnitSystem(final String source) {
-<span class="fc" id="L88">        final AccelerationUnit unit = findUnit(source);</span>
-<span class="fc bfc" id="L89" title="All 2 branches covered.">        return unit != null ? AccelerationUnit.getUnitSystem(unit) : null;</span>
+<span class="fc" id="L100">        final AccelerationUnit unit = findUnit(source);</span>
+<span class="fc bfc" id="L101" title="All 2 branches covered.">        return unit != null ? AccelerationUnit.getUnitSystem(unit) : null;</span>
     }
 
     /**
@@ -100,7 +112,7 @@ public class AccelerationFormatter extends
     @Override
     public Acceleration parse(final String source) throws ParseException,
             UnknownUnitException {
-<span class="fc" id="L103">        return internalParse(source, new Acceleration());</span>
+<span class="fc" id="L115">        return internalParse(source, new Acceleration());</span>
     }
 
     /**
@@ -111,18 +123,18 @@ public class AccelerationFormatter extends
      */
     @Override
     public AccelerationUnit findUnit(final String source) {
-<span class="fc bfc" id="L114" title="All 2 branches covered.">        if (source.contains(METERS_PER_SQUARED_SECOND + &quot; &quot;) ||</span>
-<span class="fc bfc" id="L115" title="All 2 branches covered.">                source.endsWith(METERS_PER_SQUARED_SECOND)) {</span>
-<span class="fc" id="L116">            return AccelerationUnit.METERS_PER_SQUARED_SECOND;</span>
+<span class="fc bfc" id="L126" title="All 2 branches covered.">        if (source.contains(METERS_PER_SQUARED_SECOND + &quot; &quot;) ||</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">                source.endsWith(METERS_PER_SQUARED_SECOND)) {</span>
+<span class="fc" id="L128">            return AccelerationUnit.METERS_PER_SQUARED_SECOND;</span>
         }
-<span class="fc bfc" id="L118" title="All 4 branches covered.">        if (source.contains(G + &quot; &quot;) || source.endsWith(G)) {</span>
-<span class="fc" id="L119">            return AccelerationUnit.G;</span>
+<span class="fc bfc" id="L130" title="All 4 branches covered.">        if (source.contains(G + &quot; &quot;) || source.endsWith(G)) {</span>
+<span class="fc" id="L131">            return AccelerationUnit.G;</span>
         }
-<span class="fc bfc" id="L121" title="All 2 branches covered.">        if (source.contains(FEET_PER_SQUARED_SECOND + &quot; &quot;) ||</span>
-<span class="fc bfc" id="L122" title="All 2 branches covered.">                source.endsWith(FEET_PER_SQUARED_SECOND)) {</span>
-<span class="fc" id="L123">            return AccelerationUnit.FEET_PER_SQUARED_SECOND;</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">        if (source.contains(FEET_PER_SQUARED_SECOND + &quot; &quot;) ||</span>
+<span class="fc bfc" id="L134" title="All 2 branches covered.">                source.endsWith(FEET_PER_SQUARED_SECOND)) {</span>
+<span class="fc" id="L135">            return AccelerationUnit.FEET_PER_SQUARED_SECOND;</span>
         }
-<span class="fc" id="L125">        return null;</span>
+<span class="fc" id="L137">        return null;</span>
     }
 
     /**
@@ -138,12 +150,12 @@ public class AccelerationFormatter extends
     public String formatAndConvert(
             final Number value, final AccelerationUnit unit,
             final UnitSystem system) {
-<span class="fc bfc" id="L141" title="All 2 branches covered.">        switch (system) {</span>
+<span class="fc bfc" id="L153" title="All 2 branches covered.">        switch (system) {</span>
             case IMPERIAL:
-<span class="fc" id="L143">                return formatAndConvertImperial(value, unit);</span>
+<span class="fc" id="L155">                return formatAndConvertImperial(value, unit);</span>
             case METRIC:
             default:
-<span class="fc" id="L146">                return formatAndConvertMetric(value, unit);</span>
+<span class="fc" id="L158">                return formatAndConvertMetric(value, unit);</span>
         }
     }
 
@@ -157,7 +169,7 @@ public class AccelerationFormatter extends
     public String formatAndConvertMetric(
             final Number value, final AccelerationUnit unit) {
         //always format as meters per squared second
-<span class="fc" id="L160">        return format(AccelerationConverter.convert(value, unit,</span>
+<span class="fc" id="L172">        return format(AccelerationConverter.convert(value, unit,</span>
                 AccelerationUnit.METERS_PER_SQUARED_SECOND),
                 AccelerationUnit.METERS_PER_SQUARED_SECOND);
     }
@@ -172,7 +184,7 @@ public class AccelerationFormatter extends
     public String formatAndConvertImperial(
             final Number value, final AccelerationUnit unit) {
         //always format as feet per squared second
-<span class="fc" id="L175">        return format(AccelerationConverter.convert(value, unit,</span>
+<span class="fc" id="L187">        return format(AccelerationConverter.convert(value, unit,</span>
                 AccelerationUnit.FEET_PER_SQUARED_SECOND),
                 AccelerationUnit.FEET_PER_SQUARED_SECOND);
     }
@@ -185,14 +197,14 @@ public class AccelerationFormatter extends
      */
     @Override
     public String getUnitSymbol(final AccelerationUnit unit) {
-<span class="fc bfc" id="L188" title="All 3 branches covered.">        switch (unit) {</span>
+<span class="fc bfc" id="L200" title="All 3 branches covered.">        switch (unit) {</span>
             case FEET_PER_SQUARED_SECOND:
-<span class="fc" id="L190">                return FEET_PER_SQUARED_SECOND;</span>
+<span class="fc" id="L202">                return FEET_PER_SQUARED_SECOND;</span>
             case G:
-<span class="fc" id="L192">                return G;</span>
+<span class="fc" id="L204">                return G;</span>
             case METERS_PER_SQUARED_SECOND:
             default:
-<span class="fc" id="L195">                return METERS_PER_SQUARED_SECOND;</span>
+<span class="fc" id="L207">                return METERS_PER_SQUARED_SECOND;</span>
         }
     }
 
@@ -204,8 +216,8 @@ public class AccelerationFormatter extends
      */
     @Override
     protected Object clone() throws CloneNotSupportedException {
-<span class="fc" id="L207">        final AccelerationFormatter copy = (AccelerationFormatter) super.clone();</span>
-<span class="fc" id="L208">        return internalClone(copy);</span>
+<span class="fc" id="L219">        final AccelerationFormatter copy = (AccelerationFormatter) super.clone();</span>
+<span class="fc" id="L220">        return internalClone(copy);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

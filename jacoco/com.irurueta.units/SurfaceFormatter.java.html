@@ -130,6 +130,18 @@ public class SurfaceFormatter extends MeasureFormatter&lt;Surface, SurfaceUnit&g
     }
 
     /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare objects.
+     * This implementation only calls parent implementation to avoid static analyzer warning.
+     *
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+<span class="fc" id="L141">        return super.hashCode();</span>
+    }
+
+    /**
      * Gets unit system for detected unit into provided string representation
      * of a measurement.
      *
@@ -139,8 +151,8 @@ public class SurfaceFormatter extends MeasureFormatter&lt;Surface, SurfaceUnit&g
      */
     @Override
     public UnitSystem getUnitSystem(final String source) {
-<span class="fc" id="L142">        final SurfaceUnit unit = findUnit(source);</span>
-<span class="fc bfc" id="L143" title="All 2 branches covered.">        return unit != null ? SurfaceUnit.getUnitSystem(unit) : null;</span>
+<span class="fc" id="L154">        final SurfaceUnit unit = findUnit(source);</span>
+<span class="fc bfc" id="L155" title="All 2 branches covered.">        return unit != null ? SurfaceUnit.getUnitSystem(unit) : null;</span>
     }
 
     /**
@@ -154,7 +166,7 @@ public class SurfaceFormatter extends MeasureFormatter&lt;Surface, SurfaceUnit&g
     @Override
     public Surface parse(final String source) throws ParseException,
             UnknownUnitException {
-<span class="fc" id="L157">        return internalParse(source, new Surface());</span>
+<span class="fc" id="L169">        return internalParse(source, new Surface());</span>
     }
 
     /**
@@ -166,47 +178,47 @@ public class SurfaceFormatter extends MeasureFormatter&lt;Surface, SurfaceUnit&g
      */
     @Override
     public SurfaceUnit findUnit(final String source) {
-<span class="fc bfc" id="L169" title="All 4 branches covered.">        if (source.contains(SQUARE_MILLIMETER + &quot; &quot;) || source.endsWith(SQUARE_MILLIMETER)) {</span>
-<span class="fc" id="L170">            return SurfaceUnit.SQUARE_MILLIMETER;</span>
+<span class="fc bfc" id="L181" title="All 4 branches covered.">        if (source.contains(SQUARE_MILLIMETER + &quot; &quot;) || source.endsWith(SQUARE_MILLIMETER)) {</span>
+<span class="fc" id="L182">            return SurfaceUnit.SQUARE_MILLIMETER;</span>
         }
-<span class="fc bfc" id="L172" title="All 4 branches covered.">        if (source.contains(SQUARE_CENTIMETER + &quot; &quot;) || source.endsWith(SQUARE_CENTIMETER)) {</span>
-<span class="fc" id="L173">            return SurfaceUnit.SQUARE_CENTIMETER;</span>
+<span class="fc bfc" id="L184" title="All 4 branches covered.">        if (source.contains(SQUARE_CENTIMETER + &quot; &quot;) || source.endsWith(SQUARE_CENTIMETER)) {</span>
+<span class="fc" id="L185">            return SurfaceUnit.SQUARE_CENTIMETER;</span>
         }
-<span class="fc bfc" id="L175" title="All 4 branches covered.">        if (source.contains(SQUARE_KILOMETER + &quot; &quot;) || source.endsWith(SQUARE_KILOMETER)) {</span>
-<span class="fc" id="L176">            return SurfaceUnit.SQUARE_KILOMETER;</span>
+<span class="fc bfc" id="L187" title="All 4 branches covered.">        if (source.contains(SQUARE_KILOMETER + &quot; &quot;) || source.endsWith(SQUARE_KILOMETER)) {</span>
+<span class="fc" id="L188">            return SurfaceUnit.SQUARE_KILOMETER;</span>
         }
-<span class="pc bpc" id="L178" title="1 of 4 branches missed.">        if (source.contains(SQUARE_INCH + &quot; &quot;) || source.endsWith(SQUARE_INCH)) {</span>
-<span class="fc" id="L179">            return SurfaceUnit.SQUARE_INCH;</span>
+<span class="pc bpc" id="L190" title="1 of 4 branches missed.">        if (source.contains(SQUARE_INCH + &quot; &quot;) || source.endsWith(SQUARE_INCH)) {</span>
+<span class="fc" id="L191">            return SurfaceUnit.SQUARE_INCH;</span>
         }
-<span class="fc bfc" id="L181" title="All 4 branches covered.">        if (source.contains(SQUARE_FOOT + &quot; &quot;) || source.endsWith(SQUARE_FOOT)) {</span>
-<span class="fc" id="L182">            return SurfaceUnit.SQUARE_FOOT;</span>
+<span class="fc bfc" id="L193" title="All 4 branches covered.">        if (source.contains(SQUARE_FOOT + &quot; &quot;) || source.endsWith(SQUARE_FOOT)) {</span>
+<span class="fc" id="L194">            return SurfaceUnit.SQUARE_FOOT;</span>
         }
-<span class="pc bpc" id="L184" title="1 of 4 branches missed.">        if (source.contains(SQUARE_YARD + &quot; &quot;) || source.endsWith(SQUARE_YARD)) {</span>
-<span class="fc" id="L185">            return SurfaceUnit.SQUARE_YARD;</span>
+<span class="pc bpc" id="L196" title="1 of 4 branches missed.">        if (source.contains(SQUARE_YARD + &quot; &quot;) || source.endsWith(SQUARE_YARD)) {</span>
+<span class="fc" id="L197">            return SurfaceUnit.SQUARE_YARD;</span>
         }
-<span class="fc bfc" id="L187" title="All 4 branches covered.">        if (source.contains(SQUARE_MILE + &quot; &quot;) || source.endsWith(SQUARE_MILE)) {</span>
-<span class="fc" id="L188">            return SurfaceUnit.SQUARE_MILE;</span>
+<span class="fc bfc" id="L199" title="All 4 branches covered.">        if (source.contains(SQUARE_MILE + &quot; &quot;) || source.endsWith(SQUARE_MILE)) {</span>
+<span class="fc" id="L200">            return SurfaceUnit.SQUARE_MILE;</span>
         }
-<span class="fc bfc" id="L190" title="All 4 branches covered.">        if (source.contains(CENTIARE + &quot; &quot;) || source.endsWith(CENTIARE)) {</span>
-<span class="fc" id="L191">            return SurfaceUnit.CENTIARE;</span>
+<span class="fc bfc" id="L202" title="All 4 branches covered.">        if (source.contains(CENTIARE + &quot; &quot;) || source.endsWith(CENTIARE)) {</span>
+<span class="fc" id="L203">            return SurfaceUnit.CENTIARE;</span>
         }
-<span class="fc bfc" id="L193" title="All 4 branches covered.">        if (source.contains(DECARE + &quot; &quot;) || source.endsWith(DECARE)) {</span>
-<span class="fc" id="L194">            return SurfaceUnit.DECARE;</span>
+<span class="fc bfc" id="L205" title="All 4 branches covered.">        if (source.contains(DECARE + &quot; &quot;) || source.endsWith(DECARE)) {</span>
+<span class="fc" id="L206">            return SurfaceUnit.DECARE;</span>
         }
-<span class="fc bfc" id="L196" title="All 4 branches covered.">        if (source.contains(HECTARE + &quot; &quot;) || source.endsWith(HECTARE)) {</span>
-<span class="fc" id="L197">            return SurfaceUnit.HECTARE;</span>
+<span class="fc bfc" id="L208" title="All 4 branches covered.">        if (source.contains(HECTARE + &quot; &quot;) || source.endsWith(HECTARE)) {</span>
+<span class="fc" id="L209">            return SurfaceUnit.HECTARE;</span>
         }
-<span class="fc bfc" id="L199" title="All 4 branches covered.">        if (source.contains(ACRE + &quot; &quot;) || source.endsWith(ACRE)) {</span>
-<span class="fc" id="L200">            return SurfaceUnit.ACRE;</span>
+<span class="fc bfc" id="L211" title="All 4 branches covered.">        if (source.contains(ACRE + &quot; &quot;) || source.endsWith(ACRE)) {</span>
+<span class="fc" id="L212">            return SurfaceUnit.ACRE;</span>
         }
 
-<span class="fc bfc" id="L203" title="All 4 branches covered.">        if (source.contains(ARE + &quot; &quot;) || source.endsWith(ARE)) {</span>
-<span class="fc" id="L204">            return SurfaceUnit.ARE;</span>
+<span class="fc bfc" id="L215" title="All 4 branches covered.">        if (source.contains(ARE + &quot; &quot;) || source.endsWith(ARE)) {</span>
+<span class="fc" id="L216">            return SurfaceUnit.ARE;</span>
         }
-<span class="fc bfc" id="L206" title="All 4 branches covered.">        if (source.contains(SQUARE_METER + &quot; &quot;) || source.endsWith(SQUARE_METER)) {</span>
-<span class="fc" id="L207">            return SurfaceUnit.SQUARE_METER;</span>
+<span class="fc bfc" id="L218" title="All 4 branches covered.">        if (source.contains(SQUARE_METER + &quot; &quot;) || source.endsWith(SQUARE_METER)) {</span>
+<span class="fc" id="L219">            return SurfaceUnit.SQUARE_METER;</span>
         }
-<span class="fc" id="L209">        return null;</span>
+<span class="fc" id="L221">        return null;</span>
     }
 
     /**
@@ -225,12 +237,12 @@ public class SurfaceFormatter extends MeasureFormatter&lt;Surface, SurfaceUnit&g
     public String formatAndConvert(
             final Number value, final SurfaceUnit unit,
             final UnitSystem system) {
-<span class="fc bfc" id="L228" title="All 2 branches covered.">        switch (system) {</span>
+<span class="fc bfc" id="L240" title="All 2 branches covered.">        switch (system) {</span>
             case IMPERIAL:
-<span class="fc" id="L230">                return formatAndConvertImperial(value, unit);</span>
+<span class="fc" id="L242">                return formatAndConvertImperial(value, unit);</span>
             case METRIC:
             default:
-<span class="fc" id="L233">                return formatAndConvertMetric(value, unit);</span>
+<span class="fc" id="L245">                return formatAndConvertMetric(value, unit);</span>
         }
     }
 
@@ -247,31 +259,31 @@ public class SurfaceFormatter extends MeasureFormatter&lt;Surface, SurfaceUnit&g
      */
     public String formatAndConvertMetric(
             final Number value, final SurfaceUnit unit) {
-<span class="fc" id="L250">        final double v = value.doubleValue();</span>
+<span class="fc" id="L262">        final double v = value.doubleValue();</span>
 
-<span class="fc" id="L252">        final double squareMillimeters = SurfaceConverter.convert(v, unit,</span>
+<span class="fc" id="L264">        final double squareMillimeters = SurfaceConverter.convert(v, unit,</span>
                 SurfaceUnit.SQUARE_MILLIMETER);
-<span class="fc bfc" id="L254" title="All 2 branches covered.">        if (Math.abs(squareMillimeters) &lt; (SurfaceConverter.SQUARE_METERS_PER_SQUARE_CENTIMETER /</span>
+<span class="fc bfc" id="L266" title="All 2 branches covered.">        if (Math.abs(squareMillimeters) &lt; (SurfaceConverter.SQUARE_METERS_PER_SQUARE_CENTIMETER /</span>
                 SurfaceConverter.SQUARE_METERS_PER_SQUARE_MILLIMETER)) {
-<span class="fc" id="L256">            return format(squareMillimeters, SurfaceUnit.SQUARE_MILLIMETER);</span>
+<span class="fc" id="L268">            return format(squareMillimeters, SurfaceUnit.SQUARE_MILLIMETER);</span>
         }
 
-<span class="fc" id="L259">        final double squareCentimeters = SurfaceConverter.convert(v, unit,</span>
+<span class="fc" id="L271">        final double squareCentimeters = SurfaceConverter.convert(v, unit,</span>
                 SurfaceUnit.SQUARE_CENTIMETER);
-<span class="fc bfc" id="L261" title="All 2 branches covered.">        if (Math.abs(squareCentimeters) &lt;</span>
+<span class="fc bfc" id="L273" title="All 2 branches covered.">        if (Math.abs(squareCentimeters) &lt;</span>
                 (1.0 / SurfaceConverter.SQUARE_METERS_PER_SQUARE_CENTIMETER)) {
-<span class="fc" id="L263">            return format(squareCentimeters, SurfaceUnit.SQUARE_CENTIMETER);</span>
+<span class="fc" id="L275">            return format(squareCentimeters, SurfaceUnit.SQUARE_CENTIMETER);</span>
         }
 
-<span class="fc" id="L266">        final double squareMeters = SurfaceConverter.convert(v, unit,</span>
+<span class="fc" id="L278">        final double squareMeters = SurfaceConverter.convert(v, unit,</span>
                 SurfaceUnit.SQUARE_METER);
-<span class="fc bfc" id="L268" title="All 2 branches covered.">        if (Math.abs(squareMeters) &lt; SurfaceConverter.SQUARE_METERS_PER_SQUARE_KILOMETER) {</span>
-<span class="fc" id="L269">            return format(squareMeters, SurfaceUnit.SQUARE_METER);</span>
+<span class="fc bfc" id="L280" title="All 2 branches covered.">        if (Math.abs(squareMeters) &lt; SurfaceConverter.SQUARE_METERS_PER_SQUARE_KILOMETER) {</span>
+<span class="fc" id="L281">            return format(squareMeters, SurfaceUnit.SQUARE_METER);</span>
         }
 
-<span class="fc" id="L272">        final double squareKilometers = SurfaceConverter.convert(v, unit,</span>
+<span class="fc" id="L284">        final double squareKilometers = SurfaceConverter.convert(v, unit,</span>
                 SurfaceUnit.SQUARE_KILOMETER);
-<span class="fc" id="L274">        return format(squareKilometers, SurfaceUnit.SQUARE_KILOMETER);</span>
+<span class="fc" id="L286">        return format(squareKilometers, SurfaceUnit.SQUARE_KILOMETER);</span>
     }
 
     /**
@@ -287,32 +299,32 @@ public class SurfaceFormatter extends MeasureFormatter&lt;Surface, SurfaceUnit&g
      */
     public String formatAndConvertImperial(
             final Number value, final SurfaceUnit unit) {
-<span class="fc" id="L290">        final double v = value.doubleValue();</span>
+<span class="fc" id="L302">        final double v = value.doubleValue();</span>
 
-<span class="fc" id="L292">        final double squareInches = SurfaceConverter.convert(v, unit,</span>
+<span class="fc" id="L304">        final double squareInches = SurfaceConverter.convert(v, unit,</span>
                 SurfaceUnit.SQUARE_INCH);
-<span class="fc bfc" id="L294" title="All 2 branches covered.">        if (Math.abs(squareInches) &lt; (SurfaceConverter.SQUARE_METERS_PER_SQUARE_FOOT /</span>
+<span class="fc bfc" id="L306" title="All 2 branches covered.">        if (Math.abs(squareInches) &lt; (SurfaceConverter.SQUARE_METERS_PER_SQUARE_FOOT /</span>
                 SurfaceConverter.SQUARE_METERS_PER_SQUARE_INCH)) {
-<span class="fc" id="L296">            return format(squareInches, SurfaceUnit.SQUARE_INCH);</span>
+<span class="fc" id="L308">            return format(squareInches, SurfaceUnit.SQUARE_INCH);</span>
         }
 
-<span class="fc" id="L299">        final double squareFeet = SurfaceConverter.convert(v, unit,</span>
+<span class="fc" id="L311">        final double squareFeet = SurfaceConverter.convert(v, unit,</span>
                 SurfaceUnit.SQUARE_FOOT);
-<span class="fc bfc" id="L301" title="All 2 branches covered.">        if (Math.abs(squareFeet) &lt; (SurfaceConverter.SQUARE_METERS_PER_SQUARE_YARD /</span>
+<span class="fc bfc" id="L313" title="All 2 branches covered.">        if (Math.abs(squareFeet) &lt; (SurfaceConverter.SQUARE_METERS_PER_SQUARE_YARD /</span>
                 SurfaceConverter.SQUARE_METERS_PER_SQUARE_FOOT)) {
-<span class="fc" id="L303">            return format(squareFeet, SurfaceUnit.SQUARE_FOOT);</span>
+<span class="fc" id="L315">            return format(squareFeet, SurfaceUnit.SQUARE_FOOT);</span>
         }
 
-<span class="fc" id="L306">        final double squareYards = SurfaceConverter.convert(v, unit,</span>
+<span class="fc" id="L318">        final double squareYards = SurfaceConverter.convert(v, unit,</span>
                 SurfaceUnit.SQUARE_YARD);
-<span class="fc bfc" id="L308" title="All 2 branches covered.">        if (Math.abs(squareYards) &lt; (SurfaceConverter.SQUARE_METERS_PER_SQUARE_MILE /</span>
+<span class="fc bfc" id="L320" title="All 2 branches covered.">        if (Math.abs(squareYards) &lt; (SurfaceConverter.SQUARE_METERS_PER_SQUARE_MILE /</span>
                 SurfaceConverter.SQUARE_METERS_PER_SQUARE_YARD)) {
-<span class="fc" id="L310">            return format(squareYards, SurfaceUnit.SQUARE_YARD);</span>
+<span class="fc" id="L322">            return format(squareYards, SurfaceUnit.SQUARE_YARD);</span>
         }
 
-<span class="fc" id="L313">        final double squareMiles = SurfaceConverter.convert(v, unit,</span>
+<span class="fc" id="L325">        final double squareMiles = SurfaceConverter.convert(v, unit,</span>
                 SurfaceUnit.SQUARE_MILE);
-<span class="fc" id="L315">        return format(squareMiles, SurfaceUnit.SQUARE_MILE);</span>
+<span class="fc" id="L327">        return format(squareMiles, SurfaceUnit.SQUARE_MILE);</span>
     }
 
     /**
@@ -323,34 +335,34 @@ public class SurfaceFormatter extends MeasureFormatter&lt;Surface, SurfaceUnit&g
      */
     @Override
     public String getUnitSymbol(final SurfaceUnit unit) {
-<span class="fc bfc" id="L326" title="All 13 branches covered.">        switch (unit) {</span>
+<span class="fc bfc" id="L338" title="All 13 branches covered.">        switch (unit) {</span>
             case SQUARE_MILLIMETER:
-<span class="fc" id="L328">                return SQUARE_MILLIMETER;</span>
+<span class="fc" id="L340">                return SQUARE_MILLIMETER;</span>
             case SQUARE_CENTIMETER:
-<span class="fc" id="L330">                return SQUARE_CENTIMETER;</span>
+<span class="fc" id="L342">                return SQUARE_CENTIMETER;</span>
             case SQUARE_KILOMETER:
-<span class="fc" id="L332">                return SQUARE_KILOMETER;</span>
+<span class="fc" id="L344">                return SQUARE_KILOMETER;</span>
             case SQUARE_INCH:
-<span class="fc" id="L334">                return SQUARE_INCH;</span>
+<span class="fc" id="L346">                return SQUARE_INCH;</span>
             case SQUARE_FOOT:
-<span class="fc" id="L336">                return SQUARE_FOOT;</span>
+<span class="fc" id="L348">                return SQUARE_FOOT;</span>
             case SQUARE_YARD:
-<span class="fc" id="L338">                return SQUARE_YARD;</span>
+<span class="fc" id="L350">                return SQUARE_YARD;</span>
             case SQUARE_MILE:
-<span class="fc" id="L340">                return SQUARE_MILE;</span>
+<span class="fc" id="L352">                return SQUARE_MILE;</span>
             case CENTIARE:
-<span class="fc" id="L342">                return CENTIARE;</span>
+<span class="fc" id="L354">                return CENTIARE;</span>
             case ARE:
-<span class="fc" id="L344">                return ARE;</span>
+<span class="fc" id="L356">                return ARE;</span>
             case DECARE:
-<span class="fc" id="L346">                return DECARE;</span>
+<span class="fc" id="L358">                return DECARE;</span>
             case HECTARE:
-<span class="fc" id="L348">                return HECTARE;</span>
+<span class="fc" id="L360">                return HECTARE;</span>
             case ACRE:
-<span class="fc" id="L350">                return ACRE;</span>
+<span class="fc" id="L362">                return ACRE;</span>
             case SQUARE_METER:
             default:
-<span class="fc" id="L353">                return SQUARE_METER;</span>
+<span class="fc" id="L365">                return SQUARE_METER;</span>
         }
     }
 
@@ -362,8 +374,8 @@ public class SurfaceFormatter extends MeasureFormatter&lt;Surface, SurfaceUnit&g
      */
     @Override
     protected Object clone() throws CloneNotSupportedException {
-<span class="fc" id="L365">        final SurfaceFormatter copy = (SurfaceFormatter) super.clone();</span>
-<span class="fc" id="L366">        return internalClone(copy);</span>
+<span class="fc" id="L377">        final SurfaceFormatter copy = (SurfaceFormatter) super.clone();</span>
+<span class="fc" id="L378">        return internalClone(copy);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

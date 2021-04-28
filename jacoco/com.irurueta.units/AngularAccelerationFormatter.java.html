@@ -21,7 +21,6 @@ import java.util.Locale;
 /**
  * Formats and parses angular acceleration value and unit.
  */
-@SuppressWarnings(&quot;WeakerAccess&quot;)
 public class AngularAccelerationFormatter extends
         MeasureFormatter&lt;AngularAcceleration, AngularAccelerationUnit&gt;
         implements Cloneable {
@@ -40,8 +39,8 @@ public class AngularAccelerationFormatter extends
      * Constructor.
      */
     public AngularAccelerationFormatter() {
-<span class="fc" id="L43">        super();</span>
-<span class="fc" id="L44">    }</span>
+<span class="fc" id="L42">        super();</span>
+<span class="fc" id="L43">    }</span>
 
     /**
      * Constructor with locale.
@@ -50,8 +49,8 @@ public class AngularAccelerationFormatter extends
      * @throws IllegalArgumentException if locale is null.
      */
     public AngularAccelerationFormatter(final Locale locale) {
-<span class="fc" id="L53">        super(locale);</span>
-<span class="fc" id="L54">    }</span>
+<span class="fc" id="L52">        super(locale);</span>
+<span class="fc" id="L53">    }</span>
 
     /**
      * Copy constructor.
@@ -61,8 +60,8 @@ public class AngularAccelerationFormatter extends
      */
     public AngularAccelerationFormatter(
             final AngularAccelerationFormatter formatter) {
-<span class="fc" id="L64">        this(formatter.getLocale());</span>
-<span class="fc" id="L65">    }</span>
+<span class="fc" id="L63">        this(formatter.getLocale());</span>
+<span class="fc" id="L64">    }</span>
 
     /**
      * Determines if two angular acceleration formatters are equal by comparing all of
@@ -73,8 +72,20 @@ public class AngularAccelerationFormatter extends
      */
     @Override
     public boolean equals(final Object obj) {
-<span class="fc" id="L76">        final boolean equals = super.equals(obj);</span>
-<span class="fc bfc" id="L77" title="All 4 branches covered.">        return (obj instanceof AngularAccelerationFormatter) &amp;&amp; equals;</span>
+<span class="fc" id="L75">        final boolean equals = super.equals(obj);</span>
+<span class="fc bfc" id="L76" title="All 4 branches covered.">        return (obj instanceof AngularAccelerationFormatter) &amp;&amp; equals;</span>
+    }
+
+    /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare objects.
+     * This implementation only calls parent implementation to avoid static analyzer warning.
+     *
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+<span class="fc" id="L88">        return super.hashCode();</span>
     }
 
     /**
@@ -86,8 +97,8 @@ public class AngularAccelerationFormatter extends
      */
     @Override
     public UnitSystem getUnitSystem(final String source) {
-<span class="fc" id="L89">        final AngularAccelerationUnit unit = findUnit(source);</span>
-<span class="fc bfc" id="L90" title="All 2 branches covered.">        return unit != null ? UnitSystem.METRIC : null;</span>
+<span class="fc" id="L100">        final AngularAccelerationUnit unit = findUnit(source);</span>
+<span class="fc bfc" id="L101" title="All 2 branches covered.">        return unit != null ? UnitSystem.METRIC : null;</span>
     }
 
     /**
@@ -102,7 +113,7 @@ public class AngularAccelerationFormatter extends
     @Override
     public AngularAcceleration parse(final String source)
             throws ParseException, UnknownUnitException {
-<span class="fc" id="L105">        return internalParse(source, new AngularAcceleration());</span>
+<span class="fc" id="L116">        return internalParse(source, new AngularAcceleration());</span>
     }
 
     /**
@@ -114,15 +125,15 @@ public class AngularAccelerationFormatter extends
      */
     @Override
     public AngularAccelerationUnit findUnit(final String source) {
-<span class="fc bfc" id="L117" title="All 2 branches covered.">        if (source.contains(DEGREES_PER_SQUARED_SECOND + &quot; &quot;) ||</span>
-<span class="fc bfc" id="L118" title="All 2 branches covered.">                source.endsWith(DEGREES_PER_SQUARED_SECOND)) {</span>
-<span class="fc" id="L119">            return AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND;</span>
+<span class="fc bfc" id="L128" title="All 2 branches covered.">        if (source.contains(DEGREES_PER_SQUARED_SECOND + &quot; &quot;) ||</span>
+<span class="fc bfc" id="L129" title="All 2 branches covered.">                source.endsWith(DEGREES_PER_SQUARED_SECOND)) {</span>
+<span class="fc" id="L130">            return AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND;</span>
         }
-<span class="fc bfc" id="L121" title="All 2 branches covered.">        if (source.contains(RADIANS_PER_SQUARED_SECOND + &quot; &quot;) ||</span>
-<span class="fc bfc" id="L122" title="All 2 branches covered.">                source.endsWith(RADIANS_PER_SQUARED_SECOND)) {</span>
-<span class="fc" id="L123">            return AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND;</span>
+<span class="fc bfc" id="L132" title="All 2 branches covered.">        if (source.contains(RADIANS_PER_SQUARED_SECOND + &quot; &quot;) ||</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">                source.endsWith(RADIANS_PER_SQUARED_SECOND)) {</span>
+<span class="fc" id="L134">            return AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND;</span>
         }
-<span class="fc" id="L125">        return null;</span>
+<span class="fc" id="L136">        return null;</span>
     }
 
     /**
@@ -139,7 +150,7 @@ public class AngularAccelerationFormatter extends
     public String formatAndConvert(
             final Number value, final AngularAccelerationUnit unit,
             final UnitSystem system) {
-<span class="fc" id="L142">        return format(value, unit);</span>
+<span class="fc" id="L153">        return format(value, unit);</span>
     }
 
     /**
@@ -149,12 +160,12 @@ public class AngularAccelerationFormatter extends
      * @return its string representation.
      */
     public String getUnitSymbol(final AngularAccelerationUnit unit) {
-<span class="fc bfc" id="L152" title="All 2 branches covered.">        switch (unit) {</span>
+<span class="fc bfc" id="L163" title="All 2 branches covered.">        switch (unit) {</span>
             case DEGREES_PER_SQUARED_SECOND:
-<span class="fc" id="L154">                return DEGREES_PER_SQUARED_SECOND;</span>
+<span class="fc" id="L165">                return DEGREES_PER_SQUARED_SECOND;</span>
             case RADIANS_PER_SQUARED_SECOND:
             default:
-<span class="fc" id="L157">                return RADIANS_PER_SQUARED_SECOND;</span>
+<span class="fc" id="L168">                return RADIANS_PER_SQUARED_SECOND;</span>
         }
     }
 
@@ -166,8 +177,8 @@ public class AngularAccelerationFormatter extends
      */
     @Override
     protected Object clone() throws CloneNotSupportedException {
-<span class="nc" id="L169">        final AngularAccelerationFormatter copy = (AngularAccelerationFormatter) super.clone();</span>
-<span class="nc" id="L170">        return internalClone(copy);</span>
+<span class="nc" id="L180">        final AngularAccelerationFormatter copy = (AngularAccelerationFormatter) super.clone();</span>
+<span class="nc" id="L181">        return internalClone(copy);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

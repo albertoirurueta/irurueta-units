@@ -41,18 +41,19 @@ package com.irurueta.units;
      * @return unit system (metric or imperial).
      * @throws IllegalArgumentException if unit is null or not supported.
      */
+    @SuppressWarnings(&quot;DuplicatedCode&quot;)
     public static UnitSystem getUnitSystem(final TemperatureUnit unit) {
-<span class="fc bfc" id="L45" title="All 2 branches covered.">        if (unit == null) {</span>
-<span class="fc" id="L46">            throw new IllegalArgumentException();</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        if (unit == null) {</span>
+<span class="fc" id="L47">            throw new IllegalArgumentException();</span>
         }
 
-<span class="fc bfc" id="L49" title="All 2 branches covered.">        switch (unit) {</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        switch (unit) {</span>
             case FAHRENHEIT:
-<span class="fc" id="L51">                return UnitSystem.IMPERIAL;</span>
+<span class="fc" id="L52">                return UnitSystem.IMPERIAL;</span>
             case CELSIUS:
             case KELVIN:
             default:
-<span class="fc" id="L55">                return UnitSystem.METRIC;</span>
+<span class="fc" id="L56">                return UnitSystem.METRIC;</span>
         }
     }
 
@@ -62,7 +63,7 @@ package com.irurueta.units;
      * @return all supported metric temperature units.
      */
     public static TemperatureUnit[] getMetricUnits() {
-<span class="fc" id="L65">        return new TemperatureUnit[] {</span>
+<span class="fc" id="L66">        return new TemperatureUnit[] {</span>
                 CELSIUS,
                 KELVIN
         };
@@ -74,7 +75,7 @@ package com.irurueta.units;
      * @return all supported imperial temperature units.
      */
     public static TemperatureUnit[] getImperialUnits() {
-<span class="fc" id="L77">        return new TemperatureUnit[] {</span>
+<span class="fc" id="L78">        return new TemperatureUnit[] {</span>
                 FAHRENHEIT
         };
     }
@@ -87,7 +88,7 @@ package com.irurueta.units;
      * @throws IllegalArgumentException if unit is null or not supported.
      */
     public static boolean isMetric(final TemperatureUnit unit) {
-<span class="fc bfc" id="L90" title="All 2 branches covered.">        return getUnitSystem(unit) == UnitSystem.METRIC;</span>
+<span class="fc bfc" id="L91" title="All 2 branches covered.">        return getUnitSystem(unit) == UnitSystem.METRIC;</span>
     }
 
     /**
@@ -98,7 +99,7 @@ package com.irurueta.units;
      * @throws IllegalArgumentException if unit is null or not supported.
      */
     public static boolean isImperial(final TemperatureUnit unit) {
-<span class="fc bfc" id="L101" title="All 2 branches covered.">        return getUnitSystem(unit) == UnitSystem.IMPERIAL;</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">        return getUnitSystem(unit) == UnitSystem.IMPERIAL;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

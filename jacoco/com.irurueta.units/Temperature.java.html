@@ -50,7 +50,7 @@ public class Temperature extends Measurement&lt;TemperatureUnit&gt; {
      * false otherwise.
      */
     @Override
-    public boolean equals(Measurement&lt;TemperatureUnit&gt; other, double tolerance) {
+    public boolean equals(final Measurement&lt;TemperatureUnit&gt; other, final double tolerance) {
 <span class="fc bfc" id="L54" title="All 2 branches covered.">        if (super.equals(other, tolerance)) {</span>
 <span class="fc" id="L55">            return true;</span>
         }

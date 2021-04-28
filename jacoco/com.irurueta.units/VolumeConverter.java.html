@@ -89,8 +89,8 @@ public class VolumeConverter {
      *               containing output unit.
      */
     public static void convert(final Volume input, final Volume output) {
-<span class="nc" id="L92">        convert(input, output.getUnit(), output);</span>
-<span class="nc" id="L93">    }</span>
+<span class="fc" id="L92">        convert(input, output.getUnit(), output);</span>
+<span class="fc" id="L93">    }</span>
 
     /**
      * Converts a volume to requested output unit.
@@ -101,9 +101,9 @@ public class VolumeConverter {
      */
     public static Volume convertAndReturnNew(
             final Volume input, final VolumeUnit outputUnit) {
-<span class="nc" id="L104">        final Volume result = new Volume();</span>
-<span class="nc" id="L105">        convert(input, outputUnit, result);</span>
-<span class="nc" id="L106">        return result;</span>
+<span class="fc" id="L104">        final Volume result = new Volume();</span>
+<span class="fc" id="L105">        convert(input, outputUnit, result);</span>
+<span class="fc" id="L106">        return result;</span>
     }
 
     /**
@@ -113,8 +113,8 @@ public class VolumeConverter {
      * @param outputUnit requested output unit.
      */
     public static void convert(final Volume volume, final VolumeUnit outputUnit) {
-<span class="nc" id="L116">        convert(volume, outputUnit, volume);</span>
-<span class="nc" id="L117">    }</span>
+<span class="fc" id="L116">        convert(volume, outputUnit, volume);</span>
+<span class="fc" id="L117">    }</span>
 
     /**
      * Converts a volume to requested output unit.
@@ -126,11 +126,11 @@ public class VolumeConverter {
     public static void convert(
             final Volume input, final VolumeUnit outputUnit,
             final Volume result) {
-<span class="nc" id="L129">        final Number value = convert(input.getValue(), input.getUnit(),</span>
+<span class="fc" id="L129">        final Number value = convert(input.getValue(), input.getUnit(),</span>
                 outputUnit);
-<span class="nc" id="L131">        result.setValue(value);</span>
-<span class="nc" id="L132">        result.setUnit(outputUnit);</span>
-<span class="nc" id="L133">    }</span>
+<span class="fc" id="L131">        result.setValue(value);</span>
+<span class="fc" id="L132">        result.setUnit(outputUnit);</span>
+<span class="fc" id="L133">    }</span>
 
     /**
      * Converts a volume value from input unit to provided output unit.
@@ -143,14 +143,14 @@ public class VolumeConverter {
     public static Number convert(
             final Number input, final VolumeUnit inputUnit,
             final VolumeUnit outputUnit) {
-<span class="nc" id="L146">        return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit, outputUnit));</span>
+<span class="fc" id="L146">        return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit, outputUnit));</span>
     }
 
     /**
      * Converts a volume value from input unit to provided output unit.
      *
      * @param input volume value.
-     * @param inputUnit input voluem unit.
+     * @param inputUnit input volume unit.
      * @param outputUnit output volume unit.
      * @return converted volume value.
      */

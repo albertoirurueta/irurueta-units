@@ -74,8 +74,8 @@ public class AccelerationConverter {
      */
     public static void convert(
             final Acceleration acceleration, final AccelerationUnit outputUnit) {
-<span class="nc" id="L77">        convert(acceleration, outputUnit, acceleration);</span>
-<span class="nc" id="L78">    }</span>
+<span class="fc" id="L77">        convert(acceleration, outputUnit, acceleration);</span>
+<span class="fc" id="L78">    }</span>
 
     /**
      * Converts an acceleration to requested output unit.
@@ -120,7 +120,7 @@ public class AccelerationConverter {
 
         double metersPerSquaredSecond;
 
-        //convert to meters per squared seocnd
+        //convert to meters per squared second
 <span class="fc bfc" id="L124" title="All 3 branches covered.">        switch (inputUnit) {</span>
             case FEET_PER_SQUARED_SECOND:
 <span class="fc" id="L126">                metersPerSquaredSecond = feetPerSquaredSecondToMetersPerSquaredSecond(input);</span>

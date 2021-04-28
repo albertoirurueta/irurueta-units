@@ -65,19 +65,6 @@ public class TemperatureFormatter extends MeasureFormatter&lt;Temperature, Tempe
     }
 
     /**
-     * Hash code generated for this instance.
-     * Hash codes can be internally used by some collections to coarsely compare
-     * objects. This implementation only calls parent implementation to avoid
-     * static analyzer warning.
-     *
-     * @return hash code.
-     */
-    @Override
-    public int hashCode() {
-<span class="fc" id="L77">        return super.hashCode();</span>
-    }
-
-    /**
      * Gets unit system for detected unit into provided string representation
      * of a measurement.
      *
@@ -87,8 +74,8 @@ public class TemperatureFormatter extends MeasureFormatter&lt;Temperature, Tempe
      */
     @Override
     public UnitSystem getUnitSystem(final String source) {
-<span class="fc" id="L90">        final TemperatureUnit unit = findUnit(source);</span>
-<span class="pc bpc" id="L91" title="1 of 2 branches missed.">        return unit != null ? TemperatureUnit.getUnitSystem(unit) : null;</span>
+<span class="fc" id="L77">        final TemperatureUnit unit = findUnit(source);</span>
+<span class="pc bpc" id="L78" title="1 of 2 branches missed.">        return unit != null ? TemperatureUnit.getUnitSystem(unit) : null;</span>
     }
 
     /**
@@ -102,7 +89,7 @@ public class TemperatureFormatter extends MeasureFormatter&lt;Temperature, Tempe
     @Override
     public Temperature parse(final String source) throws ParseException,
             UnknownUnitException {
-<span class="fc" id="L105">        return internalParse(source, new Temperature());</span>
+<span class="fc" id="L92">        return internalParse(source, new Temperature());</span>
     }
 
     /**
@@ -114,16 +101,16 @@ public class TemperatureFormatter extends MeasureFormatter&lt;Temperature, Tempe
      */
     @Override
     public TemperatureUnit findUnit(final String source) {
-<span class="fc bfc" id="L117" title="All 4 branches covered.">        if (source.contains(CELSIUS + &quot; &quot;) || source.endsWith(CELSIUS)) {</span>
-<span class="fc" id="L118">            return TemperatureUnit.CELSIUS;</span>
+<span class="fc bfc" id="L104" title="All 4 branches covered.">        if (source.contains(CELSIUS + &quot; &quot;) || source.endsWith(CELSIUS)) {</span>
+<span class="fc" id="L105">            return TemperatureUnit.CELSIUS;</span>
         }
-<span class="fc bfc" id="L120" title="All 4 branches covered.">        if (source.contains(FAHRENHEIT + &quot; &quot;) || source.endsWith(FAHRENHEIT)) {</span>
-<span class="fc" id="L121">            return TemperatureUnit.FAHRENHEIT;</span>
+<span class="fc bfc" id="L107" title="All 4 branches covered.">        if (source.contains(FAHRENHEIT + &quot; &quot;) || source.endsWith(FAHRENHEIT)) {</span>
+<span class="fc" id="L108">            return TemperatureUnit.FAHRENHEIT;</span>
         }
-<span class="fc bfc" id="L123" title="All 4 branches covered.">        if (source.contains(KELVIN + &quot; &quot;) || source.endsWith(KELVIN)) {</span>
-<span class="fc" id="L124">            return TemperatureUnit.KELVIN;</span>
+<span class="fc bfc" id="L110" title="All 4 branches covered.">        if (source.contains(KELVIN + &quot; &quot;) || source.endsWith(KELVIN)) {</span>
+<span class="fc" id="L111">            return TemperatureUnit.KELVIN;</span>
         }
-<span class="fc" id="L126">        return null;</span>
+<span class="fc" id="L113">        return null;</span>
     }
 
     /**
@@ -132,7 +119,7 @@ public class TemperatureFormatter extends MeasureFormatter&lt;Temperature, Tempe
      * If provided value is too large for provided unit, this method will
      * convert it to a more appropriate unit using provided unit system (either
      * metric or imperial).
-     *
+     * &lt;p&gt;
      * This implementation just formats provided value using provided unit,
      * ignoring provided unit system.
      *
@@ -145,7 +132,7 @@ public class TemperatureFormatter extends MeasureFormatter&lt;Temperature, Tempe
     public String formatAndConvert(
             final Number value, final TemperatureUnit unit,
             final UnitSystem system) {
-<span class="fc" id="L148">        return format(value, unit);</span>
+<span class="fc" id="L135">        return format(value, unit);</span>
     }
 
     /**
@@ -156,14 +143,14 @@ public class TemperatureFormatter extends MeasureFormatter&lt;Temperature, Tempe
      */
     @Override
     public String getUnitSymbol(final TemperatureUnit unit) {
-<span class="fc bfc" id="L159" title="All 3 branches covered.">        switch (unit) {</span>
+<span class="fc bfc" id="L146" title="All 3 branches covered.">        switch (unit) {</span>
             case FAHRENHEIT:
-<span class="fc" id="L161">                return FAHRENHEIT;</span>
+<span class="fc" id="L148">                return FAHRENHEIT;</span>
             case CELSIUS:
-<span class="fc" id="L163">                return CELSIUS;</span>
+<span class="fc" id="L150">                return CELSIUS;</span>
             case KELVIN:
             default:
-<span class="fc" id="L166">                return KELVIN;</span>
+<span class="fc" id="L153">                return KELVIN;</span>
         }
     }
 
@@ -175,8 +162,8 @@ public class TemperatureFormatter extends MeasureFormatter&lt;Temperature, Tempe
      */
     @Override
     protected Object clone() throws CloneNotSupportedException {
-<span class="fc" id="L178">        final TemperatureFormatter copy = (TemperatureFormatter) super.clone();</span>
-<span class="fc" id="L179">        return internalClone(copy);</span>
+<span class="fc" id="L165">        final TemperatureFormatter copy = (TemperatureFormatter) super.clone();</span>
+<span class="fc" id="L166">        return internalClone(copy);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -105,7 +105,7 @@ public class AngularAccelerationConverter {
     /**
      * Converts an angular acceleration value from input unit to provided output unit.
      *
-     * @param input      angualr acceleration value.
+     * @param input      angular acceleration value.
      * @param inputUnit  input angular acceleration unit.
      * @param outputUnit output angular acceleration unit.
      * @return converted angular acceleration value.
@@ -152,7 +152,7 @@ public class AngularAccelerationConverter {
      * Converts provided radians per squared second value to degrees per squared second.
      *
      * @param radiansPerSquaredSecond radians per squared second value.
-     * @return same angualr acceleration converted to degrees per squared second.
+     * @return same angular acceleration converted to degrees per squared second.
      */
     public static double radiansPerSquaredSecondToDegreesPerSquaredSecond(
             final double radiansPerSquaredSecond) {

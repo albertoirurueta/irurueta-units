@@ -76,18 +76,6 @@ public class AngularSpeedFormatter extends
     }
 
     /**
-     * Hash code generated for this instance.
-     * Hash codes can be internally used by some collections to coarsely compare objects.
-     * This implementation only calls parent implementation to avoid static analyzer warning.
-     *
-     * @return hash code.
-     */
-    @Override
-    public int hashCode() {
-<span class="fc" id="L87">        return super.hashCode();</span>
-    }
-
-    /**
      * Gets unit system for detected unit into provided string representation
      * of a measurement.
      *
@@ -96,8 +84,8 @@ public class AngularSpeedFormatter extends
      */
     @Override
     public UnitSystem getUnitSystem(final String source) {
-<span class="fc" id="L99">        final AngularSpeedUnit unit = findUnit(source);</span>
-<span class="fc bfc" id="L100" title="All 2 branches covered.">        return unit != null ? UnitSystem.METRIC : null;</span>
+<span class="fc" id="L87">        final AngularSpeedUnit unit = findUnit(source);</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">        return unit != null ? UnitSystem.METRIC : null;</span>
     }
 
     /**
@@ -111,7 +99,7 @@ public class AngularSpeedFormatter extends
     @Override
     public AngularSpeed parse(final String source) throws ParseException,
             UnknownUnitException {
-<span class="fc" id="L114">        return internalParse(source, new AngularSpeed());</span>
+<span class="fc" id="L102">        return internalParse(source, new AngularSpeed());</span>
     }
 
     /**
@@ -123,15 +111,15 @@ public class AngularSpeedFormatter extends
      */
     @Override
     public AngularSpeedUnit findUnit(final String source) {
-<span class="fc bfc" id="L126" title="All 2 branches covered.">        if (source.contains(DEGREES_PER_SECOND + &quot; &quot;) ||</span>
-<span class="fc bfc" id="L127" title="All 2 branches covered.">                source.endsWith(DEGREES_PER_SECOND)) {</span>
-<span class="fc" id="L128">            return AngularSpeedUnit.DEGREES_PER_SECOND;</span>
+<span class="fc bfc" id="L114" title="All 2 branches covered.">        if (source.contains(DEGREES_PER_SECOND + &quot; &quot;) ||</span>
+<span class="fc bfc" id="L115" title="All 2 branches covered.">                source.endsWith(DEGREES_PER_SECOND)) {</span>
+<span class="fc" id="L116">            return AngularSpeedUnit.DEGREES_PER_SECOND;</span>
         }
-<span class="fc bfc" id="L130" title="All 2 branches covered.">        if (source.contains(RADIANS_PER_SECOND + &quot; &quot;) ||</span>
-<span class="fc bfc" id="L131" title="All 2 branches covered.">                source.endsWith(RADIANS_PER_SECOND)) {</span>
-<span class="fc" id="L132">            return AngularSpeedUnit.RADIANS_PER_SECOND;</span>
+<span class="fc bfc" id="L118" title="All 2 branches covered.">        if (source.contains(RADIANS_PER_SECOND + &quot; &quot;) ||</span>
+<span class="fc bfc" id="L119" title="All 2 branches covered.">                source.endsWith(RADIANS_PER_SECOND)) {</span>
+<span class="fc" id="L120">            return AngularSpeedUnit.RADIANS_PER_SECOND;</span>
         }
-<span class="fc" id="L134">        return null;</span>
+<span class="fc" id="L122">        return null;</span>
     }
 
     /**
@@ -139,7 +127,7 @@ public class AngularSpeedFormatter extends
      * system.
      * This implementation ignored provided unit system.
      *
-     * @param value  a measurment value.
+     * @param value  a measurement value.
      * @param unit   a measurement unit.
      * @param system ignored.
      * @return a string representation of angular speed value and unit.
@@ -148,7 +136,7 @@ public class AngularSpeedFormatter extends
     public String formatAndConvert(
             final Number value, final AngularSpeedUnit unit,
             final UnitSystem system) {
-<span class="fc" id="L151">        return format(value, unit);</span>
+<span class="fc" id="L139">        return format(value, unit);</span>
     }
 
     /**
@@ -158,14 +146,13 @@ public class AngularSpeedFormatter extends
      * @return its string representation.
      */
     @Override
-    @SuppressWarnings(&quot;Duplicates&quot;)
     public String getUnitSymbol(final AngularSpeedUnit unit) {
-<span class="fc bfc" id="L163" title="All 2 branches covered.">        switch (unit) {</span>
+<span class="fc bfc" id="L150" title="All 2 branches covered.">        switch (unit) {</span>
             case DEGREES_PER_SECOND:
-<span class="fc" id="L165">                return DEGREES_PER_SECOND;</span>
+<span class="fc" id="L152">                return DEGREES_PER_SECOND;</span>
             case RADIANS_PER_SECOND:
             default:
-<span class="fc" id="L168">                return RADIANS_PER_SECOND;</span>
+<span class="fc" id="L155">                return RADIANS_PER_SECOND;</span>
         }
     }
 
@@ -177,8 +164,8 @@ public class AngularSpeedFormatter extends
      */
     @Override
     protected Object clone() throws CloneNotSupportedException {
-<span class="nc" id="L180">        final AngularSpeedFormatter copy = (AngularSpeedFormatter) super.clone();</span>
-<span class="nc" id="L181">        return internalClone(copy);</span>
+<span class="nc" id="L167">        final AngularSpeedFormatter copy = (AngularSpeedFormatter) super.clone();</span>
+<span class="nc" id="L168">        return internalClone(copy);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

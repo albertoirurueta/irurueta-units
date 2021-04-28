@@ -26,7 +26,7 @@ import java.math.BigDecimal;
 public class SurfaceConverter {
 
     /**
-     * Number of square meters in 1 square milimeter.
+     * Number of square meters in 1 square millimeter.
      */
     static final double SQUARE_METERS_PER_SQUARE_MILLIMETER =
             DistanceConverter.METERS_PER_MILLIMETER * DistanceConverter.METERS_PER_MILLIMETER;
@@ -94,7 +94,7 @@ public class SurfaceConverter {
 
     /**
      * Constructor.
-     * Prevents instantiaton of helper class.
+     * Prevents instantiation of helper class.
      */
     private SurfaceConverter() {
     }

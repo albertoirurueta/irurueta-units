@@ -42,18 +42,19 @@ package com.irurueta.units;
      * @return unit system (metric or imperial).
      * @throws IllegalArgumentException if unit is null or not supported.
      */
+    @SuppressWarnings(&quot;DuplicatedCode&quot;)
     public static UnitSystem getUnitSystem(final AccelerationUnit unit) {
-<span class="fc bfc" id="L46" title="All 2 branches covered.">        if (unit == null) {</span>
-<span class="fc" id="L47">            throw new IllegalArgumentException();</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        if (unit == null) {</span>
+<span class="fc" id="L48">            throw new IllegalArgumentException();</span>
         }
 
-<span class="fc bfc" id="L50" title="All 2 branches covered.">        switch (unit) {</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        switch (unit) {</span>
             case FEET_PER_SQUARED_SECOND:
-<span class="fc" id="L52">                return UnitSystem.IMPERIAL;</span>
+<span class="fc" id="L53">                return UnitSystem.IMPERIAL;</span>
             case METERS_PER_SQUARED_SECOND:
             case G:
             default:
-<span class="fc" id="L56">                return UnitSystem.METRIC;</span>
+<span class="fc" id="L57">                return UnitSystem.METRIC;</span>
         }
     }
 
@@ -63,7 +64,7 @@ package com.irurueta.units;
      * @return all supported metric acceleration units.
      */
     public static AccelerationUnit[] getMetricUnits() {
-<span class="fc" id="L66">        return new AccelerationUnit[]{</span>
+<span class="fc" id="L67">        return new AccelerationUnit[]{</span>
                 METERS_PER_SQUARED_SECOND,
                 G
         };
@@ -75,7 +76,7 @@ package com.irurueta.units;
      * @return all supported imperial acceleration units.
      */
     public static AccelerationUnit[] getImperialUnits() {
-<span class="fc" id="L78">        return new AccelerationUnit[]{</span>
+<span class="fc" id="L79">        return new AccelerationUnit[]{</span>
                 FEET_PER_SQUARED_SECOND
         };
     }
@@ -88,7 +89,7 @@ package com.irurueta.units;
      * @throws IllegalArgumentException if unit is null or not supported.
      */
     public static boolean isMetric(final AccelerationUnit unit) {
-<span class="fc bfc" id="L91" title="All 2 branches covered.">        return getUnitSystem(unit) == UnitSystem.METRIC;</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">        return getUnitSystem(unit) == UnitSystem.METRIC;</span>
     }
 
     /**
@@ -99,7 +100,7 @@ package com.irurueta.units;
      * @throws IllegalArgumentException if unit is null or not supported.
      */
     public static boolean isImperial(final AccelerationUnit unit) {
-<span class="fc bfc" id="L102" title="All 2 branches covered.">        return getUnitSystem(unit) == UnitSystem.IMPERIAL;</span>
+<span class="fc bfc" id="L103" title="All 2 branches covered.">        return getUnitSystem(unit) == UnitSystem.IMPERIAL;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

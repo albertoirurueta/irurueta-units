@@ -113,17 +113,6 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> implement
     }
 
     /**
-     * Hash code generated for this instance. Hash codes can be internally used by some collections to coarsely
-     * compare objects. This implementation only calls parent implementation to avoid static analyzer warning.
-     *
-     * @return hash code.
-     */
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-    /**
      * Gets unit system for detected unit into provided string representation of a measurement.
      *
      * @param source a measurement string representation to be checked.
@@ -170,7 +159,7 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> implement
      * Formats and converts provided angle value and unit using metric system. This implementation ignores provided
      * unit system.
      *
-     * @param value  a measurment value.
+     * @param value  a measurement value.
      * @param unit   a measurement unit.
      * @param system ignored.
      * @return a string representation of angle value and unit.
@@ -189,7 +178,6 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> implement
      * @return its string representation.
      */
     @Override
-    @SuppressWarnings("Duplicates")
     public String getUnitSymbol(final AngleUnit unit) {
         switch (unit) {
             case DEGREES:

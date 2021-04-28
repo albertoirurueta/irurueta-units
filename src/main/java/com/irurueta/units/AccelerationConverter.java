@@ -120,7 +120,7 @@ public class AccelerationConverter {
 
         double metersPerSquaredSecond;
 
-        //convert to meters per squared seocnd
+        //convert to meters per squared second
         switch (inputUnit) {
             case FEET_PER_SQUARED_SECOND:
                 metersPerSquaredSecond = feetPerSquaredSecondToMetersPerSquaredSecond(input);

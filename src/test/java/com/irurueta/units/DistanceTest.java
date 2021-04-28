@@ -54,6 +54,7 @@ public class DistanceTest {
             fail("IllegalArgumentException expected but not thrown");
         } catch (final IllegalArgumentException ignore) {
         }
+        //noinspection ConstantConditions
         assertNull(d);
     }
 

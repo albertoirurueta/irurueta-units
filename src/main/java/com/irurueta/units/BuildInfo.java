@@ -47,7 +47,7 @@ public class BuildInfo {
     private static final String BUILD_TIMESTAMP_KEY = "BUILD_TIMESTAMP";
 
     /**
-     * Key to obtian groupId of this library from properties file.
+     * Key to obtain groupId of this library from properties file.
      */
     private static final String GROUP_ID_KEY = "GROUP_ID";
 

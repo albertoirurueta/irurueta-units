@@ -76,18 +76,6 @@ public class AngularSpeedFormatter extends
     }
 
     /**
-     * Hash code generated for this instance.
-     * Hash codes can be internally used by some collections to coarsely compare objects.
-     * This implementation only calls parent implementation to avoid static analyzer warning.
-     *
-     * @return hash code.
-     */
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-    /**
      * Gets unit system for detected unit into provided string representation
      * of a measurement.
      *
@@ -139,7 +127,7 @@ public class AngularSpeedFormatter extends
      * system.
      * This implementation ignored provided unit system.
      *
-     * @param value  a measurment value.
+     * @param value  a measurement value.
      * @param unit   a measurement unit.
      * @param system ignored.
      * @return a string representation of angular speed value and unit.
@@ -158,7 +146,6 @@ public class AngularSpeedFormatter extends
      * @return its string representation.
      */
     @Override
-    @SuppressWarnings("Duplicates")
     public String getUnitSymbol(final AngularSpeedUnit unit) {
         switch (unit) {
             case DEGREES_PER_SECOND:

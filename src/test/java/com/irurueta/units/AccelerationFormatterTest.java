@@ -84,6 +84,7 @@ public class AccelerationFormatterTest {
             fail("IllegalArgumentException expected but not thrown");
         } catch (final IllegalArgumentException ignore) {
         }
+        //noinspection ConstantConditions
         assertNull(formatter);
 
 
@@ -293,7 +294,7 @@ public class AccelerationFormatterTest {
         assertEquals(formatter.formatAndConvert(new BigDecimal(1),
                 AccelerationUnit.G), "9,81 m/s²");
 
-        //test for imperial system
+        // test for imperial system
         l = new Locale("en", "US");
 
         formatter = new AccelerationFormatter(l);
@@ -316,7 +317,7 @@ public class AccelerationFormatterTest {
         assertEquals(formatter.formatAndConvert(1.0,
                 AccelerationUnit.G), "9,81 m/s²");
 
-        //test for imperial system
+        // test for imperial system
         l = new Locale("en", "US");
 
         formatter = new AccelerationFormatter(l);
@@ -339,7 +340,7 @@ public class AccelerationFormatterTest {
         assertEquals(formatter.formatAndConvert(new Acceleration(1.0,
                 AccelerationUnit.G)), "9,81 m/s²");
 
-        //test for imperial system
+        // test for imperial system
         l = new Locale("en", "US");
 
         formatter = new AccelerationFormatter(l);
@@ -367,7 +368,7 @@ public class AccelerationFormatterTest {
                 "1,68 m/s²");
 
 
-        //test for imperial system
+        // test for imperial system
         l = new Locale("en", "US");
 
         formatter = new AccelerationFormatter(l);
@@ -402,7 +403,7 @@ public class AccelerationFormatterTest {
                 "1,68 m/s²");
 
 
-        //test for imperial system
+        // test for imperial system
         l = new Locale("en", "US");
 
         formatter = new AccelerationFormatter(l);
@@ -437,7 +438,7 @@ public class AccelerationFormatterTest {
                 "1,68 m/s²");
 
 
-        //test for imperial system
+        // test for imperial system
         l = new Locale("en", "US");
 
         formatter = new AccelerationFormatter(l);

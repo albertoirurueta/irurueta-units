@@ -56,7 +56,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
 
     /**
      * Pattern to format values and unit together into a single string. {0} corresponds to
-     * the vlaue, {1} corresponds to the unit part.
+     * the value, {1} corresponds to the unit part.
      */
     private String mValueAndUnitFormatPattern;
 
@@ -266,7 +266,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * convert it to a more appropriate unit using provided unit system (either
      * metric or imperial).
      *
-     * @param value  a measurment value.
+     * @param value  a measurement value.
      * @param unit   a measurement unit.
      * @param system system unit to convert measurement to.
      * @return a string representation of measurement value and unit.

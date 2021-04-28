@@ -150,7 +150,7 @@ public class VolumeConverter {
      * Converts a volume value from input unit to provided output unit.
      *
      * @param input volume value.
-     * @param inputUnit input voluem unit.
+     * @param inputUnit input volume unit.
      * @param outputUnit output volume unit.
      * @return converted volume value.
      */

@@ -85,6 +85,7 @@ public class AngularAccelerationFormatterTest {
             fail("IllegalArgumentException expected but not thrown");
         } catch (final IllegalArgumentException ignore) {
         }
+        //noinspection ConstantConditions
         assertNull(formatter);
 
 
@@ -114,7 +115,7 @@ public class AngularAccelerationFormatterTest {
 
         formatter = null;
         try {
-            // noinspection ConstantConditions
+            //noinspection ConstantConditions
             formatter = new AngularAccelerationFormatter((AngularAccelerationFormatter) null);
             fail("NullPointerException expected but not thrown");
         } catch (final NullPointerException ignore) {
@@ -255,7 +256,7 @@ public class AngularAccelerationFormatterTest {
     }
 
     @Test
-    public void testFormatAndConverNumber() {
+    public void testFormatAndConvertNumber() {
         final Locale l = new Locale("es", "ES");
 
         final AngularAccelerationFormatter formatter = new AngularAccelerationFormatter(l);

@@ -35,7 +35,7 @@ public enum SpeedUnit {
     KILOMETERS_PER_SECOND,
 
     /**
-     * Keet per second (ft/s)
+     * Feet per second (ft/s)
      */
     FEET_PER_SECOND,
 

@@ -42,6 +42,7 @@ public enum AccelerationUnit {
      * @return unit system (metric or imperial).
      * @throws IllegalArgumentException if unit is null or not supported.
      */
+    @SuppressWarnings("DuplicatedCode")
     public static UnitSystem getUnitSystem(final AccelerationUnit unit) {
         if (unit == null) {
             throw new IllegalArgumentException();

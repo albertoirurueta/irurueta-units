@@ -25,7 +25,7 @@ public enum UnitSystem {
     METRIC,
 
     /**
-     * Imperial unit syste (i.e. miles).
+     * Imperial unit system (i.e. miles).
      */
     IMPERIAL
 }

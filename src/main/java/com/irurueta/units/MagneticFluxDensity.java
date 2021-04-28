@@ -123,7 +123,7 @@ public class MagneticFluxDensity extends Measurement<MagneticFluxDensityUnit> {
     }
 
     /**
-     * Adss two magnetic flux density instances.
+     * Adds two magnetic flux density instances.
      *
      * @param arg1 1st argument.
      * @param arg2 2nd argument.
@@ -226,7 +226,7 @@ public class MagneticFluxDensity extends Measurement<MagneticFluxDensityUnit> {
      * provided magnetic flux density instance.
      *
      * @param b      magnetic flux density to be added.
-     * @param result instance whre result will be stored.
+     * @param result instance where result will be stored.
      */
     public void add(final MagneticFluxDensity b,
                     final MagneticFluxDensity result) {

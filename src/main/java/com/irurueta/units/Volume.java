@@ -49,7 +49,7 @@ public class Volume extends Measurement<VolumeUnit> {
      * @return true if provided volume is assumed to be equal to this instance, false otherwise.
      */
     @Override
-    public boolean equals(Measurement<VolumeUnit> other, double tolerance) {
+    public boolean equals(final Measurement<VolumeUnit> other, final double tolerance) {
         if (super.equals(other, tolerance)) {
             return true;
         }

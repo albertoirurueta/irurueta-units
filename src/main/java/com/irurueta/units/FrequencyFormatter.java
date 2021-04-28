@@ -89,19 +89,7 @@ public class FrequencyFormatter extends MeasureFormatter<Frequency, FrequencyUni
         final boolean equals = super.equals(obj);
         return (obj instanceof FrequencyFormatter) && equals;
     }
-
-    /**
-     * Hash code generated for this instance.
-     * Hash codes can be internally used by some collections to coarsely compare objects.
-     * This implementation only calls parent implementation to avoid static analyzer warning.
-     *
-     * @return hash code.
-     */
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
+    
     /**
      * Gets unit system for detected unit into provided string representation
      * of a measurement.
@@ -163,7 +151,7 @@ public class FrequencyFormatter extends MeasureFormatter<Frequency, FrequencyUni
      * If provided value is too large for provided unit, this method will convert
      * it to a more appropriate unit. This implementation ignores unit system.
      *
-     * @param value  a measurment value.
+     * @param value  a measurement value.
      * @param unit   a measurement unit.
      * @param system system unit to convert measurement to (it is ignored).
      * @return a string representation of frequency value and unit.
@@ -228,6 +216,7 @@ public class FrequencyFormatter extends MeasureFormatter<Frequency, FrequencyUni
      * @param unit a frequency unit.
      * @return its string representation
      */
+    @SuppressWarnings("DuplicatedCode")
     @Override
     public String getUnitSymbol(final FrequencyUnit unit) {
         switch (unit) {

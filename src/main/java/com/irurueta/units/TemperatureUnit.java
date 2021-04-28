@@ -41,6 +41,7 @@ public enum TemperatureUnit {
      * @return unit system (metric or imperial).
      * @throws IllegalArgumentException if unit is null or not supported.
      */
+    @SuppressWarnings("DuplicatedCode")
     public static UnitSystem getUnitSystem(final TemperatureUnit unit) {
         if (unit == null) {
             throw new IllegalArgumentException();

@@ -138,7 +138,7 @@ public class AngleConverterTest {
 
         assertEquals(inputValue, outputValue, ERROR);
 
-        //test radians
+        // test radians
         degreesAndMinutes = AngleConverter.toDegreesAndMinutes(
                 new BigDecimal(inputValue), AngleUnit.RADIANS);
 

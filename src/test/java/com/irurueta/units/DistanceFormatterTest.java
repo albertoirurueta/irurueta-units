@@ -85,6 +85,7 @@ public class DistanceFormatterTest {
             fail("IllegalArgumentException expected but not thrown");
         } catch (final IllegalArgumentException ignore) {
         }
+        //noinspection ConstantConditions
         assertNull(formatter);
 
 

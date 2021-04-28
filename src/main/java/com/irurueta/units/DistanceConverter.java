@@ -202,10 +202,10 @@ public class DistanceConverter {
     }
 
     /**
-     * Converts provided meter value to milimeters.
+     * Converts provided meter value to millimeters.
      *
      * @param meter meter value.
-     * @return same distance converted to milimeters.
+     * @return same distance converted to millimeters.
      */
     public static double meterToMillimeter(final double meter) {
         return meter / METERS_PER_MILLIMETER;

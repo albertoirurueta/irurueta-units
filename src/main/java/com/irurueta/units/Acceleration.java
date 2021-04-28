@@ -21,7 +21,6 @@ import java.math.BigDecimal;
 /**
  * Contains an acceleration value and unit.
  */
-@SuppressWarnings("WeakerAccess")
 public class Acceleration extends Measurement<AccelerationUnit> {
 
     /**
@@ -58,7 +57,7 @@ public class Acceleration extends Measurement<AccelerationUnit> {
             return true;
         }
 
-        //attempt conversion to common units
+        // attempt conversion to common units
         if (other == null) {
             return false;
         }
@@ -87,7 +86,7 @@ public class Acceleration extends Measurement<AccelerationUnit> {
     }
 
     /**
-     * Adds two acceleration values and unit and reeturns the result.
+     * Adds two acceleration values and unit and returns the result.
      *
      * @param value1     1st argument value.
      * @param unit1      1st argument unit.
@@ -220,7 +219,7 @@ public class Acceleration extends Measurement<AccelerationUnit> {
      * @param value1     1st argument value.
      * @param unit1      1st argument unit.
      * @param value2     2nd argument value.
-     * @param unit2      2nd agument unit.
+     * @param unit2      2nd argument unit.
      * @param resultUnit unit of result to be returned.
      * @return result of subtraction.
      */

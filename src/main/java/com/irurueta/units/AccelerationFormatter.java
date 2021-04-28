@@ -22,7 +22,6 @@ import java.util.Locale;
 /**
  * Formats and parses acceleration value and unit.
  */
-@SuppressWarnings({"WeakerAccess", "Duplicates"})
 public class AccelerationFormatter extends
         MeasureFormatter<Acceleration, AccelerationUnit> implements Cloneable {
 
@@ -77,17 +76,6 @@ public class AccelerationFormatter extends
     public boolean equals(final Object obj) {
         final boolean equals = super.equals(obj);
         return (obj instanceof AccelerationFormatter) && equals;
-    }
-
-    /**
-     * Hash code generated for this instance. Hash codes can be internally used by some collections to coarsely
-     * compare objects. This implementation only calls parent implementation to avoid static analyzer warning.
-     *
-     * @return hash code.
-     */
-    @Override
-    public int hashCode() {
-        return super.hashCode();
     }
 
     /**

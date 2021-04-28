@@ -26,12 +26,9 @@ public class UnitLocaleTest {
     @Test
     public void testGetDefault() {
         final Locale defaultLocale = Locale.getDefault();
-        boolean isImperial = false;
-        if ("US".equals(defaultLocale.getCountry()) ||
+        boolean isImperial = "US".equals(defaultLocale.getCountry()) ||
                 "LR".equals(defaultLocale.getCountry()) ||
-                "MM".equals(defaultLocale.getCountry())) {
-            isImperial = true;
-        }
+                "MM".equals(defaultLocale.getCountry());
 
         assertEquals(UnitLocale.getDefault() == UnitSystem.IMPERIAL,
                 isImperial);

@@ -21,7 +21,6 @@ import java.util.Locale;
 /**
  * Formats and parses distance value and unit.
  */
-@SuppressWarnings({"WeakerAccess", "Duplicates"})
 public class DistanceFormatter extends MeasureFormatter<Distance, DistanceUnit> implements Cloneable {
 
     /**
@@ -101,18 +100,6 @@ public class DistanceFormatter extends MeasureFormatter<Distance, DistanceUnit> 
     public boolean equals(final Object obj) {
         final boolean equals = super.equals(obj);
         return (obj instanceof DistanceFormatter) && equals;
-    }
-
-    /**
-     * Hash code generated for this instance.
-     * Hash codes can be internally used by some collections to coarsely compare objects.
-     * This implementation only calls parent implementation to avoid static analyzer warning.
-     *
-     * @return hash code.
-     */
-    @Override
-    public int hashCode() {
-        return super.hashCode();
     }
 
     /**

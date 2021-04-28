@@ -41,7 +41,7 @@ public class FrequencyConverter {
     static final double HERTZ_PER_GIGAHERTZ = 1e9;
 
     /**
-     * Number of HErtz's in one TeraHertz.
+     * Number of Hertz's in one TeraHertz.
      */
     static final double HERTZ_PER_TERAHERTZ = 1e12;
 

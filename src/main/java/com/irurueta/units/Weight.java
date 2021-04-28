@@ -50,7 +50,7 @@ public class Weight extends Measurement<WeightUnit> {
      * false otherwise.
      */
     @Override
-    public boolean equals(Measurement<WeightUnit> other, double tolerance) {
+    public boolean equals(final Measurement<WeightUnit> other, final double tolerance) {
         if (super.equals(other, tolerance)) {
             return true;
         }

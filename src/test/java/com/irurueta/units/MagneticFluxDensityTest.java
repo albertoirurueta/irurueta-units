@@ -35,7 +35,7 @@ public class MagneticFluxDensityTest {
         assertNull(b.getValue());
         assertNull(b.getUnit());
 
-        // test onstructor with value and unit
+        // test constructor with value and unit
         b = new MagneticFluxDensity(1000, MagneticFluxDensityUnit.TESLA);
 
         // check
@@ -55,6 +55,7 @@ public class MagneticFluxDensityTest {
             fail("IllegalArgumentException expected but not thrown");
         } catch (final IllegalArgumentException ignore) {
         }
+        //noinspection ConstantConditions
         assertNull(b);
     }
 

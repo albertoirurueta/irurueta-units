@@ -38,7 +38,7 @@ public class VolumeTest {
         // test constructor with value and unit
         v = new Volume(123, VolumeUnit.CUBIC_METER);
 
-        // chck
+        // check
         assertEquals(v.getValue(), 123);
         assertEquals(v.getUnit(), VolumeUnit.CUBIC_METER);
 
@@ -54,6 +54,7 @@ public class VolumeTest {
             fail("IllegalArgumentException expected but not thrown");
         } catch (final IllegalArgumentException ignore) {
         }
+        //noinspection ConstantConditions
         assertNull(v);
     }
 

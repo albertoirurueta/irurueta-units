@@ -50,7 +50,7 @@ public class Temperature extends Measurement<TemperatureUnit> {
      * false otherwise.
      */
     @Override
-    public boolean equals(Measurement<TemperatureUnit> other, double tolerance) {
+    public boolean equals(final Measurement<TemperatureUnit> other, final double tolerance) {
         if (super.equals(other, tolerance)) {
             return true;
         }

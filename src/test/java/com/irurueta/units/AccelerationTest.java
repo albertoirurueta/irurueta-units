@@ -54,6 +54,7 @@ public class AccelerationTest {
             fail("IllegalArgumentException expected but not thrown");
         } catch (final IllegalArgumentException ignore) {
         }
+        //noinspection ConstantConditions
         assertNull(a);
     }
 
@@ -598,7 +599,7 @@ public class AccelerationTest {
         final Acceleration a1 = new Acceleration(value1,
                 AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
-        a1.subtract(new BigDecimal(value2), AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        a1.subtract(value2, AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
         // check
         assertEquals(a1.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
@@ -608,6 +609,23 @@ public class AccelerationTest {
 
     @Test
     public void testSubtract6() {
+        final Random r = new Random();
+        final double value1 = r.nextDouble();
+        final double value2 = r.nextDouble();
+
+        final Acceleration a1 = new Acceleration(value1,
+                AccelerationUnit.METERS_PER_SQUARED_SECOND);
+
+        a1.subtract(new BigDecimal(value2), AccelerationUnit.METERS_PER_SQUARED_SECOND);
+
+        // check
+        assertEquals(a1.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        assertEquals(a1.getValue().doubleValue(), value1 - value2,
+                ERROR);
+    }
+
+    @Test
+    public void testSubtract7() {
         final Random r = new Random();
         final double value1 = r.nextDouble();
         final double value2 = r.nextDouble();
@@ -629,7 +647,7 @@ public class AccelerationTest {
     }
 
     @Test
-    public void testSubtract7() {
+    public void testSubtract8() {
         final Random r = new Random();
         final double value1 = r.nextDouble();
         final double value2 = r.nextDouble();

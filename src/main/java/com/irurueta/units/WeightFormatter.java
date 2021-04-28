@@ -113,21 +113,9 @@ public class WeightFormatter extends MeasureFormatter<Weight, WeightUnit> implem
      * @return true if provided object is assumed to be equal to this instance.
      */
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         final boolean equals = super.equals(obj);
         return (obj instanceof WeightFormatter) && equals;
-    }
-
-    /**
-     * Hash code generated for this instance.
-     * Hash codes can be internally used by some collections to coarsely compare objects.
-     * This implementation only calls parent implementation to avoid static analyzer warning.
-     *
-     * @return hash code.
-     */
-    @Override
-    public int hashCode() {
-        return super.hashCode();
     }
 
     /**
@@ -139,7 +127,7 @@ public class WeightFormatter extends MeasureFormatter<Weight, WeightUnit> implem
      * cannot be determined.
      */
     @Override
-    public UnitSystem getUnitSystem(String source) {
+    public UnitSystem getUnitSystem(final String source) {
         final WeightUnit unit = findUnit(source);
         return unit != null ? WeightUnit.getUnitSystem(unit) : null;
     }
@@ -153,7 +141,7 @@ public class WeightFormatter extends MeasureFormatter<Weight, WeightUnit> implem
      * @throws UnknownUnitException if unit cannot be determined.
      */
     @Override
-    public Weight parse(String source) throws ParseException, UnknownUnitException {
+    public Weight parse(final String source) throws ParseException, UnknownUnitException {
         return internalParse(source, new Weight());
     }
 
@@ -165,7 +153,7 @@ public class WeightFormatter extends MeasureFormatter<Weight, WeightUnit> implem
      * @return a weight unit, or null if none can be determined.
      */
     @Override
-    public WeightUnit findUnit(String source) {
+    public WeightUnit findUnit(final String source) {
         if (source.contains(PICOGRAM + " ") || source.endsWith(PICOGRAM)) {
             return WeightUnit.PICOGRAM;
         }
@@ -350,7 +338,7 @@ public class WeightFormatter extends MeasureFormatter<Weight, WeightUnit> implem
      * @return its string representation.
      */
     @Override
-    public String getUnitSymbol(WeightUnit unit) {
+    public String getUnitSymbol(final WeightUnit unit) {
         switch (unit) {
             case PICOGRAM:
                 return PICOGRAM;

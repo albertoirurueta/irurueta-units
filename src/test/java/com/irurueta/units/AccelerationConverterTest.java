@@ -108,6 +108,23 @@ public class AccelerationConverterTest {
     @Test
     public void testConvertAcceleration() {
         final double value = new Random().nextDouble();
+        final Acceleration acceleration = new Acceleration(value,
+                AccelerationUnit.METERS_PER_SQUARED_SECOND);
+
+        AccelerationConverter.convert(acceleration,
+                AccelerationUnit.FEET_PER_SQUARED_SECOND);
+
+        // check
+        assertEquals(acceleration.getUnit(),
+                AccelerationUnit.FEET_PER_SQUARED_SECOND);
+        assertEquals(acceleration.getValue().doubleValue(),
+                AccelerationConverter.convert(value, AccelerationUnit.METERS_PER_SQUARED_SECOND,
+                        AccelerationUnit.FEET_PER_SQUARED_SECOND), 0.0);
+    }
+
+    @Test
+    public void testConvertAcceleration2() {
+        final double value = new Random().nextDouble();
         final Acceleration inputAcceleration = new Acceleration(value,
                 AccelerationUnit.METERS_PER_SQUARED_SECOND);
 

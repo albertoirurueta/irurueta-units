@@ -25,7 +25,6 @@ import java.text.ParseException;
 import java.util.Locale;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertNull;
 
 public class VolumeFormatterTest {
 
@@ -86,6 +85,7 @@ public class VolumeFormatterTest {
             fail("IllegalArgumentException expected but not thrown");
         } catch (final IllegalArgumentException ignore) {
         }
+        //noinspection ConstantConditions
         assertNull(formatter);
 
 
@@ -1352,7 +1352,7 @@ public class VolumeFormatterTest {
     }
 
     @Test
-    public void testGetUnitSymvol() {
+    public void testGetUnitSymbol() {
         final VolumeFormatter formatter = new VolumeFormatter();
 
         assertEquals(formatter.getUnitSymbol(VolumeUnit.CUBIC_CENTIMETER),

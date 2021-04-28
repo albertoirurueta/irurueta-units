@@ -24,7 +24,7 @@ import java.util.Locale;
 public class VolumeFormatter extends MeasureFormatter<Volume, VolumeUnit> implements Cloneable {
 
     /**
-     * Cubic centimeeter symbol.
+     * Cubic centimeter symbol.
      */
     public static final String CUBIC_CENTIMETER = "cm³";
 
@@ -113,21 +113,9 @@ public class VolumeFormatter extends MeasureFormatter<Volume, VolumeUnit> implem
      * @return true if provided object is assumed to be equal to this instance.
      */
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         final boolean equals = super.equals(obj);
         return (obj instanceof VolumeFormatter) && equals;
-    }
-
-    /**
-     * Hash code generated for this instance.
-     * Hash codes can be internally used by some collections to coarsely compare objects.
-     * This implementation only calls parent implementation to avoid static analyzer warning.
-     *
-     * @return hash code.
-     */
-    @Override
-    public int hashCode() {
-        return super.hashCode();
     }
 
     /**
@@ -138,7 +126,7 @@ public class VolumeFormatter extends MeasureFormatter<Volume, VolumeUnit> implem
      * @return a unit system (either metric or imperial) or null if unit cannot be determined.
      */
     @Override
-    public UnitSystem getUnitSystem(String source) {
+    public UnitSystem getUnitSystem(final String source) {
         final VolumeUnit unit = findUnit(source);
         return unit != null ? VolumeUnit.getUnitSystem(unit) : null;
     }
@@ -152,7 +140,7 @@ public class VolumeFormatter extends MeasureFormatter<Volume, VolumeUnit> implem
      * @throws UnknownUnitException if unit cannot be determined.
      */
     @Override
-    public Volume parse(String source) throws ParseException, UnknownUnitException {
+    public Volume parse(final String source) throws ParseException, UnknownUnitException {
         return internalParse(source, new Volume());
     }
 
@@ -163,7 +151,7 @@ public class VolumeFormatter extends MeasureFormatter<Volume, VolumeUnit> implem
      * @return a volume unit, or null if none can be determined.
      */
     @Override
-    public VolumeUnit findUnit(String source) {
+    public VolumeUnit findUnit(final String source) {
         if (source.contains(CUBIC_CENTIMETER + " ") || source.endsWith(CUBIC_CENTIMETER)) {
             return VolumeUnit.CUBIC_CENTIMETER;
         }
@@ -204,7 +192,7 @@ public class VolumeFormatter extends MeasureFormatter<Volume, VolumeUnit> implem
     /**
      * Formats and converts provided volume value and unit using provided unit system.
      * If provided value is too large for provided unit, this method will convert it
-     * to a more approriate unit using provided unit system (either metric or imperial).
+     * to a more appropriate unit using provided unit system (either metric or imperial).
      *
      * @param value  a volume value.
      * @param unit   a volume unit.
@@ -212,7 +200,8 @@ public class VolumeFormatter extends MeasureFormatter<Volume, VolumeUnit> implem
      * @return a string representation of volume value and unit.
      */
     @Override
-    public String formatAndConvert(Number value, VolumeUnit unit, UnitSystem system) {
+    public String formatAndConvert(final Number value, final VolumeUnit unit,
+                                   final UnitSystem system) {
         switch (system) {
             case IMPERIAL:
                 return formatAndConvertImperial(value, unit);
@@ -304,8 +293,9 @@ public class VolumeFormatter extends MeasureFormatter<Volume, VolumeUnit> implem
      * @param unit a volume unit.
      * @return its string representation.
      */
+    @SuppressWarnings("DuplicatedCode")
     @Override
-    public String getUnitSymbol(VolumeUnit unit) {
+    public String getUnitSymbol(final VolumeUnit unit) {
         switch (unit) {
             case CUBIC_CENTIMETER:
                 return CUBIC_CENTIMETER;

@@ -87,6 +87,7 @@ public class AngleFormatterTest {
             fail("IllegalArgumentException expected but not thrown");
         } catch (final IllegalArgumentException ignore) {
         }
+        //noinspection ConstantConditions
         assertNull(formatter);
 
 
@@ -116,7 +117,7 @@ public class AngleFormatterTest {
 
         formatter = null;
         try {
-            // noinspection ConstantConditions
+            //noinspection ConstantConditions
             formatter = new AngleFormatter((AngleFormatter) null);
             fail("NullPointerException expected but not thrown");
         } catch (final NullPointerException ignore) {

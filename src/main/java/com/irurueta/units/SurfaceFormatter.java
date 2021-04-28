@@ -21,7 +21,6 @@ import java.util.Locale;
 /**
  * Formats and parses surface value and unit.
  */
-@SuppressWarnings({"WeakerAccess", "Duplicates"})
 public class SurfaceFormatter extends MeasureFormatter<Surface, SurfaceUnit> {
     /**
      * Square millimeter symbol.
@@ -128,18 +127,6 @@ public class SurfaceFormatter extends MeasureFormatter<Surface, SurfaceUnit> {
     public boolean equals(final Object obj) {
         final boolean equals = super.equals(obj);
         return (obj instanceof SurfaceFormatter) && equals;
-    }
-
-    /**
-     * Hash code generated for this instance.
-     * Hash codes can be internally used by some collections to coarsely compare objects.
-     * This implementation only calls parent implementation to avoid static analyzer warning.
-     *
-     * @return hash code.
-     */
-    @Override
-    public int hashCode() {
-        return super.hashCode();
     }
 
     /**
@@ -374,7 +361,7 @@ public class SurfaceFormatter extends MeasureFormatter<Surface, SurfaceUnit> {
      * @throws CloneNotSupportedException if clone fails for any reason.
      */
     @Override
-    protected Object clone() throws CloneNotSupportedException{
+    protected Object clone() throws CloneNotSupportedException {
         final SurfaceFormatter copy = (SurfaceFormatter) super.clone();
         return internalClone(copy);
     }

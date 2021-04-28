@@ -19,7 +19,7 @@ import java.math.BigDecimal;
 
 /**
  * Does magnetic flux density conversions to different units.
- * To prevent loss of acuracy, conversion should only be done as a final step
+ * To prevent loss of accuracy, conversion should only be done as a final step
  * before displaying magnetic flux density measurements.
  */
 public class MagneticFluxDensityConverter {
@@ -58,7 +58,7 @@ public class MagneticFluxDensityConverter {
      * Constructor.
      * Prevents instantiation of helper class.
      */
-    MagneticFluxDensityConverter() {
+    private MagneticFluxDensityConverter() {
     }
 
     /**

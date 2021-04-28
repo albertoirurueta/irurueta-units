@@ -17,6 +17,7 @@ package com.irurueta.units;
 
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
@@ -134,6 +135,542 @@ public class VolumeConverterTest {
                 inputValue / CUBIC_METER_PER_BARREL, ERROR);
         assertEquals(VolumeConverter.barrelToCubicMeter(inputValue),
                 inputValue * CUBIC_METER_PER_BARREL, ERROR);
+    }
+
+    @Test
+    public void testConvertVolume() {
+        final double inputValue = new Random().nextDouble();
+        final Volume inputVolume = new Volume(inputValue, VolumeUnit.CUBIC_CENTIMETER);
+        final Volume outputVolume = new Volume(0.0, VolumeUnit.MILLILITER);
+
+        VolumeConverter.convert(inputVolume, outputVolume);
+
+        // check
+        assertEquals(inputValue, inputVolume.getValue().doubleValue(), 0.0);
+        assertEquals(VolumeUnit.CUBIC_CENTIMETER, inputVolume.getUnit());
+
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_CENTIMETER, VolumeUnit.MILLILITER),
+                outputVolume.getValue().doubleValue(), 0.0);
+        assertEquals(VolumeUnit.MILLILITER, outputVolume.getUnit());
+    }
+
+    @Test
+    public void testConvertAndReturnVolume() {
+        final double inputValue = new Random().nextDouble();
+        final Volume inputVolume = new Volume(inputValue, VolumeUnit.CUBIC_CENTIMETER);
+
+        final Volume outputVolume = VolumeConverter.convertAndReturnNew(
+                inputVolume, VolumeUnit.MILLILITER);
+
+        // check
+        assertEquals(inputValue, inputVolume.getValue().doubleValue(), 0.0);
+        assertEquals(VolumeUnit.CUBIC_CENTIMETER, inputVolume.getUnit());
+
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_CENTIMETER, VolumeUnit.MILLILITER),
+                outputVolume.getValue().doubleValue(), 0.0);
+        assertEquals(VolumeUnit.MILLILITER, outputVolume.getUnit());
+    }
+
+    @Test
+    public void testConvertAndUpdateVolume() {
+        final double inputValue = new Random().nextDouble();
+        final Volume volume = new Volume(inputValue, VolumeUnit.CUBIC_CENTIMETER);
+
+        VolumeConverter.convert(volume, VolumeUnit.MILLILITER);
+
+        // check
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_CENTIMETER, VolumeUnit.MILLILITER),
+                volume.getValue().doubleValue(), 0.0);
+        assertEquals(VolumeUnit.MILLILITER, volume.getUnit());
+    }
+
+    @Test
+    public void testConvertAndReturnVolume2() {
+        final double inputValue = new Random().nextDouble();
+        final Volume inputVolume = new Volume(inputValue, VolumeUnit.CUBIC_CENTIMETER);
+        final Volume outputVolume = new Volume(0.0, VolumeUnit.HECTOLITER);
+
+        VolumeConverter.convert(inputVolume, VolumeUnit.MILLILITER, outputVolume);
+
+        // check
+        assertEquals(inputValue, inputVolume.getValue().doubleValue(), 0.0);
+        assertEquals(VolumeUnit.CUBIC_CENTIMETER, inputVolume.getUnit());
+
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_CENTIMETER, VolumeUnit.MILLILITER),
+                outputVolume.getValue().doubleValue(), 0.0);
+        assertEquals(VolumeUnit.MILLILITER, outputVolume.getUnit());
+    }
+
+    @Test
+    public void testConvertNumber() {
+        final double value = new Random().nextDouble();
+        final BigDecimal inputValue = new BigDecimal(value);
+
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_CENTIMETER, VolumeUnit.CUBIC_CENTIMETER)
+                .doubleValue(), value, ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_CENTIMETER, VolumeUnit.MILLILITER).doubleValue(),
+                VolumeConverter.cubicMeterToMilliliter(
+                        VolumeConverter.cubicCentimeterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_CENTIMETER, VolumeUnit.CUBIC_DECIMETER).doubleValue(),
+                VolumeConverter.cubicMeterToCubicDecimeter(
+                        VolumeConverter.cubicCentimeterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_CENTIMETER, VolumeUnit.LITER).doubleValue(),
+                VolumeConverter.cubicMeterToLiter(
+                        VolumeConverter.cubicCentimeterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_CENTIMETER, VolumeUnit.HECTOLITER).doubleValue(),
+                VolumeConverter.cubicMeterToHectoliter(
+                        VolumeConverter.cubicCentimeterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_CENTIMETER, VolumeUnit.CUBIC_METER).doubleValue(),
+                VolumeConverter.cubicCentimeterToCubicMeter(value), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_CENTIMETER, VolumeUnit.CUBIC_INCH).doubleValue(),
+                VolumeConverter.cubicMeterToCubicInch(
+                        VolumeConverter.cubicCentimeterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_CENTIMETER, VolumeUnit.PINT).doubleValue(),
+                VolumeConverter.cubicMeterToPint(
+                        VolumeConverter.cubicCentimeterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_CENTIMETER, VolumeUnit.GALLON).doubleValue(),
+                VolumeConverter.cubicMeterToGallon(
+                        VolumeConverter.cubicCentimeterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_CENTIMETER, VolumeUnit.CUBIC_FOOT).doubleValue(),
+                VolumeConverter.cubicMeterToCubicFoot(
+                        VolumeConverter.cubicCentimeterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_CENTIMETER, VolumeUnit.BARREL).doubleValue(),
+                VolumeConverter.cubicMeterToBarrel(
+                        VolumeConverter.cubicCentimeterToCubicMeter(value)), ERROR);
+
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.MILLILITER, VolumeUnit.CUBIC_CENTIMETER).doubleValue(),
+                VolumeConverter.cubicMeterToCubicCentimeter(
+                        VolumeConverter.milliliterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.MILLILITER, VolumeUnit.MILLILITER).doubleValue(),
+                value, ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.MILLILITER, VolumeUnit.CUBIC_DECIMETER).doubleValue(),
+                VolumeConverter.cubicMeterToCubicDecimeter(
+                        VolumeConverter.milliliterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.MILLILITER, VolumeUnit.LITER).doubleValue(),
+                VolumeConverter.cubicMeterToLiter(
+                        VolumeConverter.milliliterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.MILLILITER, VolumeUnit.HECTOLITER).doubleValue(),
+                VolumeConverter.cubicMeterToHectoliter(
+                        VolumeConverter.milliliterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.MILLILITER, VolumeUnit.CUBIC_METER).doubleValue(),
+                VolumeConverter.milliliterToCubicMeter(value), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.MILLILITER, VolumeUnit.CUBIC_INCH).doubleValue(),
+                VolumeConverter.cubicMeterToCubicInch(
+                        VolumeConverter.milliliterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.MILLILITER, VolumeUnit.PINT).doubleValue(),
+                VolumeConverter.cubicMeterToPint(
+                        VolumeConverter.milliliterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.MILLILITER, VolumeUnit.GALLON).doubleValue(),
+                VolumeConverter.cubicMeterToGallon(
+                        VolumeConverter.milliliterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.MILLILITER, VolumeUnit.CUBIC_FOOT).doubleValue(),
+                VolumeConverter.cubicMeterToCubicFoot(
+                        VolumeConverter.milliliterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.MILLILITER, VolumeUnit.BARREL).doubleValue(),
+                VolumeConverter.cubicMeterToBarrel(
+                        VolumeConverter.milliliterToCubicMeter(value)), ERROR);
+
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_DECIMETER, VolumeUnit.CUBIC_CENTIMETER)
+                        .doubleValue(),
+                VolumeConverter.cubicMeterToCubicCentimeter(
+                        VolumeConverter.cubicDecimeterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_DECIMETER, VolumeUnit.MILLILITER).doubleValue(),
+                VolumeConverter.cubicMeterToMilliliter(
+                        VolumeConverter.cubicDecimeterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_DECIMETER, VolumeUnit.CUBIC_DECIMETER)
+                .doubleValue(), value, ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_DECIMETER, VolumeUnit.LITER).doubleValue(),
+                VolumeConverter.cubicMeterToLiter(
+                        VolumeConverter.cubicDecimeterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_DECIMETER, VolumeUnit.HECTOLITER).doubleValue(),
+                VolumeConverter.cubicMeterToHectoliter(
+                        VolumeConverter.cubicDecimeterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_DECIMETER, VolumeUnit.CUBIC_METER).doubleValue(),
+                VolumeConverter.cubicDecimeterToCubicMeter(value), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_DECIMETER, VolumeUnit.CUBIC_INCH).doubleValue(),
+                VolumeConverter.cubicMeterToCubicInch(
+                        VolumeConverter.cubicDecimeterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_DECIMETER, VolumeUnit.PINT).doubleValue(),
+                VolumeConverter.cubicMeterToPint(
+                        VolumeConverter.cubicDecimeterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_DECIMETER, VolumeUnit.GALLON).doubleValue(),
+                VolumeConverter.cubicMeterToGallon(
+                        VolumeConverter.cubicDecimeterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_DECIMETER, VolumeUnit.CUBIC_FOOT).doubleValue(),
+                VolumeConverter.cubicMeterToCubicFoot(
+                        VolumeConverter.cubicDecimeterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_DECIMETER, VolumeUnit.BARREL).doubleValue(),
+                VolumeConverter.cubicMeterToBarrel(
+                        VolumeConverter.cubicDecimeterToCubicMeter(value)), ERROR);
+
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.LITER, VolumeUnit.CUBIC_CENTIMETER).doubleValue(),
+                VolumeConverter.cubicMeterToCubicCentimeter(
+                        VolumeConverter.literToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.LITER, VolumeUnit.MILLILITER).doubleValue(),
+                VolumeConverter.cubicMeterToMilliliter(
+                        VolumeConverter.literToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.LITER, VolumeUnit.CUBIC_DECIMETER).doubleValue(),
+                VolumeConverter.cubicMeterToCubicDecimeter(
+                        VolumeConverter.literToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.LITER, VolumeUnit.LITER).doubleValue(), value, ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.LITER, VolumeUnit.HECTOLITER).doubleValue(),
+                VolumeConverter.cubicMeterToHectoliter(
+                        VolumeConverter.literToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.LITER, VolumeUnit.CUBIC_METER).doubleValue(),
+                VolumeConverter.literToCubicMeter(value), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.LITER, VolumeUnit.CUBIC_INCH).doubleValue(),
+                VolumeConverter.cubicMeterToCubicInch(
+                        VolumeConverter.literToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.LITER, VolumeUnit.PINT).doubleValue(),
+                VolumeConverter.cubicMeterToPint(
+                        VolumeConverter.literToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.LITER, VolumeUnit.GALLON).doubleValue(),
+                VolumeConverter.cubicMeterToGallon(
+                        VolumeConverter.literToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.LITER, VolumeUnit.CUBIC_FOOT).doubleValue(),
+                VolumeConverter.cubicMeterToCubicFoot(
+                        VolumeConverter.literToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.LITER, VolumeUnit.BARREL).doubleValue(),
+                VolumeConverter.cubicMeterToBarrel(
+                        VolumeConverter.literToCubicMeter(value)), ERROR);
+
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.HECTOLITER, VolumeUnit.CUBIC_CENTIMETER).doubleValue(),
+                VolumeConverter.cubicMeterToCubicCentimeter(
+                        VolumeConverter.hectoliterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.HECTOLITER, VolumeUnit.MILLILITER).doubleValue(),
+                VolumeConverter.cubicMeterToMilliliter(
+                        VolumeConverter.hectoliterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.HECTOLITER, VolumeUnit.CUBIC_DECIMETER).doubleValue(),
+                VolumeConverter.cubicMeterToCubicDecimeter(
+                        VolumeConverter.hectoliterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.HECTOLITER, VolumeUnit.LITER).doubleValue(),
+                VolumeConverter.cubicMeterToLiter(
+                        VolumeConverter.hectoliterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.HECTOLITER, VolumeUnit.HECTOLITER).doubleValue(),
+                value, ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.HECTOLITER, VolumeUnit.CUBIC_METER).doubleValue(),
+                VolumeConverter.hectoliterToCubicMeter(value), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.HECTOLITER, VolumeUnit.CUBIC_INCH).doubleValue(),
+                VolumeConverter.cubicMeterToCubicInch(
+                        VolumeConverter.hectoliterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.HECTOLITER, VolumeUnit.PINT).doubleValue(),
+                VolumeConverter.cubicMeterToPint(
+                        VolumeConverter.hectoliterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.HECTOLITER, VolumeUnit.GALLON).doubleValue(),
+                VolumeConverter.cubicMeterToGallon(
+                        VolumeConverter.hectoliterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.HECTOLITER, VolumeUnit.CUBIC_FOOT).doubleValue(),
+                VolumeConverter.cubicMeterToCubicFoot(
+                        VolumeConverter.hectoliterToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.HECTOLITER, VolumeUnit.BARREL).doubleValue(),
+                VolumeConverter.cubicMeterToBarrel(
+                        VolumeConverter.hectoliterToCubicMeter(value)), ERROR);
+
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_METER, VolumeUnit.CUBIC_CENTIMETER).doubleValue(),
+                VolumeConverter.cubicMeterToCubicCentimeter(value), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_METER, VolumeUnit.MILLILITER).doubleValue(),
+                VolumeConverter.cubicMeterToMilliliter(value), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_METER, VolumeUnit.CUBIC_DECIMETER).doubleValue(),
+                VolumeConverter.cubicMeterToCubicDecimeter(value), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_METER, VolumeUnit.LITER).doubleValue(),
+                VolumeConverter.cubicMeterToLiter(value), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_METER, VolumeUnit.HECTOLITER).doubleValue(),
+                VolumeConverter.cubicMeterToHectoliter(value), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_METER, VolumeUnit.CUBIC_METER).doubleValue(),
+                value, ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_METER, VolumeUnit.CUBIC_INCH).doubleValue(),
+                VolumeConverter.cubicMeterToCubicInch(value), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_METER, VolumeUnit.PINT).doubleValue(),
+                VolumeConverter.cubicMeterToPint(value), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_METER, VolumeUnit.GALLON).doubleValue(),
+                VolumeConverter.cubicMeterToGallon(value), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_METER, VolumeUnit.CUBIC_FOOT).doubleValue(),
+                VolumeConverter.cubicMeterToCubicFoot(value), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_METER, VolumeUnit.BARREL).doubleValue(),
+                VolumeConverter.cubicMeterToBarrel(value), ERROR);
+
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_INCH, VolumeUnit.CUBIC_CENTIMETER).doubleValue(),
+                VolumeConverter.cubicMeterToCubicCentimeter(
+                        VolumeConverter.cubicInchToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_INCH, VolumeUnit.MILLILITER).doubleValue(),
+                VolumeConverter.cubicMeterToMilliliter(
+                        VolumeConverter.cubicInchToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_INCH, VolumeUnit.CUBIC_DECIMETER).doubleValue(),
+                VolumeConverter.cubicMeterToCubicDecimeter(
+                        VolumeConverter.cubicInchToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_INCH, VolumeUnit.LITER).doubleValue(),
+                VolumeConverter.cubicMeterToLiter(
+                        VolumeConverter.cubicInchToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_INCH, VolumeUnit.HECTOLITER).doubleValue(),
+                VolumeConverter.cubicMeterToHectoliter(
+                        VolumeConverter.cubicInchToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_INCH, VolumeUnit.CUBIC_METER).doubleValue(),
+                VolumeConverter.cubicInchToCubicMeter(value), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_INCH, VolumeUnit.CUBIC_INCH).doubleValue(),
+                value, ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_INCH, VolumeUnit.PINT).doubleValue(),
+                VolumeConverter.cubicMeterToPint(
+                        VolumeConverter.cubicInchToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_INCH, VolumeUnit.GALLON).doubleValue(),
+                VolumeConverter.cubicMeterToGallon(
+                        VolumeConverter.cubicInchToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_INCH, VolumeUnit.CUBIC_FOOT).doubleValue(),
+                VolumeConverter.cubicMeterToCubicFoot(
+                        VolumeConverter.cubicInchToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_INCH, VolumeUnit.BARREL).doubleValue(),
+                VolumeConverter.cubicMeterToBarrel(
+                        VolumeConverter.cubicInchToCubicMeter(value)), ERROR);
+
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.PINT, VolumeUnit.CUBIC_CENTIMETER).doubleValue(),
+                VolumeConverter.cubicMeterToCubicCentimeter(
+                        VolumeConverter.pintToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.PINT, VolumeUnit.MILLILITER).doubleValue(),
+                VolumeConverter.cubicMeterToMilliliter(
+                        VolumeConverter.pintToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.PINT, VolumeUnit.CUBIC_DECIMETER).doubleValue(),
+                VolumeConverter.cubicMeterToCubicDecimeter(
+                        VolumeConverter.pintToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.PINT, VolumeUnit.LITER).doubleValue(),
+                VolumeConverter.cubicMeterToLiter(
+                        VolumeConverter.pintToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.PINT, VolumeUnit.HECTOLITER).doubleValue(),
+                VolumeConverter.cubicMeterToHectoliter(
+                        VolumeConverter.pintToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.PINT, VolumeUnit.CUBIC_METER).doubleValue(),
+                VolumeConverter.pintToCubicMeter(value), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.PINT, VolumeUnit.CUBIC_INCH).doubleValue(),
+                VolumeConverter.cubicMeterToCubicInch(
+                        VolumeConverter.pintToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.PINT, VolumeUnit.PINT).doubleValue(), value, ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.PINT, VolumeUnit.GALLON).doubleValue(),
+                VolumeConverter.cubicMeterToGallon(
+                        VolumeConverter.pintToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.PINT, VolumeUnit.CUBIC_FOOT).doubleValue(),
+                VolumeConverter.cubicMeterToCubicFoot(
+                        VolumeConverter.pintToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.PINT, VolumeUnit.BARREL).doubleValue(),
+                VolumeConverter.cubicMeterToBarrel(
+                        VolumeConverter.pintToCubicMeter(value)), ERROR);
+
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.GALLON, VolumeUnit.CUBIC_CENTIMETER).doubleValue(),
+                VolumeConverter.cubicMeterToCubicCentimeter(
+                        VolumeConverter.gallonToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.GALLON, VolumeUnit.MILLILITER).doubleValue(),
+                VolumeConverter.cubicMeterToMilliliter(
+                        VolumeConverter.gallonToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.GALLON, VolumeUnit.CUBIC_DECIMETER).doubleValue(),
+                VolumeConverter.cubicMeterToCubicDecimeter(
+                        VolumeConverter.gallonToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.GALLON, VolumeUnit.LITER).doubleValue(),
+                VolumeConverter.cubicMeterToLiter(
+                        VolumeConverter.gallonToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.GALLON, VolumeUnit.HECTOLITER).doubleValue(),
+                VolumeConverter.cubicMeterToHectoliter(
+                        VolumeConverter.gallonToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.GALLON, VolumeUnit.CUBIC_METER).doubleValue(),
+                VolumeConverter.gallonToCubicMeter(value), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.GALLON, VolumeUnit.CUBIC_INCH).doubleValue(),
+                VolumeConverter.cubicMeterToCubicInch(
+                        VolumeConverter.gallonToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.GALLON, VolumeUnit.PINT).doubleValue(),
+                VolumeConverter.cubicMeterToPint(
+                        VolumeConverter.gallonToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.GALLON, VolumeUnit.GALLON).doubleValue(), value, ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.GALLON, VolumeUnit.CUBIC_FOOT).doubleValue(),
+                VolumeConverter.cubicMeterToCubicFoot(
+                        VolumeConverter.gallonToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.GALLON, VolumeUnit.BARREL).doubleValue(),
+                VolumeConverter.cubicMeterToBarrel(
+                        VolumeConverter.gallonToCubicMeter(value)), ERROR);
+
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_FOOT, VolumeUnit.CUBIC_CENTIMETER).doubleValue(),
+                VolumeConverter.cubicMeterToCubicCentimeter(
+                        VolumeConverter.cubicFootToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_FOOT, VolumeUnit.MILLILITER).doubleValue(),
+                VolumeConverter.cubicMeterToMilliliter(
+                        VolumeConverter.cubicFootToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_FOOT, VolumeUnit.CUBIC_DECIMETER).doubleValue(),
+                VolumeConverter.cubicMeterToCubicDecimeter(
+                        VolumeConverter.cubicFootToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_FOOT, VolumeUnit.LITER).doubleValue(),
+                VolumeConverter.cubicMeterToLiter(
+                        VolumeConverter.cubicFootToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_FOOT, VolumeUnit.HECTOLITER).doubleValue(),
+                VolumeConverter.cubicMeterToHectoliter(
+                        VolumeConverter.cubicFootToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_FOOT, VolumeUnit.CUBIC_METER).doubleValue(),
+                VolumeConverter.cubicFootToCubicMeter(value), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_FOOT, VolumeUnit.CUBIC_INCH).doubleValue(),
+                VolumeConverter.cubicMeterToCubicInch(
+                        VolumeConverter.cubicFootToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_FOOT, VolumeUnit.PINT).doubleValue(),
+                VolumeConverter.cubicMeterToPint(
+                        VolumeConverter.cubicFootToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_FOOT, VolumeUnit.GALLON).doubleValue(),
+                VolumeConverter.cubicMeterToGallon(
+                        VolumeConverter.cubicFootToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_FOOT, VolumeUnit.CUBIC_FOOT).doubleValue(),
+                value, ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.CUBIC_FOOT, VolumeUnit.BARREL).doubleValue(),
+                VolumeConverter.cubicMeterToBarrel(
+                        VolumeConverter.cubicFootToCubicMeter(value)), ERROR);
+
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.BARREL, VolumeUnit.CUBIC_CENTIMETER).doubleValue(),
+                VolumeConverter.cubicMeterToCubicCentimeter(
+                        VolumeConverter.barrelToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.BARREL, VolumeUnit.MILLILITER).doubleValue(),
+                VolumeConverter.cubicMeterToMilliliter(
+                        VolumeConverter.barrelToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.BARREL, VolumeUnit.CUBIC_DECIMETER).doubleValue(),
+                VolumeConverter.cubicMeterToCubicDecimeter(
+                        VolumeConverter.barrelToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.BARREL, VolumeUnit.LITER).doubleValue(),
+                VolumeConverter.cubicMeterToLiter(
+                        VolumeConverter.barrelToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.BARREL, VolumeUnit.HECTOLITER).doubleValue(),
+                VolumeConverter.cubicMeterToHectoliter(
+                        VolumeConverter.barrelToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.BARREL, VolumeUnit.CUBIC_METER).doubleValue(),
+                VolumeConverter.barrelToCubicMeter(value), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.BARREL, VolumeUnit.CUBIC_INCH).doubleValue(),
+                VolumeConverter.cubicMeterToCubicInch(
+                        VolumeConverter.barrelToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.BARREL, VolumeUnit.PINT).doubleValue(),
+                VolumeConverter.cubicMeterToPint(
+                        VolumeConverter.barrelToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.BARREL, VolumeUnit.GALLON).doubleValue(),
+                VolumeConverter.cubicMeterToGallon(
+                        VolumeConverter.barrelToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.BARREL, VolumeUnit.CUBIC_FOOT).doubleValue(),
+                VolumeConverter.cubicMeterToCubicFoot(
+                        VolumeConverter.barrelToCubicMeter(value)), ERROR);
+        assertEquals(VolumeConverter.convert(inputValue,
+                VolumeUnit.BARREL, VolumeUnit.BARREL).doubleValue(),
+                value, ERROR);
     }
 
     @Test

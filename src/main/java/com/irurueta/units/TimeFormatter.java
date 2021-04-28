@@ -306,7 +306,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
     private Pattern mHourMinutePattern;
 
     /**
-     * Patern to parse time in hour, minute and second format (hh:mm:ss.ms).
+     * Pattern to parse time in hour, minute and second format (hh:mm:ss.ms).
      */
     private Pattern mHourMinuteSecondPattern;
 
@@ -438,18 +438,6 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
     }
 
     /**
-     * Hash code generated for this instance.
-     * Hash codes can be internally used by some collections to coarsely compare objects.
-     * This implementation only calls parent implementation to avoid static analyzer warning.
-     *
-     * @return hash code.
-     */
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-    /**
      * Gets unit system for detected unit into provided string representation
      * of a measurement.
      *
@@ -539,7 +527,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
      * If provided value is too large for provided unit, this method will
      * convert it to a more appropriate unit.
      *
-     * @param value  a measurment value.
+     * @param value  a measurement value.
      * @param unit   a measurement unit.
      * @param system it is ignored.
      * @return a string representation of measurement value and unit.
@@ -894,7 +882,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
      * Flags can be provided as bitwise combinations of FORMAT constants.
      * Only non zero units will be included.
      *
-     * @param time  time to be formattd.
+     * @param time  time to be formatted.
      * @param flags flags indicating units to include.
      * @return formatted time.
      */
@@ -925,7 +913,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
                     FORMAT_HOURS | FORMAT_MINUTES | FORMAT_SECONDS |
                     FORMAT_MILLISECONDS | FORMAT_MICROSECONDS |
                     FORMAT_NANOSECONDS)) != 0) {
-                //hay unidades más pequeñas
+                // there are smaller units
                 centuries = Math.floor(exactCenturies);
             } else {
                 centuries = exactCenturies;
@@ -945,7 +933,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
                     FORMAT_HOURS | FORMAT_MINUTES | FORMAT_SECONDS |
                     FORMAT_MILLISECONDS | FORMAT_MICROSECONDS |
                     FORMAT_NANOSECONDS)) != 0) {
-                //hay unidades más pequeñas
+                // there are smaller units
                 years = Math.floor(exactYears);
             } else {
                 years = exactYears;
@@ -964,7 +952,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
             if ((flags & (FORMAT_WEEKS | FORMAT_DAYS | FORMAT_HOURS |
                     FORMAT_MINUTES | FORMAT_SECONDS | FORMAT_MILLISECONDS |
                     FORMAT_MICROSECONDS | FORMAT_NANOSECONDS)) != 0) {
-                //hay unidades más pequeñas
+                // there are smaller units
                 months = Math.floor(exactMonths);
             } else {
                 months = exactMonths;
@@ -983,7 +971,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
             if ((flags & (FORMAT_DAYS | FORMAT_HOURS | FORMAT_MINUTES |
                     FORMAT_SECONDS | FORMAT_MILLISECONDS | FORMAT_MICROSECONDS |
                     FORMAT_NANOSECONDS)) != 0) {
-                //hay unidades más pequeñas
+                // there are smaller units
                 weeks = Math.floor(exactWeeks);
             } else {
                 weeks = exactWeeks;
@@ -1002,7 +990,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
             if ((flags & (FORMAT_HOURS | FORMAT_MINUTES | FORMAT_SECONDS |
                     FORMAT_MILLISECONDS | FORMAT_MICROSECONDS |
                     FORMAT_NANOSECONDS)) != 0) {
-                //hay unidades más pequeñas
+                // there are smaller units
                 days = Math.floor(exactDays);
             } else {
                 days = exactDays;
@@ -1020,7 +1008,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
         if ((flags & FORMAT_HOURS) != 0) {
             if ((flags & (FORMAT_MINUTES | FORMAT_SECONDS | FORMAT_MILLISECONDS |
                     FORMAT_MICROSECONDS | FORMAT_NANOSECONDS)) != 0) {
-                //hay unidades más pequeñas
+                // there are smaller units
                 hours = Math.floor(exactHours);
             } else {
                 hours = exactHours;
@@ -1038,7 +1026,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
         if ((flags & FORMAT_MINUTES) != 0) {
             if ((flags & (FORMAT_SECONDS | FORMAT_MILLISECONDS |
                     FORMAT_MICROSECONDS | FORMAT_NANOSECONDS)) != 0) {
-                //hay unidades más pequeñas
+                // there are smaller units
                 minutes = Math.floor(exactMinutes);
             } else {
                 minutes = exactMinutes;
@@ -1056,7 +1044,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
         if ((flags & FORMAT_SECONDS) != 0) {
             if ((flags & (FORMAT_MILLISECONDS | FORMAT_MICROSECONDS |
                     FORMAT_NANOSECONDS)) != 0) {
-                //hay unidades más pequeñas
+                // there are smaller units
                 seconds = Math.floor(exactSeconds);
             } else {
                 seconds = exactSeconds;
@@ -1073,7 +1061,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
         double diffMilliseconds;
         if ((flags & FORMAT_MILLISECONDS) != 0) {
             if ((flags & (FORMAT_MICROSECONDS | FORMAT_NANOSECONDS)) != 0) {
-                //hay unidades más pequeñas
+                // there are smaller units
                 milliseconds = Math.floor(exactMilliseconds);
             } else {
                 milliseconds = exactMilliseconds;

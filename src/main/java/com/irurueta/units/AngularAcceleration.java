@@ -27,7 +27,7 @@ public class AngularAcceleration extends Measurement<AngularAccelerationUnit> {
      * Constructor with value and unit.
      *
      * @param value angular acceleration value.
-     * @param unit  unit of angualr acceleration.
+     * @param unit  unit of angular acceleration.
      * @throws IllegalArgumentException if either value or unit is null.
      */
     public AngularAcceleration(
@@ -199,7 +199,7 @@ public class AngularAcceleration extends Measurement<AngularAccelerationUnit> {
     }
 
     /**
-     * Adds provided angular acceleration value and unit and updates current angulasr
+     * Adds provided angular acceleration value and unit and updates current angular
      * acceleration instance.
      *
      * @param value angular acceleration value to be added.
@@ -239,7 +239,7 @@ public class AngularAcceleration extends Measurement<AngularAccelerationUnit> {
      * @param value2     2nd argument value.
      * @param unit2      2nd argument unit.
      * @param resultUnit unit of result to be returned.
-     * @return resutl of subtraction.
+     * @return result of subtraction.
      */
     public static double subtract(
             final double value1, final AngularAccelerationUnit unit1,
@@ -254,7 +254,7 @@ public class AngularAcceleration extends Measurement<AngularAccelerationUnit> {
      * Subtracts two angular acceleration values and units and returns the result.
      *
      * @param value1     1st argument value.
-     * @param unit1      1st agument unit.
+     * @param unit1      1st argument unit.
      * @param value2     2nd argument value.
      * @param unit2      2nd argument unit.
      * @param resultUnit unit of result to be returned.

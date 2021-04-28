@@ -124,6 +124,7 @@ public class AngleConverter {
      * @param outputUnit output angle unit.
      * @return converted angle value.
      */
+    @SuppressWarnings("DuplicatedCode")
     public static double convert(
             final double input, final AngleUnit inputUnit,
             final AngleUnit outputUnit) {
@@ -415,7 +416,7 @@ public class AngleConverter {
      *
      * @param degrees    integer degrees.
      * @param minutes    integer minutes.
-     * @param seconds    deciaml seconds.
+     * @param seconds    decimal seconds.
      * @param resultUnit unit of returned value.
      * @return decimal degrees.
      * @throws IllegalArgumentException if minutes or seconds are negative.

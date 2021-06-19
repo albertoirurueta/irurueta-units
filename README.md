@@ -1,7 +1,7 @@
 # irurueta-units
 Library to manage different measurement units
 
-[![Build Status](https://travis-ci.org/albertoirurueta/irurueta-units.svg?branch=master)](https://travis-ci.org/albertoirurueta/irurueta-units)
+[![Build Status](https://travis-ci.com/albertoirurueta/irurueta-units.svg?branch=master)](https://travis-ci.com/albertoirurueta/irurueta-units)
 
 
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=albertoirurueta_irurueta-units&metric=bugs)](https://sonarcloud.io/dashboard?id=albertoirurueta_irurueta-units)

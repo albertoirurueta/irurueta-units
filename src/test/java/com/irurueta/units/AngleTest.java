@@ -17,6 +17,7 @@ package com.irurueta.units;
 
 import org.junit.*;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Random;
 
@@ -574,5 +575,17 @@ public class AngleTest {
         assertEquals(result.getUnit(), AngleUnit.RADIANS);
         assertEquals((value1 - value2) * Math.PI / 180.0,
                 result.getValue().doubleValue(), ERROR);
+    }
+
+    @Test
+    public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+        final double value = new Random().nextDouble();
+        final Angle a1 = new Angle(value, AngleUnit.DEGREES);
+
+        final byte[] bytes = SerializationHelper.serialize(a1);
+        final Angle a2 = SerializationHelper.deserialize(bytes);
+
+        assertEquals(a1, a2);
+        assertNotSame(a1, a2);
     }
 }

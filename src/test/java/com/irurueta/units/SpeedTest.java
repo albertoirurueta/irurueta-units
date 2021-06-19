@@ -17,6 +17,7 @@ package com.irurueta.units;
 
 import org.junit.*;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Random;
 
@@ -598,5 +599,17 @@ public class SpeedTest {
         assertEquals(SpeedConverter.convert(value1 - value2,
                 SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
                 result.getValue().doubleValue(), ERROR);
+    }
+
+    @Test
+    public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+        final double value = new Random().nextDouble();
+        final Speed s1 = new Speed(value, SpeedUnit.METERS_PER_SECOND);
+
+        final byte[] bytes = SerializationHelper.serialize(s1);
+        final Speed s2 = SerializationHelper.deserialize(bytes);
+
+        assertEquals(s1, s2);
+        assertNotSame(s1, s2);
     }
 }

@@ -17,6 +17,7 @@ package com.irurueta.units;
 
 import org.junit.Test;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Random;
 
@@ -572,5 +573,17 @@ public class TimeTest {
         assertEquals(result.getUnit(), TimeUnit.MILLISECOND);
         assertEquals((value1 - value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
+    }
+
+    @Test
+    public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+        final double value = new Random().nextDouble();
+        final Time t1 = new Time(value, TimeUnit.SECOND);
+
+        final byte[] bytes = SerializationHelper.serialize(t1);
+        final Time t2 = SerializationHelper.deserialize(bytes);
+
+        assertEquals(t1, t2);
+        assertNotSame(t1, t2);
     }
 }

@@ -17,6 +17,7 @@ package com.irurueta.units;
 
 import org.junit.*;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Random;
 
@@ -571,5 +572,17 @@ public class SurfaceTest {
         assertEquals(result.getUnit(), SurfaceUnit.HECTARE);
         assertEquals((value1 - value2) * 1e-4,
                 result.getValue().doubleValue(), ERROR);
+    }
+
+    @Test
+    public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+        final double value = new Random().nextDouble();
+        final Surface s1 = new Surface(value, SurfaceUnit.SQUARE_METER);
+
+        final byte[] bytes = SerializationHelper.serialize(s1);
+        final Surface s2 = SerializationHelper.deserialize(bytes);
+
+        assertEquals(s1, s2);
+        assertNotSame(s1, s2);
     }
 }

@@ -17,6 +17,7 @@ package com.irurueta.units;
 
 import org.junit.Test;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Random;
 
@@ -566,4 +567,15 @@ public class VolumeTest {
         assertEquals((value1 - value2) * 1000.0, result.getValue().doubleValue(), ERROR);
     }
 
+    @Test
+    public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+        final double value = new Random().nextDouble();
+        final Volume v1 = new Volume(value, VolumeUnit.LITER);
+
+        final byte[] bytes = SerializationHelper.serialize(v1);
+        final Volume v2 = SerializationHelper.deserialize(bytes);
+
+        assertEquals(v1, v2);
+        assertNotSame(v1, v2);
+    }
 }

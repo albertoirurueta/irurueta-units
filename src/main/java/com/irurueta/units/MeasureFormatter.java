@@ -22,6 +22,7 @@ import java.text.MessageFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
+import java.util.Objects;
 
 /**
  * Base class to format and parse a given measure using its value and unit.
@@ -119,14 +120,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      */
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 19 * hash + (mNumberFormat != null ?
-                mNumberFormat.hashCode() : 0);
-        hash = 19 * hash + (mFormat != null ? mFormat.hashCode() : 0);
-        hash = 19 * hash + (mLocale != null ? mLocale.hashCode() : 0);
-        hash = 19 * hash + (mValueAndUnitFormatPattern != null ?
-                mValueAndUnitFormatPattern.hashCode() : 0);
-        return hash;
+        return Objects.hash(mNumberFormat, mFormat, mLocale, mValueAndUnitFormatPattern);
     }
 
     /**

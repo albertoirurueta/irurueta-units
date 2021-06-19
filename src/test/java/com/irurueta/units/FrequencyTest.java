@@ -17,6 +17,7 @@ package com.irurueta.units;
 
 import org.junit.*;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Random;
 
@@ -575,5 +576,17 @@ public class FrequencyTest {
         assertEquals(result.getUnit(), FrequencyUnit.HERTZ);
         assertEquals((value1 - value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
+    }
+
+    @Test
+    public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+        final double value = new Random().nextDouble();
+        final Frequency f1 = new Frequency(value, FrequencyUnit.HERTZ);
+
+        final byte[] bytes = SerializationHelper.serialize(f1);
+        final Frequency f2 = SerializationHelper.deserialize(bytes);
+
+        assertEquals(f1, f2);
+        assertNotSame(f1, f2);
     }
 }

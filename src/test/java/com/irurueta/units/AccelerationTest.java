@@ -17,6 +17,7 @@ package com.irurueta.units;
 
 import org.junit.*;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Random;
 
@@ -674,5 +675,18 @@ public class AccelerationTest {
                 AccelerationUnit.METERS_PER_SQUARED_SECOND,
                 AccelerationUnit.FEET_PER_SQUARED_SECOND),
                 result.getValue().doubleValue(), ERROR);
+    }
+
+    @Test
+    public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+        final double value = new Random().nextDouble();
+        final Acceleration a1 = new Acceleration(value,
+                AccelerationUnit.METERS_PER_SQUARED_SECOND);
+
+        final byte[] bytes = SerializationHelper.serialize(a1);
+        final Acceleration a2 = SerializationHelper.deserialize(bytes);
+
+        assertEquals(a1, a2);
+        assertNotSame(a1, a2);
     }
 }

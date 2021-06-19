@@ -17,6 +17,7 @@ package com.irurueta.units;
 
 import org.junit.Test;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Random;
 
@@ -572,5 +573,17 @@ public class DistanceTest {
         assertEquals(result.getUnit(), DistanceUnit.CENTIMETER);
         assertEquals((value1 - value2) * 100.0,
                 result.getValue().doubleValue(), ERROR);
+    }
+
+    @Test
+    public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+        final double value = new Random().nextDouble();
+        final Distance d1 = new Distance(value, DistanceUnit.METER);
+
+        final byte[] bytes = SerializationHelper.serialize(d1);
+        final Distance d2 = SerializationHelper.deserialize(bytes);
+
+        assertEquals(d1, d2);
+        assertNotSame(d1, d2);
     }
 }

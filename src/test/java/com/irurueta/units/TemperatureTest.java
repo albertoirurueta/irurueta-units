@@ -17,6 +17,7 @@ package com.irurueta.units;
 
 import org.junit.Test;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Random;
 
@@ -791,5 +792,17 @@ public class TemperatureTest {
         // check
         assertEquals(result2.getUnit(), TemperatureUnit.KELVIN);
         assertEquals(expected, result2.getValue().doubleValue(), ERROR);
+    }
+
+    @Test
+    public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+        final double value = new Random().nextDouble();
+        final Temperature t1 = new Temperature(value, TemperatureUnit.CELSIUS);
+
+        final byte[] bytes = SerializationHelper.serialize(t1);
+        final Temperature t2 = SerializationHelper.deserialize(bytes);
+
+        assertEquals(t1, t2);
+        assertNotSame(t1, t2);
     }
 }

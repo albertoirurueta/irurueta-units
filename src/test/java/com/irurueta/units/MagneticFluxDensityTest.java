@@ -17,6 +17,7 @@ package com.irurueta.units;
 
 import org.junit.Test;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Random;
 
@@ -638,5 +639,18 @@ public class MagneticFluxDensityTest {
         assertEquals(result.getUnit(), MagneticFluxDensityUnit.TESLA);
         assertEquals((value1 - value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
+    }
+
+    @Test
+    public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+        final double value = new Random().nextDouble();
+        final MagneticFluxDensity b1 = new MagneticFluxDensity(value,
+                MagneticFluxDensityUnit.TESLA);
+
+        final byte[] bytes = SerializationHelper.serialize(b1);
+        final MagneticFluxDensity b2 = SerializationHelper.deserialize(bytes);
+
+        assertEquals(b1, b2);
+        assertNotSame(b1, b2);
     }
 }

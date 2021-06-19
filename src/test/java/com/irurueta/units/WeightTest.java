@@ -17,6 +17,7 @@ package com.irurueta.units;
 
 import org.junit.Test;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Random;
 
@@ -560,5 +561,17 @@ public class WeightTest {
 
         assertEquals(result.getUnit(), WeightUnit.MILLIGRAM);
         assertEquals((value1 - value2) * 1000.0, result.getValue().doubleValue(), ERROR);
+    }
+
+    @Test
+    public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+        final double value = new Random().nextDouble();
+        final Weight w1 = new Weight(value, WeightUnit.GRAM);
+
+        final byte[] bytes = SerializationHelper.serialize(w1);
+        final Weight w2 = SerializationHelper.deserialize(bytes);
+
+        assertEquals(w1, w2);
+        assertNotSame(w1, w2);
     }
 }

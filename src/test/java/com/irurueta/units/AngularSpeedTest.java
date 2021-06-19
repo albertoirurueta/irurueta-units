@@ -17,6 +17,7 @@ package com.irurueta.units;
 
 import org.junit.*;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Random;
 
@@ -600,5 +601,17 @@ public class AngularSpeedTest {
         assertEquals(result.getUnit(), AngularSpeedUnit.RADIANS_PER_SECOND);
         assertEquals((value1 - value2) * Math.PI / 180.0,
                 result.getValue().doubleValue(), ERROR);
+    }
+
+    @Test
+    public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+        final double value = new Random().nextDouble();
+        final AngularSpeed s1 = new AngularSpeed(value, AngularSpeedUnit.DEGREES_PER_SECOND);
+
+        final byte[] bytes = SerializationHelper.serialize(s1);
+        final AngularSpeed s2 = SerializationHelper.deserialize(bytes);
+
+        assertEquals(s1, s2);
+        assertNotSame(s1, s2);
     }
 }

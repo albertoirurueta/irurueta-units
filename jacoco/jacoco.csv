@@ -31,7 +31,7 @@ com.irurueta:irurueta-units,com.irurueta.units,FrequencyConverter,0,118,0,10,0,3
 com.irurueta:irurueta-units,com.irurueta.units,AngularSpeedFormatter,8,82,0,16,2,23,1,18,1,10
 com.irurueta:irurueta-units,com.irurueta.units,Measurement,4,150,11,33,1,32,11,20,0,9
 com.irurueta:irurueta-units,com.irurueta.units,DistanceUnit,0,153,0,8,0,18,0,10,0,6
-com.irurueta:irurueta-units,com.irurueta.units,MeasureFormatter,9,401,8,28,1,94,8,50,0,40
+com.irurueta:irurueta-units,com.irurueta.units,MeasureFormatter,2,376,4,24,1,87,4,50,0,40
 com.irurueta:irurueta-units,com.irurueta.units,TimeFormatter,1,2026,13,316,0,474,13,192,0,36
 com.irurueta:irurueta-units,com.irurueta.units,TemperatureConverter,0,96,0,6,0,26,0,14,0,10
 com.irurueta:irurueta-units,com.irurueta.units,WeightFormatter,22,388,4,83,5,89,3,58,0,13

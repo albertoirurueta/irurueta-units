@@ -20,3 +20,17 @@ Library to manage different measurement units
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=albertoirurueta_irurueta-units&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=albertoirurueta_irurueta-units)
 
 [Maven Site Report](http://albertoirurueta.github.io/irurueta-units)
+
+## Usage
+
+Add the following dependency to your project:
+
+Latest release:
+```
+<dependency>
+    <groupId>com.irurueta</groupId>
+    <artifactId>irurueta-units</artifactId>
+    <version>1.0.0</version>
+    <scope>compile</scope>
+</dependency>
+```

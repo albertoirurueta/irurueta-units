@@ -1,4 +1,4 @@
-name: Develop
+name: Manual Develop
 
 on: workflow_dispatch
 

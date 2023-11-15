@@ -34,48 +34,48 @@ public class WeightFormatterTest {
         WeightFormatter formatter = new WeightFormatter();
 
         // check
-        assertEquals(formatter.getLocale(), Locale.getDefault());
-        assertEquals(formatter.getMaximumFractionDigits(),
-                NumberFormat.getInstance().getMaximumFractionDigits());
-        assertEquals(formatter.getMaximumIntegerDigits(),
-                NumberFormat.getInstance().getMaximumIntegerDigits());
-        assertEquals(formatter.getMinimumFractionDigits(),
-                NumberFormat.getInstance().getMinimumFractionDigits());
-        assertEquals(formatter.getMinimumIntegerDigits(),
-                NumberFormat.getInstance().getMinimumIntegerDigits());
-        assertEquals(formatter.getRoundingMode(),
-                NumberFormat.getInstance().getRoundingMode());
-        assertEquals(formatter.getUnitSystem(), UnitLocale.getDefault());
-        assertEquals(formatter.isGroupingUsed(),
-                NumberFormat.getInstance().isGroupingUsed());
-        assertEquals(formatter.isParseIntegerOnly(),
-                NumberFormat.getInstance().isParseIntegerOnly());
-        assertEquals(formatter.getValueAndUnitFormatPattern(),
-                MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
+        assertEquals(Locale.getDefault(), formatter.getLocale());
+        assertEquals(NumberFormat.getInstance().getMaximumFractionDigits(),
+                formatter.getMaximumFractionDigits());
+        assertEquals(NumberFormat.getInstance().getMaximumIntegerDigits(),
+                formatter.getMaximumIntegerDigits());
+        assertEquals(NumberFormat.getInstance().getMinimumFractionDigits(),
+                formatter.getMinimumFractionDigits());
+        assertEquals(NumberFormat.getInstance().getMinimumIntegerDigits(),
+                formatter.getMinimumIntegerDigits());
+        assertEquals(NumberFormat.getInstance().getRoundingMode(),
+                formatter.getRoundingMode());
+        assertEquals(UnitLocale.getDefault(), formatter.getUnitSystem());
+        assertEquals(NumberFormat.getInstance().isGroupingUsed(),
+                formatter.isGroupingUsed());
+        assertEquals(NumberFormat.getInstance().isParseIntegerOnly(),
+                formatter.isParseIntegerOnly());
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
+                formatter.getValueAndUnitFormatPattern());
 
         // test constructor with locale
         final Locale locale = new Locale("es", "ES");
         formatter = new WeightFormatter(locale);
 
         // check
-        assertEquals(formatter.getLocale(), locale);
-        assertEquals(formatter.getMaximumFractionDigits(),
-                NumberFormat.getInstance(locale).getMaximumFractionDigits());
-        assertEquals(formatter.getMaximumIntegerDigits(),
-                NumberFormat.getInstance(locale).getMaximumIntegerDigits());
-        assertEquals(formatter.getMinimumFractionDigits(),
-                NumberFormat.getInstance(locale).getMinimumFractionDigits());
-        assertEquals(formatter.getMinimumIntegerDigits(),
-                NumberFormat.getInstance(locale).getMinimumIntegerDigits());
-        assertEquals(formatter.getRoundingMode(),
-                NumberFormat.getInstance(locale).getRoundingMode());
-        assertEquals(formatter.getUnitSystem(), UnitLocale.getFrom(locale));
-        assertEquals(formatter.isGroupingUsed(),
-                NumberFormat.getInstance(locale).isGroupingUsed());
-        assertEquals(formatter.isParseIntegerOnly(),
-                NumberFormat.getInstance(locale).isParseIntegerOnly());
-        assertEquals(formatter.getValueAndUnitFormatPattern(),
-                MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
+        assertEquals(locale, formatter.getLocale());
+        assertEquals(NumberFormat.getInstance(locale).getMaximumFractionDigits(),
+                formatter.getMaximumFractionDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMaximumIntegerDigits(),
+                formatter.getMaximumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMinimumFractionDigits(),
+                formatter.getMinimumFractionDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMinimumIntegerDigits(),
+                formatter.getMinimumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getRoundingMode(),
+                formatter.getRoundingMode());
+        assertEquals(UnitLocale.getFrom(locale), formatter.getUnitSystem());
+        assertEquals(NumberFormat.getInstance(locale).isGroupingUsed(),
+                formatter.isGroupingUsed());
+        assertEquals(NumberFormat.getInstance(locale).isParseIntegerOnly(),
+                formatter.isParseIntegerOnly());
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
+                formatter.getValueAndUnitFormatPattern());
 
 
         // force IllegalArgumentException
@@ -94,24 +94,24 @@ public class WeightFormatterTest {
         final WeightFormatter formatter2 = new WeightFormatter(formatter);
 
         // check
-        assertEquals(formatter2.getLocale(), locale);
-        assertEquals(formatter2.getMaximumFractionDigits(),
-                NumberFormat.getInstance(locale).getMaximumFractionDigits());
-        assertEquals(formatter2.getMaximumIntegerDigits(),
-                NumberFormat.getInstance(locale).getMaximumIntegerDigits());
-        assertEquals(formatter2.getMinimumFractionDigits(),
-                NumberFormat.getInstance(locale).getMinimumFractionDigits());
-        assertEquals(formatter2.getMinimumIntegerDigits(),
-                NumberFormat.getInstance(locale).getMinimumIntegerDigits());
-        assertEquals(formatter2.getRoundingMode(),
-                NumberFormat.getInstance(locale).getRoundingMode());
-        assertEquals(formatter2.getUnitSystem(), UnitLocale.getFrom(locale));
-        assertEquals(formatter2.isGroupingUsed(),
-                NumberFormat.getInstance(locale).isGroupingUsed());
-        assertEquals(formatter2.isParseIntegerOnly(),
-                NumberFormat.getInstance(locale).isParseIntegerOnly());
-        assertEquals(formatter2.getValueAndUnitFormatPattern(),
-                MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
+        assertEquals(locale, formatter2.getLocale());
+        assertEquals(NumberFormat.getInstance(locale).getMaximumFractionDigits(),
+                formatter2.getMaximumFractionDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMaximumIntegerDigits(),
+                formatter2.getMaximumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMinimumFractionDigits(),
+                formatter2.getMinimumFractionDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMinimumIntegerDigits(),
+                formatter2.getMinimumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getRoundingMode(),
+                formatter2.getRoundingMode());
+        assertEquals(UnitLocale.getFrom(locale), formatter2.getUnitSystem());
+        assertEquals(NumberFormat.getInstance(locale).isGroupingUsed(),
+                formatter2.isGroupingUsed());
+        assertEquals(NumberFormat.getInstance(locale).isParseIntegerOnly(),
+                formatter2.isParseIntegerOnly());
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
+                formatter2.getValueAndUnitFormatPattern());
 
         formatter = null;
         try {
@@ -148,6 +148,7 @@ public class WeightFormatterTest {
         final WeightFormatter formatter3 = new WeightFormatter(Locale.FRENCH);
 
         // check
+        //noinspection EqualsWithItself
         assertEquals(formatter1, formatter1);
         assertEquals(formatter1, formatter2);
         assertNotEquals(formatter1, formatter3);
@@ -175,30 +176,30 @@ public class WeightFormatterTest {
 
         final WeightFormatter formatter = new WeightFormatter(l);
 
-        assertEquals(formatter.format(new BigDecimal(value),
-                WeightUnit.PICOGRAM), "5,5 pg");
-        assertEquals(formatter.format(new BigDecimal(value),
-                WeightUnit.NANOGRAM), "5,5 ng");
-        assertEquals(formatter.format(new BigDecimal(value),
-                WeightUnit.MICROGRAM), "5,5 µg");
-        assertEquals(formatter.format(new BigDecimal(value),
-                WeightUnit.MILLIGRAM), "5,5 mg");
-        assertEquals(formatter.format(new BigDecimal(value),
-                WeightUnit.GRAM), "5,5 g");
-        assertEquals(formatter.format(new BigDecimal(value),
-                WeightUnit.KILOGRAM), "5,5 Kg");
-        assertEquals(formatter.format(new BigDecimal(value),
-                WeightUnit.TONNE), "5,5 t");
-        assertEquals(formatter.format(new BigDecimal(value),
-                WeightUnit.MEGATONNE), "5,5 Mt");
-        assertEquals(formatter.format(new BigDecimal(value),
-                WeightUnit.US_TON), "5,5 ton");
-        assertEquals(formatter.format(new BigDecimal(value),
-                WeightUnit.UK_TON), "5,5 ton");
-        assertEquals(formatter.format(new BigDecimal(value),
-                WeightUnit.POUND), "5,5 lb");
-        assertEquals(formatter.format(new BigDecimal(value),
-                WeightUnit.OUNCE), "5,5 oz");
+        assertEquals("5,5 pg", formatter.format(new BigDecimal(value),
+                WeightUnit.PICOGRAM));
+        assertEquals("5,5 ng", formatter.format(new BigDecimal(value),
+                WeightUnit.NANOGRAM));
+        assertEquals("5,5 µg", formatter.format(new BigDecimal(value),
+                WeightUnit.MICROGRAM));
+        assertEquals("5,5 mg", formatter.format(new BigDecimal(value),
+                WeightUnit.MILLIGRAM));
+        assertEquals("5,5 g", formatter.format(new BigDecimal(value),
+                WeightUnit.GRAM));
+        assertEquals("5,5 Kg", formatter.format(new BigDecimal(value),
+                WeightUnit.KILOGRAM));
+        assertEquals("5,5 t", formatter.format(new BigDecimal(value),
+                WeightUnit.TONNE));
+        assertEquals("5,5 Mt", formatter.format(new BigDecimal(value),
+                WeightUnit.MEGATONNE));
+        assertEquals("5,5 ton", formatter.format(new BigDecimal(value),
+                WeightUnit.US_TON));
+        assertEquals("5,5 ton", formatter.format(new BigDecimal(value),
+                WeightUnit.UK_TON));
+        assertEquals("5,5 lb", formatter.format(new BigDecimal(value),
+                WeightUnit.POUND));
+        assertEquals("5,5 oz", formatter.format(new BigDecimal(value),
+                WeightUnit.OUNCE));
     }
 
     @Test
@@ -209,64 +210,64 @@ public class WeightFormatterTest {
         final WeightFormatter formatter = new WeightFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
-                WeightUnit.PICOGRAM, buffer, new FieldPosition(0)).toString(),
-                "5,5 pg");
+        assertEquals("5,5 pg",
+                formatter.format(new BigDecimal(value),
+                        WeightUnit.PICOGRAM, buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
-                WeightUnit.NANOGRAM, buffer, new FieldPosition(0)).toString(),
-                "5,5 ng");
+        assertEquals("5,5 ng",
+                formatter.format(new BigDecimal(value),
+                        WeightUnit.NANOGRAM, buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
-                WeightUnit.MICROGRAM, buffer, new FieldPosition(0)).toString(),
-                "5,5 µg");
+        assertEquals("5,5 µg",
+                formatter.format(new BigDecimal(value),
+                        WeightUnit.MICROGRAM, buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
-                WeightUnit.MILLIGRAM, buffer, new FieldPosition(0)).toString(),
-                "5,5 mg");
+        assertEquals("5,5 mg",
+                formatter.format(new BigDecimal(value),
+                        WeightUnit.MILLIGRAM, buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
-                WeightUnit.GRAM, buffer, new FieldPosition(0)).toString(),
-                "5,5 g");
+        assertEquals("5,5 g",
+                formatter.format(new BigDecimal(value),
+                        WeightUnit.GRAM, buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
-                WeightUnit.KILOGRAM, buffer, new FieldPosition(0)).toString(),
-                "5,5 Kg");
+        assertEquals("5,5 Kg",
+                formatter.format(new BigDecimal(value),
+                        WeightUnit.KILOGRAM, buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
-                WeightUnit.TONNE, buffer, new FieldPosition(0)).toString(),
-                "5,5 t");
+        assertEquals("5,5 t",
+                formatter.format(new BigDecimal(value),
+                        WeightUnit.TONNE, buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
-                WeightUnit.MEGATONNE, buffer, new FieldPosition(0)).toString(),
-                "5,5 Mt");
+        assertEquals("5,5 Mt",
+                formatter.format(new BigDecimal(value),
+                        WeightUnit.MEGATONNE, buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
-                WeightUnit.US_TON, buffer, new FieldPosition(0)).toString(),
-                "5,5 ton");
+        assertEquals("5,5 ton",
+                formatter.format(new BigDecimal(value),
+                        WeightUnit.US_TON, buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
-                WeightUnit.UK_TON, buffer, new FieldPosition(0)).toString(),
-                "5,5 ton");
+        assertEquals("5,5 ton",
+                formatter.format(new BigDecimal(value),
+                        WeightUnit.UK_TON, buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
-                WeightUnit.POUND, buffer, new FieldPosition(0)).toString(),
-                "5,5 lb");
+        assertEquals("5,5 lb",
+                formatter.format(new BigDecimal(value),
+                        WeightUnit.POUND, buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
-                WeightUnit.OUNCE, buffer, new FieldPosition(0)).toString(),
-                "5,5 oz");
+        assertEquals("5,5 oz",
+                formatter.format(new BigDecimal(value),
+                        WeightUnit.OUNCE, buffer, new FieldPosition(0)).toString());
     }
 
     @Test
@@ -276,18 +277,18 @@ public class WeightFormatterTest {
 
         final WeightFormatter formatter = new WeightFormatter(l);
 
-        assertEquals(formatter.format(value, WeightUnit.PICOGRAM), "5,5 pg");
-        assertEquals(formatter.format(value, WeightUnit.NANOGRAM), "5,5 ng");
-        assertEquals(formatter.format(value, WeightUnit.MICROGRAM), "5,5 µg");
-        assertEquals(formatter.format(value, WeightUnit.MILLIGRAM), "5,5 mg");
-        assertEquals(formatter.format(value, WeightUnit.GRAM), "5,5 g");
-        assertEquals(formatter.format(value, WeightUnit.KILOGRAM), "5,5 Kg");
-        assertEquals(formatter.format(value, WeightUnit.TONNE), "5,5 t");
-        assertEquals(formatter.format(value, WeightUnit.MEGATONNE), "5,5 Mt");
-        assertEquals(formatter.format(value, WeightUnit.US_TON), "5,5 ton");
-        assertEquals(formatter.format(value, WeightUnit.UK_TON), "5,5 ton");
-        assertEquals(formatter.format(value, WeightUnit.POUND), "5,5 lb");
-        assertEquals(formatter.format(value, WeightUnit.OUNCE), "5,5 oz");
+        assertEquals("5,5 pg", formatter.format(value, WeightUnit.PICOGRAM));
+        assertEquals("5,5 ng", formatter.format(value, WeightUnit.NANOGRAM));
+        assertEquals("5,5 µg", formatter.format(value, WeightUnit.MICROGRAM));
+        assertEquals("5,5 mg", formatter.format(value, WeightUnit.MILLIGRAM));
+        assertEquals("5,5 g", formatter.format(value, WeightUnit.GRAM));
+        assertEquals("5,5 Kg", formatter.format(value, WeightUnit.KILOGRAM));
+        assertEquals("5,5 t", formatter.format(value, WeightUnit.TONNE));
+        assertEquals("5,5 Mt", formatter.format(value, WeightUnit.MEGATONNE));
+        assertEquals("5,5 ton", formatter.format(value, WeightUnit.US_TON));
+        assertEquals("5,5 ton", formatter.format(value, WeightUnit.UK_TON));
+        assertEquals("5,5 lb", formatter.format(value, WeightUnit.POUND));
+        assertEquals("5,5 oz", formatter.format(value, WeightUnit.OUNCE));
     }
 
     @Test
@@ -298,52 +299,52 @@ public class WeightFormatterTest {
         final WeightFormatter formatter = new WeightFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
-        assertEquals(formatter.format(value, WeightUnit.PICOGRAM, buffer,
-                new FieldPosition(0)).toString(), "5,5 pg");
+        assertEquals("5,5 pg", formatter.format(value, WeightUnit.PICOGRAM, buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value, WeightUnit.NANOGRAM, buffer,
-                new FieldPosition(0)).toString(), "5,5 ng");
+        assertEquals("5,5 ng", formatter.format(value, WeightUnit.NANOGRAM, buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value, WeightUnit.MICROGRAM, buffer,
-                new FieldPosition(0)).toString(), "5,5 µg");
+        assertEquals("5,5 µg", formatter.format(value, WeightUnit.MICROGRAM, buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value, WeightUnit.MILLIGRAM, buffer,
-                new FieldPosition(0)).toString(), "5,5 mg");
+        assertEquals("5,5 mg", formatter.format(value, WeightUnit.MILLIGRAM, buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value, WeightUnit.GRAM, buffer,
-                new FieldPosition(0)).toString(), "5,5 g");
+        assertEquals("5,5 g", formatter.format(value, WeightUnit.GRAM, buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value, WeightUnit.KILOGRAM, buffer,
-                new FieldPosition(0)).toString(), "5,5 Kg");
+        assertEquals("5,5 Kg", formatter.format(value, WeightUnit.KILOGRAM, buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value, WeightUnit.TONNE, buffer,
-                new FieldPosition(0)).toString(), "5,5 t");
+        assertEquals("5,5 t", formatter.format(value, WeightUnit.TONNE, buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value, WeightUnit.MEGATONNE, buffer,
-                new FieldPosition(0)).toString(), "5,5 Mt");
+        assertEquals("5,5 Mt", formatter.format(value, WeightUnit.MEGATONNE, buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value, WeightUnit.US_TON, buffer,
-                new FieldPosition(0)).toString(), "5,5 ton");
+        assertEquals("5,5 ton", formatter.format(value, WeightUnit.US_TON, buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value, WeightUnit.UK_TON, buffer,
-                new FieldPosition(0)).toString(), "5,5 ton");
+        assertEquals("5,5 ton", formatter.format(value, WeightUnit.UK_TON, buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value, WeightUnit.POUND, buffer,
-                new FieldPosition(0)).toString(), "5,5 lb");
+        assertEquals("5,5 lb", formatter.format(value, WeightUnit.POUND, buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value, WeightUnit.OUNCE, buffer,
-                new FieldPosition(0)).toString(), "5,5 oz");
+        assertEquals("5,5 oz", formatter.format(value, WeightUnit.OUNCE, buffer,
+                new FieldPosition(0)).toString());
     }
 
     @Test
@@ -353,18 +354,18 @@ public class WeightFormatterTest {
 
         final WeightFormatter formatter = new WeightFormatter(l);
 
-        assertEquals(formatter.format(new Weight(value, WeightUnit.PICOGRAM)), "5,5 pg");
-        assertEquals(formatter.format(new Weight(value, WeightUnit.NANOGRAM)), "5,5 ng");
-        assertEquals(formatter.format(new Weight(value, WeightUnit.MICROGRAM)), "5,5 µg");
-        assertEquals(formatter.format(new Weight(value, WeightUnit.MILLIGRAM)), "5,5 mg");
-        assertEquals(formatter.format(new Weight(value, WeightUnit.GRAM)), "5,5 g");
-        assertEquals(formatter.format(new Weight(value, WeightUnit.KILOGRAM)), "5,5 Kg");
-        assertEquals(formatter.format(new Weight(value, WeightUnit.TONNE)), "5,5 t");
-        assertEquals(formatter.format(new Weight(value, WeightUnit.MEGATONNE)), "5,5 Mt");
-        assertEquals(formatter.format(new Weight(value, WeightUnit.US_TON)), "5,5 ton");
-        assertEquals(formatter.format(new Weight(value, WeightUnit.UK_TON)), "5,5 ton");
-        assertEquals(formatter.format(new Weight(value, WeightUnit.POUND)), "5,5 lb");
-        assertEquals(formatter.format(new Weight(value, WeightUnit.OUNCE)), "5,5 oz");
+        assertEquals("5,5 pg", formatter.format(new Weight(value, WeightUnit.PICOGRAM)));
+        assertEquals("5,5 ng", formatter.format(new Weight(value, WeightUnit.NANOGRAM)));
+        assertEquals("5,5 µg", formatter.format(new Weight(value, WeightUnit.MICROGRAM)));
+        assertEquals("5,5 mg", formatter.format(new Weight(value, WeightUnit.MILLIGRAM)));
+        assertEquals("5,5 g", formatter.format(new Weight(value, WeightUnit.GRAM)));
+        assertEquals("5,5 Kg", formatter.format(new Weight(value, WeightUnit.KILOGRAM)));
+        assertEquals("5,5 t", formatter.format(new Weight(value, WeightUnit.TONNE)));
+        assertEquals("5,5 Mt", formatter.format(new Weight(value, WeightUnit.MEGATONNE)));
+        assertEquals("5,5 ton", formatter.format(new Weight(value, WeightUnit.US_TON)));
+        assertEquals("5,5 ton", formatter.format(new Weight(value, WeightUnit.UK_TON)));
+        assertEquals("5,5 lb", formatter.format(new Weight(value, WeightUnit.POUND)));
+        assertEquals("5,5 oz", formatter.format(new Weight(value, WeightUnit.OUNCE)));
     }
 
     @Test
@@ -375,52 +376,52 @@ public class WeightFormatterTest {
         final WeightFormatter formatter = new WeightFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
-        assertEquals(formatter.format(new Weight(value, WeightUnit.PICOGRAM), buffer,
-                new FieldPosition(0)).toString(), "5,5 pg");
+        assertEquals("5,5 pg", formatter.format(new Weight(value, WeightUnit.PICOGRAM), buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new Weight(value, WeightUnit.NANOGRAM), buffer,
-                new FieldPosition(0)).toString(), "5,5 ng");
+        assertEquals("5,5 ng", formatter.format(new Weight(value, WeightUnit.NANOGRAM), buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new Weight(value, WeightUnit.MICROGRAM), buffer,
-                new FieldPosition(0)).toString(), "5,5 µg");
+        assertEquals("5,5 µg", formatter.format(new Weight(value, WeightUnit.MICROGRAM), buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new Weight(value, WeightUnit.MILLIGRAM), buffer,
-                new FieldPosition(0)).toString(), "5,5 mg");
+        assertEquals("5,5 mg", formatter.format(new Weight(value, WeightUnit.MILLIGRAM), buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new Weight(value, WeightUnit.GRAM), buffer,
-                new FieldPosition(0)).toString(), "5,5 g");
+        assertEquals("5,5 g", formatter.format(new Weight(value, WeightUnit.GRAM), buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new Weight(value, WeightUnit.KILOGRAM), buffer,
-                new FieldPosition(0)).toString(), "5,5 Kg");
+        assertEquals("5,5 Kg", formatter.format(new Weight(value, WeightUnit.KILOGRAM), buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new Weight(value, WeightUnit.TONNE), buffer,
-                new FieldPosition(0)).toString(), "5,5 t");
+        assertEquals("5,5 t", formatter.format(new Weight(value, WeightUnit.TONNE), buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new Weight(value, WeightUnit.MEGATONNE), buffer,
-                new FieldPosition(0)).toString(), "5,5 Mt");
+        assertEquals("5,5 Mt", formatter.format(new Weight(value, WeightUnit.MEGATONNE), buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new Weight(value, WeightUnit.US_TON), buffer,
-                new FieldPosition(0)).toString(), "5,5 ton");
+        assertEquals("5,5 ton", formatter.format(new Weight(value, WeightUnit.US_TON), buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new Weight(value, WeightUnit.UK_TON), buffer,
-                new FieldPosition(0)).toString(), "5,5 ton");
+        assertEquals("5,5 ton", formatter.format(new Weight(value, WeightUnit.UK_TON), buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new Weight(value, WeightUnit.POUND), buffer,
-                new FieldPosition(0)).toString(), "5,5 lb");
+        assertEquals("5,5 lb", formatter.format(new Weight(value, WeightUnit.POUND), buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new Weight(value, WeightUnit.OUNCE), buffer,
-                new FieldPosition(0)).toString(), "5,5 oz");
+        assertEquals("5,5 oz", formatter.format(new Weight(value, WeightUnit.OUNCE), buffer,
+                new FieldPosition(0)).toString());
     }
 
     @Test
@@ -431,45 +432,45 @@ public class WeightFormatterTest {
         WeightFormatter formatter = new WeightFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.PICOGRAM), "5,5 pg");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5000.50"),
-                WeightUnit.PICOGRAM), "5 ng");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5000000.50"),
-                WeightUnit.PICOGRAM), "5 µg");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5000000000.50"),
-                WeightUnit.PICOGRAM), "5 mg");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5000000000000.50"),
-                WeightUnit.PICOGRAM), "5 g");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5000000000000000.50"),
-                WeightUnit.PICOGRAM), "5 Kg");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5000000000000000000.50"),
-                WeightUnit.PICOGRAM), "5 t");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5000000000000000000000000.50"),
-                WeightUnit.PICOGRAM), "5 Mt");
+        assertEquals("5,5 pg", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.PICOGRAM));
+        assertEquals("5 ng", formatter.formatAndConvert(new BigDecimal("5000.50"),
+                WeightUnit.PICOGRAM));
+        assertEquals("5 µg", formatter.formatAndConvert(new BigDecimal("5000000.50"),
+                WeightUnit.PICOGRAM));
+        assertEquals("5 mg", formatter.formatAndConvert(new BigDecimal("5000000000.50"),
+                WeightUnit.PICOGRAM));
+        assertEquals("5 g", formatter.formatAndConvert(new BigDecimal("5000000000000.50"),
+                WeightUnit.PICOGRAM));
+        assertEquals("5 Kg", formatter.formatAndConvert(new BigDecimal("5000000000000000.50"),
+                WeightUnit.PICOGRAM));
+        assertEquals("5 t", formatter.formatAndConvert(new BigDecimal("5000000000000000000.50"),
+                WeightUnit.PICOGRAM));
+        assertEquals("5 Mt", formatter.formatAndConvert(new BigDecimal("5000000000000000000000000.50"),
+                WeightUnit.PICOGRAM));
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.NANOGRAM), "5,5 ng");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.MICROGRAM), "5,5 µg");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.MILLIGRAM), "5,5 mg");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.GRAM), "5,5 g");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.KILOGRAM), "5,5 Kg");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.TONNE), "5,5 t");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.MEGATONNE), "5,5 Mt");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.US_TON), "4,99 t");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.UK_TON), "5,59 t");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.POUND), "2,49 Kg");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.OUNCE), "155,92 g");
+        assertEquals("5,5 ng", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.NANOGRAM));
+        assertEquals("5,5 µg", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.MICROGRAM));
+        assertEquals("5,5 mg", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.MILLIGRAM));
+        assertEquals("5,5 g", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.GRAM));
+        assertEquals("5,5 Kg", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.KILOGRAM));
+        assertEquals("5,5 t", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.TONNE));
+        assertEquals("5,5 Mt", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.MEGATONNE));
+        assertEquals("4,99 t", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.US_TON));
+        assertEquals("5,59 t", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.UK_TON));
+        assertEquals("2,49 Kg", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.POUND));
+        assertEquals("155,92 g", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.OUNCE));
 
         // test for imperial system
         l = new Locale("en", "US");
@@ -477,28 +478,28 @@ public class WeightFormatterTest {
         formatter = new WeightFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.NANOGRAM), "0 oz");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.MICROGRAM), "0 oz");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.MILLIGRAM), "0 oz");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.GRAM), "0.19 oz");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.KILOGRAM), "12.13 lb");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.TONNE), "6.06 ton");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.MEGATONNE), "6,063,947.08 ton");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.US_TON), "5.5 ton");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.UK_TON), "6.16 ton");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.POUND), "5.5 lb");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.OUNCE), "5.5 oz");
+        assertEquals("0 oz", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.NANOGRAM));
+        assertEquals("0 oz", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.MICROGRAM));
+        assertEquals("0 oz", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.MILLIGRAM));
+        assertEquals("0.19 oz", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.GRAM));
+        assertEquals("12.13 lb", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.KILOGRAM));
+        assertEquals("6.06 ton", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.TONNE));
+        assertEquals("6,063,947.08 ton", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.MEGATONNE));
+        assertEquals("5.5 ton", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.US_TON));
+        assertEquals("6.16 ton", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.UK_TON));
+        assertEquals("5.5 lb", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.POUND));
+        assertEquals("5.5 oz", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.OUNCE));
     }
 
     @Test
@@ -509,45 +510,45 @@ public class WeightFormatterTest {
         WeightFormatter formatter = new WeightFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.PICOGRAM), "5,5 pg");
-        assertEquals(formatter.formatAndConvert(5000.50,
-                WeightUnit.PICOGRAM), "5 ng");
-        assertEquals(formatter.formatAndConvert(5000000.50,
-                WeightUnit.PICOGRAM), "5 µg");
-        assertEquals(formatter.formatAndConvert(5000000000.50,
-                WeightUnit.PICOGRAM), "5 mg");
-        assertEquals(formatter.formatAndConvert(5000000000000.50,
-                WeightUnit.PICOGRAM), "5 g");
-        assertEquals(formatter.formatAndConvert(5000000000000000.50,
-                WeightUnit.PICOGRAM), "5 Kg");
-        assertEquals(formatter.formatAndConvert(5000000000000000000.50,
-                WeightUnit.PICOGRAM), "5 t");
-        assertEquals(formatter.formatAndConvert(5000000000000000000000000.50,
-                WeightUnit.PICOGRAM), "5 Mt");
+        assertEquals("5,5 pg", formatter.formatAndConvert(5.50,
+                WeightUnit.PICOGRAM));
+        assertEquals("5 ng", formatter.formatAndConvert(5000.50,
+                WeightUnit.PICOGRAM));
+        assertEquals("5 µg", formatter.formatAndConvert(5000000.50,
+                WeightUnit.PICOGRAM));
+        assertEquals("5 mg", formatter.formatAndConvert(5000000000.50,
+                WeightUnit.PICOGRAM));
+        assertEquals("5 g", formatter.formatAndConvert(5000000000000.50,
+                WeightUnit.PICOGRAM));
+        assertEquals("5 Kg", formatter.formatAndConvert(5000000000000000.50,
+                WeightUnit.PICOGRAM));
+        assertEquals("5 t", formatter.formatAndConvert(5000000000000000000.50,
+                WeightUnit.PICOGRAM));
+        assertEquals("5 Mt", formatter.formatAndConvert(5000000000000000000000000.50,
+                WeightUnit.PICOGRAM));
 
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.NANOGRAM), "5,5 ng");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.MICROGRAM), "5,5 µg");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.MILLIGRAM), "5,5 mg");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.GRAM), "5,5 g");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.KILOGRAM), "5,5 Kg");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.TONNE), "5,5 t");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.MEGATONNE), "5,5 Mt");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.US_TON), "4,99 t");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.UK_TON), "5,59 t");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.POUND), "2,49 Kg");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.OUNCE), "155,92 g");
+        assertEquals("5,5 ng", formatter.formatAndConvert(5.50,
+                WeightUnit.NANOGRAM));
+        assertEquals("5,5 µg", formatter.formatAndConvert(5.50,
+                WeightUnit.MICROGRAM));
+        assertEquals("5,5 mg", formatter.formatAndConvert(5.50,
+                WeightUnit.MILLIGRAM));
+        assertEquals("5,5 g", formatter.formatAndConvert(5.50,
+                WeightUnit.GRAM));
+        assertEquals("5,5 Kg", formatter.formatAndConvert(5.50,
+                WeightUnit.KILOGRAM));
+        assertEquals("5,5 t", formatter.formatAndConvert(5.50,
+                WeightUnit.TONNE));
+        assertEquals("5,5 Mt", formatter.formatAndConvert(5.50,
+                WeightUnit.MEGATONNE));
+        assertEquals("4,99 t", formatter.formatAndConvert(5.50,
+                WeightUnit.US_TON));
+        assertEquals("5,59 t", formatter.formatAndConvert(5.50,
+                WeightUnit.UK_TON));
+        assertEquals("2,49 Kg", formatter.formatAndConvert(5.50,
+                WeightUnit.POUND));
+        assertEquals("155,92 g", formatter.formatAndConvert(5.50,
+                WeightUnit.OUNCE));
 
         // test for imperial system
         l = new Locale("en", "US");
@@ -555,28 +556,28 @@ public class WeightFormatterTest {
         formatter = new WeightFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.NANOGRAM), "0 oz");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.MICROGRAM), "0 oz");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.MILLIGRAM), "0 oz");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.GRAM), "0.19 oz");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.KILOGRAM), "12.13 lb");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.TONNE), "6.06 ton");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.MEGATONNE), "6,063,947.08 ton");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.US_TON), "5.5 ton");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.UK_TON), "6.16 ton");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.POUND), "5.5 lb");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.OUNCE), "5.5 oz");
+        assertEquals("0 oz", formatter.formatAndConvert(5.50,
+                WeightUnit.NANOGRAM));
+        assertEquals("0 oz", formatter.formatAndConvert(5.50,
+                WeightUnit.MICROGRAM));
+        assertEquals("0 oz", formatter.formatAndConvert(5.50,
+                WeightUnit.MILLIGRAM));
+        assertEquals("0.19 oz", formatter.formatAndConvert(5.50,
+                WeightUnit.GRAM));
+        assertEquals("12.13 lb", formatter.formatAndConvert(5.50,
+                WeightUnit.KILOGRAM));
+        assertEquals("6.06 ton", formatter.formatAndConvert(5.50,
+                WeightUnit.TONNE));
+        assertEquals("6,063,947.08 ton", formatter.formatAndConvert(5.50,
+                WeightUnit.MEGATONNE));
+        assertEquals("5.5 ton", formatter.formatAndConvert(5.50,
+                WeightUnit.US_TON));
+        assertEquals("6.16 ton", formatter.formatAndConvert(5.50,
+                WeightUnit.UK_TON));
+        assertEquals("5.5 lb", formatter.formatAndConvert(5.50,
+                WeightUnit.POUND));
+        assertEquals("5.5 oz", formatter.formatAndConvert(5.50,
+                WeightUnit.OUNCE));
     }
 
     @Test
@@ -587,46 +588,46 @@ public class WeightFormatterTest {
         WeightFormatter formatter = new WeightFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.PICOGRAM)), "5,5 pg");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5000.50, WeightUnit.PICOGRAM)), "5 ng");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5000000.50, WeightUnit.PICOGRAM)), "5 µg");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5000000000.50, WeightUnit.PICOGRAM)), "5 mg");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5000000000000.50, WeightUnit.PICOGRAM)), "5 g");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5000000000000000.50, WeightUnit.PICOGRAM)), "5 Kg");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5000000000000000000.50, WeightUnit.PICOGRAM)), "5 t");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5000000000000000000000000.50, WeightUnit.PICOGRAM)),
-                "5 Mt");
+        assertEquals("5,5 pg", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.PICOGRAM)));
+        assertEquals("5 ng", formatter.formatAndConvert(
+                new Weight(5000.50, WeightUnit.PICOGRAM)));
+        assertEquals("5 µg", formatter.formatAndConvert(
+                new Weight(5000000.50, WeightUnit.PICOGRAM)));
+        assertEquals("5 mg", formatter.formatAndConvert(
+                new Weight(5000000000.50, WeightUnit.PICOGRAM)));
+        assertEquals("5 g", formatter.formatAndConvert(
+                new Weight(5000000000000.50, WeightUnit.PICOGRAM)));
+        assertEquals("5 Kg", formatter.formatAndConvert(
+                new Weight(5000000000000000.50, WeightUnit.PICOGRAM)));
+        assertEquals("5 t", formatter.formatAndConvert(
+                new Weight(5000000000000000000.50, WeightUnit.PICOGRAM)));
+        assertEquals("5 Mt",
+                formatter.formatAndConvert(
+                        new Weight(5000000000000000000000000.50, WeightUnit.PICOGRAM)));
 
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.NANOGRAM)), "5,5 ng");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.MICROGRAM)), "5,5 µg");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.MILLIGRAM)), "5,5 mg");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.GRAM)), "5,5 g");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.KILOGRAM)), "5,5 Kg");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.TONNE)), "5,5 t");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.MEGATONNE)), "5,5 Mt");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.US_TON)), "4,99 t");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.UK_TON)), "5,59 t");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.POUND)), "2,49 Kg");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.OUNCE)), "155,92 g");
+        assertEquals("5,5 ng", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.NANOGRAM)));
+        assertEquals("5,5 µg", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.MICROGRAM)));
+        assertEquals("5,5 mg", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.MILLIGRAM)));
+        assertEquals("5,5 g", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.GRAM)));
+        assertEquals("5,5 Kg", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.KILOGRAM)));
+        assertEquals("5,5 t", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.TONNE)));
+        assertEquals("5,5 Mt", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.MEGATONNE)));
+        assertEquals("4,99 t", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.US_TON)));
+        assertEquals("5,59 t", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.UK_TON)));
+        assertEquals("2,49 Kg", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.POUND)));
+        assertEquals("155,92 g", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.OUNCE)));
 
         // test for imperial system
         l = new Locale("en", "US");
@@ -634,28 +635,28 @@ public class WeightFormatterTest {
         formatter = new WeightFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.NANOGRAM)), "0 oz");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.MICROGRAM)), "0 oz");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.MILLIGRAM)), "0 oz");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.GRAM)), "0.19 oz");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.KILOGRAM)), "12.13 lb");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.TONNE)), "6.06 ton");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.MEGATONNE)), "6,063,947.08 ton");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.US_TON)), "5.5 ton");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.UK_TON)), "6.16 ton");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.POUND)), "5.5 lb");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.OUNCE)), "5.5 oz");
+        assertEquals("0 oz", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.NANOGRAM)));
+        assertEquals("0 oz", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.MICROGRAM)));
+        assertEquals("0 oz", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.MILLIGRAM)));
+        assertEquals("0.19 oz", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.GRAM)));
+        assertEquals("12.13 lb", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.KILOGRAM)));
+        assertEquals("6.06 ton", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.TONNE)));
+        assertEquals("6,063,947.08 ton", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.MEGATONNE)));
+        assertEquals("5.5 ton", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.US_TON)));
+        assertEquals("6.16 ton", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.UK_TON)));
+        assertEquals("5.5 lb", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.POUND)));
+        assertEquals("5.5 oz", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.OUNCE)));
     }
 
     @Test
@@ -665,52 +666,52 @@ public class WeightFormatterTest {
         WeightFormatter formatter = new WeightFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.NANOGRAM, UnitSystem.METRIC), "5,5 ng");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.MICROGRAM, UnitSystem.METRIC), "5,5 µg");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.MILLIGRAM, UnitSystem.METRIC), "5,5 mg");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.GRAM, UnitSystem.METRIC), "5,5 g");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.KILOGRAM, UnitSystem.METRIC), "5,5 Kg");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.TONNE, UnitSystem.METRIC), "5,5 t");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.MEGATONNE, UnitSystem.METRIC), "5,5 Mt");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.US_TON, UnitSystem.METRIC), "4,99 t");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.UK_TON, UnitSystem.METRIC), "5,59 t");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.POUND, UnitSystem.METRIC), "2,49 Kg");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.OUNCE, UnitSystem.METRIC), "155,92 g");
+        assertEquals("5,5 ng", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.NANOGRAM, UnitSystem.METRIC));
+        assertEquals("5,5 µg", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.MICROGRAM, UnitSystem.METRIC));
+        assertEquals("5,5 mg", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.MILLIGRAM, UnitSystem.METRIC));
+        assertEquals("5,5 g", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.GRAM, UnitSystem.METRIC));
+        assertEquals("5,5 Kg", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.KILOGRAM, UnitSystem.METRIC));
+        assertEquals("5,5 t", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.TONNE, UnitSystem.METRIC));
+        assertEquals("5,5 Mt", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.MEGATONNE, UnitSystem.METRIC));
+        assertEquals("4,99 t", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.US_TON, UnitSystem.METRIC));
+        assertEquals("5,59 t", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.UK_TON, UnitSystem.METRIC));
+        assertEquals("2,49 Kg", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.POUND, UnitSystem.METRIC));
+        assertEquals("155,92 g", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.OUNCE, UnitSystem.METRIC));
 
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.NANOGRAM, UnitSystem.IMPERIAL), "0 oz");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.MICROGRAM, UnitSystem.IMPERIAL), "0 oz");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.MILLIGRAM, UnitSystem.IMPERIAL), "0 oz");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.GRAM, UnitSystem.IMPERIAL), "0,19 oz");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.KILOGRAM, UnitSystem.IMPERIAL), "12,13 lb");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.TONNE, UnitSystem.IMPERIAL), "6,06 ton");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.MEGATONNE, UnitSystem.IMPERIAL), "6.063.947,08 ton");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.US_TON, UnitSystem.IMPERIAL), "5,5 ton");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.UK_TON, UnitSystem.IMPERIAL), "6,16 ton");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.POUND, UnitSystem.IMPERIAL), "5,5 lb");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                WeightUnit.OUNCE, UnitSystem.IMPERIAL), "5,5 oz");
+        assertEquals("0 oz", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.NANOGRAM, UnitSystem.IMPERIAL));
+        assertEquals("0 oz", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.MICROGRAM, UnitSystem.IMPERIAL));
+        assertEquals("0 oz", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.MILLIGRAM, UnitSystem.IMPERIAL));
+        assertEquals("0,19 oz", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.GRAM, UnitSystem.IMPERIAL));
+        assertEquals("12,13 lb", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.KILOGRAM, UnitSystem.IMPERIAL));
+        assertEquals("6,06 ton", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.TONNE, UnitSystem.IMPERIAL));
+        assertEquals("6.063.947,08 ton", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.MEGATONNE, UnitSystem.IMPERIAL));
+        assertEquals("5,5 ton", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.US_TON, UnitSystem.IMPERIAL));
+        assertEquals("6,16 ton", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.UK_TON, UnitSystem.IMPERIAL));
+        assertEquals("5,5 lb", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.POUND, UnitSystem.IMPERIAL));
+        assertEquals("5,5 oz", formatter.formatAndConvert(new BigDecimal("5.50"),
+                WeightUnit.OUNCE, UnitSystem.IMPERIAL));
 
     }
 
@@ -721,52 +722,52 @@ public class WeightFormatterTest {
         WeightFormatter formatter = new WeightFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.NANOGRAM, UnitSystem.METRIC), "5,5 ng");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.MICROGRAM, UnitSystem.METRIC), "5,5 µg");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.MILLIGRAM, UnitSystem.METRIC), "5,5 mg");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.GRAM, UnitSystem.METRIC), "5,5 g");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.KILOGRAM, UnitSystem.METRIC), "5,5 Kg");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.TONNE, UnitSystem.METRIC), "5,5 t");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.MEGATONNE, UnitSystem.METRIC), "5,5 Mt");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.US_TON, UnitSystem.METRIC), "4,99 t");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.UK_TON, UnitSystem.METRIC), "5,59 t");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.POUND, UnitSystem.METRIC), "2,49 Kg");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.OUNCE, UnitSystem.METRIC), "155,92 g");
+        assertEquals("5,5 ng", formatter.formatAndConvert(5.50,
+                WeightUnit.NANOGRAM, UnitSystem.METRIC));
+        assertEquals("5,5 µg", formatter.formatAndConvert(5.50,
+                WeightUnit.MICROGRAM, UnitSystem.METRIC));
+        assertEquals("5,5 mg", formatter.formatAndConvert(5.50,
+                WeightUnit.MILLIGRAM, UnitSystem.METRIC));
+        assertEquals("5,5 g", formatter.formatAndConvert(5.50,
+                WeightUnit.GRAM, UnitSystem.METRIC));
+        assertEquals("5,5 Kg", formatter.formatAndConvert(5.50,
+                WeightUnit.KILOGRAM, UnitSystem.METRIC));
+        assertEquals("5,5 t", formatter.formatAndConvert(5.50,
+                WeightUnit.TONNE, UnitSystem.METRIC));
+        assertEquals("5,5 Mt", formatter.formatAndConvert(5.50,
+                WeightUnit.MEGATONNE, UnitSystem.METRIC));
+        assertEquals("4,99 t", formatter.formatAndConvert(5.50,
+                WeightUnit.US_TON, UnitSystem.METRIC));
+        assertEquals("5,59 t", formatter.formatAndConvert(5.50,
+                WeightUnit.UK_TON, UnitSystem.METRIC));
+        assertEquals("2,49 Kg", formatter.formatAndConvert(5.50,
+                WeightUnit.POUND, UnitSystem.METRIC));
+        assertEquals("155,92 g", formatter.formatAndConvert(5.50,
+                WeightUnit.OUNCE, UnitSystem.METRIC));
 
 
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.NANOGRAM, UnitSystem.IMPERIAL), "0 oz");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.MICROGRAM, UnitSystem.IMPERIAL), "0 oz");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.MILLIGRAM, UnitSystem.IMPERIAL), "0 oz");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.GRAM, UnitSystem.IMPERIAL), "0,19 oz");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.KILOGRAM, UnitSystem.IMPERIAL), "12,13 lb");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.TONNE, UnitSystem.IMPERIAL), "6,06 ton");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.MEGATONNE, UnitSystem.IMPERIAL), "6.063.947,08 ton");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.US_TON, UnitSystem.IMPERIAL), "5,5 ton");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.UK_TON, UnitSystem.IMPERIAL), "6,16 ton");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.POUND, UnitSystem.IMPERIAL), "5,5 lb");
-        assertEquals(formatter.formatAndConvert(5.50,
-                WeightUnit.OUNCE, UnitSystem.IMPERIAL), "5,5 oz");
+        assertEquals("0 oz", formatter.formatAndConvert(5.50,
+                WeightUnit.NANOGRAM, UnitSystem.IMPERIAL));
+        assertEquals("0 oz", formatter.formatAndConvert(5.50,
+                WeightUnit.MICROGRAM, UnitSystem.IMPERIAL));
+        assertEquals("0 oz", formatter.formatAndConvert(5.50,
+                WeightUnit.MILLIGRAM, UnitSystem.IMPERIAL));
+        assertEquals("0,19 oz", formatter.formatAndConvert(5.50,
+                WeightUnit.GRAM, UnitSystem.IMPERIAL));
+        assertEquals("12,13 lb", formatter.formatAndConvert(5.50,
+                WeightUnit.KILOGRAM, UnitSystem.IMPERIAL));
+        assertEquals("6,06 ton", formatter.formatAndConvert(5.50,
+                WeightUnit.TONNE, UnitSystem.IMPERIAL));
+        assertEquals("6.063.947,08 ton", formatter.formatAndConvert(5.50,
+                WeightUnit.MEGATONNE, UnitSystem.IMPERIAL));
+        assertEquals("5,5 ton", formatter.formatAndConvert(5.50,
+                WeightUnit.US_TON, UnitSystem.IMPERIAL));
+        assertEquals("6,16 ton", formatter.formatAndConvert(5.50,
+                WeightUnit.UK_TON, UnitSystem.IMPERIAL));
+        assertEquals("5,5 lb", formatter.formatAndConvert(5.50,
+                WeightUnit.POUND, UnitSystem.IMPERIAL));
+        assertEquals("5,5 oz", formatter.formatAndConvert(5.50,
+                WeightUnit.OUNCE, UnitSystem.IMPERIAL));
 
     }
 
@@ -777,56 +778,56 @@ public class WeightFormatterTest {
         WeightFormatter formatter = new WeightFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.NANOGRAM), UnitSystem.METRIC), "5,5 ng");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.MICROGRAM), UnitSystem.METRIC), "5,5 µg");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.MILLIGRAM), UnitSystem.METRIC), "5,5 mg");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.GRAM), UnitSystem.METRIC), "5,5 g");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.KILOGRAM), UnitSystem.METRIC), "5,5 Kg");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.TONNE), UnitSystem.METRIC), "5,5 t");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.MEGATONNE), UnitSystem.METRIC), "5,5 Mt");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.US_TON), UnitSystem.METRIC), "4,99 t");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.UK_TON), UnitSystem.METRIC), "5,59 t");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.POUND), UnitSystem.METRIC), "2,49 Kg");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.OUNCE), UnitSystem.METRIC), "155,92 g");
+        assertEquals("5,5 ng", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.NANOGRAM), UnitSystem.METRIC));
+        assertEquals("5,5 µg", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.MICROGRAM), UnitSystem.METRIC));
+        assertEquals("5,5 mg", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.MILLIGRAM), UnitSystem.METRIC));
+        assertEquals("5,5 g", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.GRAM), UnitSystem.METRIC));
+        assertEquals("5,5 Kg", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.KILOGRAM), UnitSystem.METRIC));
+        assertEquals("5,5 t", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.TONNE), UnitSystem.METRIC));
+        assertEquals("5,5 Mt", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.MEGATONNE), UnitSystem.METRIC));
+        assertEquals("4,99 t", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.US_TON), UnitSystem.METRIC));
+        assertEquals("5,59 t", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.UK_TON), UnitSystem.METRIC));
+        assertEquals("2,49 Kg", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.POUND), UnitSystem.METRIC));
+        assertEquals("155,92 g", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.OUNCE), UnitSystem.METRIC));
 
 
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.NANOGRAM), UnitSystem.IMPERIAL), "0 oz");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.MICROGRAM), UnitSystem.IMPERIAL), "0 oz");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.MILLIGRAM), UnitSystem.IMPERIAL), "0 oz");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.GRAM), UnitSystem.IMPERIAL), "0,19 oz");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.KILOGRAM), UnitSystem.IMPERIAL),
-                "12,13 lb");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.TONNE), UnitSystem.IMPERIAL),
-                "6,06 ton");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.MEGATONNE), UnitSystem.IMPERIAL),
-                "6.063.947,08 ton");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.US_TON), UnitSystem.IMPERIAL),
-                "5,5 ton");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.UK_TON), UnitSystem.IMPERIAL), "6,16 ton");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.POUND), UnitSystem.IMPERIAL), "5,5 lb");
-        assertEquals(formatter.formatAndConvert(
-                new Weight(5.50, WeightUnit.OUNCE), UnitSystem.IMPERIAL), "5,5 oz");
+        assertEquals("0 oz", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.NANOGRAM), UnitSystem.IMPERIAL));
+        assertEquals("0 oz", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.MICROGRAM), UnitSystem.IMPERIAL));
+        assertEquals("0 oz", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.MILLIGRAM), UnitSystem.IMPERIAL));
+        assertEquals("0,19 oz", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.GRAM), UnitSystem.IMPERIAL));
+        assertEquals("12,13 lb",
+                formatter.formatAndConvert(
+                        new Weight(5.50, WeightUnit.KILOGRAM), UnitSystem.IMPERIAL));
+        assertEquals("6,06 ton",
+                formatter.formatAndConvert(
+                        new Weight(5.50, WeightUnit.TONNE), UnitSystem.IMPERIAL));
+        assertEquals("6.063.947,08 ton",
+                formatter.formatAndConvert(
+                        new Weight(5.50, WeightUnit.MEGATONNE), UnitSystem.IMPERIAL));
+        assertEquals("5,5 ton",
+                formatter.formatAndConvert(
+                        new Weight(5.50, WeightUnit.US_TON), UnitSystem.IMPERIAL));
+        assertEquals("6,16 ton", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.UK_TON), UnitSystem.IMPERIAL));
+        assertEquals("5,5 lb", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.POUND), UnitSystem.IMPERIAL));
+        assertEquals("5,5 oz", formatter.formatAndConvert(
+                new Weight(5.50, WeightUnit.OUNCE), UnitSystem.IMPERIAL));
     }
 
     @Test
@@ -836,28 +837,28 @@ public class WeightFormatterTest {
         WeightFormatter formatter = new WeightFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5.50"),
-                WeightUnit.NANOGRAM), "5,5 ng");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5.50"),
-                WeightUnit.MICROGRAM), "5,5 µg");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5.50"),
-                WeightUnit.MILLIGRAM), "5,5 mg");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5.50"),
-                WeightUnit.GRAM), "5,5 g");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5.50"),
-                WeightUnit.KILOGRAM), "5,5 Kg");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5.50"),
-                WeightUnit.TONNE), "5,5 t");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5.50"),
-                WeightUnit.MEGATONNE), "5,5 Mt");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5.50"),
-                WeightUnit.US_TON), "4,99 t");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5.50"),
-                WeightUnit.UK_TON), "5,59 t");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5.50"),
-                WeightUnit.POUND), "2,49 Kg");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5.50"),
-                WeightUnit.OUNCE), "155,92 g");
+        assertEquals("5,5 ng", formatter.formatAndConvertMetric(new BigDecimal("5.50"),
+                WeightUnit.NANOGRAM));
+        assertEquals("5,5 µg", formatter.formatAndConvertMetric(new BigDecimal("5.50"),
+                WeightUnit.MICROGRAM));
+        assertEquals("5,5 mg", formatter.formatAndConvertMetric(new BigDecimal("5.50"),
+                WeightUnit.MILLIGRAM));
+        assertEquals("5,5 g", formatter.formatAndConvertMetric(new BigDecimal("5.50"),
+                WeightUnit.GRAM));
+        assertEquals("5,5 Kg", formatter.formatAndConvertMetric(new BigDecimal("5.50"),
+                WeightUnit.KILOGRAM));
+        assertEquals("5,5 t", formatter.formatAndConvertMetric(new BigDecimal("5.50"),
+                WeightUnit.TONNE));
+        assertEquals("5,5 Mt", formatter.formatAndConvertMetric(new BigDecimal("5.50"),
+                WeightUnit.MEGATONNE));
+        assertEquals("4,99 t", formatter.formatAndConvertMetric(new BigDecimal("5.50"),
+                WeightUnit.US_TON));
+        assertEquals("5,59 t", formatter.formatAndConvertMetric(new BigDecimal("5.50"),
+                WeightUnit.UK_TON));
+        assertEquals("2,49 Kg", formatter.formatAndConvertMetric(new BigDecimal("5.50"),
+                WeightUnit.POUND));
+        assertEquals("155,92 g", formatter.formatAndConvertMetric(new BigDecimal("5.50"),
+                WeightUnit.OUNCE));
     }
 
     @Test
@@ -867,34 +868,34 @@ public class WeightFormatterTest {
         WeightFormatter formatter = new WeightFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("5.50"),
-                WeightUnit.NANOGRAM), "0 oz");
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("5.50"),
-                WeightUnit.MICROGRAM), "0 oz");
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("5.50"),
-                WeightUnit.MILLIGRAM), "0 oz");
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("5.50"),
-                WeightUnit.GRAM), "0,19 oz");
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("5.50"),
-                WeightUnit.KILOGRAM), "12,13 lb");
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("5.50"),
-                WeightUnit.TONNE), "6,06 ton");
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("5.50"),
-                WeightUnit.MEGATONNE), "6.063.947,08 ton");
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("5.50"),
-                WeightUnit.US_TON), "5,5 ton");
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("5.50"),
-                WeightUnit.UK_TON), "6,16 ton");
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("5.50"),
-                WeightUnit.POUND), "5,5 lb");
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("5.50"),
-                WeightUnit.OUNCE), "5,5 oz");
+        assertEquals("0 oz", formatter.formatAndConvertImperial(new BigDecimal("5.50"),
+                WeightUnit.NANOGRAM));
+        assertEquals("0 oz", formatter.formatAndConvertImperial(new BigDecimal("5.50"),
+                WeightUnit.MICROGRAM));
+        assertEquals("0 oz", formatter.formatAndConvertImperial(new BigDecimal("5.50"),
+                WeightUnit.MILLIGRAM));
+        assertEquals("0,19 oz", formatter.formatAndConvertImperial(new BigDecimal("5.50"),
+                WeightUnit.GRAM));
+        assertEquals("12,13 lb", formatter.formatAndConvertImperial(new BigDecimal("5.50"),
+                WeightUnit.KILOGRAM));
+        assertEquals("6,06 ton", formatter.formatAndConvertImperial(new BigDecimal("5.50"),
+                WeightUnit.TONNE));
+        assertEquals("6.063.947,08 ton", formatter.formatAndConvertImperial(new BigDecimal("5.50"),
+                WeightUnit.MEGATONNE));
+        assertEquals("5,5 ton", formatter.formatAndConvertImperial(new BigDecimal("5.50"),
+                WeightUnit.US_TON));
+        assertEquals("6,16 ton", formatter.formatAndConvertImperial(new BigDecimal("5.50"),
+                WeightUnit.UK_TON));
+        assertEquals("5,5 lb", formatter.formatAndConvertImperial(new BigDecimal("5.50"),
+                WeightUnit.POUND));
+        assertEquals("5,5 oz", formatter.formatAndConvertImperial(new BigDecimal("5.50"),
+                WeightUnit.OUNCE));
     }
 
     @Test
     public void testGetAvailableLocales() {
         final Locale[] locales = WeightFormatter.getAvailableLocales();
-        assertArrayEquals(locales, NumberFormat.getAvailableLocales());
+        assertArrayEquals(NumberFormat.getAvailableLocales(), locales);
     }
 
     @Test
@@ -908,7 +909,7 @@ public class WeightFormatterTest {
         formatter.setMaximumFractionDigits(2);
 
         // check correctness
-        assertEquals(formatter.getMaximumFractionDigits(), 2);
+        assertEquals(2, formatter.getMaximumFractionDigits());
     }
 
     @Test
@@ -922,7 +923,7 @@ public class WeightFormatterTest {
         formatter.setMaximumIntegerDigits(2);
 
         // check correctness
-        assertEquals(formatter.getMaximumIntegerDigits(), 2);
+        assertEquals(2, formatter.getMaximumIntegerDigits());
     }
 
     @Test
@@ -936,7 +937,7 @@ public class WeightFormatterTest {
         formatter.setMinimumFractionDigits(2);
 
         // check correctness
-        assertEquals(formatter.getMinimumFractionDigits(), 2);
+        assertEquals(2, formatter.getMinimumFractionDigits());
     }
 
     @Test
@@ -950,7 +951,7 @@ public class WeightFormatterTest {
         formatter.setMinimumIntegerDigits(2);
 
         // check correctness
-        assertEquals(formatter.getMinimumIntegerDigits(), 2);
+        assertEquals(2, formatter.getMinimumIntegerDigits());
     }
 
     @Test
@@ -964,7 +965,7 @@ public class WeightFormatterTest {
         formatter.setRoundingMode(RoundingMode.UNNECESSARY);
 
         // check correctness
-        assertEquals(formatter.getRoundingMode(), RoundingMode.UNNECESSARY);
+        assertEquals(RoundingMode.UNNECESSARY, formatter.getRoundingMode());
     }
 
     @Test
@@ -978,8 +979,8 @@ public class WeightFormatterTest {
         formatter.setGroupingUsed(!formatter.isGroupingUsed());
 
         // check correctness
-        assertEquals(formatter.isGroupingUsed(),
-                !NumberFormat.getInstance().isGroupingUsed());
+        assertEquals(!NumberFormat.getInstance().isGroupingUsed(),
+                formatter.isGroupingUsed());
     }
 
     @Test
@@ -993,22 +994,22 @@ public class WeightFormatterTest {
         formatter.setParseIntegerOnly(!formatter.isParseIntegerOnly());
 
         // check correctness
-        assertEquals(formatter.isParseIntegerOnly(),
-                !NumberFormat.getInstance().isParseIntegerOnly());
+        assertEquals(!NumberFormat.getInstance().isParseIntegerOnly(),
+                formatter.isParseIntegerOnly());
     }
 
     @Test
     public void testGetSetValueAndUnitFormatPattern() {
         final WeightFormatter formatter = new WeightFormatter();
 
-        assertEquals(formatter.getValueAndUnitFormatPattern(),
-                MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
+                formatter.getValueAndUnitFormatPattern());
 
         // new value
         formatter.setValueAndUnitFormatPattern("{0}{1}");
 
         // check correctness
-        assertEquals(formatter.getValueAndUnitFormatPattern(), "{0}{1}");
+        assertEquals("{0}{1}", formatter.getValueAndUnitFormatPattern());
 
         // force IllegalArgumentException
         try {
@@ -1022,11 +1023,11 @@ public class WeightFormatterTest {
     public void testGetUnitSystem() {
         WeightFormatter formatter = new WeightFormatter(
                 new Locale("es", "ES"));
-        assertEquals(formatter.getUnitSystem(), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem());
 
         formatter = new WeightFormatter(
                 new Locale("en", "US"));
-        assertEquals(formatter.getUnitSystem(), UnitSystem.IMPERIAL);
+        assertEquals(UnitSystem.IMPERIAL, formatter.getUnitSystem());
     }
 
     @Test
@@ -1204,37 +1205,37 @@ public class WeightFormatterTest {
                 new Locale("es", "ES"));
 
         String text = "5,5 pg";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem(text));
 
         text = "5,5 ng";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem(text));
 
         text = "5,5 µg";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem(text));
 
         text = "5,5 mg";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem(text));
 
         text = "5,5 g";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem(text));
 
         text = "5,5 Kg";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem(text));
 
         text = "5,5 t";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem(text));
 
         text = "5,5 Mt";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem(text));
 
         text = "5,5 ton";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.IMPERIAL);
+        assertEquals(UnitSystem.IMPERIAL, formatter.getUnitSystem(text));
 
         text = "5,5 lb";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.IMPERIAL);
+        assertEquals(UnitSystem.IMPERIAL, formatter.getUnitSystem(text));
 
         text = "5,5 oz";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.IMPERIAL);
+        assertEquals(UnitSystem.IMPERIAL, formatter.getUnitSystem(text));
 
         text = "5,5 s";
         assertNull(formatter.getUnitSystem(text));
@@ -1247,58 +1248,58 @@ public class WeightFormatterTest {
 
         String text = "5,5 pg";
         Weight w = formatter.parse(text);
-        assertEquals(w.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(w.getUnit(), WeightUnit.PICOGRAM);
+        assertEquals(5.5, w.getValue().doubleValue(), 0.0);
+        assertEquals(WeightUnit.PICOGRAM, w.getUnit());
 
         text = "5,5 ng";
         w = formatter.parse(text);
-        assertEquals(w.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(w.getUnit(), WeightUnit.NANOGRAM);
+        assertEquals(5.5, w.getValue().doubleValue(), 0.0);
+        assertEquals(WeightUnit.NANOGRAM, w.getUnit());
 
         text = "5,5 µg";
         w = formatter.parse(text);
-        assertEquals(w.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(w.getUnit(), WeightUnit.MICROGRAM);
+        assertEquals(5.5, w.getValue().doubleValue(), 0.0);
+        assertEquals(WeightUnit.MICROGRAM, w.getUnit());
 
         text = "5,5 mg";
         w = formatter.parse(text);
-        assertEquals(w.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(w.getUnit(), WeightUnit.MILLIGRAM);
+        assertEquals(5.5, w.getValue().doubleValue(), 0.0);
+        assertEquals(WeightUnit.MILLIGRAM, w.getUnit());
 
         text = "5,5 g";
         w = formatter.parse(text);
-        assertEquals(w.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(w.getUnit(), WeightUnit.GRAM);
+        assertEquals(5.5, w.getValue().doubleValue(), 0.0);
+        assertEquals(WeightUnit.GRAM, w.getUnit());
 
         text = "5,5 Kg";
         w = formatter.parse(text);
-        assertEquals(w.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(w.getUnit(), WeightUnit.KILOGRAM);
+        assertEquals(5.5, w.getValue().doubleValue(), 0.0);
+        assertEquals(WeightUnit.KILOGRAM, w.getUnit());
 
         text = "5,5 t";
         w = formatter.parse(text);
-        assertEquals(w.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(w.getUnit(), WeightUnit.TONNE);
+        assertEquals(5.5, w.getValue().doubleValue(), 0.0);
+        assertEquals(WeightUnit.TONNE, w.getUnit());
 
         text = "5,5 Mt";
         w = formatter.parse(text);
-        assertEquals(w.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(w.getUnit(), WeightUnit.MEGATONNE);
+        assertEquals(5.5, w.getValue().doubleValue(), 0.0);
+        assertEquals(WeightUnit.MEGATONNE, w.getUnit());
 
         text = "5,5 ton";
         w = formatter.parse(text);
-        assertEquals(w.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(w.getUnit(), WeightUnit.US_TON);
+        assertEquals(5.5, w.getValue().doubleValue(), 0.0);
+        assertEquals(WeightUnit.US_TON, w.getUnit());
 
         text = "5,5 lb";
         w = formatter.parse(text);
-        assertEquals(w.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(w.getUnit(), WeightUnit.POUND);
+        assertEquals(5.5, w.getValue().doubleValue(), 0.0);
+        assertEquals(WeightUnit.POUND, w.getUnit());
 
         text = "5,5 oz";
         w = formatter.parse(text);
-        assertEquals(w.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(w.getUnit(), WeightUnit.OUNCE);
+        assertEquals(5.5, w.getValue().doubleValue(), 0.0);
+        assertEquals(WeightUnit.OUNCE, w.getUnit());
 
         // Force UnknownUnitException
         text = "5,5 s";
@@ -1322,37 +1323,37 @@ public class WeightFormatterTest {
                 new Locale("es", "ES"));
 
         String text = "5,5 pg";
-        assertEquals(formatter.findUnit(text), WeightUnit.PICOGRAM);
+        assertEquals(WeightUnit.PICOGRAM, formatter.findUnit(text));
 
         text = "5,5 ng";
-        assertEquals(formatter.findUnit(text), WeightUnit.NANOGRAM);
+        assertEquals(WeightUnit.NANOGRAM, formatter.findUnit(text));
 
         text = "5,5 µg";
-        assertEquals(formatter.findUnit(text), WeightUnit.MICROGRAM);
+        assertEquals(WeightUnit.MICROGRAM, formatter.findUnit(text));
 
         text = "5,5 mg";
-        assertEquals(formatter.findUnit(text), WeightUnit.MILLIGRAM);
+        assertEquals(WeightUnit.MILLIGRAM, formatter.findUnit(text));
 
         text = "5,5 g";
-        assertEquals(formatter.findUnit(text), WeightUnit.GRAM);
+        assertEquals(WeightUnit.GRAM, formatter.findUnit(text));
 
         text = "5,5 Kg";
-        assertEquals(formatter.findUnit(text), WeightUnit.KILOGRAM);
+        assertEquals(WeightUnit.KILOGRAM, formatter.findUnit(text));
 
         text = "5,5 t";
-        assertEquals(formatter.findUnit(text), WeightUnit.TONNE);
+        assertEquals(WeightUnit.TONNE, formatter.findUnit(text));
 
         text = "5,5 Mt";
-        assertEquals(formatter.findUnit(text), WeightUnit.MEGATONNE);
+        assertEquals(WeightUnit.MEGATONNE, formatter.findUnit(text));
 
         text = "5,5 ton";
-        assertEquals(formatter.findUnit(text), WeightUnit.US_TON);
+        assertEquals(WeightUnit.US_TON, formatter.findUnit(text));
 
         text = "5,5 lb";
-        assertEquals(formatter.findUnit(text), WeightUnit.POUND);
+        assertEquals(WeightUnit.POUND, formatter.findUnit(text));
 
         text = "5,5 oz";
-        assertEquals(formatter.findUnit(text), WeightUnit.OUNCE);
+        assertEquals(WeightUnit.OUNCE, formatter.findUnit(text));
 
         text = "5,5 s";
         assertNull(formatter.findUnit(text));
@@ -1362,29 +1363,29 @@ public class WeightFormatterTest {
     public void testGetUnitSymbol() {
         final WeightFormatter formatter = new WeightFormatter();
 
-        assertEquals(formatter.getUnitSymbol(WeightUnit.PICOGRAM),
-                WeightFormatter.PICOGRAM);
-        assertEquals(formatter.getUnitSymbol(WeightUnit.NANOGRAM),
-                WeightFormatter.NANOGRAM);
-        assertEquals(formatter.getUnitSymbol(WeightUnit.MICROGRAM),
-                WeightFormatter.MICROGRAM);
-        assertEquals(formatter.getUnitSymbol(WeightUnit.MILLIGRAM),
-                WeightFormatter.MILLIGRAM);
-        assertEquals(formatter.getUnitSymbol(WeightUnit.GRAM),
-                WeightFormatter.GRAM);
-        assertEquals(formatter.getUnitSymbol(WeightUnit.KILOGRAM),
-                WeightFormatter.KILOGRAM);
-        assertEquals(formatter.getUnitSymbol(WeightUnit.TONNE),
-                WeightFormatter.TONNE);
-        assertEquals(formatter.getUnitSymbol(WeightUnit.MEGATONNE),
-                WeightFormatter.MEGATONNE);
-        assertEquals(formatter.getUnitSymbol(WeightUnit.US_TON),
-                WeightFormatter.US_UK_TON);
-        assertEquals(formatter.getUnitSymbol(WeightUnit.UK_TON),
-                WeightFormatter.US_UK_TON);
-        assertEquals(formatter.getUnitSymbol(WeightUnit.POUND),
-                WeightFormatter.POUND);
-        assertEquals(formatter.getUnitSymbol(WeightUnit.OUNCE),
-                WeightFormatter.OUNCE);
+        assertEquals(WeightFormatter.PICOGRAM,
+                formatter.getUnitSymbol(WeightUnit.PICOGRAM));
+        assertEquals(WeightFormatter.NANOGRAM,
+                formatter.getUnitSymbol(WeightUnit.NANOGRAM));
+        assertEquals(WeightFormatter.MICROGRAM,
+                formatter.getUnitSymbol(WeightUnit.MICROGRAM));
+        assertEquals(WeightFormatter.MILLIGRAM,
+                formatter.getUnitSymbol(WeightUnit.MILLIGRAM));
+        assertEquals(WeightFormatter.GRAM,
+                formatter.getUnitSymbol(WeightUnit.GRAM));
+        assertEquals(WeightFormatter.KILOGRAM,
+                formatter.getUnitSymbol(WeightUnit.KILOGRAM));
+        assertEquals(WeightFormatter.TONNE,
+                formatter.getUnitSymbol(WeightUnit.TONNE));
+        assertEquals(WeightFormatter.MEGATONNE,
+                formatter.getUnitSymbol(WeightUnit.MEGATONNE));
+        assertEquals(WeightFormatter.US_UK_TON,
+                formatter.getUnitSymbol(WeightUnit.US_TON));
+        assertEquals(WeightFormatter.US_UK_TON,
+                formatter.getUnitSymbol(WeightUnit.UK_TON));
+        assertEquals(WeightFormatter.POUND,
+                formatter.getUnitSymbol(WeightUnit.POUND));
+        assertEquals(WeightFormatter.OUNCE,
+                formatter.getUnitSymbol(WeightUnit.OUNCE));
     }
 }

@@ -63,7 +63,7 @@ public enum TemperatureUnit {
      * @return all supported metric temperature units.
      */
     public static TemperatureUnit[] getMetricUnits() {
-        return new TemperatureUnit[] {
+        return new TemperatureUnit[]{
                 CELSIUS,
                 KELVIN
         };
@@ -75,7 +75,7 @@ public enum TemperatureUnit {
      * @return all supported imperial temperature units.
      */
     public static TemperatureUnit[] getImperialUnits() {
-        return new TemperatureUnit[] {
+        return new TemperatureUnit[]{
                 FAHRENHEIT
         };
     }

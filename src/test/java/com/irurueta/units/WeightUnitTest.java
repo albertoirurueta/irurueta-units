@@ -23,18 +23,18 @@ public class WeightUnitTest {
 
     @Test
     public void testGetUnitSystem() {
-        assertEquals(WeightUnit.getUnitSystem(WeightUnit.US_TON), UnitSystem.IMPERIAL);
-        assertEquals(WeightUnit.getUnitSystem(WeightUnit.UK_TON), UnitSystem.IMPERIAL);
-        assertEquals(WeightUnit.getUnitSystem(WeightUnit.POUND), UnitSystem.IMPERIAL);
-        assertEquals(WeightUnit.getUnitSystem(WeightUnit.OUNCE), UnitSystem.IMPERIAL);
-        assertEquals(WeightUnit.getUnitSystem(WeightUnit.PICOGRAM), UnitSystem.METRIC);
-        assertEquals(WeightUnit.getUnitSystem(WeightUnit.NANOGRAM), UnitSystem.METRIC);
-        assertEquals(WeightUnit.getUnitSystem(WeightUnit.MICROGRAM), UnitSystem.METRIC);
-        assertEquals(WeightUnit.getUnitSystem(WeightUnit.MILLIGRAM), UnitSystem.METRIC);
-        assertEquals(WeightUnit.getUnitSystem(WeightUnit.GRAM), UnitSystem.METRIC);
-        assertEquals(WeightUnit.getUnitSystem(WeightUnit.KILOGRAM), UnitSystem.METRIC);
-        assertEquals(WeightUnit.getUnitSystem(WeightUnit.TONNE), UnitSystem.METRIC);
-        assertEquals(WeightUnit.getUnitSystem(WeightUnit.MEGATONNE), UnitSystem.METRIC);
+        assertEquals(UnitSystem.IMPERIAL, WeightUnit.getUnitSystem(WeightUnit.US_TON));
+        assertEquals(UnitSystem.IMPERIAL, WeightUnit.getUnitSystem(WeightUnit.UK_TON));
+        assertEquals(UnitSystem.IMPERIAL, WeightUnit.getUnitSystem(WeightUnit.POUND));
+        assertEquals(UnitSystem.IMPERIAL, WeightUnit.getUnitSystem(WeightUnit.OUNCE));
+        assertEquals(UnitSystem.METRIC, WeightUnit.getUnitSystem(WeightUnit.PICOGRAM));
+        assertEquals(UnitSystem.METRIC, WeightUnit.getUnitSystem(WeightUnit.NANOGRAM));
+        assertEquals(UnitSystem.METRIC, WeightUnit.getUnitSystem(WeightUnit.MICROGRAM));
+        assertEquals(UnitSystem.METRIC, WeightUnit.getUnitSystem(WeightUnit.MILLIGRAM));
+        assertEquals(UnitSystem.METRIC, WeightUnit.getUnitSystem(WeightUnit.GRAM));
+        assertEquals(UnitSystem.METRIC, WeightUnit.getUnitSystem(WeightUnit.KILOGRAM));
+        assertEquals(UnitSystem.METRIC, WeightUnit.getUnitSystem(WeightUnit.TONNE));
+        assertEquals(UnitSystem.METRIC, WeightUnit.getUnitSystem(WeightUnit.MEGATONNE));
 
         // Force IllegalArgumentException
         try {

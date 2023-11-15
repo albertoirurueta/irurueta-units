@@ -52,6 +52,7 @@ public class AngularAcceleration extends Measurement<AngularAccelerationUnit> {
      * @return true if provided angular acceleration is assumed to be equal to this
      * instance, false otherwise.
      */
+    @Override
     public boolean equals(
             final Measurement<AngularAccelerationUnit> other,
             final double tolerance) {

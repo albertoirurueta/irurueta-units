@@ -15,7 +15,7 @@
  */
 package com.irurueta.units;
 
-import org.junit.*;
+import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -36,48 +36,47 @@ public class AngleFormatterTest {
         AngleFormatter formatter = new AngleFormatter();
 
         // check
-        assertEquals(formatter.getLocale(), Locale.getDefault());
-        assertEquals(formatter.getMaximumFractionDigits(),
-                NumberFormat.getInstance().getMaximumFractionDigits());
-        assertEquals(formatter.getMaximumIntegerDigits(),
-                NumberFormat.getInstance().getMaximumIntegerDigits());
-        assertEquals(formatter.getMinimumFractionDigits(),
-                NumberFormat.getInstance().getMinimumFractionDigits());
-        assertEquals(formatter.getMinimumIntegerDigits(),
-                NumberFormat.getInstance().getMinimumIntegerDigits());
-        assertEquals(formatter.getRoundingMode(),
-                NumberFormat.getInstance().getRoundingMode());
-        assertEquals(formatter.getUnitSystem(), UnitLocale.getDefault());
-        assertEquals(formatter.isGroupingUsed(),
-                NumberFormat.getInstance().isGroupingUsed());
-        assertEquals(formatter.isParseIntegerOnly(),
-                NumberFormat.getInstance().isParseIntegerOnly());
-        assertEquals(formatter.getValueAndUnitFormatPattern(),
-                MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
+        assertEquals(Locale.getDefault(), formatter.getLocale());
+        assertEquals(NumberFormat.getInstance().getMaximumFractionDigits(),
+                formatter.getMaximumFractionDigits());
+        assertEquals(NumberFormat.getInstance().getMaximumIntegerDigits(),
+                formatter.getMaximumIntegerDigits());
+        assertEquals(NumberFormat.getInstance().getMinimumFractionDigits(),
+                formatter.getMinimumFractionDigits());
+        assertEquals(NumberFormat.getInstance().getMinimumIntegerDigits(),
+                formatter.getMinimumIntegerDigits());
+        assertEquals(NumberFormat.getInstance().getRoundingMode(),
+                formatter.getRoundingMode());
+        assertEquals(UnitLocale.getDefault(), formatter.getUnitSystem());
+        assertEquals(NumberFormat.getInstance().isGroupingUsed(), formatter.isGroupingUsed());
+        assertEquals(NumberFormat.getInstance().isParseIntegerOnly(),
+                formatter.isParseIntegerOnly());
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
+                formatter.getValueAndUnitFormatPattern());
 
         // test constructor with locale
         final Locale locale = new Locale("es", "ES");
         formatter = new AngleFormatter(locale);
 
         // check
-        assertEquals(formatter.getLocale(), locale);
-        assertEquals(formatter.getMaximumFractionDigits(),
-                NumberFormat.getInstance(locale).getMaximumFractionDigits());
-        assertEquals(formatter.getMaximumIntegerDigits(),
-                NumberFormat.getInstance(locale).getMaximumIntegerDigits());
-        assertEquals(formatter.getMinimumFractionDigits(),
-                NumberFormat.getInstance(locale).getMinimumFractionDigits());
-        assertEquals(formatter.getMinimumIntegerDigits(),
-                NumberFormat.getInstance(locale).getMinimumIntegerDigits());
-        assertEquals(formatter.getRoundingMode(),
-                NumberFormat.getInstance(locale).getRoundingMode());
-        assertEquals(formatter.getUnitSystem(), UnitLocale.getFrom(locale));
-        assertEquals(formatter.isGroupingUsed(),
-                NumberFormat.getInstance(locale).isGroupingUsed());
-        assertEquals(formatter.isParseIntegerOnly(),
-                NumberFormat.getInstance(locale).isParseIntegerOnly());
-        assertEquals(formatter.getValueAndUnitFormatPattern(),
-                MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
+        assertEquals(locale, formatter.getLocale());
+        assertEquals(NumberFormat.getInstance(locale).getMaximumFractionDigits(),
+                formatter.getMaximumFractionDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMaximumIntegerDigits(),
+                formatter.getMaximumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMinimumFractionDigits(),
+                formatter.getMinimumFractionDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMinimumIntegerDigits(),
+                formatter.getMinimumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getRoundingMode(),
+                formatter.getRoundingMode());
+        assertEquals(UnitLocale.getFrom(locale), formatter.getUnitSystem());
+        assertEquals(NumberFormat.getInstance(locale).isGroupingUsed(),
+                formatter.isGroupingUsed());
+        assertEquals(NumberFormat.getInstance(locale).isParseIntegerOnly(),
+                formatter.isParseIntegerOnly());
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
+                formatter.getValueAndUnitFormatPattern());
 
 
         // force IllegalArgumentException
@@ -96,24 +95,24 @@ public class AngleFormatterTest {
         AngleFormatter formatter2 = new AngleFormatter(formatter);
 
         // check
-        assertEquals(formatter2.getLocale(), locale);
-        assertEquals(formatter2.getMaximumFractionDigits(),
-                NumberFormat.getInstance(locale).getMaximumFractionDigits());
-        assertEquals(formatter2.getMaximumIntegerDigits(),
-                NumberFormat.getInstance(locale).getMaximumIntegerDigits());
-        assertEquals(formatter2.getMinimumFractionDigits(),
-                NumberFormat.getInstance(locale).getMinimumFractionDigits());
-        assertEquals(formatter2.getMinimumIntegerDigits(),
-                NumberFormat.getInstance(locale).getMinimumIntegerDigits());
-        assertEquals(formatter2.getRoundingMode(),
-                NumberFormat.getInstance(locale).getRoundingMode());
-        assertEquals(formatter2.getUnitSystem(), UnitLocale.getFrom(locale));
-        assertEquals(formatter2.isGroupingUsed(),
-                NumberFormat.getInstance(locale).isGroupingUsed());
-        assertEquals(formatter2.isParseIntegerOnly(),
-                NumberFormat.getInstance(locale).isParseIntegerOnly());
-        assertEquals(formatter2.getValueAndUnitFormatPattern(),
-                MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
+        assertEquals(locale, formatter2.getLocale());
+        assertEquals(NumberFormat.getInstance(locale).getMaximumFractionDigits(),
+                formatter2.getMaximumFractionDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMaximumIntegerDigits(),
+                formatter2.getMaximumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMinimumFractionDigits(),
+                formatter2.getMinimumFractionDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMinimumIntegerDigits(),
+                formatter2.getMinimumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getRoundingMode(),
+                formatter2.getRoundingMode());
+        assertEquals(UnitLocale.getFrom(locale), formatter2.getUnitSystem());
+        assertEquals(NumberFormat.getInstance(locale).isGroupingUsed(),
+                formatter2.isGroupingUsed());
+        assertEquals(NumberFormat.getInstance(locale).isParseIntegerOnly(),
+                formatter2.isParseIntegerOnly());
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
+                formatter2.getValueAndUnitFormatPattern());
 
         formatter = null;
         try {
@@ -132,6 +131,7 @@ public class AngleFormatterTest {
         final AngleFormatter formatter3 = new AngleFormatter(Locale.FRENCH);
 
         // check
+        //noinspection EqualsWithItself
         assertEquals(formatter1, formatter1);
         assertEquals(formatter1, formatter2);
         assertNotEquals(formatter1, formatter3);
@@ -159,10 +159,10 @@ public class AngleFormatterTest {
 
         final AngleFormatter formatter = new AngleFormatter(l);
 
-        assertEquals(formatter.format(new BigDecimal(value), AngleUnit.DEGREES),
-                "5,5 º");
-        assertEquals(formatter.format(new BigDecimal(value), AngleUnit.RADIANS),
-                "5,5 rad");
+        assertEquals("5,5 º",
+                formatter.format(new BigDecimal(value), AngleUnit.DEGREES));
+        assertEquals("5,5 rad",
+                formatter.format(new BigDecimal(value), AngleUnit.RADIANS));
     }
 
     @Test
@@ -173,14 +173,14 @@ public class AngleFormatterTest {
         final AngleFormatter formatter = new AngleFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
-                AngleUnit.DEGREES, buffer, new FieldPosition(0)).toString(),
-                "5,5 º");
+        assertEquals("5,5 º",
+                formatter.format(new BigDecimal(value),
+                        AngleUnit.DEGREES, buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
-                AngleUnit.RADIANS, buffer, new FieldPosition(0)).toString(),
-                "5,5 rad");
+        assertEquals("5,5 rad",
+                formatter.format(new BigDecimal(value),
+                        AngleUnit.RADIANS, buffer, new FieldPosition(0)).toString());
     }
 
     @Test
@@ -190,10 +190,10 @@ public class AngleFormatterTest {
 
         final AngleFormatter formatter = new AngleFormatter(l);
 
-        assertEquals(formatter.format(value, AngleUnit.DEGREES),
-                "5,5 º");
-        assertEquals(formatter.format(value, AngleUnit.RADIANS),
-                "5,5 rad");
+        assertEquals("5,5 º",
+                formatter.format(value, AngleUnit.DEGREES));
+        assertEquals("5,5 rad",
+                formatter.format(value, AngleUnit.RADIANS));
     }
 
     @Test
@@ -204,14 +204,14 @@ public class AngleFormatterTest {
         final AngleFormatter formatter = new AngleFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
-        assertEquals(formatter.format(value,
-                AngleUnit.DEGREES, buffer, new FieldPosition(0)).toString(),
-                "5,5 º");
+        assertEquals("5,5 º",
+                formatter.format(value,
+                        AngleUnit.DEGREES, buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value,
-                AngleUnit.RADIANS, buffer, new FieldPosition(0)).toString(),
-                "5,5 rad");
+        assertEquals("5,5 rad",
+                formatter.format(value,
+                        AngleUnit.RADIANS, buffer, new FieldPosition(0)).toString());
     }
 
     @Test
@@ -221,10 +221,10 @@ public class AngleFormatterTest {
 
         final AngleFormatter formatter = new AngleFormatter(l);
 
-        assertEquals(formatter.format(new Angle(value, AngleUnit.DEGREES)),
-                "5,5 º");
-        assertEquals(formatter.format(new Angle(value, AngleUnit.RADIANS)),
-                "5,5 rad");
+        assertEquals("5,5 º",
+                formatter.format(new Angle(value, AngleUnit.DEGREES)));
+        assertEquals("5,5 rad",
+                formatter.format(new Angle(value, AngleUnit.RADIANS)));
     }
 
     @Test
@@ -235,12 +235,12 @@ public class AngleFormatterTest {
         final AngleFormatter formatter = new AngleFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
-        assertEquals(formatter.format(new Angle(value, AngleUnit.DEGREES), buffer,
-                new FieldPosition(0)).toString(), "5,5 º");
+        assertEquals("5,5 º", formatter.format(new Angle(value, AngleUnit.DEGREES), buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new Angle(value, AngleUnit.RADIANS), buffer,
-                new FieldPosition(0)).toString(), "5,5 rad");
+        assertEquals("5,5 rad", formatter.format(new Angle(value, AngleUnit.RADIANS), buffer,
+                new FieldPosition(0)).toString());
     }
 
     @Test
@@ -250,10 +250,10 @@ public class AngleFormatterTest {
         final AngleFormatter formatter = new AngleFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                AngleUnit.DEGREES), "5,5 º");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                AngleUnit.RADIANS), "5,5 rad");
+        assertEquals("5,5 º", formatter.formatAndConvert(new BigDecimal("5.50"),
+                AngleUnit.DEGREES));
+        assertEquals("5,5 rad", formatter.formatAndConvert(new BigDecimal("5.50"),
+                AngleUnit.RADIANS));
     }
 
     @Test
@@ -263,10 +263,8 @@ public class AngleFormatterTest {
         final AngleFormatter formatter = new AngleFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(5.50,
-                AngleUnit.DEGREES), "5,5 º");
-        assertEquals(formatter.formatAndConvert(5.50,
-                AngleUnit.RADIANS), "5,5 rad");
+        assertEquals("5,5 º", formatter.formatAndConvert(5.50, AngleUnit.DEGREES));
+        assertEquals("5,5 rad", formatter.formatAndConvert(5.50, AngleUnit.RADIANS));
     }
 
     @Test
@@ -276,10 +274,10 @@ public class AngleFormatterTest {
         final AngleFormatter formatter = new AngleFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new Angle(5.50,
-                AngleUnit.DEGREES)), "5,5 º");
-        assertEquals(formatter.formatAndConvert(new Angle(5.50,
-                AngleUnit.RADIANS)), "5,5 rad");
+        assertEquals("5,5 º",
+                formatter.formatAndConvert(new Angle(5.50, AngleUnit.DEGREES)));
+        assertEquals("5,5 rad",
+                formatter.formatAndConvert(new Angle(5.50, AngleUnit.RADIANS)));
     }
 
     @Test
@@ -289,15 +287,19 @@ public class AngleFormatterTest {
         final AngleFormatter formatter = new AngleFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                AngleUnit.DEGREES, UnitSystem.METRIC), "5,5 º");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                AngleUnit.RADIANS, UnitSystem.METRIC), "5,5 rad");
+        assertEquals("5,5 º",
+                formatter.formatAndConvert(new BigDecimal("5.50"),
+                        AngleUnit.DEGREES, UnitSystem.METRIC));
+        assertEquals("5,5 rad",
+                formatter.formatAndConvert(new BigDecimal("5.50"),
+                        AngleUnit.RADIANS, UnitSystem.METRIC));
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                AngleUnit.DEGREES, UnitSystem.IMPERIAL), "5,5 º");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                AngleUnit.RADIANS, UnitSystem.IMPERIAL), "5,5 rad");
+        assertEquals("5,5 º",
+                formatter.formatAndConvert(new BigDecimal("5.50"),
+                        AngleUnit.DEGREES, UnitSystem.IMPERIAL));
+        assertEquals("5,5 rad",
+                formatter.formatAndConvert(new BigDecimal("5.50"),
+                        AngleUnit.RADIANS, UnitSystem.IMPERIAL));
     }
 
     @Test
@@ -307,15 +309,15 @@ public class AngleFormatterTest {
         final AngleFormatter formatter = new AngleFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(5.50,
-                AngleUnit.DEGREES, UnitSystem.METRIC), "5,5 º");
-        assertEquals(formatter.formatAndConvert(5.50,
-                AngleUnit.RADIANS, UnitSystem.METRIC), "5,5 rad");
+        assertEquals("5,5 º",
+                formatter.formatAndConvert(5.50, AngleUnit.DEGREES, UnitSystem.METRIC));
+        assertEquals("5,5 rad",
+                formatter.formatAndConvert(5.50, AngleUnit.RADIANS, UnitSystem.METRIC));
 
-        assertEquals(formatter.formatAndConvert(5.50,
-                AngleUnit.DEGREES, UnitSystem.IMPERIAL), "5,5 º");
-        assertEquals(formatter.formatAndConvert(5.50,
-                AngleUnit.RADIANS, UnitSystem.IMPERIAL), "5,5 rad");
+        assertEquals("5,5 º",
+                formatter.formatAndConvert(5.50, AngleUnit.DEGREES, UnitSystem.IMPERIAL));
+        assertEquals("5,5 rad",
+                formatter.formatAndConvert(5.50, AngleUnit.RADIANS, UnitSystem.IMPERIAL));
     }
 
     @Test
@@ -325,15 +327,15 @@ public class AngleFormatterTest {
         final AngleFormatter formatter = new AngleFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new Angle(5.50,
-                AngleUnit.DEGREES), UnitSystem.METRIC), "5,5 º");
-        assertEquals(formatter.formatAndConvert(new Angle(5.50,
-                AngleUnit.RADIANS), UnitSystem.METRIC), "5,5 rad");
+        assertEquals("5,5 º",
+                formatter.formatAndConvert(new Angle(5.50, AngleUnit.DEGREES), UnitSystem.METRIC));
+        assertEquals("5,5 rad",
+                formatter.formatAndConvert(new Angle(5.50, AngleUnit.RADIANS), UnitSystem.METRIC));
 
-        assertEquals(formatter.formatAndConvert(new Angle(5.50,
-                AngleUnit.DEGREES), UnitSystem.IMPERIAL), "5,5 º");
-        assertEquals(formatter.formatAndConvert(new Angle(5.50,
-                AngleUnit.RADIANS), UnitSystem.IMPERIAL), "5,5 rad");
+        assertEquals("5,5 º",
+                formatter.formatAndConvert(new Angle(5.50, AngleUnit.DEGREES), UnitSystem.IMPERIAL));
+        assertEquals("5,5 rad",
+                formatter.formatAndConvert(new Angle(5.50, AngleUnit.RADIANS), UnitSystem.IMPERIAL));
     }
 
     @Test
@@ -353,7 +355,7 @@ public class AngleFormatterTest {
         formatter.setMaximumFractionDigits(2);
 
         // check correctness
-        assertEquals(formatter.getMaximumFractionDigits(), 2);
+        assertEquals(2, formatter.getMaximumFractionDigits());
     }
 
     @Test
@@ -367,7 +369,7 @@ public class AngleFormatterTest {
         formatter.setMaximumIntegerDigits(2);
 
         // check correctness
-        assertEquals(formatter.getMaximumIntegerDigits(), 2);
+        assertEquals(2, formatter.getMaximumIntegerDigits());
     }
 
     @Test
@@ -381,7 +383,7 @@ public class AngleFormatterTest {
         formatter.setMinimumFractionDigits(2);
 
         // check correctness
-        assertEquals(formatter.getMinimumFractionDigits(), 2);
+        assertEquals(2, formatter.getMinimumFractionDigits());
     }
 
     @Test
@@ -395,7 +397,7 @@ public class AngleFormatterTest {
         formatter.setMinimumIntegerDigits(2);
 
         // check correctness
-        assertEquals(formatter.getMinimumIntegerDigits(), 2);
+        assertEquals(2, formatter.getMinimumIntegerDigits());
     }
 
     @Test
@@ -409,7 +411,7 @@ public class AngleFormatterTest {
         formatter.setRoundingMode(RoundingMode.UNNECESSARY);
 
         // check correctness
-        assertEquals(formatter.getRoundingMode(), RoundingMode.UNNECESSARY);
+        assertEquals(RoundingMode.UNNECESSARY, formatter.getRoundingMode());
     }
 
     @Test
@@ -446,14 +448,14 @@ public class AngleFormatterTest {
     public void testGetSetValueAndUnitFormatPattern() {
         final AngleFormatter formatter = new AngleFormatter();
 
-        assertEquals(formatter.getValueAndUnitFormatPattern(),
-                MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
+                formatter.getValueAndUnitFormatPattern());
 
         // new value
         formatter.setValueAndUnitFormatPattern("{0}{1}");
 
         // check correctness
-        assertEquals(formatter.getValueAndUnitFormatPattern(), "{0}{1}");
+        assertEquals("{0}{1}", formatter.getValueAndUnitFormatPattern());
 
         // force IllegalArgumentException
         try {
@@ -467,11 +469,11 @@ public class AngleFormatterTest {
     public void testGetUnitSystem() {
         AngleFormatter formatter = new AngleFormatter(
                 new Locale("es", "ES"));
-        assertEquals(formatter.getUnitSystem(), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem());
 
         formatter = new AngleFormatter(
                 new Locale("en", "US"));
-        assertEquals(formatter.getUnitSystem(), UnitSystem.IMPERIAL);
+        assertEquals(UnitSystem.IMPERIAL, formatter.getUnitSystem());
     }
 
     @Test
@@ -538,10 +540,10 @@ public class AngleFormatterTest {
                 new Locale("es", "ES"));
 
         String text = "5,5 º";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem(text));
 
         text = "5,5 rad";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem(text));
 
         text = "5,5 s";
         assertNull(formatter.getUnitSystem(text));
@@ -554,13 +556,13 @@ public class AngleFormatterTest {
 
         String text = "5,5 º";
         Angle a = formatter.parse(text);
-        assertEquals(a.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(a.getUnit(), AngleUnit.DEGREES);
+        assertEquals(5.5, a.getValue().doubleValue(), 0.0);
+        assertEquals(AngleUnit.DEGREES, a.getUnit());
 
         text = "5,5 rad";
         a = formatter.parse(text);
-        assertEquals(a.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(a.getUnit(), AngleUnit.RADIANS);
+        assertEquals(5.5, a.getValue().doubleValue(), 0.0);
+        assertEquals(AngleUnit.RADIANS, a.getUnit());
 
         // Force UnknownUnitException
         text = "5,5 s";
@@ -584,10 +586,10 @@ public class AngleFormatterTest {
                 new Locale("es", "ES"));
 
         String text = "5,5 º";
-        assertEquals(formatter.findUnit(text), AngleUnit.DEGREES);
+        assertEquals(AngleUnit.DEGREES, formatter.findUnit(text));
 
         text = "5,5 rad";
-        assertEquals(formatter.findUnit(text), AngleUnit.RADIANS);
+        assertEquals(AngleUnit.RADIANS, formatter.findUnit(text));
 
         text = "5,5 s";
         assertNull(formatter.findUnit(text));
@@ -597,10 +599,10 @@ public class AngleFormatterTest {
     public void testGetUnitSymbol() {
         final AngleFormatter formatter = new AngleFormatter();
 
-        assertEquals(formatter.getUnitSymbol(AngleUnit.DEGREES),
-                AngleFormatter.DEGREE);
-        assertEquals(formatter.getUnitSymbol(AngleUnit.RADIANS),
-                AngleFormatter.RADIAN);
+        assertEquals(AngleFormatter.DEGREE,
+                formatter.getUnitSymbol(AngleUnit.DEGREES));
+        assertEquals(AngleFormatter.RADIAN,
+                formatter.getUnitSymbol(AngleUnit.RADIANS));
     }
 
     @Test
@@ -612,8 +614,8 @@ public class AngleFormatterTest {
         final Angle angle2 = new Angle(-45.5, AngleUnit.DEGREES);
 
         // check
-        assertEquals(formatter.formatDegreesAndMinutes(angle1), "45º 30'");
-        assertEquals(formatter.formatDegreesAndMinutes(angle2), "-46º 30'");
+        assertEquals("45º 30'", formatter.formatDegreesAndMinutes(angle1));
+        assertEquals("-46º 30'", formatter.formatDegreesAndMinutes(angle2));
     }
 
     @Test
@@ -627,10 +629,10 @@ public class AngleFormatterTest {
         final Angle angle4 = new Angle(45.555, AngleUnit.DEGREES);
 
         // check
-        assertEquals(formatter.formatDegreesMinutesAndSeconds(angle1), "45º 30' 0\"");
-        assertEquals(formatter.formatDegreesMinutesAndSeconds(angle2), "-46º 30' 0\"");
-        assertEquals(formatter.formatDegreesMinutesAndSeconds(angle3), "45º 32' 60\"");
-        assertEquals(formatter.formatDegreesMinutesAndSeconds(angle4), "45º 33' 18\"");
+        assertEquals("45º 30' 0\"", formatter.formatDegreesMinutesAndSeconds(angle1));
+        assertEquals("-46º 30' 0\"", formatter.formatDegreesMinutesAndSeconds(angle2));
+        assertEquals("45º 32' 60\"", formatter.formatDegreesMinutesAndSeconds(angle3));
+        assertEquals("45º 33' 18\"", formatter.formatDegreesMinutesAndSeconds(angle4));
     }
 
     @Test
@@ -645,17 +647,17 @@ public class AngleFormatterTest {
         final String str1 = formatter.formatDegreesAndMinutes(angle1);
         final String str2 = formatter.formatDegreesAndMinutes(angle2);
 
-        assertEquals(str1, "45º 30'");
-        assertEquals(str2, "-46º 30'");
+        assertEquals("45º 30'", str1);
+        assertEquals("-46º 30'", str2);
 
         final Angle angle1b = formatter.parseDegreesAndMinutes(str1);
         final Angle angle2b = formatter.parseDegreesAndMinutes(str2);
 
-        assertEquals(angle1b.getUnit(), AngleUnit.DEGREES);
-        assertEquals(angle1b.getValue().doubleValue(), 45.5, ERROR);
+        assertEquals(AngleUnit.DEGREES, angle1b.getUnit());
+        assertEquals(45.5, angle1b.getValue().doubleValue(), ERROR);
 
-        assertEquals(angle2b.getUnit(), AngleUnit.DEGREES);
-        assertEquals(angle2b.getValue().doubleValue(), -45.5, ERROR);
+        assertEquals(AngleUnit.DEGREES, angle2b.getUnit());
+        assertEquals(-45.5, angle2b.getValue().doubleValue(), ERROR);
 
         // force UnknownUnitException
         Angle a = null;
@@ -683,27 +685,27 @@ public class AngleFormatterTest {
         final String str3 = formatter.formatDegreesMinutesAndSeconds(angle3);
         final String str4 = formatter.formatDegreesMinutesAndSeconds(angle4);
 
-        assertEquals(str1, "45º 30' 0\"");
-        assertEquals(str2, "-46º 30' 0\"");
-        assertEquals(str3, "45º 32' 60\"");
-        assertEquals(str4, "45º 33' 18\"");
+        assertEquals("45º 30' 0\"", str1);
+        assertEquals("-46º 30' 0\"", str2);
+        assertEquals("45º 32' 60\"", str3);
+        assertEquals("45º 33' 18\"", str4);
 
         final Angle angle1b = formatter.parseDegreesMinutesAndSeconds(str1);
         final Angle angle2b = formatter.parseDegreesMinutesAndSeconds(str2);
         final Angle angle3b = formatter.parseDegreesMinutesAndSeconds(str3);
         final Angle angle4b = formatter.parseDegreesMinutesAndSeconds(str4);
 
-        assertEquals(angle1b.getUnit(), AngleUnit.DEGREES);
-        assertEquals(angle1b.getValue().doubleValue(), 45.5, ERROR);
+        assertEquals(AngleUnit.DEGREES, angle1b.getUnit());
+        assertEquals(45.5, angle1b.getValue().doubleValue(), ERROR);
 
-        assertEquals(angle2b.getUnit(), AngleUnit.DEGREES);
-        assertEquals(angle2b.getValue().doubleValue(), -45.5, ERROR);
+        assertEquals(AngleUnit.DEGREES, angle2b.getUnit());
+        assertEquals(-45.5, angle2b.getValue().doubleValue(), ERROR);
 
-        assertEquals(angle3b.getUnit(), AngleUnit.DEGREES);
-        assertEquals(angle3b.getValue().doubleValue(), 45.55, ERROR);
+        assertEquals(AngleUnit.DEGREES, angle3b.getUnit());
+        assertEquals(45.55, angle3b.getValue().doubleValue(), ERROR);
 
-        assertEquals(angle4b.getUnit(), AngleUnit.DEGREES);
-        assertEquals(angle4b.getValue().doubleValue(), 45.555, ERROR);
+        assertEquals(AngleUnit.DEGREES, angle4b.getUnit());
+        assertEquals(45.555, angle4b.getValue().doubleValue(), ERROR);
 
         // force UnknownUnitException
         Angle a = null;

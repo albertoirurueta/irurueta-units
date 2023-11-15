@@ -612,4 +612,10 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
         }
         return copy;
     }
+
+    @Override
+    protected MeasureFormatter<M , U> clone() throws CloneNotSupportedException {
+        //noinspection unchecked
+        return internalClone((MeasureFormatter<M , U>) super.clone());
+    }
 }

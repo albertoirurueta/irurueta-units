@@ -15,7 +15,7 @@
  */
 package com.irurueta.units;
 
-import org.junit.*;
+import org.junit.Test;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -40,8 +40,8 @@ public class AngleTest {
         a = new Angle(323, AngleUnit.DEGREES);
 
         // check
-        assertEquals(a.getValue(), 323);
-        assertEquals(a.getUnit(), AngleUnit.DEGREES);
+        assertEquals(323, a.getValue());
+        assertEquals(AngleUnit.DEGREES, a.getUnit());
 
         // force IllegalArgumentException
         a = null;
@@ -67,7 +67,6 @@ public class AngleTest {
         final Angle a3 = new Angle(value + 1.0, AngleUnit.DEGREES);
         final Angle a4 = new Angle(value, AngleUnit.RADIANS);
 
-        assertEquals(a1, a1);
         assertEquals(a1, a2);
         assertNotEquals(a1, a3);
         assertNotEquals(a1, a4);
@@ -114,13 +113,13 @@ public class AngleTest {
         final Angle a = new Angle(1, AngleUnit.DEGREES);
 
         // check
-        assertEquals(a.getValue(), 1);
+        assertEquals(1, a.getValue());
 
         // set new value
         a.setValue(2.5);
 
         // check
-        assertEquals(a.getValue(), 2.5);
+        assertEquals(2.5, a.getValue());
 
         // force IllegalArgumentException
         try {
@@ -135,13 +134,13 @@ public class AngleTest {
         final Angle a = new Angle(1, AngleUnit.DEGREES);
 
         // check
-        assertEquals(a.getUnit(), AngleUnit.DEGREES);
+        assertEquals(AngleUnit.DEGREES, a.getUnit());
 
         // set new value
         a.setUnit(AngleUnit.RADIANS);
 
         // check
-        assertEquals(a.getUnit(), AngleUnit.RADIANS);
+        assertEquals(AngleUnit.RADIANS, a.getUnit());
 
         // force IllegalArgumentException
         try {
@@ -191,13 +190,13 @@ public class AngleTest {
         Angle.add(a1, a2, result);
 
         // check
-        assertEquals(a1.getUnit(), AngleUnit.DEGREES);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AngleUnit.DEGREES, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(),0.0);
 
-        assertEquals(a2.getUnit(), AngleUnit.DEGREES);
-        assertEquals(a2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(AngleUnit.DEGREES, a2.getUnit());
+        assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), AngleUnit.RADIANS);
+        assertEquals(AngleUnit.RADIANS, result.getUnit());
         assertEquals((value1 + value2) * Math.PI / 180.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -215,13 +214,13 @@ public class AngleTest {
                 AngleUnit.RADIANS);
 
         // check
-        assertEquals(a1.getUnit(), AngleUnit.DEGREES);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AngleUnit.DEGREES, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(a2.getUnit(), AngleUnit.DEGREES);
-        assertEquals(a2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(AngleUnit.DEGREES, a2.getUnit());
+        assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), AngleUnit.RADIANS);
+        assertEquals(AngleUnit.RADIANS, result.getUnit());
         assertEquals((value1 + value2) * Math.PI / 180.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -238,10 +237,10 @@ public class AngleTest {
                 AngleUnit.RADIANS);
 
         // check
-        assertEquals(a1.getUnit(), AngleUnit.DEGREES);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AngleUnit.DEGREES, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), AngleUnit.RADIANS);
+        assertEquals(AngleUnit.RADIANS, result.getUnit());
         assertEquals((value1 + value2) * Math.PI / 180.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -258,10 +257,10 @@ public class AngleTest {
                 AngleUnit.DEGREES, AngleUnit.RADIANS);
 
         // check
-        assertEquals(a1.getUnit(), AngleUnit.DEGREES);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AngleUnit.DEGREES, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), AngleUnit.RADIANS);
+        assertEquals(AngleUnit.RADIANS, result.getUnit());
         assertEquals((value1 + value2) * Math.PI / 180.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -278,13 +277,13 @@ public class AngleTest {
         final Angle result = a1.addAndReturnNew(a2, AngleUnit.RADIANS);
 
         // check
-        assertEquals(a1.getUnit(), AngleUnit.DEGREES);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AngleUnit.DEGREES, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(a2.getUnit(), AngleUnit.DEGREES);
-        assertEquals(a2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(AngleUnit.DEGREES, a2.getUnit());
+        assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), AngleUnit.RADIANS);
+        assertEquals(AngleUnit.RADIANS, result.getUnit());
         assertEquals((value1 + value2) * Math.PI / 180.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -300,9 +299,8 @@ public class AngleTest {
         a1.add(value2, AngleUnit.DEGREES);
 
         // check
-        assertEquals(a1.getUnit(), AngleUnit.DEGREES);
-        assertEquals(a1.getValue().doubleValue(), value1 + value2,
-                ERROR);
+        assertEquals(AngleUnit.DEGREES, a1.getUnit());
+        assertEquals(value1 + value2, a1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -316,9 +314,8 @@ public class AngleTest {
         a1.add(new BigDecimal(value2), AngleUnit.DEGREES);
 
         // check
-        assertEquals(a1.getUnit(), AngleUnit.DEGREES);
-        assertEquals(a1.getValue().doubleValue(), value1 + value2,
-                ERROR);
+        assertEquals(AngleUnit.DEGREES, a1.getUnit());
+        assertEquals(value1 + value2, a1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -333,12 +330,11 @@ public class AngleTest {
         a1.add(a2);
 
         // check
-        assertEquals(a1.getUnit(), AngleUnit.DEGREES);
-        assertEquals(a1.getValue().doubleValue(), value1 + value2,
-                ERROR);
+        assertEquals(AngleUnit.DEGREES, a1.getUnit());
+        assertEquals(value1 + value2, a1.getValue().doubleValue(), ERROR);
 
-        assertEquals(a2.getUnit(), AngleUnit.DEGREES);
-        assertEquals(a2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(AngleUnit.DEGREES, a2.getUnit());
+        assertEquals(value2, a2.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -354,13 +350,13 @@ public class AngleTest {
         a1.add(a2, result);
 
         // check
-        assertEquals(a1.getUnit(), AngleUnit.DEGREES);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AngleUnit.DEGREES, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(a2.getUnit(), AngleUnit.DEGREES);
-        assertEquals(a2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(AngleUnit.DEGREES, a2.getUnit());
+        assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), AngleUnit.RADIANS);
+        assertEquals(AngleUnit.RADIANS, result.getUnit());
         assertEquals((value1 + value2) * Math.PI / 180.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -404,13 +400,13 @@ public class AngleTest {
         Angle.subtract(a1, a2, result);
 
         // check
-        assertEquals(a1.getUnit(), AngleUnit.DEGREES);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AngleUnit.DEGREES, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(a2.getUnit(), AngleUnit.DEGREES);
-        assertEquals(a2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(AngleUnit.DEGREES, a2.getUnit());
+        assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), AngleUnit.RADIANS);
+        assertEquals(AngleUnit.RADIANS, result.getUnit());
         assertEquals((value1 - value2) * Math.PI / 180.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -427,13 +423,13 @@ public class AngleTest {
         final Angle result = Angle.subtractAndReturnNew(a1, a2, AngleUnit.RADIANS);
 
         // check
-        assertEquals(a1.getUnit(), AngleUnit.DEGREES);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AngleUnit.DEGREES, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(a2.getUnit(), AngleUnit.DEGREES);
-        assertEquals(a2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(AngleUnit.DEGREES, a2.getUnit());
+        assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), AngleUnit.RADIANS);
+        assertEquals(AngleUnit.RADIANS, result.getUnit());
         assertEquals((value1 - value2) * Math.PI / 180.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -450,10 +446,10 @@ public class AngleTest {
                 AngleUnit.RADIANS);
 
         // check
-        assertEquals(a1.getUnit(), AngleUnit.DEGREES);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AngleUnit.DEGREES, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), AngleUnit.RADIANS);
+        assertEquals(AngleUnit.RADIANS, result.getUnit());
         assertEquals((value1 - value2) * Math.PI / 180.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -470,10 +466,10 @@ public class AngleTest {
                 AngleUnit.DEGREES, AngleUnit.RADIANS);
 
         // check
-        assertEquals(a1.getUnit(), AngleUnit.DEGREES);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AngleUnit.DEGREES, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), AngleUnit.RADIANS);
+        assertEquals(AngleUnit.RADIANS, result.getUnit());
         assertEquals((value1 - value2) * Math.PI / 180.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -490,13 +486,13 @@ public class AngleTest {
         final Angle result = a1.subtractAndReturnNew(a2, AngleUnit.RADIANS);
 
         // check
-        assertEquals(a1.getUnit(), AngleUnit.DEGREES);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AngleUnit.DEGREES, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(a2.getUnit(), AngleUnit.DEGREES);
-        assertEquals(a2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(AngleUnit.DEGREES, a2.getUnit());
+        assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), AngleUnit.RADIANS);
+        assertEquals(AngleUnit.RADIANS, result.getUnit());
         assertEquals((value1 - value2) * Math.PI / 180.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -512,9 +508,8 @@ public class AngleTest {
         a1.subtract(value2, AngleUnit.DEGREES);
 
         // check
-        assertEquals(a1.getUnit(), AngleUnit.DEGREES);
-        assertEquals(a1.getValue().doubleValue(), value1 - value2,
-                ERROR);
+        assertEquals(AngleUnit.DEGREES, a1.getUnit());
+        assertEquals(value1 - value2, a1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -528,9 +523,8 @@ public class AngleTest {
         a1.subtract(new BigDecimal(value2), AngleUnit.DEGREES);
 
         // check
-        assertEquals(a1.getUnit(), AngleUnit.DEGREES);
-        assertEquals(a1.getValue().doubleValue(), value1 - value2,
-                ERROR);
+        assertEquals(AngleUnit.DEGREES, a1.getUnit());
+        assertEquals(value1 - value2, a1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -545,12 +539,12 @@ public class AngleTest {
         a1.subtract(a2);
 
         // check
-        assertEquals(a1.getUnit(), AngleUnit.DEGREES);
-        assertEquals(a1.getValue().doubleValue(), value1 - value2,
+        assertEquals(AngleUnit.DEGREES, a1.getUnit());
+        assertEquals(value1 - value2, a1.getValue().doubleValue(),
                 ERROR);
 
-        assertEquals(a2.getUnit(), AngleUnit.DEGREES);
-        assertEquals(a2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(AngleUnit.DEGREES, a2.getUnit());
+        assertEquals(value2, a2.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -566,13 +560,13 @@ public class AngleTest {
         a1.subtract(a2, result);
 
         // check
-        assertEquals(a1.getUnit(), AngleUnit.DEGREES);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AngleUnit.DEGREES, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(a2.getUnit(), AngleUnit.DEGREES);
-        assertEquals(a2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(AngleUnit.DEGREES, a2.getUnit());
+        assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), AngleUnit.RADIANS);
+        assertEquals(AngleUnit.RADIANS, result.getUnit());
         assertEquals((value1 - value2) * Math.PI / 180.0,
                 result.getValue().doubleValue(), ERROR);
     }

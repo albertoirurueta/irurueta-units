@@ -21,8 +21,7 @@ import java.util.Locale;
 /**
  * Formats and parses speed value and unit.
  */
-public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit>
-        implements Cloneable {
+public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit> {
 
     /**
      * Meters per second symbol.
@@ -83,6 +82,7 @@ public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit>
      * @param obj another object to compare.
      * @return true if provided object is assumed to be equal to this instance.
      */
+    @Override
     public boolean equals(final Object obj) {
         final boolean equals = super.equals(obj);
         return (obj instanceof SpeedFormatter) && equals;
@@ -268,17 +268,5 @@ public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit>
             default:
                 return METERS_PER_SECOND;
         }
-    }
-
-    /**
-     * Clones this speed formatter.
-     *
-     * @return a copy of this speed formatter.
-     * @throws CloneNotSupportedException if clone fails for any reason.
-     */
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        final SpeedFormatter copy = (SpeedFormatter) super.clone();
-        return internalClone(copy);
     }
 }

@@ -15,7 +15,7 @@
  */
 package com.irurueta.units;
 
-import org.junit.*;
+import org.junit.Test;
 
 import static org.junit.Assert.*;
 
@@ -23,22 +23,22 @@ public class DistanceUnitTest {
 
     @Test
     public void testGetUnitSystem() {
-        assertEquals(DistanceUnit.getUnitSystem(DistanceUnit.MILLIMETER),
-                UnitSystem.METRIC);
-        assertEquals(DistanceUnit.getUnitSystem(DistanceUnit.CENTIMETER),
-                UnitSystem.METRIC);
-        assertEquals(DistanceUnit.getUnitSystem(DistanceUnit.METER),
-                UnitSystem.METRIC);
-        assertEquals(DistanceUnit.getUnitSystem(DistanceUnit.KILOMETER),
-                UnitSystem.METRIC);
-        assertEquals(DistanceUnit.getUnitSystem(DistanceUnit.INCH),
-                UnitSystem.IMPERIAL);
-        assertEquals(DistanceUnit.getUnitSystem(DistanceUnit.FOOT),
-                UnitSystem.IMPERIAL);
-        assertEquals(DistanceUnit.getUnitSystem(DistanceUnit.YARD),
-                UnitSystem.IMPERIAL);
-        assertEquals(DistanceUnit.getUnitSystem(DistanceUnit.MILE),
-                UnitSystem.IMPERIAL);
+        assertEquals(UnitSystem.METRIC,
+                DistanceUnit.getUnitSystem(DistanceUnit.MILLIMETER));
+        assertEquals(UnitSystem.METRIC,
+                DistanceUnit.getUnitSystem(DistanceUnit.CENTIMETER));
+        assertEquals(UnitSystem.METRIC,
+                DistanceUnit.getUnitSystem(DistanceUnit.METER));
+        assertEquals(UnitSystem.METRIC,
+                DistanceUnit.getUnitSystem(DistanceUnit.KILOMETER));
+        assertEquals(UnitSystem.IMPERIAL,
+                DistanceUnit.getUnitSystem(DistanceUnit.INCH));
+        assertEquals(UnitSystem.IMPERIAL,
+                DistanceUnit.getUnitSystem(DistanceUnit.FOOT));
+        assertEquals(UnitSystem.IMPERIAL,
+                DistanceUnit.getUnitSystem(DistanceUnit.YARD));
+        assertEquals(UnitSystem.IMPERIAL,
+                DistanceUnit.getUnitSystem(DistanceUnit.MILE));
 
         // Force IllegalArgumentException
         try {

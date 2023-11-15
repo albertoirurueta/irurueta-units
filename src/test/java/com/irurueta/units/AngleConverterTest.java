@@ -30,10 +30,12 @@ public class AngleConverterTest {
     public void testRadiansDegrees() {
         final double inputValue = new Random().nextDouble();
 
-        assertEquals(AngleConverter.radianToDegree(inputValue),
-                inputValue * 180.0 / Math.PI, ERROR);
-        assertEquals(AngleConverter.degreeToRadian(inputValue),
-                inputValue * Math.PI / 180.0, ERROR);
+        assertEquals(inputValue * 180.0 / Math.PI,
+                AngleConverter.radianToDegree(inputValue),
+                ERROR);
+        assertEquals(inputValue * Math.PI / 180.0,
+                AngleConverter.degreeToRadian(inputValue),
+                ERROR);
     }
 
     @Test
@@ -625,36 +627,34 @@ public class AngleConverterTest {
     public void testConvertDouble() {
         final double inputValue = new Random().nextDouble();
 
-        assertEquals(AngleConverter.convert(inputValue,
-                AngleUnit.DEGREES, AngleUnit.DEGREES), inputValue, ERROR);
-        assertEquals(AngleConverter.convert(inputValue,
-                AngleUnit.DEGREES, AngleUnit.RADIANS),
-                AngleConverter.degreeToRadian(inputValue), ERROR);
+        assertEquals(inputValue,
+                AngleConverter.convert(inputValue, AngleUnit.DEGREES, AngleUnit.DEGREES), ERROR);
+        assertEquals(AngleConverter.degreeToRadian(inputValue),
+                AngleConverter.convert(inputValue, AngleUnit.DEGREES, AngleUnit.RADIANS), ERROR);
 
-        assertEquals(AngleConverter.convert(inputValue,
-                AngleUnit.RADIANS, AngleUnit.DEGREES),
-                AngleConverter.radianToDegree(inputValue), ERROR);
-        assertEquals(AngleConverter.convert(inputValue,
-                AngleUnit.RADIANS, AngleUnit.RADIANS), inputValue, ERROR);
+        assertEquals(AngleConverter.radianToDegree(inputValue),
+                AngleConverter.convert(inputValue, AngleUnit.RADIANS, AngleUnit.DEGREES), ERROR);
+        assertEquals(inputValue, AngleConverter.convert(inputValue, AngleUnit.RADIANS, AngleUnit.RADIANS),
+                ERROR);
     }
 
     @Test
     public void testConvertNumber() {
         final BigDecimal inputValue = BigDecimal.valueOf(new Random().nextDouble());
 
-        assertEquals(AngleConverter.convert(inputValue,
-                AngleUnit.DEGREES, AngleUnit.DEGREES).doubleValue(),
-                inputValue.doubleValue(), ERROR);
-        assertEquals(AngleConverter.convert(inputValue,
-                AngleUnit.DEGREES, AngleUnit.RADIANS).doubleValue(),
-                AngleConverter.degreeToRadian(inputValue.doubleValue()), ERROR);
+        assertEquals(inputValue.doubleValue(),
+                AngleConverter.convert(inputValue, AngleUnit.DEGREES, AngleUnit.DEGREES).doubleValue(),
+                ERROR);
+        assertEquals(AngleConverter.degreeToRadian(inputValue.doubleValue()),
+                AngleConverter.convert(inputValue, AngleUnit.DEGREES, AngleUnit.RADIANS).doubleValue(),
+                ERROR);
 
-        assertEquals(AngleConverter.convert(inputValue,
-                AngleUnit.RADIANS, AngleUnit.DEGREES).doubleValue(),
-                AngleConverter.radianToDegree(inputValue.doubleValue()), ERROR);
-        assertEquals(AngleConverter.convert(inputValue,
-                AngleUnit.RADIANS, AngleUnit.RADIANS).doubleValue(),
-                inputValue.doubleValue(), ERROR);
+        assertEquals(AngleConverter.radianToDegree(inputValue.doubleValue()),
+                AngleConverter.convert(inputValue, AngleUnit.RADIANS, AngleUnit.DEGREES).doubleValue(),
+                ERROR);
+        assertEquals(inputValue.doubleValue(),
+                AngleConverter.convert(inputValue, AngleUnit.RADIANS, AngleUnit.RADIANS).doubleValue(),
+                ERROR);
     }
 
     @Test
@@ -666,13 +666,12 @@ public class AngleConverterTest {
         AngleConverter.convert(inputAngle, AngleUnit.RADIANS, outputAngle);
 
         // check
-        assertEquals(inputAngle.getValue().doubleValue(), value, 0.0);
-        assertEquals(inputAngle.getUnit(), AngleUnit.DEGREES);
+        assertEquals(value, inputAngle.getValue().doubleValue(), 0.0);
+        assertEquals(AngleUnit.DEGREES, inputAngle.getUnit());
 
-        assertEquals(outputAngle.getUnit(), AngleUnit.RADIANS);
-        assertEquals(outputAngle.getValue().doubleValue(),
-                AngleConverter.convert(value, inputAngle.getUnit(),
-                        outputAngle.getUnit()), 0.0);
+        assertEquals(AngleUnit.RADIANS, outputAngle.getUnit());
+        assertEquals(AngleConverter.convert(value, inputAngle.getUnit(), outputAngle.getUnit()),
+                outputAngle.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -683,10 +682,9 @@ public class AngleConverterTest {
         AngleConverter.convert(angle, AngleUnit.RADIANS);
 
         // check
-        assertEquals(angle.getUnit(), AngleUnit.RADIANS);
-        assertEquals(angle.getValue().doubleValue(),
-                AngleConverter.convert(value, AngleUnit.DEGREES,
-                        AngleUnit.RADIANS), 0.0);
+        assertEquals(AngleUnit.RADIANS, angle.getUnit());
+        assertEquals(AngleConverter.convert(value, AngleUnit.DEGREES, AngleUnit.RADIANS),
+                angle.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -698,13 +696,12 @@ public class AngleConverterTest {
                 AngleUnit.RADIANS);
 
         // check
-        assertEquals(inputAngle.getValue().doubleValue(), value, 0.0);
-        assertEquals(inputAngle.getUnit(), AngleUnit.DEGREES);
+        assertEquals(value, inputAngle.getValue().doubleValue(), 0.0);
+        assertEquals(AngleUnit.DEGREES, inputAngle.getUnit());
 
-        assertEquals(outputAngle.getUnit(), AngleUnit.RADIANS);
-        assertEquals(outputAngle.getValue().doubleValue(),
-                AngleConverter.convert(value, inputAngle.getUnit(),
-                        outputAngle.getUnit()), 0.0);
+        assertEquals(AngleUnit.RADIANS, outputAngle.getUnit());
+        assertEquals(AngleConverter.convert(value, inputAngle.getUnit(), outputAngle.getUnit()),
+                outputAngle.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -717,12 +714,11 @@ public class AngleConverterTest {
         AngleConverter.convert(inputAngle, outputAngle);
 
         // check
-        assertEquals(inputAngle.getValue().doubleValue(), value, 0.0);
-        assertEquals(inputAngle.getUnit(), AngleUnit.DEGREES);
+        assertEquals(value, inputAngle.getValue().doubleValue(), 0.0);
+        assertEquals(AngleUnit.DEGREES, inputAngle.getUnit());
 
-        assertEquals(outputAngle.getUnit(), AngleUnit.RADIANS);
-        assertEquals(outputAngle.getValue().doubleValue(),
-                AngleConverter.convert(value, inputAngle.getUnit(),
-                        outputAngle.getUnit()), 0.0);
+        assertEquals(AngleUnit.RADIANS, outputAngle.getUnit());
+        assertEquals(AngleConverter.convert(value, inputAngle.getUnit(), outputAngle.getUnit()),
+                outputAngle.getValue().doubleValue(), 0.0);
     }
 }

@@ -355,7 +355,7 @@ public class Weight extends Measurement<WeightUnit> {
      * instance.
      *
      * @param value weight value to be subtracted.
-     * @param unit unit of weight value.
+     * @param unit  unit of weight value.
      */
     public void subtract(final Number value, final WeightUnit unit) {
         setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));
@@ -374,7 +374,7 @@ public class Weight extends Measurement<WeightUnit> {
      * Subtracts provided weight and stores the result into provided
      * weight.
      *
-     * @param w weight to be subtracted.
+     * @param w      weight to be subtracted.
      * @param result instance where result will be stored.
      */
     public void subtract(final Weight w, final Weight result) {

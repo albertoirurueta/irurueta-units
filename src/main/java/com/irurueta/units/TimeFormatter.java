@@ -27,7 +27,7 @@ import java.util.regex.Pattern;
  * Formats and parses time value and unit.
  */
 @SuppressWarnings("DuplicatedCode")
-public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements Cloneable {
+public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> {
 
     /**
      * Flag indicating whether nanoseconds must be included when formatting a time
@@ -628,6 +628,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
      *
      * @return always returns metric system
      */
+    @Override
     public UnitSystem getUnitSystem() {
         return UnitSystem.METRIC;
     }
@@ -641,6 +642,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
      * @throws ParseException       if provided string cannot be parsed.
      * @throws UnknownUnitException if unit cannot be determined.
      */
+    @Override
     public Time parse(final String source) throws ParseException,
             UnknownUnitException {
         return internalParse(source, new Time());
@@ -1288,18 +1290,6 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> implements C
         }
 
         return result;
-    }
-
-    /**
-     * Clones this time formatter.
-     *
-     * @return a copy of this time formatter.
-     * @throws CloneNotSupportedException if clone fails for any reason.
-     */
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        final TimeFormatter copy = (TimeFormatter) super.clone();
-        return internalClone(copy);
     }
 
     /**

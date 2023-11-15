@@ -41,8 +41,8 @@ public class AngularAccelerationTest {
                 AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a.getValue(), 323);
-        assertEquals(a.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        assertEquals(323, a.getValue());
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a.getUnit());
 
         // force IllegalArgumentException
         a = null;
@@ -73,7 +73,6 @@ public class AngularAccelerationTest {
         final AngularAcceleration a4 = new AngularAcceleration(value,
                 AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
 
-        assertEquals(a1, a1);
         assertEquals(a1, a2);
         assertNotEquals(a1, a3);
         assertNotEquals(a1, a4);
@@ -130,13 +129,13 @@ public class AngularAccelerationTest {
                 AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a.getValue(), 1);
+        assertEquals(1, a.getValue());
 
         // set new value
         a.setValue(2.5);
 
         // check
-        assertEquals(a.getValue(), 2.5);
+        assertEquals(2.5, a.getValue());
 
         // force IllegalArgumentException
         try {
@@ -152,13 +151,13 @@ public class AngularAccelerationTest {
                 AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a.getUnit());
 
         // set new value
         a.setUnit(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a.getUnit(), AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
+        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND, a.getUnit());
 
         // force IllegalArgumentException
         try {
@@ -216,13 +215,13 @@ public class AngularAccelerationTest {
         AngularAcceleration.add(a1, a2, result);
 
         // check
-        assertEquals(a1.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(a2.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        assertEquals(a2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a2.getUnit());
+        assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
+        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND, result.getUnit());
         assertEquals((value1 + value2) * Math.PI / 180.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -242,14 +241,14 @@ public class AngularAccelerationTest {
                 AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a1.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(a2.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        assertEquals(a2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a2.getUnit());
+        assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(),
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
+        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
+                result.getUnit());
         assertEquals((value1 + value2) * Math.PI / 180.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -268,11 +267,11 @@ public class AngularAccelerationTest {
                 AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a1.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(),
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
+        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
+                result.getUnit());
         assertEquals((value1 + value2) * Math.PI / 180.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -291,10 +290,10 @@ public class AngularAccelerationTest {
                 AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a1.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
+        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND, result.getUnit());
         assertEquals((value1 + value2) * Math.PI / 180.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -314,14 +313,14 @@ public class AngularAccelerationTest {
                 AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a1.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(a2.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        assertEquals(a2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a2.getUnit());
+        assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(),
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
+        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
+                result.getUnit());
         assertEquals((value1 + value2) * Math.PI / 180.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -338,8 +337,8 @@ public class AngularAccelerationTest {
         a1.add(value2, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a1.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1 + value2, ERROR);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1 + value2, a1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -355,8 +354,8 @@ public class AngularAccelerationTest {
                 AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a1.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1 + value2, ERROR);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1 + value2, a1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -373,11 +372,11 @@ public class AngularAccelerationTest {
         a1.add(a2);
 
         // check
-        assertEquals(a1.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1 + value2, ERROR);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1 + value2, a1.getValue().doubleValue(), ERROR);
 
-        assertEquals(a2.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        assertEquals(a2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a2.getUnit());
+        assertEquals(value2, a2.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -396,13 +395,13 @@ public class AngularAccelerationTest {
         a1.add(a2, result);
 
         // check
-        assertEquals(a1.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(a2.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        assertEquals(a2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a2.getUnit());
+        assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
+        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND, result.getUnit());
         assertEquals((value1 + value2) * Math.PI / 180.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -455,14 +454,14 @@ public class AngularAccelerationTest {
         AngularAcceleration.subtract(a1, a2, result);
 
         // check
-        assertEquals(a1.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(a2.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        assertEquals(a2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a2.getUnit());
+        assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(),
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
+        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
+                result.getUnit());
         assertEquals((value1 - value2) * Math.PI / 180.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -482,14 +481,14 @@ public class AngularAccelerationTest {
                 AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a1.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(a2.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        assertEquals(a2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a2.getUnit());
+        assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(),
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
+        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
+                result.getUnit());
         assertEquals((value1 - value2) * Math.PI / 180.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -508,11 +507,11 @@ public class AngularAccelerationTest {
                 AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a1.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(),
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
+        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
+                result.getUnit());
         assertEquals((value1 - value2) * Math.PI / 180.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -531,11 +530,11 @@ public class AngularAccelerationTest {
                 AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a1.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(),
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
+        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
+                result.getUnit());
         assertEquals((value1 - value2) * Math.PI / 180.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -555,14 +554,14 @@ public class AngularAccelerationTest {
                 AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a1.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(a2.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        assertEquals(a2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a2.getUnit());
+        assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(),
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
+        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
+                result.getUnit());
         assertEquals((value1 - value2) * Math.PI / 180.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -579,9 +578,8 @@ public class AngularAccelerationTest {
         a1.subtract(value2, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a1.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1 - value2,
-                ERROR);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1 - value2, a1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -597,9 +595,8 @@ public class AngularAccelerationTest {
                 AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a1.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1 - value2,
-                ERROR);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1 - value2, a1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -616,12 +613,11 @@ public class AngularAccelerationTest {
         a1.subtract(a2);
 
         // check
-        assertEquals(a1.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1 - value2,
-                ERROR);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1 - value2, a1.getValue().doubleValue(), ERROR);
 
-        assertEquals(a2.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        assertEquals(a2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a2.getUnit());
+        assertEquals(value2, a2.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -640,14 +636,14 @@ public class AngularAccelerationTest {
         a1.subtract(a2, result);
 
         // check
-        assertEquals(a1.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(a2.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        assertEquals(a2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a2.getUnit());
+        assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(),
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
+        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
+                result.getUnit());
         assertEquals((value1 - value2) * Math.PI / 180.0,
                 result.getValue().doubleValue(), ERROR);
     }

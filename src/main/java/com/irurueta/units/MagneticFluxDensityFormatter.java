@@ -21,8 +21,7 @@ import java.util.Locale;
 /**
  * Formats and parses magnetic flux density value and unit.
  */
-public class MagneticFluxDensityFormatter extends MeasureFormatter<MagneticFluxDensity, MagneticFluxDensityUnit>
-        implements Cloneable {
+public class MagneticFluxDensityFormatter extends MeasureFormatter<MagneticFluxDensity, MagneticFluxDensityUnit> {
 
     /**
      * Nanotesla symbol.
@@ -291,17 +290,5 @@ public class MagneticFluxDensityFormatter extends MeasureFormatter<MagneticFluxD
     @Override
     public UnitSystem getUnitSystem() {
         return UnitSystem.METRIC;
-    }
-
-    /**
-     * Clones this magnetic flux density formatter.
-     *
-     * @return a copy of this magnetic flux density formatter.
-     * @throws CloneNotSupportedException if clone fails for any reason.
-     */
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        final MagneticFluxDensityFormatter copy = (MagneticFluxDensityFormatter) super.clone();
-        return internalClone(copy);
     }
 }

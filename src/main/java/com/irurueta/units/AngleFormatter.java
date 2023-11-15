@@ -25,7 +25,7 @@ import java.util.regex.Pattern;
 /**
  * Formats and parses angle value and unit.
  */
-public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> implements Cloneable {
+public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> {
 
     /**
      * Degree symbol.
@@ -295,17 +295,5 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> implement
                 degree.intValue(), minute.intValue(),
                 second.doubleValue(), AngleUnit.DEGREES);
         return new Angle(angle, AngleUnit.DEGREES);
-    }
-
-    /**
-     * Clones this angle formatter.
-     *
-     * @return a copy of this angle formatter.
-     * @throws CloneNotSupportedException if clone fails for any reason.
-     */
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        final AngleFormatter copy = (AngleFormatter) super.clone();
-        return internalClone(copy);
     }
 }

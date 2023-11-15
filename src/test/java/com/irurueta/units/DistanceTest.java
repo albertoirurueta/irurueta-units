@@ -40,8 +40,8 @@ public class DistanceTest {
         d = new Distance(323, DistanceUnit.METER);
 
         // check
-        assertEquals(d.getValue(), 323);
-        assertEquals(d.getUnit(), DistanceUnit.METER);
+        assertEquals(323, d.getValue());
+        assertEquals(DistanceUnit.METER, d.getUnit());
 
         // force IllegalArgumentException
         d = null;
@@ -67,7 +67,6 @@ public class DistanceTest {
         final Distance d3 = new Distance(value + 1.0, DistanceUnit.METER);
         final Distance d4 = new Distance(value, DistanceUnit.CENTIMETER);
 
-        assertEquals(d1, d1);
         assertEquals(d1, d2);
         assertNotEquals(d1, d3);
         assertNotEquals(d1, d4);
@@ -114,13 +113,13 @@ public class DistanceTest {
         final Distance d = new Distance(1, DistanceUnit.METER);
 
         // check
-        assertEquals(d.getValue(), 1);
+        assertEquals(1, d.getValue());
 
         // set new value
         d.setValue(2.5);
 
         // check
-        assertEquals(d.getValue(), 2.5);
+        assertEquals(2.5, d.getValue());
 
         // force IllegalArgumentException
         try {
@@ -135,13 +134,13 @@ public class DistanceTest {
         final Distance d = new Distance(1, DistanceUnit.METER);
 
         // check
-        assertEquals(d.getUnit(), DistanceUnit.METER);
+        assertEquals(DistanceUnit.METER, d.getUnit());
 
         // set new value
         d.setUnit(DistanceUnit.INCH);
 
         // check
-        assertEquals(d.getUnit(), DistanceUnit.INCH);
+        assertEquals(DistanceUnit.INCH, d.getUnit());
 
         // force IllegalArgumentException
         try {
@@ -190,13 +189,13 @@ public class DistanceTest {
         Distance.add(d1, d2, result);
 
         // check
-        assertEquals(d1.getUnit(), DistanceUnit.METER);
-        assertEquals(d1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(DistanceUnit.METER, d1.getUnit());
+        assertEquals(value1, d1.getValue().doubleValue(), 0.0);
 
-        assertEquals(d2.getUnit(), DistanceUnit.METER);
-        assertEquals(d2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(DistanceUnit.METER, d2.getUnit());
+        assertEquals(value2, d2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), DistanceUnit.CENTIMETER);
+        assertEquals(DistanceUnit.CENTIMETER, result.getUnit());
         assertEquals((value1 + value2) * 100.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -214,13 +213,13 @@ public class DistanceTest {
                 DistanceUnit.CENTIMETER);
 
         // check
-        assertEquals(d1.getUnit(), DistanceUnit.METER);
-        assertEquals(d1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(DistanceUnit.METER, d1.getUnit());
+        assertEquals(value1, d1.getValue().doubleValue(), 0.0);
 
-        assertEquals(d2.getUnit(), DistanceUnit.METER);
-        assertEquals(d2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(DistanceUnit.METER, d2.getUnit());
+        assertEquals(value2, d2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), DistanceUnit.CENTIMETER);
+        assertEquals(DistanceUnit.CENTIMETER, result.getUnit());
         assertEquals((value1 + value2) * 100.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -236,12 +235,11 @@ public class DistanceTest {
         final Distance result = d1.addAndReturnNew(value2, DistanceUnit.METER, DistanceUnit.CENTIMETER);
 
         // check
-        assertEquals(d1.getUnit(), DistanceUnit.METER);
-        assertEquals(d1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(DistanceUnit.METER, d1.getUnit());
+        assertEquals(value1, d1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), DistanceUnit.CENTIMETER);
-        assertEquals((value1 + value2) * 100.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(DistanceUnit.CENTIMETER, result.getUnit());
+        assertEquals(result.getValue().doubleValue(), (value1 + value2) * 100.0, ERROR);
     }
 
     @Test
@@ -256,10 +254,10 @@ public class DistanceTest {
                 DistanceUnit.METER, DistanceUnit.CENTIMETER);
 
         // check
-        assertEquals(d1.getUnit(), DistanceUnit.METER);
-        assertEquals(d1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(DistanceUnit.METER, d1.getUnit());
+        assertEquals(value1, d1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), DistanceUnit.CENTIMETER);
+        assertEquals(DistanceUnit.CENTIMETER, result.getUnit());
         assertEquals((value1 + value2) * 100.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -276,13 +274,13 @@ public class DistanceTest {
         final Distance result = d1.addAndReturnNew(d2, DistanceUnit.CENTIMETER);
 
         // check
-        assertEquals(d1.getUnit(), DistanceUnit.METER);
-        assertEquals(d1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(DistanceUnit.METER, d1.getUnit());
+        assertEquals(value1, d1.getValue().doubleValue(), 0.0);
 
-        assertEquals(d2.getUnit(), DistanceUnit.METER);
-        assertEquals(d2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(DistanceUnit.METER, d2.getUnit());
+        assertEquals(value2, d2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), DistanceUnit.CENTIMETER);
+        assertEquals(DistanceUnit.CENTIMETER, result.getUnit());
         assertEquals((value1 + value2) * 100.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -298,9 +296,8 @@ public class DistanceTest {
         d1.add(value2, DistanceUnit.METER);
 
         // check
-        assertEquals(d1.getUnit(), DistanceUnit.METER);
-        assertEquals(d1.getValue().doubleValue(), value1 + value2,
-                ERROR);
+        assertEquals(DistanceUnit.METER, d1.getUnit());
+        assertEquals(value1 + value2, d1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -314,9 +311,8 @@ public class DistanceTest {
         d1.add(new BigDecimal(value2), DistanceUnit.METER);
 
         // check
-        assertEquals(d1.getUnit(), DistanceUnit.METER);
-        assertEquals(d1.getValue().doubleValue(), value1 + value2,
-                ERROR);
+        assertEquals(DistanceUnit.METER, d1.getUnit());
+        assertEquals(value1 + value2, d1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -331,12 +327,11 @@ public class DistanceTest {
         d1.add(d2);
 
         // check
-        assertEquals(d1.getUnit(), DistanceUnit.METER);
-        assertEquals(d1.getValue().doubleValue(), value1 + value2,
-                ERROR);
+        assertEquals(DistanceUnit.METER, d1.getUnit());
+        assertEquals(value1 + value2, d1.getValue().doubleValue(), ERROR);
 
-        assertEquals(d2.getUnit(), DistanceUnit.METER);
-        assertEquals(d2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(DistanceUnit.METER, d2.getUnit());
+        assertEquals(value2, d2.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -352,13 +347,13 @@ public class DistanceTest {
         d1.add(d2, result);
 
         // check
-        assertEquals(d1.getUnit(), DistanceUnit.METER);
-        assertEquals(d1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(DistanceUnit.METER, d1.getUnit());
+        assertEquals(value1, d1.getValue().doubleValue(), 0.0);
 
-        assertEquals(d2.getUnit(), DistanceUnit.METER);
-        assertEquals(d2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(DistanceUnit.METER, d2.getUnit());
+        assertEquals(value2, d2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), DistanceUnit.CENTIMETER);
+        assertEquals(DistanceUnit.CENTIMETER, result.getUnit());
         assertEquals((value1 + value2) * 100.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -402,13 +397,13 @@ public class DistanceTest {
         Distance.subtract(d1, d2, result);
 
         // check
-        assertEquals(d1.getUnit(), DistanceUnit.METER);
-        assertEquals(d1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(DistanceUnit.METER, d1.getUnit());
+        assertEquals(value1, d1.getValue().doubleValue(), 0.0);
 
-        assertEquals(d2.getUnit(), DistanceUnit.METER);
-        assertEquals(d2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(DistanceUnit.METER, d2.getUnit());
+        assertEquals(value2, d2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), DistanceUnit.CENTIMETER);
+        assertEquals(DistanceUnit.CENTIMETER, result.getUnit());
         assertEquals((value1 - value2) * 100.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -426,13 +421,13 @@ public class DistanceTest {
                 DistanceUnit.CENTIMETER);
 
         // check
-        assertEquals(d1.getUnit(), DistanceUnit.METER);
-        assertEquals(d1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(DistanceUnit.METER, d1.getUnit());
+        assertEquals(value1, d1.getValue().doubleValue(), 0.0);
 
-        assertEquals(d2.getUnit(), DistanceUnit.METER);
-        assertEquals(d2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(DistanceUnit.METER, d2.getUnit());
+        assertEquals(value2, d2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), DistanceUnit.CENTIMETER);
+        assertEquals(DistanceUnit.CENTIMETER, result.getUnit());
         assertEquals((value1 - value2) * 100.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -448,10 +443,10 @@ public class DistanceTest {
         final Distance result = d1.subtractAndReturnNew(value2, DistanceUnit.METER, DistanceUnit.CENTIMETER);
 
         // check
-        assertEquals(d1.getUnit(), DistanceUnit.METER);
-        assertEquals(d1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(DistanceUnit.METER, d1.getUnit());
+        assertEquals(value1, d1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), DistanceUnit.CENTIMETER);
+        assertEquals(DistanceUnit.CENTIMETER, result.getUnit());
         assertEquals((value1 - value2) * 100.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -468,10 +463,10 @@ public class DistanceTest {
                 DistanceUnit.METER, DistanceUnit.CENTIMETER);
 
         // check
-        assertEquals(d1.getUnit(), DistanceUnit.METER);
-        assertEquals(d1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(DistanceUnit.METER, d1.getUnit());
+        assertEquals(value1, d1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), DistanceUnit.CENTIMETER);
+        assertEquals(DistanceUnit.CENTIMETER, result.getUnit());
         assertEquals((value1 - value2) * 100.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -488,13 +483,13 @@ public class DistanceTest {
         final Distance result = d1.subtractAndReturnNew(d2, DistanceUnit.CENTIMETER);
 
         // check
-        assertEquals(d1.getUnit(), DistanceUnit.METER);
-        assertEquals(d1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(DistanceUnit.METER, d1.getUnit());
+        assertEquals(value1, d1.getValue().doubleValue(), 0.0);
 
-        assertEquals(d2.getUnit(), DistanceUnit.METER);
-        assertEquals(d2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(DistanceUnit.METER, d2.getUnit());
+        assertEquals(value2, d2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), DistanceUnit.CENTIMETER);
+        assertEquals(DistanceUnit.CENTIMETER, result.getUnit());
         assertEquals((value1 - value2) * 100.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -510,9 +505,8 @@ public class DistanceTest {
         d1.subtract(value2, DistanceUnit.METER);
 
         // check
-        assertEquals(d1.getUnit(), DistanceUnit.METER);
-        assertEquals(d1.getValue().doubleValue(), value1 - value2,
-                ERROR);
+        assertEquals(DistanceUnit.METER, d1.getUnit());
+        assertEquals(value1 - value2, d1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -526,9 +520,8 @@ public class DistanceTest {
         d1.subtract(new BigDecimal(value2), DistanceUnit.METER);
 
         // check
-        assertEquals(d1.getUnit(), DistanceUnit.METER);
-        assertEquals(d1.getValue().doubleValue(), value1 - value2,
-                ERROR);
+        assertEquals(DistanceUnit.METER, d1.getUnit());
+        assertEquals(value1 - value2, d1.getValue().doubleValue(),  ERROR);
     }
 
     @Test
@@ -543,12 +536,11 @@ public class DistanceTest {
         d1.subtract(d2);
 
         // check
-        assertEquals(d1.getUnit(), DistanceUnit.METER);
-        assertEquals(d1.getValue().doubleValue(), value1 - value2,
-                ERROR);
+        assertEquals(DistanceUnit.METER, d1.getUnit());
+        assertEquals(value1 - value2, d1.getValue().doubleValue(), ERROR);
 
-        assertEquals(d2.getUnit(), DistanceUnit.METER);
-        assertEquals(d2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(DistanceUnit.METER, d2.getUnit());
+        assertEquals(value2, d2.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -564,13 +556,13 @@ public class DistanceTest {
         d1.subtract(d2, result);
 
         // check
-        assertEquals(d1.getUnit(), DistanceUnit.METER);
-        assertEquals(d1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(DistanceUnit.METER, d1.getUnit());
+        assertEquals(value1, d1.getValue().doubleValue(), 0.0);
 
-        assertEquals(d2.getUnit(), DistanceUnit.METER);
-        assertEquals(d2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(DistanceUnit.METER, d2.getUnit());
+        assertEquals(value2, d2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), DistanceUnit.CENTIMETER);
+        assertEquals(DistanceUnit.CENTIMETER, result.getUnit());
         assertEquals((value1 - value2) * 100.0,
                 result.getValue().doubleValue(), ERROR);
     }

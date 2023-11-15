@@ -30,82 +30,98 @@ public class TemperatureConverterTest {
     public void testKelvinCelsius() {
         final double inputValue = new Random().nextDouble();
 
-        assertEquals(TemperatureConverter.kelvinToCelsius(inputValue),
-                inputValue + TemperatureConverter.ABSOLUTE_ZERO, ERROR);
-        assertEquals(TemperatureConverter.celsiusToKelvin(inputValue),
-                inputValue - TemperatureConverter.ABSOLUTE_ZERO, ERROR);
+        assertEquals(inputValue + TemperatureConverter.ABSOLUTE_ZERO,
+                TemperatureConverter.kelvinToCelsius(inputValue),
+                ERROR);
+        assertEquals(inputValue - TemperatureConverter.ABSOLUTE_ZERO,
+                TemperatureConverter.celsiusToKelvin(inputValue),
+                ERROR);
 
-        assertEquals(TemperatureConverter.celsiusToKelvin(
-                TemperatureConverter.kelvinToCelsius(inputValue)),
-                inputValue, ERROR);
-        assertEquals(TemperatureConverter.kelvinToCelsius(
-                TemperatureConverter.celsiusToKelvin(inputValue)),
-                inputValue, ERROR);
+        assertEquals(inputValue,
+                TemperatureConverter.celsiusToKelvin(
+                        TemperatureConverter.kelvinToCelsius(inputValue)),
+                ERROR);
+        assertEquals(inputValue,
+                TemperatureConverter.kelvinToCelsius(
+                        TemperatureConverter.celsiusToKelvin(inputValue)),
+                ERROR);
     }
 
     @Test
     public void testCelsiusFahrenheit() {
         final double inputValue = new Random().nextDouble();
 
-        assertEquals(TemperatureConverter.celsiusToFahrenheit(inputValue),
-                inputValue * 9.0 / 5.0 + 32.0, ERROR);
-        assertEquals(TemperatureConverter.fahrenheitToCelsius(inputValue),
-                (inputValue - 32.0) * 5.0 / 9.0, ERROR);
+        assertEquals(inputValue * 9.0 / 5.0 + 32.0,
+                TemperatureConverter.celsiusToFahrenheit(inputValue),
+                ERROR);
+        assertEquals((inputValue - 32.0) * 5.0 / 9.0,
+                TemperatureConverter.fahrenheitToCelsius(inputValue),
+                ERROR);
 
-        assertEquals(TemperatureConverter.fahrenheitToCelsius(
-                TemperatureConverter.celsiusToFahrenheit(inputValue)),
-                inputValue, ERROR);
-        assertEquals(TemperatureConverter.celsiusToFahrenheit(
-                TemperatureConverter.fahrenheitToCelsius(inputValue)),
-                inputValue, ERROR);
+        assertEquals(inputValue,
+                TemperatureConverter.fahrenheitToCelsius(
+                        TemperatureConverter.celsiusToFahrenheit(inputValue)),
+                ERROR);
+        assertEquals(inputValue,
+                TemperatureConverter.celsiusToFahrenheit(
+                        TemperatureConverter.fahrenheitToCelsius(inputValue)),
+                ERROR);
     }
 
     @Test
     public void testConvertDouble() {
         final double inputValue = new Random().nextDouble();
 
-        assertEquals(TemperatureConverter.convert(inputValue,
-                TemperatureUnit.CELSIUS, TemperatureUnit.CELSIUS),
-                inputValue, ERROR);
-        assertEquals(TemperatureConverter.convert(inputValue,
-                TemperatureUnit.CELSIUS, TemperatureUnit.FAHRENHEIT),
-                TemperatureConverter.celsiusToFahrenheit(inputValue), ERROR);
-        assertEquals(TemperatureConverter.convert(inputValue,
-                TemperatureUnit.CELSIUS, TemperatureUnit.KELVIN),
-                TemperatureConverter.celsiusToKelvin(inputValue), ERROR);
+        assertEquals(inputValue,
+                TemperatureConverter.convert(inputValue,
+                        TemperatureUnit.CELSIUS, TemperatureUnit.CELSIUS),
+                ERROR);
+        assertEquals(TemperatureConverter.celsiusToFahrenheit(inputValue),
+                TemperatureConverter.convert(inputValue,
+                        TemperatureUnit.CELSIUS, TemperatureUnit.FAHRENHEIT),
+                ERROR);
+        assertEquals(TemperatureConverter.celsiusToKelvin(inputValue),
+                TemperatureConverter.convert(inputValue,
+                        TemperatureUnit.CELSIUS, TemperatureUnit.KELVIN),
+                ERROR);
 
-        assertEquals(TemperatureConverter.convert(inputValue,
-                TemperatureUnit.FAHRENHEIT, TemperatureUnit.CELSIUS),
-                TemperatureConverter.fahrenheitToCelsius(inputValue), ERROR);
-        assertEquals(TemperatureConverter.convert(inputValue,
-                TemperatureUnit.FAHRENHEIT, TemperatureUnit.FAHRENHEIT),
-                inputValue, ERROR);
-        assertEquals(TemperatureConverter.convert(inputValue,
-                TemperatureUnit.FAHRENHEIT, TemperatureUnit.KELVIN),
-                TemperatureConverter.celsiusToKelvin(
+        assertEquals(TemperatureConverter.fahrenheitToCelsius(inputValue),
+                TemperatureConverter.convert(inputValue,
+                        TemperatureUnit.FAHRENHEIT, TemperatureUnit.CELSIUS),
+                ERROR);
+        assertEquals(inputValue,
+                TemperatureConverter.convert(inputValue,
+                        TemperatureUnit.FAHRENHEIT, TemperatureUnit.FAHRENHEIT),
+                ERROR);
+        assertEquals(TemperatureConverter.celsiusToKelvin(
                         TemperatureConverter.fahrenheitToCelsius(inputValue)),
+                TemperatureConverter.convert(inputValue,
+                        TemperatureUnit.FAHRENHEIT, TemperatureUnit.KELVIN),
                 ERROR);
 
-        assertEquals(TemperatureConverter.convert(inputValue,
-                TemperatureUnit.KELVIN, TemperatureUnit.CELSIUS),
-                TemperatureConverter.kelvinToCelsius(inputValue), ERROR);
-        assertEquals(TemperatureConverter.convert(inputValue,
-                TemperatureUnit.KELVIN, TemperatureUnit.FAHRENHEIT),
-                TemperatureConverter.celsiusToFahrenheit(
-                        TemperatureConverter.kelvinToCelsius(inputValue)),
+        assertEquals(TemperatureConverter.kelvinToCelsius(inputValue),
+                TemperatureConverter.convert(inputValue,
+                        TemperatureUnit.KELVIN, TemperatureUnit.CELSIUS),
                 ERROR);
-        assertEquals(TemperatureConverter.convert(inputValue,
-                TemperatureUnit.KELVIN, TemperatureUnit.KELVIN),
-                inputValue, ERROR);
+        assertEquals(TemperatureConverter.celsiusToFahrenheit(
+                        TemperatureConverter.kelvinToCelsius(inputValue)),
+                TemperatureConverter.convert(inputValue,
+                        TemperatureUnit.KELVIN, TemperatureUnit.FAHRENHEIT),
+                ERROR);
+        assertEquals(inputValue,
+                TemperatureConverter.convert(inputValue,
+                        TemperatureUnit.KELVIN, TemperatureUnit.KELVIN),
+                ERROR);
     }
 
     @Test
     public void testConvertNumber() {
         final BigDecimal inputValue = BigDecimal.valueOf(new Random().nextDouble());
 
-        assertEquals(TemperatureConverter.convert(inputValue,
-                TemperatureUnit.KELVIN, TemperatureUnit.KELVIN).doubleValue(),
-                inputValue.doubleValue(), ERROR);
+        assertEquals(inputValue.doubleValue(),
+                TemperatureConverter.convert(inputValue,
+                        TemperatureUnit.KELVIN, TemperatureUnit.KELVIN).doubleValue(),
+                ERROR);
     }
 
     @Test
@@ -119,13 +135,12 @@ public class TemperatureConverterTest {
                 outputTemperature);
 
         // check
-        assertEquals(inputTemperature.getValue().doubleValue(), value, 0.0);
-        assertEquals(inputTemperature.getUnit(), TemperatureUnit.CELSIUS);
+        assertEquals(value, inputTemperature.getValue().doubleValue(), 0.0);
+        assertEquals(TemperatureUnit.CELSIUS, inputTemperature.getUnit());
 
-        assertEquals(outputTemperature.getUnit(), TemperatureUnit.KELVIN);
-        assertEquals(outputTemperature.getValue().doubleValue(),
-                TemperatureConverter.convert(value, inputTemperature.getUnit(),
-                        outputTemperature.getUnit()), 0.0);
+        assertEquals(TemperatureUnit.KELVIN, outputTemperature.getUnit());
+        assertEquals(TemperatureConverter.convert(value, inputTemperature.getUnit(),
+                outputTemperature.getUnit()), outputTemperature.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -137,10 +152,9 @@ public class TemperatureConverterTest {
         TemperatureConverter.convert(temperature, TemperatureUnit.KELVIN);
 
         // check
-        assertEquals(temperature.getUnit(), TemperatureUnit.KELVIN);
-        assertEquals(temperature.getValue().doubleValue(),
-                TemperatureConverter.convert(value, TemperatureUnit.CELSIUS,
-                        TemperatureUnit.KELVIN), 0.0);
+        assertEquals(TemperatureUnit.KELVIN, temperature.getUnit());
+        assertEquals(TemperatureConverter.convert(value, TemperatureUnit.CELSIUS,
+                TemperatureUnit.KELVIN), temperature.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -153,13 +167,12 @@ public class TemperatureConverterTest {
                 .convertAndReturnNew(inputTemperature, TemperatureUnit.KELVIN);
 
         // check
-        assertEquals(inputTemperature.getValue().doubleValue(), value, 0.0);
-        assertEquals(inputTemperature.getUnit(), TemperatureUnit.CELSIUS);
+        assertEquals(value, inputTemperature.getValue().doubleValue(), 0.0);
+        assertEquals(TemperatureUnit.CELSIUS, inputTemperature.getUnit());
 
-        assertEquals(outputTemperature.getUnit(), TemperatureUnit.KELVIN);
-        assertEquals(outputTemperature.getValue().doubleValue(),
-                TemperatureConverter.convert(value, inputTemperature.getUnit(),
-                        outputTemperature.getUnit()), 0.0);
+        assertEquals(TemperatureUnit.KELVIN, outputTemperature.getUnit());
+        assertEquals(TemperatureConverter.convert(value, inputTemperature.getUnit(),
+                outputTemperature.getUnit()), outputTemperature.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -173,12 +186,11 @@ public class TemperatureConverterTest {
         TemperatureConverter.convert(inputTemperature, outputTemperature);
 
         // check
-        assertEquals(inputTemperature.getValue().doubleValue(), value, 0.0);
-        assertEquals(inputTemperature.getUnit(), TemperatureUnit.CELSIUS);
+        assertEquals(value, inputTemperature.getValue().doubleValue(), 0.0);
+        assertEquals(TemperatureUnit.CELSIUS, inputTemperature.getUnit());
 
-        assertEquals(outputTemperature.getUnit(), TemperatureUnit.KELVIN);
-        assertEquals(outputTemperature.getValue().doubleValue(),
-                TemperatureConverter.convert(value, inputTemperature.getUnit(),
-                        outputTemperature.getUnit()), 0.0);
+        assertEquals(TemperatureUnit.KELVIN, outputTemperature.getUnit());
+        assertEquals(TemperatureConverter.convert(value, inputTemperature.getUnit(),
+                outputTemperature.getUnit()), outputTemperature.getValue().doubleValue(), 0.0);
     }
 }

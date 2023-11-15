@@ -40,8 +40,8 @@ public class TemperatureTest {
         t = new Temperature(1000, TemperatureUnit.CELSIUS);
 
         // check
-        assertEquals(t.getValue(), 1000);
-        assertEquals(t.getUnit(), TemperatureUnit.CELSIUS);
+        assertEquals(1000, t.getValue());
+        assertEquals(TemperatureUnit.CELSIUS, t.getUnit());
 
         // Force IllegalArgumentException
         t = null;
@@ -68,6 +68,7 @@ public class TemperatureTest {
                 TemperatureUnit.CELSIUS);
         final Temperature t4 = new Temperature(value, TemperatureUnit.KELVIN);
 
+        //noinspection EqualsWithItself
         assertEquals(t1, t1);
         assertEquals(t1, t2);
         assertNotEquals(t1, t3);
@@ -118,13 +119,13 @@ public class TemperatureTest {
         final Temperature t = new Temperature(1, TemperatureUnit.CELSIUS);
 
         // check
-        assertEquals(t.getValue(), 1);
+        assertEquals(1, t.getValue());
 
         // set new value
         t.setValue(2.5);
 
         // check
-        assertEquals(t.getValue(), 2.5);
+        assertEquals(2.5, t.getValue());
 
         // force IllegalArgumentException
         try {
@@ -139,13 +140,13 @@ public class TemperatureTest {
         final Temperature t = new Temperature(1, TemperatureUnit.CELSIUS);
 
         // check
-        assertEquals(t.getUnit(), TemperatureUnit.CELSIUS);
+        assertEquals(TemperatureUnit.CELSIUS, t.getUnit());
 
         // set new value
         t.setUnit(TemperatureUnit.KELVIN);
 
         // check
-        assertEquals(t.getUnit(), TemperatureUnit.KELVIN);
+        assertEquals(TemperatureUnit.KELVIN, t.getUnit());
 
         // force IllegalArgumentException
         try {
@@ -216,14 +217,14 @@ public class TemperatureTest {
         Temperature.add(t1, t2, result);
 
         // check
-        assertEquals(t1.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
+        assertEquals(value1, t1.getValue().doubleValue(), 0.0);
 
-        assertEquals(t2.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(TemperatureUnit.CELSIUS, t2.getUnit());
+        assertEquals(value2, t2.getValue().doubleValue(), 0.0);
 
         final double expected = TemperatureConverter.celsiusToKelvin(value1 + value2);
-        assertEquals(result.getUnit(), TemperatureUnit.KELVIN);
+        assertEquals(TemperatureUnit.KELVIN, result.getUnit());
         assertEquals(expected, result.getValue().doubleValue(), ERROR);
 
         // test again for different units
@@ -235,7 +236,7 @@ public class TemperatureTest {
         Temperature.add(t1, t2b, result2);
 
         // check
-        assertEquals(result2.getUnit(), TemperatureUnit.KELVIN);
+        assertEquals(TemperatureUnit.KELVIN, result2.getUnit());
         assertEquals(expected, result2.getValue().doubleValue(), ERROR);
     }
 
@@ -252,14 +253,14 @@ public class TemperatureTest {
                 t1, t2, TemperatureUnit.KELVIN);
 
         // check
-        assertEquals(t1.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
+        assertEquals(value1, t1.getValue().doubleValue(), 0.0);
 
-        assertEquals(t2.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(TemperatureUnit.CELSIUS, t2.getUnit());
+        assertEquals(value2, t2.getValue().doubleValue(), 0.0);
 
         final double expected = TemperatureConverter.celsiusToKelvin(value1 + value2);
-        assertEquals(result.getUnit(), TemperatureUnit.KELVIN);
+        assertEquals(TemperatureUnit.KELVIN, result.getUnit());
         assertEquals(expected, result.getValue().doubleValue(), ERROR);
 
         // test again for different units
@@ -271,7 +272,7 @@ public class TemperatureTest {
                 t1, t2b, TemperatureUnit.KELVIN);
 
         // check
-        assertEquals(result2.getUnit(), TemperatureUnit.KELVIN);
+        assertEquals(TemperatureUnit.KELVIN, result2.getUnit());
         assertEquals(expected, result2.getValue().doubleValue(), ERROR);
     }
 
@@ -287,11 +288,11 @@ public class TemperatureTest {
                 TemperatureUnit.KELVIN);
 
         // check
-        assertEquals(t1.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
+        assertEquals(value1, t1.getValue().doubleValue(), 0.0);
 
         final double expected = TemperatureConverter.celsiusToKelvin(value1 + value2);
-        assertEquals(result.getUnit(), TemperatureUnit.KELVIN);
+        assertEquals(TemperatureUnit.KELVIN, result.getUnit());
         assertEquals(expected, result.getValue().doubleValue(), ERROR);
     }
 
@@ -308,11 +309,11 @@ public class TemperatureTest {
                 TemperatureUnit.KELVIN);
 
         // check
-        assertEquals(t1.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
+        assertEquals(value1, t1.getValue().doubleValue(), 0.0);
 
         final double expected = TemperatureConverter.celsiusToKelvin(value1 + value2);
-        assertEquals(result.getUnit(), TemperatureUnit.KELVIN);
+        assertEquals(TemperatureUnit.KELVIN, result.getUnit());
         assertEquals(expected, result.getValue().doubleValue(), ERROR);
     }
 
@@ -328,14 +329,14 @@ public class TemperatureTest {
         final Temperature result = t1.addAndReturnNew(t2, TemperatureUnit.KELVIN);
 
         // check
-        assertEquals(t1.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
+        assertEquals(value1, t1.getValue().doubleValue(), 0.0);
 
-        assertEquals(t2.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(TemperatureUnit.CELSIUS, t2.getUnit());
+        assertEquals(value2, t2.getValue().doubleValue(), 0.0);
 
         final double expected = TemperatureConverter.celsiusToKelvin(value1 + value2);
-        assertEquals(result.getUnit(), TemperatureUnit.KELVIN);
+        assertEquals(TemperatureUnit.KELVIN, result.getUnit());
         assertEquals(expected, result.getValue().doubleValue(), ERROR);
 
         // test again for different units
@@ -346,7 +347,7 @@ public class TemperatureTest {
         final Temperature result2 = t1.addAndReturnNew(t2b, TemperatureUnit.KELVIN);
 
         // check
-        assertEquals(result2.getUnit(), TemperatureUnit.KELVIN);
+        assertEquals(TemperatureUnit.KELVIN, result2.getUnit());
         assertEquals(expected, result2.getValue().doubleValue(), ERROR);
     }
 
@@ -361,8 +362,8 @@ public class TemperatureTest {
         t1.add(value2, TemperatureUnit.CELSIUS);
 
         // check
-        assertEquals(t1.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t1.getValue().doubleValue(), value1 + value2, ERROR);
+        assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
+        assertEquals(value1 + value2, t1.getValue().doubleValue(), ERROR);
 
         // test again for different units
         final double value2b = TemperatureConverter.celsiusToFahrenheit(value2);
@@ -371,8 +372,8 @@ public class TemperatureTest {
         t1.add(value2b, TemperatureUnit.FAHRENHEIT);
 
         // check
-        assertEquals(t1.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t1.getValue().doubleValue(), value1 + value2, ERROR);
+        assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
+        assertEquals(value1 + value2, t1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -386,8 +387,8 @@ public class TemperatureTest {
         t1.add(new BigDecimal(value2), TemperatureUnit.CELSIUS);
 
         // check
-        assertEquals(t1.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t1.getValue().doubleValue(), value1 + value2, ERROR);
+        assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
+        assertEquals(value1 + value2, t1.getValue().doubleValue(), ERROR);
 
         // test again for different units
         final double value2b = TemperatureConverter.celsiusToFahrenheit(value2);
@@ -396,8 +397,8 @@ public class TemperatureTest {
         t1.add(new BigDecimal(value2b), TemperatureUnit.FAHRENHEIT);
 
         // check
-        assertEquals(t1.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t1.getValue().doubleValue(), value1 + value2, ERROR);
+        assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
+        assertEquals(value1 + value2, t1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -412,11 +413,11 @@ public class TemperatureTest {
         t1.add(t2);
 
         // check
-        assertEquals(t1.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t1.getValue().doubleValue(), value1 + value2, ERROR);
+        assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
+        assertEquals(value1 + value2, t1.getValue().doubleValue(), ERROR);
 
-        assertEquals(t2.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(TemperatureUnit.CELSIUS, t2.getUnit());
+        assertEquals(value2, t2.getValue().doubleValue(), 0.0);
 
         // test again for different units
         final double value2b = TemperatureConverter.celsiusToFahrenheit(value2);
@@ -426,11 +427,11 @@ public class TemperatureTest {
         t1.add(t2b);
 
         // check
-        assertEquals(t1.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t1.getValue().doubleValue(), value1 + value2, ERROR);
+        assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
+        assertEquals(value1 + value2, t1.getValue().doubleValue(), ERROR);
 
-        assertEquals(t2b.getUnit(), TemperatureUnit.FAHRENHEIT);
-        assertEquals(t2b.getValue().doubleValue(), value2b, 0.0);
+        assertEquals(TemperatureUnit.FAHRENHEIT, t2b.getUnit());
+        assertEquals(value2b, t2b.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -447,14 +448,14 @@ public class TemperatureTest {
         t1.add(t2, result);
 
         // check
-        assertEquals(t1.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
+        assertEquals(value1, t1.getValue().doubleValue(), 0.0);
 
-        assertEquals(t2.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(TemperatureUnit.CELSIUS, t2.getUnit());
+        assertEquals(value2, t2.getValue().doubleValue(), 0.0);
 
         final double expected = TemperatureConverter.celsiusToKelvin(value1 + value2);
-        assertEquals(result.getUnit(), TemperatureUnit.KELVIN);
+        assertEquals(TemperatureUnit.KELVIN, result.getUnit());
         assertEquals(expected, result.getValue().doubleValue(), ERROR);
 
         // test again for different units
@@ -467,7 +468,7 @@ public class TemperatureTest {
         t1.add(t2b, result2);
 
         // check
-        assertEquals(result2.getUnit(), TemperatureUnit.KELVIN);
+        assertEquals(TemperatureUnit.KELVIN, result2.getUnit());
         assertEquals(expected, result2.getValue().doubleValue(), ERROR);
     }
 
@@ -532,14 +533,14 @@ public class TemperatureTest {
         Temperature.subtract(t1, t2, result);
 
         // check
-        assertEquals(t1.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
+        assertEquals(value1, t1.getValue().doubleValue(), 0.0);
 
-        assertEquals(t2.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(TemperatureUnit.CELSIUS, t2.getUnit());
+        assertEquals(value2, t2.getValue().doubleValue(), 0.0);
 
         final double expected = TemperatureConverter.celsiusToKelvin(value1 - value2);
-        assertEquals(result.getUnit(), TemperatureUnit.KELVIN);
+        assertEquals(TemperatureUnit.KELVIN, result.getUnit());
         assertEquals(expected, result.getValue().doubleValue(), ERROR);
 
         // test again for different units
@@ -551,7 +552,7 @@ public class TemperatureTest {
         Temperature.subtract(t1, t2b, result2);
 
         // check
-        assertEquals(result2.getUnit(), TemperatureUnit.KELVIN);
+        assertEquals(TemperatureUnit.KELVIN, result2.getUnit());
         assertEquals(expected, result2.getValue().doubleValue(), ERROR);
     }
 
@@ -568,14 +569,14 @@ public class TemperatureTest {
                 t1, t2, TemperatureUnit.KELVIN);
 
         // check
-        assertEquals(t1.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
+        assertEquals(value1, t1.getValue().doubleValue(), 0.0);
 
-        assertEquals(t2.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(TemperatureUnit.CELSIUS, t2.getUnit());
+        assertEquals(value2, t2.getValue().doubleValue(), 0.0);
 
         final double expected = TemperatureConverter.celsiusToKelvin(value1 - value2);
-        assertEquals(result.getUnit(), TemperatureUnit.KELVIN);
+        assertEquals(TemperatureUnit.KELVIN, result.getUnit());
         assertEquals(expected, result.getValue().doubleValue(), ERROR);
 
         // test again for different units
@@ -587,7 +588,7 @@ public class TemperatureTest {
                 t1, t2b, TemperatureUnit.KELVIN);
 
         // check
-        assertEquals(result2.getUnit(), TemperatureUnit.KELVIN);
+        assertEquals(TemperatureUnit.KELVIN, result2.getUnit());
         assertEquals(expected, result2.getValue().doubleValue(), ERROR);
     }
 
@@ -603,12 +604,12 @@ public class TemperatureTest {
                 value2, TemperatureUnit.CELSIUS, TemperatureUnit.KELVIN);
 
         // check
-        assertEquals(t1.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
+        assertEquals(value1, t1.getValue().doubleValue(), 0.0);
 
         final double expected = TemperatureConverter.celsiusToKelvin(
                 value1 - value2);
-        assertEquals(result.getUnit(), TemperatureUnit.KELVIN);
+        assertEquals(TemperatureUnit.KELVIN, result.getUnit());
         assertEquals(expected, result.getValue().doubleValue(), ERROR);
     }
 
@@ -625,12 +626,12 @@ public class TemperatureTest {
                 TemperatureUnit.KELVIN);
 
         // check
-        assertEquals(t1.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
+        assertEquals(value1, t1.getValue().doubleValue(), 0.0);
 
         final double expected = TemperatureConverter.celsiusToKelvin(
                 value1 - value2);
-        assertEquals(result.getUnit(), TemperatureUnit.KELVIN);
+        assertEquals(TemperatureUnit.KELVIN, result.getUnit());
         assertEquals(expected, result.getValue().doubleValue(), ERROR);
     }
 
@@ -647,15 +648,15 @@ public class TemperatureTest {
                 t2, TemperatureUnit.KELVIN);
 
         // check
-        assertEquals(t1.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
+        assertEquals(value1, t1.getValue().doubleValue(), 0.0);
 
-        assertEquals(t2.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(TemperatureUnit.CELSIUS, t2.getUnit());
+        assertEquals(value2, t2.getValue().doubleValue(), 0.0);
 
         final double expected = TemperatureConverter.celsiusToKelvin(
                 value1 - value2);
-        assertEquals(result.getUnit(), TemperatureUnit.KELVIN);
+        assertEquals(TemperatureUnit.KELVIN, result.getUnit());
         assertEquals(expected, result.getValue().doubleValue(), ERROR);
 
         // test again for different units
@@ -667,7 +668,7 @@ public class TemperatureTest {
                 t2b, TemperatureUnit.KELVIN);
 
         // check
-        assertEquals(result2.getUnit(), TemperatureUnit.KELVIN);
+        assertEquals(TemperatureUnit.KELVIN, result2.getUnit());
         assertEquals(expected, result2.getValue().doubleValue(), ERROR);
     }
 
@@ -682,8 +683,8 @@ public class TemperatureTest {
         t1.subtract(value2, TemperatureUnit.CELSIUS);
 
         // check
-        assertEquals(t1.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t1.getValue().doubleValue(), value1 - value2, ERROR);
+        assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
+        assertEquals(value1 - value2, t1.getValue().doubleValue(), ERROR);
 
         // test again for different units
         final double value2b = TemperatureConverter.celsiusToFahrenheit(value2);
@@ -692,8 +693,8 @@ public class TemperatureTest {
         t1.subtract(value2b, TemperatureUnit.FAHRENHEIT);
 
         // check
-        assertEquals(t1.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t1.getValue().doubleValue(), value1 - value2, ERROR);
+        assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
+        assertEquals(value1 - value2, t1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -707,8 +708,8 @@ public class TemperatureTest {
         t1.subtract(new BigDecimal(value2), TemperatureUnit.CELSIUS);
 
         // check
-        assertEquals(t1.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t1.getValue().doubleValue(), value1 - value2, ERROR);
+        assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
+        assertEquals(value1 - value2, t1.getValue().doubleValue(), ERROR);
 
         // test again for different units
         final double value2b = TemperatureConverter.celsiusToFahrenheit(value2);
@@ -717,8 +718,8 @@ public class TemperatureTest {
         t1.subtract(new BigDecimal(value2b), TemperatureUnit.FAHRENHEIT);
 
         // check
-        assertEquals(t1.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t1.getValue().doubleValue(), value1 - value2, ERROR);
+        assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
+        assertEquals(value1 - value2, t1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -733,11 +734,11 @@ public class TemperatureTest {
         t1.subtract(t2);
 
         // check
-        assertEquals(t1.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t1.getValue().doubleValue(), value1 - value2, ERROR);
+        assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
+        assertEquals(value1 - value2, t1.getValue().doubleValue(), ERROR);
 
-        assertEquals(t2.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(TemperatureUnit.CELSIUS, t2.getUnit());
+        assertEquals(value2, t2.getValue().doubleValue(), 0.0);
 
         // test again for different units
         final double value2b = TemperatureConverter.celsiusToFahrenheit(value2);
@@ -748,11 +749,11 @@ public class TemperatureTest {
         t1.subtract(t2b);
 
         // check
-        assertEquals(t1.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t1.getValue().doubleValue(), value1 - value2, ERROR);
+        assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
+        assertEquals(value1 - value2, t1.getValue().doubleValue(), ERROR);
 
-        assertEquals(t2b.getUnit(), TemperatureUnit.FAHRENHEIT);
-        assertEquals(t2b.getValue().doubleValue(), value2b, 0.0);
+        assertEquals(TemperatureUnit.FAHRENHEIT, t2b.getUnit());
+        assertEquals(value2b, t2b.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -769,15 +770,15 @@ public class TemperatureTest {
         t1.subtract(t2, result);
 
         // check
-        assertEquals(t1.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
+        assertEquals(value1, t1.getValue().doubleValue(), 0.0);
 
-        assertEquals(t2.getUnit(), TemperatureUnit.CELSIUS);
-        assertEquals(t2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(TemperatureUnit.CELSIUS, t2.getUnit());
+        assertEquals(value2, t2.getValue().doubleValue(), 0.0);
 
         final double expected = TemperatureConverter.celsiusToKelvin(
                 value1 - value2);
-        assertEquals(result.getUnit(), TemperatureUnit.KELVIN);
+        assertEquals(TemperatureUnit.KELVIN, result.getUnit());
         assertEquals(expected, result.getValue().doubleValue(), ERROR);
 
         // test again for different units
@@ -790,7 +791,7 @@ public class TemperatureTest {
         t1.subtract(t2b, result2);
 
         // check
-        assertEquals(result2.getUnit(), TemperatureUnit.KELVIN);
+        assertEquals(TemperatureUnit.KELVIN, result2.getUnit());
         assertEquals(expected, result2.getValue().doubleValue(), ERROR);
     }
 

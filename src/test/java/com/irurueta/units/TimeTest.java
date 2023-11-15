@@ -40,8 +40,8 @@ public class TimeTest {
         t = new Time(332, TimeUnit.SECOND);
 
         // check
-        assertEquals(t.getValue(), 332);
-        assertEquals(t.getUnit(), TimeUnit.SECOND);
+        assertEquals(332, t.getValue());
+        assertEquals(TimeUnit.SECOND, t.getUnit());
 
         // force IllegalArgumentException
         t = null;
@@ -67,6 +67,7 @@ public class TimeTest {
         final Time t3 = new Time(value + 1.0, TimeUnit.SECOND);
         final Time t4 = new Time(value, TimeUnit.MILLISECOND);
 
+        //noinspection EqualsWithItself
         assertEquals(t1, t1);
         assertEquals(t1, t2);
         assertNotEquals(t1, t3);
@@ -114,13 +115,13 @@ public class TimeTest {
         final Time t = new Time(1, TimeUnit.SECOND);
 
         // check
-        assertEquals(t.getValue(), 1);
+        assertEquals(1, t.getValue());
 
         // set new value
         t.setValue(2.5);
 
         // check
-        assertEquals(t.getValue(), 2.5);
+        assertEquals(2.5, t.getValue());
 
         // force IllegalArgumentException
         try {
@@ -135,13 +136,13 @@ public class TimeTest {
         final Time t = new Time(1, TimeUnit.SECOND);
 
         // check
-        assertEquals(t.getUnit(), TimeUnit.SECOND);
+        assertEquals(TimeUnit.SECOND, t.getUnit());
 
         // set new value
         t.setUnit(TimeUnit.DAY);
 
         // check
-        assertEquals(t.getUnit(), TimeUnit.DAY);
+        assertEquals(TimeUnit.DAY, t.getUnit());
 
         // force IllegalArgumentException
         try {
@@ -190,13 +191,13 @@ public class TimeTest {
         Time.add(t1, t2, result);
 
         // check
-        assertEquals(t1.getUnit(), TimeUnit.SECOND);
-        assertEquals(t1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(TimeUnit.SECOND, t1.getUnit());
+        assertEquals(value1, t1.getValue().doubleValue(), 0.0);
 
-        assertEquals(t2.getUnit(), TimeUnit.SECOND);
-        assertEquals(t2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(TimeUnit.SECOND, t2.getUnit());
+        assertEquals(value2, t2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), TimeUnit.MILLISECOND);
+        assertEquals(TimeUnit.MILLISECOND, result.getUnit());
         assertEquals((value1 + value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -213,13 +214,13 @@ public class TimeTest {
         final Time result = Time.addAndReturnNew(t1, t2, TimeUnit.MILLISECOND);
 
         // check
-        assertEquals(t1.getUnit(), TimeUnit.SECOND);
-        assertEquals(t1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(TimeUnit.SECOND, t1.getUnit());
+        assertEquals(value1, t1.getValue().doubleValue(), 0.0);
 
-        assertEquals(t2.getUnit(), TimeUnit.SECOND);
-        assertEquals(t2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(TimeUnit.SECOND, t2.getUnit());
+        assertEquals(value2, t2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), TimeUnit.MILLISECOND);
+        assertEquals(TimeUnit.MILLISECOND, result.getUnit());
         assertEquals((value1 + value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -235,10 +236,10 @@ public class TimeTest {
         final Time result = t1.addAndReturnNew(value2, TimeUnit.SECOND, TimeUnit.MILLISECOND);
 
         // check
-        assertEquals(t1.getUnit(), TimeUnit.SECOND);
-        assertEquals(t1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(TimeUnit.SECOND, t1.getUnit());
+        assertEquals(value1, t1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), TimeUnit.MILLISECOND);
+        assertEquals(TimeUnit.MILLISECOND, result.getUnit());
         assertEquals((value1 + value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -255,10 +256,10 @@ public class TimeTest {
                 TimeUnit.SECOND, TimeUnit.MILLISECOND);
 
         // check
-        assertEquals(t1.getUnit(), TimeUnit.SECOND);
-        assertEquals(t1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(TimeUnit.SECOND, t1.getUnit());
+        assertEquals(value1, t1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), TimeUnit.MILLISECOND);
+        assertEquals(TimeUnit.MILLISECOND, result.getUnit());
         assertEquals((value1 + value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -275,13 +276,13 @@ public class TimeTest {
         final Time result = t1.addAndReturnNew(t2, TimeUnit.MILLISECOND);
 
         // check
-        assertEquals(t1.getUnit(), TimeUnit.SECOND);
-        assertEquals(t1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(TimeUnit.SECOND, t1.getUnit());
+        assertEquals(value1, t1.getValue().doubleValue(), 0.0);
 
-        assertEquals(t2.getUnit(), TimeUnit.SECOND);
-        assertEquals(t2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(TimeUnit.SECOND, t2.getUnit());
+        assertEquals(value2, t2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), TimeUnit.MILLISECOND);
+        assertEquals(TimeUnit.MILLISECOND, result.getUnit());
         assertEquals((value1 + value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -297,8 +298,8 @@ public class TimeTest {
         t1.add(value2, TimeUnit.SECOND);
 
         // check
-        assertEquals(t1.getUnit(), TimeUnit.SECOND);
-        assertEquals(t1.getValue().doubleValue(), value1 + value2,
+        assertEquals(TimeUnit.SECOND, t1.getUnit());
+        assertEquals(value1 + value2, t1.getValue().doubleValue(),
                 ERROR);
     }
 
@@ -313,8 +314,8 @@ public class TimeTest {
         t1.add(new BigDecimal(value2), TimeUnit.SECOND);
 
         // check
-        assertEquals(t1.getUnit(), TimeUnit.SECOND);
-        assertEquals(t1.getValue().doubleValue(), value1 + value2,
+        assertEquals(TimeUnit.SECOND, t1.getUnit());
+        assertEquals(value1 + value2, t1.getValue().doubleValue(),
                 ERROR);
     }
 
@@ -331,12 +332,12 @@ public class TimeTest {
         t1.add(t2);
 
         // check
-        assertEquals(t1.getUnit(), TimeUnit.SECOND);
-        assertEquals(t1.getValue().doubleValue(), value1 + value2,
+        assertEquals(TimeUnit.SECOND, t1.getUnit());
+        assertEquals(value1 + value2, t1.getValue().doubleValue(),
                 ERROR);
 
-        assertEquals(t2.getUnit(), TimeUnit.SECOND);
-        assertEquals(t2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(TimeUnit.SECOND, t2.getUnit());
+        assertEquals(value2, t2.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -352,13 +353,13 @@ public class TimeTest {
         t1.add(t2, result);
 
         // check
-        assertEquals(t1.getUnit(), TimeUnit.SECOND);
-        assertEquals(t1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(TimeUnit.SECOND, t1.getUnit());
+        assertEquals(value1, t1.getValue().doubleValue(), 0.0);
 
-        assertEquals(t2.getUnit(), TimeUnit.SECOND);
-        assertEquals(t2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(TimeUnit.SECOND, t2.getUnit());
+        assertEquals(value2, t2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), TimeUnit.MILLISECOND);
+        assertEquals(TimeUnit.MILLISECOND, result.getUnit());
         assertEquals((value1 + value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -402,13 +403,13 @@ public class TimeTest {
         Time.subtract(t1, t2, result);
 
         // check
-        assertEquals(t1.getUnit(), TimeUnit.SECOND);
-        assertEquals(t1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(TimeUnit.SECOND, t1.getUnit());
+        assertEquals(value1, t1.getValue().doubleValue(), 0.0);
 
-        assertEquals(t2.getUnit(), TimeUnit.SECOND);
-        assertEquals(t2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(TimeUnit.SECOND, t2.getUnit());
+        assertEquals(value2, t2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), TimeUnit.MILLISECOND);
+        assertEquals(TimeUnit.MILLISECOND, result.getUnit());
         assertEquals((value1 - value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -426,13 +427,13 @@ public class TimeTest {
                 TimeUnit.MILLISECOND);
 
         // check
-        assertEquals(t1.getUnit(), TimeUnit.SECOND);
-        assertEquals(t1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(TimeUnit.SECOND, t1.getUnit());
+        assertEquals(value1, t1.getValue().doubleValue(), 0.0);
 
-        assertEquals(t2.getUnit(), TimeUnit.SECOND);
-        assertEquals(t2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(TimeUnit.SECOND, t2.getUnit());
+        assertEquals(value2, t2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), TimeUnit.MILLISECOND);
+        assertEquals(TimeUnit.MILLISECOND, result.getUnit());
         assertEquals((value1 - value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -448,10 +449,10 @@ public class TimeTest {
         final Time result = t1.subtractAndReturnNew(value2, TimeUnit.SECOND, TimeUnit.MILLISECOND);
 
         // check
-        assertEquals(t1.getUnit(), TimeUnit.SECOND);
-        assertEquals(t1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(TimeUnit.SECOND, t1.getUnit());
+        assertEquals(value1, t1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), TimeUnit.MILLISECOND);
+        assertEquals(TimeUnit.MILLISECOND, result.getUnit());
         assertEquals((value1 - value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -468,10 +469,10 @@ public class TimeTest {
                 TimeUnit.SECOND, TimeUnit.MILLISECOND);
 
         // check
-        assertEquals(t1.getUnit(), TimeUnit.SECOND);
-        assertEquals(t1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(TimeUnit.SECOND, t1.getUnit());
+        assertEquals(value1, t1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), TimeUnit.MILLISECOND);
+        assertEquals(TimeUnit.MILLISECOND, result.getUnit());
         assertEquals((value1 - value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -488,13 +489,13 @@ public class TimeTest {
         final Time result = t1.subtractAndReturnNew(t2, TimeUnit.MILLISECOND);
 
         // check
-        assertEquals(t1.getUnit(), TimeUnit.SECOND);
-        assertEquals(t1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(TimeUnit.SECOND, t1.getUnit());
+        assertEquals(value1, t1.getValue().doubleValue(), 0.0);
 
-        assertEquals(t2.getUnit(), TimeUnit.SECOND);
-        assertEquals(t2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(TimeUnit.SECOND, t2.getUnit());
+        assertEquals(value2, t2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), TimeUnit.MILLISECOND);
+        assertEquals(TimeUnit.MILLISECOND, result.getUnit());
         assertEquals((value1 - value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -510,9 +511,8 @@ public class TimeTest {
         t1.subtract(value2, TimeUnit.SECOND);
 
         // check
-        assertEquals(t1.getUnit(), TimeUnit.SECOND);
-        assertEquals(t1.getValue().doubleValue(), value1 - value2,
-                ERROR);
+        assertEquals(TimeUnit.SECOND, t1.getUnit());
+        assertEquals(value1 - value2, t1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -526,9 +526,8 @@ public class TimeTest {
         t1.subtract(new BigDecimal(value2), TimeUnit.SECOND);
 
         // check
-        assertEquals(t1.getUnit(), TimeUnit.SECOND);
-        assertEquals(t1.getValue().doubleValue(), value1 - value2,
-                ERROR);
+        assertEquals(TimeUnit.SECOND, t1.getUnit());
+        assertEquals(value1 - value2, t1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -543,11 +542,10 @@ public class TimeTest {
         t1.subtract(t2);
 
         // check
-        assertEquals(t1.getUnit(), TimeUnit.SECOND);
-        assertEquals(t1.getValue().doubleValue(), value1 - value2,
-                ERROR);
+        assertEquals(TimeUnit.SECOND, t1.getUnit());
+        assertEquals(value1 - value2, t1.getValue().doubleValue(), ERROR);
 
-        assertEquals(t2.getUnit(), TimeUnit.SECOND);
+        assertEquals(TimeUnit.SECOND, t2.getUnit());
         assertEquals(t2.getValue().doubleValue(), value2, 0.0);
     }
 
@@ -564,13 +562,13 @@ public class TimeTest {
         t1.subtract(t2, result);
 
         // check
-        assertEquals(t1.getUnit(), TimeUnit.SECOND);
-        assertEquals(t1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(TimeUnit.SECOND, t1.getUnit());
+        assertEquals(value1, t1.getValue().doubleValue(), 0.0);
 
-        assertEquals(t2.getUnit(), TimeUnit.SECOND);
-        assertEquals(t2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(TimeUnit.SECOND, t2.getUnit());
+        assertEquals(value2, t2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), TimeUnit.MILLISECOND);
+        assertEquals(TimeUnit.MILLISECOND, result.getUnit());
         assertEquals((value1 - value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }

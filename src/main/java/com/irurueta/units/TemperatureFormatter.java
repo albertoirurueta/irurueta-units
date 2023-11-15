@@ -6,8 +6,7 @@ import java.util.Locale;
 /**
  * Formats and parses temperature value and unit.
  */
-public class TemperatureFormatter extends MeasureFormatter<Temperature, TemperatureUnit>
-        implements Cloneable {
+public class TemperatureFormatter extends MeasureFormatter<Temperature, TemperatureUnit> {
 
     /**
      * Celsius symbol.
@@ -165,17 +164,5 @@ public class TemperatureFormatter extends MeasureFormatter<Temperature, Temperat
             default:
                 return KELVIN;
         }
-    }
-
-    /**
-     * Clones this temperature formatter.
-     *
-     * @return a copy of this temperature formatter.
-     * @throws CloneNotSupportedException if clone fails for any reason.
-     */
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        final TemperatureFormatter copy = (TemperatureFormatter) super.clone();
-        return internalClone(copy);
     }
 }

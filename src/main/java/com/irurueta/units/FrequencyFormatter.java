@@ -21,8 +21,7 @@ import java.util.Locale;
 /**
  * Formats and parses frequency value and unit.
  */
-public class FrequencyFormatter extends MeasureFormatter<Frequency, FrequencyUnit>
-        implements Cloneable {
+public class FrequencyFormatter extends MeasureFormatter<Frequency, FrequencyUnit> {
 
     /**
      * Hertz symbol.
@@ -100,7 +99,7 @@ public class FrequencyFormatter extends MeasureFormatter<Frequency, FrequencyUni
     public int hashCode() {
         return super.hashCode();
     }
-    
+
     /**
      * Gets unit system for detected unit into provided string representation
      * of a measurement.
@@ -255,17 +254,5 @@ public class FrequencyFormatter extends MeasureFormatter<Frequency, FrequencyUni
     @Override
     public UnitSystem getUnitSystem() {
         return UnitSystem.METRIC;
-    }
-
-    /**
-     * Clones this frequency formatter.
-     *
-     * @return a copy of this frequency formatter.
-     * @throws CloneNotSupportedException if clone fails for any reason.
-     */
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        final FrequencyFormatter copy = (FrequencyFormatter) super.clone();
-        return internalClone(copy);
     }
 }

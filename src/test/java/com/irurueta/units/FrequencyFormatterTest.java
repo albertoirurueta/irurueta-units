@@ -34,48 +34,48 @@ public class FrequencyFormatterTest {
         FrequencyFormatter formatter = new FrequencyFormatter();
 
         // check
-        assertEquals(formatter.getLocale(), Locale.getDefault());
-        assertEquals(formatter.getMaximumFractionDigits(),
-                NumberFormat.getInstance().getMaximumFractionDigits());
-        assertEquals(formatter.getMaximumIntegerDigits(),
-                NumberFormat.getInstance().getMaximumIntegerDigits());
-        assertEquals(formatter.getMinimumFractionDigits(),
-                NumberFormat.getInstance().getMinimumFractionDigits());
-        assertEquals(formatter.getMinimumIntegerDigits(),
-                NumberFormat.getInstance().getMinimumIntegerDigits());
-        assertEquals(formatter.getRoundingMode(),
-                NumberFormat.getInstance().getRoundingMode());
-        assertEquals(formatter.getUnitSystem(), UnitSystem.METRIC);
-        assertEquals(formatter.isGroupingUsed(),
-                NumberFormat.getInstance().isGroupingUsed());
-        assertEquals(formatter.isParseIntegerOnly(),
-                NumberFormat.getInstance().isParseIntegerOnly());
-        assertEquals(formatter.getValueAndUnitFormatPattern(),
-                MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
+        assertEquals(Locale.getDefault(), formatter.getLocale());
+        assertEquals(NumberFormat.getInstance().getMaximumFractionDigits(),
+                formatter.getMaximumFractionDigits());
+        assertEquals(NumberFormat.getInstance().getMaximumIntegerDigits(),
+                formatter.getMaximumIntegerDigits());
+        assertEquals(NumberFormat.getInstance().getMinimumFractionDigits(),
+                formatter.getMinimumFractionDigits());
+        assertEquals(NumberFormat.getInstance().getMinimumIntegerDigits(),
+                formatter.getMinimumIntegerDigits());
+        assertEquals(NumberFormat.getInstance().getRoundingMode(),
+                formatter.getRoundingMode());
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem());
+        assertEquals(NumberFormat.getInstance().isGroupingUsed(),
+                formatter.isGroupingUsed());
+        assertEquals(NumberFormat.getInstance().isParseIntegerOnly(),
+                formatter.isParseIntegerOnly());
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
+                formatter.getValueAndUnitFormatPattern());
 
         // test constructor with locale
         final Locale locale = new Locale("es", "ES");
         formatter = new FrequencyFormatter(locale);
 
         // check
-        assertEquals(formatter.getLocale(), locale);
-        assertEquals(formatter.getMaximumFractionDigits(),
-                NumberFormat.getInstance(locale).getMaximumFractionDigits());
-        assertEquals(formatter.getMaximumIntegerDigits(),
-                NumberFormat.getInstance(locale).getMaximumIntegerDigits());
-        assertEquals(formatter.getMinimumFractionDigits(),
-                NumberFormat.getInstance(locale).getMinimumFractionDigits());
-        assertEquals(formatter.getMinimumIntegerDigits(),
-                NumberFormat.getInstance(locale).getMinimumIntegerDigits());
-        assertEquals(formatter.getRoundingMode(),
-                NumberFormat.getInstance(locale).getRoundingMode());
-        assertEquals(formatter.getUnitSystem(), UnitSystem.METRIC);
-        assertEquals(formatter.isGroupingUsed(),
-                NumberFormat.getInstance(locale).isGroupingUsed());
-        assertEquals(formatter.isParseIntegerOnly(),
-                NumberFormat.getInstance(locale).isParseIntegerOnly());
-        assertEquals(formatter.getValueAndUnitFormatPattern(),
-                MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
+        assertEquals(locale, formatter.getLocale());
+        assertEquals(NumberFormat.getInstance(locale).getMaximumFractionDigits(),
+                formatter.getMaximumFractionDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMaximumIntegerDigits(),
+                formatter.getMaximumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMinimumFractionDigits(),
+                formatter.getMinimumFractionDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMinimumIntegerDigits(),
+                formatter.getMinimumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getRoundingMode(),
+                formatter.getRoundingMode());
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem());
+        assertEquals(NumberFormat.getInstance(locale).isGroupingUsed(),
+                formatter.isGroupingUsed());
+        assertEquals(NumberFormat.getInstance(locale).isParseIntegerOnly(),
+                formatter.isParseIntegerOnly());
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
+                formatter.getValueAndUnitFormatPattern());
 
 
         // force IllegalArgumentException
@@ -94,24 +94,24 @@ public class FrequencyFormatterTest {
         final FrequencyFormatter formatter2 = new FrequencyFormatter(formatter);
 
         // check
-        assertEquals(formatter2.getLocale(), locale);
-        assertEquals(formatter2.getMaximumFractionDigits(),
-                NumberFormat.getInstance(locale).getMaximumFractionDigits());
-        assertEquals(formatter2.getMaximumIntegerDigits(),
-                NumberFormat.getInstance(locale).getMaximumIntegerDigits());
-        assertEquals(formatter2.getMinimumFractionDigits(),
-                NumberFormat.getInstance(locale).getMinimumFractionDigits());
-        assertEquals(formatter2.getMinimumIntegerDigits(),
-                NumberFormat.getInstance(locale).getMinimumIntegerDigits());
-        assertEquals(formatter2.getRoundingMode(),
-                NumberFormat.getInstance(locale).getRoundingMode());
-        assertEquals(formatter2.getUnitSystem(), UnitSystem.METRIC);
-        assertEquals(formatter2.isGroupingUsed(),
-                NumberFormat.getInstance(locale).isGroupingUsed());
-        assertEquals(formatter2.isParseIntegerOnly(),
-                NumberFormat.getInstance(locale).isParseIntegerOnly());
-        assertEquals(formatter2.getValueAndUnitFormatPattern(),
-                MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
+        assertEquals(locale, formatter2.getLocale());
+        assertEquals(NumberFormat.getInstance(locale).getMaximumFractionDigits(),
+                formatter2.getMaximumFractionDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMaximumIntegerDigits(),
+                formatter2.getMaximumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMinimumFractionDigits(),
+                formatter2.getMinimumFractionDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMinimumIntegerDigits(),
+                formatter2.getMinimumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getRoundingMode(),
+                formatter2.getRoundingMode());
+        assertEquals(UnitSystem.METRIC, formatter2.getUnitSystem());
+        assertEquals(NumberFormat.getInstance(locale).isGroupingUsed(),
+                formatter2.isGroupingUsed());
+        assertEquals(NumberFormat.getInstance(locale).isParseIntegerOnly(),
+                formatter2.isParseIntegerOnly());
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
+                formatter2.getValueAndUnitFormatPattern());
 
         formatter = null;
         try {
@@ -148,6 +148,7 @@ public class FrequencyFormatterTest {
         final FrequencyFormatter formatter3 = new FrequencyFormatter(Locale.FRENCH);
 
         // check
+        //noinspection EqualsWithItself
         assertEquals(formatter1, formatter1);
         assertEquals(formatter1, formatter2);
         assertNotEquals(formatter1, formatter3);
@@ -175,16 +176,16 @@ public class FrequencyFormatterTest {
 
         final FrequencyFormatter formatter = new FrequencyFormatter(l);
 
-        assertEquals(formatter.format(new BigDecimal(value),
-                FrequencyUnit.HERTZ), "5,5 Hz");
-        assertEquals(formatter.format(new BigDecimal(value),
-                FrequencyUnit.KILOHERTZ), "5,5 KHz");
-        assertEquals(formatter.format(new BigDecimal(value),
-                FrequencyUnit.MEGAHERTZ), "5,5 MHz");
-        assertEquals(formatter.format(new BigDecimal(value),
-                FrequencyUnit.GIGAHERTZ), "5,5 GHz");
-        assertEquals(formatter.format(new BigDecimal(value),
-                FrequencyUnit.TERAHERTZ), "5,5 THz");
+        assertEquals("5,5 Hz", formatter.format(new BigDecimal(value),
+                FrequencyUnit.HERTZ));
+        assertEquals("5,5 KHz", formatter.format(new BigDecimal(value),
+                FrequencyUnit.KILOHERTZ));
+        assertEquals("5,5 MHz", formatter.format(new BigDecimal(value),
+                FrequencyUnit.MEGAHERTZ));
+        assertEquals("5,5 GHz", formatter.format(new BigDecimal(value),
+                FrequencyUnit.GIGAHERTZ));
+        assertEquals("5,5 THz", formatter.format(new BigDecimal(value),
+                FrequencyUnit.TERAHERTZ));
     }
 
     @Test
@@ -195,29 +196,29 @@ public class FrequencyFormatterTest {
         final FrequencyFormatter formatter = new FrequencyFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
+        assertEquals("5,5 Hz", formatter.format(new BigDecimal(value),
                 FrequencyUnit.HERTZ, buffer,
-                new FieldPosition(0)).toString(), "5,5 Hz");
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
+        assertEquals("5,5 KHz", formatter.format(new BigDecimal(value),
                 FrequencyUnit.KILOHERTZ, buffer,
-                new FieldPosition(0)).toString(), "5,5 KHz");
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
+        assertEquals("5,5 MHz", formatter.format(new BigDecimal(value),
                 FrequencyUnit.MEGAHERTZ, buffer,
-                new FieldPosition(0)).toString(), "5,5 MHz");
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
+        assertEquals("5,5 GHz", formatter.format(new BigDecimal(value),
                 FrequencyUnit.GIGAHERTZ, buffer,
-                new FieldPosition(0)).toString(), "5,5 GHz");
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
+        assertEquals("5,5 THz", formatter.format(new BigDecimal(value),
                 FrequencyUnit.TERAHERTZ, buffer,
-                new FieldPosition(0)).toString(), "5,5 THz");
+                new FieldPosition(0)).toString());
     }
 
     @Test
@@ -227,16 +228,16 @@ public class FrequencyFormatterTest {
 
         final FrequencyFormatter formatter = new FrequencyFormatter(l);
 
-        assertEquals(formatter.format(value, FrequencyUnit.HERTZ),
-                "5,5 Hz");
-        assertEquals(formatter.format(value, FrequencyUnit.KILOHERTZ),
-                "5,5 KHz");
-        assertEquals(formatter.format(value, FrequencyUnit.MEGAHERTZ),
-                "5,5 MHz");
-        assertEquals(formatter.format(value, FrequencyUnit.GIGAHERTZ),
-                "5,5 GHz");
-        assertEquals(formatter.format(value, FrequencyUnit.TERAHERTZ),
-                "5,5 THz");
+        assertEquals("5,5 Hz",
+                formatter.format(value, FrequencyUnit.HERTZ));
+        assertEquals("5,5 KHz",
+                formatter.format(value, FrequencyUnit.KILOHERTZ));
+        assertEquals("5,5 MHz",
+                formatter.format(value, FrequencyUnit.MEGAHERTZ));
+        assertEquals("5,5 GHz",
+                formatter.format(value, FrequencyUnit.GIGAHERTZ));
+        assertEquals("5,5 THz",
+                formatter.format(value, FrequencyUnit.TERAHERTZ));
     }
 
     @Test
@@ -247,24 +248,24 @@ public class FrequencyFormatterTest {
         final FrequencyFormatter formatter = new FrequencyFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
-        assertEquals(formatter.format(value, FrequencyUnit.HERTZ, buffer,
-                new FieldPosition(0)).toString(), "5,5 Hz");
+        assertEquals("5,5 Hz", formatter.format(value, FrequencyUnit.HERTZ, buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value, FrequencyUnit.KILOHERTZ, buffer,
-                new FieldPosition(0)).toString(), "5,5 KHz");
+        assertEquals("5,5 KHz", formatter.format(value, FrequencyUnit.KILOHERTZ, buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value, FrequencyUnit.MEGAHERTZ, buffer,
-                new FieldPosition(0)).toString(), "5,5 MHz");
+        assertEquals("5,5 MHz", formatter.format(value, FrequencyUnit.MEGAHERTZ, buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value, FrequencyUnit.GIGAHERTZ, buffer,
-                new FieldPosition(0)).toString(), "5,5 GHz");
+        assertEquals("5,5 GHz", formatter.format(value, FrequencyUnit.GIGAHERTZ, buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value, FrequencyUnit.TERAHERTZ, buffer,
-                new FieldPosition(0)).toString(), "5,5 THz");
+        assertEquals("5,5 THz", formatter.format(value, FrequencyUnit.TERAHERTZ, buffer,
+                new FieldPosition(0)).toString());
     }
 
     @Test
@@ -274,16 +275,16 @@ public class FrequencyFormatterTest {
 
         final FrequencyFormatter formatter = new FrequencyFormatter(l);
 
-        assertEquals(formatter.format(new Frequency(value, FrequencyUnit.HERTZ)),
-                "5,5 Hz");
-        assertEquals(formatter.format(new Frequency(value, FrequencyUnit.KILOHERTZ)),
-                "5,5 KHz");
-        assertEquals(formatter.format(new Frequency(value, FrequencyUnit.MEGAHERTZ)),
-                "5,5 MHz");
-        assertEquals(formatter.format(new Frequency(value, FrequencyUnit.GIGAHERTZ)),
-                "5,5 GHz");
-        assertEquals(formatter.format(new Frequency(value, FrequencyUnit.TERAHERTZ)),
-                "5,5 THz");
+        assertEquals("5,5 Hz",
+                formatter.format(new Frequency(value, FrequencyUnit.HERTZ)));
+        assertEquals("5,5 KHz",
+                formatter.format(new Frequency(value, FrequencyUnit.KILOHERTZ)));
+        assertEquals("5,5 MHz",
+                formatter.format(new Frequency(value, FrequencyUnit.MEGAHERTZ)));
+        assertEquals("5,5 GHz",
+                formatter.format(new Frequency(value, FrequencyUnit.GIGAHERTZ)));
+        assertEquals("5,5 THz",
+                formatter.format(new Frequency(value, FrequencyUnit.TERAHERTZ)));
     }
 
     @Test
@@ -294,24 +295,24 @@ public class FrequencyFormatterTest {
         final FrequencyFormatter formatter = new FrequencyFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
-        assertEquals(formatter.format(new Frequency(value, FrequencyUnit.HERTZ),
-                buffer, new FieldPosition(0)).toString(), "5,5 Hz");
+        assertEquals("5,5 Hz", formatter.format(new Frequency(value, FrequencyUnit.HERTZ),
+                buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new Frequency(value, FrequencyUnit.KILOHERTZ),
-                buffer, new FieldPosition(0)).toString(), "5,5 KHz");
+        assertEquals("5,5 KHz", formatter.format(new Frequency(value, FrequencyUnit.KILOHERTZ),
+                buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new Frequency(value, FrequencyUnit.MEGAHERTZ),
-                buffer, new FieldPosition(0)).toString(), "5,5 MHz");
+        assertEquals("5,5 MHz", formatter.format(new Frequency(value, FrequencyUnit.MEGAHERTZ),
+                buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new Frequency(value, FrequencyUnit.GIGAHERTZ),
-                buffer, new FieldPosition(0)).toString(), "5,5 GHz");
+        assertEquals("5,5 GHz", formatter.format(new Frequency(value, FrequencyUnit.GIGAHERTZ),
+                buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new Frequency(value, FrequencyUnit.TERAHERTZ),
-                buffer, new FieldPosition(0)).toString(), "5,5 THz");
+        assertEquals("5,5 THz", formatter.format(new Frequency(value, FrequencyUnit.TERAHERTZ),
+                buffer, new FieldPosition(0)).toString());
     }
 
     @Test
@@ -321,16 +322,16 @@ public class FrequencyFormatterTest {
         final FrequencyFormatter formatter = new FrequencyFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                FrequencyUnit.HERTZ), "5,5 Hz");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5500.00"),
-                FrequencyUnit.HERTZ), "5,5 KHz");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5500000.00"),
-                FrequencyUnit.HERTZ), "5,5 MHz");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5500.00"),
-                FrequencyUnit.MEGAHERTZ), "5,5 GHz");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5500000.00"),
-                FrequencyUnit.MEGAHERTZ), "5,5 THz");
+        assertEquals("5,5 Hz", formatter.formatAndConvert(new BigDecimal("5.50"),
+                FrequencyUnit.HERTZ));
+        assertEquals("5,5 KHz", formatter.formatAndConvert(new BigDecimal("5500.00"),
+                FrequencyUnit.HERTZ));
+        assertEquals("5,5 MHz", formatter.formatAndConvert(new BigDecimal("5500000.00"),
+                FrequencyUnit.HERTZ));
+        assertEquals("5,5 GHz", formatter.formatAndConvert(new BigDecimal("5500.00"),
+                FrequencyUnit.MEGAHERTZ));
+        assertEquals("5,5 THz", formatter.formatAndConvert(new BigDecimal("5500000.00"),
+                FrequencyUnit.MEGAHERTZ));
     }
 
     @Test
@@ -340,16 +341,16 @@ public class FrequencyFormatterTest {
         final FrequencyFormatter formatter = new FrequencyFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(5.50,
-                FrequencyUnit.HERTZ), "5,5 Hz");
-        assertEquals(formatter.formatAndConvert(5500.00,
-                FrequencyUnit.HERTZ), "5,5 KHz");
-        assertEquals(formatter.formatAndConvert(5500000.00,
-                FrequencyUnit.HERTZ), "5,5 MHz");
-        assertEquals(formatter.formatAndConvert(5500.00,
-                FrequencyUnit.MEGAHERTZ), "5,5 GHz");
-        assertEquals(formatter.formatAndConvert(5500000.00,
-                FrequencyUnit.MEGAHERTZ), "5,5 THz");
+        assertEquals("5,5 Hz", formatter.formatAndConvert(5.50,
+                FrequencyUnit.HERTZ));
+        assertEquals("5,5 KHz", formatter.formatAndConvert(5500.00,
+                FrequencyUnit.HERTZ));
+        assertEquals("5,5 MHz", formatter.formatAndConvert(5500000.00,
+                FrequencyUnit.HERTZ));
+        assertEquals("5,5 GHz", formatter.formatAndConvert(5500.00,
+                FrequencyUnit.MEGAHERTZ));
+        assertEquals("5,5 THz", formatter.formatAndConvert(5500000.00,
+                FrequencyUnit.MEGAHERTZ));
     }
 
     @Test
@@ -359,16 +360,16 @@ public class FrequencyFormatterTest {
         final FrequencyFormatter formatter = new FrequencyFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new Frequency(5.50,
-                FrequencyUnit.HERTZ)), "5,5 Hz");
-        assertEquals(formatter.formatAndConvert(new Frequency(5500.00,
-                FrequencyUnit.HERTZ)), "5,5 KHz");
-        assertEquals(formatter.formatAndConvert(new Frequency(5500000.00,
-                FrequencyUnit.HERTZ)), "5,5 MHz");
-        assertEquals(formatter.formatAndConvert(new Frequency(5500.00,
-                FrequencyUnit.MEGAHERTZ)), "5,5 GHz");
-        assertEquals(formatter.formatAndConvert(new Frequency(5500000.00,
-                FrequencyUnit.MEGAHERTZ)), "5,5 THz");
+        assertEquals("5,5 Hz", formatter.formatAndConvert(new Frequency(5.50,
+                FrequencyUnit.HERTZ)));
+        assertEquals("5,5 KHz", formatter.formatAndConvert(new Frequency(5500.00,
+                FrequencyUnit.HERTZ)));
+        assertEquals("5,5 MHz", formatter.formatAndConvert(new Frequency(5500000.00,
+                FrequencyUnit.HERTZ)));
+        assertEquals("5,5 GHz", formatter.formatAndConvert(new Frequency(5500.00,
+                FrequencyUnit.MEGAHERTZ)));
+        assertEquals("5,5 THz", formatter.formatAndConvert(new Frequency(5500000.00,
+                FrequencyUnit.MEGAHERTZ)));
     }
 
     @Test
@@ -378,16 +379,16 @@ public class FrequencyFormatterTest {
         final FrequencyFormatter formatter = new FrequencyFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                FrequencyUnit.HERTZ, UnitSystem.METRIC), "5,5 Hz");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5500.00"),
-                FrequencyUnit.HERTZ, UnitSystem.METRIC), "5,5 KHz");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5500000.00"),
-                FrequencyUnit.HERTZ, UnitSystem.METRIC), "5,5 MHz");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5500.00"),
-                FrequencyUnit.MEGAHERTZ, UnitSystem.METRIC), "5,5 GHz");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5500000.00"),
-                FrequencyUnit.MEGAHERTZ, UnitSystem.METRIC), "5,5 THz");
+        assertEquals("5,5 Hz", formatter.formatAndConvert(new BigDecimal("5.50"),
+                FrequencyUnit.HERTZ, UnitSystem.METRIC));
+        assertEquals("5,5 KHz", formatter.formatAndConvert(new BigDecimal("5500.00"),
+                FrequencyUnit.HERTZ, UnitSystem.METRIC));
+        assertEquals("5,5 MHz", formatter.formatAndConvert(new BigDecimal("5500000.00"),
+                FrequencyUnit.HERTZ, UnitSystem.METRIC));
+        assertEquals("5,5 GHz", formatter.formatAndConvert(new BigDecimal("5500.00"),
+                FrequencyUnit.MEGAHERTZ, UnitSystem.METRIC));
+        assertEquals("5,5 THz", formatter.formatAndConvert(new BigDecimal("5500000.00"),
+                FrequencyUnit.MEGAHERTZ, UnitSystem.METRIC));
     }
 
     @Test
@@ -397,16 +398,16 @@ public class FrequencyFormatterTest {
         final FrequencyFormatter formatter = new FrequencyFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(5.50,
-                FrequencyUnit.HERTZ, UnitSystem.METRIC), "5,5 Hz");
-        assertEquals(formatter.formatAndConvert(5500.00,
-                FrequencyUnit.HERTZ, UnitSystem.METRIC), "5,5 KHz");
-        assertEquals(formatter.formatAndConvert(5500000.00,
-                FrequencyUnit.HERTZ, UnitSystem.METRIC), "5,5 MHz");
-        assertEquals(formatter.formatAndConvert(5500.00,
-                FrequencyUnit.MEGAHERTZ, UnitSystem.METRIC), "5,5 GHz");
-        assertEquals(formatter.formatAndConvert(5500000.00,
-                FrequencyUnit.MEGAHERTZ, UnitSystem.METRIC), "5,5 THz");
+        assertEquals("5,5 Hz", formatter.formatAndConvert(5.50,
+                FrequencyUnit.HERTZ, UnitSystem.METRIC));
+        assertEquals("5,5 KHz", formatter.formatAndConvert(5500.00,
+                FrequencyUnit.HERTZ, UnitSystem.METRIC));
+        assertEquals("5,5 MHz", formatter.formatAndConvert(5500000.00,
+                FrequencyUnit.HERTZ, UnitSystem.METRIC));
+        assertEquals("5,5 GHz", formatter.formatAndConvert(5500.00,
+                FrequencyUnit.MEGAHERTZ, UnitSystem.METRIC));
+        assertEquals("5,5 THz", formatter.formatAndConvert(5500000.00,
+                FrequencyUnit.MEGAHERTZ, UnitSystem.METRIC));
     }
 
     @Test
@@ -416,16 +417,16 @@ public class FrequencyFormatterTest {
         final FrequencyFormatter formatter = new FrequencyFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new Frequency(5.50,
-                FrequencyUnit.HERTZ), UnitSystem.METRIC), "5,5 Hz");
-        assertEquals(formatter.formatAndConvert(new Frequency(5500.00,
-                FrequencyUnit.HERTZ), UnitSystem.METRIC), "5,5 KHz");
-        assertEquals(formatter.formatAndConvert(new Frequency(5500000.00,
-                FrequencyUnit.HERTZ), UnitSystem.METRIC), "5,5 MHz");
-        assertEquals(formatter.formatAndConvert(new Frequency(5500.00,
-                FrequencyUnit.MEGAHERTZ), UnitSystem.METRIC), "5,5 GHz");
-        assertEquals(formatter.formatAndConvert(new Frequency(5500000.00,
-                FrequencyUnit.MEGAHERTZ), UnitSystem.METRIC), "5,5 THz");
+        assertEquals("5,5 Hz", formatter.formatAndConvert(new Frequency(5.50,
+                FrequencyUnit.HERTZ), UnitSystem.METRIC));
+        assertEquals("5,5 KHz", formatter.formatAndConvert(new Frequency(5500.00,
+                FrequencyUnit.HERTZ), UnitSystem.METRIC));
+        assertEquals("5,5 MHz", formatter.formatAndConvert(new Frequency(5500000.00,
+                FrequencyUnit.HERTZ), UnitSystem.METRIC));
+        assertEquals("5,5 GHz", formatter.formatAndConvert(new Frequency(5500.00,
+                FrequencyUnit.MEGAHERTZ), UnitSystem.METRIC));
+        assertEquals("5,5 THz", formatter.formatAndConvert(new Frequency(5500000.00,
+                FrequencyUnit.MEGAHERTZ), UnitSystem.METRIC));
     }
 
     @Test
@@ -435,16 +436,16 @@ public class FrequencyFormatterTest {
         final FrequencyFormatter formatter = new FrequencyFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5.50"),
-                FrequencyUnit.HERTZ), "5,5 Hz");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5500.00"),
-                FrequencyUnit.HERTZ), "5,5 KHz");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5500000.00"),
-                FrequencyUnit.HERTZ), "5,5 MHz");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5500.00"),
-                FrequencyUnit.MEGAHERTZ), "5,5 GHz");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5500000.00"),
-                FrequencyUnit.MEGAHERTZ), "5,5 THz");
+        assertEquals("5,5 Hz", formatter.formatAndConvertMetric(new BigDecimal("5.50"),
+                FrequencyUnit.HERTZ));
+        assertEquals("5,5 KHz", formatter.formatAndConvertMetric(new BigDecimal("5500.00"),
+                FrequencyUnit.HERTZ));
+        assertEquals("5,5 MHz", formatter.formatAndConvertMetric(new BigDecimal("5500000.00"),
+                FrequencyUnit.HERTZ));
+        assertEquals("5,5 GHz", formatter.formatAndConvertMetric(new BigDecimal("5500.00"),
+                FrequencyUnit.MEGAHERTZ));
+        assertEquals("5,5 THz", formatter.formatAndConvertMetric(new BigDecimal("5500000.00"),
+                FrequencyUnit.MEGAHERTZ));
     }
 
     @Test
@@ -464,7 +465,7 @@ public class FrequencyFormatterTest {
         formatter.setMaximumFractionDigits(2);
 
         // check correctness
-        assertEquals(formatter.getMaximumFractionDigits(), 2);
+        assertEquals(2, formatter.getMaximumFractionDigits());
     }
 
     @Test
@@ -478,7 +479,7 @@ public class FrequencyFormatterTest {
         formatter.setMaximumIntegerDigits(2);
 
         // check correctness
-        assertEquals(formatter.getMaximumIntegerDigits(), 2);
+        assertEquals(2, formatter.getMaximumIntegerDigits());
     }
 
     @Test
@@ -492,7 +493,7 @@ public class FrequencyFormatterTest {
         formatter.setMinimumFractionDigits(2);
 
         // check correctness
-        assertEquals(formatter.getMinimumFractionDigits(), 2);
+        assertEquals(2, formatter.getMinimumFractionDigits());
     }
 
     @Test
@@ -506,7 +507,7 @@ public class FrequencyFormatterTest {
         formatter.setMinimumIntegerDigits(2);
 
         // check correctness
-        assertEquals(formatter.getMinimumIntegerDigits(), 2);
+        assertEquals(2, formatter.getMinimumIntegerDigits());
     }
 
     @Test
@@ -520,7 +521,7 @@ public class FrequencyFormatterTest {
         formatter.setRoundingMode(RoundingMode.UNNECESSARY);
 
         // check correctness
-        assertEquals(formatter.getRoundingMode(), RoundingMode.UNNECESSARY);
+        assertEquals(RoundingMode.UNNECESSARY, formatter.getRoundingMode());
     }
 
     @Test
@@ -534,8 +535,8 @@ public class FrequencyFormatterTest {
         formatter.setGroupingUsed(!formatter.isGroupingUsed());
 
         // check correctness
-        assertEquals(formatter.isGroupingUsed(),
-                !NumberFormat.getInstance().isGroupingUsed());
+        assertEquals(!NumberFormat.getInstance().isGroupingUsed(),
+                formatter.isGroupingUsed());
     }
 
     @Test
@@ -549,22 +550,22 @@ public class FrequencyFormatterTest {
         formatter.setParseIntegerOnly(!formatter.isParseIntegerOnly());
 
         // check correctness
-        assertEquals(formatter.isParseIntegerOnly(),
-                !NumberFormat.getInstance().isParseIntegerOnly());
+        assertEquals(!NumberFormat.getInstance().isParseIntegerOnly(),
+                formatter.isParseIntegerOnly());
     }
 
     @Test
     public void testGetSetValueAndUnitFormatPattern() {
         final FrequencyFormatter formatter = new FrequencyFormatter();
 
-        assertEquals(formatter.getValueAndUnitFormatPattern(),
-                MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
+                formatter.getValueAndUnitFormatPattern());
 
         // new value
         formatter.setValueAndUnitFormatPattern("{0}{1}");
 
         // check correctness
-        assertEquals(formatter.getValueAndUnitFormatPattern(), "{0}{1}");
+        assertEquals("{0}{1}", formatter.getValueAndUnitFormatPattern());
 
         // force IllegalArgumentException
         try {
@@ -578,11 +579,11 @@ public class FrequencyFormatterTest {
     public void testGetUnitSystem() {
         FrequencyFormatter formatter = new FrequencyFormatter(
                 new Locale("es", "ES"));
-        assertEquals(formatter.getUnitSystem(), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem());
 
         formatter = new FrequencyFormatter(
                 new Locale("en", "US"));
-        assertEquals(formatter.getUnitSystem(), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem());
     }
 
     @Test
@@ -679,22 +680,22 @@ public class FrequencyFormatterTest {
                 new Locale("es", "ES"));
 
         String text = "5,5 Hz";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem(text));
 
         text = "5,5 KHz";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem(text));
 
         text = "5,5 MHz";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem(text));
 
         text = "5,5 GHz";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem(text));
 
         text = "5,5 THz";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem(text));
 
         text = "5,5 s";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem(text));
     }
 
     @Test
@@ -704,28 +705,28 @@ public class FrequencyFormatterTest {
 
         String text = "5,5 Hz";
         Frequency f = formatter.parse(text);
-        assertEquals(f.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(f.getUnit(), FrequencyUnit.HERTZ);
+        assertEquals(5.5, f.getValue().doubleValue(), 0.0);
+        assertEquals(FrequencyUnit.HERTZ, f.getUnit());
 
         text = "5,5 KHz";
         f = formatter.parse(text);
-        assertEquals(f.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(f.getUnit(), FrequencyUnit.KILOHERTZ);
+        assertEquals(5.5, f.getValue().doubleValue(), 0.0);
+        assertEquals(FrequencyUnit.KILOHERTZ, f.getUnit());
 
         text = "5,5 MHz";
         f = formatter.parse(text);
-        assertEquals(f.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(f.getUnit(), FrequencyUnit.MEGAHERTZ);
+        assertEquals(5.5, f.getValue().doubleValue(), 0.0);
+        assertEquals(FrequencyUnit.MEGAHERTZ, f.getUnit());
 
         text = "5,5 GHz";
         f = formatter.parse(text);
-        assertEquals(f.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(f.getUnit(), FrequencyUnit.GIGAHERTZ);
+        assertEquals(5.5, f.getValue().doubleValue(), 0.0);
+        assertEquals(FrequencyUnit.GIGAHERTZ, f.getUnit());
 
         text = "5,5 THz";
         f = formatter.parse(text);
-        assertEquals(f.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(f.getUnit(), FrequencyUnit.TERAHERTZ);
+        assertEquals(5.5, f.getValue().doubleValue(), 0.0);
+        assertEquals(FrequencyUnit.TERAHERTZ, f.getUnit());
 
         // Force UnknownUnitException
         text = "5,5 s";
@@ -749,19 +750,19 @@ public class FrequencyFormatterTest {
                 new Locale("es", "ES"));
 
         String text = "5,5 Hz";
-        assertEquals(formatter.findUnit(text), FrequencyUnit.HERTZ);
+        assertEquals(FrequencyUnit.HERTZ, formatter.findUnit(text));
 
         text = "5,5 KHz";
-        assertEquals(formatter.findUnit(text), FrequencyUnit.KILOHERTZ);
+        assertEquals(FrequencyUnit.KILOHERTZ, formatter.findUnit(text));
 
         text = "5,5 MHz";
-        assertEquals(formatter.findUnit(text), FrequencyUnit.MEGAHERTZ);
+        assertEquals(FrequencyUnit.MEGAHERTZ, formatter.findUnit(text));
 
         text = "5,5 GHz";
-        assertEquals(formatter.findUnit(text), FrequencyUnit.GIGAHERTZ);
+        assertEquals(FrequencyUnit.GIGAHERTZ, formatter.findUnit(text));
 
         text = "5,5 THz";
-        assertEquals(formatter.findUnit(text), FrequencyUnit.TERAHERTZ);
+        assertEquals(FrequencyUnit.TERAHERTZ, formatter.findUnit(text));
 
         text = "5,5 s";
         assertNull(formatter.findUnit(text));
@@ -771,15 +772,15 @@ public class FrequencyFormatterTest {
     public void testGetUnitSymbol() {
         final FrequencyFormatter formatter = new FrequencyFormatter();
 
-        assertEquals(formatter.getUnitSymbol(FrequencyUnit.HERTZ),
-                FrequencyFormatter.HERTZ);
-        assertEquals(formatter.getUnitSymbol(FrequencyUnit.KILOHERTZ),
-                FrequencyFormatter.KILOHERTZ);
-        assertEquals(formatter.getUnitSymbol(FrequencyUnit.MEGAHERTZ),
-                FrequencyFormatter.MEGAHERTZ);
-        assertEquals(formatter.getUnitSymbol(FrequencyUnit.GIGAHERTZ),
-                FrequencyFormatter.GIGAHERTZ);
-        assertEquals(formatter.getUnitSymbol(FrequencyUnit.TERAHERTZ),
-                FrequencyFormatter.TERAHERTZ);
+        assertEquals(FrequencyFormatter.HERTZ,
+                formatter.getUnitSymbol(FrequencyUnit.HERTZ));
+        assertEquals(FrequencyFormatter.KILOHERTZ,
+                formatter.getUnitSymbol(FrequencyUnit.KILOHERTZ));
+        assertEquals(FrequencyFormatter.MEGAHERTZ,
+                formatter.getUnitSymbol(FrequencyUnit.MEGAHERTZ));
+        assertEquals(FrequencyFormatter.GIGAHERTZ,
+                formatter.getUnitSymbol(FrequencyUnit.GIGAHERTZ));
+        assertEquals(FrequencyFormatter.TERAHERTZ,
+                formatter.getUnitSymbol(FrequencyUnit.TERAHERTZ));
     }
 }

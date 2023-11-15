@@ -23,17 +23,17 @@ public class VolumeUnitTest {
 
     @Test
     public void testGetUnitSystem() {
-        assertEquals(VolumeUnit.getUnitSystem(VolumeUnit.CUBIC_CENTIMETER), UnitSystem.METRIC);
-        assertEquals(VolumeUnit.getUnitSystem(VolumeUnit.MILLILITER), UnitSystem.METRIC);
-        assertEquals(VolumeUnit.getUnitSystem(VolumeUnit.CUBIC_DECIMETER), UnitSystem.METRIC);
-        assertEquals(VolumeUnit.getUnitSystem(VolumeUnit.LITER), UnitSystem.METRIC);
-        assertEquals(VolumeUnit.getUnitSystem(VolumeUnit.HECTOLITER), UnitSystem.METRIC);
-        assertEquals(VolumeUnit.getUnitSystem(VolumeUnit.CUBIC_METER), UnitSystem.METRIC);
-        assertEquals(VolumeUnit.getUnitSystem(VolumeUnit.CUBIC_INCH), UnitSystem.IMPERIAL);
-        assertEquals(VolumeUnit.getUnitSystem(VolumeUnit.PINT), UnitSystem.IMPERIAL);
-        assertEquals(VolumeUnit.getUnitSystem(VolumeUnit.GALLON), UnitSystem.IMPERIAL);
-        assertEquals(VolumeUnit.getUnitSystem(VolumeUnit.CUBIC_FOOT), UnitSystem.IMPERIAL);
-        assertEquals(VolumeUnit.getUnitSystem(VolumeUnit.BARREL), UnitSystem.IMPERIAL);
+        assertEquals(UnitSystem.METRIC, VolumeUnit.getUnitSystem(VolumeUnit.CUBIC_CENTIMETER));
+        assertEquals(UnitSystem.METRIC, VolumeUnit.getUnitSystem(VolumeUnit.MILLILITER));
+        assertEquals(UnitSystem.METRIC, VolumeUnit.getUnitSystem(VolumeUnit.CUBIC_DECIMETER));
+        assertEquals(UnitSystem.METRIC, VolumeUnit.getUnitSystem(VolumeUnit.LITER));
+        assertEquals(UnitSystem.METRIC, VolumeUnit.getUnitSystem(VolumeUnit.HECTOLITER));
+        assertEquals(UnitSystem.METRIC, VolumeUnit.getUnitSystem(VolumeUnit.CUBIC_METER));
+        assertEquals(UnitSystem.IMPERIAL, VolumeUnit.getUnitSystem(VolumeUnit.CUBIC_INCH));
+        assertEquals(UnitSystem.IMPERIAL, VolumeUnit.getUnitSystem(VolumeUnit.PINT));
+        assertEquals(UnitSystem.IMPERIAL, VolumeUnit.getUnitSystem(VolumeUnit.GALLON));
+        assertEquals(UnitSystem.IMPERIAL, VolumeUnit.getUnitSystem(VolumeUnit.CUBIC_FOOT));
+        assertEquals(UnitSystem.IMPERIAL, VolumeUnit.getUnitSystem(VolumeUnit.BARREL));
 
         // Force IllegalArgumentException
         try {

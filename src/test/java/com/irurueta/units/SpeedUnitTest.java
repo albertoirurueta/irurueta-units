@@ -23,16 +23,16 @@ public class SpeedUnitTest {
 
     @Test
     public void testGetUnitSystem() {
-        assertEquals(SpeedUnit.getUnitSystem(SpeedUnit.METERS_PER_SECOND),
-                UnitSystem.METRIC);
-        assertEquals(SpeedUnit.getUnitSystem(SpeedUnit.KILOMETERS_PER_HOUR),
-                UnitSystem.METRIC);
-        assertEquals(SpeedUnit.getUnitSystem(SpeedUnit.KILOMETERS_PER_SECOND),
-                UnitSystem.METRIC);
-        assertEquals(SpeedUnit.getUnitSystem(SpeedUnit.FEET_PER_SECOND),
-                UnitSystem.IMPERIAL);
-        assertEquals(SpeedUnit.getUnitSystem(SpeedUnit.MILES_PER_HOUR),
-                UnitSystem.IMPERIAL);
+        assertEquals(UnitSystem.METRIC,
+                SpeedUnit.getUnitSystem(SpeedUnit.METERS_PER_SECOND));
+        assertEquals(UnitSystem.METRIC,
+                SpeedUnit.getUnitSystem(SpeedUnit.KILOMETERS_PER_HOUR));
+        assertEquals(UnitSystem.METRIC,
+                SpeedUnit.getUnitSystem(SpeedUnit.KILOMETERS_PER_SECOND));
+        assertEquals(UnitSystem.IMPERIAL,
+                SpeedUnit.getUnitSystem(SpeedUnit.FEET_PER_SECOND));
+        assertEquals(UnitSystem.IMPERIAL,
+                SpeedUnit.getUnitSystem(SpeedUnit.MILES_PER_HOUR));
 
         // Force IllegalArgumentException
         try {

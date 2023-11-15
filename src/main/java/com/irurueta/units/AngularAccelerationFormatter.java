@@ -22,8 +22,7 @@ import java.util.Locale;
  * Formats and parses angular acceleration value and unit.
  */
 public class AngularAccelerationFormatter extends
-        MeasureFormatter<AngularAcceleration, AngularAccelerationUnit>
-        implements Cloneable {
+        MeasureFormatter<AngularAcceleration, AngularAccelerationUnit> {
 
     /**
      * Degrees per squared second symbol.
@@ -167,17 +166,5 @@ public class AngularAccelerationFormatter extends
             default:
                 return RADIANS_PER_SQUARED_SECOND;
         }
-    }
-
-    /**
-     * Clones this angular acceleration formatter.
-     *
-     * @return a copy of this angular acceleration formatter.
-     * @throws CloneNotSupportedException if clone fails for any reason.
-     */
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        final AngularAccelerationFormatter copy = (AngularAccelerationFormatter) super.clone();
-        return internalClone(copy);
     }
 }

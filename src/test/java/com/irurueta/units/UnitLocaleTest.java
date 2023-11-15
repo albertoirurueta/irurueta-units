@@ -30,25 +30,24 @@ public class UnitLocaleTest {
                 "LR".equals(defaultLocale.getCountry()) ||
                 "MM".equals(defaultLocale.getCountry());
 
-        assertEquals(UnitLocale.getDefault() == UnitSystem.IMPERIAL,
-                isImperial);
+        assertEquals(isImperial, UnitLocale.getDefault() == UnitSystem.IMPERIAL);
     }
 
     @Test
     public void testGetFrom() {
         Locale l = new Locale("en", UnitLocale.USA);
-        assertEquals(UnitLocale.getFrom(l), UnitSystem.IMPERIAL);
+        assertEquals(UnitSystem.IMPERIAL, UnitLocale.getFrom(l));
 
         l = new Locale("en", UnitLocale.LIBERIA);
-        assertEquals(UnitLocale.getFrom(l), UnitSystem.IMPERIAL);
+        assertEquals(UnitSystem.IMPERIAL, UnitLocale.getFrom(l));
 
         l = new Locale("en", UnitLocale.BURMA);
-        assertEquals(UnitLocale.getFrom(l), UnitSystem.IMPERIAL);
+        assertEquals(UnitSystem.IMPERIAL, UnitLocale.getFrom(l));
 
         l = new Locale("en", "GB");
-        assertEquals(UnitLocale.getFrom(l), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, UnitLocale.getFrom(l));
 
         l = new Locale("es", "ES");
-        assertEquals(UnitLocale.getFrom(l), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, UnitLocale.getFrom(l));
     }
 }

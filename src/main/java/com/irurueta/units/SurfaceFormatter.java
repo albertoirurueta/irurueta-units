@@ -365,16 +365,4 @@ public class SurfaceFormatter extends MeasureFormatter<Surface, SurfaceUnit> {
                 return SQUARE_METER;
         }
     }
-
-    /**
-     * Clones this surface formatter.
-     *
-     * @return a copy of this surface formatter.
-     * @throws CloneNotSupportedException if clone fails for any reason.
-     */
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        final SurfaceFormatter copy = (SurfaceFormatter) super.clone();
-        return internalClone(copy);
-    }
 }

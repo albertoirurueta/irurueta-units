@@ -23,12 +23,12 @@ public class TemperatureUnitTest {
 
     @Test
     public void testGetUnitSystem() {
-        assertEquals(TemperatureUnit.getUnitSystem(TemperatureUnit.CELSIUS),
-                UnitSystem.METRIC);
-        assertEquals(TemperatureUnit.getUnitSystem(TemperatureUnit.KELVIN),
-                UnitSystem.METRIC);
-        assertEquals(TemperatureUnit.getUnitSystem(TemperatureUnit.FAHRENHEIT),
-                UnitSystem.IMPERIAL);
+        assertEquals(UnitSystem.METRIC,
+                TemperatureUnit.getUnitSystem(TemperatureUnit.CELSIUS));
+        assertEquals(UnitSystem.METRIC,
+                TemperatureUnit.getUnitSystem(TemperatureUnit.KELVIN));
+        assertEquals(UnitSystem.IMPERIAL,
+                TemperatureUnit.getUnitSystem(TemperatureUnit.FAHRENHEIT));
 
         // Force IllegalArgumentException
         try {

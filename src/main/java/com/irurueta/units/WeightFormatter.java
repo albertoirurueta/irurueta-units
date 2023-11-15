@@ -21,7 +21,7 @@ import java.util.Locale;
 /**
  * Formats and parses weight value and unit.
  */
-public class WeightFormatter extends MeasureFormatter<Weight, WeightUnit> implements Cloneable {
+public class WeightFormatter extends MeasureFormatter<Weight, WeightUnit> {
 
     /**
      * Picogram symbol.
@@ -244,7 +244,7 @@ public class WeightFormatter extends MeasureFormatter<Weight, WeightUnit> implem
      * this method will convert to a more appropriate unit.
      *
      * @param value a weight value.
-     * @param unit a weight unit.
+     * @param unit  a weight unit.
      * @return a string representation of weight value and unit using metric
      * unit system.
      */
@@ -308,7 +308,7 @@ public class WeightFormatter extends MeasureFormatter<Weight, WeightUnit> implem
      * this method will convert to a more appropriate unit.
      *
      * @param value a weight value.
-     * @param unit a weight unit.
+     * @param unit  a weight unit.
      * @return a string representation of weight value and unit using imperial
      * unit system.
      */
@@ -378,17 +378,5 @@ public class WeightFormatter extends MeasureFormatter<Weight, WeightUnit> implem
             default:
                 return GRAM;
         }
-    }
-
-    /**
-     * Clones this weight formatter.
-     *
-     * @return a copy of this weight formatter.
-     * @throws CloneNotSupportedException if clone fails for any reason.
-     */
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        final WeightFormatter copy = (WeightFormatter) super.clone();
-        return internalClone(copy);
     }
 }

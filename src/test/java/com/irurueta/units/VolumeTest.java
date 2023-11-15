@@ -40,8 +40,8 @@ public class VolumeTest {
         v = new Volume(123, VolumeUnit.CUBIC_METER);
 
         // check
-        assertEquals(v.getValue(), 123);
-        assertEquals(v.getUnit(), VolumeUnit.CUBIC_METER);
+        assertEquals(123, v.getValue());
+        assertEquals(VolumeUnit.CUBIC_METER, v.getUnit());
 
         // Force IllegalArgumentException
         v = null;
@@ -67,6 +67,7 @@ public class VolumeTest {
         final Volume v3 = new Volume(value + 1.0, VolumeUnit.LITER);
         final Volume v4 = new Volume(value, VolumeUnit.CUBIC_METER);
 
+        //noinspection EqualsWithItself
         assertEquals(v1, v1);
         assertEquals(v1, v2);
         assertNotEquals(v1, v3);
@@ -114,13 +115,13 @@ public class VolumeTest {
         final Volume v = new Volume(1.0, VolumeUnit.LITER);
 
         // check
-        assertEquals(v.getValue(), 1.0);
+        assertEquals(1.0, v.getValue());
 
         // set new value
         v.setValue(2.5);
 
         // check
-        assertEquals(v.getValue(), 2.5);
+        assertEquals(2.5, v.getValue());
 
         // Force IllegalArgumentException
         try {
@@ -135,13 +136,13 @@ public class VolumeTest {
         final Volume v = new Volume(1.0, VolumeUnit.LITER);
 
         // check
-        assertEquals(v.getUnit(), VolumeUnit.LITER);
+        assertEquals(VolumeUnit.LITER, v.getUnit());
 
         // set new value
         v.setUnit(VolumeUnit.CUBIC_METER);
 
         // check
-        assertEquals(v.getUnit(), VolumeUnit.CUBIC_METER);
+        assertEquals(VolumeUnit.CUBIC_METER, v.getUnit());
 
         // force IllegalArgumentException
         try {
@@ -190,13 +191,13 @@ public class VolumeTest {
         Volume.add(v1, v2, result);
 
         // check
-        assertEquals(v1.getUnit(), VolumeUnit.CUBIC_METER);
-        assertEquals(v1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(VolumeUnit.CUBIC_METER, v1.getUnit());
+        assertEquals(value1, v1.getValue().doubleValue(), 0.0);
 
-        assertEquals(v2.getUnit(), VolumeUnit.CUBIC_METER);
-        assertEquals(v2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(VolumeUnit.CUBIC_METER, v2.getUnit());
+        assertEquals(value2, v2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), VolumeUnit.LITER);
+        assertEquals(VolumeUnit.LITER, result.getUnit());
         assertEquals((value1 + value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -213,13 +214,13 @@ public class VolumeTest {
         final Volume result = Volume.addAndReturnNew(v1, v2, VolumeUnit.LITER);
 
         // check
-        assertEquals(v1.getUnit(), VolumeUnit.CUBIC_METER);
-        assertEquals(v1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(VolumeUnit.CUBIC_METER, v1.getUnit());
+        assertEquals(value1, v1.getValue().doubleValue(), 0.0);
 
-        assertEquals(v2.getUnit(), VolumeUnit.CUBIC_METER);
-        assertEquals(v2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(VolumeUnit.CUBIC_METER, v2.getUnit());
+        assertEquals(value2, v2.getValue().doubleValue(),0.0);
 
-        assertEquals(result.getUnit(), VolumeUnit.LITER);
+        assertEquals(VolumeUnit.LITER, result.getUnit());
         assertEquals((value1 + value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -236,10 +237,10 @@ public class VolumeTest {
                 VolumeUnit.LITER);
 
         // check
-        assertEquals(v1.getUnit(), VolumeUnit.CUBIC_METER);
-        assertEquals(v1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(VolumeUnit.CUBIC_METER, v1.getUnit());
+        assertEquals(value1, v1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), VolumeUnit.LITER);
+        assertEquals(VolumeUnit.LITER, result.getUnit());
         assertEquals((value1 + value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -256,10 +257,10 @@ public class VolumeTest {
                 VolumeUnit.CUBIC_METER, VolumeUnit.LITER);
 
         // check
-        assertEquals(v1.getUnit(), VolumeUnit.CUBIC_METER);
-        assertEquals(v1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(VolumeUnit.CUBIC_METER, v1.getUnit());
+        assertEquals(value1, v1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), VolumeUnit.LITER);
+        assertEquals(VolumeUnit.LITER, result.getUnit());
         assertEquals((value1 + value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -276,13 +277,13 @@ public class VolumeTest {
         final Volume result = v1.addAndReturnNew(v2, VolumeUnit.LITER);
 
         // check
-        assertEquals(v1.getUnit(), VolumeUnit.CUBIC_METER);
-        assertEquals(v1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(VolumeUnit.CUBIC_METER, v1.getUnit());
+        assertEquals(value1, v1.getValue().doubleValue(), 0.0);
 
-        assertEquals(v2.getUnit(), VolumeUnit.CUBIC_METER);
-        assertEquals(v2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(VolumeUnit.CUBIC_METER, v2.getUnit());
+        assertEquals(value2, v2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), VolumeUnit.LITER);
+        assertEquals(VolumeUnit.LITER, result.getUnit());
         assertEquals((value1 + value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -298,8 +299,8 @@ public class VolumeTest {
         v1.add(value2, VolumeUnit.CUBIC_METER);
 
         // check
-        assertEquals(v1.getUnit(), VolumeUnit.CUBIC_METER);
-        assertEquals(v1.getValue().doubleValue(), value1 + value2, ERROR);
+        assertEquals(VolumeUnit.CUBIC_METER, v1.getUnit());
+        assertEquals(value1 + value2, v1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -313,8 +314,8 @@ public class VolumeTest {
         v1.add(new BigDecimal(value2), VolumeUnit.LITER);
 
         // check
-        assertEquals(v1.getUnit(), VolumeUnit.LITER);
-        assertEquals(v1.getValue().doubleValue(), value1 + value2, ERROR);
+        assertEquals(VolumeUnit.LITER, v1.getUnit());
+        assertEquals(value1 + value2, v1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -329,11 +330,11 @@ public class VolumeTest {
         v1.add(v2);
 
         // check
-        assertEquals(v1.getUnit(), VolumeUnit.CUBIC_METER);
-        assertEquals(v1.getValue().doubleValue(), value1 + value2, ERROR);
+        assertEquals(VolumeUnit.CUBIC_METER, v1.getUnit());
+        assertEquals(value1 + value2, v1.getValue().doubleValue(), ERROR);
 
-        assertEquals(v2.getUnit(), VolumeUnit.CUBIC_METER);
-        assertEquals(v2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(VolumeUnit.CUBIC_METER, v2.getUnit());
+        assertEquals(value2, v2.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -349,13 +350,13 @@ public class VolumeTest {
         v1.add(v2, result);
 
         // check
-        assertEquals(v1.getUnit(), VolumeUnit.CUBIC_METER);
-        assertEquals(v1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(VolumeUnit.CUBIC_METER, v1.getUnit());
+        assertEquals(value1, v1.getValue().doubleValue(), 0.0);
 
-        assertEquals(v2.getUnit(), VolumeUnit.CUBIC_METER);
-        assertEquals(v2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(VolumeUnit.CUBIC_METER, v2.getUnit());
+        assertEquals(value2, v2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), VolumeUnit.LITER);
+        assertEquals(VolumeUnit.LITER, result.getUnit());
         assertEquals((value1 + value2) * 1000.0, result.getValue().doubleValue(), ERROR);
     }
 
@@ -398,13 +399,13 @@ public class VolumeTest {
         Volume.subtract(v1, v2, result);
 
         // check
-        assertEquals(v1.getUnit(), VolumeUnit.CUBIC_METER);
-        assertEquals(v1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(VolumeUnit.CUBIC_METER, v1.getUnit());
+        assertEquals(value1, v1.getValue().doubleValue(), 0.0);
 
-        assertEquals(v2.getUnit(), VolumeUnit.CUBIC_METER);
-        assertEquals(v2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(VolumeUnit.CUBIC_METER, v2.getUnit());
+        assertEquals(value2, v2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), VolumeUnit.LITER);
+        assertEquals(VolumeUnit.LITER, result.getUnit());
         assertEquals((value1 - value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -421,13 +422,13 @@ public class VolumeTest {
         final Volume result = Volume.subtractAndReturnNew(v1, v2, VolumeUnit.LITER);
 
         // check
-        assertEquals(v1.getUnit(), VolumeUnit.CUBIC_METER);
-        assertEquals(v1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(VolumeUnit.CUBIC_METER, v1.getUnit());
+        assertEquals(value1, v1.getValue().doubleValue(), 0.0);
 
-        assertEquals(v2.getUnit(), VolumeUnit.CUBIC_METER);
-        assertEquals(v2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(VolumeUnit.CUBIC_METER, v2.getUnit());
+        assertEquals(value2, v2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), VolumeUnit.LITER);
+        assertEquals(VolumeUnit.LITER, result.getUnit());
         assertEquals((value1 - value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -444,10 +445,10 @@ public class VolumeTest {
                 VolumeUnit.LITER);
 
         // check
-        assertEquals(v1.getUnit(), VolumeUnit.CUBIC_METER);
-        assertEquals(v1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(VolumeUnit.CUBIC_METER, v1.getUnit());
+        assertEquals(value1, v1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), VolumeUnit.LITER);
+        assertEquals(VolumeUnit.LITER, result.getUnit());
         assertEquals((value1 - value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -464,10 +465,10 @@ public class VolumeTest {
                 VolumeUnit.CUBIC_METER, VolumeUnit.LITER);
 
         // check
-        assertEquals(v1.getUnit(), VolumeUnit.CUBIC_METER);
-        assertEquals(v1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(VolumeUnit.CUBIC_METER, v1.getUnit());
+        assertEquals(value1, v1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), VolumeUnit.LITER);
+        assertEquals(VolumeUnit.LITER, result.getUnit());
         assertEquals((value1 - value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -484,13 +485,13 @@ public class VolumeTest {
         final Volume result = v1.subtractAndReturnNew(v2, VolumeUnit.LITER);
 
         // check
-        assertEquals(v1.getUnit(), VolumeUnit.CUBIC_METER);
-        assertEquals(v1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(VolumeUnit.CUBIC_METER, v1.getUnit());
+        assertEquals(value1, v1.getValue().doubleValue(), 0.0);
 
-        assertEquals(v2.getUnit(), VolumeUnit.CUBIC_METER);
-        assertEquals(v2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(VolumeUnit.CUBIC_METER, v2.getUnit());
+        assertEquals(value2, v2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), VolumeUnit.LITER);
+        assertEquals(VolumeUnit.LITER, result.getUnit());
         assertEquals((value1 - value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -506,8 +507,8 @@ public class VolumeTest {
         v1.subtract(value2, VolumeUnit.CUBIC_METER);
 
         // check
-        assertEquals(v1.getUnit(), VolumeUnit.CUBIC_METER);
-        assertEquals(v1.getValue().doubleValue(), value1 - value2, ERROR);
+        assertEquals(VolumeUnit.CUBIC_METER, v1.getUnit());
+        assertEquals(value1 - value2, v1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -521,8 +522,8 @@ public class VolumeTest {
         v1.subtract(new BigDecimal(value2), VolumeUnit.LITER);
 
         // check
-        assertEquals(v1.getUnit(), VolumeUnit.LITER);
-        assertEquals(v1.getValue().doubleValue(), value1 - value2, ERROR);
+        assertEquals(VolumeUnit.LITER, v1.getUnit());
+        assertEquals(value1 - value2, v1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -537,11 +538,11 @@ public class VolumeTest {
         v1.subtract(v2);
 
         // check
-        assertEquals(v1.getUnit(), VolumeUnit.CUBIC_METER);
-        assertEquals(v1.getValue().doubleValue(), value1 - value2, ERROR);
+        assertEquals(VolumeUnit.CUBIC_METER, v1.getUnit());
+        assertEquals(value1 - value2, v1.getValue().doubleValue(), ERROR);
 
-        assertEquals(v2.getUnit(), VolumeUnit.CUBIC_METER);
-        assertEquals(v2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(VolumeUnit.CUBIC_METER, v2.getUnit());
+        assertEquals(value2, v2.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -557,13 +558,13 @@ public class VolumeTest {
         v1.subtract(v2, result);
 
         // check
-        assertEquals(v1.getUnit(), VolumeUnit.CUBIC_METER);
-        assertEquals(v1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(VolumeUnit.CUBIC_METER, v1.getUnit());
+        assertEquals(value1, v1.getValue().doubleValue(), 0.0);
 
-        assertEquals(v2.getUnit(), VolumeUnit.CUBIC_METER);
-        assertEquals(v2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(VolumeUnit.CUBIC_METER, v2.getUnit());
+        assertEquals(value2, v2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), VolumeUnit.LITER);
+        assertEquals(VolumeUnit.LITER, result.getUnit());
         assertEquals((value1 - value2) * 1000.0, result.getValue().doubleValue(), ERROR);
     }
 

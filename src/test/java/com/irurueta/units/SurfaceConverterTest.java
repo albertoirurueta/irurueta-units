@@ -50,1006 +50,1045 @@ public class SurfaceConverterTest {
     public void testSquareMetersSquareMillimeters() {
         final double inputValue = new Random().nextDouble();
 
-        assertEquals(SurfaceConverter.squareMeterToSquareMillimeter(inputValue),
-                inputValue / SQUARE_METERS_PER_SQUARE_MILLIMETER, ERROR);
-        assertEquals(SurfaceConverter.squareMillimeterToSquareMeter(inputValue),
-                inputValue * SQUARE_METERS_PER_SQUARE_MILLIMETER, ERROR);
+        assertEquals(inputValue / SQUARE_METERS_PER_SQUARE_MILLIMETER,
+                SurfaceConverter.squareMeterToSquareMillimeter(inputValue),
+                ERROR);
+        assertEquals(inputValue * SQUARE_METERS_PER_SQUARE_MILLIMETER,
+                SurfaceConverter.squareMillimeterToSquareMeter(inputValue),
+                ERROR);
     }
 
     @Test
     public void testSquareMetersSquareCentimeters() {
         final double inputValue = new Random().nextDouble();
 
-        assertEquals(SurfaceConverter.squareMeterToSquareCentimeter(inputValue),
-                inputValue / SQUARE_METERS_PER_SQUARE_CENTIMETER, ERROR);
-        assertEquals(SurfaceConverter.squareCentimeterToSquareMeter(inputValue),
-                inputValue * SQUARE_METERS_PER_SQUARE_CENTIMETER, ERROR);
+        assertEquals(inputValue / SQUARE_METERS_PER_SQUARE_CENTIMETER,
+                SurfaceConverter.squareMeterToSquareCentimeter(inputValue),
+                ERROR);
+        assertEquals(inputValue * SQUARE_METERS_PER_SQUARE_CENTIMETER,
+                SurfaceConverter.squareCentimeterToSquareMeter(inputValue),
+                ERROR);
     }
 
     @Test
     public void testSquareMetersSquareKilometers() {
         final double inputValue = new Random().nextDouble();
 
-        assertEquals(SurfaceConverter.squareMeterToSquareKilometer(inputValue),
-                inputValue / SQUARE_METERS_PER_SQUARE_KILOMETER, ERROR);
-        assertEquals(SurfaceConverter.squareKilometerToSquareMeter(inputValue),
-                inputValue * SQUARE_METERS_PER_SQUARE_KILOMETER, ERROR);
+        assertEquals(inputValue / SQUARE_METERS_PER_SQUARE_KILOMETER,
+                SurfaceConverter.squareMeterToSquareKilometer(inputValue),
+                ERROR);
+        assertEquals(inputValue * SQUARE_METERS_PER_SQUARE_KILOMETER,
+                SurfaceConverter.squareKilometerToSquareMeter(inputValue),
+                ERROR);
     }
 
     @Test
     public void testSquareMetersSquareInches() {
         final double inputValue = new Random().nextDouble();
 
-        assertEquals(SurfaceConverter.squareMeterToSquareInch(inputValue),
-                inputValue / SQUARE_METERS_PER_SQUARE_INCH, ERROR);
-        assertEquals(SurfaceConverter.squareInchToSquareMeter(inputValue),
-                inputValue * SQUARE_METERS_PER_SQUARE_INCH, ERROR);
+        assertEquals(inputValue / SQUARE_METERS_PER_SQUARE_INCH,
+                SurfaceConverter.squareMeterToSquareInch(inputValue),
+                ERROR);
+        assertEquals(inputValue * SQUARE_METERS_PER_SQUARE_INCH,
+                SurfaceConverter.squareInchToSquareMeter(inputValue),
+                ERROR);
     }
 
     @Test
     public void testSquareMetersSquareFeet() {
         final double inputValue = new Random().nextDouble();
 
-        assertEquals(SurfaceConverter.squareMeterToSquareFoot(inputValue),
-                inputValue / SQUARE_METERS_PER_SQUARE_FOOT, ERROR);
-        assertEquals(SurfaceConverter.squareFootToSquareMeter(inputValue),
-                inputValue * SQUARE_METERS_PER_SQUARE_FOOT, ERROR);
+        assertEquals(inputValue / SQUARE_METERS_PER_SQUARE_FOOT,
+                SurfaceConverter.squareMeterToSquareFoot(inputValue),
+                ERROR);
+        assertEquals(inputValue * SQUARE_METERS_PER_SQUARE_FOOT,
+                SurfaceConverter.squareFootToSquareMeter(inputValue),
+                ERROR);
     }
 
     @Test
     public void testSquareMetersSquareYards() {
         final double inputValue = new Random().nextDouble();
 
-        assertEquals(SurfaceConverter.squareMeterToSquareYard(inputValue),
-                inputValue / SQUARE_METERS_PER_SQUARE_YARD, ERROR);
-        assertEquals(SurfaceConverter.squareYardToSquareMeter(inputValue),
-                inputValue * SQUARE_METERS_PER_SQUARE_YARD, ERROR);
+        assertEquals(inputValue / SQUARE_METERS_PER_SQUARE_YARD,
+                SurfaceConverter.squareMeterToSquareYard(inputValue),
+                ERROR);
+        assertEquals(inputValue * SQUARE_METERS_PER_SQUARE_YARD,
+                SurfaceConverter.squareYardToSquareMeter(inputValue),
+                ERROR);
     }
 
     @Test
     public void testSquareMetersSquareMiles() {
         final double inputValue = new Random().nextDouble();
 
-        assertEquals(SurfaceConverter.squareMeterToSquareMile(inputValue),
-                inputValue / SQUARE_METERS_PER_SQUARE_MILE, ERROR);
-        assertEquals(SurfaceConverter.squareMileToSquareMeter(inputValue),
-                inputValue * SQUARE_METERS_PER_SQUARE_MILE, ERROR);
+        assertEquals(inputValue / SQUARE_METERS_PER_SQUARE_MILE,
+                SurfaceConverter.squareMeterToSquareMile(inputValue),
+                ERROR);
+        assertEquals(inputValue * SQUARE_METERS_PER_SQUARE_MILE,
+                SurfaceConverter.squareMileToSquareMeter(inputValue),
+                ERROR);
     }
 
     @Test
     public void testSquareMetersCentiares() {
         final double inputValue = new Random().nextDouble();
 
-        assertEquals(SurfaceConverter.squareMeterToCentiare(inputValue),
-                inputValue / SQUARE_METERS_PER_CENTIARE, ERROR);
-        assertEquals(SurfaceConverter.centiareToSquareMeter(inputValue),
-                inputValue * SQUARE_METERS_PER_CENTIARE, ERROR);
+        assertEquals(inputValue / SQUARE_METERS_PER_CENTIARE,
+                SurfaceConverter.squareMeterToCentiare(inputValue),
+                ERROR);
+        assertEquals(inputValue * SQUARE_METERS_PER_CENTIARE,
+                SurfaceConverter.centiareToSquareMeter(inputValue),
+                ERROR);
     }
 
     @Test
     public void testSquareMetersAres() {
         final double inputValue = new Random().nextDouble();
 
-        assertEquals(SurfaceConverter.squareMeterToAre(inputValue),
-                inputValue / SQUARE_METERS_PER_ARE, ERROR);
-        assertEquals(SurfaceConverter.areToSquareMeter(inputValue),
-                inputValue * SQUARE_METERS_PER_ARE, ERROR);
+        assertEquals(inputValue / SQUARE_METERS_PER_ARE,
+                SurfaceConverter.squareMeterToAre(inputValue),
+                ERROR);
+        assertEquals(inputValue * SQUARE_METERS_PER_ARE,
+                SurfaceConverter.areToSquareMeter(inputValue),
+                ERROR);
     }
 
     @Test
     public void testSquareMetersDecares() {
         final double inputValue = new Random().nextDouble();
 
-        assertEquals(SurfaceConverter.squareMeterToDecare(inputValue),
-                inputValue / SQUARE_METERS_PER_DECARE, ERROR);
-        assertEquals(SurfaceConverter.decareToSquareMeter(inputValue),
-                inputValue * SQUARE_METERS_PER_DECARE, ERROR);
+        assertEquals(inputValue / SQUARE_METERS_PER_DECARE,
+                SurfaceConverter.squareMeterToDecare(inputValue),
+                ERROR);
+        assertEquals(inputValue * SQUARE_METERS_PER_DECARE,
+                SurfaceConverter.decareToSquareMeter(inputValue),
+                ERROR);
     }
 
     @Test
     public void testSquareMetersHectares() {
         final double inputValue = new Random().nextDouble();
 
-        assertEquals(SurfaceConverter.squareMeterToHectare(inputValue),
-                inputValue / SQUARE_METERS_PER_HECTARE, ERROR);
-        assertEquals(SurfaceConverter.hectareToSquareMeter(inputValue),
-                inputValue * SQUARE_METERS_PER_HECTARE, ERROR);
+        assertEquals(inputValue / SQUARE_METERS_PER_HECTARE,
+                SurfaceConverter.squareMeterToHectare(inputValue),
+                ERROR);
+        assertEquals(inputValue * SQUARE_METERS_PER_HECTARE,
+                SurfaceConverter.hectareToSquareMeter(inputValue),
+                ERROR);
     }
 
     @Test
     public void testSquareMetersAcres() {
         final double inputValue = new Random().nextDouble();
 
-        assertEquals(SurfaceConverter.squareMeterToAcre(inputValue),
-                inputValue / SQUARE_METERS_PER_ACRE, ERROR);
-        assertEquals(SurfaceConverter.acreToSquareMeter(inputValue),
-                inputValue * SQUARE_METERS_PER_ACRE, ERROR);
+        assertEquals(inputValue / SQUARE_METERS_PER_ACRE,
+                SurfaceConverter.squareMeterToAcre(inputValue),
+                ERROR);
+        assertEquals(inputValue * SQUARE_METERS_PER_ACRE,
+                SurfaceConverter.acreToSquareMeter(inputValue),
+                ERROR);
     }
 
     @Test
     public void testConvertDouble() {
         final double inputValue = new Random().nextDouble();
 
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILLIMETER, SurfaceUnit.SQUARE_MILLIMETER),
-                inputValue, ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILLIMETER, SurfaceUnit.SQUARE_CENTIMETER),
-                SurfaceConverter.squareMeterToSquareCentimeter(
-                        SurfaceConverter.squareMillimeterToSquareMeter(inputValue)),
+        assertEquals(inputValue,
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILLIMETER, SurfaceUnit.SQUARE_MILLIMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILLIMETER, SurfaceUnit.SQUARE_METER),
-                SurfaceConverter.squareMillimeterToSquareMeter(inputValue),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILLIMETER, SurfaceUnit.SQUARE_KILOMETER),
-                SurfaceConverter.squareMeterToSquareKilometer(
+        assertEquals(SurfaceConverter.squareMeterToSquareCentimeter(
                         SurfaceConverter.squareMillimeterToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILLIMETER, SurfaceUnit.SQUARE_CENTIMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILLIMETER, SurfaceUnit.SQUARE_INCH),
-                SurfaceConverter.squareMeterToSquareInch(
-                        SurfaceConverter.squareMillimeterToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMillimeterToSquareMeter(inputValue),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILLIMETER, SurfaceUnit.SQUARE_METER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILLIMETER, SurfaceUnit.SQUARE_FOOT),
-                SurfaceConverter.squareMeterToSquareFoot(
+        assertEquals(SurfaceConverter.squareMeterToSquareKilometer(
                         SurfaceConverter.squareMillimeterToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILLIMETER, SurfaceUnit.SQUARE_KILOMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILLIMETER, SurfaceUnit.SQUARE_YARD),
-                SurfaceConverter.squareMeterToSquareYard(
+        assertEquals(SurfaceConverter.squareMeterToSquareInch(
                         SurfaceConverter.squareMillimeterToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILLIMETER, SurfaceUnit.SQUARE_INCH),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILLIMETER, SurfaceUnit.SQUARE_MILE),
-                SurfaceConverter.squareMeterToSquareMile(
+        assertEquals(SurfaceConverter.squareMeterToSquareFoot(
                         SurfaceConverter.squareMillimeterToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILLIMETER, SurfaceUnit.SQUARE_FOOT),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILLIMETER, SurfaceUnit.CENTIARE),
-                SurfaceConverter.squareMeterToCentiare(
+        assertEquals(SurfaceConverter.squareMeterToSquareYard(
                         SurfaceConverter.squareMillimeterToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILLIMETER, SurfaceUnit.SQUARE_YARD),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILLIMETER, SurfaceUnit.ARE),
-                SurfaceConverter.squareMeterToAre(
+        assertEquals(SurfaceConverter.squareMeterToSquareMile(
                         SurfaceConverter.squareMillimeterToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILLIMETER, SurfaceUnit.SQUARE_MILE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILLIMETER, SurfaceUnit.DECARE),
-                SurfaceConverter.squareMeterToDecare(
+        assertEquals(SurfaceConverter.squareMeterToCentiare(
                         SurfaceConverter.squareMillimeterToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILLIMETER, SurfaceUnit.CENTIARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILLIMETER, SurfaceUnit.HECTARE),
-                SurfaceConverter.squareMeterToHectare(
+        assertEquals(SurfaceConverter.squareMeterToAre(
                         SurfaceConverter.squareMillimeterToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILLIMETER, SurfaceUnit.ARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILLIMETER, SurfaceUnit.ACRE),
-                SurfaceConverter.squareMeterToAcre(
+        assertEquals(SurfaceConverter.squareMeterToDecare(
                         SurfaceConverter.squareMillimeterToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILLIMETER, SurfaceUnit.DECARE),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToHectare(
+                        SurfaceConverter.squareMillimeterToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILLIMETER, SurfaceUnit.HECTARE),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToAcre(
+                        SurfaceConverter.squareMillimeterToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILLIMETER, SurfaceUnit.ACRE),
                 ERROR);
 
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_CENTIMETER, SurfaceUnit.SQUARE_MILLIMETER),
-                SurfaceConverter.squareMeterToSquareMillimeter(
+        assertEquals(SurfaceConverter.squareMeterToSquareMillimeter(
                         SurfaceConverter.squareCentimeterToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_CENTIMETER, SurfaceUnit.SQUARE_MILLIMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_CENTIMETER, SurfaceUnit.SQUARE_CENTIMETER),
-                inputValue, ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_CENTIMETER, SurfaceUnit.SQUARE_METER),
-                SurfaceConverter.squareCentimeterToSquareMeter(inputValue),
+        assertEquals(inputValue,
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_CENTIMETER, SurfaceUnit.SQUARE_CENTIMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_CENTIMETER, SurfaceUnit.SQUARE_KILOMETER),
-                SurfaceConverter.squareMeterToSquareKilometer(
+        assertEquals(SurfaceConverter.squareCentimeterToSquareMeter(inputValue),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_CENTIMETER, SurfaceUnit.SQUARE_METER),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToSquareKilometer(
                         SurfaceConverter.squareCentimeterToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_CENTIMETER, SurfaceUnit.SQUARE_KILOMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_CENTIMETER, SurfaceUnit.SQUARE_INCH),
-                SurfaceConverter.squareMeterToSquareInch(
+        assertEquals(SurfaceConverter.squareMeterToSquareInch(
                         SurfaceConverter.squareCentimeterToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_CENTIMETER, SurfaceUnit.SQUARE_INCH),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_CENTIMETER, SurfaceUnit.SQUARE_FOOT),
-                SurfaceConverter.squareMeterToSquareFoot(
+        assertEquals(SurfaceConverter.squareMeterToSquareFoot(
                         SurfaceConverter.squareCentimeterToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_CENTIMETER, SurfaceUnit.SQUARE_FOOT),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_CENTIMETER, SurfaceUnit.SQUARE_YARD),
-                SurfaceConverter.squareMeterToSquareYard(
+        assertEquals(SurfaceConverter.squareMeterToSquareYard(
                         SurfaceConverter.squareCentimeterToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_CENTIMETER, SurfaceUnit.SQUARE_YARD),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_CENTIMETER, SurfaceUnit.SQUARE_MILE),
-                SurfaceConverter.squareMeterToSquareMile(
+        assertEquals(SurfaceConverter.squareMeterToSquareMile(
                         SurfaceConverter.squareCentimeterToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_CENTIMETER, SurfaceUnit.SQUARE_MILE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_CENTIMETER, SurfaceUnit.CENTIARE),
-                SurfaceConverter.squareMeterToCentiare(
+        assertEquals(SurfaceConverter.squareMeterToCentiare(
                         SurfaceConverter.squareCentimeterToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_CENTIMETER, SurfaceUnit.CENTIARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_CENTIMETER, SurfaceUnit.ARE),
-                SurfaceConverter.squareMeterToAre(
+        assertEquals(SurfaceConverter.squareMeterToAre(
                         SurfaceConverter.squareCentimeterToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_CENTIMETER, SurfaceUnit.ARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_CENTIMETER, SurfaceUnit.DECARE),
-                SurfaceConverter.squareMeterToDecare(
+        assertEquals(SurfaceConverter.squareMeterToDecare(
                         SurfaceConverter.squareCentimeterToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_CENTIMETER, SurfaceUnit.DECARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_CENTIMETER, SurfaceUnit.HECTARE),
-                SurfaceConverter.squareMeterToHectare(
+        assertEquals(SurfaceConverter.squareMeterToHectare(
                         SurfaceConverter.squareCentimeterToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_CENTIMETER, SurfaceUnit.HECTARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_CENTIMETER, SurfaceUnit.ACRE),
-                SurfaceConverter.squareMeterToAcre(
+        assertEquals(SurfaceConverter.squareMeterToAcre(
                         SurfaceConverter.squareCentimeterToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_CENTIMETER, SurfaceUnit.ACRE),
                 ERROR);
 
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_METER, SurfaceUnit.SQUARE_MILLIMETER),
-                SurfaceConverter.squareMeterToSquareMillimeter(inputValue),
+        assertEquals(SurfaceConverter.squareMeterToSquareMillimeter(inputValue),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_METER, SurfaceUnit.SQUARE_MILLIMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_METER, SurfaceUnit.SQUARE_CENTIMETER),
-                SurfaceConverter.squareMeterToSquareCentimeter(inputValue),
+        assertEquals(SurfaceConverter.squareMeterToSquareCentimeter(inputValue),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_METER, SurfaceUnit.SQUARE_CENTIMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_METER, SurfaceUnit.SQUARE_METER),
-                inputValue, ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_METER, SurfaceUnit.SQUARE_KILOMETER),
-                SurfaceConverter.squareMeterToSquareKilometer(inputValue),
+        assertEquals(inputValue,
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_METER, SurfaceUnit.SQUARE_METER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_METER, SurfaceUnit.SQUARE_INCH),
-                SurfaceConverter.squareMeterToSquareInch(inputValue),
+        assertEquals(SurfaceConverter.squareMeterToSquareKilometer(inputValue),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_METER, SurfaceUnit.SQUARE_KILOMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_METER, SurfaceUnit.SQUARE_FOOT),
-                SurfaceConverter.squareMeterToSquareFoot(inputValue),
+        assertEquals(SurfaceConverter.squareMeterToSquareInch(inputValue),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_METER, SurfaceUnit.SQUARE_INCH),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_METER, SurfaceUnit.SQUARE_YARD),
-                SurfaceConverter.squareMeterToSquareYard(inputValue),
+        assertEquals(SurfaceConverter.squareMeterToSquareFoot(inputValue),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_METER, SurfaceUnit.SQUARE_FOOT),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_METER, SurfaceUnit.SQUARE_MILE),
-                SurfaceConverter.squareMeterToSquareMile(inputValue),
+        assertEquals(SurfaceConverter.squareMeterToSquareYard(inputValue),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_METER, SurfaceUnit.SQUARE_YARD),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_METER, SurfaceUnit.CENTIARE),
-                SurfaceConverter.squareMeterToCentiare(inputValue),
+        assertEquals(SurfaceConverter.squareMeterToSquareMile(inputValue),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_METER, SurfaceUnit.SQUARE_MILE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_METER, SurfaceUnit.ARE),
-                SurfaceConverter.squareMeterToAre(inputValue),
+        assertEquals(SurfaceConverter.squareMeterToCentiare(inputValue),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_METER, SurfaceUnit.CENTIARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_METER, SurfaceUnit.DECARE),
-                SurfaceConverter.squareMeterToDecare(inputValue),
+        assertEquals(SurfaceConverter.squareMeterToAre(inputValue),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_METER, SurfaceUnit.ARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_METER, SurfaceUnit.HECTARE),
-                SurfaceConverter.squareMeterToHectare(inputValue),
+        assertEquals(SurfaceConverter.squareMeterToDecare(inputValue),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_METER, SurfaceUnit.DECARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_METER, SurfaceUnit.ACRE),
-                SurfaceConverter.squareMeterToAcre(inputValue),
+        assertEquals(SurfaceConverter.squareMeterToHectare(inputValue),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_METER, SurfaceUnit.HECTARE),
                 ERROR);
-
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_KILOMETER, SurfaceUnit.SQUARE_MILLIMETER),
-                SurfaceConverter.squareMeterToSquareMillimeter(
-                        SurfaceConverter.squareKilometerToSquareMeter(inputValue)),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_KILOMETER, SurfaceUnit.SQUARE_CENTIMETER),
-                SurfaceConverter.squareMeterToSquareCentimeter(
-                        SurfaceConverter.squareKilometerToSquareMeter(inputValue)),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_KILOMETER, SurfaceUnit.SQUARE_METER),
-                SurfaceConverter.squareKilometerToSquareMeter(inputValue),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_KILOMETER, SurfaceUnit.SQUARE_KILOMETER),
-                inputValue, ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_KILOMETER, SurfaceUnit.SQUARE_INCH),
-                SurfaceConverter.squareMeterToSquareInch(
-                        SurfaceConverter.squareKilometerToSquareMeter(inputValue)),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_KILOMETER, SurfaceUnit.SQUARE_FOOT),
-                SurfaceConverter.squareMeterToSquareFoot(
-                        SurfaceConverter.squareKilometerToSquareMeter(inputValue)),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_KILOMETER, SurfaceUnit.SQUARE_YARD),
-                SurfaceConverter.squareMeterToSquareYard(
-                        SurfaceConverter.squareKilometerToSquareMeter(inputValue)),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_KILOMETER, SurfaceUnit.SQUARE_MILE),
-                SurfaceConverter.squareMeterToSquareMile(
-                        SurfaceConverter.squareKilometerToSquareMeter(inputValue)),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_KILOMETER, SurfaceUnit.CENTIARE),
-                SurfaceConverter.squareMeterToCentiare(
-                        SurfaceConverter.squareKilometerToSquareMeter(inputValue)),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_KILOMETER, SurfaceUnit.ARE),
-                SurfaceConverter.squareMeterToAre(
-                        SurfaceConverter.squareKilometerToSquareMeter(inputValue)),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_KILOMETER, SurfaceUnit.DECARE),
-                SurfaceConverter.squareMeterToDecare(
-                        SurfaceConverter.squareKilometerToSquareMeter(inputValue)),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_KILOMETER, SurfaceUnit.HECTARE),
-                SurfaceConverter.squareMeterToHectare(
-                        SurfaceConverter.squareKilometerToSquareMeter(inputValue)),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_KILOMETER, SurfaceUnit.ACRE),
-                SurfaceConverter.squareMeterToAcre(
-                        SurfaceConverter.squareKilometerToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToAcre(inputValue),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_METER, SurfaceUnit.ACRE),
                 ERROR);
 
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_INCH, SurfaceUnit.SQUARE_MILLIMETER),
-                SurfaceConverter.squareMeterToSquareMillimeter(
-                        SurfaceConverter.squareInchToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToSquareMillimeter(
+                        SurfaceConverter.squareKilometerToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_KILOMETER, SurfaceUnit.SQUARE_MILLIMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_INCH, SurfaceUnit.SQUARE_CENTIMETER),
-                SurfaceConverter.squareMeterToSquareCentimeter(
-                        SurfaceConverter.squareInchToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToSquareCentimeter(
+                        SurfaceConverter.squareKilometerToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_KILOMETER, SurfaceUnit.SQUARE_CENTIMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_INCH, SurfaceUnit.SQUARE_METER),
-                SurfaceConverter.squareInchToSquareMeter(inputValue),
+        assertEquals(SurfaceConverter.squareKilometerToSquareMeter(inputValue),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_KILOMETER, SurfaceUnit.SQUARE_METER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_INCH, SurfaceUnit.SQUARE_KILOMETER),
-                SurfaceConverter.squareMeterToSquareKilometer(
-                        SurfaceConverter.squareInchToSquareMeter(inputValue)),
+        assertEquals(inputValue,
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_KILOMETER, SurfaceUnit.SQUARE_KILOMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_INCH, SurfaceUnit.SQUARE_INCH),
-                inputValue, ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_INCH, SurfaceUnit.SQUARE_FOOT),
-                SurfaceConverter.squareMeterToSquareFoot(
-                        SurfaceConverter.squareInchToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToSquareInch(
+                        SurfaceConverter.squareKilometerToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_KILOMETER, SurfaceUnit.SQUARE_INCH),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_INCH, SurfaceUnit.SQUARE_YARD),
-                SurfaceConverter.squareMeterToSquareYard(
-                        SurfaceConverter.squareInchToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToSquareFoot(
+                        SurfaceConverter.squareKilometerToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_KILOMETER, SurfaceUnit.SQUARE_FOOT),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_INCH, SurfaceUnit.SQUARE_MILE),
-                SurfaceConverter.squareMeterToSquareMile(
-                        SurfaceConverter.squareInchToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToSquareYard(
+                        SurfaceConverter.squareKilometerToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_KILOMETER, SurfaceUnit.SQUARE_YARD),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_INCH, SurfaceUnit.CENTIARE),
-                SurfaceConverter.squareMeterToCentiare(
-                        SurfaceConverter.squareInchToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToSquareMile(
+                        SurfaceConverter.squareKilometerToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_KILOMETER, SurfaceUnit.SQUARE_MILE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_INCH, SurfaceUnit.ARE),
-                SurfaceConverter.squareMeterToAre(
-                        SurfaceConverter.squareInchToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToCentiare(
+                        SurfaceConverter.squareKilometerToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_KILOMETER, SurfaceUnit.CENTIARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_INCH, SurfaceUnit.DECARE),
-                SurfaceConverter.squareMeterToDecare(
-                        SurfaceConverter.squareInchToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToAre(
+                        SurfaceConverter.squareKilometerToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_KILOMETER, SurfaceUnit.ARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_INCH, SurfaceUnit.HECTARE),
-                SurfaceConverter.squareMeterToHectare(
-                        SurfaceConverter.squareInchToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToDecare(
+                        SurfaceConverter.squareKilometerToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_KILOMETER, SurfaceUnit.DECARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_INCH, SurfaceUnit.ACRE),
-                SurfaceConverter.squareMeterToAcre(
-                        SurfaceConverter.squareInchToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToHectare(
+                        SurfaceConverter.squareKilometerToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_KILOMETER, SurfaceUnit.HECTARE),
                 ERROR);
-
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_FOOT, SurfaceUnit.SQUARE_MILLIMETER),
-                SurfaceConverter.squareMeterToSquareMillimeter(
-                        SurfaceConverter.squareFootToSquareMeter(inputValue)),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_FOOT, SurfaceUnit.SQUARE_CENTIMETER),
-                SurfaceConverter.squareMeterToSquareCentimeter(
-                        SurfaceConverter.squareFootToSquareMeter(inputValue)),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_FOOT, SurfaceUnit.SQUARE_METER),
-                SurfaceConverter.squareFootToSquareMeter(inputValue),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_FOOT, SurfaceUnit.SQUARE_KILOMETER),
-                SurfaceConverter.squareMeterToSquareKilometer(
-                        SurfaceConverter.squareFootToSquareMeter(inputValue)),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_FOOT, SurfaceUnit.SQUARE_INCH),
-                SurfaceConverter.squareMeterToSquareInch(
-                        SurfaceConverter.squareFootToSquareMeter(inputValue)),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_FOOT, SurfaceUnit.SQUARE_FOOT),
-                inputValue, ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_FOOT, SurfaceUnit.SQUARE_YARD),
-                SurfaceConverter.squareMeterToSquareYard(
-                        SurfaceConverter.squareFootToSquareMeter(inputValue)),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_FOOT, SurfaceUnit.SQUARE_MILE),
-                SurfaceConverter.squareMeterToSquareMile(
-                        SurfaceConverter.squareFootToSquareMeter(inputValue)),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_FOOT, SurfaceUnit.CENTIARE),
-                SurfaceConverter.squareMeterToCentiare(
-                        SurfaceConverter.squareFootToSquareMeter(inputValue)),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_FOOT, SurfaceUnit.ARE),
-                SurfaceConverter.squareMeterToAre(
-                        SurfaceConverter.squareFootToSquareMeter(inputValue)),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_FOOT, SurfaceUnit.DECARE),
-                SurfaceConverter.squareMeterToDecare(
-                        SurfaceConverter.squareFootToSquareMeter(inputValue)),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_FOOT, SurfaceUnit.HECTARE),
-                SurfaceConverter.squareMeterToHectare(
-                        SurfaceConverter.squareFootToSquareMeter(inputValue)),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_FOOT, SurfaceUnit.ACRE),
-                SurfaceConverter.squareMeterToAcre(
-                        SurfaceConverter.squareFootToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToAcre(
+                        SurfaceConverter.squareKilometerToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_KILOMETER, SurfaceUnit.ACRE),
                 ERROR);
 
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_YARD, SurfaceUnit.SQUARE_MILLIMETER),
-                SurfaceConverter.squareMeterToSquareMillimeter(
-                        SurfaceConverter.squareYardToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToSquareMillimeter(
+                        SurfaceConverter.squareInchToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_INCH, SurfaceUnit.SQUARE_MILLIMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_YARD, SurfaceUnit.SQUARE_CENTIMETER),
-                SurfaceConverter.squareMeterToSquareCentimeter(
-                        SurfaceConverter.squareYardToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToSquareCentimeter(
+                        SurfaceConverter.squareInchToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_INCH, SurfaceUnit.SQUARE_CENTIMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_YARD, SurfaceUnit.SQUARE_METER),
-                SurfaceConverter.squareYardToSquareMeter(inputValue),
+        assertEquals(SurfaceConverter.squareInchToSquareMeter(inputValue),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_INCH, SurfaceUnit.SQUARE_METER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_YARD, SurfaceUnit.SQUARE_KILOMETER),
-                SurfaceConverter.squareMeterToSquareKilometer(
-                        SurfaceConverter.squareYardToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToSquareKilometer(
+                        SurfaceConverter.squareInchToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_INCH, SurfaceUnit.SQUARE_KILOMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_YARD, SurfaceUnit.SQUARE_INCH),
-                SurfaceConverter.squareMeterToSquareInch(
-                        SurfaceConverter.squareYardToSquareMeter(inputValue)),
+        assertEquals(inputValue,
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_INCH, SurfaceUnit.SQUARE_INCH),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_YARD, SurfaceUnit.SQUARE_FOOT),
-                SurfaceConverter.squareMeterToSquareFoot(
-                        SurfaceConverter.squareYardToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToSquareFoot(
+                        SurfaceConverter.squareInchToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_INCH, SurfaceUnit.SQUARE_FOOT),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_YARD, SurfaceUnit.SQUARE_YARD),
-                inputValue, ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_YARD, SurfaceUnit.SQUARE_MILE),
-                SurfaceConverter.squareMeterToSquareMile(
-                        SurfaceConverter.squareYardToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToSquareYard(
+                        SurfaceConverter.squareInchToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_INCH, SurfaceUnit.SQUARE_YARD),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_YARD, SurfaceUnit.CENTIARE),
-                SurfaceConverter.squareMeterToCentiare(
-                        SurfaceConverter.squareYardToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToSquareMile(
+                        SurfaceConverter.squareInchToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_INCH, SurfaceUnit.SQUARE_MILE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_YARD, SurfaceUnit.ARE),
-                SurfaceConverter.squareMeterToAre(
-                        SurfaceConverter.squareYardToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToCentiare(
+                        SurfaceConverter.squareInchToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_INCH, SurfaceUnit.CENTIARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_YARD, SurfaceUnit.DECARE),
-                SurfaceConverter.squareMeterToDecare(
-                        SurfaceConverter.squareYardToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToAre(
+                        SurfaceConverter.squareInchToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_INCH, SurfaceUnit.ARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_YARD, SurfaceUnit.HECTARE),
-                SurfaceConverter.squareMeterToHectare(
-                        SurfaceConverter.squareYardToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToDecare(
+                        SurfaceConverter.squareInchToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_INCH, SurfaceUnit.DECARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_YARD, SurfaceUnit.ACRE),
-                SurfaceConverter.squareMeterToAcre(
-                        SurfaceConverter.squareYardToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToHectare(
+                        SurfaceConverter.squareInchToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_INCH, SurfaceUnit.HECTARE),
                 ERROR);
-
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_MILLIMETER),
-                SurfaceConverter.squareMeterToSquareMillimeter(
-                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_CENTIMETER),
-                SurfaceConverter.squareMeterToSquareCentimeter(
-                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_METER),
-                SurfaceConverter.squareMileToSquareMeter(inputValue),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_KILOMETER),
-                SurfaceConverter.squareMeterToSquareKilometer(
-                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_INCH),
-                SurfaceConverter.squareMeterToSquareInch(
-                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_FOOT),
-                SurfaceConverter.squareMeterToSquareFoot(
-                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_YARD),
-                SurfaceConverter.squareMeterToSquareYard(
-                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_MILE),
-                inputValue, ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILE, SurfaceUnit.CENTIARE),
-                SurfaceConverter.squareMeterToCentiare(
-                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILE, SurfaceUnit.ARE),
-                SurfaceConverter.squareMeterToAre(
-                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILE, SurfaceUnit.DECARE),
-                SurfaceConverter.squareMeterToDecare(
-                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILE, SurfaceUnit.HECTARE),
-                SurfaceConverter.squareMeterToHectare(
-                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
-                ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILE, SurfaceUnit.ACRE),
-                SurfaceConverter.squareMeterToAcre(
-                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToAcre(
+                        SurfaceConverter.squareInchToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_INCH, SurfaceUnit.ACRE),
                 ERROR);
 
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_MILLIMETER),
-                SurfaceConverter.squareMeterToSquareMillimeter(
-                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToSquareMillimeter(
+                        SurfaceConverter.squareFootToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_FOOT, SurfaceUnit.SQUARE_MILLIMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_CENTIMETER),
-                SurfaceConverter.squareMeterToSquareCentimeter(
-                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToSquareCentimeter(
+                        SurfaceConverter.squareFootToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_FOOT, SurfaceUnit.SQUARE_CENTIMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_METER),
-                SurfaceConverter.squareMileToSquareMeter(inputValue),
+        assertEquals(SurfaceConverter.squareFootToSquareMeter(inputValue),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_FOOT, SurfaceUnit.SQUARE_METER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_KILOMETER),
-                SurfaceConverter.squareMeterToSquareKilometer(
-                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToSquareKilometer(
+                        SurfaceConverter.squareFootToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_FOOT, SurfaceUnit.SQUARE_KILOMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_INCH),
-                SurfaceConverter.squareMeterToSquareInch(
-                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToSquareInch(
+                        SurfaceConverter.squareFootToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_FOOT, SurfaceUnit.SQUARE_INCH),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_FOOT),
-                SurfaceConverter.squareMeterToSquareFoot(
-                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+        assertEquals(inputValue,
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_FOOT, SurfaceUnit.SQUARE_FOOT),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_YARD),
-                SurfaceConverter.squareMeterToSquareYard(
-                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToSquareYard(
+                        SurfaceConverter.squareFootToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_FOOT, SurfaceUnit.SQUARE_YARD),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_MILE),
-                inputValue, ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILE, SurfaceUnit.CENTIARE),
-                SurfaceConverter.squareMeterToCentiare(
-                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToSquareMile(
+                        SurfaceConverter.squareFootToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_FOOT, SurfaceUnit.SQUARE_MILE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILE, SurfaceUnit.ARE),
-                SurfaceConverter.squareMeterToAre(
-                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToCentiare(
+                        SurfaceConverter.squareFootToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_FOOT, SurfaceUnit.CENTIARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILE, SurfaceUnit.DECARE),
-                SurfaceConverter.squareMeterToDecare(
-                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToAre(
+                        SurfaceConverter.squareFootToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_FOOT, SurfaceUnit.ARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILE, SurfaceUnit.HECTARE),
-                SurfaceConverter.squareMeterToHectare(
-                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToDecare(
+                        SurfaceConverter.squareFootToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_FOOT, SurfaceUnit.DECARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILE, SurfaceUnit.ACRE),
-                SurfaceConverter.squareMeterToAcre(
-                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+        assertEquals(SurfaceConverter.squareMeterToHectare(
+                        SurfaceConverter.squareFootToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_FOOT, SurfaceUnit.HECTARE),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToAcre(
+                        SurfaceConverter.squareFootToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_FOOT, SurfaceUnit.ACRE),
                 ERROR);
 
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.CENTIARE, SurfaceUnit.SQUARE_MILLIMETER),
-                SurfaceConverter.squareMeterToSquareMillimeter(
+        assertEquals(SurfaceConverter.squareMeterToSquareMillimeter(
+                        SurfaceConverter.squareYardToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_YARD, SurfaceUnit.SQUARE_MILLIMETER),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToSquareCentimeter(
+                        SurfaceConverter.squareYardToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_YARD, SurfaceUnit.SQUARE_CENTIMETER),
+                ERROR);
+        assertEquals(SurfaceConverter.squareYardToSquareMeter(inputValue),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_YARD, SurfaceUnit.SQUARE_METER),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToSquareKilometer(
+                        SurfaceConverter.squareYardToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_YARD, SurfaceUnit.SQUARE_KILOMETER),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToSquareInch(
+                        SurfaceConverter.squareYardToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_YARD, SurfaceUnit.SQUARE_INCH),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToSquareFoot(
+                        SurfaceConverter.squareYardToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_YARD, SurfaceUnit.SQUARE_FOOT),
+                ERROR);
+        assertEquals(inputValue,
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_YARD, SurfaceUnit.SQUARE_YARD),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToSquareMile(
+                        SurfaceConverter.squareYardToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_YARD, SurfaceUnit.SQUARE_MILE),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToCentiare(
+                        SurfaceConverter.squareYardToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_YARD, SurfaceUnit.CENTIARE),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToAre(
+                        SurfaceConverter.squareYardToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_YARD, SurfaceUnit.ARE),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToDecare(
+                        SurfaceConverter.squareYardToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_YARD, SurfaceUnit.DECARE),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToHectare(
+                        SurfaceConverter.squareYardToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_YARD, SurfaceUnit.HECTARE),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToAcre(
+                        SurfaceConverter.squareYardToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_YARD, SurfaceUnit.ACRE),
+                ERROR);
+
+        assertEquals(SurfaceConverter.squareMeterToSquareMillimeter(
+                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_MILLIMETER),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToSquareCentimeter(
+                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_CENTIMETER),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMileToSquareMeter(inputValue),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_METER),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToSquareKilometer(
+                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_KILOMETER),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToSquareInch(
+                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_INCH),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToSquareFoot(
+                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_FOOT),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToSquareYard(
+                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_YARD),
+                ERROR);
+        assertEquals(inputValue,
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_MILE),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToCentiare(
+                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILE, SurfaceUnit.CENTIARE),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToAre(
+                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILE, SurfaceUnit.ARE),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToDecare(
+                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILE, SurfaceUnit.DECARE),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToHectare(
+                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILE, SurfaceUnit.HECTARE),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToAcre(
+                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILE, SurfaceUnit.ACRE),
+                ERROR);
+
+        assertEquals(SurfaceConverter.squareMeterToSquareMillimeter(
+                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_MILLIMETER),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToSquareCentimeter(
+                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_CENTIMETER),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMileToSquareMeter(inputValue),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_METER),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToSquareKilometer(
+                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_KILOMETER),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToSquareInch(
+                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_INCH),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToSquareFoot(
+                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_FOOT),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToSquareYard(
+                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_YARD),
+                ERROR);
+        assertEquals(inputValue,
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILE, SurfaceUnit.SQUARE_MILE),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToCentiare(
+                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILE, SurfaceUnit.CENTIARE),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToAre(
+                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILE, SurfaceUnit.ARE),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToDecare(
+                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILE, SurfaceUnit.DECARE),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToHectare(
+                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILE, SurfaceUnit.HECTARE),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToAcre(
+                        SurfaceConverter.squareMileToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILE, SurfaceUnit.ACRE),
+                ERROR);
+
+        assertEquals(SurfaceConverter.squareMeterToSquareMillimeter(
                         SurfaceConverter.squareMeterToCentiare(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.CENTIARE, SurfaceUnit.SQUARE_MILLIMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.CENTIARE, SurfaceUnit.SQUARE_CENTIMETER),
-                SurfaceConverter.squareMeterToSquareCentimeter(
+        assertEquals(SurfaceConverter.squareMeterToSquareCentimeter(
                         SurfaceConverter.centiareToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.CENTIARE, SurfaceUnit.SQUARE_CENTIMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.CENTIARE, SurfaceUnit.SQUARE_METER),
-                SurfaceConverter.centiareToSquareMeter(inputValue),
+        assertEquals(SurfaceConverter.centiareToSquareMeter(inputValue),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.CENTIARE, SurfaceUnit.SQUARE_METER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.CENTIARE, SurfaceUnit.SQUARE_KILOMETER),
-                SurfaceConverter.squareMeterToSquareKilometer(
+        assertEquals(SurfaceConverter.squareMeterToSquareKilometer(
                         SurfaceConverter.squareMeterToCentiare(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.CENTIARE, SurfaceUnit.SQUARE_KILOMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.CENTIARE, SurfaceUnit.SQUARE_INCH),
-                SurfaceConverter.squareMeterToSquareInch(
+        assertEquals(SurfaceConverter.squareMeterToSquareInch(
                         SurfaceConverter.centiareToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.CENTIARE, SurfaceUnit.SQUARE_INCH),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.CENTIARE, SurfaceUnit.SQUARE_FOOT),
-                SurfaceConverter.squareMeterToSquareFoot(
+        assertEquals(SurfaceConverter.squareMeterToSquareFoot(
                         SurfaceConverter.centiareToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.CENTIARE, SurfaceUnit.SQUARE_FOOT),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.CENTIARE, SurfaceUnit.SQUARE_YARD),
-                SurfaceConverter.squareMeterToSquareYard(
+        assertEquals(SurfaceConverter.squareMeterToSquareYard(
                         SurfaceConverter.centiareToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.CENTIARE, SurfaceUnit.SQUARE_YARD),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.CENTIARE, SurfaceUnit.SQUARE_MILE),
-                SurfaceConverter.squareMeterToSquareMile(
+        assertEquals(SurfaceConverter.squareMeterToSquareMile(
                         SurfaceConverter.centiareToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.CENTIARE, SurfaceUnit.SQUARE_MILE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.CENTIARE, SurfaceUnit.CENTIARE),
-                inputValue, ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.CENTIARE, SurfaceUnit.ARE),
-                SurfaceConverter.squareMeterToAre(
-                        SurfaceConverter.centiareToSquareMeter(inputValue)),
+        assertEquals(inputValue,
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.CENTIARE, SurfaceUnit.CENTIARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.CENTIARE, SurfaceUnit.DECARE),
-                SurfaceConverter.squareMeterToDecare(
+        assertEquals(SurfaceConverter.squareMeterToAre(
                         SurfaceConverter.centiareToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.CENTIARE, SurfaceUnit.ARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.CENTIARE, SurfaceUnit.HECTARE),
-                SurfaceConverter.squareMeterToHectare(
+        assertEquals(SurfaceConverter.squareMeterToDecare(
                         SurfaceConverter.centiareToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.CENTIARE, SurfaceUnit.DECARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.CENTIARE, SurfaceUnit.ACRE),
-                SurfaceConverter.squareMeterToAcre(
+        assertEquals(SurfaceConverter.squareMeterToHectare(
                         SurfaceConverter.centiareToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.CENTIARE, SurfaceUnit.HECTARE),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToAcre(
+                        SurfaceConverter.centiareToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.CENTIARE, SurfaceUnit.ACRE),
                 ERROR);
 
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.ARE, SurfaceUnit.SQUARE_MILLIMETER),
-                SurfaceConverter.squareMeterToSquareMillimeter(
+        assertEquals(SurfaceConverter.squareMeterToSquareMillimeter(
                         SurfaceConverter.areToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.ARE, SurfaceUnit.SQUARE_MILLIMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.ARE, SurfaceUnit.SQUARE_CENTIMETER),
-                SurfaceConverter.squareMeterToSquareCentimeter(
+        assertEquals(SurfaceConverter.squareMeterToSquareCentimeter(
                         SurfaceConverter.areToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.ARE, SurfaceUnit.SQUARE_CENTIMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.ARE, SurfaceUnit.SQUARE_METER),
-                SurfaceConverter.areToSquareMeter(inputValue),
+        assertEquals(SurfaceConverter.areToSquareMeter(inputValue),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.ARE, SurfaceUnit.SQUARE_METER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.ARE, SurfaceUnit.SQUARE_KILOMETER),
-                SurfaceConverter.squareMeterToSquareKilometer(
+        assertEquals(SurfaceConverter.squareMeterToSquareKilometer(
                         SurfaceConverter.areToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.ARE, SurfaceUnit.SQUARE_KILOMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.ARE, SurfaceUnit.SQUARE_INCH),
-                SurfaceConverter.squareMeterToSquareInch(
+        assertEquals(SurfaceConverter.squareMeterToSquareInch(
                         SurfaceConverter.areToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.ARE, SurfaceUnit.SQUARE_INCH),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.ARE, SurfaceUnit.SQUARE_FOOT),
-                SurfaceConverter.squareMeterToSquareFoot(
+        assertEquals(SurfaceConverter.squareMeterToSquareFoot(
                         SurfaceConverter.areToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.ARE, SurfaceUnit.SQUARE_FOOT),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.ARE, SurfaceUnit.SQUARE_YARD),
-                SurfaceConverter.squareMeterToSquareYard(
+        assertEquals(SurfaceConverter.squareMeterToSquareYard(
                         SurfaceConverter.areToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.ARE, SurfaceUnit.SQUARE_YARD),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.ARE, SurfaceUnit.SQUARE_MILE),
-                SurfaceConverter.squareMeterToSquareMile(
+        assertEquals(SurfaceConverter.squareMeterToSquareMile(
                         SurfaceConverter.areToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.ARE, SurfaceUnit.SQUARE_MILE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.ARE, SurfaceUnit.CENTIARE),
-                SurfaceConverter.squareMeterToCentiare(
+        assertEquals(SurfaceConverter.squareMeterToCentiare(
                         SurfaceConverter.areToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.ARE, SurfaceUnit.CENTIARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.ARE, SurfaceUnit.ARE),
-                inputValue, ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.ARE, SurfaceUnit.DECARE),
-                SurfaceConverter.squareMeterToDecare(
-                        SurfaceConverter.areToSquareMeter(inputValue)),
+        assertEquals(inputValue,
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.ARE, SurfaceUnit.ARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.ARE, SurfaceUnit.HECTARE),
-                SurfaceConverter.squareMeterToHectare(
+        assertEquals(SurfaceConverter.squareMeterToDecare(
                         SurfaceConverter.areToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.ARE, SurfaceUnit.DECARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.ARE, SurfaceUnit.ACRE),
-                SurfaceConverter.squareMeterToAcre(
+        assertEquals(SurfaceConverter.squareMeterToHectare(
                         SurfaceConverter.areToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.ARE, SurfaceUnit.HECTARE),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToAcre(
+                        SurfaceConverter.areToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.ARE, SurfaceUnit.ACRE),
                 ERROR);
 
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.DECARE, SurfaceUnit.SQUARE_MILLIMETER),
-                SurfaceConverter.squareMeterToSquareMillimeter(
+        assertEquals(SurfaceConverter.squareMeterToSquareMillimeter(
                         SurfaceConverter.decareToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.DECARE, SurfaceUnit.SQUARE_MILLIMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.DECARE, SurfaceUnit.SQUARE_CENTIMETER),
-                SurfaceConverter.squareMeterToSquareCentimeter(
+        assertEquals(SurfaceConverter.squareMeterToSquareCentimeter(
                         SurfaceConverter.decareToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.DECARE, SurfaceUnit.SQUARE_CENTIMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.DECARE, SurfaceUnit.SQUARE_METER),
-                SurfaceConverter.decareToSquareMeter(inputValue),
+        assertEquals(SurfaceConverter.decareToSquareMeter(inputValue),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.DECARE, SurfaceUnit.SQUARE_METER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.DECARE, SurfaceUnit.SQUARE_KILOMETER),
-                SurfaceConverter.squareMeterToSquareKilometer(
+        assertEquals(SurfaceConverter.squareMeterToSquareKilometer(
                         SurfaceConverter.decareToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.DECARE, SurfaceUnit.SQUARE_KILOMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.DECARE, SurfaceUnit.SQUARE_INCH),
-                SurfaceConverter.squareMeterToSquareInch(
+        assertEquals(SurfaceConverter.squareMeterToSquareInch(
                         SurfaceConverter.decareToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.DECARE, SurfaceUnit.SQUARE_INCH),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.DECARE, SurfaceUnit.SQUARE_FOOT),
-                SurfaceConverter.squareMeterToSquareFoot(
+        assertEquals(SurfaceConverter.squareMeterToSquareFoot(
                         SurfaceConverter.decareToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.DECARE, SurfaceUnit.SQUARE_FOOT),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.DECARE, SurfaceUnit.SQUARE_YARD),
-                SurfaceConverter.squareMeterToSquareYard(
+        assertEquals(SurfaceConverter.squareMeterToSquareYard(
                         SurfaceConverter.decareToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.DECARE, SurfaceUnit.SQUARE_YARD),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.DECARE, SurfaceUnit.SQUARE_MILE),
-                SurfaceConverter.squareMeterToSquareMile(
+        assertEquals(SurfaceConverter.squareMeterToSquareMile(
                         SurfaceConverter.decareToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.DECARE, SurfaceUnit.SQUARE_MILE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.DECARE, SurfaceUnit.CENTIARE),
-                SurfaceConverter.squareMeterToCentiare(
+        assertEquals(SurfaceConverter.squareMeterToCentiare(
                         SurfaceConverter.decareToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.DECARE, SurfaceUnit.CENTIARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.DECARE, SurfaceUnit.ARE),
-                SurfaceConverter.squareMeterToAre(
+        assertEquals(SurfaceConverter.squareMeterToAre(
                         SurfaceConverter.decareToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.DECARE, SurfaceUnit.ARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.DECARE, SurfaceUnit.DECARE),
-                inputValue, ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.DECARE, SurfaceUnit.HECTARE),
-                SurfaceConverter.squareMeterToHectare(
-                        SurfaceConverter.decareToSquareMeter(inputValue)),
+        assertEquals(inputValue,
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.DECARE, SurfaceUnit.DECARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.DECARE, SurfaceUnit.ACRE),
-                SurfaceConverter.squareMeterToAcre(
+        assertEquals(SurfaceConverter.squareMeterToHectare(
                         SurfaceConverter.decareToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.DECARE, SurfaceUnit.HECTARE),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToAcre(
+                        SurfaceConverter.decareToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.DECARE, SurfaceUnit.ACRE),
                 ERROR);
 
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.HECTARE, SurfaceUnit.SQUARE_MILLIMETER),
-                SurfaceConverter.squareMeterToSquareMillimeter(
+        assertEquals(SurfaceConverter.squareMeterToSquareMillimeter(
                         SurfaceConverter.hectareToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.HECTARE, SurfaceUnit.SQUARE_MILLIMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.HECTARE, SurfaceUnit.SQUARE_CENTIMETER),
-                SurfaceConverter.squareMeterToSquareCentimeter(
+        assertEquals(SurfaceConverter.squareMeterToSquareCentimeter(
                         SurfaceConverter.hectareToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.HECTARE, SurfaceUnit.SQUARE_CENTIMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.HECTARE, SurfaceUnit.SQUARE_METER),
-                SurfaceConverter.hectareToSquareMeter(inputValue),
+        assertEquals(SurfaceConverter.hectareToSquareMeter(inputValue),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.HECTARE, SurfaceUnit.SQUARE_METER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.HECTARE, SurfaceUnit.SQUARE_KILOMETER),
-                SurfaceConverter.squareMeterToSquareKilometer(
+        assertEquals(SurfaceConverter.squareMeterToSquareKilometer(
                         SurfaceConverter.hectareToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.HECTARE, SurfaceUnit.SQUARE_KILOMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.HECTARE, SurfaceUnit.SQUARE_INCH),
-                SurfaceConverter.squareMeterToSquareInch(
+        assertEquals(SurfaceConverter.squareMeterToSquareInch(
                         SurfaceConverter.hectareToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.HECTARE, SurfaceUnit.SQUARE_INCH),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.HECTARE, SurfaceUnit.SQUARE_FOOT),
-                SurfaceConverter.squareMeterToSquareFoot(
+        assertEquals(SurfaceConverter.squareMeterToSquareFoot(
                         SurfaceConverter.hectareToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.HECTARE, SurfaceUnit.SQUARE_FOOT),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.HECTARE, SurfaceUnit.SQUARE_YARD),
-                SurfaceConverter.squareMeterToSquareYard(
+        assertEquals(SurfaceConverter.squareMeterToSquareYard(
                         SurfaceConverter.hectareToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.HECTARE, SurfaceUnit.SQUARE_YARD),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.HECTARE, SurfaceUnit.SQUARE_MILE),
-                SurfaceConverter.squareMeterToSquareMile(
+        assertEquals(SurfaceConverter.squareMeterToSquareMile(
                         SurfaceConverter.hectareToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.HECTARE, SurfaceUnit.SQUARE_MILE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.HECTARE, SurfaceUnit.CENTIARE),
-                SurfaceConverter.squareMeterToCentiare(
+        assertEquals(SurfaceConverter.squareMeterToCentiare(
                         SurfaceConverter.hectareToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.HECTARE, SurfaceUnit.CENTIARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.HECTARE, SurfaceUnit.ARE),
-                SurfaceConverter.squareMeterToAre(
+        assertEquals(SurfaceConverter.squareMeterToAre(
                         SurfaceConverter.hectareToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.HECTARE, SurfaceUnit.ARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.HECTARE, SurfaceUnit.DECARE),
-                SurfaceConverter.squareMeterToDecare(
+        assertEquals(SurfaceConverter.squareMeterToDecare(
                         SurfaceConverter.hectareToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.HECTARE, SurfaceUnit.DECARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.HECTARE, SurfaceUnit.HECTARE),
-                inputValue, ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.HECTARE, SurfaceUnit.ACRE),
-                SurfaceConverter.squareMeterToAcre(
+        assertEquals(inputValue,
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.HECTARE, SurfaceUnit.HECTARE),
+                ERROR);
+        assertEquals(SurfaceConverter.squareMeterToAcre(
                         SurfaceConverter.hectareToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.HECTARE, SurfaceUnit.ACRE),
                 ERROR);
 
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.ACRE, SurfaceUnit.SQUARE_MILLIMETER),
-                SurfaceConverter.squareMeterToSquareMillimeter(
+        assertEquals(SurfaceConverter.squareMeterToSquareMillimeter(
                         SurfaceConverter.acreToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.ACRE, SurfaceUnit.SQUARE_MILLIMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.ACRE, SurfaceUnit.SQUARE_CENTIMETER),
-                SurfaceConverter.squareMeterToSquareCentimeter(
+        assertEquals(SurfaceConverter.squareMeterToSquareCentimeter(
                         SurfaceConverter.acreToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.ACRE, SurfaceUnit.SQUARE_CENTIMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.ACRE, SurfaceUnit.SQUARE_METER),
-                SurfaceConverter.acreToSquareMeter(inputValue),
+        assertEquals(SurfaceConverter.acreToSquareMeter(inputValue),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.ACRE, SurfaceUnit.SQUARE_METER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.ACRE, SurfaceUnit.SQUARE_KILOMETER),
-                SurfaceConverter.squareMeterToSquareKilometer(
+        assertEquals(SurfaceConverter.squareMeterToSquareKilometer(
                         SurfaceConverter.acreToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.ACRE, SurfaceUnit.SQUARE_KILOMETER),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.ACRE, SurfaceUnit.SQUARE_INCH),
-                SurfaceConverter.squareMeterToSquareInch(
+        assertEquals(SurfaceConverter.squareMeterToSquareInch(
                         SurfaceConverter.acreToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.ACRE, SurfaceUnit.SQUARE_INCH),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.ACRE, SurfaceUnit.SQUARE_FOOT),
-                SurfaceConverter.squareMeterToSquareFoot(
+        assertEquals(SurfaceConverter.squareMeterToSquareFoot(
                         SurfaceConverter.acreToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.ACRE, SurfaceUnit.SQUARE_FOOT),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.ACRE, SurfaceUnit.SQUARE_YARD),
-                SurfaceConverter.squareMeterToSquareYard(
+        assertEquals(SurfaceConverter.squareMeterToSquareYard(
                         SurfaceConverter.acreToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.ACRE, SurfaceUnit.SQUARE_YARD),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.ACRE, SurfaceUnit.SQUARE_MILE),
-                SurfaceConverter.squareMeterToSquareMile(
+        assertEquals(SurfaceConverter.squareMeterToSquareMile(
                         SurfaceConverter.acreToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.ACRE, SurfaceUnit.SQUARE_MILE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.ACRE, SurfaceUnit.CENTIARE),
-                SurfaceConverter.squareMeterToCentiare(
+        assertEquals(SurfaceConverter.squareMeterToCentiare(
                         SurfaceConverter.acreToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.ACRE, SurfaceUnit.CENTIARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.ACRE, SurfaceUnit.ARE),
-                SurfaceConverter.squareMeterToAre(
+        assertEquals(SurfaceConverter.squareMeterToAre(
                         SurfaceConverter.acreToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.ACRE, SurfaceUnit.ARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.ACRE, SurfaceUnit.DECARE),
-                SurfaceConverter.squareMeterToDecare(
+        assertEquals(SurfaceConverter.squareMeterToDecare(
                         SurfaceConverter.acreToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.ACRE, SurfaceUnit.DECARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.ACRE, SurfaceUnit.HECTARE),
-                SurfaceConverter.squareMeterToHectare(
+        assertEquals(SurfaceConverter.squareMeterToHectare(
                         SurfaceConverter.acreToSquareMeter(inputValue)),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.ACRE, SurfaceUnit.HECTARE),
                 ERROR);
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.ACRE, SurfaceUnit.ACRE),
-                inputValue, ERROR);
+        assertEquals(inputValue,
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.ACRE, SurfaceUnit.ACRE),
+                ERROR);
     }
 
     @Test
     public void testConvertNumber() {
         final BigDecimal inputValue = BigDecimal.valueOf(new Random().nextDouble());
 
-        assertEquals(SurfaceConverter.convert(inputValue,
-                SurfaceUnit.SQUARE_MILLIMETER,
-                SurfaceUnit.SQUARE_MILLIMETER).doubleValue(),
-                inputValue.doubleValue(), ERROR);
+        assertEquals(inputValue.doubleValue(),
+                SurfaceConverter.convert(inputValue,
+                        SurfaceUnit.SQUARE_MILLIMETER,
+                        SurfaceUnit.SQUARE_MILLIMETER).doubleValue(),
+                ERROR);
 
     }
 
@@ -1063,13 +1102,12 @@ public class SurfaceConverterTest {
                 outputSurface);
 
         // check
-        assertEquals(inputSurface.getValue().doubleValue(), value, 0.0);
-        assertEquals(inputSurface.getUnit(), SurfaceUnit.SQUARE_METER);
+        assertEquals(value, inputSurface.getValue().doubleValue(), 0.0);
+        assertEquals(SurfaceUnit.SQUARE_METER, inputSurface.getUnit());
 
-        assertEquals(outputSurface.getUnit(), SurfaceUnit.SQUARE_KILOMETER);
-        assertEquals(outputSurface.getValue().doubleValue(),
-                SurfaceConverter.convert(value, inputSurface.getUnit(),
-                        outputSurface.getUnit()), 0.0);
+        assertEquals(SurfaceUnit.SQUARE_KILOMETER, outputSurface.getUnit());
+        assertEquals(SurfaceConverter.convert(value, inputSurface.getUnit(),
+                outputSurface.getUnit()), outputSurface.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -1080,10 +1118,10 @@ public class SurfaceConverterTest {
         SurfaceConverter.convert(surface, SurfaceUnit.SQUARE_KILOMETER);
 
         // check
-        assertEquals(surface.getUnit(), SurfaceUnit.SQUARE_KILOMETER);
-        assertEquals(surface.getValue().doubleValue(),
-                SurfaceConverter.convert(value,
+        assertEquals(SurfaceUnit.SQUARE_KILOMETER, surface.getUnit());
+        assertEquals(SurfaceConverter.convert(value,
                         SurfaceUnit.SQUARE_METER, SurfaceUnit.SQUARE_KILOMETER),
+                surface.getValue().doubleValue(),
                 0.0);
     }
 
@@ -1096,13 +1134,12 @@ public class SurfaceConverterTest {
                 inputSurface, SurfaceUnit.SQUARE_KILOMETER);
 
         // check
-        assertEquals(inputSurface.getValue().doubleValue(), value, 0.0);
-        assertEquals(inputSurface.getUnit(), SurfaceUnit.SQUARE_METER);
+        assertEquals(value, inputSurface.getValue().doubleValue(), 0.0);
+        assertEquals(SurfaceUnit.SQUARE_METER, inputSurface.getUnit());
 
-        assertEquals(outputSurface.getUnit(), SurfaceUnit.SQUARE_KILOMETER);
-        assertEquals(outputSurface.getValue().doubleValue(),
-                SurfaceConverter.convert(value, inputSurface.getUnit(),
-                        outputSurface.getUnit()), 0.0);
+        assertEquals(SurfaceUnit.SQUARE_KILOMETER, outputSurface.getUnit());
+        assertEquals(SurfaceConverter.convert(value, inputSurface.getUnit(),
+                outputSurface.getUnit()), outputSurface.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -1115,12 +1152,11 @@ public class SurfaceConverterTest {
         SurfaceConverter.convert(inputSurface, outputSurface);
 
         // check
-        assertEquals(inputSurface.getValue().doubleValue(), value, 0.0);
-        assertEquals(inputSurface.getUnit(), SurfaceUnit.SQUARE_METER);
+        assertEquals(value, inputSurface.getValue().doubleValue(), 0.0);
+        assertEquals(SurfaceUnit.SQUARE_METER, inputSurface.getUnit());
 
-        assertEquals(outputSurface.getUnit(), SurfaceUnit.SQUARE_KILOMETER);
-        assertEquals(outputSurface.getValue().doubleValue(),
-                SurfaceConverter.convert(value, inputSurface.getUnit(),
-                        outputSurface.getUnit()), 0.0);
+        assertEquals(SurfaceUnit.SQUARE_KILOMETER, outputSurface.getUnit());
+        assertEquals(SurfaceConverter.convert(value, inputSurface.getUnit(),
+                outputSurface.getUnit()), outputSurface.getValue().doubleValue(), 0.0);
     }
 }

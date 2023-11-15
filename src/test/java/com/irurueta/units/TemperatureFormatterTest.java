@@ -34,49 +34,49 @@ public class TemperatureFormatterTest {
         TemperatureFormatter formatter = new TemperatureFormatter();
 
         // check
-        assertEquals(formatter.getLocale(), Locale.getDefault());
-        assertEquals(formatter.getMaximumFractionDigits(),
-                NumberFormat.getInstance().getMaximumFractionDigits());
-        assertEquals(formatter.getMaximumIntegerDigits(),
-                NumberFormat.getInstance().getMaximumIntegerDigits());
-        assertEquals(formatter.getMinimumFractionDigits(),
-                NumberFormat.getInstance().getMinimumFractionDigits());
-        assertEquals(formatter.getMinimumIntegerDigits(),
-                NumberFormat.getInstance().getMinimumIntegerDigits());
-        assertEquals(formatter.getRoundingMode(),
-                NumberFormat.getInstance().getRoundingMode());
-        assertEquals(formatter.getUnitSystem(),
-                UnitLocale.getFrom(Locale.getDefault()));
-        assertEquals(formatter.isGroupingUsed(),
-                NumberFormat.getInstance().isGroupingUsed());
-        assertEquals(formatter.isParseIntegerOnly(),
-                NumberFormat.getInstance().isParseIntegerOnly());
-        assertEquals(formatter.getValueAndUnitFormatPattern(),
-                MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
+        assertEquals(Locale.getDefault(), formatter.getLocale());
+        assertEquals(NumberFormat.getInstance().getMaximumFractionDigits(),
+                formatter.getMaximumFractionDigits());
+        assertEquals(NumberFormat.getInstance().getMaximumIntegerDigits(),
+                formatter.getMaximumIntegerDigits());
+        assertEquals(NumberFormat.getInstance().getMinimumFractionDigits(),
+                formatter.getMinimumFractionDigits());
+        assertEquals(NumberFormat.getInstance().getMinimumIntegerDigits(),
+                formatter.getMinimumIntegerDigits());
+        assertEquals(NumberFormat.getInstance().getRoundingMode(),
+                formatter.getRoundingMode());
+        assertEquals(UnitLocale.getFrom(Locale.getDefault()),
+                formatter.getUnitSystem());
+        assertEquals(NumberFormat.getInstance().isGroupingUsed(),
+                formatter.isGroupingUsed());
+        assertEquals(NumberFormat.getInstance().isParseIntegerOnly(),
+                formatter.isParseIntegerOnly());
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
+                formatter.getValueAndUnitFormatPattern());
 
         // test constructor with locale
         final Locale locale = new Locale("es", "ES");
         formatter = new TemperatureFormatter(locale);
 
         // check
-        assertEquals(formatter.getLocale(), locale);
-        assertEquals(formatter.getMaximumFractionDigits(),
-                NumberFormat.getInstance(locale).getMaximumFractionDigits());
-        assertEquals(formatter.getMaximumIntegerDigits(),
-                NumberFormat.getInstance(locale).getMaximumIntegerDigits());
-        assertEquals(formatter.getMinimumFractionDigits(),
-                NumberFormat.getInstance(locale).getMinimumFractionDigits());
-        assertEquals(formatter.getMinimumIntegerDigits(),
-                NumberFormat.getInstance(locale).getMinimumIntegerDigits());
-        assertEquals(formatter.getRoundingMode(),
-                NumberFormat.getInstance(locale).getRoundingMode());
-        assertEquals(formatter.getUnitSystem(), UnitSystem.METRIC);
-        assertEquals(formatter.isGroupingUsed(),
-                NumberFormat.getInstance(locale).isGroupingUsed());
-        assertEquals(formatter.isParseIntegerOnly(),
-                NumberFormat.getInstance(locale).isParseIntegerOnly());
-        assertEquals(formatter.getValueAndUnitFormatPattern(),
-                MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
+        assertEquals(locale, formatter.getLocale());
+        assertEquals(NumberFormat.getInstance(locale).getMaximumFractionDigits(),
+                formatter.getMaximumFractionDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMaximumIntegerDigits(),
+                formatter.getMaximumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMinimumFractionDigits(),
+                formatter.getMinimumFractionDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMinimumIntegerDigits(),
+                formatter.getMinimumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getRoundingMode(),
+                formatter.getRoundingMode());
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem());
+        assertEquals(NumberFormat.getInstance(locale).isGroupingUsed(),
+                formatter.isGroupingUsed());
+        assertEquals(NumberFormat.getInstance(locale).isParseIntegerOnly(),
+                formatter.isParseIntegerOnly());
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
+                formatter.getValueAndUnitFormatPattern());
 
 
         // force IllegalArgumentException
@@ -95,24 +95,24 @@ public class TemperatureFormatterTest {
         final TemperatureFormatter formatter2 = new TemperatureFormatter(formatter);
 
         // check
-        assertEquals(formatter2.getLocale(), locale);
-        assertEquals(formatter2.getMaximumFractionDigits(),
-                NumberFormat.getInstance(locale).getMaximumFractionDigits());
-        assertEquals(formatter2.getMaximumIntegerDigits(),
-                NumberFormat.getInstance(locale).getMaximumIntegerDigits());
-        assertEquals(formatter2.getMinimumFractionDigits(),
-                NumberFormat.getInstance(locale).getMinimumFractionDigits());
-        assertEquals(formatter2.getMinimumIntegerDigits(),
-                NumberFormat.getInstance(locale).getMinimumIntegerDigits());
-        assertEquals(formatter2.getRoundingMode(),
-                NumberFormat.getInstance(locale).getRoundingMode());
-        assertEquals(formatter2.getUnitSystem(), UnitSystem.METRIC);
-        assertEquals(formatter2.isGroupingUsed(),
-                NumberFormat.getInstance(locale).isGroupingUsed());
-        assertEquals(formatter2.isParseIntegerOnly(),
-                NumberFormat.getInstance(locale).isParseIntegerOnly());
-        assertEquals(formatter2.getValueAndUnitFormatPattern(),
-                MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
+        assertEquals(locale, formatter2.getLocale());
+        assertEquals(NumberFormat.getInstance(locale).getMaximumFractionDigits(),
+                formatter2.getMaximumFractionDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMaximumIntegerDigits(),
+                formatter2.getMaximumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMinimumFractionDigits(),
+                formatter2.getMinimumFractionDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMinimumIntegerDigits(),
+                formatter2.getMinimumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getRoundingMode(),
+                formatter2.getRoundingMode());
+        assertEquals(UnitSystem.METRIC, formatter2.getUnitSystem());
+        assertEquals(NumberFormat.getInstance(locale).isGroupingUsed(),
+                formatter2.isGroupingUsed());
+        assertEquals(NumberFormat.getInstance(locale).isParseIntegerOnly(),
+                formatter2.isParseIntegerOnly());
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
+                formatter2.getValueAndUnitFormatPattern());
 
         formatter = null;
         try {
@@ -152,6 +152,7 @@ public class TemperatureFormatterTest {
                 Locale.FRENCH);
 
         // check
+        //noinspection EqualsWithItself
         assertEquals(formatter1, formatter1);
         assertEquals(formatter1, formatter2);
         assertNotEquals(formatter1, formatter3);
@@ -182,12 +183,12 @@ public class TemperatureFormatterTest {
 
         final TemperatureFormatter formatter = new TemperatureFormatter(l);
 
-        assertEquals(formatter.format(new BigDecimal(value),
-                TemperatureUnit.CELSIUS), "5,5 ºC");
-        assertEquals(formatter.format(new BigDecimal(value),
-                TemperatureUnit.FAHRENHEIT), "5,5 ºF");
-        assertEquals(formatter.format(new BigDecimal(value),
-                TemperatureUnit.KELVIN), "5,5 K");
+        assertEquals("5,5 ºC", formatter.format(new BigDecimal(value),
+                TemperatureUnit.CELSIUS));
+        assertEquals("5,5 ºF", formatter.format(new BigDecimal(value),
+                TemperatureUnit.FAHRENHEIT));
+        assertEquals("5,5 K", formatter.format(new BigDecimal(value),
+                TemperatureUnit.KELVIN));
     }
 
     @Test
@@ -198,19 +199,19 @@ public class TemperatureFormatterTest {
         final TemperatureFormatter formatter = new TemperatureFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
+        assertEquals("5,5 ºC", formatter.format(new BigDecimal(value),
                 TemperatureUnit.CELSIUS, buffer,
-                new FieldPosition(0)).toString(), "5,5 ºC");
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
+        assertEquals("5,5 ºF", formatter.format(new BigDecimal(value),
                 TemperatureUnit.FAHRENHEIT, buffer,
-                new FieldPosition(0)).toString(), "5,5 ºF");
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
+        assertEquals("5,5 K", formatter.format(new BigDecimal(value),
                 TemperatureUnit.KELVIN, buffer,
-                new FieldPosition(0)).toString(), "5,5 K");
+                new FieldPosition(0)).toString());
     }
 
     @Test
@@ -220,12 +221,12 @@ public class TemperatureFormatterTest {
 
         final TemperatureFormatter formatter = new TemperatureFormatter(l);
 
-        assertEquals(formatter.format(value, TemperatureUnit.CELSIUS),
-                "5,5 ºC");
-        assertEquals(formatter.format(value, TemperatureUnit.FAHRENHEIT),
-                "5,5 ºF");
-        assertEquals(formatter.format(value, TemperatureUnit.KELVIN),
-                "5,5 K");
+        assertEquals("5,5 ºC",
+                formatter.format(value, TemperatureUnit.CELSIUS));
+        assertEquals("5,5 ºF",
+                formatter.format(value, TemperatureUnit.FAHRENHEIT));
+        assertEquals("5,5 K",
+                formatter.format(value, TemperatureUnit.KELVIN));
     }
 
     @Test
@@ -236,16 +237,16 @@ public class TemperatureFormatterTest {
         final TemperatureFormatter formatter = new TemperatureFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
-        assertEquals(formatter.format(value, TemperatureUnit.CELSIUS, buffer,
-                new FieldPosition(0)).toString(), "5,5 ºC");
+        assertEquals("5,5 ºC", formatter.format(value, TemperatureUnit.CELSIUS, buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value, TemperatureUnit.FAHRENHEIT, buffer,
-                new FieldPosition(0)).toString(), "5,5 ºF");
+        assertEquals("5,5 ºF", formatter.format(value, TemperatureUnit.FAHRENHEIT, buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value, TemperatureUnit.KELVIN, buffer,
-                new FieldPosition(0)).toString(), "5,5 K");
+        assertEquals("5,5 K", formatter.format(value, TemperatureUnit.KELVIN, buffer,
+                new FieldPosition(0)).toString());
     }
 
     @Test
@@ -255,15 +256,15 @@ public class TemperatureFormatterTest {
 
         final TemperatureFormatter formatter = new TemperatureFormatter(l);
 
-        assertEquals(formatter.format(
-                new Temperature(value, TemperatureUnit.KELVIN)),
-                "5,5 K");
-        assertEquals(formatter.format(
-                new Temperature(value, TemperatureUnit.FAHRENHEIT)),
-                "5,5 ºF");
-        assertEquals(formatter.format(
-                new Temperature(value, TemperatureUnit.CELSIUS)),
-                "5,5 ºC");
+        assertEquals("5,5 K",
+                formatter.format(
+                        new Temperature(value, TemperatureUnit.KELVIN)));
+        assertEquals("5,5 ºF",
+                formatter.format(
+                        new Temperature(value, TemperatureUnit.FAHRENHEIT)));
+        assertEquals("5,5 ºC",
+                formatter.format(
+                        new Temperature(value, TemperatureUnit.CELSIUS)));
     }
 
     @Test
@@ -274,19 +275,19 @@ public class TemperatureFormatterTest {
         final TemperatureFormatter formatter = new TemperatureFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
-        assertEquals(formatter.format(
+        assertEquals("5,5 K", formatter.format(
                 new Temperature(value, TemperatureUnit.KELVIN),
-                buffer, new FieldPosition(0)).toString(), "5,5 K");
+                buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(
+        assertEquals("5,5 ºF", formatter.format(
                 new Temperature(value, TemperatureUnit.FAHRENHEIT),
-                buffer, new FieldPosition(0)).toString(), "5,5 ºF");
+                buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(
+        assertEquals("5,5 ºC", formatter.format(
                 new Temperature(value, TemperatureUnit.CELSIUS),
-                buffer, new FieldPosition(0)).toString(), "5,5 ºC");
+                buffer, new FieldPosition(0)).toString());
     }
 
     @Test
@@ -297,15 +298,15 @@ public class TemperatureFormatterTest {
         final TemperatureFormatter formatter = new TemperatureFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(
-                new BigDecimal(value), TemperatureUnit.CELSIUS),
-                formatter.format(value, TemperatureUnit.CELSIUS));
-        assertEquals(formatter.formatAndConvert(
-                new BigDecimal(value), TemperatureUnit.FAHRENHEIT),
-                formatter.format(value, TemperatureUnit.FAHRENHEIT));
-        assertEquals(formatter.formatAndConvert(
-                new BigDecimal(value), TemperatureUnit.KELVIN),
-                formatter.format(value, TemperatureUnit.KELVIN));
+        assertEquals(formatter.format(value, TemperatureUnit.CELSIUS),
+                formatter.formatAndConvert(
+                        new BigDecimal(value), TemperatureUnit.CELSIUS));
+        assertEquals(formatter.format(value, TemperatureUnit.FAHRENHEIT),
+                formatter.formatAndConvert(
+                        new BigDecimal(value), TemperatureUnit.FAHRENHEIT));
+        assertEquals(formatter.format(value, TemperatureUnit.KELVIN),
+                formatter.formatAndConvert(
+                        new BigDecimal(value), TemperatureUnit.KELVIN));
     }
 
     @Test
@@ -316,15 +317,15 @@ public class TemperatureFormatterTest {
         final TemperatureFormatter formatter = new TemperatureFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(
-                value, TemperatureUnit.CELSIUS),
-                formatter.format(value, TemperatureUnit.CELSIUS));
-        assertEquals(formatter.formatAndConvert(
-                value, TemperatureUnit.FAHRENHEIT),
-                formatter.format(value, TemperatureUnit.FAHRENHEIT));
-        assertEquals(formatter.formatAndConvert(
-                value, TemperatureUnit.KELVIN),
-                formatter.format(value, TemperatureUnit.KELVIN));
+        assertEquals(formatter.format(value, TemperatureUnit.CELSIUS),
+                formatter.formatAndConvert(
+                        value, TemperatureUnit.CELSIUS));
+        assertEquals(formatter.format(value, TemperatureUnit.FAHRENHEIT),
+                formatter.formatAndConvert(
+                        value, TemperatureUnit.FAHRENHEIT));
+        assertEquals(formatter.format(value, TemperatureUnit.KELVIN),
+                formatter.formatAndConvert(
+                        value, TemperatureUnit.KELVIN));
     }
 
     @Test
@@ -335,15 +336,15 @@ public class TemperatureFormatterTest {
         final TemperatureFormatter formatter = new TemperatureFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(
-                new Temperature(value, TemperatureUnit.KELVIN)),
-                "5,5 K");
-        assertEquals(formatter.formatAndConvert(
-                new Temperature(value, TemperatureUnit.FAHRENHEIT)),
-                "5,5 ºF");
-        assertEquals(formatter.formatAndConvert(
-                new Temperature(value, TemperatureUnit.CELSIUS)),
-                "5,5 ºC");
+        assertEquals("5,5 K",
+                formatter.formatAndConvert(
+                        new Temperature(value, TemperatureUnit.KELVIN)));
+        assertEquals("5,5 ºF",
+                formatter.formatAndConvert(
+                        new Temperature(value, TemperatureUnit.FAHRENHEIT)));
+        assertEquals("5,5 ºC",
+                formatter.formatAndConvert(
+                        new Temperature(value, TemperatureUnit.CELSIUS)));
     }
 
     @Test
@@ -354,15 +355,15 @@ public class TemperatureFormatterTest {
         final TemperatureFormatter formatter = new TemperatureFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(
-                new BigDecimal(value), TemperatureUnit.CELSIUS, UnitSystem.METRIC),
-                formatter.format(value, TemperatureUnit.CELSIUS));
-        assertEquals(formatter.formatAndConvert(
-                new BigDecimal(value), TemperatureUnit.FAHRENHEIT, UnitSystem.IMPERIAL),
-                formatter.format(value, TemperatureUnit.FAHRENHEIT));
-        assertEquals(formatter.formatAndConvert(
-                new BigDecimal(value), TemperatureUnit.KELVIN, UnitSystem.METRIC),
-                formatter.format(value, TemperatureUnit.KELVIN));
+        assertEquals(formatter.format(value, TemperatureUnit.CELSIUS),
+                formatter.formatAndConvert(
+                        new BigDecimal(value), TemperatureUnit.CELSIUS, UnitSystem.METRIC));
+        assertEquals(formatter.format(value, TemperatureUnit.FAHRENHEIT),
+                formatter.formatAndConvert(
+                        new BigDecimal(value), TemperatureUnit.FAHRENHEIT, UnitSystem.IMPERIAL));
+        assertEquals(formatter.format(value, TemperatureUnit.KELVIN),
+                formatter.formatAndConvert(
+                        new BigDecimal(value), TemperatureUnit.KELVIN, UnitSystem.METRIC));
     }
 
     @Test
@@ -373,15 +374,15 @@ public class TemperatureFormatterTest {
         final TemperatureFormatter formatter = new TemperatureFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(
-                value, TemperatureUnit.CELSIUS, UnitSystem.METRIC),
-                formatter.format(value, TemperatureUnit.CELSIUS));
-        assertEquals(formatter.formatAndConvert(
-                value, TemperatureUnit.FAHRENHEIT, UnitSystem.IMPERIAL),
-                formatter.format(value, TemperatureUnit.FAHRENHEIT));
-        assertEquals(formatter.formatAndConvert(
-                value, TemperatureUnit.KELVIN, UnitSystem.METRIC),
-                formatter.format(value, TemperatureUnit.KELVIN));
+        assertEquals(formatter.format(value, TemperatureUnit.CELSIUS),
+                formatter.formatAndConvert(
+                        value, TemperatureUnit.CELSIUS, UnitSystem.METRIC));
+        assertEquals(formatter.format(value, TemperatureUnit.FAHRENHEIT),
+                formatter.formatAndConvert(
+                        value, TemperatureUnit.FAHRENHEIT, UnitSystem.IMPERIAL));
+        assertEquals(formatter.format(value, TemperatureUnit.KELVIN),
+                formatter.formatAndConvert(
+                        value, TemperatureUnit.KELVIN, UnitSystem.METRIC));
     }
 
     @Test
@@ -392,15 +393,15 @@ public class TemperatureFormatterTest {
         final TemperatureFormatter formatter = new TemperatureFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(
-                new Temperature(value, TemperatureUnit.KELVIN), UnitSystem.METRIC),
-                "5,5 K");
-        assertEquals(formatter.formatAndConvert(
-                new Temperature(value, TemperatureUnit.FAHRENHEIT), UnitSystem.IMPERIAL),
-                "5,5 ºF");
-        assertEquals(formatter.formatAndConvert(
-                new Temperature(value, TemperatureUnit.CELSIUS), UnitSystem.METRIC),
-                "5,5 ºC");
+        assertEquals("5,5 K",
+                formatter.formatAndConvert(
+                        new Temperature(value, TemperatureUnit.KELVIN), UnitSystem.METRIC));
+        assertEquals("5,5 ºF",
+                formatter.formatAndConvert(
+                        new Temperature(value, TemperatureUnit.FAHRENHEIT), UnitSystem.IMPERIAL));
+        assertEquals("5,5 ºC",
+                formatter.formatAndConvert(
+                        new Temperature(value, TemperatureUnit.CELSIUS), UnitSystem.METRIC));
     }
 
     @Test
@@ -420,7 +421,7 @@ public class TemperatureFormatterTest {
         formatter.setMaximumFractionDigits(2);
 
         // check correctness
-        assertEquals(formatter.getMaximumFractionDigits(), 2);
+        assertEquals(2, formatter.getMaximumFractionDigits());
     }
 
     @Test
@@ -434,7 +435,7 @@ public class TemperatureFormatterTest {
         formatter.setMaximumIntegerDigits(2);
 
         // check correctness
-        assertEquals(formatter.getMaximumIntegerDigits(), 2);
+        assertEquals(2, formatter.getMaximumIntegerDigits());
     }
 
     @Test
@@ -448,7 +449,7 @@ public class TemperatureFormatterTest {
         formatter.setMinimumFractionDigits(2);
 
         // check correctness
-        assertEquals(formatter.getMinimumFractionDigits(), 2);
+        assertEquals(2, formatter.getMinimumFractionDigits());
     }
 
     @Test
@@ -462,7 +463,7 @@ public class TemperatureFormatterTest {
         formatter.setMinimumIntegerDigits(2);
 
         // check correctness
-        assertEquals(formatter.getMinimumIntegerDigits(), 2);
+        assertEquals(2, formatter.getMinimumIntegerDigits());
     }
 
     @Test
@@ -476,7 +477,7 @@ public class TemperatureFormatterTest {
         formatter.setRoundingMode(RoundingMode.UNNECESSARY);
 
         // check correctness
-        assertEquals(formatter.getRoundingMode(), RoundingMode.UNNECESSARY);
+        assertEquals(RoundingMode.UNNECESSARY, formatter.getRoundingMode());
     }
 
     @Test
@@ -505,22 +506,22 @@ public class TemperatureFormatterTest {
         formatter.setParseIntegerOnly(!formatter.isParseIntegerOnly());
 
         // check correctness
-        assertEquals(formatter.isParseIntegerOnly(),
-                !NumberFormat.getInstance().isParseIntegerOnly());
+        assertEquals(!NumberFormat.getInstance().isParseIntegerOnly(),
+                formatter.isParseIntegerOnly());
     }
 
     @Test
     public void testGetSetValueAndUnitFormatPattern() {
         final TemperatureFormatter formatter = new TemperatureFormatter();
 
-        assertEquals(formatter.getValueAndUnitFormatPattern(),
-                MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
+                formatter.getValueAndUnitFormatPattern());
 
         // new value
         formatter.setValueAndUnitFormatPattern("{0}{1}");
 
         // check correctness
-        assertEquals(formatter.getValueAndUnitFormatPattern(), "{0}{1}");
+        assertEquals("{0}{1}", formatter.getValueAndUnitFormatPattern());
 
         // force IllegalArgumentException
         try {
@@ -534,11 +535,11 @@ public class TemperatureFormatterTest {
     public void testGetUnitSystem() {
         TemperatureFormatter formatter = new TemperatureFormatter(
                 new Locale("es", "ES"));
-        assertEquals(formatter.getUnitSystem(), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem());
 
         formatter = new TemperatureFormatter(
                 new Locale("en", "US"));
-        assertEquals(formatter.getUnitSystem(), UnitSystem.IMPERIAL);
+        assertEquals(UnitSystem.IMPERIAL, formatter.getUnitSystem());
     }
 
     @Test
@@ -611,13 +612,13 @@ public class TemperatureFormatterTest {
                 new Locale("es", "ES"));
 
         String text = "5,5 ºC";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem(text));
 
         text = "5,5 K";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem(text));
 
         text = "5,5 ºF";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.IMPERIAL);
+        assertEquals(UnitSystem.IMPERIAL, formatter.getUnitSystem(text));
     }
 
     @Test
@@ -627,18 +628,18 @@ public class TemperatureFormatterTest {
 
         String text = "5,5 ºC";
         Temperature t = formatter.parse(text);
-        assertEquals(t.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(t.getUnit(), TemperatureUnit.CELSIUS);
+        assertEquals(5.5, t.getValue().doubleValue(), 0.0);
+        assertEquals(TemperatureUnit.CELSIUS, t.getUnit());
 
         text = "5,5 ºF";
         t = formatter.parse(text);
-        assertEquals(t.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(t.getUnit(), TemperatureUnit.FAHRENHEIT);
+        assertEquals(5.5, t.getValue().doubleValue(), 0.0);
+        assertEquals(TemperatureUnit.FAHRENHEIT, t.getUnit());
 
         text = "5,5 K";
         t = formatter.parse(text);
-        assertEquals(t.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(t.getUnit(), TemperatureUnit.KELVIN);
+        assertEquals(5.5, t.getValue().doubleValue(), 0.0);
+        assertEquals(TemperatureUnit.KELVIN, t.getUnit());
 
         // Force UnknownUnitException
         text = "5,5 s";
@@ -662,13 +663,13 @@ public class TemperatureFormatterTest {
                 new Locale("es", "ES"));
 
         String text = "5,5 ºC";
-        assertEquals(formatter.findUnit(text), TemperatureUnit.CELSIUS);
+        assertEquals(TemperatureUnit.CELSIUS, formatter.findUnit(text));
 
         text = "5,5 ºF";
-        assertEquals(formatter.findUnit(text), TemperatureUnit.FAHRENHEIT);
+        assertEquals(TemperatureUnit.FAHRENHEIT, formatter.findUnit(text));
 
         text = "5,5 K";
-        assertEquals(formatter.findUnit(text), TemperatureUnit.KELVIN);
+        assertEquals(TemperatureUnit.KELVIN, formatter.findUnit(text));
 
         text = "5,5 s";
         assertNull(formatter.findUnit(text));
@@ -678,11 +679,11 @@ public class TemperatureFormatterTest {
     public void testGetUnitSymbol() {
         final TemperatureFormatter formatter = new TemperatureFormatter();
 
-        assertEquals(formatter.getUnitSymbol(TemperatureUnit.CELSIUS),
-                TemperatureFormatter.CELSIUS);
-        assertEquals(formatter.getUnitSymbol(TemperatureUnit.FAHRENHEIT),
-                TemperatureFormatter.FAHRENHEIT);
-        assertEquals(formatter.getUnitSymbol(TemperatureUnit.KELVIN),
-                TemperatureFormatter.KELVIN);
+        assertEquals(TemperatureFormatter.CELSIUS,
+                formatter.getUnitSymbol(TemperatureUnit.CELSIUS));
+        assertEquals(TemperatureFormatter.FAHRENHEIT,
+                formatter.getUnitSymbol(TemperatureUnit.FAHRENHEIT));
+        assertEquals(TemperatureFormatter.KELVIN,
+                formatter.getUnitSymbol(TemperatureUnit.KELVIN));
     }
 }

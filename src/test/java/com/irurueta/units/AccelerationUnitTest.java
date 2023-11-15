@@ -23,12 +23,12 @@ public class AccelerationUnitTest {
 
     @Test
     public void testGetUnitSystem() {
-        assertEquals(AccelerationUnit.getUnitSystem(AccelerationUnit.METERS_PER_SQUARED_SECOND),
-                UnitSystem.METRIC);
-        assertEquals(AccelerationUnit.getUnitSystem(AccelerationUnit.G),
-                UnitSystem.METRIC);
-        assertEquals(AccelerationUnit.getUnitSystem(AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                UnitSystem.IMPERIAL);
+        assertEquals(UnitSystem.METRIC,
+                AccelerationUnit.getUnitSystem(AccelerationUnit.METERS_PER_SQUARED_SECOND));
+        assertEquals(UnitSystem.METRIC,
+                AccelerationUnit.getUnitSystem(AccelerationUnit.G));
+        assertEquals(UnitSystem.IMPERIAL,
+                AccelerationUnit.getUnitSystem(AccelerationUnit.FEET_PER_SQUARED_SECOND));
 
         // Force IllegalArgumentException
         try {

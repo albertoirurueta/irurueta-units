@@ -42,50 +42,59 @@ public class AngularAccelerationConverterTest {
     public void testConvertDouble() {
         final double inputValue = new Random().nextDouble();
 
-        assertEquals(AngularAccelerationConverter.convert(inputValue,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND),
-                inputValue, ERROR);
-        assertEquals(AngularAccelerationConverter.convert(inputValue,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND),
+        assertEquals(inputValue,
+                AngularAccelerationConverter.convert(inputValue,
+                        AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
+                        AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND),
+                ERROR);
+        assertEquals(
                 AngularAccelerationConverter.degreesPerSquaredSecondToRadiansPerSquaredSecond(inputValue),
+                AngularAccelerationConverter.convert(inputValue,
+                        AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
+                        AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND),
                 ERROR);
 
-        assertEquals(AngularAccelerationConverter.convert(inputValue,
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND),
+        assertEquals(
                 AngularAccelerationConverter.radiansPerSquaredSecondToDegreesPerSquaredSecond(inputValue),
+                AngularAccelerationConverter.convert(inputValue,
+                        AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
+                        AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND),
                 ERROR);
-        assertEquals(AngularAccelerationConverter.convert(inputValue,
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND),
-                inputValue, ERROR);
+        assertEquals(inputValue,
+                AngularAccelerationConverter.convert(inputValue,
+                        AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
+                        AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND),
+                ERROR);
     }
 
     @Test
     public void testConvertNumber() {
         final BigDecimal inputValue = BigDecimal.valueOf(new Random().nextDouble());
 
-        assertEquals(AngularAccelerationConverter.convert(inputValue,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND).doubleValue(),
-                inputValue.doubleValue(), ERROR);
-        assertEquals(AngularAccelerationConverter.convert(inputValue,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND).doubleValue(),
+        assertEquals(inputValue.doubleValue(),
+                AngularAccelerationConverter.convert(inputValue,
+                        AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
+                        AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND).doubleValue(),
+                ERROR);
+        assertEquals(
                 AngularAccelerationConverter.degreesPerSquaredSecondToRadiansPerSquaredSecond(
-                        inputValue.doubleValue()), ERROR);
+                        inputValue.doubleValue()),
+                AngularAccelerationConverter.convert(inputValue,
+                        AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
+                        AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND).doubleValue(),
+                ERROR);
 
-        assertEquals(AngularAccelerationConverter.convert(inputValue,
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND).doubleValue(),
-                AngularAccelerationConverter.radiansPerSquaredSecondToDegreesPerSquaredSecond(
-                        inputValue.doubleValue()), ERROR);
-        assertEquals(AngularAccelerationConverter.convert(inputValue,
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND).doubleValue(),
-                inputValue.doubleValue(), ERROR);
+        assertEquals(AngularAccelerationConverter.radiansPerSquaredSecondToDegreesPerSquaredSecond(
+                        inputValue.doubleValue()),
+                AngularAccelerationConverter.convert(inputValue,
+                        AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
+                        AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND).doubleValue(),
+                ERROR);
+        assertEquals(inputValue.doubleValue(),
+                AngularAccelerationConverter.convert(inputValue,
+                        AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
+                        AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND).doubleValue(),
+                ERROR);
     }
 
     @Test
@@ -99,13 +108,12 @@ public class AngularAccelerationConverterTest {
                 AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND, output);
 
         // check
-        assertEquals(input.getValue().doubleValue(), value, 0.0);
-        assertEquals(input.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        assertEquals(value, input.getValue().doubleValue(), 0.0);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, input.getUnit());
 
-        assertEquals(output.getUnit(), AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
-        assertEquals(output.getValue().doubleValue(),
-                AngularAccelerationConverter.convert(value, input.getUnit(),
-                        output.getUnit()), 0.0);
+        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND, output.getUnit());
+        assertEquals(AngularAccelerationConverter.convert(value, input.getUnit(),
+                output.getUnit()), output.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -118,12 +126,12 @@ public class AngularAccelerationConverterTest {
                 AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(angularAcceleration.getUnit(),
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
-        assertEquals(angularAcceleration.getValue().doubleValue(),
-                AngularAccelerationConverter.convert(value,
+        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
+                angularAcceleration.getUnit());
+        assertEquals(AngularAccelerationConverter.convert(value,
                         AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
-                        AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND), 0.0);
+                        AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND),
+                angularAcceleration.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -136,13 +144,13 @@ public class AngularAccelerationConverterTest {
                 input, AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(input.getValue().doubleValue(), value, 0.0);
-        assertEquals(input.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        assertEquals(value, input.getValue().doubleValue(), 0.0);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, input.getUnit());
 
-        assertEquals(output.getUnit(), AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
-        assertEquals(output.getValue().doubleValue(),
-                AngularAccelerationConverter.convert(value, input.getUnit(),
-                        output.getUnit()), 0.0);
+        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND, output.getUnit());
+        assertEquals(AngularAccelerationConverter.convert(value, input.getUnit(),
+                        output.getUnit()),
+                output.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -156,12 +164,12 @@ public class AngularAccelerationConverterTest {
         AngularAccelerationConverter.convert(input, output);
 
         // check
-        assertEquals(input.getValue().doubleValue(), value, 0.0);
-        assertEquals(input.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        assertEquals(value, input.getValue().doubleValue(), 0.0);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, input.getUnit());
 
-        assertEquals(output.getUnit(), AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
-        assertEquals(output.getValue().doubleValue(),
-                AngularAccelerationConverter.convert(value, input.getUnit(),
-                        output.getUnit()), 0.0);
+        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND, output.getUnit());
+        assertEquals(AngularAccelerationConverter.convert(value, input.getUnit(),
+                        output.getUnit()),
+                output.getValue().doubleValue(), 0.0);
     }
 }

@@ -23,7 +23,7 @@ import java.util.Locale;
  * Formats and parses acceleration value and unit.
  */
 public class AccelerationFormatter extends
-        MeasureFormatter<Acceleration, AccelerationUnit> implements Cloneable {
+        MeasureFormatter<Acceleration, AccelerationUnit> {
 
     /**
      * Meters per squared second symbol.
@@ -170,7 +170,7 @@ public class AccelerationFormatter extends
             final Number value, final AccelerationUnit unit) {
         //always format as meters per squared second
         return format(AccelerationConverter.convert(value, unit,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND),
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND),
                 AccelerationUnit.METERS_PER_SQUARED_SECOND);
     }
 
@@ -185,7 +185,7 @@ public class AccelerationFormatter extends
             final Number value, final AccelerationUnit unit) {
         //always format as feet per squared second
         return format(AccelerationConverter.convert(value, unit,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND),
+                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
                 AccelerationUnit.FEET_PER_SQUARED_SECOND);
     }
 
@@ -206,17 +206,5 @@ public class AccelerationFormatter extends
             default:
                 return METERS_PER_SQUARED_SECOND;
         }
-    }
-
-    /**
-     * Clones this acceleration formatter.
-     *
-     * @return a copy of this acceleration formatter.
-     * @throws CloneNotSupportedException if clone fails for any reason.
-     */
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        final AccelerationFormatter copy = (AccelerationFormatter) super.clone();
-        return internalClone(copy);
     }
 }

@@ -92,8 +92,8 @@ public class TemperatureConverter {
     /**
      * Converts a temperature value from input unit to provided output unit.
      *
-     * @param input temperature value.
-     * @param inputUnit input temperature unit.
+     * @param input      temperature value.
+     * @param inputUnit  input temperature unit.
      * @param outputUnit output temperature unit.
      * @return converted temperature value.
      */
@@ -107,8 +107,8 @@ public class TemperatureConverter {
     /**
      * Converts a temperature value from input unit to provided output unit.
      *
-     * @param input temperature value.
-     * @param inputUnit input temperature unit.
+     * @param input      temperature value.
+     * @param inputUnit  input temperature unit.
      * @param outputUnit output temperature unit.
      * @return converted temperature value.
      */

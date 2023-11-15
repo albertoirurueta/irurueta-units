@@ -40,8 +40,8 @@ public class SpeedTest {
         s = new Speed(323, SpeedUnit.METERS_PER_SECOND);
 
         // check
-        assertEquals(s.getValue(), 323);
-        assertEquals(s.getUnit(), SpeedUnit.METERS_PER_SECOND);
+        assertEquals(323, s.getValue());
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s.getUnit());
 
         // force IllegalArgumentException
         s = null;
@@ -67,6 +67,7 @@ public class SpeedTest {
         final Speed s3 = new Speed(value + 1.0, SpeedUnit.METERS_PER_SECOND);
         final Speed s4 = new Speed(value, SpeedUnit.KILOMETERS_PER_HOUR);
 
+        //noinspection EqualsWithItself
         assertEquals(s1, s1);
         assertEquals(s1, s2);
         assertNotEquals(s1, s3);
@@ -116,13 +117,13 @@ public class SpeedTest {
         final Speed s = new Speed(1, SpeedUnit.METERS_PER_SECOND);
 
         // check
-        assertEquals(s.getValue(), 1);
+        assertEquals(1, s.getValue());
 
         // set new value
         s.setValue(2.5);
 
         // check
-        assertEquals(s.getValue(), 2.5);
+        assertEquals(2.5, s.getValue());
 
         //force IllegalArgumentException
         try {
@@ -137,13 +138,13 @@ public class SpeedTest {
         final Speed s = new Speed(1, SpeedUnit.METERS_PER_SECOND);
 
         // check
-        assertEquals(s.getUnit(), SpeedUnit.METERS_PER_SECOND);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s.getUnit());
 
         // set new value
         s.setUnit(SpeedUnit.KILOMETERS_PER_HOUR);
 
         // check
-        assertEquals(s.getUnit(), SpeedUnit.KILOMETERS_PER_HOUR);
+        assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, s.getUnit());
 
         // force IllegalArgumentException
         try {
@@ -197,13 +198,13 @@ public class SpeedTest {
         Speed.add(s1, s2, result);
 
         // check
-        assertEquals(s1.getUnit(), SpeedUnit.METERS_PER_SECOND);
-        assertEquals(s1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s1.getUnit());
+        assertEquals(value1, s1.getValue().doubleValue(), 0.0);
 
-        assertEquals(s2.getUnit(), SpeedUnit.METERS_PER_SECOND);
-        assertEquals(s2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s2.getUnit());
+        assertEquals(value2, s2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), SpeedUnit.KILOMETERS_PER_HOUR);
+        assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, result.getUnit());
         assertEquals(SpeedConverter.convert(value1 + value2,
                 SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
                 result.getValue().doubleValue(), ERROR);
@@ -222,13 +223,13 @@ public class SpeedTest {
                 SpeedUnit.KILOMETERS_PER_HOUR);
 
         // check
-        assertEquals(s1.getUnit(), SpeedUnit.METERS_PER_SECOND);
-        assertEquals(s1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s1.getUnit());
+        assertEquals(value1, s1.getValue().doubleValue(), 0.0);
 
-        assertEquals(s2.getUnit(), SpeedUnit.METERS_PER_SECOND);
-        assertEquals(s2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s2.getUnit());
+        assertEquals(value2, s2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), SpeedUnit.KILOMETERS_PER_HOUR);
+        assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, result.getUnit());
         assertEquals(SpeedConverter.convert(value1 + value2,
                 SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
                 result.getValue().doubleValue(), ERROR);
@@ -246,10 +247,10 @@ public class SpeedTest {
                 SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR);
 
         // check
-        assertEquals(s1.getUnit(), SpeedUnit.METERS_PER_SECOND);
-        assertEquals(s1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s1.getUnit());
+        assertEquals(value1, s1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), SpeedUnit.KILOMETERS_PER_HOUR);
+        assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, result.getUnit());
         assertEquals(SpeedConverter.convert(value1 + value2,
                 SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
                 result.getValue().doubleValue(), ERROR);
@@ -267,10 +268,10 @@ public class SpeedTest {
                 SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR);
 
         // check
-        assertEquals(s1.getUnit(), SpeedUnit.METERS_PER_SECOND);
-        assertEquals(s1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s1.getUnit());
+        assertEquals(value1, s1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), SpeedUnit.KILOMETERS_PER_HOUR);
+        assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, result.getUnit());
         assertEquals(SpeedConverter.convert(value1 + value2,
                 SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
                 result.getValue().doubleValue(), ERROR);
@@ -288,13 +289,13 @@ public class SpeedTest {
         final Speed result = s1.addAndReturnNew(s2, SpeedUnit.KILOMETERS_PER_HOUR);
 
         // check
-        assertEquals(s1.getUnit(), SpeedUnit.METERS_PER_SECOND);
-        assertEquals(s1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s1.getUnit());
+        assertEquals(value1, s1.getValue().doubleValue(), 0.0);
 
-        assertEquals(s2.getUnit(), SpeedUnit.METERS_PER_SECOND);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s2.getUnit());
         assertEquals(s2.getValue().doubleValue(), value2, 0.0);
 
-        assertEquals(result.getUnit(), SpeedUnit.KILOMETERS_PER_HOUR);
+        assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, result.getUnit());
         assertEquals(SpeedConverter.convert(value1 + value2,
                 SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
                 result.getValue().doubleValue(), ERROR);
@@ -311,9 +312,8 @@ public class SpeedTest {
         s1.add(value2, SpeedUnit.METERS_PER_SECOND);
 
         // check
-        assertEquals(s1.getUnit(), SpeedUnit.METERS_PER_SECOND);
-        assertEquals(s1.getValue().doubleValue(), value1 + value2,
-                ERROR);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s1.getUnit());
+        assertEquals(value1 + value2, s1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -327,9 +327,8 @@ public class SpeedTest {
         s1.add(new BigDecimal(value2), SpeedUnit.METERS_PER_SECOND);
 
         // check
-        assertEquals(s1.getUnit(), SpeedUnit.METERS_PER_SECOND);
-        assertEquals(s1.getValue().doubleValue(), value1 + value2,
-                ERROR);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s1.getUnit());
+        assertEquals(value1 + value2, s1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -344,12 +343,11 @@ public class SpeedTest {
         s1.add(s2);
 
         // check
-        assertEquals(s1.getUnit(), SpeedUnit.METERS_PER_SECOND);
-        assertEquals(s1.getValue().doubleValue(), value1 + value2,
-                ERROR);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s1.getUnit());
+        assertEquals(value1 + value2, s1.getValue().doubleValue(), ERROR);
 
-        assertEquals(s2.getUnit(), SpeedUnit.METERS_PER_SECOND);
-        assertEquals(s2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s2.getUnit());
+        assertEquals(value2, s2.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -365,13 +363,13 @@ public class SpeedTest {
         s1.add(s2, result);
 
         // check
-        assertEquals(s1.getUnit(), SpeedUnit.METERS_PER_SECOND);
-        assertEquals(s1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s1.getUnit());
+        assertEquals(value1, s1.getValue().doubleValue(), 0.0);
 
-        assertEquals(s2.getUnit(), SpeedUnit.METERS_PER_SECOND);
-        assertEquals(s2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s2.getUnit());
+        assertEquals(value2, s2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), SpeedUnit.KILOMETERS_PER_HOUR);
+        assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, result.getUnit());
         assertEquals(SpeedConverter.convert(value1 + value2,
                 SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
                 result.getValue().doubleValue(), ERROR);
@@ -421,13 +419,13 @@ public class SpeedTest {
         Speed.subtract(s1, s2, result);
 
         // check
-        assertEquals(s1.getUnit(), SpeedUnit.METERS_PER_SECOND);
-        assertEquals(s1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s1.getUnit());
+        assertEquals(value1, s1.getValue().doubleValue(), 0.0);
 
-        assertEquals(s2.getUnit(), SpeedUnit.METERS_PER_SECOND);
-        assertEquals(s2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s2.getUnit());
+        assertEquals(value2, s2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), SpeedUnit.KILOMETERS_PER_HOUR);
+        assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, result.getUnit());
         assertEquals(SpeedConverter.convert(value1 - value2,
                 SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
                 result.getValue().doubleValue(), ERROR);
@@ -446,13 +444,13 @@ public class SpeedTest {
                 SpeedUnit.KILOMETERS_PER_HOUR);
 
         // check
-        assertEquals(s1.getUnit(), SpeedUnit.METERS_PER_SECOND);
-        assertEquals(s1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s1.getUnit());
+        assertEquals(value1, s1.getValue().doubleValue(), 0.0);
 
-        assertEquals(s2.getUnit(), SpeedUnit.METERS_PER_SECOND);
-        assertEquals(s2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s2.getUnit());
+        assertEquals(value2, s2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), SpeedUnit.KILOMETERS_PER_HOUR);
+        assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, result.getUnit());
         assertEquals(SpeedConverter.convert(value1 - value2,
                 SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
                 result.getValue().doubleValue(), ERROR);
@@ -470,10 +468,10 @@ public class SpeedTest {
                 SpeedUnit.KILOMETERS_PER_HOUR);
 
         // check
-        assertEquals(s1.getUnit(), SpeedUnit.METERS_PER_SECOND);
-        assertEquals(s1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s1.getUnit());
+        assertEquals(value1, s1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), SpeedUnit.KILOMETERS_PER_HOUR);
+        assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, result.getUnit());
         assertEquals(SpeedConverter.convert(value1 - value2,
                 SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
                 result.getValue().doubleValue(), ERROR);
@@ -491,10 +489,10 @@ public class SpeedTest {
                 SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR);
 
         // check
-        assertEquals(s1.getUnit(), SpeedUnit.METERS_PER_SECOND);
-        assertEquals(s1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s1.getUnit());
+        assertEquals(value1, s1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), SpeedUnit.KILOMETERS_PER_HOUR);
+        assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, result.getUnit());
         assertEquals(SpeedConverter.convert(value1 - value2,
                 SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
                 result.getValue().doubleValue(), ERROR);
@@ -512,13 +510,13 @@ public class SpeedTest {
         final Speed result = s1.subtractAndReturnNew(s2, SpeedUnit.KILOMETERS_PER_HOUR);
 
         // check
-        assertEquals(s1.getUnit(), SpeedUnit.METERS_PER_SECOND);
-        assertEquals(s1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s1.getUnit());
+        assertEquals(value1, s1.getValue().doubleValue(), 0.0);
 
-        assertEquals(s2.getUnit(), SpeedUnit.METERS_PER_SECOND);
-        assertEquals(s2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s2.getUnit());
+        assertEquals(value2, s2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), SpeedUnit.KILOMETERS_PER_HOUR);
+        assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, result.getUnit());
         assertEquals(SpeedConverter.convert(value1 - value2,
                 SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
                 result.getValue().doubleValue(), ERROR);
@@ -535,9 +533,8 @@ public class SpeedTest {
         s1.subtract(value2, SpeedUnit.METERS_PER_SECOND);
 
         // check
-        assertEquals(s1.getUnit(), SpeedUnit.METERS_PER_SECOND);
-        assertEquals(s1.getValue().doubleValue(), value1 - value2,
-                ERROR);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s1.getUnit());
+        assertEquals(value1 - value2, s1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -551,9 +548,8 @@ public class SpeedTest {
         s1.subtract(new BigDecimal(value2), SpeedUnit.METERS_PER_SECOND);
 
         // check
-        assertEquals(s1.getUnit(), SpeedUnit.METERS_PER_SECOND);
-        assertEquals(s1.getValue().doubleValue(), value1 - value2,
-                ERROR);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s1.getUnit());
+        assertEquals(value1 - value2, s1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -568,12 +564,11 @@ public class SpeedTest {
         s1.subtract(s2);
 
         // check
-        assertEquals(s1.getUnit(), SpeedUnit.METERS_PER_SECOND);
-        assertEquals(s1.getValue().doubleValue(), value1 - value2,
-                ERROR);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s1.getUnit());
+        assertEquals(value1 - value2, s1.getValue().doubleValue(), ERROR);
 
-        assertEquals(s2.getUnit(), SpeedUnit.METERS_PER_SECOND);
-        assertEquals(s2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s2.getUnit());
+        assertEquals(value2, s2.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -589,13 +584,13 @@ public class SpeedTest {
         s1.subtract(s2, result);
 
         // check
-        assertEquals(s1.getUnit(), SpeedUnit.METERS_PER_SECOND);
-        assertEquals(s1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s1.getUnit());
+        assertEquals(value1, s1.getValue().doubleValue(), 0.0);
 
-        assertEquals(s2.getUnit(), SpeedUnit.METERS_PER_SECOND);
-        assertEquals(s2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s2.getUnit());
+        assertEquals(value2, s2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), SpeedUnit.KILOMETERS_PER_HOUR);
+        assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, result.getUnit());
         assertEquals(SpeedConverter.convert(value1 - value2,
                 SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
                 result.getValue().doubleValue(), ERROR);

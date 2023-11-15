@@ -23,14 +23,14 @@ public class TimeUnitTest {
 
     @Test
     public void testGetUnitSystem() {
-        assertEquals(TimeUnit.getUnitSystem(TimeUnit.NANOSECOND),
-                UnitSystem.METRIC);
-        assertEquals(TimeUnit.getUnitSystem(TimeUnit.MICROSECOND),
-                UnitSystem.METRIC);
-        assertEquals(TimeUnit.getUnitSystem(TimeUnit.MILLISECOND),
-                UnitSystem.METRIC);
-        assertEquals(TimeUnit.getUnitSystem(TimeUnit.SECOND),
-                UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC,
+                TimeUnit.getUnitSystem(TimeUnit.NANOSECOND));
+        assertEquals(UnitSystem.METRIC,
+                TimeUnit.getUnitSystem(TimeUnit.MICROSECOND));
+        assertEquals(UnitSystem.METRIC,
+                TimeUnit.getUnitSystem(TimeUnit.MILLISECOND));
+        assertEquals(UnitSystem.METRIC,
+                TimeUnit.getUnitSystem(TimeUnit.SECOND));
 
         // force IllegalArgumentException
         try {

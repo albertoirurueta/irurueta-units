@@ -23,32 +23,32 @@ public class SurfaceUnitTest {
 
     @Test
     public void testGetUnitSystem() {
-        assertEquals(SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_MILLIMETER),
-                UnitSystem.METRIC);
-        assertEquals(SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_CENTIMETER),
-                UnitSystem.METRIC);
-        assertEquals(SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_METER),
-                UnitSystem.METRIC);
-        assertEquals(SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_KILOMETER),
-                UnitSystem.METRIC);
-        assertEquals(SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_INCH),
-                UnitSystem.IMPERIAL);
-        assertEquals(SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_FOOT),
-                UnitSystem.IMPERIAL);
-        assertEquals(SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_YARD),
-                UnitSystem.IMPERIAL);
-        assertEquals(SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_MILE),
-                UnitSystem.IMPERIAL);
-        assertEquals(SurfaceUnit.getUnitSystem(SurfaceUnit.CENTIARE),
-                UnitSystem.METRIC);
-        assertEquals(SurfaceUnit.getUnitSystem(SurfaceUnit.ARE),
-                UnitSystem.METRIC);
-        assertEquals(SurfaceUnit.getUnitSystem(SurfaceUnit.DECARE),
-                UnitSystem.METRIC);
-        assertEquals(SurfaceUnit.getUnitSystem(SurfaceUnit.HECTARE),
-                UnitSystem.METRIC);
-        assertEquals(SurfaceUnit.getUnitSystem(SurfaceUnit.ACRE),
-                UnitSystem.IMPERIAL);
+        assertEquals(UnitSystem.METRIC,
+                SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_MILLIMETER));
+        assertEquals(UnitSystem.METRIC,
+                SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_CENTIMETER));
+        assertEquals(UnitSystem.METRIC,
+                SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_METER));
+        assertEquals(UnitSystem.METRIC,
+                SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_KILOMETER));
+        assertEquals(UnitSystem.IMPERIAL,
+                SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_INCH));
+        assertEquals(UnitSystem.IMPERIAL,
+                SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_FOOT));
+        assertEquals(UnitSystem.IMPERIAL,
+                SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_YARD));
+        assertEquals(UnitSystem.IMPERIAL,
+                SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_MILE));
+        assertEquals(UnitSystem.METRIC,
+                SurfaceUnit.getUnitSystem(SurfaceUnit.CENTIARE));
+        assertEquals(UnitSystem.METRIC,
+                SurfaceUnit.getUnitSystem(SurfaceUnit.ARE));
+        assertEquals(UnitSystem.METRIC,
+                SurfaceUnit.getUnitSystem(SurfaceUnit.DECARE));
+        assertEquals(UnitSystem.METRIC,
+                SurfaceUnit.getUnitSystem(SurfaceUnit.HECTARE));
+        assertEquals(UnitSystem.IMPERIAL,
+                SurfaceUnit.getUnitSystem(SurfaceUnit.ACRE));
 
         // force IllegalArgumentException
         try {

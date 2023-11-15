@@ -40,8 +40,8 @@ public class MagneticFluxDensityTest {
         b = new MagneticFluxDensity(1000, MagneticFluxDensityUnit.TESLA);
 
         // check
-        assertEquals(b.getValue(), 1000);
-        assertEquals(b.getUnit(), MagneticFluxDensityUnit.TESLA);
+        assertEquals(1000, b.getValue());
+        assertEquals(MagneticFluxDensityUnit.TESLA, b.getUnit());
 
         // Force IllegalArgumentException
         b = null;
@@ -72,7 +72,6 @@ public class MagneticFluxDensityTest {
         final MagneticFluxDensity b4 = new MagneticFluxDensity(value,
                 MagneticFluxDensityUnit.NANOTESLA);
 
-        assertEquals(b1, b1);
         assertEquals(b1, b2);
         assertNotEquals(b1, b3);
         assertNotEquals(b1, b4);
@@ -129,13 +128,13 @@ public class MagneticFluxDensityTest {
                 MagneticFluxDensityUnit.TESLA);
 
         // check
-        assertEquals(b.getValue(), 1);
+        assertEquals(1, b.getValue());
 
         // set new value
         b.setValue(2.5);
 
         // check
-        assertEquals(b.getValue(), 2.5);
+        assertEquals(2.5, b.getValue());
 
         // force IllegalArgumentException
         try {
@@ -151,13 +150,13 @@ public class MagneticFluxDensityTest {
                 MagneticFluxDensityUnit.TESLA);
 
         // check
-        assertEquals(b.getUnit(), MagneticFluxDensityUnit.TESLA);
+        assertEquals(MagneticFluxDensityUnit.TESLA, b.getUnit());
 
         // set new value
         b.setUnit(MagneticFluxDensityUnit.TESLA);
 
         // check
-        assertEquals(b.getUnit(), MagneticFluxDensityUnit.TESLA);
+        assertEquals(MagneticFluxDensityUnit.TESLA, b.getUnit());
 
         // force IllegalArgumentException
         try {
@@ -214,13 +213,13 @@ public class MagneticFluxDensityTest {
         MagneticFluxDensity.add(b1, b2, result);
 
         // check
-        assertEquals(b1.getUnit(), MagneticFluxDensityUnit.KILOTESLA);
-        assertEquals(b1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(MagneticFluxDensityUnit.KILOTESLA, b1.getUnit());
+        assertEquals(value1, b1.getValue().doubleValue(), 0.0);
 
-        assertEquals(b2.getUnit(), MagneticFluxDensityUnit.KILOTESLA);
-        assertEquals(b2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(MagneticFluxDensityUnit.KILOTESLA, b2.getUnit());
+        assertEquals(value2, b2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), MagneticFluxDensityUnit.TESLA);
+        assertEquals(MagneticFluxDensityUnit.TESLA, result.getUnit());
         assertEquals((value1 + value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -240,13 +239,13 @@ public class MagneticFluxDensityTest {
                 b1, b2, MagneticFluxDensityUnit.TESLA);
 
         // check
-        assertEquals(b1.getUnit(), MagneticFluxDensityUnit.KILOTESLA);
-        assertEquals(b1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(MagneticFluxDensityUnit.KILOTESLA, b1.getUnit());
+        assertEquals(value1, b1.getValue().doubleValue(), 0.0);
 
-        assertEquals(b2.getUnit(), MagneticFluxDensityUnit.KILOTESLA);
-        assertEquals(b2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(MagneticFluxDensityUnit.KILOTESLA, b2.getUnit());
+        assertEquals(value2, b2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), MagneticFluxDensityUnit.TESLA);
+        assertEquals(MagneticFluxDensityUnit.TESLA, result.getUnit());
         assertEquals((value1 + value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -265,10 +264,10 @@ public class MagneticFluxDensityTest {
                 MagneticFluxDensityUnit.TESLA);
 
         // check
-        assertEquals(b1.getUnit(), MagneticFluxDensityUnit.KILOTESLA);
-        assertEquals(b1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(MagneticFluxDensityUnit.KILOTESLA, b1.getUnit());
+        assertEquals(value1, b1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), MagneticFluxDensityUnit.TESLA);
+        assertEquals(MagneticFluxDensityUnit.TESLA, result.getUnit());
         assertEquals((value1 + value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -287,10 +286,10 @@ public class MagneticFluxDensityTest {
                 MagneticFluxDensityUnit.TESLA);
 
         // check
-        assertEquals(b1.getUnit(), MagneticFluxDensityUnit.KILOTESLA);
-        assertEquals(b1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(MagneticFluxDensityUnit.KILOTESLA, b1.getUnit());
+        assertEquals(value1, b1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), MagneticFluxDensityUnit.TESLA);
+        assertEquals(MagneticFluxDensityUnit.TESLA, result.getUnit());
         assertEquals((value1 + value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -310,13 +309,13 @@ public class MagneticFluxDensityTest {
                 MagneticFluxDensityUnit.TESLA);
 
         // check
-        assertEquals(b1.getUnit(), MagneticFluxDensityUnit.KILOTESLA);
-        assertEquals(b1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(MagneticFluxDensityUnit.KILOTESLA, b1.getUnit());
+        assertEquals(value1, b1.getValue().doubleValue(), 0.0);
 
-        assertEquals(b2.getUnit(), MagneticFluxDensityUnit.KILOTESLA);
-        assertEquals(b2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(MagneticFluxDensityUnit.KILOTESLA, b2.getUnit());
+        assertEquals(value2, b2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), MagneticFluxDensityUnit.TESLA);
+        assertEquals(MagneticFluxDensityUnit.TESLA, result.getUnit());
         assertEquals((value1 + value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -333,9 +332,8 @@ public class MagneticFluxDensityTest {
         b1.add(value2, MagneticFluxDensityUnit.TESLA);
 
         // check
-        assertEquals(b1.getUnit(), MagneticFluxDensityUnit.TESLA);
-        assertEquals(b1.getValue().doubleValue(), value1 + value2,
-                ERROR);
+        assertEquals(MagneticFluxDensityUnit.TESLA, b1.getUnit());
+        assertEquals(value1 + value2, b1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -350,9 +348,8 @@ public class MagneticFluxDensityTest {
         b1.add(new BigDecimal(value2), MagneticFluxDensityUnit.TESLA);
 
         // check
-        assertEquals(b1.getUnit(), MagneticFluxDensityUnit.TESLA);
-        assertEquals(b1.getValue().doubleValue(), value1 + value2,
-                ERROR);
+        assertEquals(MagneticFluxDensityUnit.TESLA, b1.getUnit());
+        assertEquals(value1 + value2, b1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -369,12 +366,11 @@ public class MagneticFluxDensityTest {
         b1.add(b2);
 
         // check
-        assertEquals(b1.getUnit(), MagneticFluxDensityUnit.TESLA);
-        assertEquals(b1.getValue().doubleValue(), value1 + value2,
-                ERROR);
+        assertEquals(MagneticFluxDensityUnit.TESLA, b1.getUnit());
+        assertEquals(value1 + value2, b1.getValue().doubleValue(), ERROR);
 
-        assertEquals(b2.getUnit(), MagneticFluxDensityUnit.TESLA);
-        assertEquals(b2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(MagneticFluxDensityUnit.TESLA, b2.getUnit());
+        assertEquals(value2, b2.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -393,13 +389,13 @@ public class MagneticFluxDensityTest {
         b1.add(b2, result);
 
         // check
-        assertEquals(b1.getUnit(), MagneticFluxDensityUnit.KILOTESLA);
-        assertEquals(b1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(MagneticFluxDensityUnit.KILOTESLA, b1.getUnit());
+        assertEquals(value1, b1.getValue().doubleValue(), 0.0);
 
-        assertEquals(b2.getUnit(), MagneticFluxDensityUnit.KILOTESLA);
-        assertEquals(b2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(MagneticFluxDensityUnit.KILOTESLA, b2.getUnit());
+        assertEquals(value2, b2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), MagneticFluxDensityUnit.TESLA);
+        assertEquals(MagneticFluxDensityUnit.TESLA, result.getUnit());
         assertEquals((value1 + value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -451,13 +447,13 @@ public class MagneticFluxDensityTest {
         MagneticFluxDensity.subtract(b1, b2, result);
 
         // check
-        assertEquals(b1.getUnit(), MagneticFluxDensityUnit.KILOTESLA);
-        assertEquals(b1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(MagneticFluxDensityUnit.KILOTESLA, b1.getUnit());
+        assertEquals(value1, b1.getValue().doubleValue(), 0.0);
 
-        assertEquals(b2.getUnit(), MagneticFluxDensityUnit.KILOTESLA);
-        assertEquals(b2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(MagneticFluxDensityUnit.KILOTESLA, b2.getUnit());
+        assertEquals(value2, b2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), MagneticFluxDensityUnit.TESLA);
+        assertEquals(MagneticFluxDensityUnit.TESLA, result.getUnit());
         assertEquals((value1 - value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -477,13 +473,13 @@ public class MagneticFluxDensityTest {
                 .subtractAndReturnNew(b1, b2, MagneticFluxDensityUnit.TESLA);
 
         // check
-        assertEquals(b1.getUnit(), MagneticFluxDensityUnit.KILOTESLA);
-        assertEquals(b1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(MagneticFluxDensityUnit.KILOTESLA, b1.getUnit());
+        assertEquals(value1, b1.getValue().doubleValue(), 0.0);
 
-        assertEquals(b2.getUnit(), MagneticFluxDensityUnit.KILOTESLA);
-        assertEquals(b2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(MagneticFluxDensityUnit.KILOTESLA, b2.getUnit());
+        assertEquals(value2, b2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), MagneticFluxDensityUnit.TESLA);
+        assertEquals(MagneticFluxDensityUnit.TESLA, result.getUnit());
         assertEquals((value1 - value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -502,10 +498,10 @@ public class MagneticFluxDensityTest {
                 MagneticFluxDensityUnit.TESLA);
 
         // check
-        assertEquals(b1.getUnit(), MagneticFluxDensityUnit.KILOTESLA);
-        assertEquals(b1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(MagneticFluxDensityUnit.KILOTESLA, b1.getUnit());
+        assertEquals(value1, b1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), MagneticFluxDensityUnit.TESLA);
+        assertEquals(MagneticFluxDensityUnit.TESLA, result.getUnit());
         assertEquals((value1 - value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -525,10 +521,10 @@ public class MagneticFluxDensityTest {
                 MagneticFluxDensityUnit.TESLA);
 
         // check
-        assertEquals(b1.getUnit(), MagneticFluxDensityUnit.KILOTESLA);
-        assertEquals(b1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(MagneticFluxDensityUnit.KILOTESLA, b1.getUnit());
+        assertEquals(value1, b1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), MagneticFluxDensityUnit.TESLA);
+        assertEquals(MagneticFluxDensityUnit.TESLA, result.getUnit());
         assertEquals((value1 - value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -548,13 +544,13 @@ public class MagneticFluxDensityTest {
                 b2, MagneticFluxDensityUnit.TESLA);
 
         // check
-        assertEquals(b1.getUnit(), MagneticFluxDensityUnit.KILOTESLA);
-        assertEquals(b1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(MagneticFluxDensityUnit.KILOTESLA, b1.getUnit());
+        assertEquals(value1, b1.getValue().doubleValue(), 0.0);
 
-        assertEquals(b2.getUnit(), MagneticFluxDensityUnit.KILOTESLA);
-        assertEquals(b2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(MagneticFluxDensityUnit.KILOTESLA, b2.getUnit());
+        assertEquals(value2, b2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), MagneticFluxDensityUnit.TESLA);
+        assertEquals(MagneticFluxDensityUnit.TESLA, result.getUnit());
         assertEquals((value1 - value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -571,9 +567,8 @@ public class MagneticFluxDensityTest {
         b1.subtract(value2, MagneticFluxDensityUnit.TESLA);
 
         // check
-        assertEquals(b1.getUnit(), MagneticFluxDensityUnit.TESLA);
-        assertEquals(b1.getValue().doubleValue(), value1 - value2,
-                ERROR);
+        assertEquals(MagneticFluxDensityUnit.TESLA, b1.getUnit());
+        assertEquals(value1 - value2, b1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -588,8 +583,8 @@ public class MagneticFluxDensityTest {
         b1.subtract(new BigDecimal(value2), MagneticFluxDensityUnit.TESLA);
 
         // check
-        assertEquals(b1.getUnit(), MagneticFluxDensityUnit.TESLA);
-        assertEquals(b1.getValue().doubleValue(), value1 - value2, ERROR);
+        assertEquals(MagneticFluxDensityUnit.TESLA, b1.getUnit());
+        assertEquals(value1 - value2, b1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -606,12 +601,11 @@ public class MagneticFluxDensityTest {
         b1.subtract(b2);
 
         // check
-        assertEquals(b1.getUnit(), MagneticFluxDensityUnit.TESLA);
-        assertEquals(b1.getValue().doubleValue(), value1 - value2,
-                ERROR);
+        assertEquals(MagneticFluxDensityUnit.TESLA, b1.getUnit());
+        assertEquals(value1 - value2, b1.getValue().doubleValue(), ERROR);
 
-        assertEquals(b2.getUnit(), MagneticFluxDensityUnit.TESLA);
-        assertEquals(b2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(MagneticFluxDensityUnit.TESLA, b2.getUnit());
+        assertEquals(value2, b2.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -630,13 +624,13 @@ public class MagneticFluxDensityTest {
         b1.subtract(b2, result);
 
         // check
-        assertEquals(b1.getUnit(), MagneticFluxDensityUnit.KILOTESLA);
-        assertEquals(b1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(MagneticFluxDensityUnit.KILOTESLA, b1.getUnit());
+        assertEquals(value1, b1.getValue().doubleValue(), 0.0);
 
-        assertEquals(b2.getUnit(), MagneticFluxDensityUnit.KILOTESLA);
-        assertEquals(b2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(MagneticFluxDensityUnit.KILOTESLA, b2.getUnit());
+        assertEquals(value2, b2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), MagneticFluxDensityUnit.TESLA);
+        assertEquals(MagneticFluxDensityUnit.TESLA, result.getUnit());
         assertEquals((value1 - value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }

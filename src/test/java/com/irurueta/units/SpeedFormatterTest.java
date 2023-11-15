@@ -34,48 +34,48 @@ public class SpeedFormatterTest {
         SpeedFormatter formatter = new SpeedFormatter();
 
         // check
-        assertEquals(formatter.getLocale(), Locale.getDefault());
-        assertEquals(formatter.getMaximumFractionDigits(),
-                NumberFormat.getInstance().getMaximumFractionDigits());
-        assertEquals(formatter.getMaximumIntegerDigits(),
-                NumberFormat.getInstance().getMaximumIntegerDigits());
-        assertEquals(formatter.getMinimumFractionDigits(),
-                NumberFormat.getInstance().getMinimumFractionDigits());
-        assertEquals(formatter.getMinimumIntegerDigits(),
-                NumberFormat.getInstance().getMinimumIntegerDigits());
-        assertEquals(formatter.getRoundingMode(),
-                NumberFormat.getInstance().getRoundingMode());
-        assertEquals(formatter.getUnitSystem(), UnitLocale.getDefault());
-        assertEquals(formatter.isGroupingUsed(),
-                NumberFormat.getInstance().isGroupingUsed());
-        assertEquals(formatter.isParseIntegerOnly(),
-                NumberFormat.getInstance().isParseIntegerOnly());
-        assertEquals(formatter.getValueAndUnitFormatPattern(),
-                MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
+        assertEquals(Locale.getDefault(), formatter.getLocale());
+        assertEquals(NumberFormat.getInstance().getMaximumFractionDigits(),
+                formatter.getMaximumFractionDigits());
+        assertEquals(NumberFormat.getInstance().getMaximumIntegerDigits(),
+                formatter.getMaximumIntegerDigits());
+        assertEquals(NumberFormat.getInstance().getMinimumFractionDigits(),
+                formatter.getMinimumFractionDigits());
+        assertEquals(NumberFormat.getInstance().getMinimumIntegerDigits(),
+                formatter.getMinimumIntegerDigits());
+        assertEquals(NumberFormat.getInstance().getRoundingMode(),
+                formatter.getRoundingMode());
+        assertEquals(UnitLocale.getDefault(), formatter.getUnitSystem());
+        assertEquals(NumberFormat.getInstance().isGroupingUsed(),
+                formatter.isGroupingUsed());
+        assertEquals(NumberFormat.getInstance().isParseIntegerOnly(),
+                formatter.isParseIntegerOnly());
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
+                formatter.getValueAndUnitFormatPattern());
 
         // test constructor with locale
         final Locale locale = new Locale("es", "ES");
         formatter = new SpeedFormatter(locale);
 
         // check
-        assertEquals(formatter.getLocale(), locale);
-        assertEquals(formatter.getMaximumFractionDigits(),
-                NumberFormat.getInstance(locale).getMaximumFractionDigits());
-        assertEquals(formatter.getMaximumIntegerDigits(),
-                NumberFormat.getInstance(locale).getMaximumIntegerDigits());
-        assertEquals(formatter.getMinimumFractionDigits(),
-                NumberFormat.getInstance(locale).getMinimumFractionDigits());
-        assertEquals(formatter.getMinimumIntegerDigits(),
-                NumberFormat.getInstance(locale).getMinimumIntegerDigits());
-        assertEquals(formatter.getRoundingMode(),
-                NumberFormat.getInstance(locale).getRoundingMode());
-        assertEquals(formatter.getUnitSystem(), UnitLocale.getFrom(locale));
-        assertEquals(formatter.isGroupingUsed(),
-                NumberFormat.getInstance(locale).isGroupingUsed());
-        assertEquals(formatter.isParseIntegerOnly(),
-                NumberFormat.getInstance(locale).isParseIntegerOnly());
-        assertEquals(formatter.getValueAndUnitFormatPattern(),
-                MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
+        assertEquals(locale, formatter.getLocale());
+        assertEquals(NumberFormat.getInstance(locale).getMaximumFractionDigits(),
+                formatter.getMaximumFractionDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMaximumIntegerDigits(),
+                formatter.getMaximumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMinimumFractionDigits(),
+                formatter.getMinimumFractionDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMinimumIntegerDigits(),
+                formatter.getMinimumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getRoundingMode(),
+                formatter.getRoundingMode());
+        assertEquals(UnitLocale.getFrom(locale), formatter.getUnitSystem());
+        assertEquals(NumberFormat.getInstance(locale).isGroupingUsed(),
+                formatter.isGroupingUsed());
+        assertEquals(NumberFormat.getInstance(locale).isParseIntegerOnly(),
+                formatter.isParseIntegerOnly());
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
+                formatter.getValueAndUnitFormatPattern());
 
 
         // force IllegalArgumentException
@@ -94,24 +94,24 @@ public class SpeedFormatterTest {
         final SpeedFormatter formatter2 = new SpeedFormatter(formatter);
 
         // check
-        assertEquals(formatter2.getLocale(), locale);
-        assertEquals(formatter2.getMaximumFractionDigits(),
-                NumberFormat.getInstance(locale).getMaximumFractionDigits());
-        assertEquals(formatter2.getMaximumIntegerDigits(),
-                NumberFormat.getInstance(locale).getMaximumIntegerDigits());
-        assertEquals(formatter2.getMinimumFractionDigits(),
-                NumberFormat.getInstance(locale).getMinimumFractionDigits());
-        assertEquals(formatter2.getMinimumIntegerDigits(),
-                NumberFormat.getInstance(locale).getMinimumIntegerDigits());
-        assertEquals(formatter2.getRoundingMode(),
-                NumberFormat.getInstance(locale).getRoundingMode());
-        assertEquals(formatter2.getUnitSystem(), UnitLocale.getFrom(locale));
-        assertEquals(formatter2.isGroupingUsed(),
-                NumberFormat.getInstance(locale).isGroupingUsed());
-        assertEquals(formatter2.isParseIntegerOnly(),
-                NumberFormat.getInstance(locale).isParseIntegerOnly());
-        assertEquals(formatter2.getValueAndUnitFormatPattern(),
-                MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
+        assertEquals(locale, formatter2.getLocale());
+        assertEquals(NumberFormat.getInstance(locale).getMaximumFractionDigits(),
+                formatter2.getMaximumFractionDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMaximumIntegerDigits(),
+                formatter2.getMaximumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMinimumFractionDigits(),
+                formatter2.getMinimumFractionDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMinimumIntegerDigits(),
+                formatter2.getMinimumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getRoundingMode(),
+                formatter2.getRoundingMode());
+        assertEquals(UnitLocale.getFrom(locale), formatter2.getUnitSystem());
+        assertEquals(NumberFormat.getInstance(locale).isGroupingUsed(),
+                formatter2.isGroupingUsed());
+        assertEquals(NumberFormat.getInstance(locale).isParseIntegerOnly(),
+                formatter2.isParseIntegerOnly());
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
+                formatter2.getValueAndUnitFormatPattern());
 
         formatter = null;
         try {
@@ -148,6 +148,7 @@ public class SpeedFormatterTest {
         final SpeedFormatter formatter3 = new SpeedFormatter(Locale.FRENCH);
 
         // check
+        //noinspection EqualsWithItself
         assertEquals(formatter1, formatter1);
         assertEquals(formatter1, formatter2);
         assertNotEquals(formatter1, formatter3);
@@ -175,16 +176,16 @@ public class SpeedFormatterTest {
 
         final SpeedFormatter formatter = new SpeedFormatter(l);
 
-        assertEquals(formatter.format(new BigDecimal(value),
-                SpeedUnit.METERS_PER_SECOND), "5,5 m/s");
-        assertEquals(formatter.format(new BigDecimal(value),
-                SpeedUnit.KILOMETERS_PER_HOUR), "5,5 Km/h");
-        assertEquals(formatter.format(new BigDecimal(value),
-                SpeedUnit.KILOMETERS_PER_SECOND), "5,5 Km/s");
-        assertEquals(formatter.format(new BigDecimal(value),
-                SpeedUnit.FEET_PER_SECOND), "5,5 ft/s");
-        assertEquals(formatter.format(new BigDecimal(value),
-                SpeedUnit.MILES_PER_HOUR), "5,5 mph");
+        assertEquals("5,5 m/s", formatter.format(new BigDecimal(value),
+                SpeedUnit.METERS_PER_SECOND));
+        assertEquals("5,5 Km/h", formatter.format(new BigDecimal(value),
+                SpeedUnit.KILOMETERS_PER_HOUR));
+        assertEquals("5,5 Km/s", formatter.format(new BigDecimal(value),
+                SpeedUnit.KILOMETERS_PER_SECOND));
+        assertEquals("5,5 ft/s", formatter.format(new BigDecimal(value),
+                SpeedUnit.FEET_PER_SECOND));
+        assertEquals("5,5 mph", formatter.format(new BigDecimal(value),
+                SpeedUnit.MILES_PER_HOUR));
     }
 
     @Test
@@ -195,29 +196,29 @@ public class SpeedFormatterTest {
         final SpeedFormatter formatter = new SpeedFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
+        assertEquals("5,5 m/s", formatter.format(new BigDecimal(value),
                 SpeedUnit.METERS_PER_SECOND, buffer,
-                new FieldPosition(0)).toString(), "5,5 m/s");
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
+        assertEquals("5,5 Km/h", formatter.format(new BigDecimal(value),
                 SpeedUnit.KILOMETERS_PER_HOUR, buffer,
-                new FieldPosition(0)).toString(), "5,5 Km/h");
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
+        assertEquals("5,5 Km/s", formatter.format(new BigDecimal(value),
                 SpeedUnit.KILOMETERS_PER_SECOND, buffer,
-                new FieldPosition(0)).toString(), "5,5 Km/s");
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
+        assertEquals("5,5 ft/s", formatter.format(new BigDecimal(value),
                 SpeedUnit.FEET_PER_SECOND, buffer,
-                new FieldPosition(0)).toString(), "5,5 ft/s");
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
+        assertEquals("5,5 mph", formatter.format(new BigDecimal(value),
                 SpeedUnit.MILES_PER_HOUR, buffer,
-                new FieldPosition(0)).toString(), "5,5 mph");
+                new FieldPosition(0)).toString());
     }
 
     @Test
@@ -227,16 +228,16 @@ public class SpeedFormatterTest {
 
         final SpeedFormatter formatter = new SpeedFormatter(l);
 
-        assertEquals(formatter.format(value, SpeedUnit.METERS_PER_SECOND),
-                "5,5 m/s");
-        assertEquals(formatter.format(value, SpeedUnit.KILOMETERS_PER_HOUR),
-                "5,5 Km/h");
-        assertEquals(formatter.format(value, SpeedUnit.KILOMETERS_PER_SECOND),
-                "5,5 Km/s");
-        assertEquals(formatter.format(value, SpeedUnit.FEET_PER_SECOND),
-                "5,5 ft/s");
-        assertEquals(formatter.format(value, SpeedUnit.MILES_PER_HOUR),
-                "5,5 mph");
+        assertEquals("5,5 m/s",
+                formatter.format(value, SpeedUnit.METERS_PER_SECOND));
+        assertEquals("5,5 Km/h",
+                formatter.format(value, SpeedUnit.KILOMETERS_PER_HOUR));
+        assertEquals("5,5 Km/s",
+                formatter.format(value, SpeedUnit.KILOMETERS_PER_SECOND));
+        assertEquals("5,5 ft/s",
+                formatter.format(value, SpeedUnit.FEET_PER_SECOND));
+        assertEquals("5,5 mph",
+                formatter.format(value, SpeedUnit.MILES_PER_HOUR));
     }
 
     @Test
@@ -247,29 +248,29 @@ public class SpeedFormatterTest {
         final SpeedFormatter formatter = new SpeedFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
-        assertEquals(formatter.format(value,
+        assertEquals("5,5 m/s", formatter.format(value,
                 SpeedUnit.METERS_PER_SECOND, buffer,
-                new FieldPosition(0)).toString(), "5,5 m/s");
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value,
+        assertEquals("5,5 Km/h", formatter.format(value,
                 SpeedUnit.KILOMETERS_PER_HOUR, buffer,
-                new FieldPosition(0)).toString(), "5,5 Km/h");
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value,
+        assertEquals("5,5 Km/s", formatter.format(value,
                 SpeedUnit.KILOMETERS_PER_SECOND, buffer,
-                new FieldPosition(0)).toString(), "5,5 Km/s");
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value,
+        assertEquals("5,5 ft/s", formatter.format(value,
                 SpeedUnit.FEET_PER_SECOND, buffer,
-                new FieldPosition(0)).toString(), "5,5 ft/s");
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value,
+        assertEquals("5,5 mph", formatter.format(value,
                 SpeedUnit.MILES_PER_HOUR, buffer,
-                new FieldPosition(0)).toString(), "5,5 mph");
+                new FieldPosition(0)).toString());
     }
 
     @Test
@@ -279,16 +280,16 @@ public class SpeedFormatterTest {
 
         final SpeedFormatter formatter = new SpeedFormatter(l);
 
-        assertEquals(formatter.format(new Speed(value, SpeedUnit.METERS_PER_SECOND)),
-                "5,5 m/s");
-        assertEquals(formatter.format(new Speed(value, SpeedUnit.KILOMETERS_PER_HOUR)),
-                "5,5 Km/h");
-        assertEquals(formatter.format(new Speed(value, SpeedUnit.KILOMETERS_PER_SECOND)),
-                "5,5 Km/s");
-        assertEquals(formatter.format(new Speed(value, SpeedUnit.FEET_PER_SECOND)),
-                "5,5 ft/s");
-        assertEquals(formatter.format(new Speed(value, SpeedUnit.MILES_PER_HOUR)),
-                "5,5 mph");
+        assertEquals("5,5 m/s",
+                formatter.format(new Speed(value, SpeedUnit.METERS_PER_SECOND)));
+        assertEquals("5,5 Km/h",
+                formatter.format(new Speed(value, SpeedUnit.KILOMETERS_PER_HOUR)));
+        assertEquals("5,5 Km/s",
+                formatter.format(new Speed(value, SpeedUnit.KILOMETERS_PER_SECOND)));
+        assertEquals("5,5 ft/s",
+                formatter.format(new Speed(value, SpeedUnit.FEET_PER_SECOND)));
+        assertEquals("5,5 mph",
+                formatter.format(new Speed(value, SpeedUnit.MILES_PER_HOUR)));
     }
 
     @Test
@@ -299,29 +300,29 @@ public class SpeedFormatterTest {
         final SpeedFormatter formatter = new SpeedFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
-        assertEquals(formatter.format(new Speed(value,
+        assertEquals("5,5 m/s", formatter.format(new Speed(value,
                         SpeedUnit.METERS_PER_SECOND), buffer,
-                new FieldPosition(0)).toString(), "5,5 m/s");
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new Speed(value,
+        assertEquals("5,5 Km/h", formatter.format(new Speed(value,
                         SpeedUnit.KILOMETERS_PER_HOUR), buffer,
-                new FieldPosition(0)).toString(), "5,5 Km/h");
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new Speed(value,
+        assertEquals("5,5 Km/s", formatter.format(new Speed(value,
                         SpeedUnit.KILOMETERS_PER_SECOND), buffer,
-                new FieldPosition(0)).toString(), "5,5 Km/s");
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new Speed(value,
+        assertEquals("5,5 ft/s", formatter.format(new Speed(value,
                         SpeedUnit.FEET_PER_SECOND), buffer,
-                new FieldPosition(0)).toString(), "5,5 ft/s");
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new Speed(value,
+        assertEquals("5,5 mph", formatter.format(new Speed(value,
                         SpeedUnit.MILES_PER_HOUR), buffer,
-                new FieldPosition(0)).toString(), "5,5 mph");
+                new FieldPosition(0)).toString());
     }
 
     @Test
@@ -332,15 +333,15 @@ public class SpeedFormatterTest {
         SpeedFormatter formatter = new SpeedFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal("0.1"),
-                SpeedUnit.METERS_PER_SECOND), "0,1 m/s");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("3.6"),
-                SpeedUnit.METERS_PER_SECOND), "12,96 Km/h");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("3600.0"),
-                SpeedUnit.METERS_PER_SECOND), "3,6 Km/s");
+        assertEquals("0,1 m/s", formatter.formatAndConvert(new BigDecimal("0.1"),
+                SpeedUnit.METERS_PER_SECOND));
+        assertEquals("12,96 Km/h", formatter.formatAndConvert(new BigDecimal("3.6"),
+                SpeedUnit.METERS_PER_SECOND));
+        assertEquals("3,6 Km/s", formatter.formatAndConvert(new BigDecimal("3600.0"),
+                SpeedUnit.METERS_PER_SECOND));
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal("65.0"),
-                SpeedUnit.MILES_PER_HOUR), "104,61 Km/h");
+        assertEquals("104,61 Km/h", formatter.formatAndConvert(new BigDecimal("65.0"),
+                SpeedUnit.MILES_PER_HOUR));
 
         // test for imperial system
         l = new Locale("en", "US");
@@ -348,10 +349,10 @@ public class SpeedFormatterTest {
         formatter = new SpeedFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal("0.5"),
-                SpeedUnit.MILES_PER_HOUR), "0.73 ft/s");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("65.0"),
-                SpeedUnit.MILES_PER_HOUR), "65 mph");
+        assertEquals("0.73 ft/s", formatter.formatAndConvert(new BigDecimal("0.5"),
+                SpeedUnit.MILES_PER_HOUR));
+        assertEquals("65 mph", formatter.formatAndConvert(new BigDecimal("65.0"),
+                SpeedUnit.MILES_PER_HOUR));
     }
 
     @Test
@@ -362,15 +363,15 @@ public class SpeedFormatterTest {
         SpeedFormatter formatter = new SpeedFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(0.1,
-                SpeedUnit.METERS_PER_SECOND), "0,1 m/s");
-        assertEquals(formatter.formatAndConvert(3.6,
-                SpeedUnit.METERS_PER_SECOND), "12,96 Km/h");
-        assertEquals(formatter.formatAndConvert(3600.0,
-                SpeedUnit.METERS_PER_SECOND), "3,6 Km/s");
+        assertEquals("0,1 m/s", formatter.formatAndConvert(0.1,
+                SpeedUnit.METERS_PER_SECOND));
+        assertEquals("12,96 Km/h", formatter.formatAndConvert(3.6,
+                SpeedUnit.METERS_PER_SECOND));
+        assertEquals("3,6 Km/s", formatter.formatAndConvert(3600.0,
+                SpeedUnit.METERS_PER_SECOND));
 
-        assertEquals(formatter.formatAndConvert(65.0,
-                SpeedUnit.MILES_PER_HOUR), "104,61 Km/h");
+        assertEquals("104,61 Km/h", formatter.formatAndConvert(65.0,
+                SpeedUnit.MILES_PER_HOUR));
 
         // test for imperial system
         l = new Locale("en", "US");
@@ -378,10 +379,10 @@ public class SpeedFormatterTest {
         formatter = new SpeedFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(0.5,
-                SpeedUnit.MILES_PER_HOUR), "0.73 ft/s");
-        assertEquals(formatter.formatAndConvert(65.0,
-                SpeedUnit.MILES_PER_HOUR), "65 mph");
+        assertEquals("0.73 ft/s", formatter.formatAndConvert(0.5,
+                SpeedUnit.MILES_PER_HOUR));
+        assertEquals("65 mph", formatter.formatAndConvert(65.0,
+                SpeedUnit.MILES_PER_HOUR));
     }
 
     @Test
@@ -392,15 +393,15 @@ public class SpeedFormatterTest {
         SpeedFormatter formatter = new SpeedFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new Speed(0.1,
-                SpeedUnit.METERS_PER_SECOND)), "0,1 m/s");
-        assertEquals(formatter.formatAndConvert(new Speed(3.6,
-                SpeedUnit.METERS_PER_SECOND)), "12,96 Km/h");
-        assertEquals(formatter.formatAndConvert(new Speed(3600.0,
-                SpeedUnit.METERS_PER_SECOND)), "3,6 Km/s");
+        assertEquals("0,1 m/s", formatter.formatAndConvert(new Speed(0.1,
+                SpeedUnit.METERS_PER_SECOND)));
+        assertEquals("12,96 Km/h", formatter.formatAndConvert(new Speed(3.6,
+                SpeedUnit.METERS_PER_SECOND)));
+        assertEquals("3,6 Km/s", formatter.formatAndConvert(new Speed(3600.0,
+                SpeedUnit.METERS_PER_SECOND)));
 
-        assertEquals(formatter.formatAndConvert(new Speed(65.0,
-                SpeedUnit.MILES_PER_HOUR)), "104,61 Km/h");
+        assertEquals("104,61 Km/h", formatter.formatAndConvert(new Speed(65.0,
+                SpeedUnit.MILES_PER_HOUR)));
 
         // test for imperial system
         l = new Locale("en", "US");
@@ -408,10 +409,10 @@ public class SpeedFormatterTest {
         formatter = new SpeedFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new Speed(0.5,
-                SpeedUnit.MILES_PER_HOUR)), "0.73 ft/s");
-        assertEquals(formatter.formatAndConvert(new Speed(65.0,
-                SpeedUnit.MILES_PER_HOUR)), "65 mph");
+        assertEquals("0.73 ft/s", formatter.formatAndConvert(new Speed(0.5,
+                SpeedUnit.MILES_PER_HOUR)));
+        assertEquals("65 mph", formatter.formatAndConvert(new Speed(65.0,
+                SpeedUnit.MILES_PER_HOUR)));
     }
 
     @Test
@@ -421,20 +422,20 @@ public class SpeedFormatterTest {
         final SpeedFormatter formatter = new SpeedFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal("0.1"),
-                SpeedUnit.METERS_PER_SECOND, UnitSystem.METRIC), "0,1 m/s");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("3.6"),
-                SpeedUnit.METERS_PER_SECOND, UnitSystem.METRIC), "12,96 Km/h");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("3600.0"),
-                SpeedUnit.METERS_PER_SECOND, UnitSystem.METRIC), "3,6 Km/s");
+        assertEquals("0,1 m/s", formatter.formatAndConvert(new BigDecimal("0.1"),
+                SpeedUnit.METERS_PER_SECOND, UnitSystem.METRIC));
+        assertEquals("12,96 Km/h", formatter.formatAndConvert(new BigDecimal("3.6"),
+                SpeedUnit.METERS_PER_SECOND, UnitSystem.METRIC));
+        assertEquals("3,6 Km/s", formatter.formatAndConvert(new BigDecimal("3600.0"),
+                SpeedUnit.METERS_PER_SECOND, UnitSystem.METRIC));
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal("65.0"),
-                SpeedUnit.MILES_PER_HOUR, UnitSystem.METRIC), "104,61 Km/h");
+        assertEquals("104,61 Km/h", formatter.formatAndConvert(new BigDecimal("65.0"),
+                SpeedUnit.MILES_PER_HOUR, UnitSystem.METRIC));
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal("0.5"),
-                SpeedUnit.MILES_PER_HOUR, UnitSystem.IMPERIAL), "0,73 ft/s");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("65.0"),
-                SpeedUnit.MILES_PER_HOUR, UnitSystem.IMPERIAL), "65 mph");
+        assertEquals("0,73 ft/s", formatter.formatAndConvert(new BigDecimal("0.5"),
+                SpeedUnit.MILES_PER_HOUR, UnitSystem.IMPERIAL));
+        assertEquals("65 mph", formatter.formatAndConvert(new BigDecimal("65.0"),
+                SpeedUnit.MILES_PER_HOUR, UnitSystem.IMPERIAL));
     }
 
     @Test
@@ -444,20 +445,20 @@ public class SpeedFormatterTest {
         final SpeedFormatter formatter = new SpeedFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(0.1,
-                SpeedUnit.METERS_PER_SECOND, UnitSystem.METRIC), "0,1 m/s");
-        assertEquals(formatter.formatAndConvert(3.6,
-                SpeedUnit.METERS_PER_SECOND, UnitSystem.METRIC), "12,96 Km/h");
-        assertEquals(formatter.formatAndConvert(3600.0,
-                SpeedUnit.METERS_PER_SECOND, UnitSystem.METRIC), "3,6 Km/s");
+        assertEquals("0,1 m/s", formatter.formatAndConvert(0.1,
+                SpeedUnit.METERS_PER_SECOND, UnitSystem.METRIC));
+        assertEquals("12,96 Km/h", formatter.formatAndConvert(3.6,
+                SpeedUnit.METERS_PER_SECOND, UnitSystem.METRIC));
+        assertEquals("3,6 Km/s", formatter.formatAndConvert(3600.0,
+                SpeedUnit.METERS_PER_SECOND, UnitSystem.METRIC));
 
-        assertEquals(formatter.formatAndConvert(65.0,
-                SpeedUnit.MILES_PER_HOUR, UnitSystem.METRIC), "104,61 Km/h");
+        assertEquals("104,61 Km/h", formatter.formatAndConvert(65.0,
+                SpeedUnit.MILES_PER_HOUR, UnitSystem.METRIC));
 
-        assertEquals(formatter.formatAndConvert(0.5,
-                SpeedUnit.MILES_PER_HOUR, UnitSystem.IMPERIAL), "0,73 ft/s");
-        assertEquals(formatter.formatAndConvert(65.0,
-                SpeedUnit.MILES_PER_HOUR, UnitSystem.IMPERIAL), "65 mph");
+        assertEquals("0,73 ft/s", formatter.formatAndConvert(0.5,
+                SpeedUnit.MILES_PER_HOUR, UnitSystem.IMPERIAL));
+        assertEquals("65 mph", formatter.formatAndConvert(65.0,
+                SpeedUnit.MILES_PER_HOUR, UnitSystem.IMPERIAL));
     }
 
     @Test
@@ -467,20 +468,20 @@ public class SpeedFormatterTest {
         final SpeedFormatter formatter = new SpeedFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new Speed(0.1,
-                SpeedUnit.METERS_PER_SECOND), UnitSystem.METRIC), "0,1 m/s");
-        assertEquals(formatter.formatAndConvert(new Speed(3.6,
-                SpeedUnit.METERS_PER_SECOND), UnitSystem.METRIC), "12,96 Km/h");
-        assertEquals(formatter.formatAndConvert(new Speed(3600.0,
-                SpeedUnit.METERS_PER_SECOND), UnitSystem.METRIC), "3,6 Km/s");
+        assertEquals("0,1 m/s", formatter.formatAndConvert(new Speed(0.1,
+                SpeedUnit.METERS_PER_SECOND), UnitSystem.METRIC));
+        assertEquals("12,96 Km/h", formatter.formatAndConvert(new Speed(3.6,
+                SpeedUnit.METERS_PER_SECOND), UnitSystem.METRIC));
+        assertEquals("3,6 Km/s", formatter.formatAndConvert(new Speed(3600.0,
+                SpeedUnit.METERS_PER_SECOND), UnitSystem.METRIC));
 
-        assertEquals(formatter.formatAndConvert(new Speed(65.0,
-                SpeedUnit.MILES_PER_HOUR), UnitSystem.METRIC), "104,61 Km/h");
+        assertEquals("104,61 Km/h", formatter.formatAndConvert(new Speed(65.0,
+                SpeedUnit.MILES_PER_HOUR), UnitSystem.METRIC));
 
-        assertEquals(formatter.formatAndConvert(new Speed(0.5,
-                SpeedUnit.MILES_PER_HOUR), UnitSystem.IMPERIAL), "0,73 ft/s");
-        assertEquals(formatter.formatAndConvert(new Speed(65.0,
-                SpeedUnit.MILES_PER_HOUR), UnitSystem.IMPERIAL), "65 mph");
+        assertEquals("0,73 ft/s", formatter.formatAndConvert(new Speed(0.5,
+                SpeedUnit.MILES_PER_HOUR), UnitSystem.IMPERIAL));
+        assertEquals("65 mph", formatter.formatAndConvert(new Speed(65.0,
+                SpeedUnit.MILES_PER_HOUR), UnitSystem.IMPERIAL));
     }
 
     @Test
@@ -490,17 +491,17 @@ public class SpeedFormatterTest {
         final SpeedFormatter formatter = new SpeedFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("0.1"),
-                SpeedUnit.METERS_PER_SECOND), "0,1 m/s");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("3.6"),
-                SpeedUnit.METERS_PER_SECOND), "12,96 Km/h");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("3600.0"),
-                SpeedUnit.METERS_PER_SECOND), "3,6 Km/s");
+        assertEquals("0,1 m/s", formatter.formatAndConvertMetric(new BigDecimal("0.1"),
+                SpeedUnit.METERS_PER_SECOND));
+        assertEquals("12,96 Km/h", formatter.formatAndConvertMetric(new BigDecimal("3.6"),
+                SpeedUnit.METERS_PER_SECOND));
+        assertEquals("3,6 Km/s", formatter.formatAndConvertMetric(new BigDecimal("3600.0"),
+                SpeedUnit.METERS_PER_SECOND));
 
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("0.5"),
-                SpeedUnit.MILES_PER_HOUR), "0,22 m/s");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("65.0"),
-                SpeedUnit.MILES_PER_HOUR), "104,61 Km/h");
+        assertEquals("0,22 m/s", formatter.formatAndConvertMetric(new BigDecimal("0.5"),
+                SpeedUnit.MILES_PER_HOUR));
+        assertEquals("104,61 Km/h", formatter.formatAndConvertMetric(new BigDecimal("65.0"),
+                SpeedUnit.MILES_PER_HOUR));
     }
 
     @Test
@@ -510,10 +511,10 @@ public class SpeedFormatterTest {
         final SpeedFormatter formatter = new SpeedFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("0.5"),
-                SpeedUnit.MILES_PER_HOUR), "0,73 ft/s");
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("65.0"),
-                SpeedUnit.MILES_PER_HOUR), "65 mph");
+        assertEquals("0,73 ft/s", formatter.formatAndConvertImperial(new BigDecimal("0.5"),
+                SpeedUnit.MILES_PER_HOUR));
+        assertEquals("65 mph", formatter.formatAndConvertImperial(new BigDecimal("65.0"),
+                SpeedUnit.MILES_PER_HOUR));
     }
 
     @Test
@@ -533,7 +534,7 @@ public class SpeedFormatterTest {
         formatter.setMaximumFractionDigits(2);
 
         // check correctness
-        assertEquals(formatter.getMaximumFractionDigits(), 2);
+        assertEquals(2, formatter.getMaximumFractionDigits());
     }
 
     @Test
@@ -547,7 +548,7 @@ public class SpeedFormatterTest {
         formatter.setMaximumIntegerDigits(2);
 
         // check correctness
-        assertEquals(formatter.getMaximumIntegerDigits(), 2);
+        assertEquals(2, formatter.getMaximumIntegerDigits());
     }
 
     @Test
@@ -561,7 +562,7 @@ public class SpeedFormatterTest {
         formatter.setMinimumFractionDigits(2);
 
         // check correctness
-        assertEquals(formatter.getMinimumFractionDigits(), 2);
+        assertEquals(2, formatter.getMinimumFractionDigits());
     }
 
     @Test
@@ -575,7 +576,7 @@ public class SpeedFormatterTest {
         formatter.setMinimumIntegerDigits(2);
 
         // check correctness
-        assertEquals(formatter.getMinimumIntegerDigits(), 2);
+        assertEquals(2, formatter.getMinimumIntegerDigits());
     }
 
     @Test
@@ -589,7 +590,7 @@ public class SpeedFormatterTest {
         formatter.setRoundingMode(RoundingMode.UNNECESSARY);
 
         // check correctness
-        assertEquals(formatter.getRoundingMode(), RoundingMode.UNNECESSARY);
+        assertEquals(RoundingMode.UNNECESSARY, formatter.getRoundingMode());
     }
 
     @Test
@@ -626,14 +627,14 @@ public class SpeedFormatterTest {
     public void testGetSetValueAndUnitFormatPattern() {
         final SpeedFormatter formatter = new SpeedFormatter();
 
-        assertEquals(formatter.getValueAndUnitFormatPattern(),
-                MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
+                formatter.getValueAndUnitFormatPattern());
 
         // new value
         formatter.setValueAndUnitFormatPattern("{0}{1}");
 
         // check correctness
-        assertEquals(formatter.getValueAndUnitFormatPattern(), "{0}{1}");
+        assertEquals("{0}{1}", formatter.getValueAndUnitFormatPattern());
 
         // force IllegalArgumentException
         try {
@@ -647,11 +648,11 @@ public class SpeedFormatterTest {
     public void testGetUnitSystem() {
         SpeedFormatter formatter = new SpeedFormatter(
                 new Locale("es", "ES"));
-        assertEquals(formatter.getUnitSystem(), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem());
 
         formatter = new SpeedFormatter(
                 new Locale("en", "US"));
-        assertEquals(formatter.getUnitSystem(), UnitSystem.IMPERIAL);
+        assertEquals(UnitSystem.IMPERIAL, formatter.getUnitSystem());
     }
 
     @Test
@@ -752,19 +753,19 @@ public class SpeedFormatterTest {
                 new Locale("es", "ES"));
 
         String text = "5,5 m/s";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem(text));
 
         text = "5,5 Km/h";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem(text));
 
         text = "5,5 Km/s";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem(text));
 
         text = "5,5 ft/s";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.IMPERIAL);
+        assertEquals(UnitSystem.IMPERIAL, formatter.getUnitSystem(text));
 
         text = "5,5 mph";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.IMPERIAL);
+        assertEquals(UnitSystem.IMPERIAL, formatter.getUnitSystem(text));
 
         text = "5,5 s";
         assertNull(formatter.getUnitSystem(text));
@@ -777,28 +778,28 @@ public class SpeedFormatterTest {
 
         String text = "5,5 m/s";
         Speed s = formatter.parse(text);
-        assertEquals(s.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(s.getUnit(), SpeedUnit.METERS_PER_SECOND);
+        assertEquals(5.5, s.getValue().doubleValue(), 0.0);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s.getUnit());
 
         text = "5,5 Km/h";
         s = formatter.parse(text);
-        assertEquals(s.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(s.getUnit(), SpeedUnit.KILOMETERS_PER_HOUR);
+        assertEquals(5.5, s.getValue().doubleValue(), 0.0);
+        assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, s.getUnit());
 
         text = "5,5 Km/s";
         s = formatter.parse(text);
-        assertEquals(s.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(s.getUnit(), SpeedUnit.KILOMETERS_PER_SECOND);
+        assertEquals(5.5, s.getValue().doubleValue(), 0.0);
+        assertEquals(SpeedUnit.KILOMETERS_PER_SECOND, s.getUnit());
 
         text = "5,5 ft/s";
         s = formatter.parse(text);
-        assertEquals(s.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(s.getUnit(), SpeedUnit.FEET_PER_SECOND);
+        assertEquals(5.5, s.getValue().doubleValue(), 0.0);
+        assertEquals(SpeedUnit.FEET_PER_SECOND, s.getUnit());
 
         text = "5,5 mph";
         s = formatter.parse(text);
-        assertEquals(s.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(s.getUnit(), SpeedUnit.MILES_PER_HOUR);
+        assertEquals(5.5, s.getValue().doubleValue(), 0.0);
+        assertEquals(SpeedUnit.MILES_PER_HOUR, s.getUnit());
 
         // Force UnknownUnitException
         text = "5,5 s";
@@ -822,19 +823,19 @@ public class SpeedFormatterTest {
                 new Locale("es", "ES"));
 
         String text = "5,5 m/s";
-        assertEquals(formatter.findUnit(text), SpeedUnit.METERS_PER_SECOND);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, formatter.findUnit(text));
 
         text = "5,5 Km/h";
-        assertEquals(formatter.findUnit(text), SpeedUnit.KILOMETERS_PER_HOUR);
+        assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, formatter.findUnit(text));
 
         text = "5,5 Km/s";
-        assertEquals(formatter.findUnit(text), SpeedUnit.KILOMETERS_PER_SECOND);
+        assertEquals(SpeedUnit.KILOMETERS_PER_SECOND, formatter.findUnit(text));
 
         text = "5,5 ft/s";
-        assertEquals(formatter.findUnit(text), SpeedUnit.FEET_PER_SECOND);
+        assertEquals(SpeedUnit.FEET_PER_SECOND, formatter.findUnit(text));
 
         text = "5,5 mph";
-        assertEquals(formatter.findUnit(text), SpeedUnit.MILES_PER_HOUR);
+        assertEquals(SpeedUnit.MILES_PER_HOUR, formatter.findUnit(text));
 
         text = "5,5 s";
         assertNull(formatter.findUnit(text));
@@ -844,15 +845,15 @@ public class SpeedFormatterTest {
     public void testGetUnitSymbol() {
         final SpeedFormatter formatter = new SpeedFormatter();
 
-        assertEquals(formatter.getUnitSymbol(SpeedUnit.METERS_PER_SECOND),
-                SpeedFormatter.METERS_PER_SECOND);
-        assertEquals(formatter.getUnitSymbol(SpeedUnit.KILOMETERS_PER_HOUR),
-                SpeedFormatter.KILOMETERS_PER_HOUR);
-        assertEquals(formatter.getUnitSymbol(SpeedUnit.KILOMETERS_PER_SECOND),
-                SpeedFormatter.KILOMETERS_PER_SECOND);
-        assertEquals(formatter.getUnitSymbol(SpeedUnit.FEET_PER_SECOND),
-                SpeedFormatter.FEET_PER_SECOND);
-        assertEquals(formatter.getUnitSymbol(SpeedUnit.MILES_PER_HOUR),
-                SpeedFormatter.MILES_PER_HOUR);
+        assertEquals(SpeedFormatter.METERS_PER_SECOND,
+                formatter.getUnitSymbol(SpeedUnit.METERS_PER_SECOND));
+        assertEquals(SpeedFormatter.KILOMETERS_PER_HOUR,
+                formatter.getUnitSymbol(SpeedUnit.KILOMETERS_PER_HOUR));
+        assertEquals(SpeedFormatter.KILOMETERS_PER_SECOND,
+                formatter.getUnitSymbol(SpeedUnit.KILOMETERS_PER_SECOND));
+        assertEquals(SpeedFormatter.FEET_PER_SECOND,
+                formatter.getUnitSymbol(SpeedUnit.FEET_PER_SECOND));
+        assertEquals(SpeedFormatter.MILES_PER_HOUR,
+                formatter.getUnitSymbol(SpeedUnit.MILES_PER_HOUR));
     }
 }

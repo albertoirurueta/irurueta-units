@@ -116,7 +116,7 @@ public enum WeightUnit {
      * @return all supported metric weight units.
      */
     public static WeightUnit[] getMetricUnits() {
-        return new WeightUnit[] {
+        return new WeightUnit[]{
                 PICOGRAM,
                 NANOGRAM,
                 MICROGRAM,
@@ -134,7 +134,7 @@ public enum WeightUnit {
      * @return all supported imperial weight units.
      */
     public static WeightUnit[] getImperialUnits() {
-        return new WeightUnit[] {
+        return new WeightUnit[]{
                 US_TON,
                 UK_TON,
                 POUND,

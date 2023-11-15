@@ -21,7 +21,7 @@ import java.util.Locale;
 /**
  * Formats and parses distance value and unit.
  */
-public class DistanceFormatter extends MeasureFormatter<Distance, DistanceUnit> implements Cloneable {
+public class DistanceFormatter extends MeasureFormatter<Distance, DistanceUnit> {
 
     /**
      * Millimeter symbol.
@@ -311,17 +311,5 @@ public class DistanceFormatter extends MeasureFormatter<Distance, DistanceUnit> 
             default:
                 return METER;
         }
-    }
-
-    /**
-     * Clones this distance formatter.
-     *
-     * @return a copy of this distance formatter.
-     * @throws CloneNotSupportedException if clone fails for any reason.
-     */
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        final DistanceFormatter copy = (DistanceFormatter) super.clone();
-        return internalClone(copy);
     }
 }

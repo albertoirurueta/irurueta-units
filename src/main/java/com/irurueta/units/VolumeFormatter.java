@@ -21,7 +21,7 @@ import java.util.Locale;
 /**
  * Formats and parses volume value and unit.
  */
-public class VolumeFormatter extends MeasureFormatter<Volume, VolumeUnit> implements Cloneable {
+public class VolumeFormatter extends MeasureFormatter<Volume, VolumeUnit> {
 
     /**
      * Cubic centimeter symbol.
@@ -335,17 +335,5 @@ public class VolumeFormatter extends MeasureFormatter<Volume, VolumeUnit> implem
                 return CUBIC_METER;
 
         }
-    }
-
-    /**
-     * Clones this volume formatter.
-     *
-     * @return a copy of this volume formatter.
-     * @throws CloneNotSupportedException if clone fails for any reason.
-     */
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        final VolumeFormatter copy = (VolumeFormatter) super.clone();
-        return internalClone(copy);
     }
 }

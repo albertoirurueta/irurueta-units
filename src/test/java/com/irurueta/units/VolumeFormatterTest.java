@@ -34,48 +34,48 @@ public class VolumeFormatterTest {
         VolumeFormatter formatter = new VolumeFormatter();
 
         // check
-        assertEquals(formatter.getLocale(), Locale.getDefault());
-        assertEquals(formatter.getMaximumFractionDigits(),
-                NumberFormat.getInstance().getMaximumFractionDigits());
-        assertEquals(formatter.getMaximumIntegerDigits(),
-                NumberFormat.getInstance().getMaximumIntegerDigits());
-        assertEquals(formatter.getMinimumFractionDigits(),
-                NumberFormat.getInstance().getMinimumFractionDigits());
-        assertEquals(formatter.getMinimumIntegerDigits(),
-                NumberFormat.getInstance().getMinimumIntegerDigits());
-        assertEquals(formatter.getRoundingMode(),
-                NumberFormat.getInstance().getRoundingMode());
-        assertEquals(formatter.getUnitSystem(), UnitLocale.getDefault());
-        assertEquals(formatter.isGroupingUsed(),
-                NumberFormat.getInstance().isGroupingUsed());
-        assertEquals(formatter.isParseIntegerOnly(),
-                NumberFormat.getInstance().isParseIntegerOnly());
-        assertEquals(formatter.getValueAndUnitFormatPattern(),
-                MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
+        assertEquals(Locale.getDefault(), formatter.getLocale());
+        assertEquals(NumberFormat.getInstance().getMaximumFractionDigits(),
+                formatter.getMaximumFractionDigits());
+        assertEquals(NumberFormat.getInstance().getMaximumIntegerDigits(),
+                formatter.getMaximumIntegerDigits());
+        assertEquals(NumberFormat.getInstance().getMinimumFractionDigits(),
+                formatter.getMinimumFractionDigits());
+        assertEquals(NumberFormat.getInstance().getMinimumIntegerDigits(),
+                formatter.getMinimumIntegerDigits());
+        assertEquals(NumberFormat.getInstance().getRoundingMode(),
+                formatter.getRoundingMode());
+        assertEquals(UnitLocale.getDefault(), formatter.getUnitSystem());
+        assertEquals(NumberFormat.getInstance().isGroupingUsed(),
+                formatter.isGroupingUsed());
+        assertEquals(NumberFormat.getInstance().isParseIntegerOnly(),
+                formatter.isParseIntegerOnly());
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
+                formatter.getValueAndUnitFormatPattern());
 
         // test constructor with locale
         final Locale locale = new Locale("es", "ES");
         formatter = new VolumeFormatter(locale);
 
         // check
-        assertEquals(formatter.getLocale(), locale);
-        assertEquals(formatter.getMaximumFractionDigits(),
-                NumberFormat.getInstance(locale).getMaximumFractionDigits());
-        assertEquals(formatter.getMaximumIntegerDigits(),
-                NumberFormat.getInstance(locale).getMaximumIntegerDigits());
-        assertEquals(formatter.getMinimumFractionDigits(),
-                NumberFormat.getInstance(locale).getMinimumFractionDigits());
-        assertEquals(formatter.getMinimumIntegerDigits(),
-                NumberFormat.getInstance(locale).getMinimumIntegerDigits());
-        assertEquals(formatter.getRoundingMode(),
-                NumberFormat.getInstance(locale).getRoundingMode());
-        assertEquals(formatter.getUnitSystem(), UnitLocale.getFrom(locale));
-        assertEquals(formatter.isGroupingUsed(),
-                NumberFormat.getInstance(locale).isGroupingUsed());
-        assertEquals(formatter.isParseIntegerOnly(),
-                NumberFormat.getInstance(locale).isParseIntegerOnly());
-        assertEquals(formatter.getValueAndUnitFormatPattern(),
-                MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
+        assertEquals(locale, formatter.getLocale());
+        assertEquals(NumberFormat.getInstance(locale).getMaximumFractionDigits(),
+                formatter.getMaximumFractionDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMaximumIntegerDigits(),
+                formatter.getMaximumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMinimumFractionDigits(),
+                formatter.getMinimumFractionDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMinimumIntegerDigits(),
+                formatter.getMinimumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getRoundingMode(),
+                formatter.getRoundingMode());
+        assertEquals(UnitLocale.getFrom(locale), formatter.getUnitSystem());
+        assertEquals(NumberFormat.getInstance(locale).isGroupingUsed(),
+                formatter.isGroupingUsed());
+        assertEquals(NumberFormat.getInstance(locale).isParseIntegerOnly(),
+                formatter.isParseIntegerOnly());
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
+                formatter.getValueAndUnitFormatPattern());
 
 
         // force IllegalArgumentException
@@ -94,24 +94,23 @@ public class VolumeFormatterTest {
         final VolumeFormatter formatter2 = new VolumeFormatter(formatter);
 
         // check
-        assertEquals(formatter2.getLocale(), locale);
-        assertEquals(formatter2.getMaximumFractionDigits(),
-                NumberFormat.getInstance(locale).getMaximumFractionDigits());
-        assertEquals(formatter2.getMaximumIntegerDigits(),
-                NumberFormat.getInstance(locale).getMaximumIntegerDigits());
-        assertEquals(formatter2.getMinimumFractionDigits(),
-                NumberFormat.getInstance(locale).getMinimumFractionDigits());
-        assertEquals(formatter2.getMinimumIntegerDigits(),
-                NumberFormat.getInstance(locale).getMinimumIntegerDigits());
-        assertEquals(formatter2.getRoundingMode(),
-                NumberFormat.getInstance(locale).getRoundingMode());
-        assertEquals(formatter2.getUnitSystem(), UnitLocale.getFrom(locale));
-        assertEquals(formatter2.isGroupingUsed(),
-                NumberFormat.getInstance(locale).isGroupingUsed());
-        assertEquals(formatter2.isParseIntegerOnly(),
-                NumberFormat.getInstance(locale).isParseIntegerOnly());
-        assertEquals(formatter2.getValueAndUnitFormatPattern(),
-                MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
+        assertEquals(locale, formatter2.getLocale());
+        assertEquals(NumberFormat.getInstance(locale).getMaximumFractionDigits(),
+                formatter2.getMaximumFractionDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMaximumIntegerDigits(),
+                formatter2.getMaximumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMinimumFractionDigits(),
+                formatter2.getMinimumFractionDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMinimumIntegerDigits(),
+                formatter2.getMinimumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getRoundingMode(),
+                formatter2.getRoundingMode());
+        assertEquals(UnitLocale.getFrom(locale), formatter2.getUnitSystem());
+        assertEquals(NumberFormat.getInstance(locale).isGroupingUsed(), formatter2.isGroupingUsed());
+        assertEquals(NumberFormat.getInstance(locale).isParseIntegerOnly(),
+                formatter2.isParseIntegerOnly());
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
+                formatter2.getValueAndUnitFormatPattern());
 
         formatter = null;
         try {
@@ -148,6 +147,7 @@ public class VolumeFormatterTest {
         final VolumeFormatter formatter3 = new VolumeFormatter(Locale.FRENCH);
 
         // check
+        //noinspection EqualsWithItself
         assertEquals(formatter1, formatter1);
         assertEquals(formatter1, formatter2);
         assertNotEquals(formatter1, formatter3);
@@ -175,28 +175,28 @@ public class VolumeFormatterTest {
 
         final VolumeFormatter formatter = new VolumeFormatter(l);
 
-        assertEquals(formatter.format(new BigDecimal(value),
-                VolumeUnit.CUBIC_CENTIMETER), "5,5 cm³");
-        assertEquals(formatter.format(new BigDecimal(value),
-                VolumeUnit.MILLILITER), "5,5 mL");
-        assertEquals(formatter.format(new BigDecimal(value),
-                VolumeUnit.CUBIC_DECIMETER), "5,5 dm³");
-        assertEquals(formatter.format(new BigDecimal(value),
-                VolumeUnit.LITER), "5,5 L");
-        assertEquals(formatter.format(new BigDecimal(value),
-                VolumeUnit.HECTOLITER), "5,5 hL");
-        assertEquals(formatter.format(new BigDecimal(value),
-                VolumeUnit.CUBIC_METER), "5,5 m³");
-        assertEquals(formatter.format(new BigDecimal(value),
-                VolumeUnit.CUBIC_INCH), "5,5 in³");
-        assertEquals(formatter.format(new BigDecimal(value),
-                VolumeUnit.PINT), "5,5 pt");
-        assertEquals(formatter.format(new BigDecimal(value),
-                VolumeUnit.GALLON), "5,5 gal");
-        assertEquals(formatter.format(new BigDecimal(value),
-                VolumeUnit.CUBIC_FOOT), "5,5 ft³");
-        assertEquals(formatter.format(new BigDecimal(value),
-                VolumeUnit.BARREL), "5,5 bbl");
+        assertEquals("5,5 cm³", formatter.format(new BigDecimal(value),
+                VolumeUnit.CUBIC_CENTIMETER));
+        assertEquals("5,5 mL", formatter.format(new BigDecimal(value),
+                VolumeUnit.MILLILITER));
+        assertEquals("5,5 dm³", formatter.format(new BigDecimal(value),
+                VolumeUnit.CUBIC_DECIMETER));
+        assertEquals("5,5 L", formatter.format(new BigDecimal(value),
+                VolumeUnit.LITER));
+        assertEquals("5,5 hL", formatter.format(new BigDecimal(value),
+                VolumeUnit.HECTOLITER));
+        assertEquals("5,5 m³", formatter.format(new BigDecimal(value),
+                VolumeUnit.CUBIC_METER));
+        assertEquals("5,5 in³", formatter.format(new BigDecimal(value),
+                VolumeUnit.CUBIC_INCH));
+        assertEquals("5,5 pt", formatter.format(new BigDecimal(value),
+                VolumeUnit.PINT));
+        assertEquals("5,5 gal", formatter.format(new BigDecimal(value),
+                VolumeUnit.GALLON));
+        assertEquals("5,5 ft³", formatter.format(new BigDecimal(value),
+                VolumeUnit.CUBIC_FOOT));
+        assertEquals("5,5 bbl", formatter.format(new BigDecimal(value),
+                VolumeUnit.BARREL));
     }
 
     @Test
@@ -207,59 +207,59 @@ public class VolumeFormatterTest {
         final VolumeFormatter formatter = new VolumeFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
-                VolumeUnit.CUBIC_CENTIMETER, buffer, new FieldPosition(0)).toString(),
-                "5,5 cm³");
+        assertEquals("5,5 cm³",
+                formatter.format(new BigDecimal(value),
+                        VolumeUnit.CUBIC_CENTIMETER, buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
-                VolumeUnit.MILLILITER, buffer, new FieldPosition(0)).toString(),
-                "5,5 mL");
+        assertEquals("5,5 mL",
+                formatter.format(new BigDecimal(value),
+                        VolumeUnit.MILLILITER, buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
-                VolumeUnit.CUBIC_DECIMETER, buffer, new FieldPosition(0)).toString(),
-                "5,5 dm³");
+        assertEquals("5,5 dm³",
+                formatter.format(new BigDecimal(value),
+                        VolumeUnit.CUBIC_DECIMETER, buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
-                VolumeUnit.LITER, buffer, new FieldPosition(0)).toString(),
-                "5,5 L");
+        assertEquals("5,5 L",
+                formatter.format(new BigDecimal(value),
+                        VolumeUnit.LITER, buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
-                VolumeUnit.HECTOLITER, buffer, new FieldPosition(0)).toString(),
-                "5,5 hL");
+        assertEquals("5,5 hL",
+                formatter.format(new BigDecimal(value),
+                        VolumeUnit.HECTOLITER, buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
-                VolumeUnit.CUBIC_METER, buffer, new FieldPosition(0)).toString(),
-                "5,5 m³");
+        assertEquals("5,5 m³",
+                formatter.format(new BigDecimal(value),
+                        VolumeUnit.CUBIC_METER, buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
-                VolumeUnit.CUBIC_INCH, buffer, new FieldPosition(0)).toString(),
-                "5,5 in³");
+        assertEquals("5,5 in³",
+                formatter.format(new BigDecimal(value),
+                        VolumeUnit.CUBIC_INCH, buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
-                VolumeUnit.PINT, buffer, new FieldPosition(0)).toString(),
-                "5,5 pt");
+        assertEquals("5,5 pt",
+                formatter.format(new BigDecimal(value),
+                        VolumeUnit.PINT, buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
-                VolumeUnit.GALLON, buffer, new FieldPosition(0)).toString(),
-                "5,5 gal");
+        assertEquals("5,5 gal",
+                formatter.format(new BigDecimal(value),
+                        VolumeUnit.GALLON, buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
-                VolumeUnit.CUBIC_FOOT, buffer, new FieldPosition(0)).toString(),
-                "5,5 ft³");
+        assertEquals("5,5 ft³",
+                formatter.format(new BigDecimal(value),
+                        VolumeUnit.CUBIC_FOOT, buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
-                VolumeUnit.BARREL, buffer, new FieldPosition(0)).toString(),
-                "5,5 bbl");
+        assertEquals("5,5 bbl",
+                formatter.format(new BigDecimal(value),
+                        VolumeUnit.BARREL, buffer, new FieldPosition(0)).toString());
     }
 
     @Test
@@ -269,17 +269,17 @@ public class VolumeFormatterTest {
 
         final VolumeFormatter formatter = new VolumeFormatter(l);
 
-        assertEquals(formatter.format(value, VolumeUnit.CUBIC_CENTIMETER), "5,5 cm³");
-        assertEquals(formatter.format(value, VolumeUnit.MILLILITER), "5,5 mL");
-        assertEquals(formatter.format(value, VolumeUnit.CUBIC_DECIMETER), "5,5 dm³");
-        assertEquals(formatter.format(value, VolumeUnit.LITER), "5,5 L");
-        assertEquals(formatter.format(value, VolumeUnit.HECTOLITER), "5,5 hL");
-        assertEquals(formatter.format(value, VolumeUnit.CUBIC_METER), "5,5 m³");
-        assertEquals(formatter.format(value, VolumeUnit.CUBIC_INCH), "5,5 in³");
-        assertEquals(formatter.format(value, VolumeUnit.PINT), "5,5 pt");
-        assertEquals(formatter.format(value, VolumeUnit.GALLON), "5,5 gal");
-        assertEquals(formatter.format(value, VolumeUnit.CUBIC_FOOT), "5,5 ft³");
-        assertEquals(formatter.format(value, VolumeUnit.BARREL), "5,5 bbl");
+        assertEquals("5,5 cm³", formatter.format(value, VolumeUnit.CUBIC_CENTIMETER));
+        assertEquals("5,5 mL", formatter.format(value, VolumeUnit.MILLILITER));
+        assertEquals("5,5 dm³", formatter.format(value, VolumeUnit.CUBIC_DECIMETER));
+        assertEquals("5,5 L", formatter.format(value, VolumeUnit.LITER));
+        assertEquals("5,5 hL", formatter.format(value, VolumeUnit.HECTOLITER));
+        assertEquals("5,5 m³", formatter.format(value, VolumeUnit.CUBIC_METER));
+        assertEquals("5,5 in³", formatter.format(value, VolumeUnit.CUBIC_INCH));
+        assertEquals("5,5 pt", formatter.format(value, VolumeUnit.PINT));
+        assertEquals("5,5 gal", formatter.format(value, VolumeUnit.GALLON));
+        assertEquals("5,5 ft³", formatter.format(value, VolumeUnit.CUBIC_FOOT));
+        assertEquals("5,5 bbl", formatter.format(value, VolumeUnit.BARREL));
     }
 
     @Test
@@ -290,48 +290,48 @@ public class VolumeFormatterTest {
         final VolumeFormatter formatter = new VolumeFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
-        assertEquals(formatter.format(value, VolumeUnit.CUBIC_CENTIMETER, buffer,
-                new FieldPosition(0)).toString(), "5,5 cm³");
+        assertEquals("5,5 cm³", formatter.format(value, VolumeUnit.CUBIC_CENTIMETER, buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value, VolumeUnit.MILLILITER, buffer,
-                new FieldPosition(0)).toString(), "5,5 mL");
+        assertEquals("5,5 mL", formatter.format(value, VolumeUnit.MILLILITER, buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value, VolumeUnit.CUBIC_DECIMETER, buffer,
-                new FieldPosition(0)).toString(), "5,5 dm³");
+        assertEquals("5,5 dm³", formatter.format(value, VolumeUnit.CUBIC_DECIMETER, buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value, VolumeUnit.LITER, buffer,
-                new FieldPosition(0)).toString(), "5,5 L");
+        assertEquals("5,5 L", formatter.format(value, VolumeUnit.LITER, buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value, VolumeUnit.HECTOLITER, buffer,
-                new FieldPosition(0)).toString(), "5,5 hL");
+        assertEquals("5,5 hL", formatter.format(value, VolumeUnit.HECTOLITER, buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value, VolumeUnit.CUBIC_METER, buffer,
-                new FieldPosition(0)).toString(), "5,5 m³");
+        assertEquals("5,5 m³", formatter.format(value, VolumeUnit.CUBIC_METER, buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value, VolumeUnit.CUBIC_INCH, buffer,
-                new FieldPosition(0)).toString(), "5,5 in³");
+        assertEquals("5,5 in³", formatter.format(value, VolumeUnit.CUBIC_INCH, buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value, VolumeUnit.PINT, buffer,
-                new FieldPosition(0)).toString(), "5,5 pt");
+        assertEquals("5,5 pt", formatter.format(value, VolumeUnit.PINT, buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value, VolumeUnit.GALLON, buffer,
-                new FieldPosition(0)).toString(), "5,5 gal");
+        assertEquals("5,5 gal", formatter.format(value, VolumeUnit.GALLON, buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value, VolumeUnit.CUBIC_FOOT, buffer,
-                new FieldPosition(0)).toString(), "5,5 ft³");
+        assertEquals("5,5 ft³", formatter.format(value, VolumeUnit.CUBIC_FOOT, buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value, VolumeUnit.BARREL, buffer,
-                new FieldPosition(0)).toString(), "5,5 bbl");
+        assertEquals("5,5 bbl", formatter.format(value, VolumeUnit.BARREL, buffer,
+                new FieldPosition(0)).toString());
     }
 
     @Test
@@ -341,28 +341,28 @@ public class VolumeFormatterTest {
 
         final VolumeFormatter formatter = new VolumeFormatter(l);
 
-        assertEquals(formatter.format(new Volume(value, VolumeUnit.CUBIC_CENTIMETER)),
-                "5,5 cm³");
-        assertEquals(formatter.format(new Volume(value, VolumeUnit.MILLILITER)),
-                "5,5 mL");
-        assertEquals(formatter.format(new Volume(value, VolumeUnit.CUBIC_DECIMETER)),
-                "5,5 dm³");
-        assertEquals(formatter.format(new Volume(value, VolumeUnit.LITER)),
-                "5,5 L");
-        assertEquals(formatter.format(new Volume(value, VolumeUnit.HECTOLITER)),
-                "5,5 hL");
-        assertEquals(formatter.format(new Volume(value, VolumeUnit.CUBIC_METER)),
-                "5,5 m³");
-        assertEquals(formatter.format(new Volume(value, VolumeUnit.CUBIC_INCH)),
-                "5,5 in³");
-        assertEquals(formatter.format(new Volume(value, VolumeUnit.PINT)),
-                "5,5 pt");
-        assertEquals(formatter.format(new Volume(value, VolumeUnit.GALLON)),
-                "5,5 gal");
-        assertEquals(formatter.format(new Volume(value, VolumeUnit.CUBIC_FOOT)),
-                "5,5 ft³");
-        assertEquals(formatter.format(new Volume(value, VolumeUnit.BARREL)),
-                "5,5 bbl");
+        assertEquals("5,5 cm³",
+                formatter.format(new Volume(value, VolumeUnit.CUBIC_CENTIMETER)));
+        assertEquals("5,5 mL",
+                formatter.format(new Volume(value, VolumeUnit.MILLILITER)));
+        assertEquals("5,5 dm³",
+                formatter.format(new Volume(value, VolumeUnit.CUBIC_DECIMETER)));
+        assertEquals("5,5 L",
+                formatter.format(new Volume(value, VolumeUnit.LITER)));
+        assertEquals("5,5 hL",
+                formatter.format(new Volume(value, VolumeUnit.HECTOLITER)));
+        assertEquals("5,5 m³",
+                formatter.format(new Volume(value, VolumeUnit.CUBIC_METER)));
+        assertEquals("5,5 in³",
+                formatter.format(new Volume(value, VolumeUnit.CUBIC_INCH)));
+        assertEquals("5,5 pt",
+                formatter.format(new Volume(value, VolumeUnit.PINT)));
+        assertEquals("5,5 gal",
+                formatter.format(new Volume(value, VolumeUnit.GALLON)));
+        assertEquals("5,5 ft³",
+                formatter.format(new Volume(value, VolumeUnit.CUBIC_FOOT)));
+        assertEquals("5,5 bbl",
+                formatter.format(new Volume(value, VolumeUnit.BARREL)));
     }
 
     @Test
@@ -373,48 +373,48 @@ public class VolumeFormatterTest {
         final VolumeFormatter formatter = new VolumeFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
-        assertEquals(formatter.format(new Volume(value, VolumeUnit.CUBIC_CENTIMETER), buffer,
-                new FieldPosition(0)).toString(), "5,5 cm³");
+        assertEquals("5,5 cm³", formatter.format(new Volume(value, VolumeUnit.CUBIC_CENTIMETER), buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new Volume(value, VolumeUnit.MILLILITER), buffer,
-                new FieldPosition(0)).toString(), "5,5 mL");
+        assertEquals("5,5 mL", formatter.format(new Volume(value, VolumeUnit.MILLILITER), buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new Volume(value, VolumeUnit.CUBIC_DECIMETER), buffer,
-                new FieldPosition(0)).toString(), "5,5 dm³");
+        assertEquals("5,5 dm³", formatter.format(new Volume(value, VolumeUnit.CUBIC_DECIMETER), buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new Volume(value, VolumeUnit.LITER), buffer,
-                new FieldPosition(0)).toString(), "5,5 L");
+        assertEquals("5,5 L", formatter.format(new Volume(value, VolumeUnit.LITER), buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new Volume(value, VolumeUnit.HECTOLITER), buffer,
-                new FieldPosition(0)).toString(), "5,5 hL");
+        assertEquals("5,5 hL", formatter.format(new Volume(value, VolumeUnit.HECTOLITER), buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new Volume(value, VolumeUnit.CUBIC_METER), buffer,
-                new FieldPosition(0)).toString(), "5,5 m³");
+        assertEquals("5,5 m³", formatter.format(new Volume(value, VolumeUnit.CUBIC_METER), buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new Volume(value, VolumeUnit.CUBIC_INCH), buffer,
-                new FieldPosition(0)).toString(), "5,5 in³");
+        assertEquals("5,5 in³", formatter.format(new Volume(value, VolumeUnit.CUBIC_INCH), buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new Volume(value, VolumeUnit.PINT), buffer,
-                new FieldPosition(0)).toString(), "5,5 pt");
+        assertEquals("5,5 pt", formatter.format(new Volume(value, VolumeUnit.PINT), buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new Volume(value, VolumeUnit.GALLON), buffer,
-                new FieldPosition(0)).toString(), "5,5 gal");
+        assertEquals("5,5 gal", formatter.format(new Volume(value, VolumeUnit.GALLON), buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new Volume(value, VolumeUnit.CUBIC_FOOT), buffer,
-                new FieldPosition(0)).toString(), "5,5 ft³");
+        assertEquals("5,5 ft³", formatter.format(new Volume(value, VolumeUnit.CUBIC_FOOT), buffer,
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new Volume(value, VolumeUnit.BARREL), buffer,
-                new FieldPosition(0)).toString(), "5,5 bbl");
+        assertEquals("5,5 bbl", formatter.format(new Volume(value, VolumeUnit.BARREL), buffer,
+                new FieldPosition(0)).toString());
     }
 
     @Test
@@ -425,35 +425,35 @@ public class VolumeFormatterTest {
         VolumeFormatter formatter = new VolumeFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.CUBIC_CENTIMETER), "5,5 cm³");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.MILLILITER), "5,5 cm³");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5000.50"),
-                VolumeUnit.MILLILITER), "5 L");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.CUBIC_DECIMETER), "5,5 L");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.LITER), "5,5 L");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("500.50"),
-                VolumeUnit.LITER), "5 hL");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.HECTOLITER), "5,5 hL");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("50.50"),
-                VolumeUnit.HECTOLITER), "5,05 m³");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.CUBIC_METER), "5,5 m³");
+        assertEquals("5,5 cm³", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.CUBIC_CENTIMETER));
+        assertEquals("5,5 cm³", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.MILLILITER));
+        assertEquals("5 L", formatter.formatAndConvert(new BigDecimal("5000.50"),
+                VolumeUnit.MILLILITER));
+        assertEquals("5,5 L", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.CUBIC_DECIMETER));
+        assertEquals("5,5 L", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.LITER));
+        assertEquals("5 hL", formatter.formatAndConvert(new BigDecimal("500.50"),
+                VolumeUnit.LITER));
+        assertEquals("5,5 hL", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.HECTOLITER));
+        assertEquals("5,05 m³", formatter.formatAndConvert(new BigDecimal("50.50"),
+                VolumeUnit.HECTOLITER));
+        assertEquals("5,5 m³", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.CUBIC_METER));
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.CUBIC_INCH), "90,13 cm³");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.PINT), "2,6 L");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.GALLON), "20,82 L");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.CUBIC_FOOT), "1,56 hL");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.BARREL), "8,74 hL");
+        assertEquals("90,13 cm³", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.CUBIC_INCH));
+        assertEquals("2,6 L", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.PINT));
+        assertEquals("20,82 L", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.GALLON));
+        assertEquals("1,56 hL", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.CUBIC_FOOT));
+        assertEquals("8,74 hL", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.BARREL));
 
         // test for imperial system
         l = new Locale("en", "US");
@@ -461,29 +461,29 @@ public class VolumeFormatterTest {
         formatter = new VolumeFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.CUBIC_CENTIMETER), "0.34 in³");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.MILLILITER), "0.34 in³");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.CUBIC_DECIMETER), "1.45 gal");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.LITER), "1.45 gal");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.HECTOLITER), "3.46 bbl");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.CUBIC_METER), "34.59 bbl");
+        assertEquals("0.34 in³", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.CUBIC_CENTIMETER));
+        assertEquals("0.34 in³", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.MILLILITER));
+        assertEquals("1.45 gal", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.CUBIC_DECIMETER));
+        assertEquals("1.45 gal", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.LITER));
+        assertEquals("3.46 bbl", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.HECTOLITER));
+        assertEquals("34.59 bbl", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.CUBIC_METER));
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.CUBIC_INCH), "5.5 in³");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.PINT), "5.5 pt");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.GALLON), "5.5 gal");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.CUBIC_FOOT), "5.5 ft³");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.BARREL), "5.5 bbl");
+        assertEquals("5.5 in³", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.CUBIC_INCH));
+        assertEquals("5.5 pt", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.PINT));
+        assertEquals("5.5 gal", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.GALLON));
+        assertEquals("5.5 ft³", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.CUBIC_FOOT));
+        assertEquals("5.5 bbl", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.BARREL));
 
     }
 
@@ -495,35 +495,35 @@ public class VolumeFormatterTest {
         VolumeFormatter formatter = new VolumeFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.CUBIC_CENTIMETER), "5,5 cm³");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.MILLILITER), "5,5 cm³");
-        assertEquals(formatter.formatAndConvert(5000.50,
-                VolumeUnit.MILLILITER), "5 L");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.CUBIC_DECIMETER), "5,5 L");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.LITER), "5,5 L");
-        assertEquals(formatter.formatAndConvert(500.50,
-                VolumeUnit.LITER), "5 hL");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.HECTOLITER), "5,5 hL");
-        assertEquals(formatter.formatAndConvert(50.50,
-                VolumeUnit.HECTOLITER), "5,05 m³");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.CUBIC_METER), "5,5 m³");
+        assertEquals("5,5 cm³", formatter.formatAndConvert(5.50,
+                VolumeUnit.CUBIC_CENTIMETER));
+        assertEquals("5,5 cm³", formatter.formatAndConvert(5.50,
+                VolumeUnit.MILLILITER));
+        assertEquals("5 L", formatter.formatAndConvert(5000.50,
+                VolumeUnit.MILLILITER));
+        assertEquals("5,5 L", formatter.formatAndConvert(5.50,
+                VolumeUnit.CUBIC_DECIMETER));
+        assertEquals("5,5 L", formatter.formatAndConvert(5.50,
+                VolumeUnit.LITER));
+        assertEquals("5 hL", formatter.formatAndConvert(500.50,
+                VolumeUnit.LITER));
+        assertEquals("5,5 hL", formatter.formatAndConvert(5.50,
+                VolumeUnit.HECTOLITER));
+        assertEquals("5,05 m³", formatter.formatAndConvert(50.50,
+                VolumeUnit.HECTOLITER));
+        assertEquals("5,5 m³", formatter.formatAndConvert(5.50,
+                VolumeUnit.CUBIC_METER));
 
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.CUBIC_INCH), "90,13 cm³");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.PINT), "2,6 L");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.GALLON), "20,82 L");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.CUBIC_FOOT), "1,56 hL");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.BARREL), "8,74 hL");
+        assertEquals("90,13 cm³", formatter.formatAndConvert(5.50,
+                VolumeUnit.CUBIC_INCH));
+        assertEquals("2,6 L", formatter.formatAndConvert(5.50,
+                VolumeUnit.PINT));
+        assertEquals("20,82 L", formatter.formatAndConvert(5.50,
+                VolumeUnit.GALLON));
+        assertEquals("1,56 hL", formatter.formatAndConvert(5.50,
+                VolumeUnit.CUBIC_FOOT));
+        assertEquals("8,74 hL", formatter.formatAndConvert(5.50,
+                VolumeUnit.BARREL));
 
         // test for imperial system
         l = new Locale("en", "US");
@@ -531,29 +531,29 @@ public class VolumeFormatterTest {
         formatter = new VolumeFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.CUBIC_CENTIMETER), "0.34 in³");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.MILLILITER), "0.34 in³");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.CUBIC_DECIMETER), "1.45 gal");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.LITER), "1.45 gal");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.HECTOLITER), "3.46 bbl");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.CUBIC_METER), "34.59 bbl");
+        assertEquals("0.34 in³", formatter.formatAndConvert(5.50,
+                VolumeUnit.CUBIC_CENTIMETER));
+        assertEquals("0.34 in³", formatter.formatAndConvert(5.50,
+                VolumeUnit.MILLILITER));
+        assertEquals("1.45 gal", formatter.formatAndConvert(5.50,
+                VolumeUnit.CUBIC_DECIMETER));
+        assertEquals("1.45 gal", formatter.formatAndConvert(5.50,
+                VolumeUnit.LITER));
+        assertEquals("3.46 bbl", formatter.formatAndConvert(5.50,
+                VolumeUnit.HECTOLITER));
+        assertEquals("34.59 bbl", formatter.formatAndConvert(5.50,
+                VolumeUnit.CUBIC_METER));
 
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.CUBIC_INCH), "5.5 in³");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.PINT), "5.5 pt");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.GALLON), "5.5 gal");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.CUBIC_FOOT), "5.5 ft³");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.BARREL), "5.5 bbl");
+        assertEquals("5.5 in³", formatter.formatAndConvert(5.50,
+                VolumeUnit.CUBIC_INCH));
+        assertEquals("5.5 pt", formatter.formatAndConvert(5.50,
+                VolumeUnit.PINT));
+        assertEquals("5.5 gal", formatter.formatAndConvert(5.50,
+                VolumeUnit.GALLON));
+        assertEquals("5.5 ft³", formatter.formatAndConvert(5.50,
+                VolumeUnit.CUBIC_FOOT));
+        assertEquals("5.5 bbl", formatter.formatAndConvert(5.50,
+                VolumeUnit.BARREL));
 
     }
 
@@ -565,35 +565,35 @@ public class VolumeFormatterTest {
         VolumeFormatter formatter = new VolumeFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.CUBIC_CENTIMETER)), "5,5 cm³");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.MILLILITER)), "5,5 cm³");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5000.50, VolumeUnit.MILLILITER)), "5 L");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.CUBIC_DECIMETER)), "5,5 L");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.LITER)), "5,5 L");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(500.50, VolumeUnit.LITER)), "5 hL");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.HECTOLITER)), "5,5 hL");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(50.50, VolumeUnit.HECTOLITER)), "5,05 m³");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.CUBIC_METER)), "5,5 m³");
+        assertEquals("5,5 cm³", formatter.formatAndConvert(
+                new Volume(5.50, VolumeUnit.CUBIC_CENTIMETER)));
+        assertEquals("5,5 cm³", formatter.formatAndConvert(
+                new Volume(5.50, VolumeUnit.MILLILITER)));
+        assertEquals("5 L", formatter.formatAndConvert(
+                new Volume(5000.50, VolumeUnit.MILLILITER)));
+        assertEquals("5,5 L", formatter.formatAndConvert(
+                new Volume(5.50, VolumeUnit.CUBIC_DECIMETER)));
+        assertEquals("5,5 L", formatter.formatAndConvert(
+                new Volume(5.50, VolumeUnit.LITER)));
+        assertEquals("5 hL", formatter.formatAndConvert(
+                new Volume(500.50, VolumeUnit.LITER)));
+        assertEquals("5,5 hL", formatter.formatAndConvert(
+                new Volume(5.50, VolumeUnit.HECTOLITER)));
+        assertEquals("5,05 m³", formatter.formatAndConvert(
+                new Volume(50.50, VolumeUnit.HECTOLITER)));
+        assertEquals("5,5 m³", formatter.formatAndConvert(
+                new Volume(5.50, VolumeUnit.CUBIC_METER)));
 
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.CUBIC_INCH)), "90,13 cm³");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.PINT)), "2,6 L");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.GALLON)), "20,82 L");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.CUBIC_FOOT)), "1,56 hL");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.BARREL)), "8,74 hL");
+        assertEquals("90,13 cm³", formatter.formatAndConvert(
+                new Volume(5.50, VolumeUnit.CUBIC_INCH)));
+        assertEquals("2,6 L", formatter.formatAndConvert(
+                new Volume(5.50, VolumeUnit.PINT)));
+        assertEquals("20,82 L", formatter.formatAndConvert(
+                new Volume(5.50, VolumeUnit.GALLON)));
+        assertEquals("1,56 hL", formatter.formatAndConvert(
+                new Volume(5.50, VolumeUnit.CUBIC_FOOT)));
+        assertEquals("8,74 hL", formatter.formatAndConvert(
+                new Volume(5.50, VolumeUnit.BARREL)));
 
         // test for imperial system
         l = new Locale("en", "US");
@@ -601,29 +601,29 @@ public class VolumeFormatterTest {
         formatter = new VolumeFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.CUBIC_CENTIMETER)), "0.34 in³");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.MILLILITER)), "0.34 in³");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.CUBIC_DECIMETER)), "1.45 gal");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.LITER)), "1.45 gal");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.HECTOLITER)), "3.46 bbl");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.CUBIC_METER)), "34.59 bbl");
+        assertEquals("0.34 in³", formatter.formatAndConvert(
+                new Volume(5.50, VolumeUnit.CUBIC_CENTIMETER)));
+        assertEquals("0.34 in³", formatter.formatAndConvert(
+                new Volume(5.50, VolumeUnit.MILLILITER)));
+        assertEquals("1.45 gal", formatter.formatAndConvert(
+                new Volume(5.50, VolumeUnit.CUBIC_DECIMETER)));
+        assertEquals("1.45 gal", formatter.formatAndConvert(
+                new Volume(5.50, VolumeUnit.LITER)));
+        assertEquals("3.46 bbl", formatter.formatAndConvert(
+                new Volume(5.50, VolumeUnit.HECTOLITER)));
+        assertEquals("34.59 bbl", formatter.formatAndConvert(
+                new Volume(5.50, VolumeUnit.CUBIC_METER)));
 
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.CUBIC_INCH)), "5.5 in³");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.PINT)), "5.5 pt");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.GALLON)), "5.5 gal");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.CUBIC_FOOT)), "5.5 ft³");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.BARREL)), "5.5 bbl");
+        assertEquals("5.5 in³", formatter.formatAndConvert(
+                new Volume(5.50, VolumeUnit.CUBIC_INCH)));
+        assertEquals("5.5 pt", formatter.formatAndConvert(
+                new Volume(5.50, VolumeUnit.PINT)));
+        assertEquals("5.5 gal", formatter.formatAndConvert(
+                new Volume(5.50, VolumeUnit.GALLON)));
+        assertEquals("5.5 ft³", formatter.formatAndConvert(
+                new Volume(5.50, VolumeUnit.CUBIC_FOOT)));
+        assertEquals("5.5 bbl", formatter.formatAndConvert(
+                new Volume(5.50, VolumeUnit.BARREL)));
     }
 
     @Test
@@ -633,51 +633,51 @@ public class VolumeFormatterTest {
         VolumeFormatter formatter = new VolumeFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.CUBIC_CENTIMETER, UnitSystem.METRIC), "5,5 cm³");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.MILLILITER, UnitSystem.METRIC), "5,5 cm³");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.CUBIC_DECIMETER, UnitSystem.METRIC), "5,5 L");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.LITER, UnitSystem.METRIC), "5,5 L");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.HECTOLITER, UnitSystem.METRIC), "5,5 hL");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.CUBIC_METER, UnitSystem.METRIC), "5,5 m³");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.CUBIC_INCH, UnitSystem.METRIC), "90,13 cm³");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.PINT, UnitSystem.METRIC), "2,6 L");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.GALLON, UnitSystem.METRIC), "20,82 L");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.CUBIC_FOOT, UnitSystem.METRIC), "1,56 hL");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.BARREL, UnitSystem.METRIC), "8,74 hL");
+        assertEquals("5,5 cm³", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.CUBIC_CENTIMETER, UnitSystem.METRIC));
+        assertEquals("5,5 cm³", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.MILLILITER, UnitSystem.METRIC));
+        assertEquals("5,5 L", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.CUBIC_DECIMETER, UnitSystem.METRIC));
+        assertEquals("5,5 L", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.LITER, UnitSystem.METRIC));
+        assertEquals("5,5 hL", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.HECTOLITER, UnitSystem.METRIC));
+        assertEquals("5,5 m³", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.CUBIC_METER, UnitSystem.METRIC));
+        assertEquals("90,13 cm³", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.CUBIC_INCH, UnitSystem.METRIC));
+        assertEquals("2,6 L", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.PINT, UnitSystem.METRIC));
+        assertEquals("20,82 L", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.GALLON, UnitSystem.METRIC));
+        assertEquals("1,56 hL", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.CUBIC_FOOT, UnitSystem.METRIC));
+        assertEquals("8,74 hL", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.BARREL, UnitSystem.METRIC));
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.CUBIC_CENTIMETER, UnitSystem.IMPERIAL), "0,34 in³");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.MILLILITER, UnitSystem.IMPERIAL), "0,34 in³");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.CUBIC_DECIMETER, UnitSystem.IMPERIAL), "1,45 gal");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.LITER, UnitSystem.IMPERIAL), "1,45 gal");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.HECTOLITER, UnitSystem.IMPERIAL), "3,46 bbl");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.CUBIC_METER, UnitSystem.IMPERIAL), "34,59 bbl");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.CUBIC_INCH, UnitSystem.IMPERIAL), "5,5 in³");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.PINT, UnitSystem.IMPERIAL), "5,5 pt");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.GALLON, UnitSystem.IMPERIAL), "5,5 gal");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.CUBIC_FOOT, UnitSystem.IMPERIAL), "5,5 ft³");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                VolumeUnit.BARREL, UnitSystem.IMPERIAL), "5,5 bbl");
+        assertEquals("0,34 in³", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.CUBIC_CENTIMETER, UnitSystem.IMPERIAL));
+        assertEquals("0,34 in³", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.MILLILITER, UnitSystem.IMPERIAL));
+        assertEquals("1,45 gal", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.CUBIC_DECIMETER, UnitSystem.IMPERIAL));
+        assertEquals("1,45 gal", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.LITER, UnitSystem.IMPERIAL));
+        assertEquals("3,46 bbl", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.HECTOLITER, UnitSystem.IMPERIAL));
+        assertEquals("34,59 bbl", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.CUBIC_METER, UnitSystem.IMPERIAL));
+        assertEquals("5,5 in³", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.CUBIC_INCH, UnitSystem.IMPERIAL));
+        assertEquals("5,5 pt", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.PINT, UnitSystem.IMPERIAL));
+        assertEquals("5,5 gal", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.GALLON, UnitSystem.IMPERIAL));
+        assertEquals("5,5 ft³", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.CUBIC_FOOT, UnitSystem.IMPERIAL));
+        assertEquals("5,5 bbl", formatter.formatAndConvert(new BigDecimal("5.50"),
+                VolumeUnit.BARREL, UnitSystem.IMPERIAL));
 
     }
 
@@ -688,51 +688,51 @@ public class VolumeFormatterTest {
         VolumeFormatter formatter = new VolumeFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.CUBIC_CENTIMETER, UnitSystem.METRIC), "5,5 cm³");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.MILLILITER, UnitSystem.METRIC), "5,5 cm³");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.CUBIC_DECIMETER, UnitSystem.METRIC), "5,5 L");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.LITER, UnitSystem.METRIC), "5,5 L");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.HECTOLITER, UnitSystem.METRIC), "5,5 hL");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.CUBIC_METER, UnitSystem.METRIC), "5,5 m³");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.CUBIC_INCH, UnitSystem.METRIC), "90,13 cm³");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.PINT, UnitSystem.METRIC), "2,6 L");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.GALLON, UnitSystem.METRIC), "20,82 L");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.CUBIC_FOOT, UnitSystem.METRIC), "1,56 hL");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.BARREL, UnitSystem.METRIC), "8,74 hL");
+        assertEquals("5,5 cm³", formatter.formatAndConvert(5.50,
+                VolumeUnit.CUBIC_CENTIMETER, UnitSystem.METRIC));
+        assertEquals("5,5 cm³", formatter.formatAndConvert(5.50,
+                VolumeUnit.MILLILITER, UnitSystem.METRIC));
+        assertEquals("5,5 L", formatter.formatAndConvert(5.50,
+                VolumeUnit.CUBIC_DECIMETER, UnitSystem.METRIC));
+        assertEquals("5,5 L", formatter.formatAndConvert(5.50,
+                VolumeUnit.LITER, UnitSystem.METRIC));
+        assertEquals("5,5 hL", formatter.formatAndConvert(5.50,
+                VolumeUnit.HECTOLITER, UnitSystem.METRIC));
+        assertEquals("5,5 m³", formatter.formatAndConvert(5.50,
+                VolumeUnit.CUBIC_METER, UnitSystem.METRIC));
+        assertEquals("90,13 cm³", formatter.formatAndConvert(5.50,
+                VolumeUnit.CUBIC_INCH, UnitSystem.METRIC));
+        assertEquals("2,6 L", formatter.formatAndConvert(5.50,
+                VolumeUnit.PINT, UnitSystem.METRIC));
+        assertEquals("20,82 L", formatter.formatAndConvert(5.50,
+                VolumeUnit.GALLON, UnitSystem.METRIC));
+        assertEquals("1,56 hL", formatter.formatAndConvert(5.50,
+                VolumeUnit.CUBIC_FOOT, UnitSystem.METRIC));
+        assertEquals("8,74 hL", formatter.formatAndConvert(5.50,
+                VolumeUnit.BARREL, UnitSystem.METRIC));
 
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.CUBIC_CENTIMETER, UnitSystem.IMPERIAL), "0,34 in³");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.MILLILITER, UnitSystem.IMPERIAL), "0,34 in³");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.CUBIC_DECIMETER, UnitSystem.IMPERIAL), "1,45 gal");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.LITER, UnitSystem.IMPERIAL), "1,45 gal");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.HECTOLITER, UnitSystem.IMPERIAL), "3,46 bbl");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.CUBIC_METER, UnitSystem.IMPERIAL), "34,59 bbl");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.CUBIC_INCH, UnitSystem.IMPERIAL), "5,5 in³");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.PINT, UnitSystem.IMPERIAL), "5,5 pt");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.GALLON, UnitSystem.IMPERIAL), "5,5 gal");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.CUBIC_FOOT, UnitSystem.IMPERIAL), "5,5 ft³");
-        assertEquals(formatter.formatAndConvert(5.50,
-                VolumeUnit.BARREL, UnitSystem.IMPERIAL), "5,5 bbl");
+        assertEquals("0,34 in³", formatter.formatAndConvert(5.50,
+                VolumeUnit.CUBIC_CENTIMETER, UnitSystem.IMPERIAL));
+        assertEquals("0,34 in³", formatter.formatAndConvert(5.50,
+                VolumeUnit.MILLILITER, UnitSystem.IMPERIAL));
+        assertEquals("1,45 gal", formatter.formatAndConvert(5.50,
+                VolumeUnit.CUBIC_DECIMETER, UnitSystem.IMPERIAL));
+        assertEquals("1,45 gal", formatter.formatAndConvert(5.50,
+                VolumeUnit.LITER, UnitSystem.IMPERIAL));
+        assertEquals("3,46 bbl", formatter.formatAndConvert(5.50,
+                VolumeUnit.HECTOLITER, UnitSystem.IMPERIAL));
+        assertEquals("34,59 bbl", formatter.formatAndConvert(5.50,
+                VolumeUnit.CUBIC_METER, UnitSystem.IMPERIAL));
+        assertEquals("5,5 in³", formatter.formatAndConvert(5.50,
+                VolumeUnit.CUBIC_INCH, UnitSystem.IMPERIAL));
+        assertEquals("5,5 pt", formatter.formatAndConvert(5.50,
+                VolumeUnit.PINT, UnitSystem.IMPERIAL));
+        assertEquals("5,5 gal", formatter.formatAndConvert(5.50,
+                VolumeUnit.GALLON, UnitSystem.IMPERIAL));
+        assertEquals("5,5 ft³", formatter.formatAndConvert(5.50,
+                VolumeUnit.CUBIC_FOOT, UnitSystem.IMPERIAL));
+        assertEquals("5,5 bbl", formatter.formatAndConvert(5.50,
+                VolumeUnit.BARREL, UnitSystem.IMPERIAL));
     }
 
     @Test
@@ -742,72 +742,72 @@ public class VolumeFormatterTest {
         VolumeFormatter formatter = new VolumeFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.CUBIC_CENTIMETER), UnitSystem.METRIC),
-                "5,5 cm³");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.MILLILITER), UnitSystem.METRIC),
-                "5,5 cm³");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.CUBIC_DECIMETER), UnitSystem.METRIC),
-                "5,5 L");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.LITER), UnitSystem.METRIC),
-                "5,5 L");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.HECTOLITER), UnitSystem.METRIC),
-                "5,5 hL");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.CUBIC_METER), UnitSystem.METRIC),
-                "5,5 m³");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.CUBIC_INCH), UnitSystem.METRIC),
-                "90,13 cm³");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.PINT), UnitSystem.METRIC),
-                "2,6 L");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.GALLON), UnitSystem.METRIC),
-                "20,82 L");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.CUBIC_FOOT), UnitSystem.METRIC),
-                "1,56 hL");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.BARREL), UnitSystem.METRIC),
-                "8,74 hL");
+        assertEquals("5,5 cm³",
+                formatter.formatAndConvert(
+                        new Volume(5.50, VolumeUnit.CUBIC_CENTIMETER), UnitSystem.METRIC));
+        assertEquals("5,5 cm³",
+                formatter.formatAndConvert(
+                        new Volume(5.50, VolumeUnit.MILLILITER), UnitSystem.METRIC));
+        assertEquals("5,5 L",
+                formatter.formatAndConvert(
+                        new Volume(5.50, VolumeUnit.CUBIC_DECIMETER), UnitSystem.METRIC));
+        assertEquals("5,5 L",
+                formatter.formatAndConvert(
+                        new Volume(5.50, VolumeUnit.LITER), UnitSystem.METRIC));
+        assertEquals("5,5 hL",
+                formatter.formatAndConvert(
+                        new Volume(5.50, VolumeUnit.HECTOLITER), UnitSystem.METRIC));
+        assertEquals("5,5 m³",
+                formatter.formatAndConvert(
+                        new Volume(5.50, VolumeUnit.CUBIC_METER), UnitSystem.METRIC));
+        assertEquals("90,13 cm³",
+                formatter.formatAndConvert(
+                        new Volume(5.50, VolumeUnit.CUBIC_INCH), UnitSystem.METRIC));
+        assertEquals("2,6 L",
+                formatter.formatAndConvert(
+                        new Volume(5.50, VolumeUnit.PINT), UnitSystem.METRIC));
+        assertEquals("20,82 L",
+                formatter.formatAndConvert(
+                        new Volume(5.50, VolumeUnit.GALLON), UnitSystem.METRIC));
+        assertEquals("1,56 hL",
+                formatter.formatAndConvert(
+                        new Volume(5.50, VolumeUnit.CUBIC_FOOT), UnitSystem.METRIC));
+        assertEquals("8,74 hL",
+                formatter.formatAndConvert(
+                        new Volume(5.50, VolumeUnit.BARREL), UnitSystem.METRIC));
 
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.CUBIC_CENTIMETER), UnitSystem.IMPERIAL),
-                "0,34 in³");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.MILLILITER), UnitSystem.IMPERIAL),
-                "0,34 in³");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.CUBIC_DECIMETER), UnitSystem.IMPERIAL),
-                "1,45 gal");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.LITER), UnitSystem.IMPERIAL),
-                "1,45 gal");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.HECTOLITER), UnitSystem.IMPERIAL),
-                "3,46 bbl");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.CUBIC_METER), UnitSystem.IMPERIAL),
-                "34,59 bbl");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.CUBIC_INCH), UnitSystem.IMPERIAL),
-                "5,5 in³");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.PINT), UnitSystem.IMPERIAL),
-                "5,5 pt");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.GALLON), UnitSystem.IMPERIAL), "5,5 gal");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.CUBIC_FOOT), UnitSystem.IMPERIAL),
-                "5,5 ft³");
-        assertEquals(formatter.formatAndConvert(
-                new Volume(5.50, VolumeUnit.BARREL), UnitSystem.IMPERIAL),
-                "5,5 bbl");
+        assertEquals("0,34 in³",
+                formatter.formatAndConvert(
+                        new Volume(5.50, VolumeUnit.CUBIC_CENTIMETER), UnitSystem.IMPERIAL));
+        assertEquals("0,34 in³",
+                formatter.formatAndConvert(
+                        new Volume(5.50, VolumeUnit.MILLILITER), UnitSystem.IMPERIAL));
+        assertEquals("1,45 gal",
+                formatter.formatAndConvert(
+                        new Volume(5.50, VolumeUnit.CUBIC_DECIMETER), UnitSystem.IMPERIAL));
+        assertEquals("1,45 gal",
+                formatter.formatAndConvert(
+                        new Volume(5.50, VolumeUnit.LITER), UnitSystem.IMPERIAL));
+        assertEquals("3,46 bbl",
+                formatter.formatAndConvert(
+                        new Volume(5.50, VolumeUnit.HECTOLITER), UnitSystem.IMPERIAL));
+        assertEquals("34,59 bbl",
+                formatter.formatAndConvert(
+                        new Volume(5.50, VolumeUnit.CUBIC_METER), UnitSystem.IMPERIAL));
+        assertEquals("5,5 in³",
+                formatter.formatAndConvert(
+                        new Volume(5.50, VolumeUnit.CUBIC_INCH), UnitSystem.IMPERIAL));
+        assertEquals("5,5 pt",
+                formatter.formatAndConvert(
+                        new Volume(5.50, VolumeUnit.PINT), UnitSystem.IMPERIAL));
+        assertEquals("5,5 gal", formatter.formatAndConvert(
+                new Volume(5.50, VolumeUnit.GALLON), UnitSystem.IMPERIAL));
+        assertEquals("5,5 ft³",
+                formatter.formatAndConvert(
+                        new Volume(5.50, VolumeUnit.CUBIC_FOOT), UnitSystem.IMPERIAL));
+        assertEquals("5,5 bbl",
+                formatter.formatAndConvert(
+                        new Volume(5.50, VolumeUnit.BARREL), UnitSystem.IMPERIAL));
     }
 
     @Test
@@ -817,28 +817,28 @@ public class VolumeFormatterTest {
         VolumeFormatter formatter = new VolumeFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5.50"),
-                VolumeUnit.CUBIC_CENTIMETER), "5,5 cm³");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5.50"),
-                VolumeUnit.MILLILITER), "5,5 cm³");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5.50"),
-                VolumeUnit.CUBIC_DECIMETER), "5,5 L");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5.50"),
-                VolumeUnit.LITER), "5,5 L");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5.50"),
-                VolumeUnit.HECTOLITER), "5,5 hL");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5.50"),
-                VolumeUnit.CUBIC_METER), "5,5 m³");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5.50"),
-                VolumeUnit.CUBIC_INCH), "90,13 cm³");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5.50"),
-                VolumeUnit.PINT), "2,6 L");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5.50"),
-                VolumeUnit.GALLON), "20,82 L");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5.50"),
-                VolumeUnit.CUBIC_FOOT), "1,56 hL");
-        assertEquals(formatter.formatAndConvertMetric(new BigDecimal("5.50"),
-                VolumeUnit.BARREL), "8,74 hL");
+        assertEquals("5,5 cm³", formatter.formatAndConvertMetric(new BigDecimal("5.50"),
+                VolumeUnit.CUBIC_CENTIMETER));
+        assertEquals("5,5 cm³", formatter.formatAndConvertMetric(new BigDecimal("5.50"),
+                VolumeUnit.MILLILITER));
+        assertEquals("5,5 L", formatter.formatAndConvertMetric(new BigDecimal("5.50"),
+                VolumeUnit.CUBIC_DECIMETER));
+        assertEquals("5,5 L", formatter.formatAndConvertMetric(new BigDecimal("5.50"),
+                VolumeUnit.LITER));
+        assertEquals("5,5 hL", formatter.formatAndConvertMetric(new BigDecimal("5.50"),
+                VolumeUnit.HECTOLITER));
+        assertEquals("5,5 m³", formatter.formatAndConvertMetric(new BigDecimal("5.50"),
+                VolumeUnit.CUBIC_METER));
+        assertEquals("90,13 cm³", formatter.formatAndConvertMetric(new BigDecimal("5.50"),
+                VolumeUnit.CUBIC_INCH));
+        assertEquals("2,6 L", formatter.formatAndConvertMetric(new BigDecimal("5.50"),
+                VolumeUnit.PINT));
+        assertEquals("20,82 L", formatter.formatAndConvertMetric(new BigDecimal("5.50"),
+                VolumeUnit.GALLON));
+        assertEquals("1,56 hL", formatter.formatAndConvertMetric(new BigDecimal("5.50"),
+                VolumeUnit.CUBIC_FOOT));
+        assertEquals("8,74 hL", formatter.formatAndConvertMetric(new BigDecimal("5.50"),
+                VolumeUnit.BARREL));
     }
 
     @Test
@@ -848,28 +848,28 @@ public class VolumeFormatterTest {
         VolumeFormatter formatter = new VolumeFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("5.50"),
-                VolumeUnit.CUBIC_CENTIMETER), "0,34 in³");
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("5.50"),
-                VolumeUnit.MILLILITER), "0,34 in³");
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("5.50"),
-                VolumeUnit.CUBIC_DECIMETER), "1,45 gal");
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("5.50"),
-                VolumeUnit.LITER), "1,45 gal");
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("5.50"),
-                VolumeUnit.HECTOLITER), "3,46 bbl");
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("5.50"),
-                VolumeUnit.CUBIC_METER), "34,59 bbl");
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("5.50"),
-                VolumeUnit.CUBIC_INCH), "5,5 in³");
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("5.50"),
-                VolumeUnit.PINT), "5,5 pt");
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("5.50"),
-                VolumeUnit.GALLON), "5,5 gal");
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("5.50"),
-                VolumeUnit.CUBIC_FOOT), "5,5 ft³");
-        assertEquals(formatter.formatAndConvertImperial(new BigDecimal("5.50"),
-                VolumeUnit.BARREL), "5,5 bbl");
+        assertEquals("0,34 in³", formatter.formatAndConvertImperial(new BigDecimal("5.50"),
+                VolumeUnit.CUBIC_CENTIMETER));
+        assertEquals("0,34 in³", formatter.formatAndConvertImperial(new BigDecimal("5.50"),
+                VolumeUnit.MILLILITER));
+        assertEquals("1,45 gal", formatter.formatAndConvertImperial(new BigDecimal("5.50"),
+                VolumeUnit.CUBIC_DECIMETER));
+        assertEquals("1,45 gal", formatter.formatAndConvertImperial(new BigDecimal("5.50"),
+                VolumeUnit.LITER));
+        assertEquals("3,46 bbl", formatter.formatAndConvertImperial(new BigDecimal("5.50"),
+                VolumeUnit.HECTOLITER));
+        assertEquals("34,59 bbl", formatter.formatAndConvertImperial(new BigDecimal("5.50"),
+                VolumeUnit.CUBIC_METER));
+        assertEquals("5,5 in³", formatter.formatAndConvertImperial(new BigDecimal("5.50"),
+                VolumeUnit.CUBIC_INCH));
+        assertEquals("5,5 pt", formatter.formatAndConvertImperial(new BigDecimal("5.50"),
+                VolumeUnit.PINT));
+        assertEquals("5,5 gal", formatter.formatAndConvertImperial(new BigDecimal("5.50"),
+                VolumeUnit.GALLON));
+        assertEquals("5,5 ft³", formatter.formatAndConvertImperial(new BigDecimal("5.50"),
+                VolumeUnit.CUBIC_FOOT));
+        assertEquals("5,5 bbl", formatter.formatAndConvertImperial(new BigDecimal("5.50"),
+                VolumeUnit.BARREL));
     }
 
     @Test
@@ -889,7 +889,7 @@ public class VolumeFormatterTest {
         formatter.setMaximumFractionDigits(2);
 
         // check correctness
-        assertEquals(formatter.getMaximumFractionDigits(), 2);
+        assertEquals(2, formatter.getMaximumFractionDigits());
     }
 
     @Test
@@ -903,7 +903,7 @@ public class VolumeFormatterTest {
         formatter.setMaximumIntegerDigits(2);
 
         // check correctness
-        assertEquals(formatter.getMaximumIntegerDigits(), 2);
+        assertEquals(2, formatter.getMaximumIntegerDigits());
     }
 
     @Test
@@ -917,7 +917,7 @@ public class VolumeFormatterTest {
         formatter.setMinimumFractionDigits(2);
 
         // check correctness
-        assertEquals(formatter.getMinimumFractionDigits(), 2);
+        assertEquals(2, formatter.getMinimumFractionDigits());
     }
 
     @Test
@@ -931,7 +931,7 @@ public class VolumeFormatterTest {
         formatter.setMinimumIntegerDigits(2);
 
         // check correctness
-        assertEquals(formatter.getMinimumIntegerDigits(), 2);
+        assertEquals(2, formatter.getMinimumIntegerDigits());
     }
 
     @Test
@@ -945,7 +945,7 @@ public class VolumeFormatterTest {
         formatter.setRoundingMode(RoundingMode.UNNECESSARY);
 
         // check correctness
-        assertEquals(formatter.getRoundingMode(), RoundingMode.UNNECESSARY);
+        assertEquals(RoundingMode.UNNECESSARY, formatter.getRoundingMode());
     }
 
     @Test
@@ -982,14 +982,14 @@ public class VolumeFormatterTest {
     public void testGetSetValueAndUnitFormatPattern() {
         final VolumeFormatter formatter = new VolumeFormatter();
 
-        assertEquals(formatter.getValueAndUnitFormatPattern(),
-                MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
+                formatter.getValueAndUnitFormatPattern());
 
         // new value
         formatter.setValueAndUnitFormatPattern("{0}{1}");
 
         // check correctness
-        assertEquals(formatter.getValueAndUnitFormatPattern(), "{0}{1}");
+        assertEquals("{0}{1}", formatter.getValueAndUnitFormatPattern());
 
         // force IllegalArgumentException
         try {
@@ -1003,11 +1003,11 @@ public class VolumeFormatterTest {
     public void testGetUnitSystem() {
         VolumeFormatter formatter = new VolumeFormatter(
                 new Locale("es", "ES"));
-        assertEquals(formatter.getUnitSystem(), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem());
 
         formatter = new VolumeFormatter(
                 new Locale("en", "US"));
-        assertEquals(formatter.getUnitSystem(), UnitSystem.IMPERIAL);
+        assertEquals(UnitSystem.IMPERIAL, formatter.getUnitSystem());
     }
 
     @Test
@@ -1191,37 +1191,37 @@ public class VolumeFormatterTest {
                 new Locale("es", "ES"));
 
         String text = "5,5 cm³";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem(text));
 
         text = "5,5 mL";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem(text));
 
         text = "5,5 dm³";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem(text));
 
         text = "5,5 L";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem(text));
 
         text = "5,5 hL";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem(text));
 
         text = "5,5 m³";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem(text));
 
         text = "5,5 in³";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.IMPERIAL);
+        assertEquals(UnitSystem.IMPERIAL, formatter.getUnitSystem(text));
 
         text = "5,5 pt";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.IMPERIAL);
+        assertEquals(UnitSystem.IMPERIAL, formatter.getUnitSystem(text));
 
         text = "5,5 gal";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.IMPERIAL);
+        assertEquals(UnitSystem.IMPERIAL, formatter.getUnitSystem(text));
 
         text = "5,5 ft³";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.IMPERIAL);
+        assertEquals(UnitSystem.IMPERIAL, formatter.getUnitSystem(text));
 
         text = "5,5 bbl";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.IMPERIAL);
+        assertEquals(UnitSystem.IMPERIAL, formatter.getUnitSystem(text));
 
         text = "5,5 s";
         assertNull(formatter.getUnitSystem(text));
@@ -1237,58 +1237,58 @@ public class VolumeFormatterTest {
 
         String text = "5,5 cm³";
         Volume v = formatter.parse(text);
-        assertEquals(v.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(v.getUnit(), VolumeUnit.CUBIC_CENTIMETER);
+        assertEquals(5.5, v.getValue().doubleValue(), 0.0);
+        assertEquals(VolumeUnit.CUBIC_CENTIMETER, v.getUnit());
 
         text = "5,5 mL";
         v = formatter.parse(text);
-        assertEquals(v.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(v.getUnit(), VolumeUnit.MILLILITER);
+        assertEquals(5.5, v.getValue().doubleValue(), 0.0);
+        assertEquals(VolumeUnit.MILLILITER, v.getUnit());
 
         text = "5,5 dm³";
         v = formatter.parse(text);
-        assertEquals(v.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(v.getUnit(), VolumeUnit.CUBIC_DECIMETER);
+        assertEquals(5.5, v.getValue().doubleValue(), 0.0);
+        assertEquals(VolumeUnit.CUBIC_DECIMETER, v.getUnit());
 
         text = "5,5 L";
         v = formatter.parse(text);
-        assertEquals(v.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(v.getUnit(), VolumeUnit.LITER);
+        assertEquals(5.5, v.getValue().doubleValue(), 0.0);
+        assertEquals(VolumeUnit.LITER, v.getUnit());
 
         text = "5,5 hL";
         v = formatter.parse(text);
-        assertEquals(v.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(v.getUnit(), VolumeUnit.HECTOLITER);
+        assertEquals(5.5, v.getValue().doubleValue(), 0.0);
+        assertEquals(VolumeUnit.HECTOLITER, v.getUnit());
 
         text = "5,5 m³";
         v = formatter.parse(text);
-        assertEquals(v.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(v.getUnit(), VolumeUnit.CUBIC_METER);
+        assertEquals(5.5, v.getValue().doubleValue(), 0.0);
+        assertEquals(VolumeUnit.CUBIC_METER, v.getUnit());
 
         text = "5,5 in³";
         v = formatter.parse(text);
-        assertEquals(v.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(v.getUnit(), VolumeUnit.CUBIC_INCH);
+        assertEquals(5.5, v.getValue().doubleValue(), 0.0);
+        assertEquals(VolumeUnit.CUBIC_INCH, v.getUnit());
 
         text = "5,5 pt";
         v = formatter.parse(text);
-        assertEquals(v.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(v.getUnit(), VolumeUnit.PINT);
+        assertEquals(5.5, v.getValue().doubleValue(), 0.0);
+        assertEquals(VolumeUnit.PINT, v.getUnit());
 
         text = "5,5 gal";
         v = formatter.parse(text);
-        assertEquals(v.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(v.getUnit(), VolumeUnit.GALLON);
+        assertEquals(5.5, v.getValue().doubleValue(), 0.0);
+        assertEquals(VolumeUnit.GALLON, v.getUnit());
 
         text = "5,5 ft³";
         v = formatter.parse(text);
-        assertEquals(v.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(v.getUnit(), VolumeUnit.CUBIC_FOOT);
+        assertEquals(5.5, v.getValue().doubleValue(), 0.0);
+        assertEquals(VolumeUnit.CUBIC_FOOT, v.getUnit());
 
         text = "5,5 bbl";
         v = formatter.parse(text);
-        assertEquals(v.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(v.getUnit(), VolumeUnit.BARREL);
+        assertEquals(5.5, v.getValue().doubleValue(), 0.0);
+        assertEquals(VolumeUnit.BARREL, v.getUnit());
 
         // Force UnknownUnitException
         text = "5,5 s";
@@ -1312,37 +1312,37 @@ public class VolumeFormatterTest {
                 new Locale("es", "ES"));
 
         String text = "5,5 cm³";
-        assertEquals(formatter.findUnit(text), VolumeUnit.CUBIC_CENTIMETER);
+        assertEquals(VolumeUnit.CUBIC_CENTIMETER, formatter.findUnit(text));
 
         text = "5,5 mL";
-        assertEquals(formatter.findUnit(text), VolumeUnit.MILLILITER);
+        assertEquals(VolumeUnit.MILLILITER, formatter.findUnit(text));
 
         text = "5,5 dm³";
-        assertEquals(formatter.findUnit(text), VolumeUnit.CUBIC_DECIMETER);
+        assertEquals(VolumeUnit.CUBIC_DECIMETER, formatter.findUnit(text));
 
         text = "5,5 L";
-        assertEquals(formatter.findUnit(text), VolumeUnit.LITER);
+        assertEquals(VolumeUnit.LITER, formatter.findUnit(text));
 
         text = "5,5 hL";
-        assertEquals(formatter.findUnit(text), VolumeUnit.HECTOLITER);
+        assertEquals(VolumeUnit.HECTOLITER, formatter.findUnit(text));
 
         text = "5,5 m³";
-        assertEquals(formatter.findUnit(text), VolumeUnit.CUBIC_METER);
+        assertEquals(VolumeUnit.CUBIC_METER, formatter.findUnit(text));
 
         text = "5,5 in³";
-        assertEquals(formatter.findUnit(text), VolumeUnit.CUBIC_INCH);
+        assertEquals(VolumeUnit.CUBIC_INCH, formatter.findUnit(text));
 
         text = "5,5 pt";
-        assertEquals(formatter.findUnit(text), VolumeUnit.PINT);
+        assertEquals(VolumeUnit.PINT, formatter.findUnit(text));
 
         text = "5,5 gal";
-        assertEquals(formatter.findUnit(text), VolumeUnit.GALLON);
+        assertEquals(VolumeUnit.GALLON, formatter.findUnit(text));
 
         text = "5,5 ft³";
-        assertEquals(formatter.findUnit(text), VolumeUnit.CUBIC_FOOT);
+        assertEquals(VolumeUnit.CUBIC_FOOT, formatter.findUnit(text));
 
         text = "5,5 bbl";
-        assertEquals(formatter.findUnit(text), VolumeUnit.BARREL);
+        assertEquals(VolumeUnit.BARREL, formatter.findUnit(text));
 
         text = "5,5 s";
         assertNull(formatter.findUnit(text));
@@ -1355,27 +1355,27 @@ public class VolumeFormatterTest {
     public void testGetUnitSymbol() {
         final VolumeFormatter formatter = new VolumeFormatter();
 
-        assertEquals(formatter.getUnitSymbol(VolumeUnit.CUBIC_CENTIMETER),
-                VolumeFormatter.CUBIC_CENTIMETER);
-        assertEquals(formatter.getUnitSymbol(VolumeUnit.MILLILITER),
-                VolumeFormatter.MILLILITER);
-        assertEquals(formatter.getUnitSymbol(VolumeUnit.CUBIC_DECIMETER),
-                VolumeFormatter.CUBIC_DECIMETER);
-        assertEquals(formatter.getUnitSymbol(VolumeUnit.LITER),
-                VolumeFormatter.LITER);
-        assertEquals(formatter.getUnitSymbol(VolumeUnit.HECTOLITER),
-                VolumeFormatter.HECTOLITER);
-        assertEquals(formatter.getUnitSymbol(VolumeUnit.CUBIC_METER),
-                VolumeFormatter.CUBIC_METER);
-        assertEquals(formatter.getUnitSymbol(VolumeUnit.CUBIC_INCH),
-                VolumeFormatter.CUBIC_INCH);
-        assertEquals(formatter.getUnitSymbol(VolumeUnit.PINT),
-                VolumeFormatter.PINT);
-        assertEquals(formatter.getUnitSymbol(VolumeUnit.GALLON),
-                VolumeFormatter.GALLON);
-        assertEquals(formatter.getUnitSymbol(VolumeUnit.CUBIC_FOOT),
-                VolumeFormatter.CUBIC_FOOT);
-        assertEquals(formatter.getUnitSymbol(VolumeUnit.BARREL),
-                VolumeFormatter.BARREL);
+        assertEquals(VolumeFormatter.CUBIC_CENTIMETER,
+                formatter.getUnitSymbol(VolumeUnit.CUBIC_CENTIMETER));
+        assertEquals(VolumeFormatter.MILLILITER,
+                formatter.getUnitSymbol(VolumeUnit.MILLILITER));
+        assertEquals(VolumeFormatter.CUBIC_DECIMETER,
+                formatter.getUnitSymbol(VolumeUnit.CUBIC_DECIMETER));
+        assertEquals(VolumeFormatter.LITER,
+                formatter.getUnitSymbol(VolumeUnit.LITER));
+        assertEquals(VolumeFormatter.HECTOLITER,
+                formatter.getUnitSymbol(VolumeUnit.HECTOLITER));
+        assertEquals(VolumeFormatter.CUBIC_METER,
+                formatter.getUnitSymbol(VolumeUnit.CUBIC_METER));
+        assertEquals(VolumeFormatter.CUBIC_INCH,
+                formatter.getUnitSymbol(VolumeUnit.CUBIC_INCH));
+        assertEquals(VolumeFormatter.PINT,
+                formatter.getUnitSymbol(VolumeUnit.PINT));
+        assertEquals(VolumeFormatter.GALLON,
+                formatter.getUnitSymbol(VolumeUnit.GALLON));
+        assertEquals(VolumeFormatter.CUBIC_FOOT,
+                formatter.getUnitSymbol(VolumeUnit.CUBIC_FOOT));
+        assertEquals(VolumeFormatter.BARREL,
+                formatter.getUnitSymbol(VolumeUnit.BARREL));
     }
 }

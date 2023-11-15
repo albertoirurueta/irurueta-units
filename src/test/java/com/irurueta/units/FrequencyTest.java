@@ -40,8 +40,8 @@ public class FrequencyTest {
         f = new Frequency(1000, FrequencyUnit.HERTZ);
 
         // check
-        assertEquals(f.getValue(), 1000);
-        assertEquals(f.getUnit(), FrequencyUnit.HERTZ);
+        assertEquals(1000, f.getValue());
+        assertEquals(FrequencyUnit.HERTZ, f.getUnit());
 
         // force IllegalArgumentException
         f = null;
@@ -67,7 +67,6 @@ public class FrequencyTest {
         final Frequency f3 = new Frequency(value + 1.0, FrequencyUnit.HERTZ);
         final Frequency f4 = new Frequency(value, FrequencyUnit.KILOHERTZ);
 
-        assertEquals(f1, f1);
         assertEquals(f1, f2);
         assertNotEquals(f1, f3);
         assertNotEquals(f1, f4);
@@ -116,13 +115,13 @@ public class FrequencyTest {
         final Frequency f = new Frequency(1, FrequencyUnit.HERTZ);
 
         // check
-        assertEquals(f.getValue(), 1);
+        assertEquals(1, f.getValue());
 
         // set new value
         f.setValue(2.5);
 
         // check
-        assertEquals(f.getValue(), 2.5);
+        assertEquals(2.5, f.getValue());
 
         // force IllegalArgumentException
         try {
@@ -137,13 +136,13 @@ public class FrequencyTest {
         final Frequency f = new Frequency(1, FrequencyUnit.HERTZ);
 
         // check
-        assertEquals(f.getUnit(), FrequencyUnit.HERTZ);
+        assertEquals(FrequencyUnit.HERTZ, f.getUnit());
 
         // set new value
         f.setUnit(FrequencyUnit.HERTZ);
 
         // check
-        assertEquals(f.getUnit(), FrequencyUnit.HERTZ);
+        assertEquals(FrequencyUnit.HERTZ, f.getUnit());
 
         // force IllegalArgumentException
         try {
@@ -192,13 +191,13 @@ public class FrequencyTest {
         Frequency.add(f1, f2, result);
 
         // check
-        assertEquals(f1.getUnit(), FrequencyUnit.KILOHERTZ);
-        assertEquals(f1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(FrequencyUnit.KILOHERTZ, f1.getUnit());
+        assertEquals(value1, f1.getValue().doubleValue(), 0.0);
 
-        assertEquals(f2.getUnit(), FrequencyUnit.KILOHERTZ);
-        assertEquals(f2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(FrequencyUnit.KILOHERTZ, f2.getUnit());
+        assertEquals(value2, f2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), FrequencyUnit.HERTZ);
+        assertEquals(FrequencyUnit.HERTZ, result.getUnit());
         assertEquals((value1 + value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -215,13 +214,13 @@ public class FrequencyTest {
         final Frequency result = Frequency.addAndReturnNew(f1, f2, FrequencyUnit.HERTZ);
 
         // check
-        assertEquals(f1.getUnit(), FrequencyUnit.KILOHERTZ);
-        assertEquals(f1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(FrequencyUnit.KILOHERTZ, f1.getUnit());
+        assertEquals(value1, f1.getValue().doubleValue(), 0.0);
 
-        assertEquals(f2.getUnit(), FrequencyUnit.KILOHERTZ);
-        assertEquals(f2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(FrequencyUnit.KILOHERTZ, f2.getUnit());
+        assertEquals(value2, f2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), FrequencyUnit.HERTZ);
+        assertEquals(FrequencyUnit.HERTZ, result.getUnit());
         assertEquals((value1 + value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -238,10 +237,10 @@ public class FrequencyTest {
                 FrequencyUnit.HERTZ);
 
         // check
-        assertEquals(f1.getUnit(), FrequencyUnit.KILOHERTZ);
-        assertEquals(f1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(FrequencyUnit.KILOHERTZ, f1.getUnit());
+        assertEquals(value1, f1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), FrequencyUnit.HERTZ);
+        assertEquals(FrequencyUnit.HERTZ, result.getUnit());
         assertEquals((value1 + value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -258,10 +257,10 @@ public class FrequencyTest {
                 FrequencyUnit.KILOHERTZ, FrequencyUnit.HERTZ);
 
         // check
-        assertEquals(f1.getUnit(), FrequencyUnit.KILOHERTZ);
-        assertEquals(f1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(FrequencyUnit.KILOHERTZ, f1.getUnit());
+        assertEquals(value1, f1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), FrequencyUnit.HERTZ);
+        assertEquals(FrequencyUnit.HERTZ, result.getUnit());
         assertEquals((value1 + value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -278,13 +277,13 @@ public class FrequencyTest {
         final Frequency result = f1.addAndReturnNew(f2, FrequencyUnit.HERTZ);
 
         // check
-        assertEquals(f1.getUnit(), FrequencyUnit.KILOHERTZ);
-        assertEquals(f1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(FrequencyUnit.KILOHERTZ, f1.getUnit());
+        assertEquals(value1, f1.getValue().doubleValue(), 0.0);
 
-        assertEquals(f2.getUnit(), FrequencyUnit.KILOHERTZ);
-        assertEquals(f2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(FrequencyUnit.KILOHERTZ, f2.getUnit());
+        assertEquals(value2, f2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), FrequencyUnit.HERTZ);
+        assertEquals(FrequencyUnit.HERTZ, result.getUnit());
         assertEquals((value1 + value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -300,9 +299,8 @@ public class FrequencyTest {
         f1.add(value2, FrequencyUnit.HERTZ);
 
         // check
-        assertEquals(f1.getUnit(), FrequencyUnit.HERTZ);
-        assertEquals(f1.getValue().doubleValue(), value1 + value2,
-                ERROR);
+        assertEquals(FrequencyUnit.HERTZ, f1.getUnit());
+        assertEquals(value1 + value2, f1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -316,9 +314,8 @@ public class FrequencyTest {
         f1.add(new BigDecimal(value2), FrequencyUnit.HERTZ);
 
         // check
-        assertEquals(f1.getUnit(), FrequencyUnit.HERTZ);
-        assertEquals(f1.getValue().doubleValue(), value1 + value2,
-                ERROR);
+        assertEquals(FrequencyUnit.HERTZ, f1.getUnit());
+        assertEquals(value1 + value2, f1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -333,12 +330,11 @@ public class FrequencyTest {
         f1.add(f2);
 
         // check
-        assertEquals(f1.getUnit(), FrequencyUnit.HERTZ);
-        assertEquals(f1.getValue().doubleValue(), value1 + value2,
-                ERROR);
+        assertEquals(FrequencyUnit.HERTZ, f1.getUnit());
+        assertEquals(value1 + value2, f1.getValue().doubleValue(), ERROR);
 
-        assertEquals(f2.getUnit(), FrequencyUnit.HERTZ);
-        assertEquals(f2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(FrequencyUnit.HERTZ, f2.getUnit());
+        assertEquals(value2, f2.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -354,13 +350,13 @@ public class FrequencyTest {
         f1.add(f2, result);
 
         // check
-        assertEquals(f1.getUnit(), FrequencyUnit.KILOHERTZ);
-        assertEquals(f1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(FrequencyUnit.KILOHERTZ, f1.getUnit());
+        assertEquals(value1, f1.getValue().doubleValue(), 0.0);
 
-        assertEquals(f2.getUnit(), FrequencyUnit.KILOHERTZ);
-        assertEquals(f2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(FrequencyUnit.KILOHERTZ, f2.getUnit());
+        assertEquals(value2, f2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), FrequencyUnit.HERTZ);
+        assertEquals(FrequencyUnit.HERTZ, result.getUnit());
         assertEquals((value1 + value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -404,13 +400,13 @@ public class FrequencyTest {
         Frequency.subtract(f1, f2, result);
 
         // check
-        assertEquals(f1.getUnit(), FrequencyUnit.KILOHERTZ);
-        assertEquals(f1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(FrequencyUnit.KILOHERTZ, f1.getUnit());
+        assertEquals(value1, f1.getValue().doubleValue(), 0.0);
 
-        assertEquals(f2.getUnit(), FrequencyUnit.KILOHERTZ);
-        assertEquals(f2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(FrequencyUnit.KILOHERTZ, f2.getUnit());
+        assertEquals(value2, f2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), FrequencyUnit.HERTZ);
+        assertEquals(FrequencyUnit.HERTZ, result.getUnit());
         assertEquals((value1 - value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -428,13 +424,13 @@ public class FrequencyTest {
                 FrequencyUnit.HERTZ);
 
         // check
-        assertEquals(f1.getUnit(), FrequencyUnit.KILOHERTZ);
-        assertEquals(f1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(FrequencyUnit.KILOHERTZ, f1.getUnit());
+        assertEquals(value1, f1.getValue().doubleValue(), 0.0);
 
-        assertEquals(f2.getUnit(), FrequencyUnit.KILOHERTZ);
-        assertEquals(f2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(FrequencyUnit.KILOHERTZ, f2.getUnit());
+        assertEquals(value2, f2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), FrequencyUnit.HERTZ);
+        assertEquals(FrequencyUnit.HERTZ, result.getUnit());
         assertEquals((value1 - value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -451,10 +447,10 @@ public class FrequencyTest {
                 FrequencyUnit.KILOHERTZ, FrequencyUnit.HERTZ);
 
         // check
-        assertEquals(f1.getUnit(), FrequencyUnit.KILOHERTZ);
-        assertEquals(f1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(FrequencyUnit.KILOHERTZ, f1.getUnit());
+        assertEquals(value1, f1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), FrequencyUnit.HERTZ);
+        assertEquals(FrequencyUnit.HERTZ, result.getUnit());
         assertEquals((value1 - value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -471,10 +467,10 @@ public class FrequencyTest {
                 FrequencyUnit.KILOHERTZ, FrequencyUnit.HERTZ);
 
         // check
-        assertEquals(f1.getUnit(), FrequencyUnit.KILOHERTZ);
-        assertEquals(f1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(FrequencyUnit.KILOHERTZ, f1.getUnit());
+        assertEquals(value1, f1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), FrequencyUnit.HERTZ);
+        assertEquals(FrequencyUnit.HERTZ, result.getUnit());
         assertEquals((value1 - value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -491,13 +487,13 @@ public class FrequencyTest {
         final Frequency result = f1.subtractAndReturnNew(f2, FrequencyUnit.HERTZ);
 
         // check
-        assertEquals(f1.getUnit(), FrequencyUnit.KILOHERTZ);
-        assertEquals(f1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(FrequencyUnit.KILOHERTZ, f1.getUnit());
+        assertEquals(value1, f1.getValue().doubleValue(), 0.0);
 
-        assertEquals(f2.getUnit(), FrequencyUnit.KILOHERTZ);
-        assertEquals(f2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(FrequencyUnit.KILOHERTZ, f2.getUnit());
+        assertEquals(value2, f2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), FrequencyUnit.HERTZ);
+        assertEquals(FrequencyUnit.HERTZ, result.getUnit());
         assertEquals((value1 - value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -513,9 +509,8 @@ public class FrequencyTest {
         f1.subtract(value2, FrequencyUnit.HERTZ);
 
         // check
-        assertEquals(f1.getUnit(), FrequencyUnit.HERTZ);
-        assertEquals(f1.getValue().doubleValue(), value1 - value2,
-                ERROR);
+        assertEquals(FrequencyUnit.HERTZ, f1.getUnit());
+        assertEquals(value1 - value2, f1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -529,9 +524,8 @@ public class FrequencyTest {
         f1.subtract(new BigDecimal(value2), FrequencyUnit.HERTZ);
 
         // check
-        assertEquals(f1.getUnit(), FrequencyUnit.HERTZ);
-        assertEquals(f1.getValue().doubleValue(), value1 - value2,
-                ERROR);
+        assertEquals(FrequencyUnit.HERTZ, f1.getUnit());
+        assertEquals(value1 - value2, f1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -546,12 +540,11 @@ public class FrequencyTest {
         f1.subtract(f2);
 
         // check
-        assertEquals(f1.getUnit(), FrequencyUnit.HERTZ);
-        assertEquals(f1.getValue().doubleValue(), value1 - value2,
-                ERROR);
+        assertEquals(FrequencyUnit.HERTZ, f1.getUnit());
+        assertEquals(value1 - value2, f1.getValue().doubleValue(), ERROR);
 
-        assertEquals(f2.getUnit(), FrequencyUnit.HERTZ);
-        assertEquals(f2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(FrequencyUnit.HERTZ, f2.getUnit());
+        assertEquals(value2, f2.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -567,13 +560,13 @@ public class FrequencyTest {
         f1.subtract(f2, result);
 
         // check
-        assertEquals(f1.getUnit(), FrequencyUnit.KILOHERTZ);
-        assertEquals(f1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(FrequencyUnit.KILOHERTZ, f1.getUnit());
+        assertEquals(value1, f1.getValue().doubleValue(), 0.0);
 
-        assertEquals(f2.getUnit(), FrequencyUnit.KILOHERTZ);
-        assertEquals(f2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(FrequencyUnit.KILOHERTZ, f2.getUnit());
+        assertEquals(value2, f2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), FrequencyUnit.HERTZ);
+        assertEquals(FrequencyUnit.HERTZ, result.getUnit());
         assertEquals((value1 - value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }

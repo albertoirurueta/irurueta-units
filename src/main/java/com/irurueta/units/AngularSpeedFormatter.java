@@ -22,7 +22,7 @@ import java.util.Locale;
  * Formats and parses angular speed value and unit.
  */
 public class AngularSpeedFormatter extends
-        MeasureFormatter<AngularSpeed, AngularSpeedUnit> implements Cloneable {
+        MeasureFormatter<AngularSpeed, AngularSpeedUnit> {
 
     /**
      * Degrees per second symbol.
@@ -165,17 +165,5 @@ public class AngularSpeedFormatter extends
             default:
                 return RADIANS_PER_SECOND;
         }
-    }
-
-    /**
-     * Clones this angular speed formatter.
-     *
-     * @return a copy of this angular speed formatter.
-     * @throws CloneNotSupportedException if clone fails for any reason.
-     */
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        final AngularSpeedFormatter copy = (AngularSpeedFormatter) super.clone();
-        return internalClone(copy);
     }
 }

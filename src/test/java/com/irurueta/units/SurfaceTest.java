@@ -40,8 +40,8 @@ public class SurfaceTest {
         s = new Surface(323, SurfaceUnit.SQUARE_METER);
 
         // check
-        assertEquals(s.getValue(), 323);
-        assertEquals(s.getUnit(), SurfaceUnit.SQUARE_METER);
+        assertEquals(323, s.getValue());
+        assertEquals(SurfaceUnit.SQUARE_METER, s.getUnit());
 
         // force IllegalArgumentException
         s = null;
@@ -67,6 +67,7 @@ public class SurfaceTest {
         final Surface s3 = new Surface(value + 1.0, SurfaceUnit.SQUARE_METER);
         final Surface s4 = new Surface(value, SurfaceUnit.SQUARE_CENTIMETER);
 
+        //noinspection EqualsWithItself
         assertEquals(s1, s1);
         assertEquals(s1, s2);
         assertNotEquals(s1, s3);
@@ -114,13 +115,13 @@ public class SurfaceTest {
         final Surface s = new Surface(1, SurfaceUnit.SQUARE_METER);
 
         // check
-        assertEquals(s.getValue(), 1);
+        assertEquals(1, s.getValue());
 
         // set new value
         s.setValue(2.5);
 
         // check
-        assertEquals(s.getValue(), 2.5);
+        assertEquals(2.5, s.getValue());
 
         // force IllegalArgumentException
         try {
@@ -135,13 +136,13 @@ public class SurfaceTest {
         final Surface s = new Surface(1, SurfaceUnit.SQUARE_METER);
 
         // check
-        assertEquals(s.getUnit(), SurfaceUnit.SQUARE_METER);
+        assertEquals(SurfaceUnit.SQUARE_METER, s.getUnit());
 
         // set new value
         s.setUnit(SurfaceUnit.SQUARE_YARD);
 
         // check
-        assertEquals(s.getUnit(), SurfaceUnit.SQUARE_YARD);
+        assertEquals(SurfaceUnit.SQUARE_YARD, s.getUnit());
 
         // force IllegalArgumentException
         try {
@@ -190,13 +191,13 @@ public class SurfaceTest {
         Surface.add(s1, s2, result);
 
         // check
-        assertEquals(s1.getUnit(), SurfaceUnit.SQUARE_METER);
-        assertEquals(s1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
+        assertEquals(value1, s1.getValue().doubleValue(), 0.0);
 
-        assertEquals(s2.getUnit(), SurfaceUnit.SQUARE_METER);
-        assertEquals(s2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(SurfaceUnit.SQUARE_METER, s2.getUnit());
+        assertEquals(value2, s2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), SurfaceUnit.HECTARE);
+        assertEquals(SurfaceUnit.HECTARE, result.getUnit());
         assertEquals((value1 + value2) * 1e-4,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -213,13 +214,13 @@ public class SurfaceTest {
         final Surface result = Surface.addAndReturnNew(s1, s2, SurfaceUnit.HECTARE);
 
         // check
-        assertEquals(s1.getUnit(), SurfaceUnit.SQUARE_METER);
-        assertEquals(s1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
+        assertEquals(value1, s1.getValue().doubleValue(), 0.0);
 
-        assertEquals(s2.getUnit(), SurfaceUnit.SQUARE_METER);
-        assertEquals(s2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(SurfaceUnit.SQUARE_METER, s2.getUnit());
+        assertEquals(value2, s2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), SurfaceUnit.HECTARE);
+        assertEquals(SurfaceUnit.HECTARE, result.getUnit());
         assertEquals((value1 + value2) * 1e-4,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -235,10 +236,10 @@ public class SurfaceTest {
         final Surface result = s1.addAndReturnNew(value2, SurfaceUnit.SQUARE_METER, SurfaceUnit.HECTARE);
 
         // check
-        assertEquals(s1.getUnit(), SurfaceUnit.SQUARE_METER);
-        assertEquals(s1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
+        assertEquals(value1, s1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), SurfaceUnit.HECTARE);
+        assertEquals(SurfaceUnit.HECTARE, result.getUnit());
         assertEquals((value1 + value2) * 1e-4,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -255,10 +256,10 @@ public class SurfaceTest {
                 SurfaceUnit.SQUARE_METER, SurfaceUnit.HECTARE);
 
         // check
-        assertEquals(s1.getUnit(), SurfaceUnit.SQUARE_METER);
-        assertEquals(s1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
+        assertEquals(value1, s1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), SurfaceUnit.HECTARE);
+        assertEquals(SurfaceUnit.HECTARE, result.getUnit());
         assertEquals((value1 + value2) * 1e-4,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -275,13 +276,13 @@ public class SurfaceTest {
         final Surface result = s1.addAndReturnNew(s2, SurfaceUnit.HECTARE);
 
         // check
-        assertEquals(s1.getUnit(), SurfaceUnit.SQUARE_METER);
-        assertEquals(s1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
+        assertEquals(value1, s1.getValue().doubleValue(), 0.0);
 
-        assertEquals(s2.getUnit(), SurfaceUnit.SQUARE_METER);
-        assertEquals(s2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(SurfaceUnit.SQUARE_METER, s2.getUnit());
+        assertEquals(value2, s2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), SurfaceUnit.HECTARE);
+        assertEquals(SurfaceUnit.HECTARE, result.getUnit());
         assertEquals((value1 + value2) * 1e-4,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -297,8 +298,8 @@ public class SurfaceTest {
         s1.add(value2, SurfaceUnit.SQUARE_METER);
 
         // check
-        assertEquals(s1.getUnit(), SurfaceUnit.SQUARE_METER);
-        assertEquals(s1.getValue().doubleValue(), value1 + value2,
+        assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
+        assertEquals(value1 + value2, s1.getValue().doubleValue(),
                 ERROR);
     }
 
@@ -313,8 +314,8 @@ public class SurfaceTest {
         s1.add(new BigDecimal(value2), SurfaceUnit.SQUARE_METER);
 
         // check
-        assertEquals(s1.getUnit(), SurfaceUnit.SQUARE_METER);
-        assertEquals(s1.getValue().doubleValue(), value1 + value2,
+        assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
+        assertEquals(value1 + value2, s1.getValue().doubleValue(),
                 ERROR);
     }
 
@@ -330,12 +331,12 @@ public class SurfaceTest {
         s1.add(s2);
 
         // check
-        assertEquals(s1.getUnit(), SurfaceUnit.SQUARE_METER);
-        assertEquals(s1.getValue().doubleValue(), value1 + value2,
+        assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
+        assertEquals(value1 + value2, s1.getValue().doubleValue(),
                 ERROR);
 
-        assertEquals(s2.getUnit(), SurfaceUnit.SQUARE_METER);
-        assertEquals(s2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(SurfaceUnit.SQUARE_METER, s2.getUnit());
+        assertEquals(value2, s2.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -351,13 +352,13 @@ public class SurfaceTest {
         s1.add(s2, result);
 
         // check
-        assertEquals(s1.getUnit(), SurfaceUnit.SQUARE_METER);
-        assertEquals(s1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
+        assertEquals(value1, s1.getValue().doubleValue(), 0.0);
 
-        assertEquals(s2.getUnit(), SurfaceUnit.SQUARE_METER);
-        assertEquals(s2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(SurfaceUnit.SQUARE_METER, s2.getUnit());
+        assertEquals(value2, s2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), SurfaceUnit.HECTARE);
+        assertEquals(SurfaceUnit.HECTARE, result.getUnit());
         assertEquals((value1 + value2) * 1e-4,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -401,13 +402,13 @@ public class SurfaceTest {
         Surface.subtract(s1, s2, result);
 
         // check
-        assertEquals(s1.getUnit(), SurfaceUnit.SQUARE_METER);
-        assertEquals(s1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
+        assertEquals(value1, s1.getValue().doubleValue(), 0.0);
 
-        assertEquals(s2.getUnit(), SurfaceUnit.SQUARE_METER);
-        assertEquals(s2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(SurfaceUnit.SQUARE_METER, s2.getUnit());
+        assertEquals(value2, s2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), SurfaceUnit.HECTARE);
+        assertEquals(SurfaceUnit.HECTARE, result.getUnit());
         assertEquals((value1 - value2) * 1e-4,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -425,13 +426,13 @@ public class SurfaceTest {
                 SurfaceUnit.HECTARE);
 
         // check
-        assertEquals(s1.getUnit(), SurfaceUnit.SQUARE_METER);
-        assertEquals(s1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
+        assertEquals(value1, s1.getValue().doubleValue(), 0.0);
 
-        assertEquals(s2.getUnit(), SurfaceUnit.SQUARE_METER);
-        assertEquals(s2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(SurfaceUnit.SQUARE_METER, s2.getUnit());
+        assertEquals(value2, s2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), SurfaceUnit.HECTARE);
+        assertEquals(SurfaceUnit.HECTARE, result.getUnit());
         assertEquals((value1 - value2) * 1e-4,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -447,10 +448,10 @@ public class SurfaceTest {
         final Surface result = s1.subtractAndReturnNew(value2, SurfaceUnit.SQUARE_METER, SurfaceUnit.HECTARE);
 
         // check
-        assertEquals(s1.getUnit(), SurfaceUnit.SQUARE_METER);
-        assertEquals(s1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
+        assertEquals(value1, s1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), SurfaceUnit.HECTARE);
+        assertEquals(SurfaceUnit.HECTARE, result.getUnit());
         assertEquals((value1 - value2) * 1e-4,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -467,10 +468,10 @@ public class SurfaceTest {
                 SurfaceUnit.SQUARE_METER, SurfaceUnit.HECTARE);
 
         // check
-        assertEquals(s1.getUnit(), SurfaceUnit.SQUARE_METER);
-        assertEquals(s1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
+        assertEquals(value1, s1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), SurfaceUnit.HECTARE);
+        assertEquals(SurfaceUnit.HECTARE, result.getUnit());
         assertEquals((value1 - value2) * 1e-4,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -487,13 +488,13 @@ public class SurfaceTest {
         final Surface result = s1.subtractAndReturnNew(s2, SurfaceUnit.HECTARE);
 
         // check
-        assertEquals(s1.getUnit(), SurfaceUnit.SQUARE_METER);
-        assertEquals(s1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
+        assertEquals(value1, s1.getValue().doubleValue(), 0.0);
 
-        assertEquals(s2.getUnit(), SurfaceUnit.SQUARE_METER);
-        assertEquals(s2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(SurfaceUnit.SQUARE_METER, s2.getUnit());
+        assertEquals(value2, s2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), SurfaceUnit.HECTARE);
+        assertEquals(SurfaceUnit.HECTARE, result.getUnit());
         assertEquals((value1 - value2) * 1e-4,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -509,8 +510,8 @@ public class SurfaceTest {
         s1.subtract(value2, SurfaceUnit.SQUARE_METER);
 
         // check
-        assertEquals(s1.getUnit(), SurfaceUnit.SQUARE_METER);
-        assertEquals(s1.getValue().doubleValue(), value1 - value2,
+        assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
+        assertEquals(value1 - value2, s1.getValue().doubleValue(),
                 ERROR);
     }
 
@@ -525,8 +526,8 @@ public class SurfaceTest {
         s1.subtract(new BigDecimal(value2), SurfaceUnit.SQUARE_METER);
 
         // check
-        assertEquals(s1.getUnit(), SurfaceUnit.SQUARE_METER);
-        assertEquals(s1.getValue().doubleValue(), value1 - value2,
+        assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
+        assertEquals(value1 - value2, s1.getValue().doubleValue(),
                 ERROR);
     }
 
@@ -542,12 +543,12 @@ public class SurfaceTest {
         s1.subtract(s2);
 
         // check
-        assertEquals(s1.getUnit(), SurfaceUnit.SQUARE_METER);
-        assertEquals(s1.getValue().doubleValue(), value1 - value2,
+        assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
+        assertEquals(value1 - value2, s1.getValue().doubleValue(),
                 ERROR);
 
-        assertEquals(s2.getUnit(), SurfaceUnit.SQUARE_METER);
-        assertEquals(s2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(SurfaceUnit.SQUARE_METER, s2.getUnit());
+        assertEquals(value2, s2.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -563,13 +564,13 @@ public class SurfaceTest {
         s1.subtract(s2, result);
 
         // check
-        assertEquals(s1.getUnit(), SurfaceUnit.SQUARE_METER);
-        assertEquals(s1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
+        assertEquals(value1, s1.getValue().doubleValue(), 0.0);
 
-        assertEquals(s2.getUnit(), SurfaceUnit.SQUARE_METER);
-        assertEquals(s2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(SurfaceUnit.SQUARE_METER, s2.getUnit());
+        assertEquals(value2, s2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), SurfaceUnit.HECTARE);
+        assertEquals(SurfaceUnit.HECTARE, result.getUnit());
         assertEquals((value1 - value2) * 1e-4,
                 result.getValue().doubleValue(), ERROR);
     }

@@ -35,147 +35,180 @@ public class SpeedConverterTest {
     public void testMetersPerSecondFeetPerSecond() {
         final double inputValue = new Random().nextDouble();
 
-        assertEquals(SpeedConverter.metersPerSecondToFeetPerSecond(inputValue),
-                inputValue / METERS_PER_FOOT, ERROR);
-        assertEquals(SpeedConverter.feetPerSecondToMetersPerSecond(inputValue),
-                inputValue * METERS_PER_FOOT, ERROR);
+        assertEquals(inputValue / METERS_PER_FOOT,
+                SpeedConverter.metersPerSecondToFeetPerSecond(inputValue),
+                ERROR);
+        assertEquals(inputValue * METERS_PER_FOOT,
+                SpeedConverter.feetPerSecondToMetersPerSecond(inputValue),
+                ERROR);
     }
 
     @Test
     public void testMetersPerSecondMilesPerHour() {
         final double inputValue = new Random().nextDouble();
 
-        assertEquals(SpeedConverter.metersPerSecondToMilesPerHour(inputValue),
-                inputValue / METERS_PER_MILE * SECONDS_PER_HOUR, ERROR);
-        assertEquals(SpeedConverter.milesPerHourToMetersPerSecond(inputValue),
-                inputValue * METERS_PER_MILE / SECONDS_PER_HOUR, ERROR);
+        assertEquals(inputValue / METERS_PER_MILE * SECONDS_PER_HOUR,
+                SpeedConverter.metersPerSecondToMilesPerHour(inputValue),
+                ERROR);
+        assertEquals(inputValue * METERS_PER_MILE / SECONDS_PER_HOUR,
+                SpeedConverter.milesPerHourToMetersPerSecond(inputValue),
+                ERROR);
     }
 
     @Test
     public void testMetersPerSecondKilometersPerHour() {
         final double inputValue = new Random().nextDouble();
 
-        assertEquals(SpeedConverter.metersPerSecondToKilometersPerHour(inputValue),
-                inputValue / METERS_PER_KILOMETER * SECONDS_PER_HOUR, ERROR);
-        assertEquals(SpeedConverter.kilometersPerHourToMetersPerSecond(inputValue),
-                inputValue * METERS_PER_KILOMETER / SECONDS_PER_HOUR, ERROR);
+        assertEquals(inputValue / METERS_PER_KILOMETER * SECONDS_PER_HOUR,
+                SpeedConverter.metersPerSecondToKilometersPerHour(inputValue),
+                ERROR);
+        assertEquals(inputValue * METERS_PER_KILOMETER / SECONDS_PER_HOUR,
+                SpeedConverter.kilometersPerHourToMetersPerSecond(inputValue),
+                ERROR);
     }
 
     @Test
     public void testMetersPerSecondKilometersPerSecond() {
         final double inputValue = new Random().nextDouble();
 
-        assertEquals(SpeedConverter.metersPerSecondToKilometersPerSecond(inputValue),
-                inputValue / METERS_PER_KILOMETER, ERROR);
-        assertEquals(SpeedConverter.kilometersPerSecondToMetersPerSecond(inputValue),
-                inputValue * METERS_PER_KILOMETER, ERROR);
+        assertEquals(inputValue / METERS_PER_KILOMETER,
+                SpeedConverter.metersPerSecondToKilometersPerSecond(inputValue),
+                ERROR);
+        assertEquals(inputValue * METERS_PER_KILOMETER,
+                SpeedConverter.kilometersPerSecondToMetersPerSecond(inputValue),
+                ERROR);
     }
 
     @Test
     public void testConvertDouble() {
         final double inputValue = new Random().nextDouble();
 
-        assertEquals(SpeedConverter.convert(inputValue,
-                SpeedUnit.METERS_PER_SECOND, SpeedUnit.METERS_PER_SECOND),
-                inputValue, ERROR);
-        assertEquals(SpeedConverter.convert(inputValue,
-                SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
-                SpeedConverter.metersPerSecondToKilometersPerHour(inputValue), ERROR);
-        assertEquals(SpeedConverter.convert(inputValue,
-                SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_SECOND),
-                SpeedConverter.metersPerSecondToKilometersPerSecond(inputValue), ERROR);
-        assertEquals(SpeedConverter.convert(inputValue,
-                SpeedUnit.METERS_PER_SECOND, SpeedUnit.FEET_PER_SECOND),
-                SpeedConverter.metersPerSecondToFeetPerSecond(inputValue), ERROR);
-        assertEquals(SpeedConverter.convert(inputValue,
-                SpeedUnit.METERS_PER_SECOND, SpeedUnit.MILES_PER_HOUR),
-                SpeedConverter.metersPerSecondToMilesPerHour(inputValue), ERROR);
-
-        assertEquals(SpeedConverter.convert(inputValue,
-                SpeedUnit.KILOMETERS_PER_HOUR, SpeedUnit.METERS_PER_SECOND),
-                SpeedConverter.kilometersPerHourToMetersPerSecond(inputValue), ERROR);
-        assertEquals(SpeedConverter.convert(inputValue,
-                SpeedUnit.KILOMETERS_PER_HOUR, SpeedUnit.KILOMETERS_PER_HOUR),
-                inputValue, ERROR);
-        assertEquals(SpeedConverter.convert(inputValue,
-                SpeedUnit.KILOMETERS_PER_HOUR, SpeedUnit.KILOMETERS_PER_SECOND),
-                SpeedConverter.metersPerSecondToKilometersPerSecond(
-                        SpeedConverter.kilometersPerHourToMetersPerSecond(inputValue)), ERROR);
-        assertEquals(SpeedConverter.convert(inputValue,
-                SpeedUnit.KILOMETERS_PER_HOUR, SpeedUnit.FEET_PER_SECOND),
-                SpeedConverter.metersPerSecondToFeetPerSecond(
-                        SpeedConverter.kilometersPerHourToMetersPerSecond(inputValue)), ERROR);
-        assertEquals(SpeedConverter.convert(inputValue,
-                SpeedUnit.KILOMETERS_PER_HOUR, SpeedUnit.MILES_PER_HOUR),
-                SpeedConverter.metersPerSecondToMilesPerHour(
-                        SpeedConverter.kilometersPerHourToMetersPerSecond(inputValue)), ERROR);
-
-        assertEquals(SpeedConverter.convert(inputValue,
-                SpeedUnit.KILOMETERS_PER_SECOND, SpeedUnit.METERS_PER_SECOND),
-                SpeedConverter.kilometersPerSecondToMetersPerSecond(inputValue), ERROR);
-        assertEquals(SpeedConverter.convert(inputValue,
-                SpeedUnit.KILOMETERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
-                SpeedConverter.metersPerSecondToKilometersPerHour(
-                        SpeedConverter.kilometersPerSecondToMetersPerSecond(inputValue)), ERROR);
-        assertEquals(SpeedConverter.convert(inputValue,
-                SpeedUnit.KILOMETERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_SECOND),
-                SpeedConverter.metersPerSecondToKilometersPerSecond(
-                        SpeedConverter.kilometersPerSecondToMetersPerSecond(inputValue)), ERROR);
-        assertEquals(SpeedConverter.convert(inputValue,
-                SpeedUnit.KILOMETERS_PER_SECOND, SpeedUnit.FEET_PER_SECOND),
-                SpeedConverter.metersPerSecondToFeetPerSecond(
-                        SpeedConverter.kilometersPerSecondToMetersPerSecond(inputValue)), ERROR);
-        assertEquals(SpeedConverter.convert(inputValue,
-                SpeedUnit.KILOMETERS_PER_SECOND, SpeedUnit.MILES_PER_HOUR),
-                SpeedConverter.metersPerSecondToMilesPerHour(
-                        SpeedConverter.kilometersPerSecondToMetersPerSecond(inputValue)), ERROR);
-
-        assertEquals(SpeedConverter.convert(inputValue,
-                SpeedUnit.FEET_PER_SECOND, SpeedUnit.METERS_PER_SECOND),
-                SpeedConverter.feetPerSecondToMetersPerSecond(inputValue), ERROR);
-        assertEquals(SpeedConverter.convert(inputValue,
-                SpeedUnit.FEET_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
-                SpeedConverter.metersPerSecondToKilometersPerHour(
-                        SpeedConverter.feetPerSecondToMetersPerSecond(inputValue)), ERROR);
-        assertEquals(SpeedConverter.convert(inputValue,
-                SpeedUnit.FEET_PER_SECOND, SpeedUnit.KILOMETERS_PER_SECOND),
-                SpeedConverter.metersPerSecondToKilometersPerSecond(
-                        SpeedConverter.feetPerSecondToMetersPerSecond(inputValue)), ERROR);
-        assertEquals(SpeedConverter.convert(inputValue,
-                SpeedUnit.FEET_PER_SECOND, SpeedUnit.FEET_PER_SECOND), inputValue,
+        assertEquals(inputValue,
+                SpeedConverter.convert(inputValue,
+                        SpeedUnit.METERS_PER_SECOND, SpeedUnit.METERS_PER_SECOND),
                 ERROR);
-        assertEquals(SpeedConverter.convert(inputValue,
-                SpeedUnit.FEET_PER_SECOND, SpeedUnit.MILES_PER_HOUR),
-                SpeedConverter.metersPerSecondToMilesPerHour(
-                        SpeedConverter.feetPerSecondToMetersPerSecond(inputValue)), ERROR);
+        assertEquals(SpeedConverter.metersPerSecondToKilometersPerHour(inputValue),
+                SpeedConverter.convert(inputValue,
+                        SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
+                ERROR);
+        assertEquals(SpeedConverter.metersPerSecondToKilometersPerSecond(inputValue),
+                SpeedConverter.convert(inputValue,
+                        SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_SECOND),
+                ERROR);
+        assertEquals(SpeedConverter.metersPerSecondToFeetPerSecond(inputValue),
+                SpeedConverter.convert(inputValue,
+                        SpeedUnit.METERS_PER_SECOND, SpeedUnit.FEET_PER_SECOND),
+                ERROR);
+        assertEquals(SpeedConverter.metersPerSecondToMilesPerHour(inputValue),
+                SpeedConverter.convert(inputValue,
+                        SpeedUnit.METERS_PER_SECOND, SpeedUnit.MILES_PER_HOUR),
+                ERROR);
 
-        assertEquals(SpeedConverter.convert(inputValue,
-                SpeedUnit.MILES_PER_HOUR, SpeedUnit.METERS_PER_SECOND),
-                SpeedConverter.milesPerHourToMetersPerSecond(inputValue), ERROR);
-        assertEquals(SpeedConverter.convert(inputValue,
-                SpeedUnit.MILES_PER_HOUR, SpeedUnit.KILOMETERS_PER_HOUR),
-                SpeedConverter.metersPerSecondToKilometersPerHour(
-                        SpeedConverter.milesPerHourToMetersPerSecond(inputValue)), ERROR);
-        assertEquals(SpeedConverter.convert(inputValue,
-                SpeedUnit.MILES_PER_HOUR, SpeedUnit.KILOMETERS_PER_SECOND),
-                SpeedConverter.metersPerSecondToKilometersPerSecond(
-                        SpeedConverter.milesPerHourToMetersPerSecond(inputValue)), ERROR);
-        assertEquals(SpeedConverter.convert(inputValue,
-                SpeedUnit.MILES_PER_HOUR, SpeedUnit.FEET_PER_SECOND),
-                SpeedConverter.metersPerSecondToFeetPerSecond(
-                        SpeedConverter.milesPerHourToMetersPerSecond(inputValue)), ERROR);
-        assertEquals(SpeedConverter.convert(inputValue,
-                SpeedUnit.MILES_PER_HOUR, SpeedUnit.MILES_PER_HOUR),
-                inputValue, ERROR);
+        assertEquals(SpeedConverter.kilometersPerHourToMetersPerSecond(inputValue),
+                SpeedConverter.convert(inputValue,
+                        SpeedUnit.KILOMETERS_PER_HOUR, SpeedUnit.METERS_PER_SECOND),
+                ERROR);
+        assertEquals(inputValue,
+                SpeedConverter.convert(inputValue,
+                        SpeedUnit.KILOMETERS_PER_HOUR, SpeedUnit.KILOMETERS_PER_HOUR),
+                ERROR);
+        assertEquals(SpeedConverter.metersPerSecondToKilometersPerSecond(
+                        SpeedConverter.kilometersPerHourToMetersPerSecond(inputValue)),
+                SpeedConverter.convert(inputValue,
+                        SpeedUnit.KILOMETERS_PER_HOUR, SpeedUnit.KILOMETERS_PER_SECOND),
+                ERROR);
+        assertEquals(SpeedConverter.metersPerSecondToFeetPerSecond(
+                        SpeedConverter.kilometersPerHourToMetersPerSecond(inputValue)),
+                SpeedConverter.convert(inputValue,
+                        SpeedUnit.KILOMETERS_PER_HOUR, SpeedUnit.FEET_PER_SECOND),
+                ERROR);
+        assertEquals(SpeedConverter.metersPerSecondToMilesPerHour(
+                        SpeedConverter.kilometersPerHourToMetersPerSecond(inputValue)),
+                SpeedConverter.convert(inputValue,
+                        SpeedUnit.KILOMETERS_PER_HOUR, SpeedUnit.MILES_PER_HOUR),
+                ERROR);
+
+        assertEquals(SpeedConverter.kilometersPerSecondToMetersPerSecond(inputValue),
+                SpeedConverter.convert(inputValue,
+                        SpeedUnit.KILOMETERS_PER_SECOND, SpeedUnit.METERS_PER_SECOND),
+                ERROR);
+        assertEquals(SpeedConverter.metersPerSecondToKilometersPerHour(
+                        SpeedConverter.kilometersPerSecondToMetersPerSecond(inputValue)),
+                SpeedConverter.convert(inputValue,
+                        SpeedUnit.KILOMETERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
+                ERROR);
+        assertEquals(SpeedConverter.metersPerSecondToKilometersPerSecond(
+                        SpeedConverter.kilometersPerSecondToMetersPerSecond(inputValue)),
+                SpeedConverter.convert(inputValue,
+                        SpeedUnit.KILOMETERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_SECOND),
+                ERROR);
+        assertEquals(SpeedConverter.metersPerSecondToFeetPerSecond(
+                        SpeedConverter.kilometersPerSecondToMetersPerSecond(inputValue)),
+                SpeedConverter.convert(inputValue,
+                        SpeedUnit.KILOMETERS_PER_SECOND, SpeedUnit.FEET_PER_SECOND),
+                ERROR);
+        assertEquals(SpeedConverter.metersPerSecondToMilesPerHour(
+                        SpeedConverter.kilometersPerSecondToMetersPerSecond(inputValue)),
+                SpeedConverter.convert(inputValue,
+                        SpeedUnit.KILOMETERS_PER_SECOND, SpeedUnit.MILES_PER_HOUR),
+                ERROR);
+
+        assertEquals(SpeedConverter.feetPerSecondToMetersPerSecond(inputValue),
+                SpeedConverter.convert(inputValue,
+                        SpeedUnit.FEET_PER_SECOND, SpeedUnit.METERS_PER_SECOND),
+                ERROR);
+        assertEquals(SpeedConverter.metersPerSecondToKilometersPerHour(
+                        SpeedConverter.feetPerSecondToMetersPerSecond(inputValue)),
+                SpeedConverter.convert(inputValue,
+                        SpeedUnit.FEET_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
+                ERROR);
+        assertEquals(SpeedConverter.metersPerSecondToKilometersPerSecond(
+                        SpeedConverter.feetPerSecondToMetersPerSecond(inputValue)),
+                SpeedConverter.convert(inputValue,
+                        SpeedUnit.FEET_PER_SECOND, SpeedUnit.KILOMETERS_PER_SECOND),
+                ERROR);
+        assertEquals(inputValue,
+                SpeedConverter.convert(inputValue, SpeedUnit.FEET_PER_SECOND, SpeedUnit.FEET_PER_SECOND),
+                ERROR);
+        assertEquals(SpeedConverter.metersPerSecondToMilesPerHour(
+                        SpeedConverter.feetPerSecondToMetersPerSecond(inputValue)),
+                SpeedConverter.convert(inputValue,
+                        SpeedUnit.FEET_PER_SECOND, SpeedUnit.MILES_PER_HOUR),
+                ERROR);
+
+        assertEquals(SpeedConverter.milesPerHourToMetersPerSecond(inputValue),
+                SpeedConverter.convert(inputValue,
+                        SpeedUnit.MILES_PER_HOUR, SpeedUnit.METERS_PER_SECOND),
+                ERROR);
+        assertEquals(SpeedConverter.metersPerSecondToKilometersPerHour(
+                        SpeedConverter.milesPerHourToMetersPerSecond(inputValue)),
+                SpeedConverter.convert(inputValue,
+                        SpeedUnit.MILES_PER_HOUR, SpeedUnit.KILOMETERS_PER_HOUR),
+                ERROR);
+        assertEquals(SpeedConverter.metersPerSecondToKilometersPerSecond(
+                        SpeedConverter.milesPerHourToMetersPerSecond(inputValue)),
+                SpeedConverter.convert(inputValue,
+                        SpeedUnit.MILES_PER_HOUR, SpeedUnit.KILOMETERS_PER_SECOND),
+                ERROR);
+        assertEquals(SpeedConverter.metersPerSecondToFeetPerSecond(
+                        SpeedConverter.milesPerHourToMetersPerSecond(inputValue)),
+                SpeedConverter.convert(inputValue,
+                        SpeedUnit.MILES_PER_HOUR, SpeedUnit.FEET_PER_SECOND),
+                ERROR);
+        assertEquals(inputValue,
+                SpeedConverter.convert(inputValue,
+                        SpeedUnit.MILES_PER_HOUR, SpeedUnit.MILES_PER_HOUR),
+                ERROR);
     }
 
     @Test
     public void testConvertNumber() {
         final BigDecimal inputValue = BigDecimal.valueOf(new Random().nextDouble());
 
-        assertEquals(SpeedConverter.convert(inputValue,
-                SpeedUnit.METERS_PER_SECOND, SpeedUnit.METERS_PER_SECOND).doubleValue(),
-                inputValue.doubleValue(), ERROR);
+        assertEquals(inputValue.doubleValue(),
+                SpeedConverter.convert(inputValue,
+                        SpeedUnit.METERS_PER_SECOND, SpeedUnit.METERS_PER_SECOND).doubleValue(),
+                ERROR);
     }
 
     @Test
@@ -188,13 +221,12 @@ public class SpeedConverterTest {
                 outputSpeed);
 
         // check
-        assertEquals(inputSpeed.getValue().doubleValue(), value, 0.0);
-        assertEquals(inputSpeed.getUnit(), SpeedUnit.METERS_PER_SECOND);
+        assertEquals(value, inputSpeed.getValue().doubleValue(), 0.0);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, inputSpeed.getUnit());
 
-        assertEquals(outputSpeed.getUnit(), SpeedUnit.KILOMETERS_PER_HOUR);
-        assertEquals(outputSpeed.getValue().doubleValue(),
-                SpeedConverter.convert(value, inputSpeed.getUnit(),
-                        outputSpeed.getUnit()), 0.0);
+        assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, outputSpeed.getUnit());
+        assertEquals(SpeedConverter.convert(value, inputSpeed.getUnit(),
+                outputSpeed.getUnit()), outputSpeed.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -205,10 +237,9 @@ public class SpeedConverterTest {
         SpeedConverter.convert(speed, SpeedUnit.KILOMETERS_PER_HOUR);
 
         // check
-        assertEquals(speed.getUnit(), SpeedUnit.KILOMETERS_PER_HOUR);
-        assertEquals(speed.getValue().doubleValue(),
-                SpeedConverter.convert(value,
-                        SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR), 0.0);
+        assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, speed.getUnit());
+        assertEquals(SpeedConverter.convert(value,
+                SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR), speed.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -220,13 +251,12 @@ public class SpeedConverterTest {
                 inputSpeed, SpeedUnit.KILOMETERS_PER_HOUR);
 
         // check
-        assertEquals(inputSpeed.getValue().doubleValue(), value, 0.0);
-        assertEquals(inputSpeed.getUnit(), SpeedUnit.METERS_PER_SECOND);
+        assertEquals(value, inputSpeed.getValue().doubleValue(), 0.0);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, inputSpeed.getUnit());
 
-        assertEquals(outputSpeed.getUnit(), SpeedUnit.KILOMETERS_PER_HOUR);
-        assertEquals(outputSpeed.getValue().doubleValue(),
-                SpeedConverter.convert(value, inputSpeed.getUnit(),
-                        outputSpeed.getUnit()), 0.0);
+        assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, outputSpeed.getUnit());
+        assertEquals(SpeedConverter.convert(value, inputSpeed.getUnit(),
+                outputSpeed.getUnit()), outputSpeed.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -239,12 +269,11 @@ public class SpeedConverterTest {
         SpeedConverter.convert(inputSpeed, outputSpeed);
 
         // check
-        assertEquals(inputSpeed.getValue().doubleValue(), value, 0.0);
-        assertEquals(inputSpeed.getUnit(), SpeedUnit.METERS_PER_SECOND);
+        assertEquals(value, inputSpeed.getValue().doubleValue(), 0.0);
+        assertEquals(SpeedUnit.METERS_PER_SECOND, inputSpeed.getUnit());
 
-        assertEquals(outputSpeed.getUnit(), SpeedUnit.KILOMETERS_PER_HOUR);
-        assertEquals(outputSpeed.getValue().doubleValue(),
-                SpeedConverter.convert(value, inputSpeed.getUnit(),
-                        outputSpeed.getUnit()), 0.0);
+        assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, outputSpeed.getUnit());
+        assertEquals(SpeedConverter.convert(value, inputSpeed.getUnit(),
+                outputSpeed.getUnit()), outputSpeed.getValue().doubleValue(), 0.0);
     }
 }

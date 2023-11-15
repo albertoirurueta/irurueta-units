@@ -40,8 +40,8 @@ public class WeightTest {
         w = new Weight(123, WeightUnit.GRAM);
 
         // check
-        assertEquals(w.getValue(), 123);
-        assertEquals(w.getUnit(), WeightUnit.GRAM);
+        assertEquals(123, w.getValue());
+        assertEquals(WeightUnit.GRAM, w.getUnit());
 
         // Force IllegalArgumentException
         w = null;
@@ -67,6 +67,7 @@ public class WeightTest {
         final Weight w3 = new Weight(value + 1.0, WeightUnit.GRAM);
         final Weight w4 = new Weight(value, WeightUnit.KILOGRAM);
 
+        //noinspection EqualsWithItself
         assertEquals(w1, w1);
         assertEquals(w1, w2);
         assertNotEquals(w1, w3);
@@ -114,13 +115,13 @@ public class WeightTest {
         final Weight w = new Weight(1.0, WeightUnit.GRAM);
 
         // check
-        assertEquals(w.getValue(), 1.0);
+        assertEquals(1.0, w.getValue());
 
         // set new value
         w.setValue(2.5);
 
         // check
-        assertEquals(w.getValue(), 2.5);
+        assertEquals(2.5, w.getValue());
 
         // force IllegalArgumentException
         try {
@@ -135,13 +136,13 @@ public class WeightTest {
         final Weight w = new Weight(1.0, WeightUnit.GRAM);
 
         // check
-        assertEquals(w.getUnit(), WeightUnit.GRAM);
+        assertEquals(WeightUnit.GRAM, w.getUnit());
 
         // set new value
         w.setUnit(WeightUnit.KILOGRAM);
 
         // check
-        assertEquals(w.getUnit(), WeightUnit.KILOGRAM);
+        assertEquals(WeightUnit.KILOGRAM, w.getUnit());
 
         // force IllegalArgumentException
         try {
@@ -190,13 +191,13 @@ public class WeightTest {
         Weight.add(w1, w2, result);
 
         // check
-        assertEquals(w1.getUnit(), WeightUnit.GRAM);
-        assertEquals(w1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(WeightUnit.GRAM, w1.getUnit());
+        assertEquals(value1, w1.getValue().doubleValue(), 0.0);
 
-        assertEquals(w2.getUnit(), WeightUnit.GRAM);
-        assertEquals(w2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(WeightUnit.GRAM, w2.getUnit());
+        assertEquals(value2, w2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), WeightUnit.MILLIGRAM);
+        assertEquals(WeightUnit.MILLIGRAM, result.getUnit());
         assertEquals((value1 + value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -214,13 +215,13 @@ public class WeightTest {
                 WeightUnit.MILLIGRAM);
 
         // check
-        assertEquals(w1.getUnit(), WeightUnit.GRAM);
-        assertEquals(w1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(WeightUnit.GRAM, w1.getUnit());
+        assertEquals(value1, w1.getValue().doubleValue(), 0.0);
 
-        assertEquals(w2.getUnit(), WeightUnit.GRAM);
-        assertEquals(w2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(WeightUnit.GRAM, w2.getUnit());
+        assertEquals(value2, w2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), WeightUnit.MILLIGRAM);
+        assertEquals(WeightUnit.MILLIGRAM, result.getUnit());
         assertEquals((value1 + value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -236,10 +237,10 @@ public class WeightTest {
         final Weight result = w1.addAndReturnNew(value2, WeightUnit.GRAM, WeightUnit.MILLIGRAM);
 
         // check
-        assertEquals(w1.getUnit(), WeightUnit.GRAM);
-        assertEquals(w1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(WeightUnit.GRAM, w1.getUnit());
+        assertEquals(value1, w1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), WeightUnit.MILLIGRAM);
+        assertEquals(WeightUnit.MILLIGRAM, result.getUnit());
         assertEquals((value1 + value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -256,10 +257,10 @@ public class WeightTest {
                 WeightUnit.GRAM, WeightUnit.MILLIGRAM);
 
         // check
-        assertEquals(w1.getUnit(), WeightUnit.GRAM);
-        assertEquals(w1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(WeightUnit.GRAM, w1.getUnit());
+        assertEquals(value1, w1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), WeightUnit.MILLIGRAM);
+        assertEquals(WeightUnit.MILLIGRAM, result.getUnit());
         assertEquals((value1 + value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -276,13 +277,13 @@ public class WeightTest {
         final Weight result = w1.addAndReturnNew(w2, WeightUnit.MILLIGRAM);
 
         // check
-        assertEquals(w1.getUnit(), WeightUnit.GRAM);
-        assertEquals(w1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(WeightUnit.GRAM, w1.getUnit());
+        assertEquals(value1, w1.getValue().doubleValue(), 0.0);
 
-        assertEquals(w2.getUnit(), WeightUnit.GRAM);
-        assertEquals(w2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(WeightUnit.GRAM, w2.getUnit());
+        assertEquals(value2, w2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), WeightUnit.MILLIGRAM);
+        assertEquals(WeightUnit.MILLIGRAM, result.getUnit());
         assertEquals((value1 + value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -298,8 +299,8 @@ public class WeightTest {
         w1.add(value2, WeightUnit.GRAM);
 
         // check
-        assertEquals(w1.getUnit(), WeightUnit.GRAM);
-        assertEquals(w1.getValue().doubleValue(), value1 + value2, ERROR);
+        assertEquals(WeightUnit.GRAM, w1.getUnit());
+        assertEquals(value1 + value2, w1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -313,8 +314,8 @@ public class WeightTest {
         w1.add(new BigDecimal(value2), WeightUnit.GRAM);
 
         // check
-        assertEquals(w1.getUnit(), WeightUnit.GRAM);
-        assertEquals(w1.getValue().doubleValue(), value1 + value2, ERROR);
+        assertEquals(WeightUnit.GRAM, w1.getUnit());
+        assertEquals(value1 + value2, w1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -329,11 +330,11 @@ public class WeightTest {
         w1.add(w2);
 
         // check
-        assertEquals(w1.getUnit(), WeightUnit.GRAM);
-        assertEquals(w1.getValue().doubleValue(), value1 + value2, ERROR);
+        assertEquals(WeightUnit.GRAM, w1.getUnit());
+        assertEquals(value1 + value2, w1.getValue().doubleValue(), ERROR);
 
-        assertEquals(w2.getUnit(), WeightUnit.GRAM);
-        assertEquals(w2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(WeightUnit.GRAM, w2.getUnit());
+        assertEquals(value2, w2.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -349,13 +350,13 @@ public class WeightTest {
         w1.add(w2, result);
 
         // check
-        assertEquals(w1.getUnit(), WeightUnit.GRAM);
-        assertEquals(w1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(WeightUnit.GRAM, w1.getUnit());
+        assertEquals(value1, w1.getValue().doubleValue(), 0.0);
 
-        assertEquals(w2.getUnit(), WeightUnit.GRAM);
-        assertEquals(w2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(WeightUnit.GRAM, w2.getUnit());
+        assertEquals(value2, w2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), WeightUnit.MILLIGRAM);
+        assertEquals(WeightUnit.MILLIGRAM, result.getUnit());
         assertEquals((value1 + value2) * 1000.0, result.getValue().doubleValue(), ERROR);
     }
 
@@ -398,13 +399,13 @@ public class WeightTest {
         Weight.subtract(w1, w2, result);
 
         // check
-        assertEquals(w1.getUnit(), WeightUnit.GRAM);
-        assertEquals(w1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(WeightUnit.GRAM, w1.getUnit());
+        assertEquals(value1, w1.getValue().doubleValue(), 0.0);
 
-        assertEquals(w2.getUnit(), WeightUnit.GRAM);
-        assertEquals(w2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(WeightUnit.GRAM, w2.getUnit());
+        assertEquals(value2, w2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), WeightUnit.MILLIGRAM);
+        assertEquals(WeightUnit.MILLIGRAM, result.getUnit());
         assertEquals((value1 - value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -421,13 +422,13 @@ public class WeightTest {
         final Weight result = Weight.subtractAndReturnNew(w1, w2, WeightUnit.MILLIGRAM);
 
         // check
-        assertEquals(w1.getUnit(), WeightUnit.GRAM);
-        assertEquals(w1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(WeightUnit.GRAM, w1.getUnit());
+        assertEquals(value1, w1.getValue().doubleValue(), 0.0);
 
-        assertEquals(w2.getUnit(), WeightUnit.GRAM);
-        assertEquals(w2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(WeightUnit.GRAM, w2.getUnit());
+        assertEquals(value2, w2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), WeightUnit.MILLIGRAM);
+        assertEquals(WeightUnit.MILLIGRAM, result.getUnit());
         assertEquals((value1 - value2) * 1000.0,
                 result.getValue().doubleValue(), ERROR);
     }
@@ -443,10 +444,10 @@ public class WeightTest {
         final Weight result = w1.subtractAndReturnNew(value2, WeightUnit.GRAM, WeightUnit.MILLIGRAM);
 
         // check
-        assertEquals(w1.getUnit(), WeightUnit.GRAM);
-        assertEquals(w1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(WeightUnit.GRAM, w1.getUnit());
+        assertEquals(value1, w1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), WeightUnit.MILLIGRAM);
+        assertEquals(WeightUnit.MILLIGRAM, result.getUnit());
         assertEquals((value1 - value2) * 1000.0, result.getValue().doubleValue(), ERROR);
     }
 
@@ -462,10 +463,10 @@ public class WeightTest {
                 WeightUnit.GRAM, WeightUnit.MILLIGRAM);
 
         // check
-        assertEquals(w1.getUnit(), WeightUnit.GRAM);
-        assertEquals(w1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(WeightUnit.GRAM, w1.getUnit());
+        assertEquals(value1, w1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), WeightUnit.MILLIGRAM);
+        assertEquals(WeightUnit.MILLIGRAM, result.getUnit());
         assertEquals((value1 - value2) * 1000.0, result.getValue().doubleValue(), ERROR);
     }
 
@@ -481,13 +482,13 @@ public class WeightTest {
         final Weight result = w1.subtractAndReturnNew(w2, WeightUnit.MILLIGRAM);
 
         // check
-        assertEquals(w1.getUnit(), WeightUnit.GRAM);
-        assertEquals(w1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(WeightUnit.GRAM, w1.getUnit());
+        assertEquals(value1, w1.getValue().doubleValue(), 0.0);
 
-        assertEquals(w2.getUnit(), WeightUnit.GRAM);
-        assertEquals(w2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(WeightUnit.GRAM, w2.getUnit());
+        assertEquals(value2, w2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), WeightUnit.MILLIGRAM);
+        assertEquals(WeightUnit.MILLIGRAM, result.getUnit());
         assertEquals((value1 - value2) * 1000.0, result.getValue().doubleValue(), ERROR);
     }
 
@@ -502,8 +503,8 @@ public class WeightTest {
         w1.subtract(value2, WeightUnit.GRAM);
 
         // check
-        assertEquals(w1.getUnit(), WeightUnit.GRAM);
-        assertEquals(w1.getValue().doubleValue(), value1 - value2, ERROR);
+        assertEquals(WeightUnit.GRAM, w1.getUnit());
+        assertEquals(value1 - value2, w1.getValue().doubleValue(),  ERROR);
     }
 
     @Test
@@ -517,8 +518,8 @@ public class WeightTest {
         w1.subtract(new BigDecimal(value2), WeightUnit.GRAM);
 
         // check
-        assertEquals(w1.getUnit(), WeightUnit.GRAM);
-        assertEquals(w1.getValue().doubleValue(), value1 - value2, ERROR);
+        assertEquals(WeightUnit.GRAM, w1.getUnit());
+        assertEquals(value1 - value2, w1.getValue().doubleValue(),  ERROR);
     }
 
     @Test
@@ -533,11 +534,11 @@ public class WeightTest {
         w1.subtract(w2);
 
         // check
-        assertEquals(w1.getUnit(), WeightUnit.GRAM);
-        assertEquals(w1.getValue().doubleValue(), value1 - value2, ERROR);
+        assertEquals(WeightUnit.GRAM, w1.getUnit());
+        assertEquals(value1 - value2, w1.getValue().doubleValue(),  ERROR);
 
-        assertEquals(w2.getUnit(), WeightUnit.GRAM);
-        assertEquals(w2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(WeightUnit.GRAM, w2.getUnit());
+        assertEquals(value2, w2.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -553,13 +554,13 @@ public class WeightTest {
         w1.subtract(w2, result);
 
         // check
-        assertEquals(w1.getUnit(), WeightUnit.GRAM);
-        assertEquals(w1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(WeightUnit.GRAM, w1.getUnit());
+        assertEquals(value1, w1.getValue().doubleValue(), 0.0);
 
-        assertEquals(w2.getUnit(), WeightUnit.GRAM);
-        assertEquals(w2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(WeightUnit.GRAM, w2.getUnit());
+        assertEquals(value2, w2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), WeightUnit.MILLIGRAM);
+        assertEquals(WeightUnit.MILLIGRAM, result.getUnit());
         assertEquals((value1 - value2) * 1000.0, result.getValue().doubleValue(), ERROR);
     }
 

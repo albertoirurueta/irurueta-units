@@ -15,7 +15,7 @@
  */
 package com.irurueta.units;
 
-import org.junit.*;
+import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -34,48 +34,47 @@ public class AngularAccelerationFormatterTest {
         AngularAccelerationFormatter formatter = new AngularAccelerationFormatter();
 
         // check
-        assertEquals(formatter.getLocale(), Locale.getDefault());
-        assertEquals(formatter.getMaximumFractionDigits(),
-                NumberFormat.getInstance().getMaximumFractionDigits());
-        assertEquals(formatter.getMaximumIntegerDigits(),
-                NumberFormat.getInstance().getMaximumIntegerDigits());
-        assertEquals(formatter.getMinimumFractionDigits(),
-                NumberFormat.getInstance().getMinimumFractionDigits());
-        assertEquals(formatter.getMinimumIntegerDigits(),
-                NumberFormat.getInstance().getMinimumIntegerDigits());
-        assertEquals(formatter.getRoundingMode(),
-                NumberFormat.getInstance().getRoundingMode());
-        assertEquals(formatter.getUnitSystem(), UnitLocale.getDefault());
-        assertEquals(formatter.isGroupingUsed(),
-                NumberFormat.getInstance().isGroupingUsed());
-        assertEquals(formatter.isParseIntegerOnly(),
-                NumberFormat.getInstance().isParseIntegerOnly());
-        assertEquals(formatter.getValueAndUnitFormatPattern(),
-                MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
+        assertEquals(Locale.getDefault(), formatter.getLocale());
+        assertEquals(NumberFormat.getInstance().getMaximumFractionDigits(),
+                formatter.getMaximumFractionDigits());
+        assertEquals(NumberFormat.getInstance().getMaximumIntegerDigits(),
+                formatter.getMaximumIntegerDigits());
+        assertEquals(NumberFormat.getInstance().getMinimumFractionDigits(),
+                formatter.getMinimumFractionDigits());
+        assertEquals(NumberFormat.getInstance().getMinimumIntegerDigits(),
+                formatter.getMinimumIntegerDigits());
+        assertEquals(NumberFormat.getInstance().getRoundingMode(),
+                formatter.getRoundingMode());
+        assertEquals(UnitLocale.getDefault(), formatter.getUnitSystem());
+        assertEquals(NumberFormat.getInstance().isGroupingUsed(), formatter.isGroupingUsed());
+        assertEquals(NumberFormat.getInstance().isParseIntegerOnly(),
+                formatter.isParseIntegerOnly());
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
+                formatter.getValueAndUnitFormatPattern());
 
         // test constructor with locale
         final Locale locale = new Locale("es", "ES");
         formatter = new AngularAccelerationFormatter(locale);
 
         // check
-        assertEquals(formatter.getLocale(), locale);
-        assertEquals(formatter.getMaximumFractionDigits(),
-                NumberFormat.getInstance(locale).getMaximumFractionDigits());
-        assertEquals(formatter.getMaximumIntegerDigits(),
-                NumberFormat.getInstance(locale).getMaximumIntegerDigits());
-        assertEquals(formatter.getMinimumFractionDigits(),
-                NumberFormat.getInstance(locale).getMinimumFractionDigits());
-        assertEquals(formatter.getMinimumIntegerDigits(),
-                NumberFormat.getInstance(locale).getMinimumIntegerDigits());
-        assertEquals(formatter.getRoundingMode(),
-                NumberFormat.getInstance(locale).getRoundingMode());
-        assertEquals(formatter.getUnitSystem(), UnitLocale.getFrom(locale));
-        assertEquals(formatter.isGroupingUsed(),
-                NumberFormat.getInstance(locale).isGroupingUsed());
-        assertEquals(formatter.isParseIntegerOnly(),
-                NumberFormat.getInstance(locale).isParseIntegerOnly());
-        assertEquals(formatter.getValueAndUnitFormatPattern(),
-                MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
+        assertEquals(locale, formatter.getLocale());
+        assertEquals(NumberFormat.getInstance(locale).getMaximumFractionDigits(),
+                formatter.getMaximumFractionDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMaximumIntegerDigits(),
+                formatter.getMaximumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMinimumFractionDigits(),
+                formatter.getMinimumFractionDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMinimumIntegerDigits(),
+                formatter.getMinimumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getRoundingMode(),
+                formatter.getRoundingMode());
+        assertEquals(UnitLocale.getFrom(locale), formatter.getUnitSystem());
+        assertEquals(NumberFormat.getInstance(locale).isGroupingUsed(),
+                formatter.isGroupingUsed());
+        assertEquals(NumberFormat.getInstance(locale).isParseIntegerOnly(),
+                formatter.isParseIntegerOnly());
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
+                formatter.getValueAndUnitFormatPattern());
 
 
         // force IllegalArgumentException
@@ -94,24 +93,24 @@ public class AngularAccelerationFormatterTest {
         final AngularAccelerationFormatter formatter2 = new AngularAccelerationFormatter(formatter);
 
         // check
-        assertEquals(formatter2.getLocale(), locale);
-        assertEquals(formatter2.getMaximumFractionDigits(),
-                NumberFormat.getInstance(locale).getMaximumFractionDigits());
-        assertEquals(formatter2.getMaximumIntegerDigits(),
-                NumberFormat.getInstance(locale).getMaximumIntegerDigits());
-        assertEquals(formatter2.getMinimumFractionDigits(),
-                NumberFormat.getInstance(locale).getMinimumFractionDigits());
-        assertEquals(formatter2.getMinimumIntegerDigits(),
-                NumberFormat.getInstance(locale).getMinimumIntegerDigits());
-        assertEquals(formatter2.getRoundingMode(),
-                NumberFormat.getInstance(locale).getRoundingMode());
-        assertEquals(formatter2.getUnitSystem(), UnitLocale.getFrom(locale));
-        assertEquals(formatter2.isGroupingUsed(),
-                NumberFormat.getInstance(locale).isGroupingUsed());
-        assertEquals(formatter2.isParseIntegerOnly(),
-                NumberFormat.getInstance(locale).isParseIntegerOnly());
-        assertEquals(formatter2.getValueAndUnitFormatPattern(),
-                MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
+        assertEquals(locale, formatter2.getLocale());
+        assertEquals(NumberFormat.getInstance(locale).getMaximumFractionDigits(),
+                formatter2.getMaximumFractionDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMaximumIntegerDigits(),
+                formatter2.getMaximumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMinimumFractionDigits(),
+                formatter2.getMinimumFractionDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMinimumIntegerDigits(),
+                formatter2.getMinimumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getRoundingMode(),
+                formatter2.getRoundingMode());
+        assertEquals(UnitLocale.getFrom(locale), formatter2.getUnitSystem());
+        assertEquals(NumberFormat.getInstance(locale).isGroupingUsed(),
+                formatter2.isGroupingUsed());
+        assertEquals(NumberFormat.getInstance(locale).isParseIntegerOnly(),
+                formatter2.isParseIntegerOnly());
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
+                formatter2.getValueAndUnitFormatPattern());
 
         formatter = null;
         try {
@@ -133,7 +132,6 @@ public class AngularAccelerationFormatterTest {
                 Locale.FRENCH);
 
         // check
-        assertEquals(formatter1, formatter1);
         assertEquals(formatter1, formatter2);
         assertNotEquals(formatter1, formatter3);
 
@@ -163,12 +161,12 @@ public class AngularAccelerationFormatterTest {
 
         final AngularAccelerationFormatter formatter = new AngularAccelerationFormatter(l);
 
-        assertEquals(formatter.format(new BigDecimal(value),
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND),
-                "5,5 º/s²");
-        assertEquals(formatter.format(new BigDecimal(value),
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND),
-                "5,5 rad/s²");
+        assertEquals("5,5 º/s²",
+                formatter.format(new BigDecimal(value),
+                        AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND));
+        assertEquals("5,5 rad/s²",
+                formatter.format(new BigDecimal(value),
+                        AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND));
     }
 
     @Test
@@ -179,14 +177,14 @@ public class AngularAccelerationFormatterTest {
         final AngularAccelerationFormatter formatter = new AngularAccelerationFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
+        assertEquals("5,5 º/s²", formatter.format(new BigDecimal(value),
                 AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, buffer,
-                new FieldPosition(0)).toString(), "5,5 º/s²");
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new BigDecimal(value),
+        assertEquals("5,5 rad/s²", formatter.format(new BigDecimal(value),
                 AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND, buffer,
-                new FieldPosition(0)).toString(), "5,5 rad/s²");
+                new FieldPosition(0)).toString());
     }
 
     @Test
@@ -196,12 +194,12 @@ public class AngularAccelerationFormatterTest {
 
         final AngularAccelerationFormatter formatter = new AngularAccelerationFormatter(l);
 
-        assertEquals(formatter.format(value,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND),
-                "5,5 º/s²");
-        assertEquals(formatter.format(value,
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND),
-                "5,5 rad/s²");
+        assertEquals("5,5 º/s²",
+                formatter.format(value,
+                        AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND));
+        assertEquals("5,5 rad/s²",
+                formatter.format(value,
+                        AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND));
     }
 
     @Test
@@ -212,14 +210,14 @@ public class AngularAccelerationFormatterTest {
         final AngularAccelerationFormatter formatter = new AngularAccelerationFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
-        assertEquals(formatter.format(value,
+        assertEquals("5,5 º/s²", formatter.format(value,
                 AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, buffer,
-                new FieldPosition(0)).toString(), "5,5 º/s²");
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(value,
+        assertEquals("5,5 rad/s²", formatter.format(value,
                 AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND, buffer,
-                new FieldPosition(0)).toString(), "5,5 rad/s²");
+                new FieldPosition(0)).toString());
     }
 
     @Test
@@ -229,12 +227,12 @@ public class AngularAccelerationFormatterTest {
 
         final AngularAccelerationFormatter formatter = new AngularAccelerationFormatter(l);
 
-        assertEquals(formatter.format(new AngularAcceleration(value,
-                        AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND)),
-                "5,5 º/s²");
-        assertEquals(formatter.format(new AngularAcceleration(value,
-                        AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND)),
-                "5,5 rad/s²");
+        assertEquals("5,5 º/s²",
+                formatter.format(new AngularAcceleration(value,
+                        AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND)));
+        assertEquals("5,5 rad/s²",
+                formatter.format(new AngularAcceleration(value,
+                        AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND)));
     }
 
     @Test
@@ -245,14 +243,14 @@ public class AngularAccelerationFormatterTest {
         final AngularAccelerationFormatter formatter = new AngularAccelerationFormatter(l);
 
         StringBuffer buffer = new StringBuffer();
-        assertEquals(formatter.format(new AngularAcceleration(value,
+        assertEquals("5,5 º/s²", formatter.format(new AngularAcceleration(value,
                         AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND), buffer,
-                new FieldPosition(0)).toString(), "5,5 º/s²");
+                new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals(formatter.format(new AngularAcceleration(value,
+        assertEquals("5,5 rad/s²", formatter.format(new AngularAcceleration(value,
                         AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND), buffer,
-                new FieldPosition(0)).toString(), "5,5 rad/s²");
+                new FieldPosition(0)).toString());
     }
 
     @Test
@@ -262,12 +260,12 @@ public class AngularAccelerationFormatterTest {
         final AngularAccelerationFormatter formatter = new AngularAccelerationFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND),
-                "5,5 º/s²");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND),
-                "5,5 rad/s²");
+        assertEquals("5,5 º/s²",
+                formatter.formatAndConvert(new BigDecimal("5.50"),
+                        AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND));
+        assertEquals("5,5 rad/s²",
+                formatter.formatAndConvert(new BigDecimal("5.50"),
+                        AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND));
     }
 
     @Test
@@ -277,12 +275,12 @@ public class AngularAccelerationFormatterTest {
         final AngularAccelerationFormatter formatter = new AngularAccelerationFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(5.50,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND),
-                "5,5 º/s²");
-        assertEquals(formatter.formatAndConvert(5.50,
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND),
-                "5,5 rad/s²");
+        assertEquals("5,5 º/s²",
+                formatter.formatAndConvert(5.50,
+                        AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND));
+        assertEquals("5,5 rad/s²",
+                formatter.formatAndConvert(5.50,
+                        AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND));
     }
 
     @Test
@@ -292,12 +290,12 @@ public class AngularAccelerationFormatterTest {
         final AngularAccelerationFormatter formatter = new AngularAccelerationFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new AngularAcceleration(5.50,
-                        AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND)),
-                "5,5 º/s²");
-        assertEquals(formatter.formatAndConvert(new AngularAcceleration(5.50,
-                        AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND)),
-                "5,5 rad/s²");
+        assertEquals("5,5 º/s²",
+                formatter.formatAndConvert(new AngularAcceleration(5.50,
+                        AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND)));
+        assertEquals("5,5 rad/s²",
+                formatter.formatAndConvert(new AngularAcceleration(5.50,
+                        AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND)));
     }
 
     @Test
@@ -307,19 +305,19 @@ public class AngularAccelerationFormatterTest {
         final AngularAccelerationFormatter formatter = new AngularAccelerationFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
+        assertEquals("5,5 º/s²", formatter.formatAndConvert(new BigDecimal("5.50"),
                 AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
-                UnitSystem.METRIC), "5,5 º/s²");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
+                UnitSystem.METRIC));
+        assertEquals("5,5 rad/s²", formatter.formatAndConvert(new BigDecimal("5.50"),
                 AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
-                UnitSystem.METRIC), "5,5 rad/s²");
+                UnitSystem.METRIC));
 
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
+        assertEquals("5,5 º/s²", formatter.formatAndConvert(new BigDecimal("5.50"),
                 AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
-                UnitSystem.IMPERIAL), "5,5 º/s²");
-        assertEquals(formatter.formatAndConvert(new BigDecimal("5.50"),
+                UnitSystem.IMPERIAL));
+        assertEquals("5,5 rad/s²", formatter.formatAndConvert(new BigDecimal("5.50"),
                 AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
-                UnitSystem.IMPERIAL), "5,5 rad/s²");
+                UnitSystem.IMPERIAL));
     }
 
     @Test
@@ -329,19 +327,19 @@ public class AngularAccelerationFormatterTest {
         final AngularAccelerationFormatter formatter = new AngularAccelerationFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(5.50,
+        assertEquals("5,5 º/s²", formatter.formatAndConvert(5.50,
                 AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
-                UnitSystem.METRIC), "5,5 º/s²");
-        assertEquals(formatter.formatAndConvert(5.50,
+                UnitSystem.METRIC));
+        assertEquals("5,5 rad/s²", formatter.formatAndConvert(5.50,
                 AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
-                UnitSystem.METRIC), "5,5 rad/s²");
+                UnitSystem.METRIC));
 
-        assertEquals(formatter.formatAndConvert(5.50,
+        assertEquals("5,5 º/s²", formatter.formatAndConvert(5.50,
                 AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
-                UnitSystem.IMPERIAL), "5,5 º/s²");
-        assertEquals(formatter.formatAndConvert(5.50,
+                UnitSystem.IMPERIAL));
+        assertEquals("5,5 rad/s²", formatter.formatAndConvert(5.50,
                 AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
-                UnitSystem.IMPERIAL), "5,5 rad/s²");
+                UnitSystem.IMPERIAL));
     }
 
     @Test
@@ -351,19 +349,19 @@ public class AngularAccelerationFormatterTest {
         final AngularAccelerationFormatter formatter = new AngularAccelerationFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals(formatter.formatAndConvert(new AngularAcceleration(5.50,
+        assertEquals("5,5 º/s²", formatter.formatAndConvert(new AngularAcceleration(5.50,
                         AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND),
-                UnitSystem.METRIC), "5,5 º/s²");
-        assertEquals(formatter.formatAndConvert(new AngularAcceleration(5.50,
+                UnitSystem.METRIC));
+        assertEquals("5,5 rad/s²", formatter.formatAndConvert(new AngularAcceleration(5.50,
                         AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND),
-                UnitSystem.METRIC), "5,5 rad/s²");
+                UnitSystem.METRIC));
 
-        assertEquals(formatter.formatAndConvert(new AngularAcceleration(5.50,
+        assertEquals("5,5 º/s²", formatter.formatAndConvert(new AngularAcceleration(5.50,
                         AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND),
-                UnitSystem.IMPERIAL), "5,5 º/s²");
-        assertEquals(formatter.formatAndConvert(new AngularAcceleration(5.50,
+                UnitSystem.IMPERIAL));
+        assertEquals("5,5 rad/s²", formatter.formatAndConvert(new AngularAcceleration(5.50,
                         AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND),
-                UnitSystem.IMPERIAL), "5,5 rad/s²");
+                UnitSystem.IMPERIAL));
     }
 
     @Test
@@ -383,7 +381,7 @@ public class AngularAccelerationFormatterTest {
         formatter.setMaximumFractionDigits(2);
 
         // check correctness
-        assertEquals(formatter.getMaximumFractionDigits(), 2);
+        assertEquals(2, formatter.getMaximumFractionDigits());
     }
 
     @Test
@@ -397,7 +395,7 @@ public class AngularAccelerationFormatterTest {
         formatter.setMaximumIntegerDigits(2);
 
         // check correctness
-        assertEquals(formatter.getMaximumIntegerDigits(), 2);
+        assertEquals(2, formatter.getMaximumIntegerDigits());
     }
 
     @Test
@@ -411,7 +409,7 @@ public class AngularAccelerationFormatterTest {
         formatter.setMinimumFractionDigits(2);
 
         // check correctness
-        assertEquals(formatter.getMinimumFractionDigits(), 2);
+        assertEquals(2, formatter.getMinimumFractionDigits());
     }
 
     @Test
@@ -425,7 +423,7 @@ public class AngularAccelerationFormatterTest {
         formatter.setMinimumIntegerDigits(2);
 
         // check correctness
-        assertEquals(formatter.getMinimumIntegerDigits(), 2);
+        assertEquals(2, formatter.getMinimumIntegerDigits());
     }
 
     @Test
@@ -439,51 +437,49 @@ public class AngularAccelerationFormatterTest {
         formatter.setRoundingMode(RoundingMode.UNNECESSARY);
 
         // check correctness
-        assertEquals(formatter.getRoundingMode(), RoundingMode.UNNECESSARY);
+        assertEquals(RoundingMode.UNNECESSARY, formatter.getRoundingMode());
     }
 
     @Test
     public void testIsSetGroupingUsed() {
         final AngularAccelerationFormatter formatter = new AngularAccelerationFormatter();
 
-        assertEquals(formatter.isGroupingUsed(),
-                NumberFormat.getInstance().isGroupingUsed());
+        assertEquals(NumberFormat.getInstance().isGroupingUsed(),formatter.isGroupingUsed());
 
         // set new value
         formatter.setGroupingUsed(!formatter.isGroupingUsed());
 
         // check correctness
-        assertEquals(formatter.isGroupingUsed(),
-                !NumberFormat.getInstance().isGroupingUsed());
+        assertEquals(!NumberFormat.getInstance().isGroupingUsed(),
+                formatter.isGroupingUsed());
     }
 
     @Test
     public void testIsSetParseIntegerOnly() {
         final AngularAccelerationFormatter formatter = new AngularAccelerationFormatter();
 
-        assertEquals(formatter.isParseIntegerOnly(),
-                NumberFormat.getInstance().isParseIntegerOnly());
+        assertEquals(NumberFormat.getInstance().isParseIntegerOnly(), formatter.isParseIntegerOnly());
 
         // set new value
         formatter.setParseIntegerOnly(!formatter.isParseIntegerOnly());
 
         // check correctness
-        assertEquals(formatter.isParseIntegerOnly(),
-                !NumberFormat.getInstance().isParseIntegerOnly());
+        assertEquals(!NumberFormat.getInstance().isParseIntegerOnly(),
+                formatter.isParseIntegerOnly());
     }
 
     @Test
     public void testGetSetValueAndUnitFormatPattern() {
         final AngularAccelerationFormatter formatter = new AngularAccelerationFormatter();
 
-        assertEquals(formatter.getValueAndUnitFormatPattern(),
-                MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN);
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
+                formatter.getValueAndUnitFormatPattern());
 
         // new value
         formatter.setValueAndUnitFormatPattern("{0}{1}");
 
         // check correctness
-        assertEquals(formatter.getValueAndUnitFormatPattern(), "{0}{1}");
+        assertEquals("{0}{1}", formatter.getValueAndUnitFormatPattern());
 
         // force IllegalArgumentException
         try {
@@ -497,11 +493,11 @@ public class AngularAccelerationFormatterTest {
     public void testGetUnitSystem() {
         AngularAccelerationFormatter formatter = new AngularAccelerationFormatter(
                 new Locale("es", "ES"));
-        assertEquals(formatter.getUnitSystem(), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem());
 
         formatter = new AngularAccelerationFormatter(
                 new Locale("en", "US"));
-        assertEquals(formatter.getUnitSystem(), UnitSystem.IMPERIAL);
+        assertEquals(UnitSystem.IMPERIAL, formatter.getUnitSystem());
     }
 
     @Test
@@ -568,10 +564,10 @@ public class AngularAccelerationFormatterTest {
                 new Locale("es", "ES"));
 
         String text = "5,5 º/s²";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem(text));
 
         text = "5,5 rad/s²";
-        assertEquals(formatter.getUnitSystem(text), UnitSystem.METRIC);
+        assertEquals(UnitSystem.METRIC, formatter.getUnitSystem(text));
 
         text = "5,5 s²";
         assertNull(formatter.getUnitSystem(text));
@@ -584,13 +580,13 @@ public class AngularAccelerationFormatterTest {
 
         String text = "5,5 º/s²";
         AngularAcceleration a = formatter.parse(text);
-        assertEquals(a.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(a.getUnit(), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        assertEquals(5.5, a.getValue().doubleValue(), 0.0);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a.getUnit());
 
         text = "5,5 rad/s²";
         a = formatter.parse(text);
-        assertEquals(a.getValue().doubleValue(), 5.5, 0.0);
-        assertEquals(a.getUnit(), AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
+        assertEquals(5.5, a.getValue().doubleValue(), 0.0);
+        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND, a.getUnit());
 
         // Force UnknownUnitException
         text = "5,5 s";
@@ -614,12 +610,12 @@ public class AngularAccelerationFormatterTest {
                 new Locale("es", "ES"));
 
         String text = "5,5 º/s²";
-        assertEquals(formatter.findUnit(text),
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
+                formatter.findUnit(text));
 
         text = "5,5 rad/s²";
-        assertEquals(formatter.findUnit(text),
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
+        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
+                formatter.findUnit(text));
 
         text = "5,5 s";
         assertNull(formatter.findUnit(text));
@@ -629,11 +625,11 @@ public class AngularAccelerationFormatterTest {
     public void testGetUnitSymbol() {
         final AngularAccelerationFormatter formatter = new AngularAccelerationFormatter();
 
-        assertEquals(formatter.getUnitSymbol(
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND),
-                AngularAccelerationFormatter.DEGREES_PER_SQUARED_SECOND);
-        assertEquals(formatter.getUnitSymbol(
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND),
-                AngularAccelerationFormatter.RADIANS_PER_SQUARED_SECOND);
+        assertEquals(AngularAccelerationFormatter.DEGREES_PER_SQUARED_SECOND,
+                formatter.getUnitSymbol(
+                        AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND));
+        assertEquals(AngularAccelerationFormatter.RADIANS_PER_SQUARED_SECOND,
+                formatter.getUnitSymbol(
+                        AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND));
     }
 }

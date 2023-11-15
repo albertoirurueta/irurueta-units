@@ -15,7 +15,7 @@
  */
 package com.irurueta.units;
 
-import org.junit.*;
+import org.junit.Test;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -40,8 +40,8 @@ public class AccelerationTest {
         a = new Acceleration(323, AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a.getValue(), 323);
-        assertEquals(a.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        assertEquals(323, a.getValue());
+        assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a.getUnit());
 
         // force IllegalArgumentException
         a = null;
@@ -71,7 +71,6 @@ public class AccelerationTest {
         final Acceleration a4 = new Acceleration(value,
                 AccelerationUnit.FEET_PER_SQUARED_SECOND);
 
-        assertEquals(a1, a1);
         assertEquals(a1, a2);
         assertNotEquals(a1, a3);
         assertNotEquals(a1, a4);
@@ -130,13 +129,13 @@ public class AccelerationTest {
                 AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a.getValue(), 1);
+        assertEquals(1, a.getValue());
 
         // set new value
         a.setValue(2.5);
 
         // check
-        assertEquals(a.getValue(), 2.5);
+        assertEquals(2.5, a.getValue());
 
         // force IllegalArgumentException
         try {
@@ -152,13 +151,13 @@ public class AccelerationTest {
                 AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a.getUnit());
 
         // set new value
         a.setUnit(AccelerationUnit.FEET_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a.getUnit(), AccelerationUnit.FEET_PER_SQUARED_SECOND);
+        assertEquals(AccelerationUnit.FEET_PER_SQUARED_SECOND, a.getUnit());
 
         // Force IllegalArgumentException
         try {
@@ -180,9 +179,11 @@ public class AccelerationTest {
                 AccelerationUnit.FEET_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(AccelerationConverter.convert(value1 + value2,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND), result, ERROR);
+        assertEquals(result,
+                AccelerationConverter.convert(value1 + value2,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
+                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
+                ERROR);
     }
 
     @Test
@@ -197,10 +198,11 @@ public class AccelerationTest {
                 AccelerationUnit.FEET_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(AccelerationConverter.convert(value1 + value2,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                result.doubleValue(), ERROR);
+        assertEquals(result.doubleValue(),
+                AccelerationConverter.convert(value1 + value2,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
+                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
+                ERROR);
     }
 
     @Test
@@ -219,17 +221,18 @@ public class AccelerationTest {
         Acceleration.add(a1, a2, result);
 
         // check
-        assertEquals(a1.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(a2.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        assertEquals(a2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a2.getUnit());
+        assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), AccelerationUnit.FEET_PER_SQUARED_SECOND);
-        assertEquals(AccelerationConverter.convert(value1 + value2,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(AccelerationUnit.FEET_PER_SQUARED_SECOND, result.getUnit());
+        assertEquals(result.getValue().doubleValue(),
+                AccelerationConverter.convert(value1 + value2,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
+                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
+                ERROR);
     }
 
     @Test
@@ -247,17 +250,18 @@ public class AccelerationTest {
                 AccelerationUnit.FEET_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a1.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(a2.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        assertEquals(a2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a2.getUnit());
+        assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), AccelerationUnit.FEET_PER_SQUARED_SECOND);
-        assertEquals(AccelerationConverter.convert(value1 + value2,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(AccelerationUnit.FEET_PER_SQUARED_SECOND, result.getUnit());
+        assertEquals(result.getValue().doubleValue(),
+                AccelerationConverter.convert(value1 + value2,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
+                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
+                ERROR);
     }
 
     @Test
@@ -274,14 +278,15 @@ public class AccelerationTest {
                 AccelerationUnit.FEET_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a1.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), AccelerationUnit.FEET_PER_SQUARED_SECOND);
-        assertEquals(AccelerationConverter.convert(value1 + value2,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(AccelerationUnit.FEET_PER_SQUARED_SECOND, result.getUnit());
+        assertEquals(result.getValue().doubleValue(),
+                AccelerationConverter.convert(value1 + value2,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
+                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
+                ERROR);
     }
 
     @Test
@@ -298,14 +303,15 @@ public class AccelerationTest {
                 AccelerationUnit.FEET_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a1.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), AccelerationUnit.FEET_PER_SQUARED_SECOND);
-        assertEquals(AccelerationConverter.convert(value1 + value2,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(AccelerationUnit.FEET_PER_SQUARED_SECOND, result.getUnit());
+        assertEquals(result.getValue().doubleValue(),
+                AccelerationConverter.convert(value1 + value2,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
+                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
+                ERROR);
     }
 
     @Test
@@ -323,17 +329,18 @@ public class AccelerationTest {
                 AccelerationUnit.FEET_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a1.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(a2.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        assertEquals(a2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a2.getUnit());
+        assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), AccelerationUnit.FEET_PER_SQUARED_SECOND);
-        assertEquals(AccelerationConverter.convert(value1 + value2,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(AccelerationUnit.FEET_PER_SQUARED_SECOND, result.getUnit());
+        assertEquals(result.getValue().doubleValue(),
+                AccelerationConverter.convert(value1 + value2,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
+                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
+                ERROR);
     }
 
     @Test
@@ -348,8 +355,8 @@ public class AccelerationTest {
         a1.add(value2, AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a1.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1 + value2,
+        assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1 + value2, a1.getValue().doubleValue(),
                 ERROR);
     }
 
@@ -365,8 +372,8 @@ public class AccelerationTest {
         a1.add(new BigDecimal(value2), AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a1.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1 + value2,
+        assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1 + value2, a1.getValue().doubleValue(),
                 ERROR);
     }
 
@@ -384,12 +391,12 @@ public class AccelerationTest {
         a1.add(a2);
 
         // check
-        assertEquals(a1.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1 + value2,
+        assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1 + value2, a1.getValue().doubleValue(),
                 ERROR);
 
-        assertEquals(a2.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        assertEquals(a2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a2.getUnit());
+        assertEquals(value2, a2.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -408,17 +415,18 @@ public class AccelerationTest {
         a1.add(a2, result);
 
         // check
-        assertEquals(a1.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(a2.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        assertEquals(a2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a2.getUnit());
+        assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), AccelerationUnit.FEET_PER_SQUARED_SECOND);
-        assertEquals(AccelerationConverter.convert(value1 + value2,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(AccelerationUnit.FEET_PER_SQUARED_SECOND, result.getUnit());
+        assertEquals(result.getValue().doubleValue(),
+                AccelerationConverter.convert(value1 + value2,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
+                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
+                ERROR);
     }
 
     @Test
@@ -433,10 +441,11 @@ public class AccelerationTest {
                 AccelerationUnit.FEET_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(AccelerationConverter.convert(value1 - value2,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                result, ERROR);
+        assertEquals(result,
+                AccelerationConverter.convert(value1 - value2,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
+                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
+                ERROR);
     }
 
     @Test
@@ -452,10 +461,11 @@ public class AccelerationTest {
                 AccelerationUnit.FEET_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(AccelerationConverter.convert(value1 - value2,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                result.doubleValue(), ERROR);
+        assertEquals(result.doubleValue(),
+                AccelerationConverter.convert(value1 - value2,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
+                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
+                ERROR);
     }
 
     @Test
@@ -474,17 +484,18 @@ public class AccelerationTest {
         Acceleration.subtract(a1, a2, result);
 
         // check
-        assertEquals(a1.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(a2.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        assertEquals(a2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a2.getUnit());
+        assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), AccelerationUnit.FEET_PER_SQUARED_SECOND);
-        assertEquals(AccelerationConverter.convert(value1 - value2,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(AccelerationUnit.FEET_PER_SQUARED_SECOND, result.getUnit());
+        assertEquals(result.getValue().doubleValue(),
+                AccelerationConverter.convert(value1 - value2,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
+                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
+                ERROR);
     }
 
     @Test
@@ -502,17 +513,18 @@ public class AccelerationTest {
                 AccelerationUnit.FEET_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a1.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(a2.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        assertEquals(a2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a2.getUnit());
+        assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), AccelerationUnit.FEET_PER_SQUARED_SECOND);
-        assertEquals(AccelerationConverter.convert(value1 - value2,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(AccelerationUnit.FEET_PER_SQUARED_SECOND, result.getUnit());
+        assertEquals(result.getValue().doubleValue(),
+                AccelerationConverter.convert(value1 - value2,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
+                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
+                ERROR);
     }
 
     @Test
@@ -529,14 +541,15 @@ public class AccelerationTest {
                 AccelerationUnit.FEET_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a1.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), AccelerationUnit.FEET_PER_SQUARED_SECOND);
-        assertEquals(AccelerationConverter.convert(value1 - value2,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(AccelerationUnit.FEET_PER_SQUARED_SECOND, result.getUnit());
+        assertEquals(result.getValue().doubleValue(),
+                AccelerationConverter.convert(value1 - value2,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
+                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
+                ERROR);
     }
 
     @Test
@@ -553,14 +566,15 @@ public class AccelerationTest {
                 AccelerationUnit.FEET_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a1.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), AccelerationUnit.FEET_PER_SQUARED_SECOND);
-        assertEquals(AccelerationConverter.convert(value1 - value2,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(AccelerationUnit.FEET_PER_SQUARED_SECOND, result.getUnit());
+        assertEquals(result.getValue().doubleValue(),
+                AccelerationConverter.convert(value1 - value2,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
+                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
+                ERROR);
     }
 
     @Test
@@ -578,17 +592,18 @@ public class AccelerationTest {
                 AccelerationUnit.FEET_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a1.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(a2.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        assertEquals(a2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a2.getUnit());
+        assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
-        assertEquals(result.getUnit(), AccelerationUnit.FEET_PER_SQUARED_SECOND);
-        assertEquals(AccelerationConverter.convert(value1 - value2,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(AccelerationUnit.FEET_PER_SQUARED_SECOND, result.getUnit());
+        assertEquals(result.getValue().doubleValue(),
+                AccelerationConverter.convert(value1 - value2,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
+                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
+                ERROR);
     }
 
     @Test
@@ -603,9 +618,8 @@ public class AccelerationTest {
         a1.subtract(value2, AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a1.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1 - value2,
-                ERROR);
+        assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1 - value2, a1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -620,9 +634,8 @@ public class AccelerationTest {
         a1.subtract(new BigDecimal(value2), AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(a1.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1 - value2,
-                ERROR);
+        assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1 - value2, a1.getValue().doubleValue(), ERROR);
     }
 
     @Test
@@ -639,12 +652,11 @@ public class AccelerationTest {
         a1.subtract(a2);
 
         // check
-        assertEquals(a1.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1 - value2,
-                ERROR);
+        assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1 - value2, a1.getValue().doubleValue(), ERROR);
 
-        assertEquals(a2.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        assertEquals(a2.getValue().doubleValue(), value2, 0.0);
+        assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a2.getUnit());
+        assertEquals(value2, a2.getValue().doubleValue(), 0.0);
     }
 
     @Test
@@ -663,18 +675,19 @@ public class AccelerationTest {
         a1.subtract(a2, result);
 
         // check
-        assertEquals(a1.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        assertEquals(a1.getValue().doubleValue(), value1, 0.0);
+        assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a1.getUnit());
+        assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(a2.getUnit(), AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a2.getUnit());
         assertEquals(a2.getValue().doubleValue(), value2, 0.0);
 
-        assertEquals(result.getUnit(),
-                AccelerationUnit.FEET_PER_SQUARED_SECOND);
-        assertEquals(AccelerationConverter.convert(value1 - value2,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(AccelerationUnit.FEET_PER_SQUARED_SECOND,
+                result.getUnit());
+        assertEquals(result.getValue().doubleValue(),
+                AccelerationConverter.convert(value1 - value2,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
+                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
+                ERROR);
     }
 
     @Test

@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MagneticFluxDensityConverter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">MagneticFluxDensityConverter.java</span></div><h1>MagneticFluxDensityConverter.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2020 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.units;
+
+import java.math.BigDecimal;
+
+/**
+ * Does magnetic flux density conversions to different units.
+ * To prevent loss of accuracy, conversion should only be done as a final step
+ * before displaying magnetic flux density measurements.
+ */
+public class MagneticFluxDensityConverter {
+
+    /**
+     * Number of Teslas in one nanotesla.
+     */
+    static final double TESLAS_PER_NANOTESLA = 1e-9;
+
+    /**
+     * Number of Teslas in one microtesla.
+     */
+    static final double TESLAS_PER_MICROTESLA = 1e-6;
+
+    /**
+     * Number of Teslas in one millitesla.
+     */
+    static final double TESLAS_PER_MILLITESLA = 1e-3;
+
+    /**
+     * Number of Teslas in one Kilotesla.
+     */
+    static final double TESLAS_PER_KILOTESLA = 1e3;
+
+    /**
+     * Number of Teslas in one Megatesla.
+     */
+    static final double TESLAS_PER_MEGATESLA = 1e6;
+
+    /**
+     * Number of Teslas in one Gigatesla.
+     */
+    static final double TESLAS_PER_GIGATESLA = 1e9;
+
+    /**
+     * Constructor.
+     * Prevents instantiation of helper class.
+     */
+    private MagneticFluxDensityConverter() {
+    }
+
+    /**
+     * Converts a magnetic flux density to provided output magnetic flux density unit.
+     *
+     * @param input  input magnetic flux density to be converted.
+     * @param output output magnetic flux density where result will be stored and
+     *               containing output unit.
+     */
+    public static void convert(
+            final MagneticFluxDensity input,
+            final MagneticFluxDensity output) {
+<span class="fc" id="L74">        convert(input, output.getUnit(), output);</span>
+<span class="fc" id="L75">    }</span>
+
+    /**
+     * Converts a magnetic flux density to requested output unit.
+     *
+     * @param input      input magnetic flux density to be converted.
+     * @param outputUnit requested output unit.
+     * @return converted magnetic flux density.
+     */
+    public static MagneticFluxDensity convertAndReturnNew(
+            final MagneticFluxDensity input,
+            final MagneticFluxDensityUnit outputUnit) {
+<span class="fc" id="L87">        final MagneticFluxDensity result = new MagneticFluxDensity();</span>
+<span class="fc" id="L88">        convert(input, outputUnit, result);</span>
+<span class="fc" id="L89">        return result;</span>
+    }
+
+    /**
+     * Converts and updates a magnetic flux density to requested output unit.
+     *
+     * @param magneticFluxDensity input magnetic flux density to be converted
+     *                            and updated.
+     * @param outputUnit          requested output unit.
+     */
+    public static void convert(
+            final MagneticFluxDensity magneticFluxDensity,
+            final MagneticFluxDensityUnit outputUnit) {
+<span class="fc" id="L102">        convert(magneticFluxDensity, outputUnit, magneticFluxDensity);</span>
+<span class="fc" id="L103">    }</span>
+
+    /**
+     * Converts a magnetic flux density to requested output unit.
+     *
+     * @param input      input magnetic flux density to be converted.
+     * @param outputUnit requested output unit.
+     * @param result     magnetic flux density where result will be stored.
+     */
+    public static void convert(
+            final MagneticFluxDensity input,
+            final MagneticFluxDensityUnit outputUnit,
+            final MagneticFluxDensity result) {
+<span class="fc" id="L116">        final Number value = convert(input.getValue(), input.getUnit(), outputUnit);</span>
+<span class="fc" id="L117">        result.setValue(value);</span>
+<span class="fc" id="L118">        result.setUnit(outputUnit);</span>
+<span class="fc" id="L119">    }</span>
+
+    /**
+     * Converts a magnetic flux density value from input unit to provided
+     * output unit.
+     *
+     * @param input      magnetic flux density value.
+     * @param inputUnit  input magnetic flux density unit.
+     * @param outputUnit output magnetic flux density unit.
+     * @return converted magnetic flux density value.
+     */
+    public static Number convert(
+            final Number input, final MagneticFluxDensityUnit inputUnit,
+            final MagneticFluxDensityUnit outputUnit) {
+<span class="fc" id="L133">        return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit,</span>
+                outputUnit));
+    }
+
+    /**
+     * Converts a magnetic flux density value from input unit to provided
+     * output unit.
+     *
+     * @param input      magnetic flux density value.
+     * @param inputUnit  input magnetic flux density unit.
+     * @param outputUnit output magnetic flux density unit.
+     * @return converted magnetic flux density value.
+     */
+    public static double convert(
+            final double input, final MagneticFluxDensityUnit inputUnit,
+            final MagneticFluxDensityUnit outputUnit) {
+        double tesla;
+
+        // convert to Tesla
+<span class="fc bfc" id="L152" title="All 7 branches covered.">        switch (inputUnit) {</span>
+            case NANOTESLA:
+<span class="fc" id="L154">                tesla = nanoTeslaToTesla(input);</span>
+<span class="fc" id="L155">                break;</span>
+            case MICROTESLA:
+<span class="fc" id="L157">                tesla = microTeslaToTesla(input);</span>
+<span class="fc" id="L158">                break;</span>
+            case MILLITESLA:
+<span class="fc" id="L160">                tesla = milliTeslaToTesla(input);</span>
+<span class="fc" id="L161">                break;</span>
+            case KILOTESLA:
+<span class="fc" id="L163">                tesla = kiloTeslaToTesla(input);</span>
+<span class="fc" id="L164">                break;</span>
+            case MEGATESLA:
+<span class="fc" id="L166">                tesla = megaTeslaToTesla(input);</span>
+<span class="fc" id="L167">                break;</span>
+            case GIGATESLA:
+<span class="fc" id="L169">                tesla = gigaTeslaToTesla(input);</span>
+<span class="fc" id="L170">                break;</span>
+
+            case TESLA:
+            default:
+<span class="fc" id="L174">                tesla = input;</span>
+                break;
+        }
+
+        // convert from Tesla to required output unit
+<span class="fc bfc" id="L179" title="All 7 branches covered.">        switch (outputUnit) {</span>
+            case NANOTESLA:
+<span class="fc" id="L181">                return teslaToNanoTesla(tesla);</span>
+            case MICROTESLA:
+<span class="fc" id="L183">                return teslaToMicroTesla(tesla);</span>
+            case MILLITESLA:
+<span class="fc" id="L185">                return teslaToMilliTesla(tesla);</span>
+            case KILOTESLA:
+<span class="fc" id="L187">                return teslaToKiloTesla(tesla);</span>
+            case MEGATESLA:
+<span class="fc" id="L189">                return teslaToMegaTesla(tesla);</span>
+            case GIGATESLA:
+<span class="fc" id="L191">                return teslaToGigaTesla(tesla);</span>
+
+            case TESLA:
+            default:
+<span class="fc" id="L195">                return tesla;</span>
+        }
+    }
+
+    /**
+     * Converts provided Tesla value to nanoteslas.
+     *
+     * @param tesla tesla value.
+     * @return some amount of magnetic flux density converted to nanoteslas.
+     */
+    public static double teslaToNanoTesla(final double tesla) {
+<span class="fc" id="L206">        return tesla / TESLAS_PER_NANOTESLA;</span>
+    }
+
+    /**
+     * Converts provided Tesla value to microteslas.
+     *
+     * @param tesla tesla value.
+     * @return some amount of magnetic flux density converted to microteslas.
+     */
+    public static double teslaToMicroTesla(final double tesla) {
+<span class="fc" id="L216">        return tesla / TESLAS_PER_MICROTESLA;</span>
+    }
+
+    /**
+     * Converts provided Tesla value to milliteslas.
+     *
+     * @param tesla tesla value.
+     * @return some amount of magnetic flux density converted to milliteslas.
+     */
+    public static double teslaToMilliTesla(final double tesla) {
+<span class="fc" id="L226">        return tesla / TESLAS_PER_MILLITESLA;</span>
+    }
+
+    /**
+     * Converts provided Tesla value to Kiloteslas.
+     *
+     * @param tesla tesla value.
+     * @return some amount of magnetic flux density converted to Kiloteslas.
+     */
+    public static double teslaToKiloTesla(final double tesla) {
+<span class="fc" id="L236">        return tesla / TESLAS_PER_KILOTESLA;</span>
+    }
+
+    /**
+     * Converts provided Tesla value to Megateslas.
+     *
+     * @param tesla tesla value.
+     * @return some amount of magnetic flux density converted to Megateslas.
+     */
+    public static double teslaToMegaTesla(final double tesla) {
+<span class="fc" id="L246">        return tesla / TESLAS_PER_MEGATESLA;</span>
+    }
+
+    /**
+     * Converts provided Tesla value to Gigateslas.
+     *
+     * @param tesla tesla value.
+     * @return some amount of magnetic flux density converted to Gigateslas.
+     */
+    public static double teslaToGigaTesla(final double tesla) {
+<span class="fc" id="L256">        return tesla / TESLAS_PER_GIGATESLA;</span>
+    }
+
+    /**
+     * Converts provided nanotesla value to Teslas.
+     *
+     * @param nanoTesla nanotesla value.
+     * @return some amount of magnetic flux density converted to Teslas.
+     */
+    public static double nanoTeslaToTesla(final double nanoTesla) {
+<span class="fc" id="L266">        return nanoTesla * TESLAS_PER_NANOTESLA;</span>
+    }
+
+    /**
+     * Converts provided microtesla value to Teslas.
+     *
+     * @param microTesla microtesla value.
+     * @return some amount of magnetic flux density converted to Teslas.
+     */
+    public static double microTeslaToTesla(final double microTesla) {
+<span class="fc" id="L276">        return microTesla * TESLAS_PER_MICROTESLA;</span>
+    }
+
+    /**
+     * Converts provided millitesla value to Teslas.
+     *
+     * @param milliTesla millitesla value.
+     * @return some amount of magnetic flux density converted to Teslas.
+     */
+    public static double milliTeslaToTesla(final double milliTesla) {
+<span class="fc" id="L286">        return milliTesla * TESLAS_PER_MILLITESLA;</span>
+    }
+
+    /**
+     * Converts provided Kilotesla value to Teslas.
+     *
+     * @param kiloTesla Kilotesla value.
+     * @return some amount of magnetic flux density converted to Teslas.
+     */
+    public static double kiloTeslaToTesla(final double kiloTesla) {
+<span class="fc" id="L296">        return kiloTesla * TESLAS_PER_KILOTESLA;</span>
+    }
+
+    /**
+     * Converts provided Megatesla value to Teslas.
+     *
+     * @param megaTesla Megatesla value.
+     * @return some amount of magnetic flux density converted to Teslas.
+     */
+    public static double megaTeslaToTesla(final double megaTesla) {
+<span class="fc" id="L306">        return megaTesla * TESLAS_PER_MEGATESLA;</span>
+    }
+
+    /**
+     * Converts provided Gigatesla value to Teslas.
+     *
+     * @param gigaTesla Gigatesla value.
+     * @return some amount of magnetic flux density converted to Teslas.
+     */
+    public static double gigaTeslaToTesla(final double gigaTesla) {
+<span class="fc" id="L316">        return gigaTesla * TESLAS_PER_GIGATESLA;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TemperatureConverter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">TemperatureConverter.java</span></div><h1>TemperatureConverter.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2020 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.units;
+
+import java.math.BigDecimal;
+
+/**
+ * Does temperature conversions to different units.
+ * To prevent loss of accuracy, conversion should only be done as a final step
+ * before displaying temperature measurements.
+ */
+public class TemperatureConverter {
+
+    /**
+     * Absolute zero temperature expressed in Kelvins (K).
+     */
+    public static final double ABSOLUTE_ZERO = -273.15;
+
+    /**
+     * Constructor.
+     * Prevents instantiation of helper class.
+     */
+    private TemperatureConverter() {
+    }
+
+    /**
+     * Converts a temperature to provided output temperature unit.
+     *
+     * @param input  input temperature to be converted.
+     * @param output output temperature where result will be stored and containing
+     *               output unit.
+     */
+    public static void convert(final Temperature input, final Temperature output) {
+<span class="fc" id="L47">        convert(input, output.getUnit(), output);</span>
+<span class="fc" id="L48">    }</span>
+
+    /**
+     * Converts a temperature to requested output unit.
+     *
+     * @param input      input temperature to be converted.
+     * @param outputUnit requested output unit.
+     * @return converted temperature.
+     */
+    public static Temperature convertAndReturnNew(
+            final Temperature input,
+            final TemperatureUnit outputUnit) {
+<span class="fc" id="L60">        final Temperature result = new Temperature();</span>
+<span class="fc" id="L61">        convert(input, outputUnit, result);</span>
+<span class="fc" id="L62">        return result;</span>
+    }
+
+    /**
+     * Converts and updates a temperature to requested output unit.
+     *
+     * @param temperature input temperature to be converted and updated.
+     * @param outputUnit  requested output unit.
+     */
+    public static void convert(
+            final Temperature temperature, final TemperatureUnit outputUnit) {
+<span class="fc" id="L73">        convert(temperature, outputUnit, temperature);</span>
+<span class="fc" id="L74">    }</span>
+
+    /**
+     * Converts a temperature to requested output unit.
+     *
+     * @param input      input temperature to be converted.
+     * @param outputUnit requested output unit.
+     * @param result     temperature unit where result will be stored.
+     */
+    public static void convert(
+            final Temperature input, final TemperatureUnit outputUnit,
+            final Temperature result) {
+<span class="fc" id="L86">        final Number value = convert(input.getValue(), input.getUnit(),</span>
+                outputUnit);
+<span class="fc" id="L88">        result.setValue(value);</span>
+<span class="fc" id="L89">        result.setUnit(outputUnit);</span>
+<span class="fc" id="L90">    }</span>
+
+    /**
+     * Converts a temperature value from input unit to provided output unit.
+     *
+     * @param input      temperature value.
+     * @param inputUnit  input temperature unit.
+     * @param outputUnit output temperature unit.
+     * @return converted temperature value.
+     */
+    public static Number convert(
+            final Number input, final TemperatureUnit inputUnit,
+            final TemperatureUnit outputUnit) {
+<span class="fc" id="L103">        return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit,</span>
+                outputUnit));
+    }
+
+    /**
+     * Converts a temperature value from input unit to provided output unit.
+     *
+     * @param input      temperature value.
+     * @param inputUnit  input temperature unit.
+     * @param outputUnit output temperature unit.
+     * @return converted temperature value.
+     */
+    public static double convert(
+            final double input, final TemperatureUnit inputUnit,
+            final TemperatureUnit outputUnit) {
+
+        double celsius;
+
+        // convert to celsius
+<span class="fc bfc" id="L122" title="All 3 branches covered.">        switch (inputUnit) {</span>
+            case FAHRENHEIT:
+<span class="fc" id="L124">                celsius = fahrenheitToCelsius(input);</span>
+<span class="fc" id="L125">                break;</span>
+            case KELVIN:
+<span class="fc" id="L127">                celsius = kelvinToCelsius(input);</span>
+<span class="fc" id="L128">                break;</span>
+            case CELSIUS:
+            default:
+<span class="fc" id="L131">                celsius = input;</span>
+                break;
+        }
+
+        // convert from celsius to required output unit
+<span class="fc bfc" id="L136" title="All 3 branches covered.">        switch (outputUnit) {</span>
+            case FAHRENHEIT:
+<span class="fc" id="L138">                return celsiusToFahrenheit(celsius);</span>
+            case KELVIN:
+<span class="fc" id="L140">                return celsiusToKelvin(celsius);</span>
+
+            case CELSIUS:
+            default:
+<span class="fc" id="L144">                return celsius;</span>
+        }
+    }
+
+    /**
+     * Converts provided Kelvin value to Celsius.
+     *
+     * @param kelvin kelvin value.
+     * @return some amount of temperature converted to Celsius.
+     */
+    public static double kelvinToCelsius(final double kelvin) {
+<span class="fc" id="L155">        return kelvin + ABSOLUTE_ZERO;</span>
+    }
+
+    /**
+     * Converts provided Celsius value to Kelvin.
+     *
+     * @param celsius celsius value.
+     * @return some amount of temperature converted to Kelvin.
+     */
+    public static double celsiusToKelvin(final double celsius) {
+<span class="fc" id="L165">        return celsius - ABSOLUTE_ZERO;</span>
+    }
+
+    /**
+     * Converts provided Celsius value to Fahrenheit.
+     *
+     * @param celsius celsius value.
+     * @return some amount of temperature converted to Fahrenheit.
+     */
+    public static double celsiusToFahrenheit(final double celsius) {
+<span class="fc" id="L175">        return celsius * 9.0 / 5.0 + 32.0;</span>
+    }
+
+    /**
+     * Converts provided Fahrenheit value to Celsius.
+     *
+     * @param fahrenheit fahrenheit value.
+     * @return some amount of temperature converted to Celsius.
+     */
+    public static double fahrenheitToCelsius(final double fahrenheit) {
+<span class="fc" id="L185">        return (fahrenheit - 32.0) * 5.0 / 9.0;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

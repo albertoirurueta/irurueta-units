@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TimeConverter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">TimeConverter.java</span></div><h1>TimeConverter.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2018 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.units;
+
+import java.math.BigDecimal;
+
+/**
+ * Does time conversions to different units.
+ * To prevent loss of accuracy, conversion should only be done as a final step
+ * before displaying time measurements.
+ */
+@SuppressWarnings(&quot;WeakerAccess&quot;)
+public class TimeConverter {
+
+    /**
+     * Number of seconds in 1 nanosecond.
+     */
+    static final double SECONDS_PER_NANOSECOND = 1e-9;
+
+    /**
+     * Number of seconds in 1 microsecond.
+     */
+    static final double SECONDS_PER_MICROSECOND = 1e-6;
+
+    /**
+     * Number of seconds in 1 milliseconds.
+     */
+    static final double SECONDS_PER_MILLISECOND = 1e-3;
+
+    /**
+     * Number of seconds in 1 minute.
+     */
+    static final double SECONDS_PER_MINUTE = 60.0;
+
+    /**
+     * Number of seconds in 1 hour.
+     */
+    static final double SECONDS_PER_HOUR = 3600.0;
+
+    /**
+     * Number of seconds in 1 day.
+     */
+    static final double SECONDS_PER_DAY = 24 * SECONDS_PER_HOUR;
+
+    /**
+     * Number of seconds in 1 week.
+     */
+    static final double SECONDS_PER_WEEK = 7 * SECONDS_PER_DAY;
+
+    /**
+     * Number of seconds in 1 month.
+     */
+    static final double SECONDS_PER_MONTH = 30 * SECONDS_PER_DAY;
+
+    /**
+     * Number of seconds in 1 year.
+     */
+    static final double SECONDS_PER_YEAR = 365 * SECONDS_PER_DAY;
+
+    /**
+     * Number of seconds in 1 century.
+     */
+    static final double SECONDS_PER_CENTURY = 100 * SECONDS_PER_YEAR;
+
+    /**
+     * Constructor.
+     * Prevents instantiation of helper class.
+     */
+    private TimeConverter() {
+    }
+
+    /**
+     * Converts a time to provided output time unit.
+     *
+     * @param input  input time to be converted.
+     * @param output output time where result will be stored and containing
+     *               output unit.
+     */
+    public static void convert(final Time input, final Time output) {
+<span class="fc" id="L93">        convert(input, output.getUnit(), output);</span>
+<span class="fc" id="L94">    }</span>
+
+    /**
+     * Converts a time to requested output unit.
+     *
+     * @param input      input time to be converted.
+     * @param outputUnit requested output unit.
+     * @return converted time.
+     */
+    public static Time convertAndReturnNew(
+            final Time input, final TimeUnit outputUnit) {
+<span class="fc" id="L105">        final Time result = new Time();</span>
+<span class="fc" id="L106">        convert(input, outputUnit, result);</span>
+<span class="fc" id="L107">        return result;</span>
+    }
+
+    /**
+     * Converts and updates a time to requested output unit.
+     *
+     * @param time       input time to be converted and updated.
+     * @param outputUnit requested output unit.
+     */
+    public static void convert(
+            final Time time, final TimeUnit outputUnit) {
+<span class="fc" id="L118">        convert(time, outputUnit, time);</span>
+<span class="fc" id="L119">    }</span>
+
+    /**
+     * Converts a time to requested output unit.
+     *
+     * @param input      input time to be converted.
+     * @param outputUnit requested output unit.
+     * @param result     time unit where result will be stored.
+     */
+    public static void convert(
+            final Time input, final TimeUnit outputUnit,
+            final Time result) {
+<span class="fc" id="L131">        final Number value = convert(input.getValue(), input.getUnit(), outputUnit);</span>
+<span class="fc" id="L132">        result.setValue(value);</span>
+<span class="fc" id="L133">        result.setUnit(outputUnit);</span>
+<span class="fc" id="L134">    }</span>
+
+    /**
+     * Converts a time value from input unit to provided output unit.
+     *
+     * @param input      time value.
+     * @param inputUnit  input time unit.
+     * @param outputUnit output time unit.
+     * @return converted time value.
+     */
+    public static Number convert(
+            final Number input, final TimeUnit inputUnit,
+            final TimeUnit outputUnit) {
+<span class="fc" id="L147">        return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit, outputUnit));</span>
+    }
+
+    /**
+     * Converts a time value from input unit to provided output unit.
+     *
+     * @param input      time value.
+     * @param inputUnit  input time unit.
+     * @param outputUnit output time unit.
+     * @return converted time value.
+     */
+    public static double convert(
+            final double input, final TimeUnit inputUnit,
+            final TimeUnit outputUnit) {
+        double seconds;
+
+        //convert to seconds
+<span class="fc bfc" id="L164" title="All 11 branches covered.">        switch (inputUnit) {</span>
+            case NANOSECOND:
+<span class="fc" id="L166">                seconds = nanosecondToSecond(input);</span>
+<span class="fc" id="L167">                break;</span>
+            case MICROSECOND:
+<span class="fc" id="L169">                seconds = microsecondToSecond(input);</span>
+<span class="fc" id="L170">                break;</span>
+            case MILLISECOND:
+<span class="fc" id="L172">                seconds = millisecondToSecond(input);</span>
+<span class="fc" id="L173">                break;</span>
+            case MINUTE:
+<span class="fc" id="L175">                seconds = minuteToSecond(input);</span>
+<span class="fc" id="L176">                break;</span>
+            case HOUR:
+<span class="fc" id="L178">                seconds = hourToSecond(input);</span>
+<span class="fc" id="L179">                break;</span>
+            case DAY:
+<span class="fc" id="L181">                seconds = dayToSecond(input);</span>
+<span class="fc" id="L182">                break;</span>
+            case WEEK:
+<span class="fc" id="L184">                seconds = weekToSecond(input);</span>
+<span class="fc" id="L185">                break;</span>
+            case MONTH:
+<span class="fc" id="L187">                seconds = monthToSecond(input);</span>
+<span class="fc" id="L188">                break;</span>
+            case YEAR:
+<span class="fc" id="L190">                seconds = yearToSecond(input);</span>
+<span class="fc" id="L191">                break;</span>
+            case CENTURY:
+<span class="fc" id="L193">                seconds = centuryToSecond(input);</span>
+<span class="fc" id="L194">                break;</span>
+
+            case SECOND:
+            default:
+<span class="fc" id="L198">                seconds = input;</span>
+                break;
+        }
+
+        //convert from seconds to required output unit
+<span class="fc bfc" id="L203" title="All 11 branches covered.">        switch (outputUnit) {</span>
+            case NANOSECOND:
+<span class="fc" id="L205">                return secondToNanosecond(seconds);</span>
+            case MICROSECOND:
+<span class="fc" id="L207">                return secondToMicrosecond(seconds);</span>
+            case MILLISECOND:
+<span class="fc" id="L209">                return secondToMillisecond(seconds);</span>
+            case MINUTE:
+<span class="fc" id="L211">                return secondToMinute(seconds);</span>
+            case HOUR:
+<span class="fc" id="L213">                return secondToHour(seconds);</span>
+            case DAY:
+<span class="fc" id="L215">                return secondToDay(seconds);</span>
+            case WEEK:
+<span class="fc" id="L217">                return secondToWeek(seconds);</span>
+            case MONTH:
+<span class="fc" id="L219">                return secondToMonth(seconds);</span>
+            case YEAR:
+<span class="fc" id="L221">                return secondToYear(seconds);</span>
+            case CENTURY:
+<span class="fc" id="L223">                return secondToCentury(seconds);</span>
+
+            case SECOND:
+            default:
+<span class="fc" id="L227">                return seconds;</span>
+        }
+    }
+
+    /**
+     * Converts provided second value to nanoseconds.
+     *
+     * @param second second value.
+     * @return same amount of time converted to nanoseconds.
+     */
+    public static double secondToNanosecond(final double second) {
+<span class="fc" id="L238">        return second / SECONDS_PER_NANOSECOND;</span>
+    }
+
+    /**
+     * Converts provided nanosecond value to seconds.
+     *
+     * @param nanosecond nanosecond value.
+     * @return same amount of time converted to seconds.
+     */
+    public static double nanosecondToSecond(final double nanosecond) {
+<span class="fc" id="L248">        return nanosecond * SECONDS_PER_NANOSECOND;</span>
+    }
+
+    /**
+     * Converts provided second value to microseconds.
+     *
+     * @param second second value.
+     * @return same amount of time converted to microseconds.
+     */
+    public static double secondToMicrosecond(final double second) {
+<span class="fc" id="L258">        return second / SECONDS_PER_MICROSECOND;</span>
+    }
+
+    /**
+     * Converts provided microsecond value to seconds.
+     *
+     * @param microsecond microsecond value.
+     * @return same amount of time converted to seconds.
+     */
+    public static double microsecondToSecond(final double microsecond) {
+<span class="fc" id="L268">        return microsecond * SECONDS_PER_MICROSECOND;</span>
+    }
+
+    /**
+     * Converts provided second value to milliseconds.
+     *
+     * @param second second value.
+     * @return same amount of time converted to milliseconds.
+     */
+    public static double secondToMillisecond(final double second) {
+<span class="fc" id="L278">        return second / SECONDS_PER_MILLISECOND;</span>
+    }
+
+    /**
+     * Converts provided millisecond value to seconds.
+     *
+     * @param millisecond millisecond value.
+     * @return same amount of time converted to seconds.
+     */
+    public static double millisecondToSecond(final double millisecond) {
+<span class="fc" id="L288">        return millisecond * SECONDS_PER_MILLISECOND;</span>
+    }
+
+    /**
+     * Converts provided second value to minutes.
+     *
+     * @param second second value.
+     * @return same amount of time converted to minutes.
+     */
+    public static double secondToMinute(final double second) {
+<span class="fc" id="L298">        return second / SECONDS_PER_MINUTE;</span>
+    }
+
+    /**
+     * Converts provided minute value to seconds.
+     *
+     * @param minute minute value.
+     * @return same amount of time converted to seconds.
+     */
+    public static double minuteToSecond(final double minute) {
+<span class="fc" id="L308">        return minute * SECONDS_PER_MINUTE;</span>
+    }
+
+    /**
+     * Converts provided second value to hours.
+     *
+     * @param second second value.
+     * @return same amount of time converted to hours.
+     */
+    public static double secondToHour(final double second) {
+<span class="fc" id="L318">        return second / SECONDS_PER_HOUR;</span>
+    }
+
+    /**
+     * Converts provided hour value to seconds.
+     *
+     * @param hour hour value.
+     * @return same amount of time converted to seconds.
+     */
+    public static double hourToSecond(final double hour) {
+<span class="fc" id="L328">        return hour * SECONDS_PER_HOUR;</span>
+    }
+
+    /**
+     * Converts provided second value to days.
+     *
+     * @param second second value.
+     * @return same amount of time converted to days.
+     */
+    public static double secondToDay(final double second) {
+<span class="fc" id="L338">        return second / SECONDS_PER_DAY;</span>
+    }
+
+    /**
+     * Converts provided day value to seconds.
+     *
+     * @param day day value.
+     * @return same amount of time converted to seconds.
+     */
+    public static double dayToSecond(final double day) {
+<span class="fc" id="L348">        return day * SECONDS_PER_DAY;</span>
+    }
+
+    /**
+     * Converts provided second value to weeks.
+     *
+     * @param second second value.
+     * @return same amount of time converted to weeks.
+     */
+    public static double secondToWeek(final double second) {
+<span class="fc" id="L358">        return second / SECONDS_PER_WEEK;</span>
+    }
+
+    /**
+     * Converts provided week value to seconds.
+     *
+     * @param week week value.
+     * @return same amount of time converted to seconds.
+     */
+    public static double weekToSecond(final double week) {
+<span class="fc" id="L368">        return week * SECONDS_PER_WEEK;</span>
+    }
+
+    /**
+     * Converts provided second value to months.
+     *
+     * @param second second value.
+     * @return same amount of time converted to months.
+     */
+    public static double secondToMonth(final double second) {
+<span class="fc" id="L378">        return second / SECONDS_PER_MONTH;</span>
+    }
+
+    /**
+     * Converts provided month value to seconds.
+     *
+     * @param month month value.
+     * @return same amount of time converted to seconds.
+     */
+    public static double monthToSecond(final double month) {
+<span class="fc" id="L388">        return month * SECONDS_PER_MONTH;</span>
+    }
+
+    /**
+     * Converts provided second value to years.
+     *
+     * @param second second value.
+     * @return same amount of time converted to years.
+     */
+    public static double secondToYear(final double second) {
+<span class="fc" id="L398">        return second / SECONDS_PER_YEAR;</span>
+    }
+
+    /**
+     * Converts provided year value to seconds.
+     *
+     * @param year year value.
+     * @return same amount of time converted to seconds.
+     */
+    public static double yearToSecond(final double year) {
+<span class="fc" id="L408">        return year * SECONDS_PER_YEAR;</span>
+    }
+
+    /**
+     * Converts provided second value to century.
+     *
+     * @param second second value.
+     * @return same amount of time converted to centuries.
+     */
+    public static double secondToCentury(final double second) {
+<span class="fc" id="L418">        return second / SECONDS_PER_CENTURY;</span>
+    }
+
+    /**
+     * Converts provided century value to seconds.
+     *
+     * @param century century value.
+     * @return same amount of time converted to seconds.
+     */
+    public static double centuryToSecond(final double century) {
+<span class="fc" id="L428">        return century * SECONDS_PER_CENTURY;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

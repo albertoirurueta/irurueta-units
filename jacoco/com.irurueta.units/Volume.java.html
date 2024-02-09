@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Volume.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">Volume.java</span></div><h1>Volume.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2020 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.units;
+
+import java.math.BigDecimal;
+
+/**
+ * Contains a volume value and unit.
+ */
+public class Volume extends Measurement&lt;VolumeUnit&gt; {
+
+    /**
+     * Constructor with value and unit.
+     *
+     * @param value volume value.
+     * @param unit  unit of volume.
+     * @throws IllegalArgumentException if either value or unit is null.
+     */
+    public Volume(final Number value, final VolumeUnit unit) {
+<span class="fc" id="L33">        super(value, unit);</span>
+<span class="fc" id="L34">    }</span>
+
+    /**
+     * Constructor.
+     */
+    Volume() {
+<span class="fc" id="L40">        super();</span>
+<span class="fc" id="L41">    }</span>
+
+    /**
+     * Determine if two volumes are equal up to a certain tolerance.
+     * If needed, this method attempts unit conversion to compare both objects.
+     *
+     * @param other     another measurement to compare.
+     * @param tolerance amount of tolerance to determine whether two measurements are equal or not.
+     * @return true if provided volume is assumed to be equal to this instance, false otherwise.
+     */
+    @Override
+    public boolean equals(final Measurement&lt;VolumeUnit&gt; other, final double tolerance) {
+<span class="fc bfc" id="L53" title="All 2 branches covered.">        if (super.equals(other, tolerance)) {</span>
+<span class="fc" id="L54">            return true;</span>
+        }
+
+        // attempt conversion to common units
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        if (other == null) {</span>
+<span class="fc" id="L59">            return false;</span>
+        }
+
+<span class="fc" id="L62">        final double otherValue = VolumeConverter.convert(</span>
+<span class="fc" id="L63">                other.getValue().doubleValue(), other.getUnit(),</span>
+<span class="fc" id="L64">                getUnit());</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        return Math.abs(getValue().doubleValue() - otherValue) &lt;= tolerance;</span>
+    }
+
+    /**
+     * Adds two volume values and units and returns the result.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit.
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
+     * @param resultUnit unit of result to be returned.
+     * @return result of addition.
+     */
+    public static double add(
+            final double value1, final VolumeUnit unit1,
+            final double value2, final VolumeUnit unit2,
+            final VolumeUnit resultUnit) {
+<span class="fc" id="L82">        final double v1 = VolumeConverter.convert(value1, unit1, resultUnit);</span>
+<span class="fc" id="L83">        final double v2 = VolumeConverter.convert(value2, unit2, resultUnit);</span>
+<span class="fc" id="L84">        return v1 + v2;</span>
+    }
+
+    /**
+     * Adds two volume values and units and returns the result.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit.
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
+     * @param resultUnit unit of result to be returned.
+     * @return result of addition.
+     */
+    public static Number add(
+            final Number value1, final VolumeUnit unit1,
+            final Number value2, final VolumeUnit unit2,
+            final VolumeUnit resultUnit) {
+<span class="fc" id="L101">        return BigDecimal.valueOf(add(value1.doubleValue(), unit1,</span>
+<span class="fc" id="L102">                value2.doubleValue(), unit2, resultUnit));</span>
+    }
+
+    /**
+     * Adds two volumes and stores the result into provided instance.
+     *
+     * @param arg1   1st argument.
+     * @param arg2   2nd argument.
+     * @param result instance where result will be stored.
+     */
+    public static void add(final Volume arg1, final Volume arg2, final Volume result) {
+<span class="fc" id="L113">        result.setValue(add(arg1.getValue(), arg1.getUnit(),</span>
+<span class="fc" id="L114">                arg2.getValue(), arg2.getUnit(), result.getUnit()));</span>
+<span class="fc" id="L115">    }</span>
+
+    /**
+     * Adds two volumes.
+     *
+     * @param arg1 1st argument.
+     * @param arg2 2nd argument.
+     * @param unit unit of returned volume.
+     * @return a new instance containing result.
+     */
+    public static Volume addAndReturnNew(
+            final Volume arg1, final Volume arg2, final VolumeUnit unit) {
+<span class="fc" id="L127">        final Volume result = new Volume();</span>
+<span class="fc" id="L128">        result.setUnit(unit);</span>
+<span class="fc" id="L129">        add(arg1, arg2, result);</span>
+<span class="fc" id="L130">        return result;</span>
+    }
+
+    /**
+     * Adds provided volume value and unit and returns a new volume instance using
+     * provided unit.
+     *
+     * @param value      value to be added.
+     * @param unit       unit of value to be added.
+     * @param resultUnit unit of returned volume.
+     * @return a new volume containing result.
+     */
+    public Volume addAndReturnNew(
+            final double value, final VolumeUnit unit,
+            final VolumeUnit resultUnit) {
+<span class="fc" id="L145">        final Volume result = new Volume();</span>
+<span class="fc" id="L146">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L147">        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit,</span>
+                resultUnit));
+<span class="fc" id="L149">        return result;</span>
+    }
+
+    /**
+     * Adds provided volume value and unit and returns a new volume instance using
+     * provided unit.
+     *
+     * @param value      value to be added.
+     * @param unit       unit of value to be added.
+     * @param resultUnit unit of returned volume.
+     * @return a new volume containing result.
+     */
+    public Volume addAndReturnNew(
+            final Number value, final VolumeUnit unit,
+            final VolumeUnit resultUnit) {
+<span class="fc" id="L164">        final Volume result = new Volume();</span>
+<span class="fc" id="L165">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L166">        result.setValue(add(getValue(), getUnit(), value, unit, resultUnit));</span>
+<span class="fc" id="L167">        return result;</span>
+    }
+
+    /**
+     * Adds provided volume to current instance and returns a new volume.
+     *
+     * @param v    volume to be added.
+     * @param unit unit of returned volume.
+     * @return a new volume containing result.
+     */
+    public Volume addAndReturnNew(final Volume v, final VolumeUnit unit) {
+<span class="fc" id="L178">        return addAndReturnNew(this, v, unit);</span>
+    }
+
+    /**
+     * Adds provided volume value and unit and updates current volume instance.
+     *
+     * @param value volume value to be added.
+     * @param unit  unit of volume value.
+     */
+    public void add(final double value, final VolumeUnit unit) {
+<span class="fc" id="L188">        setValue(add(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L189">    }</span>
+
+    /**
+     * Adds provided volume value and unit and updates current volume instance.
+     *
+     * @param value volume value to be added.
+     * @param unit  unit of volume value.
+     */
+    public void add(final Number value, final VolumeUnit unit) {
+<span class="fc" id="L198">        setValue(add(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L199">    }</span>
+
+    /**
+     * Adds provided volume and updates current volume.
+     *
+     * @param volume volume to be added.
+     */
+    public void add(final Volume volume) {
+<span class="fc" id="L207">        add(this, volume, this);</span>
+<span class="fc" id="L208">    }</span>
+
+    /**
+     * Adds provided volume and stores the result into provided volume.
+     *
+     * @param v      volume to be added.
+     * @param result instance where result will be stored.
+     */
+    public void add(final Volume v, final Volume result) {
+<span class="fc" id="L217">        add(this, v, result);</span>
+<span class="fc" id="L218">    }</span>
+
+    /**
+     * Subtracts two volume values and units and returns the result.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit.
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
+     * @param resultUnit unit of result to be returned.
+     * @return result of subtraction.
+     */
+    public static double subtract(
+            final double value1, final VolumeUnit unit1,
+            final double value2, final VolumeUnit unit2,
+            final VolumeUnit resultUnit) {
+<span class="fc" id="L234">        final double v1 = VolumeConverter.convert(value1, unit1, resultUnit);</span>
+<span class="fc" id="L235">        final double v2 = VolumeConverter.convert(value2, unit2, resultUnit);</span>
+<span class="fc" id="L236">        return v1 - v2;</span>
+    }
+
+    /**
+     * Subtracts two volume values and units and returns the result.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit.
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
+     * @param resultUnit unit of result to be returned.
+     * @return result of subtraction.
+     */
+    public static Number subtract(
+            final Number value1, final VolumeUnit unit1,
+            final Number value2, final VolumeUnit unit2,
+            final VolumeUnit resultUnit) {
+<span class="fc" id="L253">        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1,</span>
+<span class="fc" id="L254">                value2.doubleValue(), unit2, resultUnit));</span>
+    }
+
+    /**
+     * Subtracts two volumes and stores the result into provided instance.
+     *
+     * @param arg1   1st argument.
+     * @param arg2   2nd argument.
+     * @param result instance where result will be stored.
+     */
+    public static void subtract(final Volume arg1, final Volume arg2, final Volume result) {
+<span class="fc" id="L265">        result.setValue(subtract(arg1.getValue(), arg1.getUnit(),</span>
+<span class="fc" id="L266">                arg2.getValue(), arg2.getUnit(), result.getUnit()));</span>
+<span class="fc" id="L267">    }</span>
+
+    /**
+     * Subtracts two volumes.
+     *
+     * @param arg1 1st argument.
+     * @param arg2 2nd argument.
+     * @param unit unit of returned volume.
+     * @return a new instance containing result.
+     */
+    public static Volume subtractAndReturnNew(
+            final Volume arg1, final Volume arg2,
+            final VolumeUnit unit) {
+<span class="fc" id="L280">        final Volume result = new Volume();</span>
+<span class="fc" id="L281">        result.setUnit(unit);</span>
+<span class="fc" id="L282">        subtract(arg1, arg2, result);</span>
+<span class="fc" id="L283">        return result;</span>
+    }
+
+    /**
+     * Subtracts provided volume value and unit and returns a new volume instance
+     * using provided unit.
+     *
+     * @param value      value to be subtracted.
+     * @param unit       unit of value to be subtracted.
+     * @param resultUnit unit of returned volume.
+     * @return a new volume containing result.
+     */
+    public Volume subtractAndReturnNew(
+            final double value, final VolumeUnit unit,
+            final VolumeUnit resultUnit) {
+<span class="fc" id="L298">        final Volume result = new Volume();</span>
+<span class="fc" id="L299">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L300">        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit,</span>
+                resultUnit));
+<span class="fc" id="L302">        return result;</span>
+    }
+
+    /**
+     * Subtracts provided volume value and unit and returns a new volume instance using
+     * provided unit.
+     *
+     * @param value      value to be subtracted.
+     * @param unit       unit of value to be subtracted.
+     * @param resultUnit unit of returned volume.
+     * @return a new volume containing result.
+     */
+    public Volume subtractAndReturnNew(
+            final Number value, final VolumeUnit unit,
+            final VolumeUnit resultUnit) {
+<span class="fc" id="L317">        final Volume result = new Volume();</span>
+<span class="fc" id="L318">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L319">        result.setValue(subtract(getValue(), getUnit(), value, unit,</span>
+                resultUnit));
+<span class="fc" id="L321">        return result;</span>
+    }
+
+    /**
+     * Subtracts provided volume from current instance and returns a new
+     * volume.
+     *
+     * @param v    volume to be subtracted.
+     * @param unit unit of returned volume.
+     * @return a new volume containing result.
+     */
+    public Volume subtractAndReturnNew(
+            final Volume v, final VolumeUnit unit) {
+<span class="fc" id="L334">        return subtractAndReturnNew(this, v, unit);</span>
+    }
+
+    /**
+     * Subtracts provided volume value and unit and updates current volume
+     * instance.
+     *
+     * @param value volume value to be subtracted.
+     * @param unit  unit of volume value.
+     */
+    public void subtract(final double value, final VolumeUnit unit) {
+<span class="fc" id="L345">        setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L346">    }</span>
+
+    /**
+     * Subtracts provided volume value and unit and updates current volume
+     * instance.
+     *
+     * @param value volume value to be subtracted.
+     * @param unit  unit of volume value.
+     */
+    public void subtract(final Number value, final VolumeUnit unit) {
+<span class="fc" id="L356">        setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L357">    }</span>
+
+    /**
+     * Subtracts provided volume and updates current volume.
+     *
+     * @param volume volume to be subtracted.
+     */
+    public void subtract(final Volume volume) {
+<span class="fc" id="L365">        subtract(this, volume, this);</span>
+<span class="fc" id="L366">    }</span>
+
+    /**
+     * Subtracts provided volume and stores the result into provided
+     * volume.
+     *
+     * @param v      volume to be subtracted.
+     * @param result instance where result will be stored.
+     */
+    public void subtract(final Volume v, final Volume result) {
+<span class="fc" id="L376">        subtract(this, v, result);</span>
+<span class="fc" id="L377">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

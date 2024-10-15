@@ -59,9 +59,8 @@ public class Volume extends Measurement<VolumeUnit> {
             return false;
         }
 
-        final double otherValue = VolumeConverter.convert(
-                other.getValue().doubleValue(), other.getUnit(),
-                getUnit());
+        final var otherValue = VolumeConverter.convert(
+                other.getValue().doubleValue(), other.getUnit(), getUnit());
         return Math.abs(getValue().doubleValue() - otherValue) <= tolerance;
     }
 
@@ -79,8 +78,8 @@ public class Volume extends Measurement<VolumeUnit> {
             final double value1, final VolumeUnit unit1,
             final double value2, final VolumeUnit unit2,
             final VolumeUnit resultUnit) {
-        final double v1 = VolumeConverter.convert(value1, unit1, resultUnit);
-        final double v2 = VolumeConverter.convert(value2, unit2, resultUnit);
+        final var v1 = VolumeConverter.convert(value1, unit1, resultUnit);
+        final var v2 = VolumeConverter.convert(value2, unit2, resultUnit);
         return v1 + v2;
     }
 
@@ -98,8 +97,7 @@ public class Volume extends Measurement<VolumeUnit> {
             final Number value1, final VolumeUnit unit1,
             final Number value2, final VolumeUnit unit2,
             final VolumeUnit resultUnit) {
-        return BigDecimal.valueOf(add(value1.doubleValue(), unit1,
-                value2.doubleValue(), unit2, resultUnit));
+        return BigDecimal.valueOf(add(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));
     }
 
     /**
@@ -110,8 +108,7 @@ public class Volume extends Measurement<VolumeUnit> {
      * @param result instance where result will be stored.
      */
     public static void add(final Volume arg1, final Volume arg2, final Volume result) {
-        result.setValue(add(arg1.getValue(), arg1.getUnit(),
-                arg2.getValue(), arg2.getUnit(), result.getUnit()));
+        result.setValue(add(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));
     }
 
     /**
@@ -124,7 +121,7 @@ public class Volume extends Measurement<VolumeUnit> {
      */
     public static Volume addAndReturnNew(
             final Volume arg1, final Volume arg2, final VolumeUnit unit) {
-        final Volume result = new Volume();
+        final var result = new Volume();
         result.setUnit(unit);
         add(arg1, arg2, result);
         return result;
@@ -142,10 +139,9 @@ public class Volume extends Measurement<VolumeUnit> {
     public Volume addAndReturnNew(
             final double value, final VolumeUnit unit,
             final VolumeUnit resultUnit) {
-        final Volume result = new Volume();
+        final var result = new Volume();
         result.setUnit(resultUnit);
-        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit,
-                resultUnit));
+        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 
@@ -161,7 +157,7 @@ public class Volume extends Measurement<VolumeUnit> {
     public Volume addAndReturnNew(
             final Number value, final VolumeUnit unit,
             final VolumeUnit resultUnit) {
-        final Volume result = new Volume();
+        final var result = new Volume();
         result.setUnit(resultUnit);
         result.setValue(add(getValue(), getUnit(), value, unit, resultUnit));
         return result;
@@ -231,8 +227,8 @@ public class Volume extends Measurement<VolumeUnit> {
             final double value1, final VolumeUnit unit1,
             final double value2, final VolumeUnit unit2,
             final VolumeUnit resultUnit) {
-        final double v1 = VolumeConverter.convert(value1, unit1, resultUnit);
-        final double v2 = VolumeConverter.convert(value2, unit2, resultUnit);
+        final var v1 = VolumeConverter.convert(value1, unit1, resultUnit);
+        final var v2 = VolumeConverter.convert(value2, unit2, resultUnit);
         return v1 - v2;
     }
 
@@ -250,8 +246,7 @@ public class Volume extends Measurement<VolumeUnit> {
             final Number value1, final VolumeUnit unit1,
             final Number value2, final VolumeUnit unit2,
             final VolumeUnit resultUnit) {
-        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1,
-                value2.doubleValue(), unit2, resultUnit));
+        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));
     }
 
     /**
@@ -262,8 +257,7 @@ public class Volume extends Measurement<VolumeUnit> {
      * @param result instance where result will be stored.
      */
     public static void subtract(final Volume arg1, final Volume arg2, final Volume result) {
-        result.setValue(subtract(arg1.getValue(), arg1.getUnit(),
-                arg2.getValue(), arg2.getUnit(), result.getUnit()));
+        result.setValue(subtract(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));
     }
 
     /**
@@ -274,10 +268,8 @@ public class Volume extends Measurement<VolumeUnit> {
      * @param unit unit of returned volume.
      * @return a new instance containing result.
      */
-    public static Volume subtractAndReturnNew(
-            final Volume arg1, final Volume arg2,
-            final VolumeUnit unit) {
-        final Volume result = new Volume();
+    public static Volume subtractAndReturnNew(final Volume arg1, final Volume arg2, final VolumeUnit unit) {
+        final var result = new Volume();
         result.setUnit(unit);
         subtract(arg1, arg2, result);
         return result;
@@ -292,13 +284,10 @@ public class Volume extends Measurement<VolumeUnit> {
      * @param resultUnit unit of returned volume.
      * @return a new volume containing result.
      */
-    public Volume subtractAndReturnNew(
-            final double value, final VolumeUnit unit,
-            final VolumeUnit resultUnit) {
-        final Volume result = new Volume();
+    public Volume subtractAndReturnNew(final double value, final VolumeUnit unit, final VolumeUnit resultUnit) {
+        final var result = new Volume();
         result.setUnit(resultUnit);
-        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit,
-                resultUnit));
+        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 
@@ -311,13 +300,10 @@ public class Volume extends Measurement<VolumeUnit> {
      * @param resultUnit unit of returned volume.
      * @return a new volume containing result.
      */
-    public Volume subtractAndReturnNew(
-            final Number value, final VolumeUnit unit,
-            final VolumeUnit resultUnit) {
-        final Volume result = new Volume();
+    public Volume subtractAndReturnNew(final Number value, final VolumeUnit unit, final VolumeUnit resultUnit) {
+        final var result = new Volume();
         result.setUnit(resultUnit);
-        result.setValue(subtract(getValue(), getUnit(), value, unit,
-                resultUnit));
+        result.setValue(subtract(getValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 
@@ -329,8 +315,7 @@ public class Volume extends Measurement<VolumeUnit> {
      * @param unit unit of returned volume.
      * @return a new volume containing result.
      */
-    public Volume subtractAndReturnNew(
-            final Volume v, final VolumeUnit unit) {
+    public Volume subtractAndReturnNew(final Volume v, final VolumeUnit unit) {
         return subtractAndReturnNew(this, v, unit);
     }
 

@@ -114,7 +114,7 @@ public class VolumeFormatter extends MeasureFormatter<Volume, VolumeUnit> {
      */
     @Override
     public boolean equals(final Object obj) {
-        final boolean equals = super.equals(obj);
+        final var equals = super.equals(obj);
         return (obj instanceof VolumeFormatter) && equals;
     }
 
@@ -139,7 +139,7 @@ public class VolumeFormatter extends MeasureFormatter<Volume, VolumeUnit> {
      */
     @Override
     public UnitSystem getUnitSystem(final String source) {
-        final VolumeUnit unit = findUnit(source);
+        final var unit = findUnit(source);
         return unit != null ? VolumeUnit.getUnitSystem(unit) : null;
     }
 
@@ -212,14 +212,11 @@ public class VolumeFormatter extends MeasureFormatter<Volume, VolumeUnit> {
      * @return a string representation of volume value and unit.
      */
     @Override
-    public String formatAndConvert(final Number value, final VolumeUnit unit,
-                                   final UnitSystem system) {
-        switch (system) {
-            case IMPERIAL:
-                return formatAndConvertImperial(value, unit);
-            case METRIC:
-            default:
-                return formatAndConvertMetric(value, unit);
+    public String formatAndConvert(final Number value, final VolumeUnit unit, final UnitSystem system) {
+        if (system == UnitSystem.IMPERIAL) {
+            return formatAndConvertImperial(value, unit);
+        } else {
+            return formatAndConvertMetric(value, unit);
         }
     }
 
@@ -234,27 +231,25 @@ public class VolumeFormatter extends MeasureFormatter<Volume, VolumeUnit> {
      * system.
      */
     public String formatAndConvertMetric(final Number value, final VolumeUnit unit) {
-        final double v = value.doubleValue();
+        final var v = value.doubleValue();
 
-        final double cubicCentimeter = VolumeConverter.convert(v, unit,
-                VolumeUnit.CUBIC_CENTIMETER);
-        if (Math.abs(cubicCentimeter) < (VolumeConverter.CUBIC_METER_PER_LITER /
-                VolumeConverter.CUBIC_METER_PER_CUBIC_CENTIMETER)) {
+        final var cubicCentimeter = VolumeConverter.convert(v, unit, VolumeUnit.CUBIC_CENTIMETER);
+        if (Math.abs(cubicCentimeter) < (VolumeConverter.CUBIC_METER_PER_LITER
+                / VolumeConverter.CUBIC_METER_PER_CUBIC_CENTIMETER)) {
             return format(cubicCentimeter, VolumeUnit.CUBIC_CENTIMETER);
         }
 
-        final double liter = VolumeConverter.convert(v, unit, VolumeUnit.LITER);
-        if (Math.abs(liter) < (VolumeConverter.CUBIC_METER_PER_HECTOLITER /
-                VolumeConverter.CUBIC_METER_PER_LITER)) {
+        final var liter = VolumeConverter.convert(v, unit, VolumeUnit.LITER);
+        if (Math.abs(liter) < (VolumeConverter.CUBIC_METER_PER_HECTOLITER / VolumeConverter.CUBIC_METER_PER_LITER)) {
             return format(liter, VolumeUnit.LITER);
         }
 
-        final double hectoliter = VolumeConverter.convert(v, unit, VolumeUnit.HECTOLITER);
+        final var hectoliter = VolumeConverter.convert(v, unit, VolumeUnit.HECTOLITER);
         if (Math.abs(hectoliter) < (1.0 / VolumeConverter.CUBIC_METER_PER_HECTOLITER)) {
             return format(hectoliter, VolumeUnit.HECTOLITER);
         }
 
-        final double cubicMeter = VolumeConverter.convert(v, unit, VolumeUnit.CUBIC_METER);
+        final var cubicMeter = VolumeConverter.convert(v, unit, VolumeUnit.CUBIC_METER);
         return format(cubicMeter, VolumeUnit.CUBIC_METER);
     }
 
@@ -269,33 +264,30 @@ public class VolumeFormatter extends MeasureFormatter<Volume, VolumeUnit> {
      * system.
      */
     public String formatAndConvertImperial(final Number value, final VolumeUnit unit) {
-        final double v = value.doubleValue();
+        final var v = value.doubleValue();
 
-        final double cubicInch = VolumeConverter.convert(v, unit, VolumeUnit.CUBIC_INCH);
-        if (Math.abs(cubicInch) < (VolumeConverter.CUBIC_METER_PER_PINT /
-                VolumeConverter.CUBIC_METER_PER_CUBIC_INCH)) {
+        final var cubicInch = VolumeConverter.convert(v, unit, VolumeUnit.CUBIC_INCH);
+        if (Math.abs(cubicInch) < (VolumeConverter.CUBIC_METER_PER_PINT / VolumeConverter.CUBIC_METER_PER_CUBIC_INCH)) {
             return format(cubicInch, VolumeUnit.CUBIC_INCH);
         }
 
-        final double pint = VolumeConverter.convert(v, unit, VolumeUnit.PINT);
-        if (Math.abs(pint) < (VolumeConverter.CUBIC_METER_PER_GALLON /
-                VolumeConverter.CUBIC_METER_PER_PINT)) {
+        final var pint = VolumeConverter.convert(v, unit, VolumeUnit.PINT);
+        if (Math.abs(pint) < (VolumeConverter.CUBIC_METER_PER_GALLON / VolumeConverter.CUBIC_METER_PER_PINT)) {
             return format(pint, VolumeUnit.PINT);
         }
 
-        final double gallon = VolumeConverter.convert(v, unit, VolumeUnit.GALLON);
-        if (Math.abs(gallon) < (VolumeConverter.CUBIC_METER_PER_CUBIC_FOOT /
-                VolumeConverter.CUBIC_METER_PER_GALLON)) {
+        final var gallon = VolumeConverter.convert(v, unit, VolumeUnit.GALLON);
+        if (Math.abs(gallon) < (VolumeConverter.CUBIC_METER_PER_CUBIC_FOOT / VolumeConverter.CUBIC_METER_PER_GALLON)) {
             return format(gallon, VolumeUnit.GALLON);
         }
 
-        final double cubicFoot = VolumeConverter.convert(v, unit, VolumeUnit.CUBIC_FOOT);
-        if (Math.abs(cubicFoot) < (VolumeConverter.CUBIC_METER_PER_BARREL /
-                VolumeConverter.CUBIC_METER_PER_CUBIC_FOOT)) {
+        final var cubicFoot = VolumeConverter.convert(v, unit, VolumeUnit.CUBIC_FOOT);
+        if (Math.abs(cubicFoot) < (VolumeConverter.CUBIC_METER_PER_BARREL
+                / VolumeConverter.CUBIC_METER_PER_CUBIC_FOOT)) {
             return format(cubicFoot, VolumeUnit.CUBIC_FOOT);
         }
 
-        final double barrel = VolumeConverter.convert(v, unit, VolumeUnit.BARREL);
+        final var barrel = VolumeConverter.convert(v, unit, VolumeUnit.BARREL);
         return format(barrel, VolumeUnit.BARREL);
     }
 
@@ -308,32 +300,18 @@ public class VolumeFormatter extends MeasureFormatter<Volume, VolumeUnit> {
     @SuppressWarnings("DuplicatedCode")
     @Override
     public String getUnitSymbol(final VolumeUnit unit) {
-        switch (unit) {
-            case CUBIC_CENTIMETER:
-                return CUBIC_CENTIMETER;
-            case MILLILITER:
-                return MILLILITER;
-            case CUBIC_DECIMETER:
-                return CUBIC_DECIMETER;
-            case LITER:
-                return LITER;
-            case HECTOLITER:
-                return HECTOLITER;
-            case CUBIC_INCH:
-                return CUBIC_INCH;
-            case PINT:
-                return PINT;
-            case GALLON:
-                return GALLON;
-            case CUBIC_FOOT:
-                return CUBIC_FOOT;
-            case BARREL:
-                return BARREL;
-
-            case CUBIC_METER:
-            default:
-                return CUBIC_METER;
-
-        }
+        return switch (unit) {
+            case CUBIC_CENTIMETER -> CUBIC_CENTIMETER;
+            case MILLILITER -> MILLILITER;
+            case CUBIC_DECIMETER -> CUBIC_DECIMETER;
+            case LITER -> LITER;
+            case HECTOLITER -> HECTOLITER;
+            case CUBIC_INCH -> CUBIC_INCH;
+            case PINT -> PINT;
+            case GALLON -> GALLON;
+            case CUBIC_FOOT -> CUBIC_FOOT;
+            case BARREL -> BARREL;
+            default -> CUBIC_METER;
+        };
     }
 }

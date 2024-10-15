@@ -74,8 +74,7 @@ public class DistanceConverter {
      * @param output output distance where result will be stored and
      *               containing output unit.
      */
-    public static void convert(
-            final Distance input, final Distance output) {
+    public static void convert(final Distance input, final Distance output) {
         convert(input, output.getUnit(), output);
     }
 
@@ -86,9 +85,8 @@ public class DistanceConverter {
      * @param outputUnit requested output unit.
      * @return converted distance.
      */
-    public static Distance convertAndReturnNew(
-            final Distance input, final DistanceUnit outputUnit) {
-        final Distance result = new Distance();
+    public static Distance convertAndReturnNew(final Distance input, final DistanceUnit outputUnit) {
+        final var result = new Distance();
         convert(input, outputUnit, result);
         return result;
     }
@@ -99,8 +97,7 @@ public class DistanceConverter {
      * @param distance   input distance to be converted and updated.
      * @param outputUnit requested output unit.
      */
-    public static void convert(
-            final Distance distance, final DistanceUnit outputUnit) {
+    public static void convert(final Distance distance, final DistanceUnit outputUnit) {
         convert(distance, outputUnit, distance);
     }
 
@@ -112,10 +109,8 @@ public class DistanceConverter {
      * @param result     distance instance where result will be stored.
      */
     public static void convert(
-            final Distance input, final DistanceUnit outputUnit,
-            final Distance result) {
-        final Number value = convert(input.getValue(), input.getUnit(),
-                outputUnit);
+            final Distance input, final DistanceUnit outputUnit, final Distance result) {
+        final var value = convert(input.getValue(), input.getUnit(), outputUnit);
         result.setValue(value);
         result.setUnit(outputUnit);
     }
@@ -128,9 +123,7 @@ public class DistanceConverter {
      * @param outputUnit output distance unit.
      * @return converted distance value.
      */
-    public static Number convert(
-            final Number input, final DistanceUnit inputUnit,
-            final DistanceUnit outputUnit) {
+    public static Number convert(final Number input, final DistanceUnit inputUnit, final DistanceUnit outputUnit) {
         return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit, outputUnit));
     }
 
@@ -143,62 +136,30 @@ public class DistanceConverter {
      * @return converted distance value.
      */
     public static double convert(
-            final double input, final DistanceUnit inputUnit,
-            final DistanceUnit outputUnit) {
-        double meters;
-
+            final double input, final DistanceUnit inputUnit, final DistanceUnit outputUnit) {
         // convert to meters
-        switch (inputUnit) {
-            case MILLIMETER:
-                meters = millimeterToMeter(input);
-                break;
-            case CENTIMETER:
-                meters = centimeterToMeter(input);
-                break;
-            case KILOMETER:
-                meters = kilometerToMeter(input);
-                break;
-            case INCH:
-                meters = inchToMeter(input);
-                break;
-            case FOOT:
-                meters = footToMeter(input);
-                break;
-            case YARD:
-                meters = yardToMeter(input);
-                break;
-            case MILE:
-                meters = mileToMeter(input);
-                break;
-
-            case METER:
-            default:
-                meters = input;
-                break;
-        }
+        final var meters = switch (inputUnit) {
+            case MILLIMETER -> millimeterToMeter(input);
+            case CENTIMETER -> centimeterToMeter(input);
+            case KILOMETER -> kilometerToMeter(input);
+            case INCH -> inchToMeter(input);
+            case FOOT -> footToMeter(input);
+            case YARD -> yardToMeter(input);
+            case MILE -> mileToMeter(input);
+            default -> input;
+        };
 
         // convert from meter to required output unit
-        switch (outputUnit) {
-            case MILLIMETER:
-                return meterToMillimeter(meters);
-            case CENTIMETER:
-                return meterToCentimeter(meters);
-            case KILOMETER:
-                return meterToKilometer(meters);
-            case INCH:
-                return meterToInch(meters);
-            case FOOT:
-                return meterToFoot(meters);
-            case YARD:
-                return meterToYard(meters);
-            case MILE:
-                return meterToMile(meters);
-
-            case METER:
-            default:
-                return meters;
-
-        }
+        return switch (outputUnit) {
+            case MILLIMETER -> meterToMillimeter(meters);
+            case CENTIMETER -> meterToCentimeter(meters);
+            case KILOMETER -> meterToKilometer(meters);
+            case INCH -> meterToInch(meters);
+            case FOOT -> meterToFoot(meters);
+            case YARD -> meterToYard(meters);
+            case MILE -> meterToMile(meters);
+            default -> meters;
+        };
     }
 
     /**

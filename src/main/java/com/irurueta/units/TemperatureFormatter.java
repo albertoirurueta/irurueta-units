@@ -59,7 +59,7 @@ public class TemperatureFormatter extends MeasureFormatter<Temperature, Temperat
      */
     @Override
     public boolean equals(final Object obj) {
-        final boolean equals = super.equals(obj);
+        final var equals = super.equals(obj);
         return (obj instanceof TemperatureFormatter) && equals;
     }
 
@@ -86,7 +86,7 @@ public class TemperatureFormatter extends MeasureFormatter<Temperature, Temperat
      */
     @Override
     public UnitSystem getUnitSystem(final String source) {
-        final TemperatureUnit unit = findUnit(source);
+        final var unit = findUnit(source);
         return unit != null ? TemperatureUnit.getUnitSystem(unit) : null;
     }
 
@@ -99,8 +99,7 @@ public class TemperatureFormatter extends MeasureFormatter<Temperature, Temperat
      * @throws UnknownUnitException if unit cannot be determined.
      */
     @Override
-    public Temperature parse(final String source) throws ParseException,
-            UnknownUnitException {
+    public Temperature parse(final String source) throws ParseException, UnknownUnitException {
         return internalParse(source, new Temperature());
     }
 
@@ -141,9 +140,7 @@ public class TemperatureFormatter extends MeasureFormatter<Temperature, Temperat
      * @return a string representation of temperature value and unit.
      */
     @Override
-    public String formatAndConvert(
-            final Number value, final TemperatureUnit unit,
-            final UnitSystem system) {
+    public String formatAndConvert(final Number value, final TemperatureUnit unit, final UnitSystem system) {
         return format(value, unit);
     }
 
@@ -155,14 +152,10 @@ public class TemperatureFormatter extends MeasureFormatter<Temperature, Temperat
      */
     @Override
     public String getUnitSymbol(final TemperatureUnit unit) {
-        switch (unit) {
-            case FAHRENHEIT:
-                return FAHRENHEIT;
-            case CELSIUS:
-                return CELSIUS;
-            case KELVIN:
-            default:
-                return KELVIN;
-        }
+        return switch (unit) {
+            case FAHRENHEIT -> FAHRENHEIT;
+            case CELSIUS -> CELSIUS;
+            default -> KELVIN;
+        };
     }
 }

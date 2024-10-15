@@ -22,8 +22,7 @@ import java.util.Locale;
 /**
  * Formats and parses acceleration value and unit.
  */
-public class AccelerationFormatter extends
-        MeasureFormatter<Acceleration, AccelerationUnit> {
+public class AccelerationFormatter extends MeasureFormatter<Acceleration, AccelerationUnit> {
 
     /**
      * Meters per squared second symbol.
@@ -75,7 +74,7 @@ public class AccelerationFormatter extends
      */
     @Override
     public boolean equals(final Object obj) {
-        final boolean equals = super.equals(obj);
+        final var equals = super.equals(obj);
         return (obj instanceof AccelerationFormatter) && equals;
     }
 
@@ -97,7 +96,7 @@ public class AccelerationFormatter extends
      * @return a unit system (either metric or imperial) or null if unit cannot be determined.
      */
     public UnitSystem getUnitSystem(final String source) {
-        final AccelerationUnit unit = findUnit(source);
+        final var unit = findUnit(source);
         return unit != null ? AccelerationUnit.getUnitSystem(unit) : null;
     }
 
@@ -110,8 +109,7 @@ public class AccelerationFormatter extends
      * @throws UnknownUnitException if unit cannot be determined.
      */
     @Override
-    public Acceleration parse(final String source) throws ParseException,
-            UnknownUnitException {
+    public Acceleration parse(final String source) throws ParseException, UnknownUnitException {
         return internalParse(source, new Acceleration());
     }
 
@@ -123,15 +121,13 @@ public class AccelerationFormatter extends
      */
     @Override
     public AccelerationUnit findUnit(final String source) {
-        if (source.contains(METERS_PER_SQUARED_SECOND + " ") ||
-                source.endsWith(METERS_PER_SQUARED_SECOND)) {
+        if (source.contains(METERS_PER_SQUARED_SECOND + " ") || source.endsWith(METERS_PER_SQUARED_SECOND)) {
             return AccelerationUnit.METERS_PER_SQUARED_SECOND;
         }
         if (source.contains(G + " ") || source.endsWith(G)) {
             return AccelerationUnit.G;
         }
-        if (source.contains(FEET_PER_SQUARED_SECOND + " ") ||
-                source.endsWith(FEET_PER_SQUARED_SECOND)) {
+        if (source.contains(FEET_PER_SQUARED_SECOND + " ") || source.endsWith(FEET_PER_SQUARED_SECOND)) {
             return AccelerationUnit.FEET_PER_SQUARED_SECOND;
         }
         return null;
@@ -148,14 +144,11 @@ public class AccelerationFormatter extends
      * @return a string representation of acceleration value and unit.
      */
     public String formatAndConvert(
-            final Number value, final AccelerationUnit unit,
-            final UnitSystem system) {
-        switch (system) {
-            case IMPERIAL:
-                return formatAndConvertImperial(value, unit);
-            case METRIC:
-            default:
-                return formatAndConvertMetric(value, unit);
+            final Number value, final AccelerationUnit unit, final UnitSystem system) {
+        if (system == UnitSystem.IMPERIAL) {
+            return formatAndConvertImperial(value, unit);
+        } else {
+            return formatAndConvertMetric(value, unit);
         }
     }
 
@@ -166,11 +159,9 @@ public class AccelerationFormatter extends
      * @param unit  an acceleration unit.
      * @return a string representation of acceleration value and unit using metric unit system.
      */
-    public String formatAndConvertMetric(
-            final Number value, final AccelerationUnit unit) {
+    public String formatAndConvertMetric(final Number value, final AccelerationUnit unit) {
         //always format as meters per squared second
-        return format(AccelerationConverter.convert(value, unit,
-                        AccelerationUnit.METERS_PER_SQUARED_SECOND),
+        return format(AccelerationConverter.convert(value, unit, AccelerationUnit.METERS_PER_SQUARED_SECOND),
                 AccelerationUnit.METERS_PER_SQUARED_SECOND);
     }
 
@@ -181,11 +172,9 @@ public class AccelerationFormatter extends
      * @param unit  an acceleration unit.
      * @return a string representation of acceleration value and unit using imperial unit system.
      */
-    public String formatAndConvertImperial(
-            final Number value, final AccelerationUnit unit) {
+    public String formatAndConvertImperial(final Number value, final AccelerationUnit unit) {
         //always format as feet per squared second
-        return format(AccelerationConverter.convert(value, unit,
-                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
+        return format(AccelerationConverter.convert(value, unit, AccelerationUnit.FEET_PER_SQUARED_SECOND),
                 AccelerationUnit.FEET_PER_SQUARED_SECOND);
     }
 
@@ -197,14 +186,10 @@ public class AccelerationFormatter extends
      */
     @Override
     public String getUnitSymbol(final AccelerationUnit unit) {
-        switch (unit) {
-            case FEET_PER_SQUARED_SECOND:
-                return FEET_PER_SQUARED_SECOND;
-            case G:
-                return G;
-            case METERS_PER_SQUARED_SECOND:
-            default:
-                return METERS_PER_SQUARED_SECOND;
-        }
+        return switch (unit) {
+            case FEET_PER_SQUARED_SECOND -> FEET_PER_SQUARED_SECOND;
+            case G -> G;
+            default -> METERS_PER_SQUARED_SECOND;
+        };
     }
 }

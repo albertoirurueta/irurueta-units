@@ -15,18 +15,18 @@
  */
 package com.irurueta.units;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Locale;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class UnitLocaleTest {
+class UnitLocaleTest {
 
     @Test
-    public void testGetDefault() {
-        final Locale defaultLocale = Locale.getDefault();
-        boolean isImperial = "US".equals(defaultLocale.getCountry()) ||
+    void testGetDefault() {
+        final var defaultLocale = Locale.getDefault();
+        var isImperial = "US".equals(defaultLocale.getCountry()) ||
                 "LR".equals(defaultLocale.getCountry()) ||
                 "MM".equals(defaultLocale.getCountry());
 
@@ -34,8 +34,8 @@ public class UnitLocaleTest {
     }
 
     @Test
-    public void testGetFrom() {
-        Locale l = new Locale("en", UnitLocale.USA);
+    void testGetFrom() {
+        var l = new Locale("en", UnitLocale.USA);
         assertEquals(UnitSystem.IMPERIAL, UnitLocale.getFrom(l));
 
         l = new Locale("en", UnitLocale.LIBERIA);

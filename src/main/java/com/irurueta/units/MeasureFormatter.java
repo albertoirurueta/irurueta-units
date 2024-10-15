@@ -37,37 +37,36 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * Default pattern to format values and units together into a single string.
      * {0} corresponds to the value, {1} corresponds to the unit part.
      */
-    public static final String DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN =
-            "{0} {1}";
+    public static final String DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN = "{0} {1}";
 
     /**
      * Internal string formatter.
      */
-    NumberFormat mNumberFormat;
+    NumberFormat numberFormat;
 
     /**
      * Internal string formatter.
      */
-    private MessageFormat mFormat;
+    private MessageFormat format;
 
     /**
      * Internal locale.
      */
-    private Locale mLocale;
+    private Locale locale;
 
     /**
      * Pattern to format values and unit together into a single string. {0} corresponds to
      * the value, {1} corresponds to the unit part.
      */
-    private String mValueAndUnitFormatPattern;
+    private String valueAndUnitFormatPattern;
 
     /**
      * Constructor.
      */
     MeasureFormatter() {
-        mNumberFormat = NumberFormat.getInstance();
-        mLocale = Locale.getDefault();
-        mValueAndUnitFormatPattern = DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN;
+        numberFormat = NumberFormat.getInstance();
+        locale = Locale.getDefault();
+        valueAndUnitFormatPattern = DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN;
     }
 
     /**
@@ -81,9 +80,9 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
             throw new IllegalArgumentException();
         }
 
-        mNumberFormat = NumberFormat.getInstance(locale);
-        mLocale = locale;
-        mValueAndUnitFormatPattern = DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN;
+        numberFormat = NumberFormat.getInstance(locale);
+        this.locale = locale;
+        valueAndUnitFormatPattern = DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN;
     }
 
     /**
@@ -106,10 +105,10 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
         }
 
         //noinspection unchecked
-        final MeasureFormatter<M, U> other = (MeasureFormatter<M, U>) obj;
-        return mNumberFormat.equals(other.mNumberFormat) &&
-                mLocale.equals(other.mLocale) &&
-                mValueAndUnitFormatPattern.equals(other.mValueAndUnitFormatPattern);
+        final var other = (MeasureFormatter<M, U>) obj;
+        return numberFormat.equals(other.numberFormat) &&
+                locale.equals(other.locale) &&
+                valueAndUnitFormatPattern.equals(other.valueAndUnitFormatPattern);
     }
 
     /**
@@ -120,7 +119,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      */
     @Override
     public int hashCode() {
-        return Objects.hash(mNumberFormat, mFormat, mLocale, mValueAndUnitFormatPattern);
+        return Objects.hash(numberFormat, format, locale, valueAndUnitFormatPattern);
     }
 
     /**
@@ -131,8 +130,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @return string representation of provided measurement value and unit.
      */
     public String format(final Number value, final U unit) {
-        return MessageFormat.format(mValueAndUnitFormatPattern,
-                mNumberFormat.format(value), getUnitSymbol(unit));
+        return MessageFormat.format(valueAndUnitFormatPattern, numberFormat.format(value), getUnitSymbol(unit));
     }
 
     /**
@@ -148,11 +146,10 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
     public StringBuffer format(
             final Number value, final U unit,
             final StringBuffer toAppendTo, final FieldPosition pos) {
-        if (mFormat == null) {
-            mFormat = new MessageFormat(mValueAndUnitFormatPattern);
+        if (format == null) {
+            format = new MessageFormat(valueAndUnitFormatPattern);
         }
-        return mFormat.format(new Object[]{mNumberFormat.format(value),
-                getUnitSymbol(unit)}, toAppendTo, pos);
+        return format.format(new Object[]{numberFormat.format(value), getUnitSymbol(unit)}, toAppendTo, pos);
     }
 
     /**
@@ -177,8 +174,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @return provided string buffer where result is appended.
      */
     public StringBuffer format(
-            final double value, final U unit,
-            final StringBuffer toAppendTo, final FieldPosition pos) {
+            final double value, final U unit, final StringBuffer toAppendTo, final FieldPosition pos) {
         return format(BigDecimal.valueOf(value), unit, toAppendTo, pos);
     }
 
@@ -202,10 +198,8 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @return provided string buffer where result is appended.
      */
     public StringBuffer format(
-            final M measurement, final StringBuffer toAppendTo,
-            final FieldPosition pos) {
-        return format(measurement.getValue(), measurement.getUnit(),
-                toAppendTo, pos);
+            final M measurement, final StringBuffer toAppendTo, final FieldPosition pos) {
+        return format(measurement.getValue(), measurement.getUnit(), toAppendTo, pos);
     }
 
     /**
@@ -249,8 +243,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @return a string representation of measurement value and unit.
      */
     public String formatAndConvert(final M measurement) {
-        return formatAndConvert(measurement.getValue(),
-                measurement.getUnit());
+        return formatAndConvert(measurement.getValue(), measurement.getUnit());
     }
 
     /**
@@ -265,8 +258,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @param system system unit to convert measurement to.
      * @return a string representation of measurement value and unit.
      */
-    public abstract String formatAndConvert(
-            final Number value, final U unit, final UnitSystem system);
+    public abstract String formatAndConvert(final Number value, final U unit, final UnitSystem system);
 
     /**
      * Formats and converts provided measurement value and unit using provided
@@ -280,8 +272,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @param system system unit to convert measurement to.
      * @return a string representation of measurement value and unit.
      */
-    public String formatAndConvert(
-            final double value, final U unit, final UnitSystem system) {
+    public String formatAndConvert(final double value, final U unit, final UnitSystem system) {
         return formatAndConvert(BigDecimal.valueOf(value), unit, system);
     }
 
@@ -295,10 +286,8 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @param unitSystem  system unit to convert measurement to.
      * @return a string representation of measurement value and unit.
      */
-    public String formatAndConvert(
-            final M measurement, final UnitSystem unitSystem) {
-        return formatAndConvert(measurement.getValue(),
-                measurement.getUnit(), unitSystem);
+    public String formatAndConvert(final M measurement, final UnitSystem unitSystem) {
+        return formatAndConvert(measurement.getValue(), measurement.getUnit(), unitSystem);
     }
 
     /**
@@ -318,7 +307,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @return a locale.
      */
     public Locale getLocale() {
-        return mLocale;
+        return locale;
     }
 
     /**
@@ -327,7 +316,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @return maximum fraction digits.
      */
     public int getMaximumFractionDigits() {
-        return mNumberFormat.getMaximumFractionDigits();
+        return numberFormat.getMaximumFractionDigits();
     }
 
     /**
@@ -336,7 +325,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @param newValue maximum fraction digits to be set.
      */
     public void setMaximumFractionDigits(final int newValue) {
-        mNumberFormat.setMaximumFractionDigits(newValue);
+        numberFormat.setMaximumFractionDigits(newValue);
     }
 
     /**
@@ -345,7 +334,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @return maximum integer digits.
      */
     public int getMaximumIntegerDigits() {
-        return mNumberFormat.getMaximumIntegerDigits();
+        return numberFormat.getMaximumIntegerDigits();
     }
 
     /**
@@ -354,7 +343,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @param newValue maximum integer digits to be set.
      */
     public void setMaximumIntegerDigits(final int newValue) {
-        mNumberFormat.setMaximumIntegerDigits(newValue);
+        numberFormat.setMaximumIntegerDigits(newValue);
     }
 
     /**
@@ -363,7 +352,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @return minimum fraction digits.
      */
     public int getMinimumFractionDigits() {
-        return mNumberFormat.getMinimumFractionDigits();
+        return numberFormat.getMinimumFractionDigits();
     }
 
     /**
@@ -372,7 +361,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @param newValue minimum fraction digits to be set.
      */
     public void setMinimumFractionDigits(final int newValue) {
-        mNumberFormat.setMinimumFractionDigits(newValue);
+        numberFormat.setMinimumFractionDigits(newValue);
     }
 
     /**
@@ -381,7 +370,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @return minimum integer digits.
      */
     public int getMinimumIntegerDigits() {
-        return mNumberFormat.getMinimumIntegerDigits();
+        return numberFormat.getMinimumIntegerDigits();
     }
 
     /**
@@ -390,7 +379,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @param newValue minimum integer digits to be set.
      */
     public void setMinimumIntegerDigits(final int newValue) {
-        mNumberFormat.setMinimumIntegerDigits(newValue);
+        numberFormat.setMinimumIntegerDigits(newValue);
     }
 
     /**
@@ -399,7 +388,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @return rounding mode to be used when formatting a measure.
      */
     public RoundingMode getRoundingMode() {
-        return mNumberFormat.getRoundingMode();
+        return numberFormat.getRoundingMode();
     }
 
     /**
@@ -408,7 +397,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @param roundingMode rounding mode to be set.
      */
     public void setRoundingMode(final RoundingMode roundingMode) {
-        mNumberFormat.setRoundingMode(roundingMode);
+        numberFormat.setRoundingMode(roundingMode);
     }
 
     /**
@@ -417,7 +406,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @return true if grouping is used, false otherwise.
      */
     public boolean isGroupingUsed() {
-        return mNumberFormat.isGroupingUsed();
+        return numberFormat.isGroupingUsed();
     }
 
     /**
@@ -426,7 +415,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @param newValue true if grouping is enabled, false otherwise.
      */
     public void setGroupingUsed(final boolean newValue) {
-        mNumberFormat.setGroupingUsed(newValue);
+        numberFormat.setGroupingUsed(newValue);
     }
 
     /**
@@ -435,7 +424,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @return true if only integer values are parsed, false otherwise.
      */
     public boolean isParseIntegerOnly() {
-        return mNumberFormat.isParseIntegerOnly();
+        return numberFormat.isParseIntegerOnly();
     }
 
     /**
@@ -444,7 +433,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @param value if true only integer values will be parsed.
      */
     public void setParseIntegerOnly(final boolean value) {
-        mNumberFormat.setParseIntegerOnly(value);
+        numberFormat.setParseIntegerOnly(value);
     }
 
     /**
@@ -454,7 +443,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @return pattern to format values and unit together.
      */
     public String getValueAndUnitFormatPattern() {
-        return mValueAndUnitFormatPattern;
+        return valueAndUnitFormatPattern;
     }
 
     /**
@@ -465,12 +454,11 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      *                                  together.
      * @throws IllegalArgumentException if provided pattern is null.
      */
-    public void setValueAndUnitFormatPattern(
-            final String valueAndUnitFormatPattern) {
+    public void setValueAndUnitFormatPattern(final String valueAndUnitFormatPattern) {
         if (valueAndUnitFormatPattern == null) {
             throw new IllegalArgumentException();
         }
-        mValueAndUnitFormatPattern = valueAndUnitFormatPattern;
+        this.valueAndUnitFormatPattern = valueAndUnitFormatPattern;
     }
 
     /**
@@ -481,7 +469,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @return unit system this instance will use.
      */
     public UnitSystem getUnitSystem() {
-        return UnitLocale.getFrom(mLocale);
+        return UnitLocale.getFrom(locale);
     }
 
     /**
@@ -506,7 +494,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      */
     public boolean isValidMeasurement(final String source) {
         try {
-            mNumberFormat.parse(source);
+            numberFormat.parse(source);
             return isValidUnit(source);
         } catch (final ParseException e) {
             return false;
@@ -556,8 +544,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @throws ParseException       if parsing failed.
      * @throws UnknownUnitException if unit cannot be determined.
      */
-    public abstract M parse(final String source)
-            throws ParseException, UnknownUnitException;
+    public abstract M parse(final String source) throws ParseException, UnknownUnitException;
 
     /**
      * Finds measure unit from within a measurement string representation.
@@ -584,9 +571,8 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @throws ParseException       if parsing failed.
      * @throws UnknownUnitException if unit cannot be determined.
      */
-    M internalParse(final String source, final M measure)
-            throws ParseException, UnknownUnitException {
-        measure.setValue(mNumberFormat.parse(source));
+    M internalParse(final String source, final M measure) throws ParseException, UnknownUnitException {
+        measure.setValue(numberFormat.parse(source));
         try {
             measure.setUnit(findUnit(source));
         } catch (final IllegalArgumentException e) {
@@ -601,14 +587,13 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @param copy an instantiated copy of a measure formatter that needs to be initialized.
      * @return provided copy.
      */
-    MeasureFormatter<M, U> internalClone(
-            final MeasureFormatter<M, U> copy) {
-        copy.mNumberFormat = (NumberFormat) mNumberFormat.clone();
-        if (mFormat != null) {
-            copy.mFormat = (MessageFormat) mFormat.clone();
+    MeasureFormatter<M, U> internalClone(final MeasureFormatter<M, U> copy) {
+        copy.numberFormat = (NumberFormat) numberFormat.clone();
+        if (format != null) {
+            copy.format = (MessageFormat) format.clone();
         }
-        if (mLocale != null) {
-            copy.mLocale = (Locale) mLocale.clone();
+        if (locale != null) {
+            copy.locale = (Locale) locale.clone();
         }
         return copy;
     }

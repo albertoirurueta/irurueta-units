@@ -15,45 +15,33 @@
  */
 package com.irurueta.units;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class DistanceUnitTest {
+class DistanceUnitTest {
 
     @Test
-    public void testGetUnitSystem() {
-        assertEquals(UnitSystem.METRIC,
-                DistanceUnit.getUnitSystem(DistanceUnit.MILLIMETER));
-        assertEquals(UnitSystem.METRIC,
-                DistanceUnit.getUnitSystem(DistanceUnit.CENTIMETER));
-        assertEquals(UnitSystem.METRIC,
-                DistanceUnit.getUnitSystem(DistanceUnit.METER));
-        assertEquals(UnitSystem.METRIC,
-                DistanceUnit.getUnitSystem(DistanceUnit.KILOMETER));
-        assertEquals(UnitSystem.IMPERIAL,
-                DistanceUnit.getUnitSystem(DistanceUnit.INCH));
-        assertEquals(UnitSystem.IMPERIAL,
-                DistanceUnit.getUnitSystem(DistanceUnit.FOOT));
-        assertEquals(UnitSystem.IMPERIAL,
-                DistanceUnit.getUnitSystem(DistanceUnit.YARD));
-        assertEquals(UnitSystem.IMPERIAL,
-                DistanceUnit.getUnitSystem(DistanceUnit.MILE));
+    void testGetUnitSystem() {
+        assertEquals(UnitSystem.METRIC, DistanceUnit.getUnitSystem(DistanceUnit.MILLIMETER));
+        assertEquals(UnitSystem.METRIC, DistanceUnit.getUnitSystem(DistanceUnit.CENTIMETER));
+        assertEquals(UnitSystem.METRIC, DistanceUnit.getUnitSystem(DistanceUnit.METER));
+        assertEquals(UnitSystem.METRIC, DistanceUnit.getUnitSystem(DistanceUnit.KILOMETER));
+        assertEquals(UnitSystem.IMPERIAL, DistanceUnit.getUnitSystem(DistanceUnit.INCH));
+        assertEquals(UnitSystem.IMPERIAL, DistanceUnit.getUnitSystem(DistanceUnit.FOOT));
+        assertEquals(UnitSystem.IMPERIAL, DistanceUnit.getUnitSystem(DistanceUnit.YARD));
+        assertEquals(UnitSystem.IMPERIAL, DistanceUnit.getUnitSystem(DistanceUnit.MILE));
 
         // Force IllegalArgumentException
-        try {
-            DistanceUnit.getUnitSystem(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> DistanceUnit.getUnitSystem(null));
     }
 
     @Test
-    public void testGetMetricUnits() {
-        final DistanceUnit[] metricUnits = DistanceUnit.getMetricUnits();
-        final DistanceUnit[] imperialUnits = DistanceUnit.getImperialUnits();
+    void testGetMetricUnits() {
+        final var metricUnits = DistanceUnit.getMetricUnits();
+        final var imperialUnits = DistanceUnit.getImperialUnits();
 
-        for (final DistanceUnit metricUnit : metricUnits) {
+        for (final var metricUnit : metricUnits) {
             assertTrue(DistanceUnit.isMetric(metricUnit));
             assertFalse(DistanceUnit.isImperial(metricUnit));
         }
@@ -62,11 +50,11 @@ public class DistanceUnitTest {
     }
 
     @Test
-    public void testGetImperialUnits() {
-        final DistanceUnit[] metricUnits = DistanceUnit.getMetricUnits();
-        final DistanceUnit[] imperialUnits = DistanceUnit.getImperialUnits();
+    void testGetImperialUnits() {
+        final var metricUnits = DistanceUnit.getMetricUnits();
+        final var imperialUnits = DistanceUnit.getImperialUnits();
 
-        for (final DistanceUnit imperialUnit : imperialUnits) {
+        for (final var imperialUnit : imperialUnits) {
             assertTrue(DistanceUnit.isImperial(imperialUnit));
             assertFalse(DistanceUnit.isMetric(imperialUnit));
         }
@@ -75,7 +63,7 @@ public class DistanceUnitTest {
     }
 
     @Test
-    public void testIsMetric() {
+    void testIsMetric() {
         assertTrue(DistanceUnit.isMetric(DistanceUnit.MILLIMETER));
         assertTrue(DistanceUnit.isMetric(DistanceUnit.CENTIMETER));
         assertTrue(DistanceUnit.isMetric(DistanceUnit.METER));
@@ -86,16 +74,11 @@ public class DistanceUnitTest {
         assertFalse(DistanceUnit.isMetric(DistanceUnit.MILE));
 
         // Force IllegalArgumentException
-        try {
-            // noinspection ResultOfMethodCallIgnored
-            DistanceUnit.isMetric(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> DistanceUnit.isMetric(null));
     }
 
     @Test
-    public void testIsImperial() {
+    void testIsImperial() {
         assertFalse(DistanceUnit.isImperial(DistanceUnit.MILLIMETER));
         assertFalse(DistanceUnit.isImperial(DistanceUnit.CENTIMETER));
         assertFalse(DistanceUnit.isImperial(DistanceUnit.METER));
@@ -106,11 +89,6 @@ public class DistanceUnitTest {
         assertTrue(DistanceUnit.isImperial(DistanceUnit.MILE));
 
         // Force IllegalArgumentException
-        try {
-            // noinspection ResultOfMethodCallIgnored
-            DistanceUnit.isImperial(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> DistanceUnit.isImperial(null));
     }
 }

@@ -51,22 +51,15 @@ public enum SpeedUnit {
      * @return unit system (metric or imperial).
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static UnitSystem getUnitSystem(
-            final SpeedUnit unit) {
+    public static UnitSystem getUnitSystem(final SpeedUnit unit) {
         if (unit == null) {
             throw new IllegalArgumentException();
         }
 
-        switch (unit) {
-            case FEET_PER_SECOND:
-            case MILES_PER_HOUR:
-                return UnitSystem.IMPERIAL;
-            case METERS_PER_SECOND:
-            case KILOMETERS_PER_HOUR:
-            case KILOMETERS_PER_SECOND:
-            default:
-                return UnitSystem.METRIC;
-        }
+        return switch (unit) {
+            case FEET_PER_SECOND, MILES_PER_HOUR -> UnitSystem.IMPERIAL;
+            default -> UnitSystem.METRIC;
+        };
     }
 
     /**
@@ -101,8 +94,7 @@ public enum SpeedUnit {
      * @return true if unit belongs to metric unit system.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isMetric(
-            final SpeedUnit unit) {
+    public static boolean isMetric(final SpeedUnit unit) {
         return getUnitSystem(unit) == UnitSystem.METRIC;
     }
 
@@ -113,8 +105,7 @@ public enum SpeedUnit {
      * @return true if unit belongs to imperial unit system.
      * @throws IllegalArgumentException if unit is null or not supported.
      */
-    public static boolean isImperial(
-            final SpeedUnit unit) {
+    public static boolean isImperial(final SpeedUnit unit) {
         return getUnitSystem(unit) == UnitSystem.IMPERIAL;
     }
 }

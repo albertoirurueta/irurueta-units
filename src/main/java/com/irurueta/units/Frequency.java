@@ -52,8 +52,7 @@ public class Frequency extends Measurement<FrequencyUnit> {
      */
     @Override
     public boolean equals(
-            final Measurement<FrequencyUnit> other,
-            final double tolerance) {
+            final Measurement<FrequencyUnit> other, final double tolerance) {
         if (super.equals(other, tolerance)) {
             return true;
         }
@@ -63,9 +62,7 @@ public class Frequency extends Measurement<FrequencyUnit> {
             return false;
         }
 
-        final double otherValue = FrequencyConverter.convert(
-                other.getValue().doubleValue(),
-                other.getUnit(), getUnit());
+        final var otherValue = FrequencyConverter.convert(other.getValue().doubleValue(), other.getUnit(), getUnit());
         return Math.abs(getValue().doubleValue() - otherValue) <= tolerance;
     }
 
@@ -83,8 +80,8 @@ public class Frequency extends Measurement<FrequencyUnit> {
             final double value1, final FrequencyUnit unit1,
             final double value2, final FrequencyUnit unit2,
             final FrequencyUnit resultUnit) {
-        final double v1 = FrequencyConverter.convert(value1, unit1, resultUnit);
-        final double v2 = FrequencyConverter.convert(value2, unit2, resultUnit);
+        final var v1 = FrequencyConverter.convert(value1, unit1, resultUnit);
+        final var v2 = FrequencyConverter.convert(value2, unit2, resultUnit);
         return v1 + v2;
     }
 
@@ -102,8 +99,7 @@ public class Frequency extends Measurement<FrequencyUnit> {
             final Number value1, final FrequencyUnit unit1,
             final Number value2, final FrequencyUnit unit2,
             final FrequencyUnit resultUnit) {
-        return BigDecimal.valueOf(add(value1.doubleValue(), unit1,
-                value2.doubleValue(), unit2, resultUnit));
+        return BigDecimal.valueOf(add(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));
     }
 
     /**
@@ -116,8 +112,7 @@ public class Frequency extends Measurement<FrequencyUnit> {
     public static void add(
             final Frequency arg1, final Frequency arg2,
             final Frequency result) {
-        result.setValue(add(arg1.getValue(), arg1.getUnit(),
-                arg2.getValue(), arg2.getUnit(), result.getUnit()));
+        result.setValue(add(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));
     }
 
     /**
@@ -128,10 +123,8 @@ public class Frequency extends Measurement<FrequencyUnit> {
      * @param unit unit of returned frequency.
      * @return a new instance containing result.
      */
-    public static Frequency addAndReturnNew(
-            final Frequency arg1, final Frequency arg2,
-            final FrequencyUnit unit) {
-        final Frequency result = new Frequency();
+    public static Frequency addAndReturnNew(final Frequency arg1, final Frequency arg2, final FrequencyUnit unit) {
+        final var result = new Frequency();
         result.setUnit(unit);
         add(arg1, arg2, result);
         return result;
@@ -146,13 +139,10 @@ public class Frequency extends Measurement<FrequencyUnit> {
      * @param resultUnit unit of returned frequency.
      * @return a new frequency containing result.
      */
-    public Frequency addAndReturnNew(
-            final double value, final FrequencyUnit unit,
-            final FrequencyUnit resultUnit) {
-        final Frequency result = new Frequency();
+    public Frequency addAndReturnNew(final double value, final FrequencyUnit unit, final FrequencyUnit resultUnit) {
+        final var result = new Frequency();
         result.setUnit(resultUnit);
-        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit,
-                resultUnit));
+        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 
@@ -165,10 +155,8 @@ public class Frequency extends Measurement<FrequencyUnit> {
      * @param resultUnit unit of returned frequency.
      * @return a new frequency containing result.
      */
-    public Frequency addAndReturnNew(
-            final Number value, final FrequencyUnit unit,
-            final FrequencyUnit resultUnit) {
-        final Frequency result = new Frequency();
+    public Frequency addAndReturnNew(final Number value, final FrequencyUnit unit, final FrequencyUnit resultUnit) {
+        final var result = new Frequency();
         result.setUnit(resultUnit);
         result.setValue(add(getValue(), getUnit(), value, unit, resultUnit));
         return result;
@@ -181,8 +169,7 @@ public class Frequency extends Measurement<FrequencyUnit> {
      * @param unit unit of returned frequency.
      * @return a new frequency containing result.
      */
-    public Frequency addAndReturnNew(
-            final Frequency f, final FrequencyUnit unit) {
+    public Frequency addAndReturnNew(final Frequency f, final FrequencyUnit unit) {
         return addAndReturnNew(this, f, unit);
     }
 
@@ -239,8 +226,8 @@ public class Frequency extends Measurement<FrequencyUnit> {
             final double value1, final FrequencyUnit unit1,
             final double value2, final FrequencyUnit unit2,
             final FrequencyUnit resultUnit) {
-        final double v1 = FrequencyConverter.convert(value1, unit1, resultUnit);
-        final double v2 = FrequencyConverter.convert(value2, unit2, resultUnit);
+        final var v1 = FrequencyConverter.convert(value1, unit1, resultUnit);
+        final var v2 = FrequencyConverter.convert(value2, unit2, resultUnit);
         return v1 - v2;
     }
 
@@ -258,8 +245,7 @@ public class Frequency extends Measurement<FrequencyUnit> {
             final Number value1, final FrequencyUnit unit1,
             final Number value2, final FrequencyUnit unit2,
             final FrequencyUnit resultUnit) {
-        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1,
-                value2.doubleValue(), unit2, resultUnit));
+        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));
     }
 
     /**
@@ -270,10 +256,8 @@ public class Frequency extends Measurement<FrequencyUnit> {
      * @param result instance where result will be stored.
      */
     public static void subtract(
-            final Frequency arg1, final Frequency arg2,
-            final Frequency result) {
-        result.setValue(subtract(arg1.getValue(), arg1.getUnit(),
-                arg2.getValue(), arg2.getUnit(), result.getUnit()));
+            final Frequency arg1, final Frequency arg2, final Frequency result) {
+        result.setValue(subtract(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));
     }
 
     /**
@@ -285,9 +269,8 @@ public class Frequency extends Measurement<FrequencyUnit> {
      * @return a new instance containing result.
      */
     public static Frequency subtractAndReturnNew(
-            final Frequency arg1, final Frequency arg2,
-            final FrequencyUnit unit) {
-        final Frequency result = new Frequency();
+            final Frequency arg1, final Frequency arg2, final FrequencyUnit unit) {
+        final var result = new Frequency();
         result.setUnit(unit);
         subtract(arg1, arg2, result);
         return result;
@@ -303,12 +286,10 @@ public class Frequency extends Measurement<FrequencyUnit> {
      * @return a new frequency containing result.
      */
     public Frequency subtractAndReturnNew(
-            final double value, final FrequencyUnit unit,
-            final FrequencyUnit resultUnit) {
-        final Frequency result = new Frequency();
+            final double value, final FrequencyUnit unit, final FrequencyUnit resultUnit) {
+        final var result = new Frequency();
         result.setUnit(resultUnit);
-        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit,
-                resultUnit));
+        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 
@@ -322,9 +303,8 @@ public class Frequency extends Measurement<FrequencyUnit> {
      * @return a new frequency containing result.
      */
     public Frequency subtractAndReturnNew(
-            final Number value, final FrequencyUnit unit,
-            final FrequencyUnit resultUnit) {
-        final Frequency result = new Frequency();
+            final Number value, final FrequencyUnit unit, final FrequencyUnit resultUnit) {
+        final var result = new Frequency();
         result.setUnit(resultUnit);
         result.setValue(subtract(getValue(), getUnit(), value, unit, resultUnit));
         return result;
@@ -337,8 +317,7 @@ public class Frequency extends Measurement<FrequencyUnit> {
      * @param unit unit of returned frequency.
      * @return a new frequency containing result.
      */
-    public Frequency subtractAndReturnNew(
-            final Frequency f, final FrequencyUnit unit) {
+    public Frequency subtractAndReturnNew(final Frequency f, final FrequencyUnit unit) {
         return subtractAndReturnNew(this, f, unit);
     }
 

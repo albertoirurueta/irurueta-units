@@ -19,7 +19,6 @@ package com.irurueta.units;
 import java.text.MessageFormat;
 import java.text.ParseException;
 import java.util.Locale;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -45,30 +44,27 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> {
     /**
      * Pattern to format degrees, minutes and seconds.
      */
-    private static final String DEGREES_MINUTES_AND_SECONDS_MESSAGE_PATTERN =
-            "{0}º {1}'' {2}\"";
+    private static final String DEGREES_MINUTES_AND_SECONDS_MESSAGE_PATTERN = "{0}º {1}'' {2}\"";
 
     /**
      * Pattern to parse degrees and minutes expressions.
      */
-    private static final String DEGREES_AND_MINUTES_PATTERN =
-            "^(-?[0-9]+)º(\\s+)(\\d+)'";
+    private static final String DEGREES_AND_MINUTES_PATTERN = "^(-?\\d+)º(\\s+)(\\d+)'";
 
     /**
      * Pattern to parse degrees, minutes and seconds expressions.
      */
-    private static final String DEGREES_MINUTES_AND_SECONDS_PATTERN =
-            "^(-?[0-9]+)º(\\s+)([0-9]+)'(\\s+)(\\d+)\"";
+    private static final String DEGREES_MINUTES_AND_SECONDS_PATTERN = "^(-?\\d+)º(\\s+)(\\d+)'(\\s+)(\\d+)\"";
 
     /**
      * Pattern to parse angle in degrees and decimal minutes format.
      */
-    private Pattern mDegreesAndMinutesPattern;
+    private Pattern degreesAndMinutesPattern;
 
     /**
      * Pattern to parse angle in degrees, minutes and decimal seconds format.
      */
-    private Pattern mDegreesMinutesAndSecondsPattern;
+    private Pattern degreesMinutesAndSecondsPattern;
 
     /**
      * Constructor.
@@ -95,8 +91,8 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> {
      */
     public AngleFormatter(final AngleFormatter formatter) {
         this(formatter.getLocale());
-        mDegreesAndMinutesPattern = formatter.mDegreesAndMinutesPattern;
-        mDegreesMinutesAndSecondsPattern = formatter.mDegreesMinutesAndSecondsPattern;
+        degreesAndMinutesPattern = formatter.degreesAndMinutesPattern;
+        degreesMinutesAndSecondsPattern = formatter.degreesMinutesAndSecondsPattern;
     }
 
     /**
@@ -107,7 +103,7 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> {
      */
     @Override
     public boolean equals(final Object obj) {
-        final boolean equals = super.equals(obj);
+        final var equals = super.equals(obj);
         return (obj instanceof AngleFormatter) && equals;
     }
 
@@ -130,7 +126,7 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> {
      */
     @Override
     public UnitSystem getUnitSystem(final String source) {
-        final AngleUnit unit = findUnit(source);
+        final var unit = findUnit(source);
         return unit != null ? UnitSystem.METRIC : null;
     }
 
@@ -143,8 +139,7 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> {
      * @throws UnknownUnitException if unit cannot be determined.
      */
     @Override
-    public Angle parse(final String source)
-            throws ParseException, UnknownUnitException {
+    public Angle parse(final String source) throws ParseException, UnknownUnitException {
         return internalParse(source, new Angle());
     }
 
@@ -175,9 +170,7 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> {
      * @return a string representation of angle value and unit.
      */
     @Override
-    public String formatAndConvert(
-            final Number value, final AngleUnit unit,
-            final UnitSystem system) {
+    public String formatAndConvert(final Number value, final AngleUnit unit, final UnitSystem system) {
         return format(value, unit);
     }
 
@@ -189,12 +182,10 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> {
      */
     @Override
     public String getUnitSymbol(final AngleUnit unit) {
-        switch (unit) {
-            case DEGREES:
-                return DEGREE;
-            case RADIANS:
-            default:
-                return RADIAN;
+        if (unit == AngleUnit.DEGREES) {
+            return DEGREE;
+        } else {
+            return RADIAN;
         }
     }
 
@@ -205,11 +196,10 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> {
      * @return string representation of provided angle expressed as degrees and decimal minutes.
      */
     public String formatDegreesAndMinutes(final Angle angle) {
-        final double[] degreesAndMinutes = AngleConverter.toDegreesAndMinutes(
-                angle);
+        final var degreesAndMinutes = AngleConverter.toDegreesAndMinutes(angle);
         return MessageFormat.format(DEGREES_AND_MINUTES_MESSAGE_PATTERN,
-                mNumberFormat.format(degreesAndMinutes[0]),
-                mNumberFormat.format(degreesAndMinutes[1]));
+                numberFormat.format(degreesAndMinutes[0]),
+                numberFormat.format(degreesAndMinutes[1]));
     }
 
     /**
@@ -219,12 +209,11 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> {
      * @return string representation of provided angle expressed as degrees, minutes and decimal seconds.
      */
     public String formatDegreesMinutesAndSeconds(final Angle angle) {
-        final double[] degreesMinutesAndSeconds =
-                AngleConverter.toDegreesMinutesAndSeconds(angle);
+        final var degreesMinutesAndSeconds = AngleConverter.toDegreesMinutesAndSeconds(angle);
         return MessageFormat.format(DEGREES_MINUTES_AND_SECONDS_MESSAGE_PATTERN,
-                mNumberFormat.format(degreesMinutesAndSeconds[0]),
-                mNumberFormat.format(degreesMinutesAndSeconds[1]),
-                mNumberFormat.format(degreesMinutesAndSeconds[2]));
+                numberFormat.format(degreesMinutesAndSeconds[0]),
+                numberFormat.format(degreesMinutesAndSeconds[1]),
+                numberFormat.format(degreesMinutesAndSeconds[2]));
     }
 
     /**
@@ -237,26 +226,24 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> {
      * @throws UnknownUnitException if format is not recognized.
      */
     @SuppressWarnings("Duplicates")
-    public Angle parseDegreesAndMinutes(final CharSequence source)
-            throws ParseException, UnknownUnitException {
-        if (mDegreesAndMinutesPattern == null) {
-            mDegreesAndMinutesPattern = Pattern.compile(DEGREES_AND_MINUTES_PATTERN);
+    public Angle parseDegreesAndMinutes(final CharSequence source) throws ParseException, UnknownUnitException {
+        if (degreesAndMinutesPattern == null) {
+            degreesAndMinutesPattern = Pattern.compile(DEGREES_AND_MINUTES_PATTERN);
         }
 
-        final Matcher matcher = mDegreesAndMinutesPattern.matcher(source);
+        final var matcher = degreesAndMinutesPattern.matcher(source);
         if (!matcher.matches()) {
             throw new UnknownUnitException();
         }
 
-        final String degreeString = matcher.group(1);
-        final String minuteString = matcher.group(3);
+        final var degreeString = matcher.group(1);
+        final var minuteString = matcher.group(3);
 
-        final Number degree = mNumberFormat.parse(degreeString);
-        final Number minute = mNumberFormat.parse(minuteString);
+        final var degree = numberFormat.parse(degreeString);
+        final var minute = numberFormat.parse(minuteString);
 
-        final double angle = AngleConverter.fromDegreesAndMinutes(
-                degree.intValue(), minute.doubleValue(),
-                AngleUnit.DEGREES);
+        final var angle = AngleConverter.fromDegreesAndMinutes(
+                degree.intValue(), minute.doubleValue(), AngleUnit.DEGREES);
         return new Angle(angle, AngleUnit.DEGREES);
     }
 
@@ -269,31 +256,26 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> {
      * @throws UnknownUnitException if format is not recognized.
      */
     @SuppressWarnings("Duplicates")
-    public Angle parseDegreesMinutesAndSeconds(
-            final CharSequence source) throws ParseException,
-            UnknownUnitException {
-        if (mDegreesMinutesAndSecondsPattern == null) {
-            mDegreesMinutesAndSecondsPattern = Pattern.compile(
-                    DEGREES_MINUTES_AND_SECONDS_PATTERN);
+    public Angle parseDegreesMinutesAndSeconds(final CharSequence source) throws ParseException, UnknownUnitException {
+        if (degreesMinutesAndSecondsPattern == null) {
+            degreesMinutesAndSecondsPattern = Pattern.compile(DEGREES_MINUTES_AND_SECONDS_PATTERN);
         }
 
-        final Matcher matcher = mDegreesMinutesAndSecondsPattern.matcher(
-                source);
+        final var matcher = degreesMinutesAndSecondsPattern.matcher(source);
         if (!matcher.matches()) {
             throw new UnknownUnitException();
         }
 
-        final String degreeString = matcher.group(1);
-        final String minuteString = matcher.group(3);
-        final String secondString = matcher.group(5);
+        final var degreeString = matcher.group(1);
+        final var minuteString = matcher.group(3);
+        final var secondString = matcher.group(5);
 
-        final Number degree = mNumberFormat.parse(degreeString);
-        final Number minute = mNumberFormat.parse(minuteString);
-        final Number second = mNumberFormat.parse(secondString);
+        final var degree = numberFormat.parse(degreeString);
+        final var minute = numberFormat.parse(minuteString);
+        final var second = numberFormat.parse(secondString);
 
-        final double angle = AngleConverter.fromDegreesMinutesAndSeconds(
-                degree.intValue(), minute.intValue(),
-                second.doubleValue(), AngleUnit.DEGREES);
+        final var angle = AngleConverter.fromDegreesMinutesAndSeconds(
+                degree.intValue(), minute.intValue(), second.doubleValue(), AngleUnit.DEGREES);
         return new Angle(angle, AngleUnit.DEGREES);
     }
 }

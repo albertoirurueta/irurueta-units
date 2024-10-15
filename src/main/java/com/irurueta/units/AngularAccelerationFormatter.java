@@ -21,8 +21,7 @@ import java.util.Locale;
 /**
  * Formats and parses angular acceleration value and unit.
  */
-public class AngularAccelerationFormatter extends
-        MeasureFormatter<AngularAcceleration, AngularAccelerationUnit> {
+public class AngularAccelerationFormatter extends MeasureFormatter<AngularAcceleration, AngularAccelerationUnit> {
 
     /**
      * Degrees per squared second symbol.
@@ -57,8 +56,7 @@ public class AngularAccelerationFormatter extends
      * @param formatter input instance to copy from.
      * @throws NullPointerException if provided formatter is null.
      */
-    public AngularAccelerationFormatter(
-            final AngularAccelerationFormatter formatter) {
+    public AngularAccelerationFormatter(final AngularAccelerationFormatter formatter) {
         this(formatter.getLocale());
     }
 
@@ -71,7 +69,7 @@ public class AngularAccelerationFormatter extends
      */
     @Override
     public boolean equals(final Object obj) {
-        final boolean equals = super.equals(obj);
+        final var equals = super.equals(obj);
         return (obj instanceof AngularAccelerationFormatter) && equals;
     }
 
@@ -96,7 +94,7 @@ public class AngularAccelerationFormatter extends
      */
     @Override
     public UnitSystem getUnitSystem(final String source) {
-        final AngularAccelerationUnit unit = findUnit(source);
+        final var unit = findUnit(source);
         return unit != null ? UnitSystem.METRIC : null;
     }
 
@@ -110,8 +108,7 @@ public class AngularAccelerationFormatter extends
      * @throws UnknownUnitException if unit cannot be determined.
      */
     @Override
-    public AngularAcceleration parse(final String source)
-            throws ParseException, UnknownUnitException {
+    public AngularAcceleration parse(final String source) throws ParseException, UnknownUnitException {
         return internalParse(source, new AngularAcceleration());
     }
 
@@ -124,12 +121,10 @@ public class AngularAccelerationFormatter extends
      */
     @Override
     public AngularAccelerationUnit findUnit(final String source) {
-        if (source.contains(DEGREES_PER_SQUARED_SECOND + " ") ||
-                source.endsWith(DEGREES_PER_SQUARED_SECOND)) {
+        if (source.contains(DEGREES_PER_SQUARED_SECOND + " ") || source.endsWith(DEGREES_PER_SQUARED_SECOND)) {
             return AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND;
         }
-        if (source.contains(RADIANS_PER_SQUARED_SECOND + " ") ||
-                source.endsWith(RADIANS_PER_SQUARED_SECOND)) {
+        if (source.contains(RADIANS_PER_SQUARED_SECOND + " ") || source.endsWith(RADIANS_PER_SQUARED_SECOND)) {
             return AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND;
         }
         return null;
@@ -146,9 +141,7 @@ public class AngularAccelerationFormatter extends
      * @return a string representation of angular acceleration value and unit.
      */
     @Override
-    public String formatAndConvert(
-            final Number value, final AngularAccelerationUnit unit,
-            final UnitSystem system) {
+    public String formatAndConvert(final Number value, final AngularAccelerationUnit unit, final UnitSystem system) {
         return format(value, unit);
     }
 
@@ -159,12 +152,10 @@ public class AngularAccelerationFormatter extends
      * @return its string representation.
      */
     public String getUnitSymbol(final AngularAccelerationUnit unit) {
-        switch (unit) {
-            case DEGREES_PER_SQUARED_SECOND:
-                return DEGREES_PER_SQUARED_SECOND;
-            case RADIANS_PER_SQUARED_SECOND:
-            default:
-                return RADIANS_PER_SQUARED_SECOND;
+        if (unit == AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND) {
+            return DEGREES_PER_SQUARED_SECOND;
+        } else {
+            return RADIANS_PER_SQUARED_SECOND;
         }
     }
 }

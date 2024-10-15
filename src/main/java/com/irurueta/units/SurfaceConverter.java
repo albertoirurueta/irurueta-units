@@ -117,9 +117,8 @@ public class SurfaceConverter {
      * @param outputUnit requested output unit.
      * @return converted surface unit.
      */
-    public static Surface convertAndReturnNew(
-            final Surface input, final SurfaceUnit outputUnit) {
-        final Surface result = new Surface();
+    public static Surface convertAndReturnNew(final Surface input, final SurfaceUnit outputUnit) {
+        final var result = new Surface();
         convert(input, outputUnit, result);
         return result;
     }
@@ -130,8 +129,7 @@ public class SurfaceConverter {
      * @param surface    input surface to be converted and updated.
      * @param outputUnit requested output unit.
      */
-    public static void convert(
-            final Surface surface, final SurfaceUnit outputUnit) {
+    public static void convert(final Surface surface, final SurfaceUnit outputUnit) {
         convert(surface, outputUnit, surface);
     }
 
@@ -142,10 +140,8 @@ public class SurfaceConverter {
      * @param outputUnit requested output unit.
      * @param result     surface unit where result will be stored.
      */
-    public static void convert(
-            final Surface input, final SurfaceUnit outputUnit,
-            final Surface result) {
-        final Number value = convert(input.getValue(), input.getUnit(), outputUnit);
+    public static void convert(final Surface input, final SurfaceUnit outputUnit, final Surface result) {
+        final var value = convert(input.getValue(), input.getUnit(), outputUnit);
         result.setValue(value);
         result.setUnit(outputUnit);
     }
@@ -158,9 +154,7 @@ public class SurfaceConverter {
      * @param outputUnit output surface unit.
      * @return converted surface value.
      */
-    public static Number convert(
-            final Number input, final SurfaceUnit inputUnit,
-            final SurfaceUnit outputUnit) {
+    public static Number convert(final Number input, final SurfaceUnit inputUnit, final SurfaceUnit outputUnit) {
         return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit, outputUnit));
     }
 
@@ -172,87 +166,40 @@ public class SurfaceConverter {
      * @param outputUnit output surface unit.
      * @return converted surface value.
      */
-    public static double convert(
-            final double input, final SurfaceUnit inputUnit,
-            final SurfaceUnit outputUnit) {
-        double squareMeters;
-
+    public static double convert(final double input, final SurfaceUnit inputUnit, final SurfaceUnit outputUnit) {
         //convert to square meters.
-        switch (inputUnit) {
-            case SQUARE_MILLIMETER:
-                squareMeters = squareMillimeterToSquareMeter(input);
-                break;
-            case SQUARE_CENTIMETER:
-                squareMeters = squareCentimeterToSquareMeter(input);
-                break;
-            case SQUARE_KILOMETER:
-                squareMeters = squareKilometerToSquareMeter(input);
-                break;
-            case SQUARE_INCH:
-                squareMeters = squareInchToSquareMeter(input);
-                break;
-            case SQUARE_FOOT:
-                squareMeters = squareFootToSquareMeter(input);
-                break;
-            case SQUARE_YARD:
-                squareMeters = squareYardToSquareMeter(input);
-                break;
-            case SQUARE_MILE:
-                squareMeters = squareMileToSquareMeter(input);
-                break;
-            case CENTIARE:
-                squareMeters = centiareToSquareMeter(input);
-                break;
-            case ARE:
-                squareMeters = areToSquareMeter(input);
-                break;
-            case DECARE:
-                squareMeters = decareToSquareMeter(input);
-                break;
-            case HECTARE:
-                squareMeters = hectareToSquareMeter(input);
-                break;
-            case ACRE:
-                squareMeters = acreToSquareMeter(input);
-                break;
-
-            case SQUARE_METER:
-            default:
-                squareMeters = input;
-                break;
-        }
+        final var squareMeters = switch (inputUnit) {
+            case SQUARE_MILLIMETER -> squareMillimeterToSquareMeter(input);
+            case SQUARE_CENTIMETER -> squareCentimeterToSquareMeter(input);
+            case SQUARE_KILOMETER -> squareKilometerToSquareMeter(input);
+            case SQUARE_INCH -> squareInchToSquareMeter(input);
+            case SQUARE_FOOT -> squareFootToSquareMeter(input);
+            case SQUARE_YARD -> squareYardToSquareMeter(input);
+            case SQUARE_MILE -> squareMileToSquareMeter(input);
+            case CENTIARE -> centiareToSquareMeter(input);
+            case ARE -> areToSquareMeter(input);
+            case DECARE -> decareToSquareMeter(input);
+            case HECTARE -> hectareToSquareMeter(input);
+            case ACRE -> acreToSquareMeter(input);
+            default -> input;
+        };
 
         //convert from square meter to required output unit
-        switch (outputUnit) {
-            case SQUARE_MILLIMETER:
-                return squareMeterToSquareMillimeter(squareMeters);
-            case SQUARE_CENTIMETER:
-                return squareMeterToSquareCentimeter(squareMeters);
-            case SQUARE_KILOMETER:
-                return squareMeterToSquareKilometer(squareMeters);
-            case SQUARE_INCH:
-                return squareMeterToSquareInch(squareMeters);
-            case SQUARE_FOOT:
-                return squareMeterToSquareFoot(squareMeters);
-            case SQUARE_YARD:
-                return squareMeterToSquareYard(squareMeters);
-            case SQUARE_MILE:
-                return squareMeterToSquareMile(squareMeters);
-            case CENTIARE:
-                return squareMeterToCentiare(squareMeters);
-            case ARE:
-                return squareMeterToAre(squareMeters);
-            case DECARE:
-                return squareMeterToDecare(squareMeters);
-            case HECTARE:
-                return squareMeterToHectare(squareMeters);
-            case ACRE:
-                return squareMeterToAcre(squareMeters);
-
-            case SQUARE_METER:
-            default:
-                return squareMeters;
-        }
+        return switch (outputUnit) {
+            case SQUARE_MILLIMETER -> squareMeterToSquareMillimeter(squareMeters);
+            case SQUARE_CENTIMETER -> squareMeterToSquareCentimeter(squareMeters);
+            case SQUARE_KILOMETER -> squareMeterToSquareKilometer(squareMeters);
+            case SQUARE_INCH -> squareMeterToSquareInch(squareMeters);
+            case SQUARE_FOOT -> squareMeterToSquareFoot(squareMeters);
+            case SQUARE_YARD -> squareMeterToSquareYard(squareMeters);
+            case SQUARE_MILE -> squareMeterToSquareMile(squareMeters);
+            case CENTIARE -> squareMeterToCentiare(squareMeters);
+            case ARE -> squareMeterToAre(squareMeters);
+            case DECARE -> squareMeterToDecare(squareMeters);
+            case HECTARE -> squareMeterToHectare(squareMeters);
+            case ACRE -> squareMeterToAcre(squareMeters);
+            default -> squareMeters;
+        };
     }
 
     /**
@@ -261,8 +208,7 @@ public class SurfaceConverter {
      * @param squareMeter square meter value.
      * @return same surface converted to square millimeters.
      */
-    public static double squareMeterToSquareMillimeter(
-            final double squareMeter) {
+    public static double squareMeterToSquareMillimeter(final double squareMeter) {
         return squareMeter / SQUARE_METERS_PER_SQUARE_MILLIMETER;
     }
 
@@ -272,8 +218,7 @@ public class SurfaceConverter {
      * @param squareMillimeter square millimeter value.
      * @return same surface converted to square meters.
      */
-    public static double squareMillimeterToSquareMeter(
-            final double squareMillimeter) {
+    public static double squareMillimeterToSquareMeter(final double squareMillimeter) {
         return squareMillimeter * SQUARE_METERS_PER_SQUARE_MILLIMETER;
     }
 
@@ -283,8 +228,7 @@ public class SurfaceConverter {
      * @param squareMeter square meter value.
      * @return same surface converted to square centimeters.
      */
-    public static double squareMeterToSquareCentimeter(
-            final double squareMeter) {
+    public static double squareMeterToSquareCentimeter(final double squareMeter) {
         return squareMeter / SQUARE_METERS_PER_SQUARE_CENTIMETER;
     }
 
@@ -294,8 +238,7 @@ public class SurfaceConverter {
      * @param squareCentimeter square centimeter value.
      * @return same surface converted to square meters.
      */
-    public static double squareCentimeterToSquareMeter(
-            final double squareCentimeter) {
+    public static double squareCentimeterToSquareMeter(final double squareCentimeter) {
         return squareCentimeter * SQUARE_METERS_PER_SQUARE_CENTIMETER;
     }
 
@@ -305,8 +248,7 @@ public class SurfaceConverter {
      * @param squareMeter square meter value.
      * @return same surface converted to square kilometers.
      */
-    public static double squareMeterToSquareKilometer(
-            final double squareMeter) {
+    public static double squareMeterToSquareKilometer(final double squareMeter) {
         return squareMeter / SQUARE_METERS_PER_SQUARE_KILOMETER;
     }
 
@@ -316,8 +258,7 @@ public class SurfaceConverter {
      * @param squareKilometer square kilometer value.
      * @return same surface converted to square meters.
      */
-    public static double squareKilometerToSquareMeter(
-            final double squareKilometer) {
+    public static double squareKilometerToSquareMeter(final double squareKilometer) {
         return squareKilometer * SQUARE_METERS_PER_SQUARE_KILOMETER;
     }
 
@@ -327,8 +268,7 @@ public class SurfaceConverter {
      * @param squareMeter square meter value.
      * @return same surface converted to square inches.
      */
-    public static double squareMeterToSquareInch(
-            final double squareMeter) {
+    public static double squareMeterToSquareInch(final double squareMeter) {
         return squareMeter / SQUARE_METERS_PER_SQUARE_INCH;
     }
 
@@ -338,8 +278,7 @@ public class SurfaceConverter {
      * @param squareInch square inch value.
      * @return same surface converted to square meters.
      */
-    public static double squareInchToSquareMeter(
-            final double squareInch) {
+    public static double squareInchToSquareMeter(final double squareInch) {
         return squareInch * SQUARE_METERS_PER_SQUARE_INCH;
     }
 
@@ -349,8 +288,7 @@ public class SurfaceConverter {
      * @param squareMeter square meter value.
      * @return same surface converted to square feet.
      */
-    public static double squareMeterToSquareFoot(
-            final double squareMeter) {
+    public static double squareMeterToSquareFoot(final double squareMeter) {
         return squareMeter / SQUARE_METERS_PER_SQUARE_FOOT;
     }
 
@@ -370,8 +308,7 @@ public class SurfaceConverter {
      * @param squareMeter square meter value.
      * @return same surface converted to square yards.
      */
-    public static double squareMeterToSquareYard(
-            final double squareMeter) {
+    public static double squareMeterToSquareYard(final double squareMeter) {
         return squareMeter / SQUARE_METERS_PER_SQUARE_YARD;
     }
 
@@ -381,8 +318,7 @@ public class SurfaceConverter {
      * @param squareYard square yard value.
      * @return same surface converted to square meters.
      */
-    public static double squareYardToSquareMeter(
-            final double squareYard) {
+    public static double squareYardToSquareMeter(final double squareYard) {
         return squareYard * SQUARE_METERS_PER_SQUARE_YARD;
     }
 
@@ -392,8 +328,7 @@ public class SurfaceConverter {
      * @param squareMeter square meter value.
      * @return same surface converted to square miles.
      */
-    public static double squareMeterToSquareMile(
-            final double squareMeter) {
+    public static double squareMeterToSquareMile(final double squareMeter) {
         return squareMeter / SQUARE_METERS_PER_SQUARE_MILE;
     }
 
@@ -403,8 +338,7 @@ public class SurfaceConverter {
      * @param squareMile square mile value.
      * @return same surface converted to square meters.
      */
-    public static double squareMileToSquareMeter(
-            final double squareMile) {
+    public static double squareMileToSquareMeter(final double squareMile) {
         return squareMile * SQUARE_METERS_PER_SQUARE_MILE;
     }
 
@@ -414,8 +348,7 @@ public class SurfaceConverter {
      * @param squareMeter square meter value.
      * @return same surface converted to centiares.
      */
-    public static double squareMeterToCentiare(
-            final double squareMeter) {
+    public static double squareMeterToCentiare(final double squareMeter) {
         return squareMeter / SQUARE_METERS_PER_CENTIARE;
     }
 
@@ -425,8 +358,7 @@ public class SurfaceConverter {
      * @param centiare centiare value.
      * @return same surface converted to square meters.
      */
-    public static double centiareToSquareMeter(
-            final double centiare) {
+    public static double centiareToSquareMeter(final double centiare) {
         return centiare * SQUARE_METERS_PER_CENTIARE;
     }
 
@@ -436,8 +368,7 @@ public class SurfaceConverter {
      * @param squareMeter square meter value.
      * @return same surface converted to ares.
      */
-    public static double squareMeterToAre(
-            final double squareMeter) {
+    public static double squareMeterToAre(final double squareMeter) {
         return squareMeter / SQUARE_METERS_PER_ARE;
     }
 

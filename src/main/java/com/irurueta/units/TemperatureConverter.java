@@ -54,10 +54,8 @@ public class TemperatureConverter {
      * @param outputUnit requested output unit.
      * @return converted temperature.
      */
-    public static Temperature convertAndReturnNew(
-            final Temperature input,
-            final TemperatureUnit outputUnit) {
-        final Temperature result = new Temperature();
+    public static Temperature convertAndReturnNew(final Temperature input, final TemperatureUnit outputUnit) {
+        final var result = new Temperature();
         convert(input, outputUnit, result);
         return result;
     }
@@ -68,8 +66,7 @@ public class TemperatureConverter {
      * @param temperature input temperature to be converted and updated.
      * @param outputUnit  requested output unit.
      */
-    public static void convert(
-            final Temperature temperature, final TemperatureUnit outputUnit) {
+    public static void convert(final Temperature temperature, final TemperatureUnit outputUnit) {
         convert(temperature, outputUnit, temperature);
     }
 
@@ -80,11 +77,8 @@ public class TemperatureConverter {
      * @param outputUnit requested output unit.
      * @param result     temperature unit where result will be stored.
      */
-    public static void convert(
-            final Temperature input, final TemperatureUnit outputUnit,
-            final Temperature result) {
-        final Number value = convert(input.getValue(), input.getUnit(),
-                outputUnit);
+    public static void convert(final Temperature input, final TemperatureUnit outputUnit, final Temperature result) {
+        final var value = convert(input.getValue(), input.getUnit(), outputUnit);
         result.setValue(value);
         result.setUnit(outputUnit);
     }
@@ -98,10 +92,8 @@ public class TemperatureConverter {
      * @return converted temperature value.
      */
     public static Number convert(
-            final Number input, final TemperatureUnit inputUnit,
-            final TemperatureUnit outputUnit) {
-        return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit,
-                outputUnit));
+            final Number input, final TemperatureUnit inputUnit, final TemperatureUnit outputUnit) {
+        return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit, outputUnit));
     }
 
     /**
@@ -113,36 +105,21 @@ public class TemperatureConverter {
      * @return converted temperature value.
      */
     public static double convert(
-            final double input, final TemperatureUnit inputUnit,
-            final TemperatureUnit outputUnit) {
-
-        double celsius;
+            final double input, final TemperatureUnit inputUnit, final TemperatureUnit outputUnit) {
 
         // convert to celsius
-        switch (inputUnit) {
-            case FAHRENHEIT:
-                celsius = fahrenheitToCelsius(input);
-                break;
-            case KELVIN:
-                celsius = kelvinToCelsius(input);
-                break;
-            case CELSIUS:
-            default:
-                celsius = input;
-                break;
-        }
+        final var celsius = switch (inputUnit) {
+            case FAHRENHEIT -> fahrenheitToCelsius(input);
+            case KELVIN -> kelvinToCelsius(input);
+            default -> input;
+        };
 
         // convert from celsius to required output unit
-        switch (outputUnit) {
-            case FAHRENHEIT:
-                return celsiusToFahrenheit(celsius);
-            case KELVIN:
-                return celsiusToKelvin(celsius);
-
-            case CELSIUS:
-            default:
-                return celsius;
-        }
+        return switch (outputUnit) {
+            case FAHRENHEIT -> celsiusToFahrenheit(celsius);
+            case KELVIN -> celsiusToKelvin(celsius);
+            default -> celsius;
+        };
     }
 
     /**

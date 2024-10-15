@@ -30,8 +30,7 @@ public class AngularAcceleration extends Measurement<AngularAccelerationUnit> {
      * @param unit  unit of angular acceleration.
      * @throws IllegalArgumentException if either value or unit is null.
      */
-    public AngularAcceleration(
-            final Number value, final AngularAccelerationUnit unit) {
+    public AngularAcceleration(final Number value, final AngularAccelerationUnit unit) {
         super(value, unit);
     }
 
@@ -54,8 +53,7 @@ public class AngularAcceleration extends Measurement<AngularAccelerationUnit> {
      */
     @Override
     public boolean equals(
-            final Measurement<AngularAccelerationUnit> other,
-            final double tolerance) {
+            final Measurement<AngularAccelerationUnit> other, final double tolerance) {
         if (super.equals(other, tolerance)) {
             return true;
         }
@@ -65,7 +63,7 @@ public class AngularAcceleration extends Measurement<AngularAccelerationUnit> {
             return false;
         }
 
-        final double otherValue = AngularAccelerationConverter.convert(
+        final var otherValue = AngularAccelerationConverter.convert(
                 other.getValue().doubleValue(), other.getUnit(), getUnit());
         return Math.abs(getValue().doubleValue() - otherValue) <= tolerance;
     }
@@ -83,8 +81,8 @@ public class AngularAcceleration extends Measurement<AngularAccelerationUnit> {
     public static double add(final double value1, final AngularAccelerationUnit unit1,
                              final double value2, final AngularAccelerationUnit unit2,
                              final AngularAccelerationUnit resultUnit) {
-        final double v1 = AngularAccelerationConverter.convert(value1, unit1, resultUnit);
-        final double v2 = AngularAccelerationConverter.convert(value2, unit2, resultUnit);
+        final var v1 = AngularAccelerationConverter.convert(value1, unit1, resultUnit);
+        final var v2 = AngularAccelerationConverter.convert(value2, unit2, resultUnit);
         return v1 + v2;
     }
 
@@ -101,8 +99,7 @@ public class AngularAcceleration extends Measurement<AngularAccelerationUnit> {
     public static Number add(final Number value1, final AngularAccelerationUnit unit1,
                              final Number value2, final AngularAccelerationUnit unit2,
                              final AngularAccelerationUnit resultUnit) {
-        return BigDecimal.valueOf(add(value1.doubleValue(), unit1,
-                value2.doubleValue(), unit2, resultUnit));
+        return BigDecimal.valueOf(add(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));
     }
 
     /**
@@ -114,8 +111,7 @@ public class AngularAcceleration extends Measurement<AngularAccelerationUnit> {
      */
     public static void add(final AngularAcceleration arg1, final AngularAcceleration arg2,
                            final AngularAcceleration result) {
-        result.setValue(add(arg1.getValue(), arg1.getUnit(),
-                arg2.getValue(), arg2.getUnit(), result.getUnit()));
+        result.setValue(add(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));
     }
 
     /**
@@ -127,10 +123,8 @@ public class AngularAcceleration extends Measurement<AngularAccelerationUnit> {
      * @return a new instance containing result.
      */
     public static AngularAcceleration addAndReturnNew(
-            final AngularAcceleration arg1,
-            final AngularAcceleration arg2,
-            final AngularAccelerationUnit unit) {
-        final AngularAcceleration result = new AngularAcceleration();
+            final AngularAcceleration arg1, final AngularAcceleration arg2, final AngularAccelerationUnit unit) {
+        final var result = new AngularAcceleration();
         result.setUnit(unit);
         add(arg1, arg2, result);
         return result;
@@ -146,12 +140,10 @@ public class AngularAcceleration extends Measurement<AngularAccelerationUnit> {
      * @return a new angular acceleration containing result.
      */
     public AngularAcceleration addAndReturnNew(
-            final double value, final AngularAccelerationUnit unit,
-            final AngularAccelerationUnit resultUnit) {
+            final double value, final AngularAccelerationUnit unit, final AngularAccelerationUnit resultUnit) {
         final AngularAcceleration result = new AngularAcceleration();
         result.setUnit(resultUnit);
-        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit,
-                resultUnit));
+        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 
@@ -165,9 +157,8 @@ public class AngularAcceleration extends Measurement<AngularAccelerationUnit> {
      * @return a new angular acceleration containing result.
      */
     public AngularAcceleration addAndReturnNew(
-            final Number value, final AngularAccelerationUnit unit,
-            final AngularAccelerationUnit resultUnit) {
-        final AngularAcceleration result = new AngularAcceleration();
+            final Number value, final AngularAccelerationUnit unit, final AngularAccelerationUnit resultUnit) {
+        final var result = new AngularAcceleration();
         result.setUnit(resultUnit);
         result.setValue(add(getValue(), getUnit(), value, unit, resultUnit));
         return result;
@@ -181,9 +172,7 @@ public class AngularAcceleration extends Measurement<AngularAccelerationUnit> {
      * @param unit unit of returned angular acceleration.
      * @return a new angular acceleration containing result.
      */
-    public AngularAcceleration addAndReturnNew(
-            final AngularAcceleration a,
-            final AngularAccelerationUnit unit) {
+    public AngularAcceleration addAndReturnNew(final AngularAcceleration a, final AngularAccelerationUnit unit) {
         return addAndReturnNew(this, a, unit);
     }
 
@@ -194,8 +183,7 @@ public class AngularAcceleration extends Measurement<AngularAccelerationUnit> {
      * @param value angular acceleration value to be added.
      * @param unit  unit of angular acceleration value.
      */
-    public void add(final double value,
-                    final AngularAccelerationUnit unit) {
+    public void add(final double value, final AngularAccelerationUnit unit) {
         setValue(add(getValue(), getUnit(), value, unit, getUnit()));
     }
 
@@ -206,8 +194,7 @@ public class AngularAcceleration extends Measurement<AngularAccelerationUnit> {
      * @param value angular acceleration value to be added.
      * @param unit  unit of angular acceleration value.
      */
-    public void add(final Number value,
-                    final AngularAccelerationUnit unit) {
+    public void add(final Number value, final AngularAccelerationUnit unit) {
         setValue(add(getValue(), getUnit(), value, unit, getUnit()));
     }
 
@@ -227,8 +214,7 @@ public class AngularAcceleration extends Measurement<AngularAccelerationUnit> {
      * @param a      angular acceleration to be added.
      * @param result instance where result will be stored.
      */
-    public void add(final AngularAcceleration a,
-                    final AngularAcceleration result) {
+    public void add(final AngularAcceleration a, final AngularAcceleration result) {
         add(this, a, result);
     }
 
@@ -246,8 +232,8 @@ public class AngularAcceleration extends Measurement<AngularAccelerationUnit> {
             final double value1, final AngularAccelerationUnit unit1,
             final double value2, final AngularAccelerationUnit unit2,
             final AngularAccelerationUnit resultUnit) {
-        final double v1 = AngularAccelerationConverter.convert(value1, unit1, resultUnit);
-        final double v2 = AngularAccelerationConverter.convert(value2, unit2, resultUnit);
+        final var v1 = AngularAccelerationConverter.convert(value1, unit1, resultUnit);
+        final var v2 = AngularAccelerationConverter.convert(value2, unit2, resultUnit);
         return v1 - v2;
     }
 
@@ -265,8 +251,7 @@ public class AngularAcceleration extends Measurement<AngularAccelerationUnit> {
             final Number value1, final AngularAccelerationUnit unit1,
             final Number value2, final AngularAccelerationUnit unit2,
             final AngularAccelerationUnit resultUnit) {
-        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1,
-                value2.doubleValue(), unit2, resultUnit));
+        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));
     }
 
     /**
@@ -279,8 +264,7 @@ public class AngularAcceleration extends Measurement<AngularAccelerationUnit> {
     public static void subtract(
             final AngularAcceleration arg1, final AngularAcceleration arg2,
             final AngularAcceleration result) {
-        result.setValue(subtract(arg1.getValue(), arg1.getUnit(),
-                arg2.getValue(), arg2.getUnit(), result.getUnit()));
+        result.setValue(subtract(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));
     }
 
     /**
@@ -295,7 +279,7 @@ public class AngularAcceleration extends Measurement<AngularAccelerationUnit> {
             final AngularAcceleration arg1,
             final AngularAcceleration arg2,
             final AngularAccelerationUnit unit) {
-        final AngularAcceleration result = new AngularAcceleration();
+        final var result = new AngularAcceleration();
         result.setUnit(unit);
         subtract(arg1, arg2, result);
         return result;
@@ -311,12 +295,10 @@ public class AngularAcceleration extends Measurement<AngularAccelerationUnit> {
      * @return a new angular acceleration containing result.
      */
     public AngularAcceleration subtractAndReturnNew(
-            final double value, final AngularAccelerationUnit unit,
-            final AngularAccelerationUnit resultUnit) {
-        final AngularAcceleration result = new AngularAcceleration();
+            final double value, final AngularAccelerationUnit unit, final AngularAccelerationUnit resultUnit) {
+        final var result = new AngularAcceleration();
         result.setUnit(resultUnit);
-        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit,
-                resultUnit));
+        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 
@@ -330,9 +312,8 @@ public class AngularAcceleration extends Measurement<AngularAccelerationUnit> {
      * @return a new angular acceleration containing result.
      */
     public AngularAcceleration subtractAndReturnNew(
-            final Number value, final AngularAccelerationUnit unit,
-            final AngularAccelerationUnit resultUnit) {
-        final AngularAcceleration result = new AngularAcceleration();
+            final Number value, final AngularAccelerationUnit unit, final AngularAccelerationUnit resultUnit) {
+        final var result = new AngularAcceleration();
         result.setUnit(resultUnit);
         result.setValue(subtract(getValue(), getUnit(), value, unit, resultUnit));
         return result;
@@ -346,9 +327,7 @@ public class AngularAcceleration extends Measurement<AngularAccelerationUnit> {
      * @param unit unit of returned angular acceleration.
      * @return a new angular acceleration containing result.
      */
-    public AngularAcceleration subtractAndReturnNew(
-            final AngularAcceleration a,
-            final AngularAccelerationUnit unit) {
+    public AngularAcceleration subtractAndReturnNew(final AngularAcceleration a, final AngularAccelerationUnit unit) {
         return subtractAndReturnNew(this, a, unit);
     }
 
@@ -359,8 +338,7 @@ public class AngularAcceleration extends Measurement<AngularAccelerationUnit> {
      * @param value angular acceleration value to be subtracted.
      * @param unit  unit of angular acceleration value.
      */
-    public void subtract(
-            final double value, final AngularAccelerationUnit unit) {
+    public void subtract(final double value, final AngularAccelerationUnit unit) {
         setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));
     }
 
@@ -371,8 +349,7 @@ public class AngularAcceleration extends Measurement<AngularAccelerationUnit> {
      * @param value angular acceleration to be subtracted.
      * @param unit  unit of angular acceleration value.
      */
-    public void subtract(
-            final Number value, final AngularAccelerationUnit unit) {
+    public void subtract(final Number value, final AngularAccelerationUnit unit) {
         setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));
     }
 
@@ -392,8 +369,7 @@ public class AngularAcceleration extends Measurement<AngularAccelerationUnit> {
      * @param a      angular acceleration to be subtracted.
      * @param result instance where result will be stored.
      */
-    public void subtract(
-            final AngularAcceleration a, final AngularAcceleration result) {
+    public void subtract(final AngularAcceleration a, final AngularAcceleration result) {
         subtract(this, a, result);
     }
 }

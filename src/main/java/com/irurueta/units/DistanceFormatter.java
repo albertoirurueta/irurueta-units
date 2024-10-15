@@ -98,7 +98,7 @@ public class DistanceFormatter extends MeasureFormatter<Distance, DistanceUnit> 
      */
     @Override
     public boolean equals(final Object obj) {
-        final boolean equals = super.equals(obj);
+        final var equals = super.equals(obj);
         return (obj instanceof DistanceFormatter) && equals;
     }
 
@@ -124,7 +124,7 @@ public class DistanceFormatter extends MeasureFormatter<Distance, DistanceUnit> 
      */
     @Override
     public UnitSystem getUnitSystem(final String source) {
-        final DistanceUnit unit = findUnit(source);
+        final var unit = findUnit(source);
         return unit != null ? DistanceUnit.getUnitSystem(unit) : null;
     }
 
@@ -137,8 +137,7 @@ public class DistanceFormatter extends MeasureFormatter<Distance, DistanceUnit> 
      * @throws UnknownUnitException if unit cannot be determined.
      */
     @Override
-    public Distance parse(final String source) throws ParseException,
-            UnknownUnitException {
+    public Distance parse(final String source) throws ParseException, UnknownUnitException {
         return internalParse(source, new Distance());
     }
 
@@ -195,12 +194,10 @@ public class DistanceFormatter extends MeasureFormatter<Distance, DistanceUnit> 
     public String formatAndConvert(
             final Number value, final DistanceUnit unit,
             final UnitSystem system) {
-        switch (system) {
-            case IMPERIAL:
-                return formatAndConvertImperial(value, unit);
-            case METRIC:
-            default:
-                return formatAndConvertMetric(value, unit);
+        if (system == UnitSystem.IMPERIAL) {
+            return formatAndConvertImperial(value, unit);
+        } else {
+            return formatAndConvertMetric(value, unit);
         }
     }
 
@@ -215,31 +212,26 @@ public class DistanceFormatter extends MeasureFormatter<Distance, DistanceUnit> 
      * @return a string representation of distance value and unit using metric
      * unit system.
      */
-    public String formatAndConvertMetric(
-            final Number value, final DistanceUnit unit) {
-        final double v = value.doubleValue();
+    public String formatAndConvertMetric(final Number value, final DistanceUnit unit) {
+        final var v = value.doubleValue();
 
-        final double millimeters = DistanceConverter.convert(v, unit,
-                DistanceUnit.MILLIMETER);
-        if (Math.abs(millimeters) < (DistanceConverter.METERS_PER_CENTIMETER /
-                DistanceConverter.METERS_PER_MILLIMETER)) {
+        final var millimeters = DistanceConverter.convert(v, unit, DistanceUnit.MILLIMETER);
+        if (Math.abs(millimeters) < (DistanceConverter.METERS_PER_CENTIMETER
+                / DistanceConverter.METERS_PER_MILLIMETER)) {
             return format(millimeters, DistanceUnit.MILLIMETER);
         }
 
-        final double centimeters = DistanceConverter.convert(v, unit,
-                DistanceUnit.CENTIMETER);
-        if (Math.abs(centimeters) <
-                (1.0 / DistanceConverter.METERS_PER_CENTIMETER)) {
+        final var centimeters = DistanceConverter.convert(v, unit, DistanceUnit.CENTIMETER);
+        if (Math.abs(centimeters) < (1.0 / DistanceConverter.METERS_PER_CENTIMETER)) {
             return format(centimeters, DistanceUnit.CENTIMETER);
         }
 
-        final double meters = DistanceConverter.convert(v, unit, DistanceUnit.METER);
+        final var meters = DistanceConverter.convert(v, unit, DistanceUnit.METER);
         if (Math.abs(meters) < DistanceConverter.METERS_PER_KILOMETER) {
             return format(meters, DistanceUnit.METER);
         }
 
-        final double kilometers = DistanceConverter.convert(v, unit,
-                DistanceUnit.KILOMETER);
+        final var kilometers = DistanceConverter.convert(v, unit, DistanceUnit.KILOMETER);
         return format(kilometers, DistanceUnit.KILOMETER);
     }
 
@@ -254,33 +246,25 @@ public class DistanceFormatter extends MeasureFormatter<Distance, DistanceUnit> 
      * @return a string representation of distance value and unit using imperial
      * unit system.
      */
-    public String formatAndConvertImperial(
-            final Number value, final DistanceUnit unit) {
-        final double v = value.doubleValue();
+    public String formatAndConvertImperial(final Number value, final DistanceUnit unit) {
+        final var v = value.doubleValue();
 
-        final double inches = DistanceConverter.convert(v, unit,
-                DistanceUnit.INCH);
-        if (Math.abs(inches) < (DistanceConverter.METERS_PER_FOOT /
-                DistanceConverter.METERS_PER_INCH)) {
+        final var inches = DistanceConverter.convert(v, unit, DistanceUnit.INCH);
+        if (Math.abs(inches) < (DistanceConverter.METERS_PER_FOOT / DistanceConverter.METERS_PER_INCH)) {
             return format(inches, DistanceUnit.INCH);
         }
 
-        final double feet = DistanceConverter.convert(v, unit,
-                DistanceUnit.FOOT);
-        if (Math.abs(feet) < (DistanceConverter.METERS_PER_YARD /
-                DistanceConverter.METERS_PER_FOOT)) {
+        final var feet = DistanceConverter.convert(v, unit, DistanceUnit.FOOT);
+        if (Math.abs(feet) < (DistanceConverter.METERS_PER_YARD / DistanceConverter.METERS_PER_FOOT)) {
             return format(feet, DistanceUnit.FOOT);
         }
 
-        final double yards = DistanceConverter.convert(v, unit,
-                DistanceUnit.YARD);
-        if (Math.abs(yards) < (DistanceConverter.METERS_PER_MILE /
-                DistanceConverter.METERS_PER_YARD)) {
+        final var yards = DistanceConverter.convert(v, unit, DistanceUnit.YARD);
+        if (Math.abs(yards) < (DistanceConverter.METERS_PER_MILE / DistanceConverter.METERS_PER_YARD)) {
             return format(yards, DistanceUnit.YARD);
         }
 
-        final double miles = DistanceConverter.convert(v, unit,
-                DistanceUnit.MILE);
+        final var miles = DistanceConverter.convert(v, unit, DistanceUnit.MILE);
         return format(miles, DistanceUnit.MILE);
     }
 
@@ -292,24 +276,15 @@ public class DistanceFormatter extends MeasureFormatter<Distance, DistanceUnit> 
      */
     @Override
     public String getUnitSymbol(final DistanceUnit unit) {
-        switch (unit) {
-            case MILLIMETER:
-                return MILLIMETER;
-            case CENTIMETER:
-                return CENTIMETER;
-            case KILOMETER:
-                return KILOMETER;
-            case INCH:
-                return INCH;
-            case FOOT:
-                return FOOT;
-            case YARD:
-                return YARD;
-            case MILE:
-                return MILE;
-            case METER:
-            default:
-                return METER;
-        }
+        return switch (unit) {
+            case MILLIMETER -> MILLIMETER;
+            case CENTIMETER -> CENTIMETER;
+            case KILOMETER -> KILOMETER;
+            case INCH -> INCH;
+            case FOOT -> FOOT;
+            case YARD -> YARD;
+            case MILE -> MILE;
+            default -> METER;
+        };
     }
 }

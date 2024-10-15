@@ -47,8 +47,7 @@ public class AccelerationConverter {
      * @param input  input acceleration to be converted.
      * @param output output acceleration where result will be stored containing output unit.
      */
-    public static void convert(
-            final Acceleration input, final Acceleration output) {
+    public static void convert(final Acceleration input, final Acceleration output) {
         convert(input, output.getUnit(), output);
     }
 
@@ -59,9 +58,8 @@ public class AccelerationConverter {
      * @param outputUnit requested output unit.
      * @return converted acceleration.
      */
-    public static Acceleration convertAndReturnNew(
-            final Acceleration input, final AccelerationUnit outputUnit) {
-        final Acceleration result = new Acceleration();
+    public static Acceleration convertAndReturnNew(final Acceleration input, final AccelerationUnit outputUnit) {
+        final var result = new Acceleration();
         convert(input, outputUnit, result);
         return result;
     }
@@ -72,8 +70,7 @@ public class AccelerationConverter {
      * @param acceleration input acceleration to be converted and updated
      * @param outputUnit   requested output unit.
      */
-    public static void convert(
-            final Acceleration acceleration, final AccelerationUnit outputUnit) {
+    public static void convert(final Acceleration acceleration, final AccelerationUnit outputUnit) {
         convert(acceleration, outputUnit, acceleration);
     }
 
@@ -85,9 +82,8 @@ public class AccelerationConverter {
      * @param result     acceleration instance where result will be stored.
      */
     public static void convert(
-            final Acceleration input, final AccelerationUnit outputUnit,
-            final Acceleration result) {
-        final Number value = convert(input.getValue(), input.getUnit(), outputUnit);
+            final Acceleration input, final AccelerationUnit outputUnit, final Acceleration result) {
+        final var value = convert(input.getValue(), input.getUnit(), outputUnit);
         result.setValue(value);
         result.setUnit(outputUnit);
     }
@@ -101,8 +97,7 @@ public class AccelerationConverter {
      * @return converted acceleration value.
      */
     public static Number convert(
-            final Number input, final AccelerationUnit inputUnit,
-            final AccelerationUnit outputUnit) {
+            final Number input, final AccelerationUnit inputUnit, final AccelerationUnit outputUnit) {
         return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit, outputUnit));
     }
 
@@ -115,36 +110,21 @@ public class AccelerationConverter {
      * @return converted acceleration value.
      */
     public static double convert(
-            final double input, final AccelerationUnit inputUnit,
-            final AccelerationUnit outputUnit) {
-
-        double metersPerSquaredSecond;
+            final double input, final AccelerationUnit inputUnit, final AccelerationUnit outputUnit) {
 
         //convert to meters per squared second
-        switch (inputUnit) {
-            case FEET_PER_SQUARED_SECOND:
-                metersPerSquaredSecond = feetPerSquaredSecondToMetersPerSquaredSecond(input);
-                break;
-            case G:
-                metersPerSquaredSecond = gravityToMetersPerSquaredSecond(input);
-                break;
-            case METERS_PER_SQUARED_SECOND:
-            default:
-                metersPerSquaredSecond = input;
-                break;
-        }
+        final var metersPerSquaredSecond = switch (inputUnit) {
+            case FEET_PER_SQUARED_SECOND -> feetPerSquaredSecondToMetersPerSquaredSecond(input);
+            case G -> gravityToMetersPerSquaredSecond(input);
+            default -> input;
+        };
 
         //convert from meters per squared second to required output unit
-        switch (outputUnit) {
-            case FEET_PER_SQUARED_SECOND:
-                return metersPerSquaredSecondToFeetPerSquaredSecond(metersPerSquaredSecond);
-            case G:
-                return metersPerSquaredSecondToGravity(metersPerSquaredSecond);
-            case METERS_PER_SQUARED_SECOND:
-            default:
-                return metersPerSquaredSecond;
-
-        }
+        return switch (outputUnit) {
+            case FEET_PER_SQUARED_SECOND -> metersPerSquaredSecondToFeetPerSquaredSecond(metersPerSquaredSecond);
+            case G -> metersPerSquaredSecondToGravity(metersPerSquaredSecond);
+            default -> metersPerSquaredSecond;
+        };
     }
 
     /**
@@ -153,8 +133,7 @@ public class AccelerationConverter {
      * @param feetPerSquaredSecond feet per squared second value.
      * @return same acceleration converted to meters per squared second.
      */
-    public static double feetPerSquaredSecondToMetersPerSquaredSecond(
-            final double feetPerSquaredSecond) {
+    public static double feetPerSquaredSecondToMetersPerSquaredSecond(final double feetPerSquaredSecond) {
         return feetPerSquaredSecond * METERS_PER_FOOT;
     }
 
@@ -164,8 +143,7 @@ public class AccelerationConverter {
      * @param metersPerSquaredSecond meters per squared second value.
      * @return same acceleration converted to feet per squared second.
      */
-    public static double metersPerSquaredSecondToFeetPerSquaredSecond(
-            final double metersPerSquaredSecond) {
+    public static double metersPerSquaredSecondToFeetPerSquaredSecond(final double metersPerSquaredSecond) {
         return metersPerSquaredSecond / METERS_PER_FOOT;
     }
 
@@ -175,8 +153,7 @@ public class AccelerationConverter {
      * @param g acceleration relative to standard gravity.
      * @return same acceleration converted to meters per squared second.
      */
-    public static double gravityToMetersPerSquaredSecond(
-            final double g) {
+    public static double gravityToMetersPerSquaredSecond(final double g) {
         return g * STANDARD_GRAVITY;
     }
 
@@ -187,8 +164,7 @@ public class AccelerationConverter {
      * @param metersPerSquaredSecond meters per squared second value.
      * @return same acceleration expressed in relative terms to the standard gravity.
      */
-    public static double metersPerSquaredSecondToGravity(
-            final double metersPerSquaredSecond) {
+    public static double metersPerSquaredSecondToGravity(final double metersPerSquaredSecond) {
         return metersPerSquaredSecond / STANDARD_GRAVITY;
     }
 }

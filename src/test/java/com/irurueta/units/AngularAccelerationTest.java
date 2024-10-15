@@ -15,63 +15,47 @@
  */
 package com.irurueta.units;
 
-import org.junit.*;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Random;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class AngularAccelerationTest {
+class AngularAccelerationTest {
 
     private static final double ERROR = 1e-6;
 
     @Test
-    public void testConstructor() {
+    void testConstructor() {
         // test empty constructor
-        AngularAcceleration a = new AngularAcceleration();
+        var a = new AngularAcceleration();
 
         // check
         assertNull(a.getValue());
         assertNull(a.getUnit());
 
         // test constructor with value and unit
-        a = new AngularAcceleration(323,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        a = new AngularAcceleration(323, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
         // check
         assertEquals(323, a.getValue());
         assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a.getUnit());
 
         // force IllegalArgumentException
-        a = null;
-        try {
-            a = new AngularAcceleration(null,
-                    AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
-        try {
-            a = new AngularAcceleration(323, null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
-        //noinspection ConstantConditions
-        assertNull(a);
+        assertThrows(IllegalArgumentException.class, () -> new AngularAcceleration(null,
+                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND));
+        assertThrows(IllegalArgumentException.class, () -> new AngularAcceleration(323, null));
     }
 
     @Test
-    public void testEquals() {
-        final double value = new Random().nextDouble();
-        final AngularAcceleration a1 = new AngularAcceleration(value,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        final AngularAcceleration a2 = new AngularAcceleration(value,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        final AngularAcceleration a3 = new AngularAcceleration(value + 1.0,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        final AngularAcceleration a4 = new AngularAcceleration(value,
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
+    void testEquals() {
+        final var value = new Random().nextDouble();
+        final var a1 = new AngularAcceleration(value, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a2 = new AngularAcceleration(value, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a3 = new AngularAcceleration(value + 1.0, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a4 = new AngularAcceleration(value, AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
 
         assertEquals(a1, a2);
         assertNotEquals(a1, a3);
@@ -82,16 +66,12 @@ public class AngularAccelerationTest {
     }
 
     @Test
-    public void testHashCode() {
-        final double value = new Random().nextDouble();
-        final AngularAcceleration a1 = new AngularAcceleration(value,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        final AngularAcceleration a2 = new AngularAcceleration(value,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        final AngularAcceleration a3 = new AngularAcceleration(value + 1.0,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        final AngularAcceleration a4 = new AngularAcceleration(value,
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
+    void testHashCode() {
+        final var value = new Random().nextDouble();
+        final var a1 = new AngularAcceleration(value, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a2 = new AngularAcceleration(value, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a3 = new AngularAcceleration(value + 1.0, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a4 = new AngularAcceleration(value, AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
 
         assertEquals(a1.hashCode(), a1.hashCode());
         assertEquals(a1.hashCode(), a2.hashCode());
@@ -100,17 +80,14 @@ public class AngularAccelerationTest {
     }
 
     @Test
-    public void testEqualsWithTolerance() {
-        final double value = new Random().nextDouble();
-        final AngularAcceleration a1 = new AngularAcceleration(value,
+    void testEqualsWithTolerance() {
+        final var value = new Random().nextDouble();
+        final var a1 = new AngularAcceleration(value, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a2 = new AngularAcceleration(value, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a3 = new AngularAcceleration(value + 0.5 * ERROR,
                 AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        final AngularAcceleration a2 = new AngularAcceleration(value,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        final AngularAcceleration a3 = new AngularAcceleration(value + 0.5 * ERROR,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        final AngularAcceleration a4 = new AngularAcceleration(value,
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
-        final AngularAcceleration a5 = new AngularAcceleration(value * Math.PI / 180.0,
+        final var a4 = new AngularAcceleration(value, AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
+        final var a5 = new AngularAcceleration(value * Math.PI / 180.0,
                 AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
 
         assertTrue(a1.equals(a1, 0.0));
@@ -124,9 +101,8 @@ public class AngularAccelerationTest {
     }
 
     @Test
-    public void testGetSetValue() {
-        final AngularAcceleration a = new AngularAcceleration(1,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+    void testGetSetValue() {
+        final var a = new AngularAcceleration(1, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
         // check
         assertEquals(1, a.getValue());
@@ -138,17 +114,12 @@ public class AngularAccelerationTest {
         assertEquals(2.5, a.getValue());
 
         // force IllegalArgumentException
-        try {
-            a.setValue(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> a.setValue(null));
     }
 
     @Test
-    public void testGetSetUnit() {
-        final AngularAcceleration a = new AngularAcceleration(1,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+    void testGetSetUnit() {
+        final var a = new AngularAcceleration(1, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
         // check
         assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a.getUnit());
@@ -160,21 +131,16 @@ public class AngularAccelerationTest {
         assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND, a.getUnit());
 
         // force IllegalArgumentException
-        try {
-            a.setUnit(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> a.setUnit(null));
     }
 
     @Test
-    public void testAdd1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final double result = AngularAcceleration.add(value1,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
+        final var result = AngularAcceleration.add(value1, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
                 value2, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
                 AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
 
@@ -183,35 +149,30 @@ public class AngularAccelerationTest {
     }
 
     @Test
-    public void testAdd2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Number result = AngularAcceleration.add(new BigDecimal(value1),
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
-                new BigDecimal(value2),
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
+        final var result = AngularAcceleration.add(
+                new BigDecimal(value1), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
+                new BigDecimal(value2), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
                 AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
 
         // check
-        assertEquals((value1 + value2) * Math.PI / 180.0,
-                result.doubleValue(), ERROR);
+        assertEquals((value1 + value2) * Math.PI / 180.0, result.doubleValue(), ERROR);
     }
 
     @Test
-    public void testAdd3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final AngularAcceleration a1 = new AngularAcceleration(value1,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        final AngularAcceleration a2 = new AngularAcceleration(value2,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a1 = new AngularAcceleration(value1, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a2 = new AngularAcceleration(value2, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
-        final AngularAcceleration result = new AngularAcceleration(0.0,
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
+        final var result = new AngularAcceleration(0.0, AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
         AngularAcceleration.add(a1, a2, result);
 
         // check
@@ -222,22 +183,19 @@ public class AngularAccelerationTest {
         assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
         assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND, result.getUnit());
-        assertEquals((value1 + value2) * Math.PI / 180.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 + value2) * Math.PI / 180.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAddAndReturnNew1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAddAndReturnNew1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final AngularAcceleration a1 = new AngularAcceleration(value1,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        final AngularAcceleration a2 = new AngularAcceleration(value2,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a1 = new AngularAcceleration(value1, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a2 = new AngularAcceleration(value2, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
-        final AngularAcceleration result = AngularAcceleration.addAndReturnNew(a1, a2,
+        final var result = AngularAcceleration.addAndReturnNew(a1, a2,
                 AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
 
         // check
@@ -247,45 +205,38 @@ public class AngularAccelerationTest {
         assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a2.getUnit());
         assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
-        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
-                result.getUnit());
-        assertEquals((value1 + value2) * Math.PI / 180.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND, result.getUnit());
+        assertEquals((value1 + value2) * Math.PI / 180.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAddAndReturnNew2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAddAndReturnNew2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final AngularAcceleration a1 = new AngularAcceleration(value1,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a1 = new AngularAcceleration(value1, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
-        final AngularAcceleration result = a1.addAndReturnNew(value2,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
+        final var result = a1.addAndReturnNew(value2, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
                 AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
 
         // check
         assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a1.getUnit());
         assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
-                result.getUnit());
-        assertEquals((value1 + value2) * Math.PI / 180.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND, result.getUnit());
+        assertEquals((value1 + value2) * Math.PI / 180.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAddAndReturnNew3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAddAndReturnNew3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final AngularAcceleration a1 = new AngularAcceleration(value1,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a1 = new AngularAcceleration(value1, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
-        final AngularAcceleration result = a1.addAndReturnNew(new BigDecimal(value2),
+        final var result = a1.addAndReturnNew(new BigDecimal(value2),
                 AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
                 AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
 
@@ -294,23 +245,19 @@ public class AngularAccelerationTest {
         assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
         assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND, result.getUnit());
-        assertEquals((value1 + value2) * Math.PI / 180.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 + value2) * Math.PI / 180.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAddAndReturnNew4() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAddAndReturnNew4() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final AngularAcceleration a1 = new AngularAcceleration(value1,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        final AngularAcceleration a2 = new AngularAcceleration(value2,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a1 = new AngularAcceleration(value1, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a2 = new AngularAcceleration(value2, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
-        final AngularAcceleration result = a1.addAndReturnNew(a2,
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
+        final var result = a1.addAndReturnNew(a2, AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
 
         // check
         assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a1.getUnit());
@@ -319,20 +266,17 @@ public class AngularAccelerationTest {
         assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a2.getUnit());
         assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
-        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
-                result.getUnit());
-        assertEquals((value1 + value2) * Math.PI / 180.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND, result.getUnit());
+        assertEquals((value1 + value2) * Math.PI / 180.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAdd4() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd4() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final AngularAcceleration a1 = new AngularAcceleration(value1,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a1 = new AngularAcceleration(value1, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
         a1.add(value2, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
@@ -342,16 +286,14 @@ public class AngularAccelerationTest {
     }
 
     @Test
-    public void testAdd5() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd5() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final AngularAcceleration a1 = new AngularAcceleration(value1,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a1 = new AngularAcceleration(value1, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
-        a1.add(new BigDecimal(value2),
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        a1.add(new BigDecimal(value2), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
         // check
         assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a1.getUnit());
@@ -359,15 +301,13 @@ public class AngularAccelerationTest {
     }
 
     @Test
-    public void testAdd6() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd6() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final AngularAcceleration a1 = new AngularAcceleration(value1,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        final AngularAcceleration a2 = new AngularAcceleration(value2,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a1 = new AngularAcceleration(value1, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a2 = new AngularAcceleration(value2, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
         a1.add(a2);
 
@@ -380,18 +320,15 @@ public class AngularAccelerationTest {
     }
 
     @Test
-    public void testAdd7() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd7() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final AngularAcceleration a1 = new AngularAcceleration(value1,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        final AngularAcceleration a2 = new AngularAcceleration(value2,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a1 = new AngularAcceleration(value1, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a2 = new AngularAcceleration(value2, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
-        final AngularAcceleration result = new AngularAcceleration(0.0,
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
+        final var result = new AngularAcceleration(0.0, AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
         a1.add(a2, result);
 
         // check
@@ -402,19 +339,17 @@ public class AngularAccelerationTest {
         assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
         assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND, result.getUnit());
-        assertEquals((value1 + value2) * Math.PI / 180.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 + value2) * Math.PI / 180.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtract1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final double result = AngularAcceleration.subtract(value1,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, value2,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
+        final var result = AngularAcceleration.subtract(value1, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
+                value2, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
                 AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
 
         // check
@@ -422,35 +357,30 @@ public class AngularAccelerationTest {
     }
 
     @Test
-    public void testSubtract2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Number result = AngularAcceleration.subtract(new BigDecimal(value1),
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
-                new BigDecimal(value2),
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
+        final var result = AngularAcceleration.subtract(
+                new BigDecimal(value1), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
+                new BigDecimal(value2), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
                 AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
 
         // check
-        assertEquals((value1 - value2) * Math.PI / 180.0,
-                result.doubleValue(), ERROR);
+        assertEquals((value1 - value2) * Math.PI / 180.0, result.doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtract3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final AngularAcceleration a1 = new AngularAcceleration(value1,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        final AngularAcceleration a2 = new AngularAcceleration(value2,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a1 = new AngularAcceleration(value1, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a2 = new AngularAcceleration(value2, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
-        final AngularAcceleration result = new AngularAcceleration(0.0,
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
+        final var result = new AngularAcceleration(0.0, AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
         AngularAcceleration.subtract(a1, a2, result);
 
         // check
@@ -460,24 +390,20 @@ public class AngularAccelerationTest {
         assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a2.getUnit());
         assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
-        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
-                result.getUnit());
-        assertEquals((value1 - value2) * Math.PI / 180.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND, result.getUnit());
+        assertEquals((value1 - value2) * Math.PI / 180.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtractAndReturnNew1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtractAndReturnNew1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final AngularAcceleration a1 = new AngularAcceleration(value1,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        final AngularAcceleration a2 = new AngularAcceleration(value2,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a1 = new AngularAcceleration(value1, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a2 = new AngularAcceleration(value2, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
-        final AngularAcceleration result = AngularAcceleration.subtractAndReturnNew(a1, a2,
+        final var result = AngularAcceleration.subtractAndReturnNew(a1, a2,
                 AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
 
         // check
@@ -487,71 +413,58 @@ public class AngularAccelerationTest {
         assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a2.getUnit());
         assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
-        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
-                result.getUnit());
-        assertEquals((value1 - value2) * Math.PI / 180.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND, result.getUnit());
+        assertEquals((value1 - value2) * Math.PI / 180.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtractAndReturnNew2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtractAndReturnNew2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final AngularAcceleration a1 = new AngularAcceleration(value1,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a1 = new AngularAcceleration(value1, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
-        final AngularAcceleration result = a1.subtractAndReturnNew(value2,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
+        final var result = a1.subtractAndReturnNew(value2, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
                 AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
 
         // check
         assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a1.getUnit());
         assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
-                result.getUnit());
-        assertEquals((value1 - value2) * Math.PI / 180.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND, result.getUnit());
+        assertEquals((value1 - value2) * Math.PI / 180.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtractAndReturnNew3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtractAndReturnNew3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final AngularAcceleration a1 = new AngularAcceleration(value1,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a1 = new AngularAcceleration(value1, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
-        final AngularAcceleration result = a1.subtractAndReturnNew(new BigDecimal(value2),
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND,
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
+        final var result = a1.subtractAndReturnNew(new BigDecimal(value2),
+                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
 
         // check
         assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a1.getUnit());
         assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
-        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
-                result.getUnit());
-        assertEquals((value1 - value2) * Math.PI / 180.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND, result.getUnit());
+        assertEquals((value1 - value2) * Math.PI / 180.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtractAndReturnNew4() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtractAndReturnNew4() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final AngularAcceleration a1 = new AngularAcceleration(value1,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        final AngularAcceleration a2 = new AngularAcceleration(value2,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a1 = new AngularAcceleration(value1, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a2 = new AngularAcceleration(value2, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
-        final AngularAcceleration result = a1.subtractAndReturnNew(a2,
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
+        final var result = a1.subtractAndReturnNew(a2, AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
 
         // check
         assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a1.getUnit());
@@ -560,20 +473,17 @@ public class AngularAccelerationTest {
         assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a2.getUnit());
         assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
-        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
-                result.getUnit());
-        assertEquals((value1 - value2) * Math.PI / 180.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND, result.getUnit());
+        assertEquals((value1 - value2) * Math.PI / 180.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtract4() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract4() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final AngularAcceleration a1 = new AngularAcceleration(value1,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a1 = new AngularAcceleration(value1, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
         a1.subtract(value2, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
@@ -583,16 +493,14 @@ public class AngularAccelerationTest {
     }
 
     @Test
-    public void testSubtract5() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract5() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final AngularAcceleration a1 = new AngularAcceleration(value1,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a1 = new AngularAcceleration(value1, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
-        a1.subtract(new BigDecimal(value2),
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        a1.subtract(new BigDecimal(value2), AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
         // check
         assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a1.getUnit());
@@ -600,15 +508,13 @@ public class AngularAccelerationTest {
     }
 
     @Test
-    public void testSubtract6() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract6() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final AngularAcceleration a1 = new AngularAcceleration(value1,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        final AngularAcceleration a2 = new AngularAcceleration(value2,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a1 = new AngularAcceleration(value1, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a2 = new AngularAcceleration(value2, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
         a1.subtract(a2);
 
@@ -621,18 +527,15 @@ public class AngularAccelerationTest {
     }
 
     @Test
-    public void testSubtract7() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract7() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final AngularAcceleration a1 = new AngularAcceleration(value1,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
-        final AngularAcceleration a2 = new AngularAcceleration(value2,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a1 = new AngularAcceleration(value1, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+        final var a2 = new AngularAcceleration(value2, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
-        final AngularAcceleration result = new AngularAcceleration(0.0,
-                AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
+        final var result = new AngularAcceleration(0.0, AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND);
         a1.subtract(a2, result);
 
         // check
@@ -642,20 +545,17 @@ public class AngularAccelerationTest {
         assertEquals(AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND, a2.getUnit());
         assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
-        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND,
-                result.getUnit());
-        assertEquals((value1 - value2) * Math.PI / 180.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND, result.getUnit());
+        assertEquals((value1 - value2) * Math.PI / 180.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
-        final double value = new Random().nextDouble();
-        final AngularAcceleration a1 = new AngularAcceleration(value,
-                AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
+    void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+        final var value = new Random().nextDouble();
+        final var a1 = new AngularAcceleration(value, AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND);
 
-        final byte[] bytes = SerializationHelper.serialize(a1);
-        final AngularAcceleration a2 = SerializationHelper.deserialize(bytes);
+        final var bytes = SerializationHelper.serialize(a1);
+        final var a2 = SerializationHelper.deserialize(bytes);
 
         assertEquals(a1, a2);
         assertNotSame(a1, a2);

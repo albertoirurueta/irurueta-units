@@ -61,7 +61,7 @@ public class AngularSpeed extends Measurement<AngularSpeedUnit> {
             return false;
         }
 
-        final double otherValue = AngularSpeedConverter.convert(other.getValue().doubleValue(),
+        final var otherValue = AngularSpeedConverter.convert(other.getValue().doubleValue(),
                 other.getUnit(), getUnit());
         return Math.abs(getValue().doubleValue() - otherValue) <= tolerance;
     }
@@ -80,8 +80,8 @@ public class AngularSpeed extends Measurement<AngularSpeedUnit> {
             final double value1, final AngularSpeedUnit unit1,
             final double value2, final AngularSpeedUnit unit2,
             final AngularSpeedUnit resultUnit) {
-        final double v1 = AngularSpeedConverter.convert(value1, unit1, resultUnit);
-        final double v2 = AngularSpeedConverter.convert(value2, unit2, resultUnit);
+        final var v1 = AngularSpeedConverter.convert(value1, unit1, resultUnit);
+        final var v2 = AngularSpeedConverter.convert(value2, unit2, resultUnit);
         return v1 + v2;
     }
 
@@ -99,8 +99,7 @@ public class AngularSpeed extends Measurement<AngularSpeedUnit> {
             final Number value1, final AngularSpeedUnit unit1,
             final Number value2, final AngularSpeedUnit unit2,
             final AngularSpeedUnit resultUnit) {
-        return BigDecimal.valueOf(add(value1.doubleValue(), unit1,
-                value2.doubleValue(), unit2, resultUnit));
+        return BigDecimal.valueOf(add(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));
     }
 
     /**
@@ -111,10 +110,8 @@ public class AngularSpeed extends Measurement<AngularSpeedUnit> {
      * @param result instance where result will be stored.
      */
     public static void add(
-            final AngularSpeed arg1, final AngularSpeed arg2,
-            final AngularSpeed result) {
-        result.setValue(add(arg1.getValue(), arg1.getUnit(),
-                arg2.getValue(), arg2.getUnit(), result.getUnit()));
+            final AngularSpeed arg1, final AngularSpeed arg2, final AngularSpeed result) {
+        result.setValue(add(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));
     }
 
     /**
@@ -126,9 +123,8 @@ public class AngularSpeed extends Measurement<AngularSpeedUnit> {
      * @return a new instance containing result.
      */
     public static AngularSpeed addAndReturnNew(
-            final AngularSpeed arg1, final AngularSpeed arg2,
-            final AngularSpeedUnit unit) {
-        final AngularSpeed result = new AngularSpeed();
+            final AngularSpeed arg1, final AngularSpeed arg2, final AngularSpeedUnit unit) {
+        final var result = new AngularSpeed();
         result.setUnit(unit);
         add(arg1, arg2, result);
         return result;
@@ -144,12 +140,10 @@ public class AngularSpeed extends Measurement<AngularSpeedUnit> {
      * @return a new angular speed containing result.
      */
     public AngularSpeed addAndReturnNew(
-            final double value, final AngularSpeedUnit unit,
-            final AngularSpeedUnit resultUnit) {
-        final AngularSpeed result = new AngularSpeed();
+            final double value, final AngularSpeedUnit unit, final AngularSpeedUnit resultUnit) {
+        final var result = new AngularSpeed();
         result.setUnit(resultUnit);
-        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit,
-                resultUnit));
+        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 
@@ -163,9 +157,8 @@ public class AngularSpeed extends Measurement<AngularSpeedUnit> {
      * @return a new angular speed containing result.
      */
     public AngularSpeed addAndReturnNew(
-            final Number value, final AngularSpeedUnit unit,
-            final AngularSpeedUnit resultUnit) {
-        final AngularSpeed result = new AngularSpeed();
+            final Number value, final AngularSpeedUnit unit, final AngularSpeedUnit resultUnit) {
+        final var result = new AngularSpeed();
         result.setUnit(resultUnit);
         result.setValue(add(getValue(), getUnit(), value, unit, resultUnit));
         return result;
@@ -179,8 +172,7 @@ public class AngularSpeed extends Measurement<AngularSpeedUnit> {
      * @param unit unit of returned angular speed.
      * @return a new angular speed containing result.
      */
-    public AngularSpeed addAndReturnNew(
-            final AngularSpeed s, final AngularSpeedUnit unit) {
+    public AngularSpeed addAndReturnNew(final AngularSpeed s, final AngularSpeedUnit unit) {
         return addAndReturnNew(this, s, unit);
     }
 
@@ -239,8 +231,8 @@ public class AngularSpeed extends Measurement<AngularSpeedUnit> {
             final double value1, final AngularSpeedUnit unit1,
             final double value2, final AngularSpeedUnit unit2,
             final AngularSpeedUnit resultUnit) {
-        final double v1 = AngularSpeedConverter.convert(value1, unit1, resultUnit);
-        final double v2 = AngularSpeedConverter.convert(value2, unit2, resultUnit);
+        final var v1 = AngularSpeedConverter.convert(value1, unit1, resultUnit);
+        final var v2 = AngularSpeedConverter.convert(value2, unit2, resultUnit);
         return v1 - v2;
     }
 
@@ -258,8 +250,7 @@ public class AngularSpeed extends Measurement<AngularSpeedUnit> {
             final Number value1, final AngularSpeedUnit unit1,
             final Number value2, final AngularSpeedUnit unit2,
             final AngularSpeedUnit resultUnit) {
-        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1,
-                value2.doubleValue(), unit2, resultUnit));
+        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));
     }
 
     /**
@@ -270,10 +261,8 @@ public class AngularSpeed extends Measurement<AngularSpeedUnit> {
      * @param result instance where result will be stored.
      */
     public static void subtract(
-            final AngularSpeed arg1, final AngularSpeed arg2,
-            final AngularSpeed result) {
-        result.setValue(subtract(arg1.getValue(), arg1.getUnit(),
-                arg2.getValue(), arg2.getUnit(), result.getUnit()));
+            final AngularSpeed arg1, final AngularSpeed arg2, final AngularSpeed result) {
+        result.setValue(subtract(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));
     }
 
     /**
@@ -285,10 +274,8 @@ public class AngularSpeed extends Measurement<AngularSpeedUnit> {
      * @return a new angular speed containing result.
      */
     public static AngularSpeed subtractAndReturnNew(
-            final AngularSpeed arg1,
-            final AngularSpeed arg2,
-            final AngularSpeedUnit unit) {
-        final AngularSpeed result = new AngularSpeed();
+            final AngularSpeed arg1, final AngularSpeed arg2, final AngularSpeedUnit unit) {
+        final var result = new AngularSpeed();
         result.setUnit(unit);
         subtract(arg1, arg2, result);
         return result;
@@ -304,12 +291,10 @@ public class AngularSpeed extends Measurement<AngularSpeedUnit> {
      * @return a new angular speed containing result.
      */
     public AngularSpeed subtractAndReturnNew(
-            final double value, final AngularSpeedUnit unit,
-            final AngularSpeedUnit resultUnit) {
-        final AngularSpeed result = new AngularSpeed();
+            final double value, final AngularSpeedUnit unit, final AngularSpeedUnit resultUnit) {
+        final var result = new AngularSpeed();
         result.setUnit(resultUnit);
-        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit,
-                resultUnit));
+        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 
@@ -323,9 +308,8 @@ public class AngularSpeed extends Measurement<AngularSpeedUnit> {
      * @return a new angular speed containing result.
      */
     public AngularSpeed subtractAndReturnNew(
-            final Number value, final AngularSpeedUnit unit,
-            final AngularSpeedUnit resultUnit) {
-        final AngularSpeed result = new AngularSpeed();
+            final Number value, final AngularSpeedUnit unit, final AngularSpeedUnit resultUnit) {
+        final var result = new AngularSpeed();
         result.setUnit(resultUnit);
         result.setValue(subtract(getValue(), getUnit(), value, unit, resultUnit));
         return result;
@@ -339,8 +323,7 @@ public class AngularSpeed extends Measurement<AngularSpeedUnit> {
      * @param unit unit of returned angular speed.
      * @return a new angular speed containing result.
      */
-    public AngularSpeed subtractAndReturnNew(
-            final AngularSpeed s, final AngularSpeedUnit unit) {
+    public AngularSpeed subtractAndReturnNew(final AngularSpeed s, final AngularSpeedUnit unit) {
         return subtractAndReturnNew(this, s, unit);
     }
 

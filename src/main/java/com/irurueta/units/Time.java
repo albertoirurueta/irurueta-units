@@ -51,8 +51,7 @@ public class Time extends Measurement<TimeUnit> {
      * otherwise.
      */
     @Override
-    public boolean equals(final Measurement<TimeUnit> other,
-                          final double tolerance) {
+    public boolean equals(final Measurement<TimeUnit> other, final double tolerance) {
         if (super.equals(other, tolerance)) {
             return true;
         }
@@ -62,9 +61,7 @@ public class Time extends Measurement<TimeUnit> {
             return false;
         }
 
-        final double otherValue = TimeConverter.convert(
-                other.getValue().doubleValue(), other.getUnit(),
-                getUnit());
+        final var otherValue = TimeConverter.convert(other.getValue().doubleValue(), other.getUnit(), getUnit());
         return Math.abs(getValue().doubleValue() - otherValue) <= tolerance;
     }
 
@@ -81,8 +78,8 @@ public class Time extends Measurement<TimeUnit> {
     public static double add(final double value1, final TimeUnit unit1,
                              final double value2, final TimeUnit unit2,
                              final TimeUnit resultUnit) {
-        final double v1 = TimeConverter.convert(value1, unit1, resultUnit);
-        final double v2 = TimeConverter.convert(value2, unit2, resultUnit);
+        final var v1 = TimeConverter.convert(value1, unit1, resultUnit);
+        final var v2 = TimeConverter.convert(value2, unit2, resultUnit);
         return v1 + v2;
     }
 
@@ -99,8 +96,7 @@ public class Time extends Measurement<TimeUnit> {
     public static Number add(final Number value1, final TimeUnit unit1,
                              final Number value2, final TimeUnit unit2,
                              final TimeUnit resultUnit) {
-        return BigDecimal.valueOf(add(value1.doubleValue(), unit1,
-                value2.doubleValue(), unit2, resultUnit));
+        return BigDecimal.valueOf(add(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));
     }
 
     /**
@@ -110,10 +106,8 @@ public class Time extends Measurement<TimeUnit> {
      * @param arg2   2nd argument.
      * @param result instance where result will be stored.
      */
-    public static void add(
-            final Time arg1, final Time arg2, final Time result) {
-        result.setValue(add(arg1.getValue(), arg1.getUnit(),
-                arg2.getValue(), arg2.getUnit(), result.getUnit()));
+    public static void add(final Time arg1, final Time arg2, final Time result) {
+        result.setValue(add(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));
     }
 
     /**
@@ -124,9 +118,8 @@ public class Time extends Measurement<TimeUnit> {
      * @param unit unit of returned time.
      * @return a new instance containing result.
      */
-    public static Time addAndReturnNew(
-            final Time arg1, final Time arg2, final TimeUnit unit) {
-        final Time result = new Time();
+    public static Time addAndReturnNew(final Time arg1, final Time arg2, final TimeUnit unit) {
+        final var result = new Time();
         result.setUnit(unit);
         add(arg1, arg2, result);
         return result;
@@ -144,10 +137,9 @@ public class Time extends Measurement<TimeUnit> {
     public Time addAndReturnNew(
             final double value, final TimeUnit unit,
             final TimeUnit resultUnit) {
-        final Time result = new Time();
+        final var result = new Time();
         result.setUnit(resultUnit);
-        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit,
-                resultUnit));
+        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 
@@ -163,7 +155,7 @@ public class Time extends Measurement<TimeUnit> {
     public Time addAndReturnNew(
             final Number value, final TimeUnit unit,
             final TimeUnit resultUnit) {
-        final Time result = new Time();
+        final var result = new Time();
         result.setUnit(resultUnit);
         result.setValue(add(getValue(), getUnit(), value, unit, resultUnit));
         return result;
@@ -234,8 +226,8 @@ public class Time extends Measurement<TimeUnit> {
             final double value1, final TimeUnit unit1,
             final double value2, final TimeUnit unit2,
             final TimeUnit resultUnit) {
-        final double v1 = TimeConverter.convert(value1, unit1, resultUnit);
-        final double v2 = TimeConverter.convert(value2, unit2, resultUnit);
+        final var v1 = TimeConverter.convert(value1, unit1, resultUnit);
+        final var v2 = TimeConverter.convert(value2, unit2, resultUnit);
         return v1 - v2;
     }
 
@@ -253,8 +245,7 @@ public class Time extends Measurement<TimeUnit> {
             final Number value1, final TimeUnit unit1,
             final Number value2, final TimeUnit unit2,
             final TimeUnit resultUnit) {
-        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1,
-                value2.doubleValue(), unit2, resultUnit));
+        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));
     }
 
     /**
@@ -264,10 +255,8 @@ public class Time extends Measurement<TimeUnit> {
      * @param arg2   2nd argument.
      * @param result instance where result will be stored.
      */
-    public static void subtract(
-            final Time arg1, final Time arg2, final Time result) {
-        result.setValue(subtract(arg1.getValue(), arg1.getUnit(),
-                arg2.getValue(), arg2.getUnit(), result.getUnit()));
+    public static void subtract(final Time arg1, final Time arg2, final Time result) {
+        result.setValue(subtract(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));
     }
 
     /**
@@ -279,9 +268,8 @@ public class Time extends Measurement<TimeUnit> {
      * @return a new instance containing result.
      */
     public static Time subtractAndReturnNew(
-            final Time arg1, final Time arg2,
-            final TimeUnit unit) {
-        final Time result = new Time();
+            final Time arg1, final Time arg2, final TimeUnit unit) {
+        final var result = new Time();
         result.setUnit(unit);
         subtract(arg1, arg2, result);
         return result;
@@ -296,13 +284,10 @@ public class Time extends Measurement<TimeUnit> {
      * @param resultUnit unit of returned time.
      * @return a new time containing result.
      */
-    public Time subtractAndReturnNew(
-            final double value, final TimeUnit unit,
-            final TimeUnit resultUnit) {
-        final Time result = new Time();
+    public Time subtractAndReturnNew(final double value, final TimeUnit unit, final TimeUnit resultUnit) {
+        final var result = new Time();
         result.setUnit(resultUnit);
-        result.setValue(subtract(getValue().doubleValue(), getUnit(),
-                value, unit, resultUnit));
+        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 
@@ -315,13 +300,10 @@ public class Time extends Measurement<TimeUnit> {
      * @param resultUnit unit of returned time.
      * @return a new time containing result.
      */
-    public Time subtractAndReturnNew(
-            final Number value, final TimeUnit unit,
-            final TimeUnit resultUnit) {
-        final Time result = new Time();
+    public Time subtractAndReturnNew(final Number value, final TimeUnit unit, final TimeUnit resultUnit) {
+        final var result = new Time();
         result.setUnit(resultUnit);
-        result.setValue(subtract(getValue(), getUnit(), value, unit,
-                resultUnit));
+        result.setValue(subtract(getValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 

@@ -59,8 +59,7 @@ public class FrequencyConverter {
      * @param output output frequency where result will be stored and containing
      *               output unit.
      */
-    public static void convert(
-            final Frequency input, final Frequency output) {
+    public static void convert(final Frequency input, final Frequency output) {
         convert(input, output.getUnit(), output);
     }
 
@@ -71,10 +70,8 @@ public class FrequencyConverter {
      * @param outputUnit requested output unit.
      * @return converted frequency.
      */
-    public static Frequency convertAndReturnNew(
-            final Frequency input,
-            final FrequencyUnit outputUnit) {
-        final Frequency result = new Frequency();
+    public static Frequency convertAndReturnNew(final Frequency input, final FrequencyUnit outputUnit) {
+        final var result = new Frequency();
         convert(input, outputUnit, result);
         return result;
     }
@@ -85,8 +82,7 @@ public class FrequencyConverter {
      * @param frequency  input frequency to be converted and updated.
      * @param outputUnit requested output unit.
      */
-    public static void convert(
-            final Frequency frequency, final FrequencyUnit outputUnit) {
+    public static void convert(final Frequency frequency, final FrequencyUnit outputUnit) {
         convert(frequency, outputUnit, frequency);
     }
 
@@ -97,11 +93,8 @@ public class FrequencyConverter {
      * @param outputUnit requested output unit.
      * @param result     frequency unit where result will be stored.
      */
-    public static void convert(
-            final Frequency input, final FrequencyUnit outputUnit,
-            final Frequency result) {
-        final Number value = convert(input.getValue(), input.getUnit(),
-                outputUnit);
+    public static void convert(final Frequency input, final FrequencyUnit outputUnit, final Frequency result) {
+        final var value = convert(input.getValue(), input.getUnit(), outputUnit);
         result.setValue(value);
         result.setUnit(outputUnit);
     }
@@ -114,11 +107,8 @@ public class FrequencyConverter {
      * @param outputUnit output frequency unit.
      * @return converted frequency value.
      */
-    public static Number convert(
-            final Number input, final FrequencyUnit inputUnit,
-            final FrequencyUnit outputUnit) {
-        return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit,
-                outputUnit));
+    public static Number convert(final Number input, final FrequencyUnit inputUnit, final FrequencyUnit outputUnit) {
+        return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit, outputUnit));
     }
 
     /**
@@ -129,47 +119,24 @@ public class FrequencyConverter {
      * @param outputUnit output frequency unit.
      * @return converted frequency value.
      */
-    public static double convert(
-            final double input, final FrequencyUnit inputUnit,
-            final FrequencyUnit outputUnit) {
-        double hertz;
-
+    public static double convert(final double input, final FrequencyUnit inputUnit, final FrequencyUnit outputUnit) {
         // convert to hertz's
-        switch (inputUnit) {
-            case KILOHERTZ:
-                hertz = kiloHertzToHertz(input);
-                break;
-            case MEGAHERTZ:
-                hertz = megaHertzToHertz(input);
-                break;
-            case GIGAHERTZ:
-                hertz = gigaHertzToHertz(input);
-                break;
-            case TERAHERTZ:
-                hertz = teraHertzToHertz(input);
-                break;
+        final var hertz = switch (inputUnit) {
+            case KILOHERTZ -> kiloHertzToHertz(input);
+            case MEGAHERTZ -> megaHertzToHertz(input);
+            case GIGAHERTZ -> gigaHertzToHertz(input);
+            case TERAHERTZ -> teraHertzToHertz(input);
+            default -> input;
+        };
 
-            case HERTZ:
-            default:
-                hertz = input;
-                break;
-        }
-
-        // convert from Hertz to required output unit
-        switch (outputUnit) {
-            case KILOHERTZ:
-                return hertzToKiloHertz(hertz);
-            case MEGAHERTZ:
-                return hertzToMegaHertz(hertz);
-            case GIGAHERTZ:
-                return hertzToGigaHertz(hertz);
-            case TERAHERTZ:
-                return hertzToTeraHertz(hertz);
-
-            case HERTZ:
-            default:
-                return hertz;
-        }
+        // convert from Hertz to output unit
+        return switch (outputUnit) {
+            case KILOHERTZ -> hertzToKiloHertz(hertz);
+            case MEGAHERTZ -> hertzToMegaHertz(hertz);
+            case GIGAHERTZ -> hertzToGigaHertz(hertz);
+            case TERAHERTZ -> hertzToTeraHertz(hertz);
+            default -> hertz;
+        };
     }
 
     /**

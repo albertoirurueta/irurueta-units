@@ -15,22 +15,22 @@
  */
 package com.irurueta.units;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Random;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class VolumeTest {
+class VolumeTest {
 
     public static final double ERROR = 1e-6;
 
     @Test
-    public void testConstructor() {
+    void testConstructor() {
         // test empty constructor
-        Volume v = new Volume();
+        var v = new Volume();
 
         // check
         assertNull(v.getValue());
@@ -44,28 +44,17 @@ public class VolumeTest {
         assertEquals(VolumeUnit.CUBIC_METER, v.getUnit());
 
         // Force IllegalArgumentException
-        v = null;
-        try {
-            v = new Volume(null, VolumeUnit.CUBIC_METER);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
-        try {
-            v = new Volume(123, null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
-        //noinspection ConstantConditions
-        assertNull(v);
+        assertThrows(IllegalArgumentException.class, () -> new Volume(null, VolumeUnit.CUBIC_METER));
+        assertThrows(IllegalArgumentException.class, () -> new Volume(123, null));
     }
 
     @Test
-    public void testEquals() {
-        final double value = new Random().nextDouble();
-        final Volume v1 = new Volume(value, VolumeUnit.LITER);
-        final Volume v2 = new Volume(value, VolumeUnit.LITER);
-        final Volume v3 = new Volume(value + 1.0, VolumeUnit.LITER);
-        final Volume v4 = new Volume(value, VolumeUnit.CUBIC_METER);
+    void testEquals() {
+        final var value = new Random().nextDouble();
+        final var v1 = new Volume(value, VolumeUnit.LITER);
+        final var v2 = new Volume(value, VolumeUnit.LITER);
+        final var v3 = new Volume(value + 1.0, VolumeUnit.LITER);
+        final var v4 = new Volume(value, VolumeUnit.CUBIC_METER);
 
         //noinspection EqualsWithItself
         assertEquals(v1, v1);
@@ -78,12 +67,12 @@ public class VolumeTest {
     }
 
     @Test
-    public void testHashCode() {
-        final double value = new Random().nextDouble();
-        final Volume v1 = new Volume(value, VolumeUnit.LITER);
-        final Volume v2 = new Volume(value, VolumeUnit.LITER);
-        final Volume v3 = new Volume(value + 1.0, VolumeUnit.LITER);
-        final Volume v4 = new Volume(value, VolumeUnit.CUBIC_METER);
+    void testHashCode() {
+        final var value = new Random().nextDouble();
+        final var v1 = new Volume(value, VolumeUnit.LITER);
+        final var v2 = new Volume(value, VolumeUnit.LITER);
+        final var v3 = new Volume(value + 1.0, VolumeUnit.LITER);
+        final var v4 = new Volume(value, VolumeUnit.CUBIC_METER);
 
         assertEquals(v1.hashCode(), v1.hashCode());
         assertEquals(v1.hashCode(), v2.hashCode());
@@ -92,13 +81,13 @@ public class VolumeTest {
     }
 
     @Test
-    public void testEqualsWithTolerance() {
-        final double value = new Random().nextDouble();
-        final Volume v1 = new Volume(value, VolumeUnit.LITER);
-        final Volume v2 = new Volume(value, VolumeUnit.LITER);
-        final Volume v3 = new Volume(value + 0.5 * ERROR, VolumeUnit.LITER);
-        final Volume v4 = new Volume(value, VolumeUnit.CUBIC_CENTIMETER);
-        final Volume v5 = new Volume(value * 1000.0, VolumeUnit.CUBIC_CENTIMETER);
+    void testEqualsWithTolerance() {
+        final var value = new Random().nextDouble();
+        final var v1 = new Volume(value, VolumeUnit.LITER);
+        final var v2 = new Volume(value, VolumeUnit.LITER);
+        final var v3 = new Volume(value + 0.5 * ERROR, VolumeUnit.LITER);
+        final var v4 = new Volume(value, VolumeUnit.CUBIC_CENTIMETER);
+        final var v5 = new Volume(value * 1000.0, VolumeUnit.CUBIC_CENTIMETER);
 
         assertTrue(v1.equals(v1, 0.0));
         assertTrue(v1.equals(v2, 0.0));
@@ -111,8 +100,8 @@ public class VolumeTest {
     }
 
     @Test
-    public void testGetSetValue() {
-        final Volume v = new Volume(1.0, VolumeUnit.LITER);
+    void testGetSetValue() {
+        final var v = new Volume(1.0, VolumeUnit.LITER);
 
         // check
         assertEquals(1.0, v.getValue());
@@ -124,16 +113,12 @@ public class VolumeTest {
         assertEquals(2.5, v.getValue());
 
         // Force IllegalArgumentException
-        try {
-            v.setValue(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> v.setValue(null));
     }
 
     @Test
-    public void testGetSetUnit() {
-        final Volume v = new Volume(1.0, VolumeUnit.LITER);
+    void testGetSetUnit() {
+        final var v = new Volume(1.0, VolumeUnit.LITER);
 
         // check
         assertEquals(VolumeUnit.LITER, v.getUnit());
@@ -145,49 +130,44 @@ public class VolumeTest {
         assertEquals(VolumeUnit.CUBIC_METER, v.getUnit());
 
         // force IllegalArgumentException
-        try {
-            v.setUnit(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> v.setUnit(null));
     }
 
     @Test
-    public void testAdd1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final double result = Volume.add(value1, VolumeUnit.CUBIC_METER,
-                value2, VolumeUnit.CUBIC_METER, VolumeUnit.LITER);
+        final var result = Volume.add(value1, VolumeUnit.CUBIC_METER, value2, VolumeUnit.CUBIC_METER, VolumeUnit.LITER);
 
         // check
         assertEquals((value1 + value2) * 1000.0, result, ERROR);
     }
 
     @Test
-    public void testAdd2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Number result = Volume.add(new BigDecimal(value1), VolumeUnit.CUBIC_METER,
-                new BigDecimal(value2), VolumeUnit.CUBIC_METER, VolumeUnit.LITER);
+        final var result = Volume.add(new BigDecimal(value1), VolumeUnit.CUBIC_METER, new BigDecimal(value2),
+                VolumeUnit.CUBIC_METER, VolumeUnit.LITER);
 
         // check
         assertEquals((value1 + value2) * 1000.0, result.doubleValue(), ERROR);
     }
 
     @Test
-    public void testAdd3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Volume v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
-        final Volume v2 = new Volume(value2, VolumeUnit.CUBIC_METER);
+        final var v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
+        final var v2 = new Volume(value2, VolumeUnit.CUBIC_METER);
 
-        final Volume result = new Volume(0.0, VolumeUnit.LITER);
+        final var result = new Volume(0.0, VolumeUnit.LITER);
         Volume.add(v1, v2, result);
 
         // check
@@ -198,20 +178,19 @@ public class VolumeTest {
         assertEquals(value2, v2.getValue().doubleValue(), 0.0);
 
         assertEquals(VolumeUnit.LITER, result.getUnit());
-        assertEquals((value1 + value2) * 1000.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 + value2) * 1000.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAddAndReturnNew1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAddAndReturnNew1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Volume v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
-        final Volume v2 = new Volume(value2, VolumeUnit.CUBIC_METER);
+        final var v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
+        final var v2 = new Volume(value2, VolumeUnit.CUBIC_METER);
 
-        final Volume result = Volume.addAndReturnNew(v1, v2, VolumeUnit.LITER);
+        final var result = Volume.addAndReturnNew(v1, v2, VolumeUnit.LITER);
 
         // check
         assertEquals(VolumeUnit.CUBIC_METER, v1.getUnit());
@@ -221,60 +200,55 @@ public class VolumeTest {
         assertEquals(value2, v2.getValue().doubleValue(),0.0);
 
         assertEquals(VolumeUnit.LITER, result.getUnit());
-        assertEquals((value1 + value2) * 1000.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 + value2) * 1000.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAddAndReturnNew2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAddAndReturnNew2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Volume v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
+        final var v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
 
-        final Volume result = v1.addAndReturnNew(value2, VolumeUnit.CUBIC_METER,
-                VolumeUnit.LITER);
+        final var result = v1.addAndReturnNew(value2, VolumeUnit.CUBIC_METER, VolumeUnit.LITER);
 
         // check
         assertEquals(VolumeUnit.CUBIC_METER, v1.getUnit());
         assertEquals(value1, v1.getValue().doubleValue(), 0.0);
 
         assertEquals(VolumeUnit.LITER, result.getUnit());
-        assertEquals((value1 + value2) * 1000.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 + value2) * 1000.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAddAndReturnNew3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAddAndReturnNew3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Volume v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
+        final var v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
 
-        final Volume result = v1.addAndReturnNew(new BigDecimal(value2),
-                VolumeUnit.CUBIC_METER, VolumeUnit.LITER);
+        final var result = v1.addAndReturnNew(new BigDecimal(value2), VolumeUnit.CUBIC_METER, VolumeUnit.LITER);
 
         // check
         assertEquals(VolumeUnit.CUBIC_METER, v1.getUnit());
         assertEquals(value1, v1.getValue().doubleValue(), 0.0);
 
         assertEquals(VolumeUnit.LITER, result.getUnit());
-        assertEquals((value1 + value2) * 1000.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 + value2) * 1000.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAddAndReturnNew4() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAddAndReturnNew4() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Volume v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
-        final Volume v2 = new Volume(value2, VolumeUnit.CUBIC_METER);
+        final var v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
+        final var v2 = new Volume(value2, VolumeUnit.CUBIC_METER);
 
-        final Volume result = v1.addAndReturnNew(v2, VolumeUnit.LITER);
+        final var result = v1.addAndReturnNew(v2, VolumeUnit.LITER);
 
         // check
         assertEquals(VolumeUnit.CUBIC_METER, v1.getUnit());
@@ -284,17 +258,16 @@ public class VolumeTest {
         assertEquals(value2, v2.getValue().doubleValue(), 0.0);
 
         assertEquals(VolumeUnit.LITER, result.getUnit());
-        assertEquals((value1 + value2) * 1000.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 + value2) * 1000.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAdd4() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd4() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Volume v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
+        final var v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
 
         v1.add(value2, VolumeUnit.CUBIC_METER);
 
@@ -304,12 +277,12 @@ public class VolumeTest {
     }
 
     @Test
-    public void testAdd5() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd5() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Volume v1 = new Volume(value1, VolumeUnit.LITER);
+        final var v1 = new Volume(value1, VolumeUnit.LITER);
 
         v1.add(new BigDecimal(value2), VolumeUnit.LITER);
 
@@ -319,13 +292,13 @@ public class VolumeTest {
     }
 
     @Test
-    public void testAdd6() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd6() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Volume v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
-        final Volume v2 = new Volume(value2, VolumeUnit.CUBIC_METER);
+        final var v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
+        final var v2 = new Volume(value2, VolumeUnit.CUBIC_METER);
 
         v1.add(v2);
 
@@ -338,15 +311,15 @@ public class VolumeTest {
     }
 
     @Test
-    public void testAdd7() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd7() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Volume v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
-        final Volume v2 = new Volume(value2, VolumeUnit.CUBIC_METER);
+        final var v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
+        final var v2 = new Volume(value2, VolumeUnit.CUBIC_METER);
 
-        final Volume result = new Volume(0.0, VolumeUnit.LITER);
+        final var result = new Volume(0.0, VolumeUnit.LITER);
         v1.add(v2, result);
 
         // check
@@ -361,41 +334,41 @@ public class VolumeTest {
     }
 
     @Test
-    public void testSubtract1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final double result = Volume.subtract(value1, VolumeUnit.CUBIC_METER,
-                value2, VolumeUnit.CUBIC_METER, VolumeUnit.LITER);
+        final var result = Volume.subtract(value1, VolumeUnit.CUBIC_METER, value2, VolumeUnit.CUBIC_METER,
+                VolumeUnit.LITER);
 
         // check
         assertEquals((value1 - value2) * 1000.0, result, ERROR);
     }
 
     @Test
-    public void testSubtract2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Number result = Volume.subtract(new BigDecimal(value1), VolumeUnit.CUBIC_METER,
-                new BigDecimal(value2), VolumeUnit.CUBIC_METER, VolumeUnit.LITER);
+        final var result = Volume.subtract(new BigDecimal(value1), VolumeUnit.CUBIC_METER, new BigDecimal(value2),
+                VolumeUnit.CUBIC_METER, VolumeUnit.LITER);
 
         // check
         assertEquals((value1 - value2) * 1000.0, result.doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtract3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Volume v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
-        final Volume v2 = new Volume(value2, VolumeUnit.CUBIC_METER);
+        final var v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
+        final var v2 = new Volume(value2, VolumeUnit.CUBIC_METER);
 
-        final Volume result = new Volume(0.0, VolumeUnit.LITER);
+        final var result = new Volume(0.0, VolumeUnit.LITER);
         Volume.subtract(v1, v2, result);
 
         // check
@@ -406,20 +379,19 @@ public class VolumeTest {
         assertEquals(value2, v2.getValue().doubleValue(), 0.0);
 
         assertEquals(VolumeUnit.LITER, result.getUnit());
-        assertEquals((value1 - value2) * 1000.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 - value2) * 1000.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtractAndReturnNew1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtractAndReturnNew1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Volume v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
-        final Volume v2 = new Volume(value2, VolumeUnit.CUBIC_METER);
+        final var v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
+        final var v2 = new Volume(value2, VolumeUnit.CUBIC_METER);
 
-        final Volume result = Volume.subtractAndReturnNew(v1, v2, VolumeUnit.LITER);
+        final var result = Volume.subtractAndReturnNew(v1, v2, VolumeUnit.LITER);
 
         // check
         assertEquals(VolumeUnit.CUBIC_METER, v1.getUnit());
@@ -429,60 +401,55 @@ public class VolumeTest {
         assertEquals(value2, v2.getValue().doubleValue(), 0.0);
 
         assertEquals(VolumeUnit.LITER, result.getUnit());
-        assertEquals((value1 - value2) * 1000.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 - value2) * 1000.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtractAndReturnNew2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtractAndReturnNew2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Volume v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
+        final var v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
 
-        final Volume result = v1.subtractAndReturnNew(value2, VolumeUnit.CUBIC_METER,
-                VolumeUnit.LITER);
+        final var result = v1.subtractAndReturnNew(value2, VolumeUnit.CUBIC_METER, VolumeUnit.LITER);
 
         // check
         assertEquals(VolumeUnit.CUBIC_METER, v1.getUnit());
         assertEquals(value1, v1.getValue().doubleValue(), 0.0);
 
         assertEquals(VolumeUnit.LITER, result.getUnit());
-        assertEquals((value1 - value2) * 1000.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 - value2) * 1000.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtractAndReturnNew3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtractAndReturnNew3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Volume v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
+        final var v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
 
-        final Volume result = v1.subtractAndReturnNew(new BigDecimal(value2),
-                VolumeUnit.CUBIC_METER, VolumeUnit.LITER);
+        final var result = v1.subtractAndReturnNew(new BigDecimal(value2), VolumeUnit.CUBIC_METER, VolumeUnit.LITER);
 
         // check
         assertEquals(VolumeUnit.CUBIC_METER, v1.getUnit());
         assertEquals(value1, v1.getValue().doubleValue(), 0.0);
 
         assertEquals(VolumeUnit.LITER, result.getUnit());
-        assertEquals((value1 - value2) * 1000.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 - value2) * 1000.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtractAndReturnNew4() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtractAndReturnNew4() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Volume v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
-        final Volume v2 = new Volume(value2, VolumeUnit.CUBIC_METER);
+        final var v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
+        final var v2 = new Volume(value2, VolumeUnit.CUBIC_METER);
 
-        final Volume result = v1.subtractAndReturnNew(v2, VolumeUnit.LITER);
+        final var result = v1.subtractAndReturnNew(v2, VolumeUnit.LITER);
 
         // check
         assertEquals(VolumeUnit.CUBIC_METER, v1.getUnit());
@@ -492,17 +459,16 @@ public class VolumeTest {
         assertEquals(value2, v2.getValue().doubleValue(), 0.0);
 
         assertEquals(VolumeUnit.LITER, result.getUnit());
-        assertEquals((value1 - value2) * 1000.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 - value2) * 1000.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtract4() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract4() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Volume v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
+        final var v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
 
         v1.subtract(value2, VolumeUnit.CUBIC_METER);
 
@@ -512,12 +478,12 @@ public class VolumeTest {
     }
 
     @Test
-    public void testSubtract5() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract5() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Volume v1 = new Volume(value1, VolumeUnit.LITER);
+        final var v1 = new Volume(value1, VolumeUnit.LITER);
 
         v1.subtract(new BigDecimal(value2), VolumeUnit.LITER);
 
@@ -527,13 +493,13 @@ public class VolumeTest {
     }
 
     @Test
-    public void testSubtract6() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract6() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Volume v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
-        final Volume v2 = new Volume(value2, VolumeUnit.CUBIC_METER);
+        final var v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
+        final var v2 = new Volume(value2, VolumeUnit.CUBIC_METER);
 
         v1.subtract(v2);
 
@@ -546,15 +512,15 @@ public class VolumeTest {
     }
 
     @Test
-    public void testSubtract7() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract7() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Volume v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
-        final Volume v2 = new Volume(value2, VolumeUnit.CUBIC_METER);
+        final var v1 = new Volume(value1, VolumeUnit.CUBIC_METER);
+        final var v2 = new Volume(value2, VolumeUnit.CUBIC_METER);
 
-        final Volume result = new Volume(0.0, VolumeUnit.LITER);
+        final var result = new Volume(0.0, VolumeUnit.LITER);
         v1.subtract(v2, result);
 
         // check
@@ -569,12 +535,12 @@ public class VolumeTest {
     }
 
     @Test
-    public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
-        final double value = new Random().nextDouble();
-        final Volume v1 = new Volume(value, VolumeUnit.LITER);
+    void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+        final var value = new Random().nextDouble();
+        final var v1 = new Volume(value, VolumeUnit.LITER);
 
-        final byte[] bytes = SerializationHelper.serialize(v1);
-        final Volume v2 = SerializationHelper.deserialize(bytes);
+        final var bytes = SerializationHelper.serialize(v1);
+        final var v2 = SerializationHelper.deserialize(bytes);
 
         assertEquals(v1, v2);
         assertNotSame(v1, v2);

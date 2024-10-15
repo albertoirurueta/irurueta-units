@@ -51,8 +51,7 @@ public class Angle extends Measurement<AngleUnit> {
      * @return true if provided angle is assumed to be equal to this instance, false otherwise.
      */
     @Override
-    public boolean equals(
-            final Measurement<AngleUnit> other, final double tolerance) {
+    public boolean equals(final Measurement<AngleUnit> other, final double tolerance) {
         if (super.equals(other, tolerance)) {
             return true;
         }
@@ -62,8 +61,7 @@ public class Angle extends Measurement<AngleUnit> {
             return false;
         }
 
-        final double otherValue = AngleConverter.convert(other.getValue().doubleValue(),
-                other.getUnit(), getUnit());
+        final var otherValue = AngleConverter.convert(other.getValue().doubleValue(), other.getUnit(), getUnit());
         return Math.abs(getValue().doubleValue() - otherValue) <= tolerance;
     }
 
@@ -81,8 +79,8 @@ public class Angle extends Measurement<AngleUnit> {
             final double value1, final AngleUnit unit1,
             final double value2, final AngleUnit unit2,
             final AngleUnit resultUnit) {
-        final double v1 = AngleConverter.convert(value1, unit1, resultUnit);
-        final double v2 = AngleConverter.convert(value2, unit2, resultUnit);
+        final var v1 = AngleConverter.convert(value1, unit1, resultUnit);
+        final var v2 = AngleConverter.convert(value2, unit2, resultUnit);
         return v1 + v2;
     }
 
@@ -100,8 +98,7 @@ public class Angle extends Measurement<AngleUnit> {
             final Number value1, final AngleUnit unit1,
             final Number value2, final AngleUnit unit2,
             final AngleUnit resultUnit) {
-        return BigDecimal.valueOf(add(value1.doubleValue(), unit1,
-                value2.doubleValue(), unit2, resultUnit));
+        return BigDecimal.valueOf(add(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));
     }
 
     /**
@@ -111,10 +108,8 @@ public class Angle extends Measurement<AngleUnit> {
      * @param arg2   2nd argument.
      * @param result instance where result will be stored.
      */
-    public static void add(
-            final Angle arg1, final Angle arg2, final Angle result) {
-        result.setValue(add(arg1.getValue(), arg1.getUnit(),
-                arg2.getValue(), arg2.getUnit(), result.getUnit()));
+    public static void add(final Angle arg1, final Angle arg2, final Angle result) {
+        result.setValue(add(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));
     }
 
     /**
@@ -125,9 +120,8 @@ public class Angle extends Measurement<AngleUnit> {
      * @param unit unit of returned angle.
      * @return a new instance containing result.
      */
-    public static Angle addAndReturnNew(
-            final Angle arg1, final Angle arg2, final AngleUnit unit) {
-        final Angle result = new Angle();
+    public static Angle addAndReturnNew(final Angle arg1, final Angle arg2, final AngleUnit unit) {
+        final var result = new Angle();
         result.setUnit(unit);
         add(arg1, arg2, result);
         return result;
@@ -142,12 +136,10 @@ public class Angle extends Measurement<AngleUnit> {
      * @return a new angle containing result.
      */
     public Angle addAndReturnNew(
-            final double value, final AngleUnit unit,
-            final AngleUnit resultUnit) {
-        final Angle result = new Angle();
+            final double value, final AngleUnit unit, final AngleUnit resultUnit) {
+        final var result = new Angle();
         result.setUnit(resultUnit);
-        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit,
-                resultUnit));
+        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 
@@ -160,9 +152,8 @@ public class Angle extends Measurement<AngleUnit> {
      * @return a new angle containing result.
      */
     public Angle addAndReturnNew(
-            final Number value, final AngleUnit unit,
-            final AngleUnit resultUnit) {
-        final Angle result = new Angle();
+            final Number value, final AngleUnit unit, final AngleUnit resultUnit) {
+        final var result = new Angle();
         result.setUnit(resultUnit);
         result.setValue(add(getValue(), getUnit(), value, unit, resultUnit));
         return result;
@@ -232,8 +223,8 @@ public class Angle extends Measurement<AngleUnit> {
             final double value1, final AngleUnit unit1,
             final double value2, final AngleUnit unit2,
             final AngleUnit resultUnit) {
-        final double v1 = AngleConverter.convert(value1, unit1, resultUnit);
-        final double v2 = AngleConverter.convert(value2, unit2, resultUnit);
+        final var v1 = AngleConverter.convert(value1, unit1, resultUnit);
+        final var v2 = AngleConverter.convert(value2, unit2, resultUnit);
         return v1 - v2;
     }
 
@@ -251,8 +242,7 @@ public class Angle extends Measurement<AngleUnit> {
             final Number value1, final AngleUnit unit1,
             final Number value2, final AngleUnit unit2,
             final AngleUnit resultUnit) {
-        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1,
-                value2.doubleValue(), unit2, resultUnit));
+        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));
     }
 
     /**
@@ -262,10 +252,8 @@ public class Angle extends Measurement<AngleUnit> {
      * @param arg2   2nd argument.
      * @param result instance where result will be stored.
      */
-    public static void subtract(
-            final Angle arg1, final Angle arg2, final Angle result) {
-        result.setValue(subtract(arg1.getValue(), arg1.getUnit(),
-                arg2.getValue(), arg2.getUnit(), result.getUnit()));
+    public static void subtract(final Angle arg1, final Angle arg2, final Angle result) {
+        result.setValue(subtract(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));
     }
 
     /**
@@ -276,9 +264,8 @@ public class Angle extends Measurement<AngleUnit> {
      * @param unit unit of returned angle.
      * @return a new angle containing result.
      */
-    public static Angle subtractAndReturnNew(
-            final Angle arg1, final Angle arg2, final AngleUnit unit) {
-        Angle result = new Angle();
+    public static Angle subtractAndReturnNew(final Angle arg1, final Angle arg2, final AngleUnit unit) {
+        final var result = new Angle();
         result.setUnit(unit);
         subtract(arg1, arg2, result);
         return result;
@@ -293,12 +280,10 @@ public class Angle extends Measurement<AngleUnit> {
      * @return a new angle containing result.
      */
     public Angle subtractAndReturnNew(
-            final double value, final AngleUnit unit,
-            final AngleUnit resultUnit) {
-        final Angle result = new Angle();
+            final double value, final AngleUnit unit, final AngleUnit resultUnit) {
+        final var result = new Angle();
         result.setUnit(resultUnit);
-        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit,
-                resultUnit));
+        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 
@@ -311,12 +296,10 @@ public class Angle extends Measurement<AngleUnit> {
      * @return a new angle containing result.
      */
     public Angle subtractAndReturnNew(
-            final Number value, final AngleUnit unit,
-            final AngleUnit resultUnit) {
-        final Angle result = new Angle();
+            final Number value, final AngleUnit unit, final AngleUnit resultUnit) {
+        final var result = new Angle();
         result.setUnit(resultUnit);
-        result.setValue(subtract(getValue(), getUnit(), value, unit,
-                resultUnit));
+        result.setValue(subtract(getValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 

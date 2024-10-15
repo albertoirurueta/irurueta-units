@@ -94,7 +94,7 @@ public class MagneticFluxDensityFormatter extends MeasureFormatter<MagneticFluxD
      */
     @Override
     public boolean equals(final Object obj) {
-        final boolean equals = super.equals(obj);
+        final var equals = super.equals(obj);
         return (obj instanceof MagneticFluxDensityFormatter) && equals;
     }
 
@@ -133,8 +133,7 @@ public class MagneticFluxDensityFormatter extends MeasureFormatter<MagneticFluxD
      * @throws UnknownUnitException if unit cannot be determined.
      */
     @Override
-    public MagneticFluxDensity parse(final String source)
-            throws ParseException, UnknownUnitException {
+    public MagneticFluxDensity parse(final String source) throws ParseException, UnknownUnitException {
         return internalParse(source, new MagneticFluxDensity());
     }
 
@@ -166,7 +165,6 @@ public class MagneticFluxDensityFormatter extends MeasureFormatter<MagneticFluxD
         if (source.contains(GIGATESLA + " ") || source.endsWith(GIGATESLA)) {
             return MagneticFluxDensityUnit.GIGATESLA;
         }
-
         if (source.contains(TESLA + " ") || source.endsWith(TESLA)) {
             return MagneticFluxDensityUnit.TESLA;
         }
@@ -186,9 +184,7 @@ public class MagneticFluxDensityFormatter extends MeasureFormatter<MagneticFluxD
      * and unit.
      */
     @Override
-    public String formatAndConvert(
-            final Number value, final MagneticFluxDensityUnit unit,
-            final UnitSystem system) {
+    public String formatAndConvert(final Number value, final MagneticFluxDensityUnit unit, final UnitSystem system) {
         return formatAndConvertMetric(value, unit);
     }
 
@@ -204,52 +200,44 @@ public class MagneticFluxDensityFormatter extends MeasureFormatter<MagneticFluxD
      * @return a string representation of magnetic flux density value and
      * unit using metric unit system.
      */
-    public String formatAndConvertMetric(
-            final Number value, final MagneticFluxDensityUnit unit) {
-        final double v = value.doubleValue();
+    public String formatAndConvertMetric(final Number value, final MagneticFluxDensityUnit unit) {
+        final var v = value.doubleValue();
 
-        final double nanoTesla = MagneticFluxDensityConverter.convert(
-                v, unit, MagneticFluxDensityUnit.NANOTESLA);
+        final var nanoTesla = MagneticFluxDensityConverter.convert(v, unit, MagneticFluxDensityUnit.NANOTESLA);
         if (Math.abs(nanoTesla) < MagneticFluxDensityConverter.TESLAS_PER_MICROTESLA
                 / MagneticFluxDensityConverter.TESLAS_PER_NANOTESLA) {
             return format(nanoTesla, MagneticFluxDensityUnit.NANOTESLA);
         }
 
-        final double microTesla = MagneticFluxDensityConverter.convert(
-                v, unit, MagneticFluxDensityUnit.MICROTESLA);
-        if (Math.abs(microTesla) < (MagneticFluxDensityConverter.TESLAS_PER_MILLITESLA /
-                MagneticFluxDensityConverter.TESLAS_PER_MICROTESLA)) {
+        final var microTesla = MagneticFluxDensityConverter.convert(v, unit, MagneticFluxDensityUnit.MICROTESLA);
+        if (Math.abs(microTesla) < (MagneticFluxDensityConverter.TESLAS_PER_MILLITESLA
+                / MagneticFluxDensityConverter.TESLAS_PER_MICROTESLA)) {
             return format(microTesla, MagneticFluxDensityUnit.MICROTESLA);
         }
 
-        final double milliTesla = MagneticFluxDensityConverter.convert(
-                v, unit, MagneticFluxDensityUnit.MILLITESLA);
+        final var milliTesla = MagneticFluxDensityConverter.convert(v, unit, MagneticFluxDensityUnit.MILLITESLA);
         if (Math.abs(milliTesla) < (1.0 / MagneticFluxDensityConverter.TESLAS_PER_MILLITESLA)) {
             return format(milliTesla, MagneticFluxDensityUnit.MILLITESLA);
         }
 
-        final double tesla = MagneticFluxDensityConverter.convert(
-                v, unit, MagneticFluxDensityUnit.TESLA);
+        final var tesla = MagneticFluxDensityConverter.convert(v, unit, MagneticFluxDensityUnit.TESLA);
         if (Math.abs(tesla) < MagneticFluxDensityConverter.TESLAS_PER_KILOTESLA) {
             return format(tesla, MagneticFluxDensityUnit.TESLA);
         }
 
-        final double kiloTesla = MagneticFluxDensityConverter.convert(
-                v, unit, MagneticFluxDensityUnit.KILOTESLA);
-        if (Math.abs(kiloTesla) < (MagneticFluxDensityConverter.TESLAS_PER_MEGATESLA /
-                MagneticFluxDensityConverter.TESLAS_PER_KILOTESLA)) {
+        final var kiloTesla = MagneticFluxDensityConverter.convert(v, unit, MagneticFluxDensityUnit.KILOTESLA);
+        if (Math.abs(kiloTesla) < (MagneticFluxDensityConverter.TESLAS_PER_MEGATESLA
+                / MagneticFluxDensityConverter.TESLAS_PER_KILOTESLA)) {
             return format(kiloTesla, MagneticFluxDensityUnit.KILOTESLA);
         }
 
-        final double megaTesla = MagneticFluxDensityConverter.convert(
-                v, unit, MagneticFluxDensityUnit.MEGATESLA);
-        if (Math.abs(megaTesla) < (MagneticFluxDensityConverter.TESLAS_PER_GIGATESLA /
-                MagneticFluxDensityConverter.TESLAS_PER_MEGATESLA)) {
+        final var megaTesla = MagneticFluxDensityConverter.convert(v, unit, MagneticFluxDensityUnit.MEGATESLA);
+        if (Math.abs(megaTesla) < (MagneticFluxDensityConverter.TESLAS_PER_GIGATESLA
+                / MagneticFluxDensityConverter.TESLAS_PER_MEGATESLA)) {
             return format(megaTesla, MagneticFluxDensityUnit.MEGATESLA);
         }
 
-        final double gigaTesla = MagneticFluxDensityConverter.convert(
-                v, unit, MagneticFluxDensityUnit.GIGATESLA);
+        final var gigaTesla = MagneticFluxDensityConverter.convert(v, unit, MagneticFluxDensityUnit.GIGATESLA);
         return format(gigaTesla, MagneticFluxDensityUnit.GIGATESLA);
     }
 
@@ -261,23 +249,15 @@ public class MagneticFluxDensityFormatter extends MeasureFormatter<MagneticFluxD
      */
     @Override
     public String getUnitSymbol(MagneticFluxDensityUnit unit) {
-        switch (unit) {
-            case NANOTESLA:
-                return NANOTESLA;
-            case MICROTESLA:
-                return MICROTESLA;
-            case MILLITESLA:
-                return MILLITESLA;
-            case KILOTESLA:
-                return KILOTESLA;
-            case MEGATESLA:
-                return MEGATESLA;
-            case GIGATESLA:
-                return GIGATESLA;
-            case TESLA:
-            default:
-                return TESLA;
-        }
+        return switch (unit) {
+            case NANOTESLA -> NANOTESLA;
+            case MICROTESLA -> MICROTESLA;
+            case MILLITESLA -> MILLITESLA;
+            case KILOTESLA -> KILOTESLA;
+            case MEGATESLA -> MEGATESLA;
+            case GIGATESLA -> GIGATESLA;
+            default -> TESLA;
+        };
     }
 
     /**

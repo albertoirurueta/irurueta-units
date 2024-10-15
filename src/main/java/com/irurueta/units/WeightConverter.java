@@ -104,9 +104,8 @@ public class WeightConverter {
      * @param outputUnit requested output unit.
      * @return converted weight.
      */
-    public static Weight convertAndReturnNew(
-            final Weight input, final WeightUnit outputUnit) {
-        final Weight result = new Weight();
+    public static Weight convertAndReturnNew(final Weight input, final WeightUnit outputUnit) {
+        final var result = new Weight();
         convert(input, outputUnit, result);
         return result;
     }
@@ -129,10 +128,8 @@ public class WeightConverter {
      * @param result     weight instance where result will be stored.
      */
     public static void convert(
-            final Weight input, final WeightUnit outputUnit,
-            final Weight result) {
-        final Number value = convert(input.getValue(), input.getUnit(),
-                outputUnit);
+            final Weight input, final WeightUnit outputUnit, final Weight result) {
+        final var value = convert(input.getValue(), input.getUnit(), outputUnit);
         result.setValue(value);
         result.setUnit(outputUnit);
     }
@@ -145,9 +142,7 @@ public class WeightConverter {
      * @param outputUnit output weight unit.
      * @return converted weight value.
      */
-    public static Number convert(
-            final Number input, final WeightUnit inputUnit,
-            final WeightUnit outputUnit) {
+    public static Number convert(final Number input, final WeightUnit inputUnit, final WeightUnit outputUnit) {
         return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit, outputUnit));
     }
 
@@ -159,82 +154,38 @@ public class WeightConverter {
      * @param outputUnit output weight unit.
      * @return converted weight value.
      */
-    public static double convert(
-            final double input, final WeightUnit inputUnit,
-            final WeightUnit outputUnit) {
-        double grams;
-
+    public static double convert(final double input, final WeightUnit inputUnit, final WeightUnit outputUnit) {
         // convert to grams
-        switch (inputUnit) {
-            case PICOGRAM:
-                grams = picogramToGram(input);
-                break;
-            case NANOGRAM:
-                grams = nanogramToGram(input);
-                break;
-            case MICROGRAM:
-                grams = microgramToGram(input);
-                break;
-            case MILLIGRAM:
-                grams = milligramToGram(input);
-                break;
-            case KILOGRAM:
-                grams = kilogramToGram(input);
-                break;
-            case TONNE:
-                grams = tonneToGram(input);
-                break;
-            case MEGATONNE:
-                grams = megatonneToGram(input);
-                break;
-            case US_TON:
-                grams = usTonToGram(input);
-                break;
-            case UK_TON:
-                grams = ukTonToGram(input);
-                break;
-            case POUND:
-                grams = poundToGram(input);
-                break;
-            case OUNCE:
-                grams = ounceToGram(input);
-                break;
+        final var grams = switch (inputUnit) {
+            case PICOGRAM -> picogramToGram(input);
+            case NANOGRAM -> nanogramToGram(input);
+            case MICROGRAM -> microgramToGram(input);
+            case MILLIGRAM -> milligramToGram(input);
+            case KILOGRAM -> kilogramToGram(input);
+            case TONNE -> tonneToGram(input);
+            case MEGATONNE -> megatonneToGram(input);
+            case US_TON -> usTonToGram(input);
+            case UK_TON -> ukTonToGram(input);
+            case POUND -> poundToGram(input);
+            case OUNCE -> ounceToGram(input);
+            default -> input;
+        };
 
-            case GRAM:
-            default:
-                grams = input;
-                break;
-        }
-
-        // convert from gram to required output unit
-        switch (outputUnit) {
-            case PICOGRAM:
-                return gramToPicogram(grams);
-            case NANOGRAM:
-                return gramToNanogram(grams);
-            case MICROGRAM:
-                return gramToMicrogram(grams);
-            case MILLIGRAM:
-                return gramToMilligram(grams);
-            case KILOGRAM:
-                return gramToKilogram(grams);
-            case TONNE:
-                return gramToTonne(grams);
-            case MEGATONNE:
-                return gramToMegatonne(grams);
-            case US_TON:
-                return gramToUsTon(grams);
-            case UK_TON:
-                return gramToUkTon(grams);
-            case POUND:
-                return gramToPound(grams);
-            case OUNCE:
-                return gramToOunce(grams);
-
-            case GRAM:
-            default:
-                return grams;
-        }
+        // convert from gram to output unit
+        return switch (outputUnit) {
+            case PICOGRAM -> gramToPicogram(grams);
+            case NANOGRAM -> gramToNanogram(grams);
+            case MICROGRAM -> gramToMicrogram(grams);
+            case MILLIGRAM -> gramToMilligram(grams);
+            case KILOGRAM -> gramToKilogram(grams);
+            case TONNE -> gramToTonne(grams);
+            case MEGATONNE -> gramToMegatonne(grams);
+            case US_TON -> gramToUsTon(grams);
+            case UK_TON -> gramToUkTon(grams);
+            case POUND -> gramToPound(grams);
+            case OUNCE -> gramToOunce(grams);
+            default -> grams;
+        };
 
     }
 

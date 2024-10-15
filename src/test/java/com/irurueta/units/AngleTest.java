@@ -15,22 +15,22 @@
  */
 package com.irurueta.units;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Random;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class AngleTest {
+class AngleTest {
 
     private static final double ERROR = 1e-6;
 
     @Test
-    public void testConstructor() {
+    void testConstructor() {
         // test empty constructor
-        Angle a = new Angle();
+        var a = new Angle();
 
         // check
         assertNull(a.getValue());
@@ -44,28 +44,17 @@ public class AngleTest {
         assertEquals(AngleUnit.DEGREES, a.getUnit());
 
         // force IllegalArgumentException
-        a = null;
-        try {
-            a = new Angle(null, AngleUnit.DEGREES);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
-        try {
-            a = new Angle(323, null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
-        //noinspection ConstantConditions
-        assertNull(a);
+        assertThrows(IllegalArgumentException.class, () -> new Angle(null, AngleUnit.DEGREES));
+        assertThrows(IllegalArgumentException.class, () ->  new Angle(323, null));
     }
 
     @Test
-    public void testEquals() {
-        final double value = new Random().nextDouble();
-        final Angle a1 = new Angle(value, AngleUnit.DEGREES);
-        final Angle a2 = new Angle(value, AngleUnit.DEGREES);
-        final Angle a3 = new Angle(value + 1.0, AngleUnit.DEGREES);
-        final Angle a4 = new Angle(value, AngleUnit.RADIANS);
+    void testEquals() {
+        final var value = new Random().nextDouble();
+        final var a1 = new Angle(value, AngleUnit.DEGREES);
+        final var a2 = new Angle(value, AngleUnit.DEGREES);
+        final var a3 = new Angle(value + 1.0, AngleUnit.DEGREES);
+        final var a4 = new Angle(value, AngleUnit.RADIANS);
 
         assertEquals(a1, a2);
         assertNotEquals(a1, a3);
@@ -76,12 +65,12 @@ public class AngleTest {
     }
 
     @Test
-    public void testHashCode() {
-        final double value = new Random().nextDouble();
-        final Angle a1 = new Angle(value, AngleUnit.DEGREES);
-        final Angle a2 = new Angle(value, AngleUnit.DEGREES);
-        final Angle a3 = new Angle(value + 1.0, AngleUnit.DEGREES);
-        final Angle a4 = new Angle(value, AngleUnit.RADIANS);
+    void testHashCode() {
+        final var value = new Random().nextDouble();
+        final var a1 = new Angle(value, AngleUnit.DEGREES);
+        final var a2 = new Angle(value, AngleUnit.DEGREES);
+        final var a3 = new Angle(value + 1.0, AngleUnit.DEGREES);
+        final var a4 = new Angle(value, AngleUnit.RADIANS);
 
         assertEquals(a1.hashCode(), a1.hashCode());
         assertEquals(a1.hashCode(), a2.hashCode());
@@ -90,13 +79,13 @@ public class AngleTest {
     }
 
     @Test
-    public void testEqualsWithTolerance() {
-        final double value = new Random().nextDouble();
-        final Angle a1 = new Angle(value, AngleUnit.DEGREES);
-        final Angle a2 = new Angle(value, AngleUnit.DEGREES);
-        final Angle a3 = new Angle(value + 0.5 * ERROR, AngleUnit.DEGREES);
-        final Angle a4 = new Angle(value, AngleUnit.RADIANS);
-        final Angle a5 = new Angle(value * Math.PI / 180.0, AngleUnit.RADIANS);
+    void testEqualsWithTolerance() {
+        final var value = new Random().nextDouble();
+        final var a1 = new Angle(value, AngleUnit.DEGREES);
+        final var a2 = new Angle(value, AngleUnit.DEGREES);
+        final var a3 = new Angle(value + 0.5 * ERROR, AngleUnit.DEGREES);
+        final var a4 = new Angle(value, AngleUnit.RADIANS);
+        final var a5 = new Angle(value * Math.PI / 180.0, AngleUnit.RADIANS);
 
         assertTrue(a1.equals(a1, 0.0));
         assertTrue(a1.equals(a2, 0.0));
@@ -109,8 +98,8 @@ public class AngleTest {
     }
 
     @Test
-    public void testGetSetValue() {
-        final Angle a = new Angle(1, AngleUnit.DEGREES);
+    void testGetSetValue() {
+        final var a = new Angle(1, AngleUnit.DEGREES);
 
         // check
         assertEquals(1, a.getValue());
@@ -122,16 +111,12 @@ public class AngleTest {
         assertEquals(2.5, a.getValue());
 
         // force IllegalArgumentException
-        try {
-            a.setValue(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> a.setValue(null));
     }
 
     @Test
-    public void testGetSetUnit() {
-        final Angle a = new Angle(1, AngleUnit.DEGREES);
+    void testGetSetUnit() {
+        final var a = new Angle(1, AngleUnit.DEGREES);
 
         // check
         assertEquals(AngleUnit.DEGREES, a.getUnit());
@@ -143,50 +128,44 @@ public class AngleTest {
         assertEquals(AngleUnit.RADIANS, a.getUnit());
 
         // force IllegalArgumentException
-        try {
-            a.setUnit(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> a.setUnit(null));
     }
 
     @Test
-    public void testAdd1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final double result = Angle.add(value1, AngleUnit.DEGREES,
-                value2, AngleUnit.DEGREES, AngleUnit.RADIANS);
+        final var result = Angle.add(value1, AngleUnit.DEGREES, value2, AngleUnit.DEGREES, AngleUnit.RADIANS);
 
         // check
         assertEquals((value1 + value2) * Math.PI / 180.0, result, ERROR);
     }
 
     @Test
-    public void testAdd2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Number result = Angle.add(new BigDecimal(value1), AngleUnit.DEGREES,
-                new BigDecimal(value2), AngleUnit.DEGREES, AngleUnit.RADIANS);
+        final var result = Angle.add(new BigDecimal(value1), AngleUnit.DEGREES, new BigDecimal(value2),
+                AngleUnit.DEGREES, AngleUnit.RADIANS);
 
         // check
-        assertEquals((value1 + value2) * Math.PI / 180.0,
-                result.doubleValue(), ERROR);
+        assertEquals((value1 + value2) * Math.PI / 180.0, result.doubleValue(), ERROR);
     }
 
     @Test
-    public void testAdd3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Angle a1 = new Angle(value1, AngleUnit.DEGREES);
-        final Angle a2 = new Angle(value2, AngleUnit.DEGREES);
+        final var a1 = new Angle(value1, AngleUnit.DEGREES);
+        final var a2 = new Angle(value2, AngleUnit.DEGREES);
 
-        final Angle result = new Angle(0.0, AngleUnit.RADIANS);
+        final var result = new Angle(0.0, AngleUnit.RADIANS);
         Angle.add(a1, a2, result);
 
         // check
@@ -197,21 +176,19 @@ public class AngleTest {
         assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
         assertEquals(AngleUnit.RADIANS, result.getUnit());
-        assertEquals((value1 + value2) * Math.PI / 180.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 + value2) * Math.PI / 180.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAddAndReturnNew1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAddAndReturnNew1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Angle a1 = new Angle(value1, AngleUnit.DEGREES);
-        final Angle a2 = new Angle(value2, AngleUnit.DEGREES);
+        final var a1 = new Angle(value1, AngleUnit.DEGREES);
+        final var a2 = new Angle(value2, AngleUnit.DEGREES);
 
-        final Angle result = Angle.addAndReturnNew(a1, a2,
-                AngleUnit.RADIANS);
+        final var result = Angle.addAndReturnNew(a1, a2, AngleUnit.RADIANS);
 
         // check
         assertEquals(AngleUnit.DEGREES, a1.getUnit());
@@ -221,60 +198,55 @@ public class AngleTest {
         assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
         assertEquals(AngleUnit.RADIANS, result.getUnit());
-        assertEquals((value1 + value2) * Math.PI / 180.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 + value2) * Math.PI / 180.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAddAndReturnNew2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAddAndReturnNew2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Angle a1 = new Angle(value1, AngleUnit.DEGREES);
+        final var a1 = new Angle(value1, AngleUnit.DEGREES);
 
-        final Angle result = a1.addAndReturnNew(value2, AngleUnit.DEGREES,
-                AngleUnit.RADIANS);
+        final var result = a1.addAndReturnNew(value2, AngleUnit.DEGREES, AngleUnit.RADIANS);
 
         // check
         assertEquals(AngleUnit.DEGREES, a1.getUnit());
         assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
         assertEquals(AngleUnit.RADIANS, result.getUnit());
-        assertEquals((value1 + value2) * Math.PI / 180.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 + value2) * Math.PI / 180.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAddAndReturnNew3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAddAndReturnNew3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Angle a1 = new Angle(value1, AngleUnit.DEGREES);
+        final var a1 = new Angle(value1, AngleUnit.DEGREES);
 
-        final Angle result = a1.addAndReturnNew(new BigDecimal(value2),
-                AngleUnit.DEGREES, AngleUnit.RADIANS);
+        final var result = a1.addAndReturnNew(new BigDecimal(value2), AngleUnit.DEGREES, AngleUnit.RADIANS);
 
         // check
         assertEquals(AngleUnit.DEGREES, a1.getUnit());
         assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
         assertEquals(AngleUnit.RADIANS, result.getUnit());
-        assertEquals((value1 + value2) * Math.PI / 180.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 + value2) * Math.PI / 180.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAddAndReturnNew4() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAddAndReturnNew4() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Angle a1 = new Angle(value1, AngleUnit.DEGREES);
-        final Angle a2 = new Angle(value2, AngleUnit.DEGREES);
+        final var a1 = new Angle(value1, AngleUnit.DEGREES);
+        final var a2 = new Angle(value2, AngleUnit.DEGREES);
 
-        final Angle result = a1.addAndReturnNew(a2, AngleUnit.RADIANS);
+        final var result = a1.addAndReturnNew(a2, AngleUnit.RADIANS);
 
         // check
         assertEquals(AngleUnit.DEGREES, a1.getUnit());
@@ -284,17 +256,16 @@ public class AngleTest {
         assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
         assertEquals(AngleUnit.RADIANS, result.getUnit());
-        assertEquals((value1 + value2) * Math.PI / 180.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 + value2) * Math.PI / 180.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAdd4() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd4() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Angle a1 = new Angle(value1, AngleUnit.DEGREES);
+        final var a1 = new Angle(value1, AngleUnit.DEGREES);
 
         a1.add(value2, AngleUnit.DEGREES);
 
@@ -304,12 +275,12 @@ public class AngleTest {
     }
 
     @Test
-    public void testAdd5() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd5() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Angle a1 = new Angle(value1, AngleUnit.DEGREES);
+        final var a1 = new Angle(value1, AngleUnit.DEGREES);
 
         a1.add(new BigDecimal(value2), AngleUnit.DEGREES);
 
@@ -319,13 +290,13 @@ public class AngleTest {
     }
 
     @Test
-    public void testAdd6() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd6() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Angle a1 = new Angle(value1, AngleUnit.DEGREES);
-        final Angle a2 = new Angle(value2, AngleUnit.DEGREES);
+        final var a1 = new Angle(value1, AngleUnit.DEGREES);
+        final var a2 = new Angle(value2, AngleUnit.DEGREES);
 
         a1.add(a2);
 
@@ -338,15 +309,15 @@ public class AngleTest {
     }
 
     @Test
-    public void testAdd7() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd7() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Angle a1 = new Angle(value1, AngleUnit.DEGREES);
-        final Angle a2 = new Angle(value2, AngleUnit.DEGREES);
+        final var a1 = new Angle(value1, AngleUnit.DEGREES);
+        final var a2 = new Angle(value2, AngleUnit.DEGREES);
 
-        final Angle result = new Angle(0.0, AngleUnit.RADIANS);
+        final var result = new Angle(0.0, AngleUnit.RADIANS);
         a1.add(a2, result);
 
         // check
@@ -357,46 +328,44 @@ public class AngleTest {
         assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
         assertEquals(AngleUnit.RADIANS, result.getUnit());
-        assertEquals((value1 + value2) * Math.PI / 180.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 + value2) * Math.PI / 180.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtract1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final double result = Angle.subtract(value1, AngleUnit.DEGREES,
-                value2, AngleUnit.DEGREES, AngleUnit.RADIANS);
+        final var result = Angle.subtract(value1, AngleUnit.DEGREES, value2, AngleUnit.DEGREES, AngleUnit.RADIANS);
 
         // check
         assertEquals((value1 - value2) * Math.PI / 180.0, result, ERROR);
     }
 
     @Test
-    public void testSubtract2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Number result = Angle.subtract(new BigDecimal(value1), AngleUnit.DEGREES,
-                new BigDecimal(value2), AngleUnit.DEGREES, AngleUnit.RADIANS);
+        final var result = Angle.subtract(new BigDecimal(value1), AngleUnit.DEGREES, new BigDecimal(value2),
+                AngleUnit.DEGREES, AngleUnit.RADIANS);
 
         // check
         assertEquals((value1 - value2) * Math.PI / 180.0, result.doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtract3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Angle a1 = new Angle(value1, AngleUnit.DEGREES);
-        final Angle a2 = new Angle(value2, AngleUnit.DEGREES);
+        final var a1 = new Angle(value1, AngleUnit.DEGREES);
+        final var a2 = new Angle(value2, AngleUnit.DEGREES);
 
-        final Angle result = new Angle(0.0, AngleUnit.RADIANS);
+        final var result = new Angle(0.0, AngleUnit.RADIANS);
         Angle.subtract(a1, a2, result);
 
         // check
@@ -407,20 +376,19 @@ public class AngleTest {
         assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
         assertEquals(AngleUnit.RADIANS, result.getUnit());
-        assertEquals((value1 - value2) * Math.PI / 180.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 - value2) * Math.PI / 180.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtractAndReturnNew1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtractAndReturnNew1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Angle a1 = new Angle(value1, AngleUnit.DEGREES);
-        final Angle a2 = new Angle(value2, AngleUnit.DEGREES);
+        final var a1 = new Angle(value1, AngleUnit.DEGREES);
+        final var a2 = new Angle(value2, AngleUnit.DEGREES);
 
-        final Angle result = Angle.subtractAndReturnNew(a1, a2, AngleUnit.RADIANS);
+        final var result = Angle.subtractAndReturnNew(a1, a2, AngleUnit.RADIANS);
 
         // check
         assertEquals(AngleUnit.DEGREES, a1.getUnit());
@@ -430,60 +398,55 @@ public class AngleTest {
         assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
         assertEquals(AngleUnit.RADIANS, result.getUnit());
-        assertEquals((value1 - value2) * Math.PI / 180.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 - value2) * Math.PI / 180.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtractAndReturnNew2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtractAndReturnNew2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Angle a1 = new Angle(value1, AngleUnit.DEGREES);
+        final var a1 = new Angle(value1, AngleUnit.DEGREES);
 
-        final Angle result = a1.subtractAndReturnNew(value2, AngleUnit.DEGREES,
-                AngleUnit.RADIANS);
+        final var result = a1.subtractAndReturnNew(value2, AngleUnit.DEGREES, AngleUnit.RADIANS);
 
         // check
         assertEquals(AngleUnit.DEGREES, a1.getUnit());
         assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
         assertEquals(AngleUnit.RADIANS, result.getUnit());
-        assertEquals((value1 - value2) * Math.PI / 180.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 - value2) * Math.PI / 180.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtractAndReturnNew3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtractAndReturnNew3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Angle a1 = new Angle(value1, AngleUnit.DEGREES);
+        final var a1 = new Angle(value1, AngleUnit.DEGREES);
 
-        final Angle result = a1.subtractAndReturnNew(new BigDecimal(value2),
-                AngleUnit.DEGREES, AngleUnit.RADIANS);
+        final var result = a1.subtractAndReturnNew(new BigDecimal(value2), AngleUnit.DEGREES, AngleUnit.RADIANS);
 
         // check
         assertEquals(AngleUnit.DEGREES, a1.getUnit());
         assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
         assertEquals(AngleUnit.RADIANS, result.getUnit());
-        assertEquals((value1 - value2) * Math.PI / 180.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 - value2) * Math.PI / 180.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtractAndReturnNew4() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtractAndReturnNew4() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Angle a1 = new Angle(value1, AngleUnit.DEGREES);
-        final Angle a2 = new Angle(value2, AngleUnit.DEGREES);
+        final var a1 = new Angle(value1, AngleUnit.DEGREES);
+        final var a2 = new Angle(value2, AngleUnit.DEGREES);
 
-        final Angle result = a1.subtractAndReturnNew(a2, AngleUnit.RADIANS);
+        final var result = a1.subtractAndReturnNew(a2, AngleUnit.RADIANS);
 
         // check
         assertEquals(AngleUnit.DEGREES, a1.getUnit());
@@ -493,17 +456,16 @@ public class AngleTest {
         assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
         assertEquals(AngleUnit.RADIANS, result.getUnit());
-        assertEquals((value1 - value2) * Math.PI / 180.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 - value2) * Math.PI / 180.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtract4() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract4() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Angle a1 = new Angle(value1, AngleUnit.DEGREES);
+        final var a1 = new Angle(value1, AngleUnit.DEGREES);
 
         a1.subtract(value2, AngleUnit.DEGREES);
 
@@ -513,12 +475,12 @@ public class AngleTest {
     }
 
     @Test
-    public void testSubtract5() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract5() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Angle a1 = new Angle(value1, AngleUnit.DEGREES);
+        final var a1 = new Angle(value1, AngleUnit.DEGREES);
 
         a1.subtract(new BigDecimal(value2), AngleUnit.DEGREES);
 
@@ -528,35 +490,34 @@ public class AngleTest {
     }
 
     @Test
-    public void testSubtract6() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract6() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Angle a1 = new Angle(value1, AngleUnit.DEGREES);
-        final Angle a2 = new Angle(value2, AngleUnit.DEGREES);
+        final var a1 = new Angle(value1, AngleUnit.DEGREES);
+        final var a2 = new Angle(value2, AngleUnit.DEGREES);
 
         a1.subtract(a2);
 
         // check
         assertEquals(AngleUnit.DEGREES, a1.getUnit());
-        assertEquals(value1 - value2, a1.getValue().doubleValue(),
-                ERROR);
+        assertEquals(value1 - value2, a1.getValue().doubleValue(), ERROR);
 
         assertEquals(AngleUnit.DEGREES, a2.getUnit());
         assertEquals(value2, a2.getValue().doubleValue(), 0.0);
     }
 
     @Test
-    public void testSubtract7() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract7() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Angle a1 = new Angle(value1, AngleUnit.DEGREES);
-        final Angle a2 = new Angle(value2, AngleUnit.DEGREES);
+        final var a1 = new Angle(value1, AngleUnit.DEGREES);
+        final var a2 = new Angle(value2, AngleUnit.DEGREES);
 
-        final Angle result = new Angle(0.0, AngleUnit.RADIANS);
+        final var result = new Angle(0.0, AngleUnit.RADIANS);
         a1.subtract(a2, result);
 
         // check
@@ -567,17 +528,16 @@ public class AngleTest {
         assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
         assertEquals(AngleUnit.RADIANS, result.getUnit());
-        assertEquals((value1 - value2) * Math.PI / 180.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 - value2) * Math.PI / 180.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
-        final double value = new Random().nextDouble();
-        final Angle a1 = new Angle(value, AngleUnit.DEGREES);
+    void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+        final var value = new Random().nextDouble();
+        final var a1 = new Angle(value, AngleUnit.DEGREES);
 
-        final byte[] bytes = SerializationHelper.serialize(a1);
-        final Angle a2 = SerializationHelper.deserialize(bytes);
+        final var bytes = SerializationHelper.serialize(a1);
+        final var a2 = SerializationHelper.deserialize(bytes);
 
         assertEquals(a1, a2);
         assertNotSame(a1, a2);

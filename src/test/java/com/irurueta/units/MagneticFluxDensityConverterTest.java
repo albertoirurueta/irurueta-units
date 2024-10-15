@@ -15,14 +15,14 @@
  */
 package com.irurueta.units;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.Random;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MagneticFluxDensityConverterTest {
+class MagneticFluxDensityConverterTest {
 
     private static final double TESLA_PER_NANOTESLA = 1e-9;
     private static final double TESLA_PER_MICROTESLA = 1e-6;
@@ -34,434 +34,307 @@ public class MagneticFluxDensityConverterTest {
     private static final double ERROR = 1e-6;
 
     @Test
-    public void testTeslaNanoTesla() {
-        final double inputValue = new Random().nextDouble();
+    void testTeslaNanoTesla() {
+        final var inputValue = new Random().nextDouble();
 
         assertEquals(inputValue / TESLA_PER_NANOTESLA,
-                MagneticFluxDensityConverter.teslaToNanoTesla(inputValue),
-                ERROR);
+                MagneticFluxDensityConverter.teslaToNanoTesla(inputValue), ERROR);
         assertEquals(inputValue * TESLA_PER_NANOTESLA,
-                MagneticFluxDensityConverter.nanoTeslaToTesla(inputValue),
-                ERROR);
+                MagneticFluxDensityConverter.nanoTeslaToTesla(inputValue), ERROR);
     }
 
     @Test
-    public void testTeslaMicroTesla() {
-        final double inputValue = new Random().nextDouble();
+    void testTeslaMicroTesla() {
+        final var inputValue = new Random().nextDouble();
 
         assertEquals(inputValue / TESLA_PER_MICROTESLA,
-                MagneticFluxDensityConverter.teslaToMicroTesla(inputValue),
-                ERROR);
+                MagneticFluxDensityConverter.teslaToMicroTesla(inputValue), ERROR);
         assertEquals(inputValue * TESLA_PER_MICROTESLA,
-                MagneticFluxDensityConverter.microTeslaToTesla(inputValue),
-                ERROR);
+                MagneticFluxDensityConverter.microTeslaToTesla(inputValue), ERROR);
     }
 
     @Test
-    public void testTeslaMilliTesla() {
-        final double inputValue = new Random().nextDouble();
+    void testTeslaMilliTesla() {
+        final var inputValue = new Random().nextDouble();
 
         assertEquals(inputValue / TESLA_PER_MILLITESLA,
-                MagneticFluxDensityConverter.teslaToMilliTesla(inputValue),
-                ERROR);
+                MagneticFluxDensityConverter.teslaToMilliTesla(inputValue), ERROR);
         assertEquals(inputValue * TESLA_PER_MILLITESLA,
-                MagneticFluxDensityConverter.milliTeslaToTesla(inputValue),
-                ERROR);
+                MagneticFluxDensityConverter.milliTeslaToTesla(inputValue), ERROR);
     }
 
     @Test
-    public void testTeslaKiloTesla() {
-        final double inputValue = new Random().nextDouble();
+    void testTeslaKiloTesla() {
+        final var inputValue = new Random().nextDouble();
 
         assertEquals(inputValue / TESLA_PER_KILOTESLA,
-                MagneticFluxDensityConverter.teslaToKiloTesla(inputValue),
-                ERROR);
+                MagneticFluxDensityConverter.teslaToKiloTesla(inputValue), ERROR);
         assertEquals(inputValue * TESLA_PER_KILOTESLA,
-                MagneticFluxDensityConverter.kiloTeslaToTesla(inputValue),
-                ERROR);
+                MagneticFluxDensityConverter.kiloTeslaToTesla(inputValue), ERROR);
     }
 
     @Test
-    public void testTeslaMegaTesla() {
-        final double inputValue = new Random().nextDouble();
+    void testTeslaMegaTesla() {
+        final var inputValue = new Random().nextDouble();
 
         assertEquals(inputValue / TESLA_PER_MEGATESLA,
-                MagneticFluxDensityConverter.teslaToMegaTesla(inputValue),
-                ERROR);
+                MagneticFluxDensityConverter.teslaToMegaTesla(inputValue), ERROR);
         assertEquals(inputValue * TESLA_PER_MEGATESLA,
-                MagneticFluxDensityConverter.megaTeslaToTesla(inputValue),
-                ERROR);
+                MagneticFluxDensityConverter.megaTeslaToTesla(inputValue), ERROR);
     }
 
     @Test
-    public void testTeslaGigaTesla() {
-        final double inputValue = new Random().nextDouble();
+    void testTeslaGigaTesla() {
+        final var inputValue = new Random().nextDouble();
 
         assertEquals(inputValue / TESLA_PER_GIGATESLA,
-                MagneticFluxDensityConverter.teslaToGigaTesla(inputValue),
-                ERROR);
+                MagneticFluxDensityConverter.teslaToGigaTesla(inputValue), ERROR);
         assertEquals(inputValue * TESLA_PER_GIGATESLA,
-                MagneticFluxDensityConverter.gigaTeslaToTesla(inputValue),
-                ERROR);
+                MagneticFluxDensityConverter.gigaTeslaToTesla(inputValue), ERROR);
     }
 
     @Test
-    public void testConvertDouble() {
-        final double inputValue = new Random().nextDouble();
+    void testConvertDouble() {
+        final var inputValue = new Random().nextDouble();
 
-        assertEquals(inputValue,
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.NANOTESLA,
-                        MagneticFluxDensityUnit.NANOTESLA),
-                ERROR);
+        assertEquals(inputValue, MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.NANOTESLA,
+                        MagneticFluxDensityUnit.NANOTESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.teslaToMicroTesla(
-                        MagneticFluxDensityConverter.nanoTeslaToTesla(inputValue)),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.NANOTESLA,
-                        MagneticFluxDensityUnit.MICROTESLA),
-                ERROR);
+                MagneticFluxDensityConverter.nanoTeslaToTesla(inputValue)),
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.NANOTESLA,
+                        MagneticFluxDensityUnit.MICROTESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.teslaToMilliTesla(
-                        MagneticFluxDensityConverter.nanoTeslaToTesla(inputValue)),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.NANOTESLA,
-                        MagneticFluxDensityUnit.MILLITESLA),
-                ERROR);
+                MagneticFluxDensityConverter.nanoTeslaToTesla(inputValue)),
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.NANOTESLA,
+                        MagneticFluxDensityUnit.MILLITESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.nanoTeslaToTesla(inputValue),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.NANOTESLA,
-                        MagneticFluxDensityUnit.TESLA),
-                ERROR);
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.NANOTESLA,
+                        MagneticFluxDensityUnit.TESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.teslaToKiloTesla(
-                        MagneticFluxDensityConverter.nanoTeslaToTesla(inputValue)),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.NANOTESLA,
-                        MagneticFluxDensityUnit.KILOTESLA),
-                ERROR);
+                MagneticFluxDensityConverter.nanoTeslaToTesla(inputValue)),
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.NANOTESLA,
+                        MagneticFluxDensityUnit.KILOTESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.teslaToMegaTesla(
-                        MagneticFluxDensityConverter.nanoTeslaToTesla(inputValue)),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.NANOTESLA,
-                        MagneticFluxDensityUnit.MEGATESLA),
-                ERROR);
+                MagneticFluxDensityConverter.nanoTeslaToTesla(inputValue)),
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.NANOTESLA,
+                        MagneticFluxDensityUnit.MEGATESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.teslaToGigaTesla(
-                        MagneticFluxDensityConverter.nanoTeslaToTesla(inputValue)),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.NANOTESLA,
-                        MagneticFluxDensityUnit.GIGATESLA),
-                ERROR);
+                MagneticFluxDensityConverter.nanoTeslaToTesla(inputValue)),
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.NANOTESLA,
+                        MagneticFluxDensityUnit.GIGATESLA), ERROR);
 
         assertEquals(MagneticFluxDensityConverter.teslaToNanoTesla(
-                        MagneticFluxDensityConverter.microTeslaToTesla(inputValue)),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.MICROTESLA,
-                        MagneticFluxDensityUnit.NANOTESLA),
-                ERROR);
-        assertEquals(inputValue,
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.MICROTESLA,
-                        MagneticFluxDensityUnit.MICROTESLA),
-                ERROR);
+                MagneticFluxDensityConverter.microTeslaToTesla(inputValue)),
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.MICROTESLA,
+                        MagneticFluxDensityUnit.NANOTESLA), ERROR);
+        assertEquals(inputValue, MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.MICROTESLA,
+                        MagneticFluxDensityUnit.MICROTESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.teslaToMilliTesla(
-                        MagneticFluxDensityConverter.microTeslaToTesla(inputValue)),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.MICROTESLA,
-                        MagneticFluxDensityUnit.MILLITESLA),
-                ERROR);
+                MagneticFluxDensityConverter.microTeslaToTesla(inputValue)),
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.MICROTESLA,
+                        MagneticFluxDensityUnit.MILLITESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.microTeslaToTesla(inputValue),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.MICROTESLA,
-                        MagneticFluxDensityUnit.TESLA),
-                ERROR);
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.MICROTESLA,
+                        MagneticFluxDensityUnit.TESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.teslaToKiloTesla(
-                        MagneticFluxDensityConverter.microTeslaToTesla(inputValue)),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.MICROTESLA,
-                        MagneticFluxDensityUnit.KILOTESLA),
-                ERROR);
+                MagneticFluxDensityConverter.microTeslaToTesla(inputValue)),
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.MICROTESLA,
+                        MagneticFluxDensityUnit.KILOTESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.teslaToMegaTesla(
-                        MagneticFluxDensityConverter.microTeslaToTesla(inputValue)),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.MICROTESLA,
-                        MagneticFluxDensityUnit.MEGATESLA),
-                ERROR);
+                MagneticFluxDensityConverter.microTeslaToTesla(inputValue)),
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.MICROTESLA,
+                        MagneticFluxDensityUnit.MEGATESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.teslaToGigaTesla(
-                        MagneticFluxDensityConverter.microTeslaToTesla(inputValue)),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.MICROTESLA,
-                        MagneticFluxDensityUnit.GIGATESLA),
-                ERROR);
+                MagneticFluxDensityConverter.microTeslaToTesla(inputValue)),
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.MICROTESLA,
+                        MagneticFluxDensityUnit.GIGATESLA), ERROR);
 
         assertEquals(MagneticFluxDensityConverter.teslaToNanoTesla(
-                        MagneticFluxDensityConverter.milliTeslaToTesla(inputValue)),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.MILLITESLA,
-                        MagneticFluxDensityUnit.NANOTESLA),
-                ERROR);
+                MagneticFluxDensityConverter.milliTeslaToTesla(inputValue)),
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.MILLITESLA,
+                        MagneticFluxDensityUnit.NANOTESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.teslaToMicroTesla(
-                        MagneticFluxDensityConverter.milliTeslaToTesla(inputValue)),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.MILLITESLA,
-                        MagneticFluxDensityUnit.MICROTESLA),
-                ERROR);
-        assertEquals(inputValue,
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.MILLITESLA,
-                        MagneticFluxDensityUnit.MILLITESLA),
-                ERROR);
+                MagneticFluxDensityConverter.milliTeslaToTesla(inputValue)),
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.MILLITESLA,
+                        MagneticFluxDensityUnit.MICROTESLA), ERROR);
+        assertEquals(inputValue, MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.MILLITESLA,
+                        MagneticFluxDensityUnit.MILLITESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.milliTeslaToTesla(inputValue),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.MILLITESLA,
-                        MagneticFluxDensityUnit.TESLA),
-                ERROR);
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.MILLITESLA,
+                        MagneticFluxDensityUnit.TESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.teslaToKiloTesla(
-                        MagneticFluxDensityConverter.milliTeslaToTesla(inputValue)),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.MILLITESLA,
-                        MagneticFluxDensityUnit.KILOTESLA),
-                ERROR);
+                MagneticFluxDensityConverter.milliTeslaToTesla(inputValue)),
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.MILLITESLA,
+                        MagneticFluxDensityUnit.KILOTESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.teslaToMegaTesla(
-                        MagneticFluxDensityConverter.milliTeslaToTesla(inputValue)),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.MILLITESLA,
-                        MagneticFluxDensityUnit.MEGATESLA),
-                ERROR);
+                MagneticFluxDensityConverter.milliTeslaToTesla(inputValue)),
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.MILLITESLA,
+                        MagneticFluxDensityUnit.MEGATESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.teslaToGigaTesla(
-                        MagneticFluxDensityConverter.milliTeslaToTesla(inputValue)),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.MILLITESLA,
-                        MagneticFluxDensityUnit.GIGATESLA),
-                ERROR);
+                MagneticFluxDensityConverter.milliTeslaToTesla(inputValue)),
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.MILLITESLA,
+                        MagneticFluxDensityUnit.GIGATESLA), ERROR);
 
         assertEquals(MagneticFluxDensityConverter.teslaToNanoTesla(inputValue),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.TESLA,
-                        MagneticFluxDensityUnit.NANOTESLA),
-                ERROR);
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.TESLA,
+                        MagneticFluxDensityUnit.NANOTESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.teslaToMicroTesla(inputValue),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.TESLA,
-                        MagneticFluxDensityUnit.MICROTESLA),
-                ERROR);
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.TESLA,
+                        MagneticFluxDensityUnit.MICROTESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.teslaToMilliTesla(inputValue),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.TESLA,
-                        MagneticFluxDensityUnit.MILLITESLA),
-                ERROR);
-        assertEquals(inputValue,
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.TESLA,
-                        MagneticFluxDensityUnit.TESLA),
-                ERROR);
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.TESLA,
+                        MagneticFluxDensityUnit.MILLITESLA), ERROR);
+        assertEquals(inputValue, MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.TESLA,
+                        MagneticFluxDensityUnit.TESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.teslaToKiloTesla(inputValue),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.TESLA,
-                        MagneticFluxDensityUnit.KILOTESLA),
-                ERROR);
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.TESLA,
+                        MagneticFluxDensityUnit.KILOTESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.teslaToMegaTesla(inputValue),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.TESLA,
-                        MagneticFluxDensityUnit.MEGATESLA),
-                ERROR);
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.TESLA,
+                        MagneticFluxDensityUnit.MEGATESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.teslaToGigaTesla(inputValue),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.TESLA,
-                        MagneticFluxDensityUnit.GIGATESLA),
-                ERROR);
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.TESLA,
+                        MagneticFluxDensityUnit.GIGATESLA), ERROR);
 
         assertEquals(MagneticFluxDensityConverter.teslaToNanoTesla(
-                        MagneticFluxDensityConverter.kiloTeslaToTesla(inputValue)),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.KILOTESLA,
-                        MagneticFluxDensityUnit.NANOTESLA),
-                ERROR);
+                MagneticFluxDensityConverter.kiloTeslaToTesla(inputValue)),
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.KILOTESLA,
+                        MagneticFluxDensityUnit.NANOTESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.teslaToMicroTesla(
-                        MagneticFluxDensityConverter.kiloTeslaToTesla(inputValue)),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.KILOTESLA,
-                        MagneticFluxDensityUnit.MICROTESLA),
-                ERROR);
+                MagneticFluxDensityConverter.kiloTeslaToTesla(inputValue)),
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.KILOTESLA,
+                        MagneticFluxDensityUnit.MICROTESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.teslaToMilliTesla(
-                        MagneticFluxDensityConverter.kiloTeslaToTesla(inputValue)),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.KILOTESLA,
-                        MagneticFluxDensityUnit.MILLITESLA),
-                ERROR);
+                MagneticFluxDensityConverter.kiloTeslaToTesla(inputValue)),
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.KILOTESLA,
+                        MagneticFluxDensityUnit.MILLITESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.kiloTeslaToTesla(inputValue),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.KILOTESLA,
-                        MagneticFluxDensityUnit.TESLA),
-                ERROR);
-        assertEquals(inputValue,
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.KILOTESLA,
-                        MagneticFluxDensityUnit.KILOTESLA),
-                ERROR);
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.KILOTESLA,
+                        MagneticFluxDensityUnit.TESLA), ERROR);
+        assertEquals(inputValue, MagneticFluxDensityConverter.convert(inputValue,
+                        MagneticFluxDensityUnit.KILOTESLA, MagneticFluxDensityUnit.KILOTESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.teslaToMegaTesla(
-                        MagneticFluxDensityConverter.kiloTeslaToTesla(inputValue)),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.KILOTESLA,
-                        MagneticFluxDensityUnit.MEGATESLA),
-                ERROR);
+                MagneticFluxDensityConverter.kiloTeslaToTesla(inputValue)),
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.KILOTESLA,
+                        MagneticFluxDensityUnit.MEGATESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.teslaToGigaTesla(
-                        MagneticFluxDensityConverter.kiloTeslaToTesla(inputValue)),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.KILOTESLA,
-                        MagneticFluxDensityUnit.GIGATESLA),
-                ERROR);
+                MagneticFluxDensityConverter.kiloTeslaToTesla(inputValue)),
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.KILOTESLA,
+                        MagneticFluxDensityUnit.GIGATESLA), ERROR);
 
         assertEquals(MagneticFluxDensityConverter.teslaToNanoTesla(
-                        MagneticFluxDensityConverter.megaTeslaToTesla(inputValue)),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.MEGATESLA,
-                        MagneticFluxDensityUnit.NANOTESLA),
-                ERROR);
+                MagneticFluxDensityConverter.megaTeslaToTesla(inputValue)),
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.MEGATESLA,
+                        MagneticFluxDensityUnit.NANOTESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.teslaToMicroTesla(
-                        MagneticFluxDensityConverter.megaTeslaToTesla(inputValue)),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.MEGATESLA,
-                        MagneticFluxDensityUnit.MICROTESLA),
-                ERROR);
+                MagneticFluxDensityConverter.megaTeslaToTesla(inputValue)),
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.MEGATESLA,
+                        MagneticFluxDensityUnit.MICROTESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.teslaToMilliTesla(
-                        MagneticFluxDensityConverter.megaTeslaToTesla(inputValue)),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.MEGATESLA,
-                        MagneticFluxDensityUnit.MILLITESLA),
-                ERROR);
+                MagneticFluxDensityConverter.megaTeslaToTesla(inputValue)),
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.MEGATESLA,
+                        MagneticFluxDensityUnit.MILLITESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.megaTeslaToTesla(inputValue),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.MEGATESLA,
-                        MagneticFluxDensityUnit.TESLA),
-                ERROR);
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.MEGATESLA,
+                        MagneticFluxDensityUnit.TESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.teslaToKiloTesla(
-                        MagneticFluxDensityConverter.megaTeslaToTesla(inputValue)),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.MEGATESLA,
-                        MagneticFluxDensityUnit.KILOTESLA),
-                ERROR);
-        assertEquals(inputValue,
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.MEGATESLA,
-                        MagneticFluxDensityUnit.MEGATESLA),
-                ERROR);
+                MagneticFluxDensityConverter.megaTeslaToTesla(inputValue)),
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.MEGATESLA,
+                        MagneticFluxDensityUnit.KILOTESLA), ERROR);
+        assertEquals(inputValue, MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.MEGATESLA,
+                        MagneticFluxDensityUnit.MEGATESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.teslaToGigaTesla(
-                        MagneticFluxDensityConverter.megaTeslaToTesla(inputValue)),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.MEGATESLA,
-                        MagneticFluxDensityUnit.GIGATESLA),
-                ERROR);
+                MagneticFluxDensityConverter.megaTeslaToTesla(inputValue)),
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.MEGATESLA,
+                        MagneticFluxDensityUnit.GIGATESLA), ERROR);
 
         assertEquals(MagneticFluxDensityConverter.teslaToNanoTesla(
-                        MagneticFluxDensityConverter.gigaTeslaToTesla(inputValue)),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.GIGATESLA,
-                        MagneticFluxDensityUnit.NANOTESLA),
-                ERROR);
+                MagneticFluxDensityConverter.gigaTeslaToTesla(inputValue)),
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.GIGATESLA,
+                        MagneticFluxDensityUnit.NANOTESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.teslaToMicroTesla(
-                        MagneticFluxDensityConverter.gigaTeslaToTesla(inputValue)),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.GIGATESLA,
-                        MagneticFluxDensityUnit.MICROTESLA),
-                ERROR);
+                MagneticFluxDensityConverter.gigaTeslaToTesla(inputValue)),
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.GIGATESLA,
+                        MagneticFluxDensityUnit.MICROTESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.teslaToMilliTesla(
-                        MagneticFluxDensityConverter.gigaTeslaToTesla(inputValue)),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.GIGATESLA,
-                        MagneticFluxDensityUnit.MILLITESLA),
-                ERROR);
+                MagneticFluxDensityConverter.gigaTeslaToTesla(inputValue)),
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.GIGATESLA,
+                        MagneticFluxDensityUnit.MILLITESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.gigaTeslaToTesla(inputValue),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.GIGATESLA,
-                        MagneticFluxDensityUnit.TESLA),
-                ERROR);
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.GIGATESLA,
+                        MagneticFluxDensityUnit.TESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.teslaToKiloTesla(
-                        MagneticFluxDensityConverter.gigaTeslaToTesla(inputValue)),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.GIGATESLA,
-                        MagneticFluxDensityUnit.KILOTESLA),
-                ERROR);
+                MagneticFluxDensityConverter.gigaTeslaToTesla(inputValue)),
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.GIGATESLA,
+                        MagneticFluxDensityUnit.KILOTESLA), ERROR);
         assertEquals(MagneticFluxDensityConverter.teslaToMegaTesla(
-                        MagneticFluxDensityConverter.gigaTeslaToTesla(inputValue)),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.GIGATESLA,
-                        MagneticFluxDensityUnit.MEGATESLA),
-                ERROR);
-        assertEquals(inputValue,
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.GIGATESLA,
-                        MagneticFluxDensityUnit.GIGATESLA),
-                ERROR);
+                MagneticFluxDensityConverter.gigaTeslaToTesla(inputValue)),
+                MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.GIGATESLA,
+                        MagneticFluxDensityUnit.MEGATESLA), ERROR);
+        assertEquals(inputValue, MagneticFluxDensityConverter.convert(inputValue, MagneticFluxDensityUnit.GIGATESLA,
+                        MagneticFluxDensityUnit.GIGATESLA), ERROR);
     }
 
     @Test
-    public void testConvertNumber() {
-        final BigDecimal inputValue = BigDecimal.valueOf(new Random().nextDouble());
+    void testConvertNumber() {
+        final var inputValue = BigDecimal.valueOf(new Random().nextDouble());
 
-        assertEquals(inputValue.doubleValue(),
-                MagneticFluxDensityConverter.convert(inputValue,
-                        MagneticFluxDensityUnit.TESLA,
-                        MagneticFluxDensityUnit.TESLA).doubleValue(),
-                ERROR);
+        assertEquals(inputValue.doubleValue(), MagneticFluxDensityConverter.convert(inputValue,
+                        MagneticFluxDensityUnit.TESLA, MagneticFluxDensityUnit.TESLA).doubleValue(), ERROR);
     }
 
     @Test
-    public void testConvertMagneticFluxDensity() {
-        final double value = new Random().nextDouble();
-        final MagneticFluxDensity inputB = new MagneticFluxDensity(
-                value, MagneticFluxDensityUnit.MICROTESLA);
+    void testConvertMagneticFluxDensity() {
+        final var value = new Random().nextDouble();
+        final var inputB = new MagneticFluxDensity(value, MagneticFluxDensityUnit.MICROTESLA);
 
-        final MagneticFluxDensity outputB = new MagneticFluxDensity();
-        MagneticFluxDensityConverter.convert(inputB, MagneticFluxDensityUnit.TESLA,
-                outputB);
+        final var outputB = new MagneticFluxDensity();
+        MagneticFluxDensityConverter.convert(inputB, MagneticFluxDensityUnit.TESLA, outputB);
 
         // check
         assertEquals(value, inputB.getValue().doubleValue(), 0.0);
         assertEquals(MagneticFluxDensityUnit.MICROTESLA, inputB.getUnit());
 
         assertEquals(MagneticFluxDensityUnit.TESLA, outputB.getUnit());
-        assertEquals(MagneticFluxDensityConverter.convert(value, inputB.getUnit(),
-                outputB.getUnit()), outputB.getValue().doubleValue(), 0.0);
+        assertEquals(MagneticFluxDensityConverter.convert(value, inputB.getUnit(), outputB.getUnit()),
+                outputB.getValue().doubleValue(), 0.0);
     }
 
     @Test
-    public void testConvertAndUpdateMagneticFluxDensity() {
-        final double value = new Random().nextDouble();
-        final MagneticFluxDensity b = new MagneticFluxDensity(
-                value, MagneticFluxDensityUnit.MICROTESLA);
+    void testConvertAndUpdateMagneticFluxDensity() {
+        final var value = new Random().nextDouble();
+        final var b = new MagneticFluxDensity(value, MagneticFluxDensityUnit.MICROTESLA);
 
         MagneticFluxDensityConverter.convert(b, MagneticFluxDensityUnit.TESLA);
 
         // check
         assertEquals(MagneticFluxDensityUnit.TESLA, b.getUnit());
-        assertEquals(MagneticFluxDensityConverter.convert(
-                value, MagneticFluxDensityUnit.MICROTESLA,
+        assertEquals(MagneticFluxDensityConverter.convert(value, MagneticFluxDensityUnit.MICROTESLA,
                 MagneticFluxDensityUnit.TESLA), b.getValue().doubleValue(), 0.0);
     }
 
     @Test
-    public void testConvertAndReturnNewMagneticFluxDensity() {
-        final double value = new Random().nextDouble();
-        final MagneticFluxDensity inputB = new MagneticFluxDensity(
-                value, MagneticFluxDensityUnit.MICROTESLA);
+    void testConvertAndReturnNewMagneticFluxDensity() {
+        final var value = new Random().nextDouble();
+        final var inputB = new MagneticFluxDensity(value, MagneticFluxDensityUnit.MICROTESLA);
 
-        final MagneticFluxDensity outputB = MagneticFluxDensityConverter
-                .convertAndReturnNew(inputB, MagneticFluxDensityUnit.TESLA);
+        final var outputB = MagneticFluxDensityConverter.convertAndReturnNew(inputB, MagneticFluxDensityUnit.TESLA);
 
         // check
         assertEquals(value, inputB.getValue().doubleValue(), 0.0);
         assertEquals(MagneticFluxDensityUnit.MICROTESLA, inputB.getUnit());
 
         assertEquals(MagneticFluxDensityUnit.TESLA, outputB.getUnit());
-        assertEquals(MagneticFluxDensityConverter.convert(value, inputB.getUnit(),
-                outputB.getUnit()), outputB.getValue().doubleValue(), 0.0);
+        assertEquals(MagneticFluxDensityConverter.convert(value, inputB.getUnit(), outputB.getUnit()),
+                outputB.getValue().doubleValue(), 0.0);
     }
 
     @Test
-    public void testConvertToOutputMagneticFluxDensityUnit() {
-        final double value = new Random().nextDouble();
-        final MagneticFluxDensity inputB = new MagneticFluxDensity(
-                value, MagneticFluxDensityUnit.MICROTESLA);
+    void testConvertToOutputMagneticFluxDensityUnit() {
+        final var value = new Random().nextDouble();
+        final var inputB = new MagneticFluxDensity(value, MagneticFluxDensityUnit.MICROTESLA);
 
-        final MagneticFluxDensity outputB = new MagneticFluxDensity();
+        final var outputB = new MagneticFluxDensity();
         outputB.setUnit(MagneticFluxDensityUnit.TESLA);
         MagneticFluxDensityConverter.convert(inputB, outputB);
 
@@ -470,7 +343,7 @@ public class MagneticFluxDensityConverterTest {
         assertEquals(MagneticFluxDensityUnit.MICROTESLA, inputB.getUnit());
 
         assertEquals(MagneticFluxDensityUnit.TESLA, outputB.getUnit());
-        assertEquals(MagneticFluxDensityConverter.convert(value, inputB.getUnit(),
-                outputB.getUnit()), outputB.getValue().doubleValue(), 0.0);
+        assertEquals(MagneticFluxDensityConverter.convert(value, inputB.getUnit(), outputB.getUnit()),
+                outputB.getValue().doubleValue(), 0.0);
     }
 }

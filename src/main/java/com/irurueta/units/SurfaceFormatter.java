@@ -125,7 +125,7 @@ public class SurfaceFormatter extends MeasureFormatter<Surface, SurfaceUnit> {
      */
     @Override
     public boolean equals(final Object obj) {
-        final boolean equals = super.equals(obj);
+        final var equals = super.equals(obj);
         return (obj instanceof SurfaceFormatter) && equals;
     }
 
@@ -151,7 +151,7 @@ public class SurfaceFormatter extends MeasureFormatter<Surface, SurfaceUnit> {
      */
     @Override
     public UnitSystem getUnitSystem(final String source) {
-        final SurfaceUnit unit = findUnit(source);
+        final var unit = findUnit(source);
         return unit != null ? SurfaceUnit.getUnitSystem(unit) : null;
     }
 
@@ -164,8 +164,7 @@ public class SurfaceFormatter extends MeasureFormatter<Surface, SurfaceUnit> {
      * @throws UnknownUnitException if unit cannot be determined.
      */
     @Override
-    public Surface parse(final String source) throws ParseException,
-            UnknownUnitException {
+    public Surface parse(final String source) throws ParseException, UnknownUnitException {
         return internalParse(source, new Surface());
     }
 
@@ -234,15 +233,11 @@ public class SurfaceFormatter extends MeasureFormatter<Surface, SurfaceUnit> {
      * @return a string representation of surface value and unit.
      */
     @Override
-    public String formatAndConvert(
-            final Number value, final SurfaceUnit unit,
-            final UnitSystem system) {
-        switch (system) {
-            case IMPERIAL:
-                return formatAndConvertImperial(value, unit);
-            case METRIC:
-            default:
-                return formatAndConvertMetric(value, unit);
+    public String formatAndConvert(final Number value, final SurfaceUnit unit, final UnitSystem system) {
+        if (system == UnitSystem.IMPERIAL) {
+            return formatAndConvertImperial(value, unit);
+        } else {
+            return formatAndConvertMetric(value, unit);
         }
     }
 
@@ -257,32 +252,26 @@ public class SurfaceFormatter extends MeasureFormatter<Surface, SurfaceUnit> {
      * @return a string representation of surface value and unit using metric
      * unit system.
      */
-    public String formatAndConvertMetric(
-            final Number value, final SurfaceUnit unit) {
-        final double v = value.doubleValue();
+    public String formatAndConvertMetric(final Number value, final SurfaceUnit unit) {
+        final var v = value.doubleValue();
 
-        final double squareMillimeters = SurfaceConverter.convert(v, unit,
-                SurfaceUnit.SQUARE_MILLIMETER);
-        if (Math.abs(squareMillimeters) < (SurfaceConverter.SQUARE_METERS_PER_SQUARE_CENTIMETER /
-                SurfaceConverter.SQUARE_METERS_PER_SQUARE_MILLIMETER)) {
+        final var squareMillimeters = SurfaceConverter.convert(v, unit, SurfaceUnit.SQUARE_MILLIMETER);
+        if (Math.abs(squareMillimeters) < (SurfaceConverter.SQUARE_METERS_PER_SQUARE_CENTIMETER
+                / SurfaceConverter.SQUARE_METERS_PER_SQUARE_MILLIMETER)) {
             return format(squareMillimeters, SurfaceUnit.SQUARE_MILLIMETER);
         }
 
-        final double squareCentimeters = SurfaceConverter.convert(v, unit,
-                SurfaceUnit.SQUARE_CENTIMETER);
-        if (Math.abs(squareCentimeters) <
-                (1.0 / SurfaceConverter.SQUARE_METERS_PER_SQUARE_CENTIMETER)) {
+        final var squareCentimeters = SurfaceConverter.convert(v, unit, SurfaceUnit.SQUARE_CENTIMETER);
+        if (Math.abs(squareCentimeters) < (1.0 / SurfaceConverter.SQUARE_METERS_PER_SQUARE_CENTIMETER)) {
             return format(squareCentimeters, SurfaceUnit.SQUARE_CENTIMETER);
         }
 
-        final double squareMeters = SurfaceConverter.convert(v, unit,
-                SurfaceUnit.SQUARE_METER);
+        final var squareMeters = SurfaceConverter.convert(v, unit, SurfaceUnit.SQUARE_METER);
         if (Math.abs(squareMeters) < SurfaceConverter.SQUARE_METERS_PER_SQUARE_KILOMETER) {
             return format(squareMeters, SurfaceUnit.SQUARE_METER);
         }
 
-        final double squareKilometers = SurfaceConverter.convert(v, unit,
-                SurfaceUnit.SQUARE_KILOMETER);
+        final var squareKilometers = SurfaceConverter.convert(v, unit, SurfaceUnit.SQUARE_KILOMETER);
         return format(squareKilometers, SurfaceUnit.SQUARE_KILOMETER);
     }
 
@@ -297,33 +286,28 @@ public class SurfaceFormatter extends MeasureFormatter<Surface, SurfaceUnit> {
      * @return a string representation of surface value and unit using imperial
      * unit system.
      */
-    public String formatAndConvertImperial(
-            final Number value, final SurfaceUnit unit) {
-        final double v = value.doubleValue();
+    public String formatAndConvertImperial(final Number value, final SurfaceUnit unit) {
+        final var v = value.doubleValue();
 
-        final double squareInches = SurfaceConverter.convert(v, unit,
-                SurfaceUnit.SQUARE_INCH);
-        if (Math.abs(squareInches) < (SurfaceConverter.SQUARE_METERS_PER_SQUARE_FOOT /
-                SurfaceConverter.SQUARE_METERS_PER_SQUARE_INCH)) {
+        final var squareInches = SurfaceConverter.convert(v, unit, SurfaceUnit.SQUARE_INCH);
+        if (Math.abs(squareInches) < (SurfaceConverter.SQUARE_METERS_PER_SQUARE_FOOT
+                / SurfaceConverter.SQUARE_METERS_PER_SQUARE_INCH)) {
             return format(squareInches, SurfaceUnit.SQUARE_INCH);
         }
 
-        final double squareFeet = SurfaceConverter.convert(v, unit,
-                SurfaceUnit.SQUARE_FOOT);
-        if (Math.abs(squareFeet) < (SurfaceConverter.SQUARE_METERS_PER_SQUARE_YARD /
-                SurfaceConverter.SQUARE_METERS_PER_SQUARE_FOOT)) {
+        final var squareFeet = SurfaceConverter.convert(v, unit, SurfaceUnit.SQUARE_FOOT);
+        if (Math.abs(squareFeet) < (SurfaceConverter.SQUARE_METERS_PER_SQUARE_YARD
+                / SurfaceConverter.SQUARE_METERS_PER_SQUARE_FOOT)) {
             return format(squareFeet, SurfaceUnit.SQUARE_FOOT);
         }
 
-        final double squareYards = SurfaceConverter.convert(v, unit,
-                SurfaceUnit.SQUARE_YARD);
-        if (Math.abs(squareYards) < (SurfaceConverter.SQUARE_METERS_PER_SQUARE_MILE /
-                SurfaceConverter.SQUARE_METERS_PER_SQUARE_YARD)) {
+        final var squareYards = SurfaceConverter.convert(v, unit, SurfaceUnit.SQUARE_YARD);
+        if (Math.abs(squareYards) < (SurfaceConverter.SQUARE_METERS_PER_SQUARE_MILE
+                / SurfaceConverter.SQUARE_METERS_PER_SQUARE_YARD)) {
             return format(squareYards, SurfaceUnit.SQUARE_YARD);
         }
 
-        final double squareMiles = SurfaceConverter.convert(v, unit,
-                SurfaceUnit.SQUARE_MILE);
+        final var squareMiles = SurfaceConverter.convert(v, unit, SurfaceUnit.SQUARE_MILE);
         return format(squareMiles, SurfaceUnit.SQUARE_MILE);
     }
 
@@ -335,34 +319,20 @@ public class SurfaceFormatter extends MeasureFormatter<Surface, SurfaceUnit> {
      */
     @Override
     public String getUnitSymbol(final SurfaceUnit unit) {
-        switch (unit) {
-            case SQUARE_MILLIMETER:
-                return SQUARE_MILLIMETER;
-            case SQUARE_CENTIMETER:
-                return SQUARE_CENTIMETER;
-            case SQUARE_KILOMETER:
-                return SQUARE_KILOMETER;
-            case SQUARE_INCH:
-                return SQUARE_INCH;
-            case SQUARE_FOOT:
-                return SQUARE_FOOT;
-            case SQUARE_YARD:
-                return SQUARE_YARD;
-            case SQUARE_MILE:
-                return SQUARE_MILE;
-            case CENTIARE:
-                return CENTIARE;
-            case ARE:
-                return ARE;
-            case DECARE:
-                return DECARE;
-            case HECTARE:
-                return HECTARE;
-            case ACRE:
-                return ACRE;
-            case SQUARE_METER:
-            default:
-                return SQUARE_METER;
-        }
+        return switch (unit) {
+            case SQUARE_MILLIMETER -> SQUARE_MILLIMETER;
+            case SQUARE_CENTIMETER -> SQUARE_CENTIMETER;
+            case SQUARE_KILOMETER -> SQUARE_KILOMETER;
+            case SQUARE_INCH -> SQUARE_INCH;
+            case SQUARE_FOOT -> SQUARE_FOOT;
+            case SQUARE_YARD -> SQUARE_YARD;
+            case SQUARE_MILE -> SQUARE_MILE;
+            case CENTIARE -> CENTIARE;
+            case ARE -> ARE;
+            case DECARE -> DECARE;
+            case HECTARE -> HECTARE;
+            case ACRE -> ACRE;
+            default -> SQUARE_METER;
+        };
     }
 }

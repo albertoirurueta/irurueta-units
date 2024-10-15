@@ -15,7 +15,7 @@
  */
 package com.irurueta.units;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -24,137 +24,92 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class MagneticFluxDensityFormatterTest {
+class MagneticFluxDensityFormatterTest {
 
     @Test
-    public void testConstructor() {
+    void testConstructor() {
         // test empty constructor
-        MagneticFluxDensityFormatter formatter = new MagneticFluxDensityFormatter();
+        var formatter = new MagneticFluxDensityFormatter();
 
         // check
         assertEquals(Locale.getDefault(), formatter.getLocale());
-        assertEquals(NumberFormat.getInstance().getMaximumFractionDigits(),
-                formatter.getMaximumFractionDigits());
-        assertEquals(NumberFormat.getInstance().getMaximumIntegerDigits(),
-                formatter.getMaximumIntegerDigits());
-        assertEquals(NumberFormat.getInstance().getMinimumFractionDigits(),
-                formatter.getMinimumFractionDigits());
-        assertEquals(NumberFormat.getInstance().getMinimumIntegerDigits(),
-                formatter.getMinimumIntegerDigits());
-        assertEquals(NumberFormat.getInstance().getRoundingMode(),
-                formatter.getRoundingMode());
+        assertEquals(NumberFormat.getInstance().getMaximumFractionDigits(), formatter.getMaximumFractionDigits());
+        assertEquals(NumberFormat.getInstance().getMaximumIntegerDigits(), formatter.getMaximumIntegerDigits());
+        assertEquals(NumberFormat.getInstance().getMinimumFractionDigits(), formatter.getMinimumFractionDigits());
+        assertEquals(NumberFormat.getInstance().getMinimumIntegerDigits(), formatter.getMinimumIntegerDigits());
+        assertEquals(NumberFormat.getInstance().getRoundingMode(), formatter.getRoundingMode());
         assertEquals(UnitSystem.METRIC, formatter.getUnitSystem());
-        assertEquals(NumberFormat.getInstance().isGroupingUsed(),
-                formatter.isGroupingUsed());
-        assertEquals(NumberFormat.getInstance().isParseIntegerOnly(),
-                formatter.isParseIntegerOnly());
-        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
-                formatter.getValueAndUnitFormatPattern());
+        assertEquals(NumberFormat.getInstance().isGroupingUsed(), formatter.isGroupingUsed());
+        assertEquals(NumberFormat.getInstance().isParseIntegerOnly(), formatter.isParseIntegerOnly());
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN, formatter.getValueAndUnitFormatPattern());
 
         // test constructor with locale
-        final Locale locale = new Locale("es", "ES");
+        final var locale = new Locale("es", "ES");
         formatter = new MagneticFluxDensityFormatter(locale);
 
         // check
         assertEquals(locale, formatter.getLocale());
-        assertEquals(NumberFormat.getInstance(locale).getMaximumFractionDigits(),
-                formatter.getMaximumFractionDigits());
-        assertEquals(NumberFormat.getInstance(locale).getMaximumIntegerDigits(),
-                formatter.getMaximumIntegerDigits());
-        assertEquals(NumberFormat.getInstance(locale).getMinimumFractionDigits(),
-                formatter.getMinimumFractionDigits());
-        assertEquals(NumberFormat.getInstance(locale).getMinimumIntegerDigits(),
-                formatter.getMinimumIntegerDigits());
-        assertEquals(NumberFormat.getInstance(locale).getRoundingMode(),
-                formatter.getRoundingMode());
+        assertEquals(NumberFormat.getInstance(locale).getMaximumFractionDigits(), formatter.getMaximumFractionDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMaximumIntegerDigits(), formatter.getMaximumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMinimumFractionDigits(), formatter.getMinimumFractionDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMinimumIntegerDigits(), formatter.getMinimumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getRoundingMode(), formatter.getRoundingMode());
         assertEquals(UnitSystem.METRIC, formatter.getUnitSystem());
-        assertEquals(NumberFormat.getInstance(locale).isGroupingUsed(),
-                formatter.isGroupingUsed());
-        assertEquals(NumberFormat.getInstance(locale).isParseIntegerOnly(),
-                formatter.isParseIntegerOnly());
-        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
-                formatter.getValueAndUnitFormatPattern());
-
+        assertEquals(NumberFormat.getInstance(locale).isGroupingUsed(), formatter.isGroupingUsed());
+        assertEquals(NumberFormat.getInstance(locale).isParseIntegerOnly(), formatter.isParseIntegerOnly());
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN, formatter.getValueAndUnitFormatPattern());
 
         // force IllegalArgumentException
-        formatter = null;
-        try {
-            formatter = new MagneticFluxDensityFormatter((Locale) null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
-        //noinspection ConstantConditions
-        assertNull(formatter);
-
+        assertThrows(IllegalArgumentException.class, () -> new MagneticFluxDensityFormatter((Locale) null));
 
         // test copy constructor
         formatter = new MagneticFluxDensityFormatter(locale);
-        final MagneticFluxDensityFormatter formatter2 =
-                new MagneticFluxDensityFormatter(formatter);
+        final var formatter2 = new MagneticFluxDensityFormatter(formatter);
 
         // check
-        assertEquals(locale,
-                formatter2.getLocale());
+        assertEquals(locale, formatter2.getLocale());
         assertEquals(NumberFormat.getInstance(locale).getMaximumFractionDigits(),
                 formatter2.getMaximumFractionDigits());
-        assertEquals(NumberFormat.getInstance(locale).getMaximumIntegerDigits(),
-                formatter2.getMaximumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getMaximumIntegerDigits(), formatter2.getMaximumIntegerDigits());
         assertEquals(NumberFormat.getInstance(locale).getMinimumFractionDigits(),
                 formatter2.getMinimumFractionDigits());
-        assertEquals(NumberFormat.getInstance(locale).getMinimumIntegerDigits(),
-                formatter2.getMinimumIntegerDigits());
-        assertEquals(NumberFormat.getInstance(locale).getRoundingMode(),
-                formatter2.getRoundingMode());
+        assertEquals(NumberFormat.getInstance(locale).getMinimumIntegerDigits(), formatter2.getMinimumIntegerDigits());
+        assertEquals(NumberFormat.getInstance(locale).getRoundingMode(), formatter2.getRoundingMode());
         assertEquals(UnitSystem.METRIC, formatter2.getUnitSystem());
-        assertEquals(NumberFormat.getInstance(locale).isGroupingUsed(),
-                formatter2.isGroupingUsed());
-        assertEquals(NumberFormat.getInstance(locale).isParseIntegerOnly(),
-                formatter2.isParseIntegerOnly());
-        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
-                formatter2.getValueAndUnitFormatPattern());
+        assertEquals(NumberFormat.getInstance(locale).isGroupingUsed(), formatter2.isGroupingUsed());
+        assertEquals(NumberFormat.getInstance(locale).isParseIntegerOnly(), formatter2.isParseIntegerOnly());
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN, formatter2.getValueAndUnitFormatPattern());
 
-        formatter = null;
-        try {
-            // noinspection ConstantConditions
-            formatter = new MagneticFluxDensityFormatter(
-                    (MagneticFluxDensityFormatter) null);
-            fail("NullPointerException expected but not thrown");
-        } catch (final NullPointerException ignore) {
-        }
-        assertNull(formatter);
+        //noinspection DataFlowIssue
+        assertThrows(NullPointerException.class, () -> new MagneticFluxDensityFormatter(
+                (MagneticFluxDensityFormatter) null));
     }
 
     @Test
-    public void testClone() throws CloneNotSupportedException {
-        final MagneticFluxDensityFormatter formatter1 =
-                new MagneticFluxDensityFormatter();
-        final MagneticFluxDensityFormatter formatter2 =
-                (MagneticFluxDensityFormatter) formatter1.clone();
+    void testClone() throws CloneNotSupportedException {
+        final var formatter1 = new MagneticFluxDensityFormatter();
+        final MagneticFluxDensityFormatter formatter2 = (MagneticFluxDensityFormatter) formatter1.clone();
 
         // check
         assertNotSame(formatter1, formatter2);
         assertEquals(formatter1, formatter2);
 
         // test after initializing internal number format
-        assertNotNull(formatter1.format(0.5, MagneticFluxDensityUnit.TESLA,
-                new StringBuffer(), new FieldPosition(0)));
-        final MagneticFluxDensityFormatter formatter3 =
-                (MagneticFluxDensityFormatter) formatter1.clone();
+        assertNotNull(formatter1.format(0.5, MagneticFluxDensityUnit.TESLA, new StringBuffer(),
+                new FieldPosition(0)));
+        final var formatter3 = (MagneticFluxDensityFormatter) formatter1.clone();
 
         assertNotSame(formatter1, formatter3);
         assertEquals(formatter1, formatter3);
     }
 
     @Test
-    public void testEquals() {
-        final MagneticFluxDensityFormatter formatter1 =
-                new MagneticFluxDensityFormatter(Locale.ENGLISH);
-        final MagneticFluxDensityFormatter formatter2 =
-                new MagneticFluxDensityFormatter(Locale.ENGLISH);
-        final MagneticFluxDensityFormatter formatter3 =
-                new MagneticFluxDensityFormatter(Locale.FRENCH);
+    void testEquals() {
+        final var formatter1 = new MagneticFluxDensityFormatter(Locale.ENGLISH);
+        final var formatter2 = new MagneticFluxDensityFormatter(Locale.ENGLISH);
+        final var formatter3 = new MagneticFluxDensityFormatter(Locale.FRENCH);
 
         // check
         //noinspection EqualsWithItself
@@ -168,13 +123,10 @@ public class MagneticFluxDensityFormatterTest {
     }
 
     @Test
-    public void testHashCode() {
-        final MagneticFluxDensityFormatter formatter1 =
-                new MagneticFluxDensityFormatter(Locale.ENGLISH);
-        final MagneticFluxDensityFormatter formatter2 =
-                new MagneticFluxDensityFormatter(Locale.ENGLISH);
-        final MagneticFluxDensityFormatter formatter3 =
-                new MagneticFluxDensityFormatter(Locale.FRENCH);
+    void testHashCode() {
+        final var formatter1 = new MagneticFluxDensityFormatter(Locale.ENGLISH);
+        final var formatter2 = new MagneticFluxDensityFormatter(Locale.ENGLISH);
+        final var formatter3 = new MagneticFluxDensityFormatter(Locale.FRENCH);
 
         assertEquals(formatter1.hashCode(), formatter1.hashCode());
         assertEquals(formatter1.hashCode(), formatter2.hashCode());
@@ -182,148 +134,115 @@ public class MagneticFluxDensityFormatterTest {
     }
 
     @Test
-    public void testFormatNumber() {
-        final double value = 5.50;
-        final Locale l = new Locale("es", "ES");
+    void testFormatNumber() {
+        final var value = 5.50;
+        final var l = new Locale("es", "ES");
 
-        final MagneticFluxDensityFormatter formatter =
-                new MagneticFluxDensityFormatter(l);
+        final var formatter = new MagneticFluxDensityFormatter(l);
 
-        assertEquals("5,5 nT", formatter.format(new BigDecimal(value),
-                MagneticFluxDensityUnit.NANOTESLA));
-        assertEquals("5,5 µT", formatter.format(new BigDecimal(value),
-                MagneticFluxDensityUnit.MICROTESLA));
-        assertEquals("5,5 mT", formatter.format(new BigDecimal(value),
-                MagneticFluxDensityUnit.MILLITESLA));
-        assertEquals("5,5 T", formatter.format(new BigDecimal(value),
-                MagneticFluxDensityUnit.TESLA));
-        assertEquals("5,5 KT", formatter.format(new BigDecimal(value),
-                MagneticFluxDensityUnit.KILOTESLA));
-        assertEquals("5,5 MT", formatter.format(new BigDecimal(value),
-                MagneticFluxDensityUnit.MEGATESLA));
-        assertEquals("5,5 GT", formatter.format(new BigDecimal(value),
-                MagneticFluxDensityUnit.GIGATESLA));
+        assertEquals("5,5 nT", formatter.format(new BigDecimal(value), MagneticFluxDensityUnit.NANOTESLA));
+        assertEquals("5,5 µT", formatter.format(new BigDecimal(value), MagneticFluxDensityUnit.MICROTESLA));
+        assertEquals("5,5 mT", formatter.format(new BigDecimal(value), MagneticFluxDensityUnit.MILLITESLA));
+        assertEquals("5,5 T", formatter.format(new BigDecimal(value), MagneticFluxDensityUnit.TESLA));
+        assertEquals("5,5 KT", formatter.format(new BigDecimal(value), MagneticFluxDensityUnit.KILOTESLA));
+        assertEquals("5,5 MT", formatter.format(new BigDecimal(value), MagneticFluxDensityUnit.MEGATESLA));
+        assertEquals("5,5 GT", formatter.format(new BigDecimal(value), MagneticFluxDensityUnit.GIGATESLA));
     }
 
     @Test
-    public void testFormatNumberAndStringBuffer() {
-        final double value = 5.50;
-        final Locale l = new Locale("es", "ES");
+    void testFormatNumberAndStringBuffer() {
+        final var value = 5.50;
+        final var l = new Locale("es", "ES");
 
-        final MagneticFluxDensityFormatter formatter =
-                new MagneticFluxDensityFormatter(l);
+        final var formatter = new MagneticFluxDensityFormatter(l);
 
-        StringBuffer buffer = new StringBuffer();
-        assertEquals("5,5 nT", formatter.format(new BigDecimal(value),
-                MagneticFluxDensityUnit.NANOTESLA, buffer,
+        var buffer = new StringBuffer();
+        assertEquals("5,5 nT", formatter.format(new BigDecimal(value), MagneticFluxDensityUnit.NANOTESLA,
+                buffer, new FieldPosition(0)).toString());
+
+        buffer = new StringBuffer();
+        assertEquals("5,5 µT", formatter.format(new BigDecimal(value), MagneticFluxDensityUnit.MICROTESLA,
+                buffer, new FieldPosition(0)).toString());
+
+        buffer = new StringBuffer();
+        assertEquals("5,5 mT", formatter.format(new BigDecimal(value), MagneticFluxDensityUnit.MILLITESLA,
+                buffer, new FieldPosition(0)).toString());
+
+        buffer = new StringBuffer();
+        assertEquals("5,5 T", formatter.format(new BigDecimal(value), MagneticFluxDensityUnit.TESLA, buffer,
                 new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals("5,5 µT", formatter.format(new BigDecimal(value),
-                MagneticFluxDensityUnit.MICROTESLA, buffer,
-                new FieldPosition(0)).toString());
+        assertEquals("5,5 KT", formatter.format(new BigDecimal(value), MagneticFluxDensityUnit.KILOTESLA,
+                buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals("5,5 mT", formatter.format(new BigDecimal(value),
-                MagneticFluxDensityUnit.MILLITESLA, buffer,
-                new FieldPosition(0)).toString());
+        assertEquals("5,5 MT", formatter.format(new BigDecimal(value), MagneticFluxDensityUnit.MEGATESLA,
+                buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals("5,5 T", formatter.format(new BigDecimal(value),
-                MagneticFluxDensityUnit.TESLA, buffer,
-                new FieldPosition(0)).toString());
-
-        buffer = new StringBuffer();
-        assertEquals("5,5 KT", formatter.format(new BigDecimal(value),
-                MagneticFluxDensityUnit.KILOTESLA, buffer,
-                new FieldPosition(0)).toString());
-
-        buffer = new StringBuffer();
-        assertEquals("5,5 MT", formatter.format(new BigDecimal(value),
-                MagneticFluxDensityUnit.MEGATESLA, buffer,
-                new FieldPosition(0)).toString());
-
-        buffer = new StringBuffer();
-        assertEquals("5,5 GT", formatter.format(new BigDecimal(value),
-                MagneticFluxDensityUnit.GIGATESLA, buffer,
-                new FieldPosition(0)).toString());
+        assertEquals("5,5 GT", formatter.format(new BigDecimal(value), MagneticFluxDensityUnit.GIGATESLA,
+                buffer, new FieldPosition(0)).toString());
     }
 
     @Test
-    public void testFormatDouble() {
-        final double value = 5.50;
-        final Locale l = new Locale("es", "ES");
+    void testFormatDouble() {
+        final var value = 5.50;
+        final var l = new Locale("es", "ES");
 
-        final MagneticFluxDensityFormatter formatter =
-                new MagneticFluxDensityFormatter(l);
+        final var formatter = new MagneticFluxDensityFormatter(l);
 
-        assertEquals("5,5 nT", formatter.format(value,
-                MagneticFluxDensityUnit.NANOTESLA));
-        assertEquals("5,5 µT", formatter.format(value,
-                MagneticFluxDensityUnit.MICROTESLA));
-        assertEquals("5,5 mT", formatter.format(value,
-                MagneticFluxDensityUnit.MILLITESLA));
-        assertEquals("5,5 T", formatter.format(value,
-                MagneticFluxDensityUnit.TESLA));
-        assertEquals("5,5 KT", formatter.format(value,
-                MagneticFluxDensityUnit.KILOTESLA));
-        assertEquals("5,5 MT", formatter.format(value,
-                MagneticFluxDensityUnit.MEGATESLA));
-        assertEquals("5,5 GT", formatter.format(value,
-                MagneticFluxDensityUnit.GIGATESLA));
+        assertEquals("5,5 nT", formatter.format(value, MagneticFluxDensityUnit.NANOTESLA));
+        assertEquals("5,5 µT", formatter.format(value, MagneticFluxDensityUnit.MICROTESLA));
+        assertEquals("5,5 mT", formatter.format(value, MagneticFluxDensityUnit.MILLITESLA));
+        assertEquals("5,5 T", formatter.format(value, MagneticFluxDensityUnit.TESLA));
+        assertEquals("5,5 KT", formatter.format(value, MagneticFluxDensityUnit.KILOTESLA));
+        assertEquals("5,5 MT", formatter.format(value, MagneticFluxDensityUnit.MEGATESLA));
+        assertEquals("5,5 GT", formatter.format(value, MagneticFluxDensityUnit.GIGATESLA));
     }
 
     @Test
-    public void testFormatDoubleAndStringBuffer() {
-        final double value = 5.50;
-        final Locale l = new Locale("es", "ES");
+    void testFormatDoubleAndStringBuffer() {
+        final var value = 5.50;
+        final var l = new Locale("es", "ES");
 
-        final MagneticFluxDensityFormatter formatter =
-                new MagneticFluxDensityFormatter(l);
+        final var formatter = new MagneticFluxDensityFormatter(l);
 
-        StringBuffer buffer = new StringBuffer();
-        assertEquals("5,5 nT", formatter.format(value,
-                MagneticFluxDensityUnit.NANOTESLA, buffer,
+        var buffer = new StringBuffer();
+        assertEquals("5,5 nT", formatter.format(value, MagneticFluxDensityUnit.NANOTESLA, buffer,
                 new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals("5,5 µT", formatter.format(value,
-                MagneticFluxDensityUnit.MICROTESLA, buffer,
+        assertEquals("5,5 µT", formatter.format(value, MagneticFluxDensityUnit.MICROTESLA, buffer,
                 new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals("5,5 mT", formatter.format(value,
-                MagneticFluxDensityUnit.MILLITESLA, buffer,
+        assertEquals("5,5 mT", formatter.format(value, MagneticFluxDensityUnit.MILLITESLA, buffer,
                 new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals("5,5 T", formatter.format(value,
-                MagneticFluxDensityUnit.TESLA, buffer,
+        assertEquals("5,5 T", formatter.format(value, MagneticFluxDensityUnit.TESLA, buffer,
                 new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals("5,5 KT", formatter.format(value,
-                MagneticFluxDensityUnit.KILOTESLA, buffer,
+        assertEquals("5,5 KT", formatter.format(value, MagneticFluxDensityUnit.KILOTESLA, buffer,
                 new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals("5,5 MT", formatter.format(value,
-                MagneticFluxDensityUnit.MEGATESLA, buffer,
+        assertEquals("5,5 MT", formatter.format(value, MagneticFluxDensityUnit.MEGATESLA, buffer,
                 new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals("5,5 GT", formatter.format(value,
-                MagneticFluxDensityUnit.GIGATESLA, buffer,
+        assertEquals("5,5 GT", formatter.format(value, MagneticFluxDensityUnit.GIGATESLA, buffer,
                 new FieldPosition(0)).toString());
     }
 
     @Test
-    public void testFormatMagneticFluxDensity() {
-        final double value = 5.50;
-        final Locale l = new Locale("es", "ES");
+    void testFormatMagneticFluxDensity() {
+        final var value = 5.50;
+        final var l = new Locale("es", "ES");
 
-        final MagneticFluxDensityFormatter formatter =
-                new MagneticFluxDensityFormatter(l);
+        final var formatter = new MagneticFluxDensityFormatter(l);
 
         assertEquals("5,5 nT", formatter.format(new MagneticFluxDensity(value,
                 MagneticFluxDensityUnit.NANOTESLA)));
@@ -331,8 +250,7 @@ public class MagneticFluxDensityFormatterTest {
                 MagneticFluxDensityUnit.MICROTESLA)));
         assertEquals("5,5 mT", formatter.format(new MagneticFluxDensity(value,
                 MagneticFluxDensityUnit.MILLITESLA)));
-        assertEquals("5,5 T", formatter.format(new MagneticFluxDensity(value,
-                MagneticFluxDensityUnit.TESLA)));
+        assertEquals("5,5 T", formatter.format(new MagneticFluxDensity(value, MagneticFluxDensityUnit.TESLA)));
         assertEquals("5,5 KT", formatter.format(new MagneticFluxDensity(value,
                 MagneticFluxDensityUnit.KILOTESLA)));
         assertEquals("5,5 MT", formatter.format(new MagneticFluxDensity(value,
@@ -342,55 +260,46 @@ public class MagneticFluxDensityFormatterTest {
     }
 
     @Test
-    public void testFormatMagneticFluxDensityAndStringBuffer() {
-        final double value = 5.50;
-        final Locale l = new Locale("es", "ES");
+    void testFormatMagneticFluxDensityAndStringBuffer() {
+        final var value = 5.50;
+        final var l = new Locale("es", "ES");
 
-        final MagneticFluxDensityFormatter formatter =
-                new MagneticFluxDensityFormatter(l);
+        final var formatter = new MagneticFluxDensityFormatter(l);
 
-        StringBuffer buffer = new StringBuffer();
+        var buffer = new StringBuffer();
         assertEquals("5,5 nT", formatter.format(new MagneticFluxDensity(value,
-                        MagneticFluxDensityUnit.NANOTESLA), buffer,
-                new FieldPosition(0)).toString());
+                        MagneticFluxDensityUnit.NANOTESLA), buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
         assertEquals("5,5 µT", formatter.format(new MagneticFluxDensity(value,
-                        MagneticFluxDensityUnit.MICROTESLA), buffer,
-                new FieldPosition(0)).toString());
+                        MagneticFluxDensityUnit.MICROTESLA), buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
         assertEquals("5,5 mT", formatter.format(new MagneticFluxDensity(value,
-                        MagneticFluxDensityUnit.MILLITESLA), buffer,
-                new FieldPosition(0)).toString());
+                        MagneticFluxDensityUnit.MILLITESLA), buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
-        assertEquals("5,5 T", formatter.format(new MagneticFluxDensity(value,
-                        MagneticFluxDensityUnit.TESLA), buffer,
-                new FieldPosition(0)).toString());
+        assertEquals("5,5 T", formatter.format(new MagneticFluxDensity(value, MagneticFluxDensityUnit.TESLA),
+                buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
         assertEquals("5,5 KT", formatter.format(new MagneticFluxDensity(value,
-                        MagneticFluxDensityUnit.KILOTESLA), buffer,
-                new FieldPosition(0)).toString());
+                        MagneticFluxDensityUnit.KILOTESLA), buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
         assertEquals("5,5 MT", formatter.format(new MagneticFluxDensity(value,
-                        MagneticFluxDensityUnit.MEGATESLA), buffer,
-                new FieldPosition(0)).toString());
+                        MagneticFluxDensityUnit.MEGATESLA), buffer, new FieldPosition(0)).toString());
 
         buffer = new StringBuffer();
         assertEquals("5,5 GT", formatter.format(new MagneticFluxDensity(value,
-                        MagneticFluxDensityUnit.GIGATESLA), buffer,
-                new FieldPosition(0)).toString());
+                        MagneticFluxDensityUnit.GIGATESLA), buffer, new FieldPosition(0)).toString());
     }
 
     @Test
-    public void testFormatAndConvertNumber() {
-        final Locale l = new Locale("es", "ES");
+    void testFormatAndConvertNumber() {
+        final var l = new Locale("es", "ES");
 
-        final MagneticFluxDensityFormatter formatter =
-                new MagneticFluxDensityFormatter(l);
+        final var formatter = new MagneticFluxDensityFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
         assertEquals("5,5 nT", formatter.formatAndConvert(new BigDecimal("5.50"),
@@ -399,17 +308,13 @@ public class MagneticFluxDensityFormatterTest {
                 MagneticFluxDensityUnit.NANOTESLA));
         assertEquals("5,5 mT", formatter.formatAndConvert(new BigDecimal("5500000.00"),
                 MagneticFluxDensityUnit.NANOTESLA));
-        assertEquals("5,5 T", formatter.formatAndConvert(
-                new BigDecimal("5500000000.00"),
+        assertEquals("5,5 T", formatter.formatAndConvert(new BigDecimal("5500000000.00"),
                 MagneticFluxDensityUnit.NANOTESLA));
-        assertEquals("5,5 KT", formatter.formatAndConvert(
-                new BigDecimal("5500000000000.00"),
+        assertEquals("5,5 KT", formatter.formatAndConvert(new BigDecimal("5500000000000.00"),
                 MagneticFluxDensityUnit.NANOTESLA));
-        assertEquals("5,5 MT", formatter.formatAndConvert(
-                new BigDecimal("5500000000000000.00"),
+        assertEquals("5,5 MT", formatter.formatAndConvert(new BigDecimal("5500000000000000.00"),
                 MagneticFluxDensityUnit.NANOTESLA));
-        assertEquals("5,5 GT", formatter.formatAndConvert(
-                new BigDecimal("5500000000000000000.00"),
+        assertEquals("5,5 GT", formatter.formatAndConvert(new BigDecimal("5500000000000000000.00"),
                 MagneticFluxDensityUnit.NANOTESLA));
 
         assertEquals("5,5 nT", formatter.formatAndConvert(new BigDecimal("5.5e-3"),
@@ -421,17 +326,14 @@ public class MagneticFluxDensityFormatterTest {
     }
 
     @Test
-    public void testFormatAndConvertDouble() {
-        final Locale l = new Locale("es", "ES");
+    void testFormatAndConvertDouble() {
+        final var l = new Locale("es", "ES");
 
-        final MagneticFluxDensityFormatter formatter =
-                new MagneticFluxDensityFormatter(l);
+        final var formatter = new MagneticFluxDensityFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals("5,5 nT", formatter.formatAndConvert(5.50,
-                MagneticFluxDensityUnit.NANOTESLA));
-        assertEquals("5,5 µT", formatter.formatAndConvert(5500.00,
-                MagneticFluxDensityUnit.NANOTESLA));
+        assertEquals("5,5 nT", formatter.formatAndConvert(5.50, MagneticFluxDensityUnit.NANOTESLA));
+        assertEquals("5,5 µT", formatter.formatAndConvert(5500.00, MagneticFluxDensityUnit.NANOTESLA));
         assertEquals("5,5 mT", formatter.formatAndConvert(5500000.00,
                 MagneticFluxDensityUnit.NANOTESLA));
         assertEquals("5,5 T", formatter.formatAndConvert(5500000000.00,
@@ -443,196 +345,138 @@ public class MagneticFluxDensityFormatterTest {
         assertEquals("5,5 GT", formatter.formatAndConvert(5500000000000000000.00,
                 MagneticFluxDensityUnit.NANOTESLA));
 
-        assertEquals("5,5 nT", formatter.formatAndConvert(5.5e-3,
-                MagneticFluxDensityUnit.MICROTESLA));
-        assertEquals("5,5 µT", formatter.formatAndConvert(5.50,
-                MagneticFluxDensityUnit.MICROTESLA));
-        assertEquals("5,5 mT", formatter.formatAndConvert(5500.00,
-                MagneticFluxDensityUnit.MICROTESLA));
+        assertEquals("5,5 nT", formatter.formatAndConvert(5.5e-3, MagneticFluxDensityUnit.MICROTESLA));
+        assertEquals("5,5 µT", formatter.formatAndConvert(5.50, MagneticFluxDensityUnit.MICROTESLA));
+        assertEquals("5,5 mT", formatter.formatAndConvert(5500.00, MagneticFluxDensityUnit.MICROTESLA));
     }
 
     @Test
-    public void testFormatAndConvertMagneticFluxDensity() {
-        final Locale l = new Locale("es", "ES");
+    void testFormatAndConvertMagneticFluxDensity() {
+        final var l = new Locale("es", "ES");
 
-        final MagneticFluxDensityFormatter formatter =
-                new MagneticFluxDensityFormatter(l);
+        final var formatter = new MagneticFluxDensityFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
-        assertEquals("5,5 nT", formatter.formatAndConvert(new MagneticFluxDensity(
-                5.50, MagneticFluxDensityUnit.NANOTESLA)));
-        assertEquals("5,5 µT", formatter.formatAndConvert(
-                new MagneticFluxDensity(5500.00,
-                        MagneticFluxDensityUnit.NANOTESLA)));
-        assertEquals("5,5 mT", formatter.formatAndConvert(
-                new MagneticFluxDensity(5500000.00,
-                        MagneticFluxDensityUnit.NANOTESLA)));
-        assertEquals("5,5 T", formatter.formatAndConvert(
-                new MagneticFluxDensity(5500000000.00,
-                        MagneticFluxDensityUnit.NANOTESLA)));
-        assertEquals("5,5 KT", formatter.formatAndConvert(
-                new MagneticFluxDensity(5500000000000.00,
-                        MagneticFluxDensityUnit.NANOTESLA)));
-        assertEquals("5,5 MT", formatter.formatAndConvert(
-                new MagneticFluxDensity(5500000000000000.00,
-                        MagneticFluxDensityUnit.NANOTESLA)));
-        assertEquals("5,5 GT", formatter.formatAndConvert(
-                new MagneticFluxDensity(5500000000000000000.00,
-                        MagneticFluxDensityUnit.NANOTESLA)));
+        assertEquals("5,5 nT", formatter.formatAndConvert(new MagneticFluxDensity(5.50,
+                MagneticFluxDensityUnit.NANOTESLA)));
+        assertEquals("5,5 µT", formatter.formatAndConvert(new MagneticFluxDensity(5500.00,
+                MagneticFluxDensityUnit.NANOTESLA)));
+        assertEquals("5,5 mT", formatter.formatAndConvert(new MagneticFluxDensity(5500000.00,
+                MagneticFluxDensityUnit.NANOTESLA)));
+        assertEquals("5,5 T", formatter.formatAndConvert(new MagneticFluxDensity(5500000000.00,
+                MagneticFluxDensityUnit.NANOTESLA)));
+        assertEquals("5,5 KT", formatter.formatAndConvert(new MagneticFluxDensity(5500000000000.00,
+                MagneticFluxDensityUnit.NANOTESLA)));
+        assertEquals("5,5 MT", formatter.formatAndConvert(new MagneticFluxDensity(5500000000000000.00,
+                MagneticFluxDensityUnit.NANOTESLA)));
+        assertEquals("5,5 GT", formatter.formatAndConvert(new MagneticFluxDensity(5500000000000000000.00,
+                MagneticFluxDensityUnit.NANOTESLA)));
+
+        assertEquals("5,5 nT", formatter.formatAndConvert(new MagneticFluxDensity(5.5e-3,
+                MagneticFluxDensityUnit.MICROTESLA)));
+        assertEquals("5,5 µT", formatter.formatAndConvert(new MagneticFluxDensity(5.50,
+                MagneticFluxDensityUnit.MICROTESLA)));
+        assertEquals("5,5 mT", formatter.formatAndConvert(new MagneticFluxDensity(5500.00,
+                MagneticFluxDensityUnit.MICROTESLA)));
+    }
+
+    @Test
+    void testFormatAndConvertNumberAndUnitSystem() {
+        final var l = new Locale("es", "ES");
+
+        final var formatter = new MagneticFluxDensityFormatter(l);
+        formatter.setMaximumFractionDigits(2);
+
+        assertEquals("5,5 nT", formatter.formatAndConvert(new BigDecimal("5.50"),
+                MagneticFluxDensityUnit.NANOTESLA, UnitSystem.METRIC));
+        assertEquals("5,5 µT", formatter.formatAndConvert(new BigDecimal("5500.00"),
+                MagneticFluxDensityUnit.NANOTESLA, UnitSystem.METRIC));
+        assertEquals("5,5 mT", formatter.formatAndConvert(new BigDecimal("5500000.00"),
+                MagneticFluxDensityUnit.NANOTESLA, UnitSystem.METRIC));
+        assertEquals("5,5 T", formatter.formatAndConvert(new BigDecimal("5500000000.00"),
+                MagneticFluxDensityUnit.NANOTESLA, UnitSystem.METRIC));
+        assertEquals("5,5 KT", formatter.formatAndConvert(new BigDecimal("5500000000000.00"),
+                MagneticFluxDensityUnit.NANOTESLA, UnitSystem.METRIC));
+        assertEquals("5,5 MT", formatter.formatAndConvert(new BigDecimal("5500000000000000.00"),
+                MagneticFluxDensityUnit.NANOTESLA, UnitSystem.METRIC));
+        assertEquals("5,5 GT", formatter.formatAndConvert(new BigDecimal("5500000000000000000.00"),
+                MagneticFluxDensityUnit.NANOTESLA, UnitSystem.METRIC));
+
+        assertEquals("5,5 nT", formatter.formatAndConvert(new BigDecimal("5.5e-3"),
+                MagneticFluxDensityUnit.MICROTESLA, UnitSystem.METRIC));
+        assertEquals("5,5 µT", formatter.formatAndConvert(new BigDecimal("5.50"),
+                MagneticFluxDensityUnit.MICROTESLA, UnitSystem.METRIC));
+        assertEquals("5,5 mT", formatter.formatAndConvert(new BigDecimal("5500.00"),
+                MagneticFluxDensityUnit.MICROTESLA, UnitSystem.METRIC));
+    }
+
+    @Test
+    void testFormatAndConvertDoubleAndUnitSystem() {
+        final var l = new Locale("es", "ES");
+
+        final var formatter = new MagneticFluxDensityFormatter(l);
+        formatter.setMaximumFractionDigits(2);
+
+        assertEquals("5,5 nT", formatter.formatAndConvert(5.50, MagneticFluxDensityUnit.NANOTESLA,
+                UnitSystem.METRIC));
+        assertEquals("5,5 µT", formatter.formatAndConvert(5500.00, MagneticFluxDensityUnit.NANOTESLA,
+                UnitSystem.METRIC));
+        assertEquals("5,5 mT", formatter.formatAndConvert(5500000.00, MagneticFluxDensityUnit.NANOTESLA,
+                UnitSystem.METRIC));
+        assertEquals("5,5 T", formatter.formatAndConvert(5500000000.00,
+                MagneticFluxDensityUnit.NANOTESLA, UnitSystem.METRIC));
+        assertEquals("5,5 KT", formatter.formatAndConvert(5500000000000.00,
+                MagneticFluxDensityUnit.NANOTESLA, UnitSystem.METRIC));
+        assertEquals("5,5 MT", formatter.formatAndConvert(5500000000000000.00,
+                MagneticFluxDensityUnit.NANOTESLA, UnitSystem.METRIC));
+        assertEquals("5,5 GT", formatter.formatAndConvert(5500000000000000000.00,
+                MagneticFluxDensityUnit.NANOTESLA, UnitSystem.METRIC));
+
+        assertEquals("5,5 nT", formatter.formatAndConvert(5.5e-3, MagneticFluxDensityUnit.MICROTESLA,
+                UnitSystem.METRIC));
+        assertEquals("5,5 µT", formatter.formatAndConvert(5.50, MagneticFluxDensityUnit.MICROTESLA,
+                UnitSystem.METRIC));
+        assertEquals("5,5 mT", formatter.formatAndConvert(5500.00, MagneticFluxDensityUnit.MICROTESLA,
+                UnitSystem.METRIC));
+    }
+
+    @Test
+    void testFormatAndConvertMagneticFluxDensityAndUnitSystem() {
+        final var l = new Locale("es", "ES");
+
+        final var formatter = new MagneticFluxDensityFormatter(l);
+        formatter.setMaximumFractionDigits(2);
 
         assertEquals("5,5 nT", formatter.formatAndConvert(
-                new MagneticFluxDensity(5.5e-3,
-                        MagneticFluxDensityUnit.MICROTESLA)));
+                new MagneticFluxDensity(5.50, MagneticFluxDensityUnit.NANOTESLA), UnitSystem.METRIC));
         assertEquals("5,5 µT", formatter.formatAndConvert(
-                new MagneticFluxDensity(5.50,
-                        MagneticFluxDensityUnit.MICROTESLA)));
+                new MagneticFluxDensity(5500.00, MagneticFluxDensityUnit.NANOTESLA), UnitSystem.METRIC));
         assertEquals("5,5 mT", formatter.formatAndConvert(
-                new MagneticFluxDensity(5500.00,
-                        MagneticFluxDensityUnit.MICROTESLA)));
-    }
-
-    @Test
-    public void testFormatAndConvertNumberAndUnitSystem() {
-        final Locale l = new Locale("es", "ES");
-
-        final MagneticFluxDensityFormatter formatter =
-                new MagneticFluxDensityFormatter(l);
-        formatter.setMaximumFractionDigits(2);
-
-        assertEquals("5,5 nT",
-                formatter.formatAndConvert(new BigDecimal("5.50"),
-                        MagneticFluxDensityUnit.NANOTESLA, UnitSystem.METRIC));
-        assertEquals("5,5 µT",
-                formatter.formatAndConvert(new BigDecimal("5500.00"),
-                        MagneticFluxDensityUnit.NANOTESLA, UnitSystem.METRIC));
-        assertEquals("5,5 mT",
-                formatter.formatAndConvert(new BigDecimal("5500000.00"),
-                        MagneticFluxDensityUnit.NANOTESLA, UnitSystem.METRIC));
-        assertEquals("5,5 T",
-                formatter.formatAndConvert(
-                        new BigDecimal("5500000000.00"),
-                        MagneticFluxDensityUnit.NANOTESLA, UnitSystem.METRIC));
-        assertEquals("5,5 KT",
-                formatter.formatAndConvert(
-                        new BigDecimal("5500000000000.00"),
-                        MagneticFluxDensityUnit.NANOTESLA, UnitSystem.METRIC));
-        assertEquals("5,5 MT",
-                formatter.formatAndConvert(
-                        new BigDecimal("5500000000000000.00"),
-                        MagneticFluxDensityUnit.NANOTESLA, UnitSystem.METRIC));
-        assertEquals("5,5 GT",
-                formatter.formatAndConvert(
-                        new BigDecimal("5500000000000000000.00"),
-                        MagneticFluxDensityUnit.NANOTESLA, UnitSystem.METRIC));
-
-        assertEquals("5,5 nT",
-                formatter.formatAndConvert(new BigDecimal("5.5e-3"),
-                        MagneticFluxDensityUnit.MICROTESLA, UnitSystem.METRIC));
-        assertEquals("5,5 µT",
-                formatter.formatAndConvert(new BigDecimal("5.50"),
-                        MagneticFluxDensityUnit.MICROTESLA, UnitSystem.METRIC));
-        assertEquals("5,5 mT",
-                formatter.formatAndConvert(new BigDecimal("5500.00"),
-                        MagneticFluxDensityUnit.MICROTESLA, UnitSystem.METRIC));
-    }
-
-    @Test
-    public void testFormatAndConvertDoubleAndUnitSystem() {
-        final Locale l = new Locale("es", "ES");
-
-        final MagneticFluxDensityFormatter formatter =
-                new MagneticFluxDensityFormatter(l);
-        formatter.setMaximumFractionDigits(2);
-
-        assertEquals("5,5 nT",
-                formatter.formatAndConvert(5.50,
-                        MagneticFluxDensityUnit.NANOTESLA, UnitSystem.METRIC));
-        assertEquals("5,5 µT",
-                formatter.formatAndConvert(5500.00,
-                        MagneticFluxDensityUnit.NANOTESLA, UnitSystem.METRIC));
-        assertEquals("5,5 mT",
-                formatter.formatAndConvert(5500000.00,
-                        MagneticFluxDensityUnit.NANOTESLA, UnitSystem.METRIC));
-        assertEquals("5,5 T",
-                formatter.formatAndConvert(5500000000.00,
-                        MagneticFluxDensityUnit.NANOTESLA, UnitSystem.METRIC));
-        assertEquals("5,5 KT",
-                formatter.formatAndConvert(5500000000000.00,
-                        MagneticFluxDensityUnit.NANOTESLA, UnitSystem.METRIC));
-        assertEquals("5,5 MT",
-                formatter.formatAndConvert(5500000000000000.00,
-                        MagneticFluxDensityUnit.NANOTESLA, UnitSystem.METRIC));
-        assertEquals("5,5 GT",
-                formatter.formatAndConvert(5500000000000000000.00,
-                        MagneticFluxDensityUnit.NANOTESLA, UnitSystem.METRIC));
-
-        assertEquals("5,5 nT",
-                formatter.formatAndConvert(5.5e-3,
-                        MagneticFluxDensityUnit.MICROTESLA, UnitSystem.METRIC));
-        assertEquals("5,5 µT",
-                formatter.formatAndConvert(5.50,
-                        MagneticFluxDensityUnit.MICROTESLA, UnitSystem.METRIC));
-        assertEquals("5,5 mT",
-                formatter.formatAndConvert(5500.00,
-                        MagneticFluxDensityUnit.MICROTESLA, UnitSystem.METRIC));
-    }
-
-    @Test
-    public void testFormatAndConvertMagneticFluxDensityAndUnitSystem() {
-        final Locale l = new Locale("es", "ES");
-
-        final MagneticFluxDensityFormatter formatter =
-                new MagneticFluxDensityFormatter(l);
-        formatter.setMaximumFractionDigits(2);
-
-        assertEquals("5,5 nT", formatter.formatAndConvert(new MagneticFluxDensity(
-                        5.50, MagneticFluxDensityUnit.NANOTESLA),
-                UnitSystem.METRIC));
-        assertEquals("5,5 µT", formatter.formatAndConvert(
-                new MagneticFluxDensity(5500.00,
-                        MagneticFluxDensityUnit.NANOTESLA),
-                UnitSystem.METRIC));
-        assertEquals("5,5 mT", formatter.formatAndConvert(
-                new MagneticFluxDensity(5500000.00,
-                        MagneticFluxDensityUnit.NANOTESLA),
-                UnitSystem.METRIC));
+                new MagneticFluxDensity(5500000.00, MagneticFluxDensityUnit.NANOTESLA), UnitSystem.METRIC));
         assertEquals("5,5 T", formatter.formatAndConvert(
-                new MagneticFluxDensity(5500000000.00,
-                        MagneticFluxDensityUnit.NANOTESLA),
-                UnitSystem.METRIC));
+                new MagneticFluxDensity(5500000000.00, MagneticFluxDensityUnit.NANOTESLA), UnitSystem.METRIC));
         assertEquals("5,5 KT", formatter.formatAndConvert(
-                new MagneticFluxDensity(5500000000000.00,
-                        MagneticFluxDensityUnit.NANOTESLA),
-                UnitSystem.METRIC));
+                new MagneticFluxDensity(5500000000000.00, MagneticFluxDensityUnit.NANOTESLA), UnitSystem.METRIC));
         assertEquals("5,5 MT", formatter.formatAndConvert(
-                new MagneticFluxDensity(5500000000000000.00,
-                        MagneticFluxDensityUnit.NANOTESLA),
+                new MagneticFluxDensity(5500000000000000.00, MagneticFluxDensityUnit.NANOTESLA),
                 UnitSystem.METRIC));
         assertEquals("5,5 GT", formatter.formatAndConvert(
-                new MagneticFluxDensity(5500000000000000000.00,
-                        MagneticFluxDensityUnit.NANOTESLA),
+                new MagneticFluxDensity(5500000000000000000.00, MagneticFluxDensityUnit.NANOTESLA),
                 UnitSystem.METRIC));
 
         assertEquals("5,5 nT", formatter.formatAndConvert(
-                new MagneticFluxDensity(5.5e-3,
-                        MagneticFluxDensityUnit.MICROTESLA),
-                UnitSystem.METRIC));
+                new MagneticFluxDensity(5.5e-3, MagneticFluxDensityUnit.MICROTESLA), UnitSystem.METRIC));
         assertEquals("5,5 µT", formatter.formatAndConvert(
-                new MagneticFluxDensity(5.50,
-                        MagneticFluxDensityUnit.MICROTESLA),
-                UnitSystem.METRIC));
+                new MagneticFluxDensity(5.50, MagneticFluxDensityUnit.MICROTESLA), UnitSystem.METRIC));
         assertEquals("5,5 mT", formatter.formatAndConvert(
-                new MagneticFluxDensity(5500.00,
-                        MagneticFluxDensityUnit.MICROTESLA),
-                UnitSystem.METRIC));
+                new MagneticFluxDensity(5500.00, MagneticFluxDensityUnit.MICROTESLA), UnitSystem.METRIC));
     }
 
     @Test
-    public void testFormatAndConvertMetric() {
-        final Locale l = new Locale("es", "ES");
+    void testFormatAndConvertMetric() {
+        final var l = new Locale("es", "ES");
 
-        final MagneticFluxDensityFormatter formatter =
-                new MagneticFluxDensityFormatter(l);
+        final var formatter = new MagneticFluxDensityFormatter(l);
         formatter.setMaximumFractionDigits(2);
 
         assertEquals("5,5 nT", formatter.formatAndConvertMetric(new BigDecimal("5.50"),
@@ -641,17 +485,13 @@ public class MagneticFluxDensityFormatterTest {
                 MagneticFluxDensityUnit.NANOTESLA));
         assertEquals("5,5 mT", formatter.formatAndConvertMetric(new BigDecimal("5500000.00"),
                 MagneticFluxDensityUnit.NANOTESLA));
-        assertEquals("5,5 T", formatter.formatAndConvertMetric(
-                new BigDecimal("5500000000.00"),
+        assertEquals("5,5 T", formatter.formatAndConvertMetric(new BigDecimal("5500000000.00"),
                 MagneticFluxDensityUnit.NANOTESLA));
-        assertEquals("5,5 KT", formatter.formatAndConvertMetric(
-                new BigDecimal("5500000000000.00"),
+        assertEquals("5,5 KT", formatter.formatAndConvertMetric(new BigDecimal("5500000000000.00"),
                 MagneticFluxDensityUnit.NANOTESLA));
-        assertEquals("5,5 MT", formatter.formatAndConvertMetric(
-                new BigDecimal("5500000000000000.00"),
+        assertEquals("5,5 MT", formatter.formatAndConvertMetric(new BigDecimal("5500000000000000.00"),
                 MagneticFluxDensityUnit.NANOTESLA));
-        assertEquals("5,5 GT", formatter.formatAndConvertMetric(
-                new BigDecimal("5500000000000000000.00"),
+        assertEquals("5,5 GT", formatter.formatAndConvertMetric(new BigDecimal("5500000000000000000.00"),
                 MagneticFluxDensityUnit.NANOTESLA));
 
         assertEquals("5,5 nT", formatter.formatAndConvertMetric(new BigDecimal("5.5e-3"),
@@ -663,18 +503,16 @@ public class MagneticFluxDensityFormatterTest {
     }
 
     @Test
-    public void testGetAvailableLocales() {
-        final Locale[] locales = MagneticFluxDensityFormatter.getAvailableLocales();
+    void testGetAvailableLocales() {
+        final var locales = MagneticFluxDensityFormatter.getAvailableLocales();
         assertArrayEquals(locales, NumberFormat.getAvailableLocales());
     }
 
     @Test
-    public void testGetSetMaximumFractionDigits() {
-        final MagneticFluxDensityFormatter formatter =
-                new MagneticFluxDensityFormatter();
+    void testGetSetMaximumFractionDigits() {
+        final var formatter = new MagneticFluxDensityFormatter();
 
-        assertEquals(formatter.getMaximumFractionDigits(),
-                NumberFormat.getInstance().getMaximumFractionDigits());
+        assertEquals(formatter.getMaximumFractionDigits(), NumberFormat.getInstance().getMaximumFractionDigits());
 
         // set new value
         formatter.setMaximumFractionDigits(2);
@@ -684,12 +522,10 @@ public class MagneticFluxDensityFormatterTest {
     }
 
     @Test
-    public void testGetSetMaximumIntegerDigits() {
-        final MagneticFluxDensityFormatter formatter =
-                new MagneticFluxDensityFormatter();
+    void testGetSetMaximumIntegerDigits() {
+        final var formatter = new MagneticFluxDensityFormatter();
 
-        assertEquals(formatter.getMaximumIntegerDigits(),
-                NumberFormat.getInstance().getMaximumIntegerDigits());
+        assertEquals(formatter.getMaximumIntegerDigits(), NumberFormat.getInstance().getMaximumIntegerDigits());
 
         // set new value
         formatter.setMaximumIntegerDigits(2);
@@ -699,12 +535,10 @@ public class MagneticFluxDensityFormatterTest {
     }
 
     @Test
-    public void testGetSetMinimumFractionDigits() {
-        final MagneticFluxDensityFormatter formatter =
-                new MagneticFluxDensityFormatter();
+    void testGetSetMinimumFractionDigits() {
+        final var formatter = new MagneticFluxDensityFormatter();
 
-        assertEquals(formatter.getMinimumFractionDigits(),
-                NumberFormat.getInstance().getMinimumFractionDigits());
+        assertEquals(formatter.getMinimumFractionDigits(), NumberFormat.getInstance().getMinimumFractionDigits());
 
         // set new value
         formatter.setMinimumFractionDigits(2);
@@ -714,12 +548,10 @@ public class MagneticFluxDensityFormatterTest {
     }
 
     @Test
-    public void testGetSetMinimumIntegerDigits() {
-        final MagneticFluxDensityFormatter formatter =
-                new MagneticFluxDensityFormatter();
+    void testGetSetMinimumIntegerDigits() {
+        final var formatter = new MagneticFluxDensityFormatter();
 
-        assertEquals(formatter.getMinimumIntegerDigits(),
-                NumberFormat.getInstance().getMinimumIntegerDigits());
+        assertEquals(formatter.getMinimumIntegerDigits(), NumberFormat.getInstance().getMinimumIntegerDigits());
 
         // set new value
         formatter.setMinimumIntegerDigits(2);
@@ -729,12 +561,10 @@ public class MagneticFluxDensityFormatterTest {
     }
 
     @Test
-    public void testGetSetRoundingMode() {
-        final MagneticFluxDensityFormatter formatter =
-                new MagneticFluxDensityFormatter();
+    void testGetSetRoundingMode() {
+        final var formatter = new MagneticFluxDensityFormatter();
 
-        assertEquals(formatter.getRoundingMode(),
-                NumberFormat.getInstance().getRoundingMode());
+        assertEquals(formatter.getRoundingMode(), NumberFormat.getInstance().getRoundingMode());
 
         // set new value
         formatter.setRoundingMode(RoundingMode.UNNECESSARY);
@@ -744,44 +574,36 @@ public class MagneticFluxDensityFormatterTest {
     }
 
     @Test
-    public void testIsSetGroupingUsed() {
-        final MagneticFluxDensityFormatter formatter =
-                new MagneticFluxDensityFormatter();
+    void testIsSetGroupingUsed() {
+        final var formatter = new MagneticFluxDensityFormatter();
 
-        assertEquals(formatter.isGroupingUsed(),
-                NumberFormat.getInstance().isGroupingUsed());
+        assertEquals(formatter.isGroupingUsed(), NumberFormat.getInstance().isGroupingUsed());
 
         // set new value
         formatter.setGroupingUsed(!formatter.isGroupingUsed());
 
         // check correctness
-        assertEquals(formatter.isGroupingUsed(),
-                !NumberFormat.getInstance().isGroupingUsed());
+        assertEquals(formatter.isGroupingUsed(), !NumberFormat.getInstance().isGroupingUsed());
     }
 
     @Test
-    public void testIsSetParseIntegerOnly() {
-        final MagneticFluxDensityFormatter formatter =
-                new MagneticFluxDensityFormatter();
+    void testIsSetParseIntegerOnly() {
+        final var formatter = new MagneticFluxDensityFormatter();
 
-        assertEquals(formatter.isParseIntegerOnly(),
-                NumberFormat.getInstance().isParseIntegerOnly());
+        assertEquals(formatter.isParseIntegerOnly(), NumberFormat.getInstance().isParseIntegerOnly());
 
         // set new value
         formatter.setParseIntegerOnly(!formatter.isParseIntegerOnly());
 
         // check correctness
-        assertEquals(formatter.isParseIntegerOnly(),
-                !NumberFormat.getInstance().isParseIntegerOnly());
+        assertEquals(formatter.isParseIntegerOnly(), !NumberFormat.getInstance().isParseIntegerOnly());
     }
 
     @Test
-    public void testGetSetValueAndUnitFormatPattern() {
-        final MagneticFluxDensityFormatter formatter =
-                new MagneticFluxDensityFormatter();
+    void testGetSetValueAndUnitFormatPattern() {
+        final var formatter = new MagneticFluxDensityFormatter();
 
-        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN,
-                formatter.getValueAndUnitFormatPattern());
+        assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN, formatter.getValueAndUnitFormatPattern());
 
         // new value
         formatter.setValueAndUnitFormatPattern("{0}{1}");
@@ -790,28 +612,21 @@ public class MagneticFluxDensityFormatterTest {
         assertEquals("{0}{1}", formatter.getValueAndUnitFormatPattern());
 
         // force IllegalArgumentException
-        try {
-            formatter.setValueAndUnitFormatPattern(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> formatter.setValueAndUnitFormatPattern(null));
     }
 
     @Test
-    public void testGetUnitSystem() {
-        MagneticFluxDensityFormatter formatter = new MagneticFluxDensityFormatter(
-                new Locale("es", "ES"));
+    void testGetUnitSystem() {
+        var formatter = new MagneticFluxDensityFormatter(new Locale("es", "ES"));
         assertEquals(UnitSystem.METRIC, formatter.getUnitSystem());
 
-        formatter = new MagneticFluxDensityFormatter(
-                new Locale("en", "US"));
+        formatter = new MagneticFluxDensityFormatter(new Locale("en", "US"));
         assertEquals(UnitSystem.METRIC, formatter.getUnitSystem());
     }
 
     @Test
-    public void testIsValidUnit() {
-        final MagneticFluxDensityFormatter formatter =
-                new MagneticFluxDensityFormatter();
+    void testIsValidUnit() {
+        final var formatter = new MagneticFluxDensityFormatter();
 
         assertTrue(formatter.isValidUnit("nT"));
         assertTrue(formatter.isValidUnit("nT "));
@@ -838,12 +653,10 @@ public class MagneticFluxDensityFormatterTest {
     }
 
     @Test
-    public void testIsValidMeasurement() {
-        final MagneticFluxDensityFormatter formatter =
-                new MagneticFluxDensityFormatter(
-                        new Locale("es", "ES"));
+    void testIsValidMeasurement() {
+        final var formatter = new MagneticFluxDensityFormatter(new Locale("es", "ES"));
 
-        String text = "5,5 nT";
+        var text = "5,5 nT";
         assertTrue(formatter.isValidMeasurement(text));
 
         text = "5,5 µT";
@@ -869,12 +682,10 @@ public class MagneticFluxDensityFormatterTest {
     }
 
     @Test
-    public void testIsMetricUnit() {
-        final MagneticFluxDensityFormatter formatter =
-                new MagneticFluxDensityFormatter(
-                        new Locale("es", "ES"));
+    void testIsMetricUnit() {
+        final var formatter = new MagneticFluxDensityFormatter(new Locale("es", "ES"));
 
-        String text = "5,5 nT";
+        var text = "5,5 nT";
         assertTrue(formatter.isMetricUnit(text));
 
         text = "5,5 µT";
@@ -897,12 +708,10 @@ public class MagneticFluxDensityFormatterTest {
     }
 
     @Test
-    public void testIsImperialUnit() {
-        final MagneticFluxDensityFormatter formatter =
-                new MagneticFluxDensityFormatter(
-                        new Locale("es", "ES"));
+    void testIsImperialUnit() {
+        final var formatter = new MagneticFluxDensityFormatter(new Locale("es", "ES"));
 
-        String text = "5,5 nT";
+        var text = "5,5 nT";
         assertFalse(formatter.isImperialUnit(text));
 
         text = "5,5 µT";
@@ -925,12 +734,10 @@ public class MagneticFluxDensityFormatterTest {
     }
 
     @Test
-    public void testGetUnitSystemFromSource() {
-        final MagneticFluxDensityFormatter formatter =
-                new MagneticFluxDensityFormatter(
-                        new Locale("es", "ES"));
+    void testGetUnitSystemFromSource() {
+        final var formatter = new MagneticFluxDensityFormatter(new Locale("es", "ES"));
 
-        String text = "5,5 nT";
+        var text = "5,5 nT";
         assertEquals(UnitSystem.METRIC, formatter.getUnitSystem(text));
 
         text = "5,5 µT";
@@ -956,13 +763,11 @@ public class MagneticFluxDensityFormatterTest {
     }
 
     @Test
-    public void testParse() throws ParseException, UnknownUnitException {
-        final MagneticFluxDensityFormatter formatter =
-                new MagneticFluxDensityFormatter(
-                        new Locale("es", "ES"));
+    void testParse() throws ParseException, UnknownUnitException {
+        final var formatter = new MagneticFluxDensityFormatter(new Locale("es", "ES"));
 
-        String text = "5,5 nT";
-        MagneticFluxDensity b = formatter.parse(text);
+        var text = "5,5 nT";
+        var b = formatter.parse(text);
         assertEquals(5.5, b.getValue().doubleValue(), 0.0);
         assertEquals(MagneticFluxDensityUnit.NANOTESLA, b.getUnit());
 
@@ -997,28 +802,17 @@ public class MagneticFluxDensityFormatterTest {
         assertEquals(MagneticFluxDensityUnit.GIGATESLA, b.getUnit());
 
         // Force UnknownUnitException
-        text = "5,5 s";
-        try {
-            formatter.parse(text);
-            fail("UnknownUnitException expected but not thrown");
-        } catch (final UnknownUnitException ignore) {
-        }
+        assertThrows(UnknownUnitException.class, () -> formatter.parse("5,5 s"));
 
         // Force ParseException
-        try {
-            formatter.parse("m");
-            fail("ParseException expected but not thrown");
-        } catch (final ParseException ignore) {
-        }
+        assertThrows(ParseException.class, () -> formatter.parse("m"));
     }
 
     @Test
-    public void testFindUnit() {
-        final MagneticFluxDensityFormatter formatter =
-                new MagneticFluxDensityFormatter(
-                        new Locale("es", "ES"));
+    void testFindUnit() {
+        final var formatter = new MagneticFluxDensityFormatter(new Locale("es", "ES"));
 
-        String text = "5,5 nT";
+        var text = "5,5 nT";
         assertEquals(MagneticFluxDensityUnit.NANOTESLA, formatter.findUnit(text));
 
         text = "5,5 µT";
@@ -1044,9 +838,8 @@ public class MagneticFluxDensityFormatterTest {
     }
 
     @Test
-    public void testGetUnitSymbol() {
-        final MagneticFluxDensityFormatter formatter =
-                new MagneticFluxDensityFormatter();
+    void testGetUnitSymbol() {
+        final var formatter = new MagneticFluxDensityFormatter();
 
         assertEquals(MagneticFluxDensityFormatter.NANOTESLA,
                 formatter.getUnitSymbol(MagneticFluxDensityUnit.NANOTESLA));
@@ -1054,8 +847,7 @@ public class MagneticFluxDensityFormatterTest {
                 formatter.getUnitSymbol(MagneticFluxDensityUnit.MICROTESLA));
         assertEquals(MagneticFluxDensityFormatter.MILLITESLA,
                 formatter.getUnitSymbol(MagneticFluxDensityUnit.MILLITESLA));
-        assertEquals(MagneticFluxDensityFormatter.TESLA,
-                formatter.getUnitSymbol(MagneticFluxDensityUnit.TESLA));
+        assertEquals(MagneticFluxDensityFormatter.TESLA, formatter.getUnitSymbol(MagneticFluxDensityUnit.TESLA));
         assertEquals(MagneticFluxDensityFormatter.KILOTESLA,
                 formatter.getUnitSymbol(MagneticFluxDensityUnit.KILOTESLA));
         assertEquals(MagneticFluxDensityFormatter.MEGATESLA,

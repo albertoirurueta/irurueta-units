@@ -51,8 +51,7 @@ public class Surface extends Measurement<SurfaceUnit> {
      * false otherwise.
      */
     @Override
-    public boolean equals(final Measurement<SurfaceUnit> other,
-                          final double tolerance) {
+    public boolean equals(final Measurement<SurfaceUnit> other, final double tolerance) {
         if (super.equals(other, tolerance)) {
             return true;
         }
@@ -62,9 +61,7 @@ public class Surface extends Measurement<SurfaceUnit> {
             return false;
         }
 
-        final double otherValue = SurfaceConverter.convert(
-                other.getValue().doubleValue(), other.getUnit(),
-                getUnit());
+        final var otherValue = SurfaceConverter.convert(other.getValue().doubleValue(), other.getUnit(), getUnit());
         return Math.abs(getValue().doubleValue() - otherValue) <= tolerance;
     }
 
@@ -81,10 +78,8 @@ public class Surface extends Measurement<SurfaceUnit> {
     public static double add(final double value1, final SurfaceUnit unit1,
                              final double value2, final SurfaceUnit unit2,
                              final SurfaceUnit resultUnit) {
-        final double v1 = SurfaceConverter.convert(value1, unit1,
-                resultUnit);
-        final double v2 = SurfaceConverter.convert(value2, unit2,
-                resultUnit);
+        final var v1 = SurfaceConverter.convert(value1, unit1, resultUnit);
+        final var v2 = SurfaceConverter.convert(value2, unit2, resultUnit);
         return v1 + v2;
     }
 
@@ -101,8 +96,7 @@ public class Surface extends Measurement<SurfaceUnit> {
     public static Number add(final Number value1, final SurfaceUnit unit1,
                              final Number value2, final SurfaceUnit unit2,
                              final SurfaceUnit resultUnit) {
-        return BigDecimal.valueOf(add(value1.doubleValue(), unit1,
-                value2.doubleValue(), unit2, resultUnit));
+        return BigDecimal.valueOf(add(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));
     }
 
     /**
@@ -112,10 +106,8 @@ public class Surface extends Measurement<SurfaceUnit> {
      * @param arg2   2nd argument.
      * @param result instance where result will be stored.
      */
-    public static void add(
-            final Surface arg1, final Surface arg2, final Surface result) {
-        result.setValue(add(arg1.getValue(), arg1.getUnit(),
-                arg2.getValue(), arg2.getUnit(), result.getUnit()));
+    public static void add(final Surface arg1, final Surface arg2, final Surface result) {
+        result.setValue(add(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));
     }
 
     /**
@@ -126,10 +118,8 @@ public class Surface extends Measurement<SurfaceUnit> {
      * @param unit unit of returned surface.
      * @return a new instance containing result.
      */
-    public static Surface addAndReturnNew(
-            final Surface arg1, final Surface arg2,
-            final SurfaceUnit unit) {
-        final Surface result = new Surface();
+    public static Surface addAndReturnNew(final Surface arg1, final Surface arg2, final SurfaceUnit unit) {
+        final var result = new Surface();
         result.setUnit(unit);
         add(arg1, arg2, result);
         return result;
@@ -144,13 +134,10 @@ public class Surface extends Measurement<SurfaceUnit> {
      * @param resultUnit unit of returned surface.
      * @return a new surface containing result.
      */
-    public Surface addAndReturnNew(
-            final double value, final SurfaceUnit unit,
-            final SurfaceUnit resultUnit) {
-        final Surface result = new Surface();
+    public Surface addAndReturnNew(final double value, final SurfaceUnit unit, final SurfaceUnit resultUnit) {
+        final var result = new Surface();
         result.setUnit(resultUnit);
-        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit,
-                resultUnit));
+        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 
@@ -164,9 +151,8 @@ public class Surface extends Measurement<SurfaceUnit> {
      * @return a new surface containing result.
      */
     public Surface addAndReturnNew(
-            final Number value, final SurfaceUnit unit,
-            final SurfaceUnit resultUnit) {
-        final Surface result = new Surface();
+            final Number value, final SurfaceUnit unit, final SurfaceUnit resultUnit) {
+        final var result = new Surface();
         result.setUnit(resultUnit);
         result.setValue(add(getValue(), getUnit(), value, unit, resultUnit));
         return result;
@@ -180,8 +166,7 @@ public class Surface extends Measurement<SurfaceUnit> {
      * @param unit unit of returned surface.
      * @return a new surface containing result.
      */
-    public Surface addAndReturnNew(
-            final Surface s, final SurfaceUnit unit) {
+    public Surface addAndReturnNew(final Surface s, final SurfaceUnit unit) {
         return addAndReturnNew(this, s, unit);
     }
 
@@ -239,10 +224,8 @@ public class Surface extends Measurement<SurfaceUnit> {
             final double value1, final SurfaceUnit unit1,
             final double value2, final SurfaceUnit unit2,
             final SurfaceUnit resultUnit) {
-        final double v1 = SurfaceConverter.convert(value1, unit1,
-                resultUnit);
-        final double v2 = SurfaceConverter.convert(value2, unit2,
-                resultUnit);
+        final var v1 = SurfaceConverter.convert(value1, unit1, resultUnit);
+        final var v2 = SurfaceConverter.convert(value2, unit2, resultUnit);
         return v1 - v2;
     }
 
@@ -260,8 +243,7 @@ public class Surface extends Measurement<SurfaceUnit> {
             final Number value1, final SurfaceUnit unit1,
             final Number value2, final SurfaceUnit unit2,
             final SurfaceUnit resultUnit) {
-        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1,
-                value2.doubleValue(), unit2, resultUnit));
+        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));
     }
 
     /**
@@ -271,10 +253,8 @@ public class Surface extends Measurement<SurfaceUnit> {
      * @param arg2   2nd argument.
      * @param result instance where result will be stored.
      */
-    public static void subtract(
-            final Surface arg1, final Surface arg2, final Surface result) {
-        result.setValue(subtract(arg1.getValue(), arg1.getUnit(),
-                arg2.getValue(), arg2.getUnit(), result.getUnit()));
+    public static void subtract(final Surface arg1, final Surface arg2, final Surface result) {
+        result.setValue(subtract(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));
     }
 
     /**
@@ -285,10 +265,8 @@ public class Surface extends Measurement<SurfaceUnit> {
      * @param unit unit of returned surface.
      * @return a new instance containing result.
      */
-    public static Surface subtractAndReturnNew(
-            final Surface arg1, final Surface arg2,
-            final SurfaceUnit unit) {
-        final Surface result = new Surface();
+    public static Surface subtractAndReturnNew(final Surface arg1, final Surface arg2, final SurfaceUnit unit) {
+        final var result = new Surface();
         result.setUnit(unit);
         subtract(arg1, arg2, result);
         return result;
@@ -303,13 +281,10 @@ public class Surface extends Measurement<SurfaceUnit> {
      * @param resultUnit unit of returned surface.
      * @return a new surface containing result.
      */
-    public Surface subtractAndReturnNew(
-            final double value, final SurfaceUnit unit,
-            final SurfaceUnit resultUnit) {
-        final Surface result = new Surface();
+    public Surface subtractAndReturnNew(final double value, final SurfaceUnit unit, final SurfaceUnit resultUnit) {
+        final var result = new Surface();
         result.setUnit(resultUnit);
-        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit,
-                resultUnit));
+        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 
@@ -322,13 +297,10 @@ public class Surface extends Measurement<SurfaceUnit> {
      * @param resultUnit unit of returned time.
      * @return a new surface containing result.
      */
-    public Surface subtractAndReturnNew(
-            final Number value, final SurfaceUnit unit,
-            final SurfaceUnit resultUnit) {
-        final Surface result = new Surface();
+    public Surface subtractAndReturnNew(final Number value, final SurfaceUnit unit, final SurfaceUnit resultUnit) {
+        final var result = new Surface();
         result.setUnit(resultUnit);
-        result.setValue(subtract(getValue(), getUnit(), value, unit,
-                resultUnit));
+        result.setValue(subtract(getValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 
@@ -340,8 +312,7 @@ public class Surface extends Measurement<SurfaceUnit> {
      * @param unit unit of returned surface.
      * @return a new surface containing result.
      */
-    public Surface subtractAndReturnNew(
-            final Surface s, final SurfaceUnit unit) {
+    public Surface subtractAndReturnNew(final Surface s, final SurfaceUnit unit) {
         return subtractAndReturnNew(this, s, unit);
     }
 

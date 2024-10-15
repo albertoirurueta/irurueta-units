@@ -15,22 +15,22 @@
  */
 package com.irurueta.units;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Random;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class DistanceTest {
+class DistanceTest {
 
     private static final double ERROR = 1e-6;
 
     @Test
-    public void testConstructor() {
+    void testConstructor() {
         // test empty constructor
-        Distance d = new Distance();
+        var d = new Distance();
 
         // check
         assertNull(d.getValue());
@@ -44,28 +44,17 @@ public class DistanceTest {
         assertEquals(DistanceUnit.METER, d.getUnit());
 
         // force IllegalArgumentException
-        d = null;
-        try {
-            d = new Distance(null, DistanceUnit.METER);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
-        try {
-            d = new Distance(323, null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
-        //noinspection ConstantConditions
-        assertNull(d);
+        assertThrows(IllegalArgumentException.class, () -> new Distance(null, DistanceUnit.METER));
+        assertThrows(IllegalArgumentException.class, () -> new Distance(323, null));
     }
 
     @Test
-    public void testEquals() {
-        final double value = new Random().nextDouble();
-        final Distance d1 = new Distance(value, DistanceUnit.METER);
-        final Distance d2 = new Distance(value, DistanceUnit.METER);
-        final Distance d3 = new Distance(value + 1.0, DistanceUnit.METER);
-        final Distance d4 = new Distance(value, DistanceUnit.CENTIMETER);
+    void testEquals() {
+        final var value = new Random().nextDouble();
+        final var d1 = new Distance(value, DistanceUnit.METER);
+        final var d2 = new Distance(value, DistanceUnit.METER);
+        final var d3 = new Distance(value + 1.0, DistanceUnit.METER);
+        final var d4 = new Distance(value, DistanceUnit.CENTIMETER);
 
         assertEquals(d1, d2);
         assertNotEquals(d1, d3);
@@ -76,12 +65,12 @@ public class DistanceTest {
     }
 
     @Test
-    public void testHashCode() {
-        final double value = new Random().nextDouble();
-        final Distance d1 = new Distance(value, DistanceUnit.METER);
-        final Distance d2 = new Distance(value, DistanceUnit.METER);
-        final Distance d3 = new Distance(value + 1.0, DistanceUnit.METER);
-        final Distance d4 = new Distance(value, DistanceUnit.CENTIMETER);
+    void testHashCode() {
+        final var value = new Random().nextDouble();
+        final var d1 = new Distance(value, DistanceUnit.METER);
+        final var d2 = new Distance(value, DistanceUnit.METER);
+        final var d3 = new Distance(value + 1.0, DistanceUnit.METER);
+        final var d4 = new Distance(value, DistanceUnit.CENTIMETER);
 
         assertEquals(d1.hashCode(), d1.hashCode());
         assertEquals(d1.hashCode(), d2.hashCode());
@@ -90,13 +79,13 @@ public class DistanceTest {
     }
 
     @Test
-    public void testEqualsWithTolerance() {
-        final double value = new Random().nextDouble();
-        final Distance d1 = new Distance(value, DistanceUnit.METER);
-        final Distance d2 = new Distance(value, DistanceUnit.METER);
-        final Distance d3 = new Distance(value + 0.5 * ERROR, DistanceUnit.METER);
-        final Distance d4 = new Distance(value, DistanceUnit.CENTIMETER);
-        final Distance d5 = new Distance(value * 100.0, DistanceUnit.CENTIMETER);
+    void testEqualsWithTolerance() {
+        final var value = new Random().nextDouble();
+        final var d1 = new Distance(value, DistanceUnit.METER);
+        final var d2 = new Distance(value, DistanceUnit.METER);
+        final var d3 = new Distance(value + 0.5 * ERROR, DistanceUnit.METER);
+        final var d4 = new Distance(value, DistanceUnit.CENTIMETER);
+        final var d5 = new Distance(value * 100.0, DistanceUnit.CENTIMETER);
 
         assertTrue(d1.equals(d1, 0.0));
         assertTrue(d1.equals(d2, 0.0));
@@ -109,8 +98,8 @@ public class DistanceTest {
     }
 
     @Test
-    public void testGetSetValue() {
-        final Distance d = new Distance(1, DistanceUnit.METER);
+    void testGetSetValue() {
+        final var d = new Distance(1, DistanceUnit.METER);
 
         // check
         assertEquals(1, d.getValue());
@@ -122,16 +111,12 @@ public class DistanceTest {
         assertEquals(2.5, d.getValue());
 
         // force IllegalArgumentException
-        try {
-            d.setValue(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> d.setValue(null));
     }
 
     @Test
-    public void testGetSetUnit() {
-        final Distance d = new Distance(1, DistanceUnit.METER);
+    void testGetSetUnit() {
+        final var d = new Distance(1, DistanceUnit.METER);
 
         // check
         assertEquals(DistanceUnit.METER, d.getUnit());
@@ -143,49 +128,45 @@ public class DistanceTest {
         assertEquals(DistanceUnit.INCH, d.getUnit());
 
         // force IllegalArgumentException
-        try {
-            d.setUnit(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> d.setUnit(null));
     }
 
     @Test
-    public void testAdd1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final double result = Distance.add(value1, DistanceUnit.METER,
-                value2, DistanceUnit.METER, DistanceUnit.CENTIMETER);
+        final var result = Distance.add(value1, DistanceUnit.METER, value2, DistanceUnit.METER,
+                DistanceUnit.CENTIMETER);
 
         // check
         assertEquals((value1 + value2) * 100.0, result, ERROR);
     }
 
     @Test
-    public void testAdd2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Number result = Distance.add(new BigDecimal(value1), DistanceUnit.METER,
-                new BigDecimal(value2), DistanceUnit.METER, DistanceUnit.CENTIMETER);
+        final var result = Distance.add(new BigDecimal(value1), DistanceUnit.METER, new BigDecimal(value2),
+                DistanceUnit.METER, DistanceUnit.CENTIMETER);
 
         // check
         assertEquals((value1 + value2) * 100.0, result.doubleValue(), ERROR);
     }
 
     @Test
-    public void testAdd3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Distance d1 = new Distance(value1, DistanceUnit.METER);
-        final Distance d2 = new Distance(value2, DistanceUnit.METER);
+        final var d1 = new Distance(value1, DistanceUnit.METER);
+        final var d2 = new Distance(value2, DistanceUnit.METER);
 
-        final Distance result = new Distance(0.0, DistanceUnit.CENTIMETER);
+        final var result = new Distance(0.0, DistanceUnit.CENTIMETER);
         Distance.add(d1, d2, result);
 
         // check
@@ -196,21 +177,19 @@ public class DistanceTest {
         assertEquals(value2, d2.getValue().doubleValue(), 0.0);
 
         assertEquals(DistanceUnit.CENTIMETER, result.getUnit());
-        assertEquals((value1 + value2) * 100.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 + value2) * 100.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAddAndReturnNew1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAddAndReturnNew1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Distance d1 = new Distance(value1, DistanceUnit.METER);
-        final Distance d2 = new Distance(value2, DistanceUnit.METER);
+        final var d1 = new Distance(value1, DistanceUnit.METER);
+        final var d2 = new Distance(value2, DistanceUnit.METER);
 
-        final Distance result = Distance.addAndReturnNew(d1, d2,
-                DistanceUnit.CENTIMETER);
+        final var result = Distance.addAndReturnNew(d1, d2, DistanceUnit.CENTIMETER);
 
         // check
         assertEquals(DistanceUnit.METER, d1.getUnit());
@@ -220,19 +199,18 @@ public class DistanceTest {
         assertEquals(value2, d2.getValue().doubleValue(), 0.0);
 
         assertEquals(DistanceUnit.CENTIMETER, result.getUnit());
-        assertEquals((value1 + value2) * 100.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 + value2) * 100.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAddAndReturnNew2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAddAndReturnNew2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Distance d1 = new Distance(value1, DistanceUnit.METER);
+        final var d1 = new Distance(value1, DistanceUnit.METER);
 
-        final Distance result = d1.addAndReturnNew(value2, DistanceUnit.METER, DistanceUnit.CENTIMETER);
+        final var result = d1.addAndReturnNew(value2, DistanceUnit.METER, DistanceUnit.CENTIMETER);
 
         // check
         assertEquals(DistanceUnit.METER, d1.getUnit());
@@ -243,35 +221,33 @@ public class DistanceTest {
     }
 
     @Test
-    public void testAddAndReturnNew3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAddAndReturnNew3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Distance d1 = new Distance(value1, DistanceUnit.METER);
+        final var d1 = new Distance(value1, DistanceUnit.METER);
 
-        final Distance result = d1.addAndReturnNew(new BigDecimal(value2),
-                DistanceUnit.METER, DistanceUnit.CENTIMETER);
+        final var result = d1.addAndReturnNew(new BigDecimal(value2), DistanceUnit.METER, DistanceUnit.CENTIMETER);
 
         // check
         assertEquals(DistanceUnit.METER, d1.getUnit());
         assertEquals(value1, d1.getValue().doubleValue(), 0.0);
 
         assertEquals(DistanceUnit.CENTIMETER, result.getUnit());
-        assertEquals((value1 + value2) * 100.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 + value2) * 100.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAddAndReturnNew4() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAddAndReturnNew4() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Distance d1 = new Distance(value1, DistanceUnit.METER);
-        final Distance d2 = new Distance(value2, DistanceUnit.METER);
+        final var d1 = new Distance(value1, DistanceUnit.METER);
+        final var d2 = new Distance(value2, DistanceUnit.METER);
 
-        final Distance result = d1.addAndReturnNew(d2, DistanceUnit.CENTIMETER);
+        final var result = d1.addAndReturnNew(d2, DistanceUnit.CENTIMETER);
 
         // check
         assertEquals(DistanceUnit.METER, d1.getUnit());
@@ -281,17 +257,16 @@ public class DistanceTest {
         assertEquals(value2, d2.getValue().doubleValue(), 0.0);
 
         assertEquals(DistanceUnit.CENTIMETER, result.getUnit());
-        assertEquals((value1 + value2) * 100.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 + value2) * 100.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAdd4() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd4() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Distance d1 = new Distance(value1, DistanceUnit.METER);
+        final var d1 = new Distance(value1, DistanceUnit.METER);
 
         d1.add(value2, DistanceUnit.METER);
 
@@ -301,12 +276,12 @@ public class DistanceTest {
     }
 
     @Test
-    public void testAdd5() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd5() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Distance d1 = new Distance(value1, DistanceUnit.METER);
+        final var d1 = new Distance(value1, DistanceUnit.METER);
 
         d1.add(new BigDecimal(value2), DistanceUnit.METER);
 
@@ -316,13 +291,13 @@ public class DistanceTest {
     }
 
     @Test
-    public void testAdd6() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd6() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Distance d1 = new Distance(value1, DistanceUnit.METER);
-        final Distance d2 = new Distance(value2, DistanceUnit.METER);
+        final var d1 = new Distance(value1, DistanceUnit.METER);
+        final var d2 = new Distance(value2, DistanceUnit.METER);
 
         d1.add(d2);
 
@@ -335,15 +310,15 @@ public class DistanceTest {
     }
 
     @Test
-    public void testAdd7() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd7() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Distance d1 = new Distance(value1, DistanceUnit.METER);
-        final Distance d2 = new Distance(value2, DistanceUnit.METER);
+        final var d1 = new Distance(value1, DistanceUnit.METER);
+        final var d2 = new Distance(value2, DistanceUnit.METER);
 
-        final Distance result = new Distance(0.0, DistanceUnit.CENTIMETER);
+        final var result = new Distance(0.0, DistanceUnit.CENTIMETER);
         d1.add(d2, result);
 
         // check
@@ -354,46 +329,45 @@ public class DistanceTest {
         assertEquals(value2, d2.getValue().doubleValue(), 0.0);
 
         assertEquals(DistanceUnit.CENTIMETER, result.getUnit());
-        assertEquals((value1 + value2) * 100.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 + value2) * 100.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtract1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final double result = Distance.subtract(value1, DistanceUnit.METER,
-                value2, DistanceUnit.METER, DistanceUnit.CENTIMETER);
+        final var result = Distance.subtract(value1, DistanceUnit.METER, value2, DistanceUnit.METER,
+                DistanceUnit.CENTIMETER);
 
         // check
         assertEquals((value1 - value2) * 100.0, result, ERROR);
     }
 
     @Test
-    public void testSubtract2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Number result = Distance.subtract(new BigDecimal(value1), DistanceUnit.METER,
-                new BigDecimal(value2), DistanceUnit.METER, DistanceUnit.CENTIMETER);
+        final var result = Distance.subtract(new BigDecimal(value1), DistanceUnit.METER, new BigDecimal(value2),
+                DistanceUnit.METER, DistanceUnit.CENTIMETER);
 
         // check
         assertEquals((value1 - value2) * 100.0, result.doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtract3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Distance d1 = new Distance(value1, DistanceUnit.METER);
-        final Distance d2 = new Distance(value2, DistanceUnit.METER);
+        final var d1 = new Distance(value1, DistanceUnit.METER);
+        final var d2 = new Distance(value2, DistanceUnit.METER);
 
-        final Distance result = new Distance(0.0, DistanceUnit.CENTIMETER);
+        final var result = new Distance(0.0, DistanceUnit.CENTIMETER);
         Distance.subtract(d1, d2, result);
 
         // check
@@ -404,21 +378,19 @@ public class DistanceTest {
         assertEquals(value2, d2.getValue().doubleValue(), 0.0);
 
         assertEquals(DistanceUnit.CENTIMETER, result.getUnit());
-        assertEquals((value1 - value2) * 100.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 - value2) * 100.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtractAndReturnNew1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtractAndReturnNew1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Distance d1 = new Distance(value1, DistanceUnit.METER);
-        final Distance d2 = new Distance(value2, DistanceUnit.METER);
+        final var d1 = new Distance(value1, DistanceUnit.METER);
+        final var d2 = new Distance(value2, DistanceUnit.METER);
 
-        final Distance result = Distance.subtractAndReturnNew(d1, d2,
-                DistanceUnit.CENTIMETER);
+        final var result = Distance.subtractAndReturnNew(d1, d2, DistanceUnit.CENTIMETER);
 
         // check
         assertEquals(DistanceUnit.METER, d1.getUnit());
@@ -428,59 +400,55 @@ public class DistanceTest {
         assertEquals(value2, d2.getValue().doubleValue(), 0.0);
 
         assertEquals(DistanceUnit.CENTIMETER, result.getUnit());
-        assertEquals((value1 - value2) * 100.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 - value2) * 100.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtractAndReturnNew2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtractAndReturnNew2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Distance d1 = new Distance(value1, DistanceUnit.METER);
+        final var d1 = new Distance(value1, DistanceUnit.METER);
 
-        final Distance result = d1.subtractAndReturnNew(value2, DistanceUnit.METER, DistanceUnit.CENTIMETER);
+        final var result = d1.subtractAndReturnNew(value2, DistanceUnit.METER, DistanceUnit.CENTIMETER);
 
         // check
         assertEquals(DistanceUnit.METER, d1.getUnit());
         assertEquals(value1, d1.getValue().doubleValue(), 0.0);
 
         assertEquals(DistanceUnit.CENTIMETER, result.getUnit());
-        assertEquals((value1 - value2) * 100.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 - value2) * 100.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtractAndReturnNew3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtractAndReturnNew3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Distance d1 = new Distance(value1, DistanceUnit.METER);
+        final var d1 = new Distance(value1, DistanceUnit.METER);
 
-        final Distance result = d1.subtractAndReturnNew(new BigDecimal(value2),
-                DistanceUnit.METER, DistanceUnit.CENTIMETER);
+        final var result = d1.subtractAndReturnNew(new BigDecimal(value2), DistanceUnit.METER, DistanceUnit.CENTIMETER);
 
         // check
         assertEquals(DistanceUnit.METER, d1.getUnit());
         assertEquals(value1, d1.getValue().doubleValue(), 0.0);
 
         assertEquals(DistanceUnit.CENTIMETER, result.getUnit());
-        assertEquals((value1 - value2) * 100.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 - value2) * 100.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtractAndReturnNew4() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtractAndReturnNew4() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Distance d1 = new Distance(value1, DistanceUnit.METER);
-        final Distance d2 = new Distance(value2, DistanceUnit.METER);
+        final var d1 = new Distance(value1, DistanceUnit.METER);
+        final var d2 = new Distance(value2, DistanceUnit.METER);
 
-        final Distance result = d1.subtractAndReturnNew(d2, DistanceUnit.CENTIMETER);
+        final var result = d1.subtractAndReturnNew(d2, DistanceUnit.CENTIMETER);
 
         // check
         assertEquals(DistanceUnit.METER, d1.getUnit());
@@ -490,17 +458,16 @@ public class DistanceTest {
         assertEquals(value2, d2.getValue().doubleValue(), 0.0);
 
         assertEquals(DistanceUnit.CENTIMETER, result.getUnit());
-        assertEquals((value1 - value2) * 100.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 - value2) * 100.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtract4() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract4() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Distance d1 = new Distance(value1, DistanceUnit.METER);
+        final var d1 = new Distance(value1, DistanceUnit.METER);
 
         d1.subtract(value2, DistanceUnit.METER);
 
@@ -510,12 +477,12 @@ public class DistanceTest {
     }
 
     @Test
-    public void testSubtract5() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract5() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Distance d1 = new Distance(value1, DistanceUnit.METER);
+        final var d1 = new Distance(value1, DistanceUnit.METER);
 
         d1.subtract(new BigDecimal(value2), DistanceUnit.METER);
 
@@ -525,13 +492,13 @@ public class DistanceTest {
     }
 
     @Test
-    public void testSubtract6() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract6() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Distance d1 = new Distance(value1, DistanceUnit.METER);
-        final Distance d2 = new Distance(value2, DistanceUnit.METER);
+        final var d1 = new Distance(value1, DistanceUnit.METER);
+        final var d2 = new Distance(value2, DistanceUnit.METER);
 
         d1.subtract(d2);
 
@@ -544,15 +511,15 @@ public class DistanceTest {
     }
 
     @Test
-    public void testSubtract7() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract7() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Distance d1 = new Distance(value1, DistanceUnit.METER);
-        final Distance d2 = new Distance(value2, DistanceUnit.METER);
+        final var d1 = new Distance(value1, DistanceUnit.METER);
+        final var d2 = new Distance(value2, DistanceUnit.METER);
 
-        final Distance result = new Distance(0.0, DistanceUnit.CENTIMETER);
+        final var result = new Distance(0.0, DistanceUnit.CENTIMETER);
         d1.subtract(d2, result);
 
         // check
@@ -563,17 +530,16 @@ public class DistanceTest {
         assertEquals(value2, d2.getValue().doubleValue(), 0.0);
 
         assertEquals(DistanceUnit.CENTIMETER, result.getUnit());
-        assertEquals((value1 - value2) * 100.0,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 - value2) * 100.0, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
-        final double value = new Random().nextDouble();
-        final Distance d1 = new Distance(value, DistanceUnit.METER);
+    void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+        final var value = new Random().nextDouble();
+        final var d1 = new Distance(value, DistanceUnit.METER);
 
-        final byte[] bytes = SerializationHelper.serialize(d1);
-        final Distance d2 = SerializationHelper.deserialize(bytes);
+        final var bytes = SerializationHelper.serialize(d1);
+        final var d2 = SerializationHelper.deserialize(bytes);
 
         assertEquals(d1, d2);
         assertNotSame(d1, d2);

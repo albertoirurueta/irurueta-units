@@ -15,55 +15,38 @@
  */
 package com.irurueta.units;
 
-import org.junit.*;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class SurfaceUnitTest {
+class SurfaceUnitTest {
 
     @Test
-    public void testGetUnitSystem() {
-        assertEquals(UnitSystem.METRIC,
-                SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_MILLIMETER));
-        assertEquals(UnitSystem.METRIC,
-                SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_CENTIMETER));
-        assertEquals(UnitSystem.METRIC,
-                SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_METER));
-        assertEquals(UnitSystem.METRIC,
-                SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_KILOMETER));
-        assertEquals(UnitSystem.IMPERIAL,
-                SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_INCH));
-        assertEquals(UnitSystem.IMPERIAL,
-                SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_FOOT));
-        assertEquals(UnitSystem.IMPERIAL,
-                SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_YARD));
-        assertEquals(UnitSystem.IMPERIAL,
-                SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_MILE));
-        assertEquals(UnitSystem.METRIC,
-                SurfaceUnit.getUnitSystem(SurfaceUnit.CENTIARE));
-        assertEquals(UnitSystem.METRIC,
-                SurfaceUnit.getUnitSystem(SurfaceUnit.ARE));
-        assertEquals(UnitSystem.METRIC,
-                SurfaceUnit.getUnitSystem(SurfaceUnit.DECARE));
-        assertEquals(UnitSystem.METRIC,
-                SurfaceUnit.getUnitSystem(SurfaceUnit.HECTARE));
-        assertEquals(UnitSystem.IMPERIAL,
-                SurfaceUnit.getUnitSystem(SurfaceUnit.ACRE));
+    void testGetUnitSystem() {
+        assertEquals(UnitSystem.METRIC, SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_MILLIMETER));
+        assertEquals(UnitSystem.METRIC, SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_CENTIMETER));
+        assertEquals(UnitSystem.METRIC, SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_METER));
+        assertEquals(UnitSystem.METRIC, SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_KILOMETER));
+        assertEquals(UnitSystem.IMPERIAL, SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_INCH));
+        assertEquals(UnitSystem.IMPERIAL, SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_FOOT));
+        assertEquals(UnitSystem.IMPERIAL, SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_YARD));
+        assertEquals(UnitSystem.IMPERIAL, SurfaceUnit.getUnitSystem(SurfaceUnit.SQUARE_MILE));
+        assertEquals(UnitSystem.METRIC, SurfaceUnit.getUnitSystem(SurfaceUnit.CENTIARE));
+        assertEquals(UnitSystem.METRIC, SurfaceUnit.getUnitSystem(SurfaceUnit.ARE));
+        assertEquals(UnitSystem.METRIC, SurfaceUnit.getUnitSystem(SurfaceUnit.DECARE));
+        assertEquals(UnitSystem.METRIC, SurfaceUnit.getUnitSystem(SurfaceUnit.HECTARE));
+        assertEquals(UnitSystem.IMPERIAL, SurfaceUnit.getUnitSystem(SurfaceUnit.ACRE));
 
         // force IllegalArgumentException
-        try {
-            SurfaceUnit.getUnitSystem(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> SurfaceUnit.getUnitSystem(null));
     }
 
     @Test
-    public void testGetMetricUnits() {
-        final SurfaceUnit[] metricUnits = SurfaceUnit.getMetricUnits();
-        final SurfaceUnit[] imperialUnits = SurfaceUnit.getImperialUnits();
+    void testGetMetricUnits() {
+        final var metricUnits = SurfaceUnit.getMetricUnits();
+        final var imperialUnits = SurfaceUnit.getImperialUnits();
 
-        for (final SurfaceUnit metricUnit : metricUnits) {
+        for (final var metricUnit : metricUnits) {
             assertTrue(SurfaceUnit.isMetric(metricUnit));
             assertFalse(SurfaceUnit.isImperial(metricUnit));
         }
@@ -72,11 +55,11 @@ public class SurfaceUnitTest {
     }
 
     @Test
-    public void testGetImperialUnits() {
-        final SurfaceUnit[] metricUnits = SurfaceUnit.getMetricUnits();
-        final SurfaceUnit[] imperialUnits = SurfaceUnit.getImperialUnits();
+    void testGetImperialUnits() {
+        final var metricUnits = SurfaceUnit.getMetricUnits();
+        final var imperialUnits = SurfaceUnit.getImperialUnits();
 
-        for (final SurfaceUnit imperialUnit : imperialUnits) {
+        for (final var imperialUnit : imperialUnits) {
             assertTrue(SurfaceUnit.isImperial(imperialUnit));
             assertFalse(SurfaceUnit.isMetric(imperialUnit));
         }
@@ -85,7 +68,7 @@ public class SurfaceUnitTest {
     }
 
     @Test
-    public void testIsMetric() {
+    void testIsMetric() {
         assertTrue(SurfaceUnit.isMetric(SurfaceUnit.SQUARE_MILLIMETER));
         assertTrue(SurfaceUnit.isMetric(SurfaceUnit.SQUARE_CENTIMETER));
         assertTrue(SurfaceUnit.isMetric(SurfaceUnit.SQUARE_METER));
@@ -101,15 +84,11 @@ public class SurfaceUnitTest {
         assertFalse(SurfaceUnit.isMetric(SurfaceUnit.ACRE));
 
         // force IllegalArgumentException
-        try {
-            assertFalse(SurfaceUnit.isMetric(null));
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> SurfaceUnit.isMetric(null));
     }
 
     @Test
-    public void testIsImperial() {
+    void testIsImperial() {
         assertFalse(SurfaceUnit.isImperial(SurfaceUnit.SQUARE_MILLIMETER));
         assertFalse(SurfaceUnit.isImperial(SurfaceUnit.SQUARE_CENTIMETER));
         assertFalse(SurfaceUnit.isImperial(SurfaceUnit.SQUARE_METER));
@@ -125,10 +104,6 @@ public class SurfaceUnitTest {
         assertTrue(SurfaceUnit.isImperial(SurfaceUnit.ACRE));
 
         // force IllegalArgumentException
-        try {
-            assertFalse(SurfaceUnit.isImperial(null));
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> SurfaceUnit.isImperial(null));
     }
 }

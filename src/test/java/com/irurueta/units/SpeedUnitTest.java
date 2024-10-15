@@ -15,63 +15,52 @@
  */
 package com.irurueta.units;
 
-import org.junit.*;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class SpeedUnitTest {
+class SpeedUnitTest {
 
     @Test
-    public void testGetUnitSystem() {
-        assertEquals(UnitSystem.METRIC,
-                SpeedUnit.getUnitSystem(SpeedUnit.METERS_PER_SECOND));
-        assertEquals(UnitSystem.METRIC,
-                SpeedUnit.getUnitSystem(SpeedUnit.KILOMETERS_PER_HOUR));
-        assertEquals(UnitSystem.METRIC,
-                SpeedUnit.getUnitSystem(SpeedUnit.KILOMETERS_PER_SECOND));
-        assertEquals(UnitSystem.IMPERIAL,
-                SpeedUnit.getUnitSystem(SpeedUnit.FEET_PER_SECOND));
-        assertEquals(UnitSystem.IMPERIAL,
-                SpeedUnit.getUnitSystem(SpeedUnit.MILES_PER_HOUR));
+    void testGetUnitSystem() {
+        assertEquals(UnitSystem.METRIC, SpeedUnit.getUnitSystem(SpeedUnit.METERS_PER_SECOND));
+        assertEquals(UnitSystem.METRIC, SpeedUnit.getUnitSystem(SpeedUnit.KILOMETERS_PER_HOUR));
+        assertEquals(UnitSystem.METRIC, SpeedUnit.getUnitSystem(SpeedUnit.KILOMETERS_PER_SECOND));
+        assertEquals(UnitSystem.IMPERIAL, SpeedUnit.getUnitSystem(SpeedUnit.FEET_PER_SECOND));
+        assertEquals(UnitSystem.IMPERIAL, SpeedUnit.getUnitSystem(SpeedUnit.MILES_PER_HOUR));
 
         // Force IllegalArgumentException
-        try {
-            SpeedUnit.getUnitSystem(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> SpeedUnit.getUnitSystem(null));
     }
 
     @Test
-    public void testGetMetricUnits() {
-        final SpeedUnit[] metricUnits = SpeedUnit.getMetricUnits();
-        final SpeedUnit[] imperialUnits = SpeedUnit.getImperialUnits();
+    void testGetMetricUnits() {
+        final var metricUnits = SpeedUnit.getMetricUnits();
+        final var imperialUnits = SpeedUnit.getImperialUnits();
 
-        for (final SpeedUnit metricUnit : metricUnits) {
+        for (final var metricUnit : metricUnits) {
             assertTrue(SpeedUnit.isMetric(metricUnit));
             assertFalse(SpeedUnit.isImperial(metricUnit));
         }
 
-        assertEquals(metricUnits.length + imperialUnits.length,
-                SpeedUnit.values().length);
+        assertEquals(metricUnits.length + imperialUnits.length, SpeedUnit.values().length);
     }
 
     @Test
-    public void testGetImperialUnits() {
-        final SpeedUnit[] metricUnits = SpeedUnit.getMetricUnits();
-        final SpeedUnit[] imperialUnits = SpeedUnit.getImperialUnits();
+    void testGetImperialUnits() {
+        final var metricUnits = SpeedUnit.getMetricUnits();
+        final var imperialUnits = SpeedUnit.getImperialUnits();
 
-        for (final SpeedUnit imperialUnit : imperialUnits) {
+        for (final var imperialUnit : imperialUnits) {
             assertTrue(SpeedUnit.isImperial(imperialUnit));
             assertFalse(SpeedUnit.isMetric(imperialUnit));
         }
 
-        assertEquals(metricUnits.length + imperialUnits.length,
-                SpeedUnit.values().length);
+        assertEquals(metricUnits.length + imperialUnits.length, SpeedUnit.values().length);
     }
 
     @Test
-    public void testIsMetric() {
+    void testIsMetric() {
         assertTrue(SpeedUnit.isMetric(SpeedUnit.METERS_PER_SECOND));
         assertTrue(SpeedUnit.isMetric(SpeedUnit.KILOMETERS_PER_HOUR));
         assertTrue(SpeedUnit.isMetric(SpeedUnit.KILOMETERS_PER_SECOND));
@@ -79,16 +68,11 @@ public class SpeedUnitTest {
         assertFalse(SpeedUnit.isMetric(SpeedUnit.MILES_PER_HOUR));
 
         // Force IllegalArgumentException
-        try {
-            // noinspection ResultOfMethodCallIgnored
-            SpeedUnit.isMetric(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> SpeedUnit.isMetric(null));
     }
 
     @Test
-    public void testIsImperial() {
+    void testIsImperial() {
         assertFalse(SpeedUnit.isImperial(SpeedUnit.METERS_PER_SECOND));
         assertFalse(SpeedUnit.isImperial(SpeedUnit.KILOMETERS_PER_HOUR));
         assertFalse(SpeedUnit.isImperial(SpeedUnit.KILOMETERS_PER_SECOND));
@@ -96,11 +80,6 @@ public class SpeedUnitTest {
         assertTrue(SpeedUnit.isImperial(SpeedUnit.MILES_PER_HOUR));
 
         // Force IllegalArgumentException
-        try {
-            // noinspection ResultOfMethodCallIgnored
-            SpeedUnit.isImperial(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> SpeedUnit.isImperial(null));
     }
 }

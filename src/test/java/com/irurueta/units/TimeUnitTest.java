@@ -15,72 +15,36 @@
  */
 package com.irurueta.units;
 
-import org.junit.*;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class TimeUnitTest {
+class TimeUnitTest {
 
     @Test
-    public void testGetUnitSystem() {
-        assertEquals(UnitSystem.METRIC,
-                TimeUnit.getUnitSystem(TimeUnit.NANOSECOND));
-        assertEquals(UnitSystem.METRIC,
-                TimeUnit.getUnitSystem(TimeUnit.MICROSECOND));
-        assertEquals(UnitSystem.METRIC,
-                TimeUnit.getUnitSystem(TimeUnit.MILLISECOND));
-        assertEquals(UnitSystem.METRIC,
-                TimeUnit.getUnitSystem(TimeUnit.SECOND));
+    void testGetUnitSystem() {
+        assertEquals(UnitSystem.METRIC, TimeUnit.getUnitSystem(TimeUnit.NANOSECOND));
+        assertEquals(UnitSystem.METRIC, TimeUnit.getUnitSystem(TimeUnit.MICROSECOND));
+        assertEquals(UnitSystem.METRIC, TimeUnit.getUnitSystem(TimeUnit.MILLISECOND));
+        assertEquals(UnitSystem.METRIC, TimeUnit.getUnitSystem(TimeUnit.SECOND));
 
         // force IllegalArgumentException
-        try {
-            TimeUnit.getUnitSystem(TimeUnit.MINUTE);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
-        try {
-            TimeUnit.getUnitSystem(TimeUnit.HOUR);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
-        try {
-            TimeUnit.getUnitSystem(TimeUnit.DAY);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
-        try {
-            TimeUnit.getUnitSystem(TimeUnit.WEEK);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
-        try {
-            TimeUnit.getUnitSystem(TimeUnit.MONTH);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
-        try {
-            TimeUnit.getUnitSystem(TimeUnit.YEAR);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
-        try {
-            TimeUnit.getUnitSystem(TimeUnit.CENTURY);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
-        try {
-            TimeUnit.getUnitSystem(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> TimeUnit.getUnitSystem(TimeUnit.MINUTE));
+        assertThrows(IllegalArgumentException.class, () -> TimeUnit.getUnitSystem(TimeUnit.HOUR));
+        assertThrows(IllegalArgumentException.class, () -> TimeUnit.getUnitSystem(TimeUnit.DAY));
+        assertThrows(IllegalArgumentException.class, () -> TimeUnit.getUnitSystem(TimeUnit.WEEK));
+        assertThrows(IllegalArgumentException.class, () -> TimeUnit.getUnitSystem(TimeUnit.MONTH));
+        assertThrows(IllegalArgumentException.class, () -> TimeUnit.getUnitSystem(TimeUnit.YEAR));
+        assertThrows(IllegalArgumentException.class, () -> TimeUnit.getUnitSystem(TimeUnit.CENTURY));
+        assertThrows(IllegalArgumentException.class, () -> TimeUnit.getUnitSystem(null));
     }
 
     @Test
-    public void testGetMetricUnits() {
-        final TimeUnit[] metricUnits = TimeUnit.getMetricUnits();
-        final TimeUnit[] nonISUnits = TimeUnit.getNonInternationalSystemUnits();
+    void testGetMetricUnits() {
+        final var metricUnits = TimeUnit.getMetricUnits();
+        final var nonISUnits = TimeUnit.getNonInternationalSystemUnits();
 
-        for (final TimeUnit metricUnit : metricUnits) {
+        for (final var metricUnit : metricUnits) {
             assertTrue(TimeUnit.isMetric(metricUnit));
             assertFalse(TimeUnit.isNonInternationalSystem(metricUnit));
         }
@@ -89,11 +53,11 @@ public class TimeUnitTest {
     }
 
     @Test
-    public void testGetNonInternationalSystemUnits() {
-        final TimeUnit[] metricUnits = TimeUnit.getMetricUnits();
-        final TimeUnit[] nonISUnits = TimeUnit.getNonInternationalSystemUnits();
+    void testGetNonInternationalSystemUnits() {
+        final var metricUnits = TimeUnit.getMetricUnits();
+        final var nonISUnits = TimeUnit.getNonInternationalSystemUnits();
 
-        for (final TimeUnit nonSIUnit : nonISUnits) {
+        for (final var nonSIUnit : nonISUnits) {
             assertTrue(TimeUnit.isNonInternationalSystem(nonSIUnit));
             assertFalse(TimeUnit.isMetric(nonSIUnit));
         }
@@ -102,7 +66,7 @@ public class TimeUnitTest {
     }
 
     @Test
-    public void testIsMetric() {
+    void testIsMetric() {
         assertTrue(TimeUnit.isMetric(TimeUnit.NANOSECOND));
         assertTrue(TimeUnit.isMetric(TimeUnit.MICROSECOND));
         assertTrue(TimeUnit.isMetric(TimeUnit.MILLISECOND));
@@ -116,15 +80,11 @@ public class TimeUnitTest {
         assertFalse(TimeUnit.isMetric(TimeUnit.CENTURY));
 
         // Force IllegalArgumentException
-        try {
-            TimeUnit.isMetric(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> TimeUnit.isMetric(null));
     }
 
     @Test
-    public void testIsNonInternationalSystem() {
+    void testIsNonInternationalSystem() {
         assertFalse(TimeUnit.isNonInternationalSystem(TimeUnit.NANOSECOND));
         assertFalse(TimeUnit.isNonInternationalSystem(TimeUnit.MICROSECOND));
         assertFalse(TimeUnit.isNonInternationalSystem(TimeUnit.MILLISECOND));
@@ -138,10 +98,6 @@ public class TimeUnitTest {
         assertTrue(TimeUnit.isNonInternationalSystem(TimeUnit.CENTURY));
 
         // Force IllegalArgumentException
-        try {
-            TimeUnit.isNonInternationalSystem(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> TimeUnit.isNonInternationalSystem(null));
     }
 }

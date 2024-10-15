@@ -84,7 +84,7 @@ public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit> {
      */
     @Override
     public boolean equals(final Object obj) {
-        final boolean equals = super.equals(obj);
+        final var equals = super.equals(obj);
         return (obj instanceof SpeedFormatter) && equals;
     }
 
@@ -110,7 +110,7 @@ public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit> {
      */
     @Override
     public UnitSystem getUnitSystem(final String source) {
-        final SpeedUnit unit = findUnit(source);
+        final var unit = findUnit(source);
         return unit != null ? SpeedUnit.getUnitSystem(unit) : null;
     }
 
@@ -123,8 +123,7 @@ public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit> {
      * @throws UnknownUnitException if unit cannot be determined.
      */
     @Override
-    public Speed parse(final String source) throws ParseException,
-            UnknownUnitException {
+    public Speed parse(final String source) throws ParseException, UnknownUnitException {
         return internalParse(source, new Speed());
     }
 
@@ -136,25 +135,19 @@ public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit> {
      */
     @Override
     public SpeedUnit findUnit(final String source) {
-        if (source.contains(KILOMETERS_PER_HOUR + " ") ||
-                source.endsWith(KILOMETERS_PER_HOUR)) {
+        if (source.contains(KILOMETERS_PER_HOUR + " ") || source.endsWith(KILOMETERS_PER_HOUR)) {
             return SpeedUnit.KILOMETERS_PER_HOUR;
         }
-        if (source.contains(KILOMETERS_PER_SECOND + " ") ||
-                source.endsWith(KILOMETERS_PER_SECOND)) {
+        if (source.contains(KILOMETERS_PER_SECOND + " ") || source.endsWith(KILOMETERS_PER_SECOND)) {
             return SpeedUnit.KILOMETERS_PER_SECOND;
         }
-        if (source.contains(FEET_PER_SECOND + " ") ||
-                source.endsWith(FEET_PER_SECOND)) {
+        if (source.contains(FEET_PER_SECOND + " ") || source.endsWith(FEET_PER_SECOND)) {
             return SpeedUnit.FEET_PER_SECOND;
         }
-        if (source.contains(MILES_PER_HOUR + " ") ||
-                source.endsWith(MILES_PER_HOUR)) {
+        if (source.contains(MILES_PER_HOUR + " ") || source.endsWith(MILES_PER_HOUR)) {
             return SpeedUnit.MILES_PER_HOUR;
         }
-
-        if (source.contains(METERS_PER_SECOND + " ") ||
-                source.endsWith(METERS_PER_SECOND)) {
+        if (source.contains(METERS_PER_SECOND + " ") || source.endsWith(METERS_PER_SECOND)) {
             return SpeedUnit.METERS_PER_SECOND;
         }
         return null;
@@ -173,15 +166,11 @@ public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit> {
      * @return a string representation of speed value and unit.
      */
     @Override
-    public String formatAndConvert(
-            final Number value, final SpeedUnit unit,
-            final UnitSystem system) {
-        switch (system) {
-            case IMPERIAL:
-                return formatAndConvertImperial(value, unit);
-            case METRIC:
-            default:
-                return formatAndConvertMetric(value, unit);
+    public String formatAndConvert(final Number value, final SpeedUnit unit, final UnitSystem system) {
+        if (system == UnitSystem.IMPERIAL) {
+            return formatAndConvertImperial(value, unit);
+        } else {
+            return formatAndConvertMetric(value, unit);
         }
     }
 
@@ -196,26 +185,21 @@ public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit> {
      * @return a string representation of speed value and unit using metric
      * unit system.
      */
-    public String formatAndConvertMetric(
-            final Number value, final SpeedUnit unit) {
-        final double v = value.doubleValue();
+    public String formatAndConvertMetric(final Number value, final SpeedUnit unit) {
+        final var v = value.doubleValue();
 
-        final double metersPerSecond = SpeedConverter.convert(v, unit,
-                SpeedUnit.METERS_PER_SECOND);
-        if (Math.abs(metersPerSecond) <
-                SpeedConverter.METERS_PER_KILOMETER / SpeedConverter.SECONDS_PER_HOUR) {
+        final var metersPerSecond = SpeedConverter.convert(v, unit, SpeedUnit.METERS_PER_SECOND);
+        if (Math.abs(metersPerSecond) < SpeedConverter.METERS_PER_KILOMETER / SpeedConverter.SECONDS_PER_HOUR) {
             return format(metersPerSecond, SpeedUnit.METERS_PER_SECOND);
         }
 
-        final double kilometersPerHour = SpeedConverter.convert(v, unit,
-                SpeedUnit.KILOMETERS_PER_HOUR);
+        final var kilometersPerHour = SpeedConverter.convert(v, unit, SpeedUnit.KILOMETERS_PER_HOUR);
 
         if (Math.abs(kilometersPerHour) < SpeedConverter.SECONDS_PER_HOUR) {
             return format(kilometersPerHour, SpeedUnit.KILOMETERS_PER_HOUR);
         }
 
-        final double kilometersPerSecond = SpeedConverter.convert(v, unit,
-                SpeedUnit.KILOMETERS_PER_SECOND);
+        final var kilometersPerSecond = SpeedConverter.convert(v, unit, SpeedUnit.KILOMETERS_PER_SECOND);
         return format(kilometersPerSecond, SpeedUnit.KILOMETERS_PER_SECOND);
     }
 
@@ -230,19 +214,16 @@ public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit> {
      * @return a string representation of speed value and unit using imperial
      * unit system.
      */
-    public String formatAndConvertImperial(
-            final Number value, final SpeedUnit unit) {
-        final double v = value.doubleValue();
+    public String formatAndConvertImperial(final Number value, final SpeedUnit unit) {
+        final var v = value.doubleValue();
 
-        final double feetPerSecond = SpeedConverter.convert(v, unit,
-                SpeedUnit.FEET_PER_SECOND);
-        if (Math.abs(feetPerSecond) < SpeedConverter.METERS_PER_MILE /
-                SpeedConverter.SECONDS_PER_HOUR / SpeedConverter.METERS_PER_FOOT) {
+        final double feetPerSecond = SpeedConverter.convert(v, unit, SpeedUnit.FEET_PER_SECOND);
+        if (Math.abs(feetPerSecond) < SpeedConverter.METERS_PER_MILE
+                / SpeedConverter.SECONDS_PER_HOUR / SpeedConverter.METERS_PER_FOOT) {
             return format(feetPerSecond, SpeedUnit.FEET_PER_SECOND);
         }
 
-        final double milesPerHour = SpeedConverter.convert(v, unit,
-                SpeedUnit.MILES_PER_HOUR);
+        final var milesPerHour = SpeedConverter.convert(v, unit, SpeedUnit.MILES_PER_HOUR);
         return format(milesPerHour, SpeedUnit.MILES_PER_HOUR);
     }
 
@@ -255,18 +236,12 @@ public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit> {
     @SuppressWarnings("DuplicatedCode")
     @Override
     public String getUnitSymbol(final SpeedUnit unit) {
-        switch (unit) {
-            case KILOMETERS_PER_HOUR:
-                return KILOMETERS_PER_HOUR;
-            case KILOMETERS_PER_SECOND:
-                return KILOMETERS_PER_SECOND;
-            case FEET_PER_SECOND:
-                return FEET_PER_SECOND;
-            case MILES_PER_HOUR:
-                return MILES_PER_HOUR;
-            case METERS_PER_SECOND:
-            default:
-                return METERS_PER_SECOND;
-        }
+        return switch (unit) {
+            case KILOMETERS_PER_HOUR -> KILOMETERS_PER_HOUR;
+            case KILOMETERS_PER_SECOND -> KILOMETERS_PER_SECOND;
+            case FEET_PER_SECOND -> FEET_PER_SECOND;
+            case MILES_PER_HOUR -> MILES_PER_HOUR;
+            default -> METERS_PER_SECOND;
+        };
     }
 }

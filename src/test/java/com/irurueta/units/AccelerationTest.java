@@ -15,22 +15,22 @@
  */
 package com.irurueta.units;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Random;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class AccelerationTest {
+class AccelerationTest {
 
     private static final double ERROR = 1e-6;
 
     @Test
-    public void testConstructor() {
+    void testConstructor() {
         // test empty constructor
-        Acceleration a = new Acceleration();
+        var a = new Acceleration();
 
         // check
         assertNull(a.getValue());
@@ -44,32 +44,18 @@ public class AccelerationTest {
         assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a.getUnit());
 
         // force IllegalArgumentException
-        a = null;
-        try {
-            a = new Acceleration(null, AccelerationUnit.METERS_PER_SQUARED_SECOND);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
-        try {
-            a = new Acceleration(323, null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
-        //noinspection ConstantConditions
-        assertNull(a);
+        assertThrows(IllegalArgumentException.class,
+                () -> new Acceleration(null, AccelerationUnit.METERS_PER_SQUARED_SECOND));
+        assertThrows(IllegalArgumentException.class, () -> new Acceleration(323, null));
     }
 
     @Test
-    public void testEquals() {
-        final double value = new Random().nextDouble();
-        final Acceleration a1 = new Acceleration(value,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        final Acceleration a2 = new Acceleration(value,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        final Acceleration a3 = new Acceleration(value + 1.0,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        final Acceleration a4 = new Acceleration(value,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND);
+    void testEquals() {
+        final var value = new Random().nextDouble();
+        final var a1 = new Acceleration(value, AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a2 = new Acceleration(value, AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a3 = new Acceleration(value + 1.0, AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a4 = new Acceleration(value, AccelerationUnit.FEET_PER_SQUARED_SECOND);
 
         assertEquals(a1, a2);
         assertNotEquals(a1, a3);
@@ -80,16 +66,12 @@ public class AccelerationTest {
     }
 
     @Test
-    public void testHashCode() {
-        final double value = new Random().nextDouble();
-        final Acceleration a1 = new Acceleration(value,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        final Acceleration a2 = new Acceleration(value,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        final Acceleration a3 = new Acceleration(value + 1.0,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        final Acceleration a4 = new Acceleration(value,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND);
+    void testHashCode() {
+        final var value = new Random().nextDouble();
+        final var a1 = new Acceleration(value, AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a2 = new Acceleration(value, AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a3 = new Acceleration(value + 1.0, AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a4 = new Acceleration(value, AccelerationUnit.FEET_PER_SQUARED_SECOND);
 
         assertEquals(a1.hashCode(), a1.hashCode());
         assertEquals(a1.hashCode(), a2.hashCode());
@@ -98,20 +80,14 @@ public class AccelerationTest {
     }
 
     @Test
-    public void testEqualsWithTolerance() {
-        final double value = new Random().nextDouble();
-        final Acceleration a1 = new Acceleration(value,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        final Acceleration a2 = new Acceleration(value,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        final Acceleration a3 = new Acceleration(value + 0.5 * ERROR,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        final Acceleration a4 = new Acceleration(value,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND);
-        final Acceleration a5 = new Acceleration(AccelerationConverter.convert(
-                value, AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                AccelerationUnit.FEET_PER_SQUARED_SECOND);
+    void testEqualsWithTolerance() {
+        final var value = new Random().nextDouble();
+        final var a1 = new Acceleration(value, AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a2 = new Acceleration(value, AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a3 = new Acceleration(value + 0.5 * ERROR, AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a4 = new Acceleration(value, AccelerationUnit.FEET_PER_SQUARED_SECOND);
+        final var a5 = new Acceleration(AccelerationConverter.convert(value, AccelerationUnit.METERS_PER_SQUARED_SECOND,
+                AccelerationUnit.FEET_PER_SQUARED_SECOND), AccelerationUnit.FEET_PER_SQUARED_SECOND);
 
         assertTrue(a1.equals(a1, 0.0));
         assertTrue(a1.equals(a2, 0.0));
@@ -124,9 +100,8 @@ public class AccelerationTest {
     }
 
     @Test
-    public void testGetSetValue() {
-        final Acceleration a = new Acceleration(1,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
+    void testGetSetValue() {
+        final var a = new Acceleration(1, AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
         // check
         assertEquals(1, a.getValue());
@@ -138,17 +113,12 @@ public class AccelerationTest {
         assertEquals(2.5, a.getValue());
 
         // force IllegalArgumentException
-        try {
-            a.setValue(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> a.setValue(null));
     }
 
     @Test
-    public void testGetSetUnit() {
-        final Acceleration a = new Acceleration(1,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
+    void testGetSetUnit() {
+        final var a = new Acceleration(1, AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
         // check
         assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a.getUnit());
@@ -160,64 +130,48 @@ public class AccelerationTest {
         assertEquals(AccelerationUnit.FEET_PER_SQUARED_SECOND, a.getUnit());
 
         // Force IllegalArgumentException
-        try {
-            a.setUnit(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> a.setUnit(null));
     }
 
     @Test
-    public void testAdd1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final double result = Acceleration.add(value1,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND, value2,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND);
+        final var result = Acceleration.add(value1, AccelerationUnit.METERS_PER_SQUARED_SECOND,
+                value2, AccelerationUnit.METERS_PER_SQUARED_SECOND, AccelerationUnit.FEET_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(result,
-                AccelerationConverter.convert(value1 + value2,
-                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                ERROR);
+        assertEquals(result, AccelerationConverter.convert(value1 + value2,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND, AccelerationUnit.FEET_PER_SQUARED_SECOND), ERROR);
     }
 
     @Test
-    public void testAdd2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Number result = Acceleration.add(new BigDecimal(value1),
-                AccelerationUnit.METERS_PER_SQUARED_SECOND,
+        final var result = Acceleration.add(new BigDecimal(value1), AccelerationUnit.METERS_PER_SQUARED_SECOND,
                 new BigDecimal(value2), AccelerationUnit.METERS_PER_SQUARED_SECOND,
                 AccelerationUnit.FEET_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(result.doubleValue(),
-                AccelerationConverter.convert(value1 + value2,
-                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                ERROR);
+        assertEquals(result.doubleValue(), AccelerationConverter.convert(value1 + value2,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND, AccelerationUnit.FEET_PER_SQUARED_SECOND), ERROR);
     }
 
     @Test
-    public void testAdd3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Acceleration a1 = new Acceleration(value1,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        final Acceleration a2 = new Acceleration(value2,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a1 = new Acceleration(value1, AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a2 = new Acceleration(value2, AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
-        final Acceleration result = new Acceleration(0.0,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND);
+        final var result = new Acceleration(0.0, AccelerationUnit.FEET_PER_SQUARED_SECOND);
         Acceleration.add(a1, a2, result);
 
         // check
@@ -228,26 +182,20 @@ public class AccelerationTest {
         assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
         assertEquals(AccelerationUnit.FEET_PER_SQUARED_SECOND, result.getUnit());
-        assertEquals(result.getValue().doubleValue(),
-                AccelerationConverter.convert(value1 + value2,
-                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                ERROR);
+        assertEquals(result.getValue().doubleValue(), AccelerationConverter.convert(value1 + value2,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND, AccelerationUnit.FEET_PER_SQUARED_SECOND), ERROR);
     }
 
     @Test
-    public void testAddAndReturnNew1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAddAndReturnNew1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Acceleration a1 = new Acceleration(value1,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        final Acceleration a2 = new Acceleration(value2,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a1 = new Acceleration(value1, AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a2 = new Acceleration(value2, AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
-        final Acceleration result = Acceleration.addAndReturnNew(a1, a2,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND);
+        final var result = Acceleration.addAndReturnNew(a1, a2, AccelerationUnit.FEET_PER_SQUARED_SECOND);
 
         // check
         assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a1.getUnit());
@@ -257,24 +205,19 @@ public class AccelerationTest {
         assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
         assertEquals(AccelerationUnit.FEET_PER_SQUARED_SECOND, result.getUnit());
-        assertEquals(result.getValue().doubleValue(),
-                AccelerationConverter.convert(value1 + value2,
-                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                ERROR);
+        assertEquals(result.getValue().doubleValue(), AccelerationConverter.convert(value1 + value2,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND, AccelerationUnit.FEET_PER_SQUARED_SECOND), ERROR);
     }
 
     @Test
-    public void testAddAndReturnNew2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAddAndReturnNew2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Acceleration a1 = new Acceleration(value1,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a1 = new Acceleration(value1, AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
-        final Acceleration result = a1.addAndReturnNew(value2,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND,
+        final var result = a1.addAndReturnNew(value2, AccelerationUnit.METERS_PER_SQUARED_SECOND,
                 AccelerationUnit.FEET_PER_SQUARED_SECOND);
 
         // check
@@ -283,50 +226,40 @@ public class AccelerationTest {
 
         assertEquals(AccelerationUnit.FEET_PER_SQUARED_SECOND, result.getUnit());
         assertEquals(result.getValue().doubleValue(),
-                AccelerationConverter.convert(value1 + value2,
-                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                ERROR);
+                AccelerationConverter.convert(value1 + value2, AccelerationUnit.METERS_PER_SQUARED_SECOND,
+                        AccelerationUnit.FEET_PER_SQUARED_SECOND), ERROR);
     }
 
     @Test
-    public void testAddAndReturnNew3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAddAndReturnNew3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Acceleration a1 = new Acceleration(value1,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a1 = new Acceleration(value1, AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
         final Acceleration result = a1.addAndReturnNew(new BigDecimal(value2),
-                AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND);
+                AccelerationUnit.METERS_PER_SQUARED_SECOND, AccelerationUnit.FEET_PER_SQUARED_SECOND);
 
         // check
         assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a1.getUnit());
         assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
         assertEquals(AccelerationUnit.FEET_PER_SQUARED_SECOND, result.getUnit());
-        assertEquals(result.getValue().doubleValue(),
-                AccelerationConverter.convert(value1 + value2,
-                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                ERROR);
+        assertEquals(result.getValue().doubleValue(), AccelerationConverter.convert(value1 + value2,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND, AccelerationUnit.FEET_PER_SQUARED_SECOND), ERROR);
     }
 
     @Test
-    public void testAddAndReturnNew4() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAddAndReturnNew4() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Acceleration a1 = new Acceleration(value1,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        final Acceleration a2 = new Acceleration(value2,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a1 = new Acceleration(value1, AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a2 = new Acceleration(value2, AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
-        final Acceleration result = a1.addAndReturnNew(a2,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND);
+        final var result = a1.addAndReturnNew(a2, AccelerationUnit.FEET_PER_SQUARED_SECOND);
 
         // check
         assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a1.getUnit());
@@ -336,82 +269,69 @@ public class AccelerationTest {
         assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
         assertEquals(AccelerationUnit.FEET_PER_SQUARED_SECOND, result.getUnit());
-        assertEquals(result.getValue().doubleValue(),
-                AccelerationConverter.convert(value1 + value2,
-                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                ERROR);
+        assertEquals(result.getValue().doubleValue(), AccelerationConverter.convert(value1 + value2,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND, AccelerationUnit.FEET_PER_SQUARED_SECOND), ERROR);
     }
 
     @Test
-    public void testAdd4() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd4() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Acceleration a1 = new Acceleration(value1,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a1 = new Acceleration(value1, AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
         a1.add(value2, AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
         // check
         assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a1.getUnit());
-        assertEquals(value1 + value2, a1.getValue().doubleValue(),
-                ERROR);
+        assertEquals(value1 + value2, a1.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAdd5() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd5() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Acceleration a1 = new Acceleration(value1,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a1 = new Acceleration(value1, AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
         a1.add(new BigDecimal(value2), AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
         // check
         assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a1.getUnit());
-        assertEquals(value1 + value2, a1.getValue().doubleValue(),
-                ERROR);
+        assertEquals(value1 + value2, a1.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAdd6() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd6() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Acceleration a1 = new Acceleration(value1,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        final Acceleration a2 = new Acceleration(value2,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a1 = new Acceleration(value1, AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a2 = new Acceleration(value2, AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
         a1.add(a2);
 
         // check
         assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a1.getUnit());
-        assertEquals(value1 + value2, a1.getValue().doubleValue(),
-                ERROR);
+        assertEquals(value1 + value2, a1.getValue().doubleValue(), ERROR);
 
         assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a2.getUnit());
         assertEquals(value2, a2.getValue().doubleValue(), 0.0);
     }
 
     @Test
-    public void testAdd7() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd7() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Acceleration a1 = new Acceleration(value1,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        final Acceleration a2 = new Acceleration(value2,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a1 = new Acceleration(value1, AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a2 = new Acceleration(value2, AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
-        final Acceleration result = new Acceleration(0.0,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND);
+        final var result = new Acceleration(0.0, AccelerationUnit.FEET_PER_SQUARED_SECOND);
         a1.add(a2, result);
 
         // check
@@ -422,65 +342,49 @@ public class AccelerationTest {
         assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
         assertEquals(AccelerationUnit.FEET_PER_SQUARED_SECOND, result.getUnit());
-        assertEquals(result.getValue().doubleValue(),
-                AccelerationConverter.convert(value1 + value2,
-                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                ERROR);
+        assertEquals(result.getValue().doubleValue(), AccelerationConverter.convert(value1 + value2,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND, AccelerationUnit.FEET_PER_SQUARED_SECOND), ERROR);
     }
 
     @Test
-    public void testSubtract1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final double result = Acceleration.subtract(value1,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND, value2,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND,
+        final var result = Acceleration.subtract(value1, AccelerationUnit.METERS_PER_SQUARED_SECOND, value2,
+                AccelerationUnit.METERS_PER_SQUARED_SECOND, AccelerationUnit.FEET_PER_SQUARED_SECOND);
+
+        // check
+        assertEquals(result, AccelerationConverter.convert(value1 - value2,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND, AccelerationUnit.FEET_PER_SQUARED_SECOND), ERROR);
+    }
+
+    @Test
+    void testSubtract2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
+
+        final var result = Acceleration.subtract(new BigDecimal(value1), AccelerationUnit.METERS_PER_SQUARED_SECOND,
+                new BigDecimal(value2), AccelerationUnit.METERS_PER_SQUARED_SECOND,
                 AccelerationUnit.FEET_PER_SQUARED_SECOND);
 
         // check
-        assertEquals(result,
-                AccelerationConverter.convert(value1 - value2,
-                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                ERROR);
+        assertEquals(result.doubleValue(), AccelerationConverter.convert(value1 - value2,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND, AccelerationUnit.FEET_PER_SQUARED_SECOND), ERROR);
     }
 
     @Test
-    public void testSubtract2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Number result = Acceleration.subtract(new BigDecimal(value1),
-                AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                new BigDecimal(value2),
-                AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND);
+        final var a1 = new Acceleration(value1, AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a2 = new Acceleration(value2, AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
-        // check
-        assertEquals(result.doubleValue(),
-                AccelerationConverter.convert(value1 - value2,
-                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                ERROR);
-    }
-
-    @Test
-    public void testSubtract3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
-
-        final Acceleration a1 = new Acceleration(value1,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        final Acceleration a2 = new Acceleration(value2,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
-
-        final Acceleration result = new Acceleration(0.0,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND);
+        final var result = new Acceleration(0.0, AccelerationUnit.FEET_PER_SQUARED_SECOND);
         Acceleration.subtract(a1, a2, result);
 
         // check
@@ -491,26 +395,20 @@ public class AccelerationTest {
         assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
         assertEquals(AccelerationUnit.FEET_PER_SQUARED_SECOND, result.getUnit());
-        assertEquals(result.getValue().doubleValue(),
-                AccelerationConverter.convert(value1 - value2,
-                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                ERROR);
+        assertEquals(result.getValue().doubleValue(), AccelerationConverter.convert(value1 - value2,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND, AccelerationUnit.FEET_PER_SQUARED_SECOND), ERROR);
     }
 
     @Test
-    public void testSubtractAndReturnNew1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtractAndReturnNew1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Acceleration a1 = new Acceleration(value1,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        final Acceleration a2 = new Acceleration(value2,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a1 = new Acceleration(value1, AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final Acceleration a2 = new Acceleration(value2, AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
-        final Acceleration result = Acceleration.subtractAndReturnNew(a1, a2,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND);
+        final var result = Acceleration.subtractAndReturnNew(a1, a2, AccelerationUnit.FEET_PER_SQUARED_SECOND);
 
         // check
         assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a1.getUnit());
@@ -520,24 +418,19 @@ public class AccelerationTest {
         assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
         assertEquals(AccelerationUnit.FEET_PER_SQUARED_SECOND, result.getUnit());
-        assertEquals(result.getValue().doubleValue(),
-                AccelerationConverter.convert(value1 - value2,
-                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                ERROR);
+        assertEquals(result.getValue().doubleValue(), AccelerationConverter.convert(value1 - value2,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND, AccelerationUnit.FEET_PER_SQUARED_SECOND), ERROR);
     }
 
     @Test
-    public void testSubtractAndReturnNew2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtractAndReturnNew2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Acceleration a1 = new Acceleration(value1,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a1 = new Acceleration(value1, AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
-        final Acceleration result = a1.subtractAndReturnNew(value2,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND,
+        final var result = a1.subtractAndReturnNew(value2, AccelerationUnit.METERS_PER_SQUARED_SECOND,
                 AccelerationUnit.FEET_PER_SQUARED_SECOND);
 
         // check
@@ -545,24 +438,19 @@ public class AccelerationTest {
         assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
         assertEquals(AccelerationUnit.FEET_PER_SQUARED_SECOND, result.getUnit());
-        assertEquals(result.getValue().doubleValue(),
-                AccelerationConverter.convert(value1 - value2,
-                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                ERROR);
+        assertEquals(result.getValue().doubleValue(), AccelerationConverter.convert(value1 - value2,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND, AccelerationUnit.FEET_PER_SQUARED_SECOND), ERROR);
     }
 
     @Test
-    public void testSubtractAndReturnNew3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtractAndReturnNew3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Acceleration a1 = new Acceleration(value1,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a1 = new Acceleration(value1, AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
-        final Acceleration result = a1.subtractAndReturnNew(new BigDecimal(value2),
-                AccelerationUnit.METERS_PER_SQUARED_SECOND,
+        final var result = a1.subtractAndReturnNew(new BigDecimal(value2), AccelerationUnit.METERS_PER_SQUARED_SECOND,
                 AccelerationUnit.FEET_PER_SQUARED_SECOND);
 
         // check
@@ -570,26 +458,20 @@ public class AccelerationTest {
         assertEquals(value1, a1.getValue().doubleValue(), 0.0);
 
         assertEquals(AccelerationUnit.FEET_PER_SQUARED_SECOND, result.getUnit());
-        assertEquals(result.getValue().doubleValue(),
-                AccelerationConverter.convert(value1 - value2,
-                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                ERROR);
+        assertEquals(result.getValue().doubleValue(), AccelerationConverter.convert(value1 - value2,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND, AccelerationUnit.FEET_PER_SQUARED_SECOND), ERROR);
     }
 
     @Test
-    public void testSubtractAndReturnNew4() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtractAndReturnNew4() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Acceleration a1 = new Acceleration(value1,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        final Acceleration a2 = new Acceleration(value2,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a1 = new Acceleration(value1, AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a2 = new Acceleration(value2, AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
-        final Acceleration result = a1.subtractAndReturnNew(a2,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND);
+        final var result = a1.subtractAndReturnNew(a2, AccelerationUnit.FEET_PER_SQUARED_SECOND);
 
         // check
         assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a1.getUnit());
@@ -599,21 +481,17 @@ public class AccelerationTest {
         assertEquals(value2, a2.getValue().doubleValue(), 0.0);
 
         assertEquals(AccelerationUnit.FEET_PER_SQUARED_SECOND, result.getUnit());
-        assertEquals(result.getValue().doubleValue(),
-                AccelerationConverter.convert(value1 - value2,
-                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                ERROR);
+        assertEquals(result.getValue().doubleValue(), AccelerationConverter.convert(value1 - value2,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND, AccelerationUnit.FEET_PER_SQUARED_SECOND), ERROR);
     }
 
     @Test
-    public void testSubtract5() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract5() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Acceleration a1 = new Acceleration(value1,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a1 = new Acceleration(value1, AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
         a1.subtract(value2, AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
@@ -623,13 +501,12 @@ public class AccelerationTest {
     }
 
     @Test
-    public void testSubtract6() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract6() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Acceleration a1 = new Acceleration(value1,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a1 = new Acceleration(value1, AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
         a1.subtract(new BigDecimal(value2), AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
@@ -639,15 +516,13 @@ public class AccelerationTest {
     }
 
     @Test
-    public void testSubtract7() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract7() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Acceleration a1 = new Acceleration(value1,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        final Acceleration a2 = new Acceleration(value2,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a1 = new Acceleration(value1, AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a2 = new Acceleration(value2, AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
         a1.subtract(a2);
 
@@ -660,18 +535,15 @@ public class AccelerationTest {
     }
 
     @Test
-    public void testSubtract8() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract8() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Acceleration a1 = new Acceleration(value1,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
-        final Acceleration a2 = new Acceleration(value2,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a1 = new Acceleration(value1, AccelerationUnit.METERS_PER_SQUARED_SECOND);
+        final var a2 = new Acceleration(value2, AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
-        final Acceleration result = new Acceleration(0.0,
-                AccelerationUnit.FEET_PER_SQUARED_SECOND);
+        final var result = new Acceleration(0.0, AccelerationUnit.FEET_PER_SQUARED_SECOND);
         a1.subtract(a2, result);
 
         // check
@@ -681,23 +553,18 @@ public class AccelerationTest {
         assertEquals(AccelerationUnit.METERS_PER_SQUARED_SECOND, a2.getUnit());
         assertEquals(a2.getValue().doubleValue(), value2, 0.0);
 
-        assertEquals(AccelerationUnit.FEET_PER_SQUARED_SECOND,
-                result.getUnit());
-        assertEquals(result.getValue().doubleValue(),
-                AccelerationConverter.convert(value1 - value2,
-                        AccelerationUnit.METERS_PER_SQUARED_SECOND,
-                        AccelerationUnit.FEET_PER_SQUARED_SECOND),
-                ERROR);
+        assertEquals(AccelerationUnit.FEET_PER_SQUARED_SECOND, result.getUnit());
+        assertEquals(result.getValue().doubleValue(), AccelerationConverter.convert(value1 - value2,
+                        AccelerationUnit.METERS_PER_SQUARED_SECOND, AccelerationUnit.FEET_PER_SQUARED_SECOND), ERROR);
     }
 
     @Test
-    public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
-        final double value = new Random().nextDouble();
-        final Acceleration a1 = new Acceleration(value,
-                AccelerationUnit.METERS_PER_SQUARED_SECOND);
+    void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+        final var value = new Random().nextDouble();
+        final var a1 = new Acceleration(value, AccelerationUnit.METERS_PER_SQUARED_SECOND);
 
-        final byte[] bytes = SerializationHelper.serialize(a1);
-        final Acceleration a2 = SerializationHelper.deserialize(bytes);
+        final var bytes = SerializationHelper.serialize(a1);
+        final var a2 = SerializationHelper.deserialize(bytes);
 
         assertEquals(a1, a2);
         assertNotSame(a1, a2);

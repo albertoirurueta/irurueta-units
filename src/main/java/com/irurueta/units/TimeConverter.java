@@ -100,9 +100,8 @@ public class TimeConverter {
      * @param outputUnit requested output unit.
      * @return converted time.
      */
-    public static Time convertAndReturnNew(
-            final Time input, final TimeUnit outputUnit) {
-        final Time result = new Time();
+    public static Time convertAndReturnNew(final Time input, final TimeUnit outputUnit) {
+        final var result = new Time();
         convert(input, outputUnit, result);
         return result;
     }
@@ -113,8 +112,7 @@ public class TimeConverter {
      * @param time       input time to be converted and updated.
      * @param outputUnit requested output unit.
      */
-    public static void convert(
-            final Time time, final TimeUnit outputUnit) {
+    public static void convert(final Time time, final TimeUnit outputUnit) {
         convert(time, outputUnit, time);
     }
 
@@ -125,10 +123,8 @@ public class TimeConverter {
      * @param outputUnit requested output unit.
      * @param result     time unit where result will be stored.
      */
-    public static void convert(
-            final Time input, final TimeUnit outputUnit,
-            final Time result) {
-        final Number value = convert(input.getValue(), input.getUnit(), outputUnit);
+    public static void convert(final Time input, final TimeUnit outputUnit, final Time result) {
+        final var value = convert(input.getValue(), input.getUnit(), outputUnit);
         result.setValue(value);
         result.setUnit(outputUnit);
     }
@@ -141,9 +137,7 @@ public class TimeConverter {
      * @param outputUnit output time unit.
      * @return converted time value.
      */
-    public static Number convert(
-            final Number input, final TimeUnit inputUnit,
-            final TimeUnit outputUnit) {
+    public static Number convert(final Number input, final TimeUnit inputUnit, final TimeUnit outputUnit) {
         return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit, outputUnit));
     }
 
@@ -156,76 +150,36 @@ public class TimeConverter {
      * @return converted time value.
      */
     public static double convert(
-            final double input, final TimeUnit inputUnit,
-            final TimeUnit outputUnit) {
-        double seconds;
-
+            final double input, final TimeUnit inputUnit, final TimeUnit outputUnit) {
         //convert to seconds
-        switch (inputUnit) {
-            case NANOSECOND:
-                seconds = nanosecondToSecond(input);
-                break;
-            case MICROSECOND:
-                seconds = microsecondToSecond(input);
-                break;
-            case MILLISECOND:
-                seconds = millisecondToSecond(input);
-                break;
-            case MINUTE:
-                seconds = minuteToSecond(input);
-                break;
-            case HOUR:
-                seconds = hourToSecond(input);
-                break;
-            case DAY:
-                seconds = dayToSecond(input);
-                break;
-            case WEEK:
-                seconds = weekToSecond(input);
-                break;
-            case MONTH:
-                seconds = monthToSecond(input);
-                break;
-            case YEAR:
-                seconds = yearToSecond(input);
-                break;
-            case CENTURY:
-                seconds = centuryToSecond(input);
-                break;
-
-            case SECOND:
-            default:
-                seconds = input;
-                break;
-        }
+        final var seconds = switch (inputUnit) {
+            case NANOSECOND -> nanosecondToSecond(input);
+            case MICROSECOND -> microsecondToSecond(input);
+            case MILLISECOND -> millisecondToSecond(input);
+            case MINUTE -> minuteToSecond(input);
+            case HOUR -> hourToSecond(input);
+            case DAY -> dayToSecond(input);
+            case WEEK -> weekToSecond(input);
+            case MONTH -> monthToSecond(input);
+            case YEAR -> yearToSecond(input);
+            case CENTURY -> centuryToSecond(input);
+            default -> input;
+        };
 
         //convert from seconds to required output unit
-        switch (outputUnit) {
-            case NANOSECOND:
-                return secondToNanosecond(seconds);
-            case MICROSECOND:
-                return secondToMicrosecond(seconds);
-            case MILLISECOND:
-                return secondToMillisecond(seconds);
-            case MINUTE:
-                return secondToMinute(seconds);
-            case HOUR:
-                return secondToHour(seconds);
-            case DAY:
-                return secondToDay(seconds);
-            case WEEK:
-                return secondToWeek(seconds);
-            case MONTH:
-                return secondToMonth(seconds);
-            case YEAR:
-                return secondToYear(seconds);
-            case CENTURY:
-                return secondToCentury(seconds);
-
-            case SECOND:
-            default:
-                return seconds;
-        }
+        return switch (outputUnit) {
+            case NANOSECOND -> secondToNanosecond(seconds);
+            case MICROSECOND -> secondToMicrosecond(seconds);
+            case MILLISECOND -> secondToMillisecond(seconds);
+            case MINUTE -> secondToMinute(seconds);
+            case HOUR -> secondToHour(seconds);
+            case DAY -> secondToDay(seconds);
+            case WEEK -> secondToWeek(seconds);
+            case MONTH -> secondToMonth(seconds);
+            case YEAR -> secondToYear(seconds);
+            case CENTURY -> secondToCentury(seconds);
+            default -> seconds;
+        };
     }
 
     /**

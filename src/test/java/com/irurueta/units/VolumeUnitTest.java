@@ -15,14 +15,14 @@
  */
 package com.irurueta.units;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class VolumeUnitTest {
+class VolumeUnitTest {
 
     @Test
-    public void testGetUnitSystem() {
+    void testGetUnitSystem() {
         assertEquals(UnitSystem.METRIC, VolumeUnit.getUnitSystem(VolumeUnit.CUBIC_CENTIMETER));
         assertEquals(UnitSystem.METRIC, VolumeUnit.getUnitSystem(VolumeUnit.MILLILITER));
         assertEquals(UnitSystem.METRIC, VolumeUnit.getUnitSystem(VolumeUnit.CUBIC_DECIMETER));
@@ -36,19 +36,15 @@ public class VolumeUnitTest {
         assertEquals(UnitSystem.IMPERIAL, VolumeUnit.getUnitSystem(VolumeUnit.BARREL));
 
         // Force IllegalArgumentException
-        try {
-            VolumeUnit.getUnitSystem(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> VolumeUnit.getUnitSystem(null));
     }
 
     @Test
-    public void testGetMetricUnits() {
-        final VolumeUnit[] metricUnits = VolumeUnit.getMetricUnits();
-        final VolumeUnit[] imperialUnits = VolumeUnit.getImperialUnits();
+    void testGetMetricUnits() {
+        final var metricUnits = VolumeUnit.getMetricUnits();
+        final var imperialUnits = VolumeUnit.getImperialUnits();
 
-        for (final VolumeUnit metricUnit : metricUnits) {
+        for (final var metricUnit : metricUnits) {
             assertTrue(VolumeUnit.isMetric(metricUnit));
             assertFalse(VolumeUnit.isImperial(metricUnit));
         }
@@ -57,11 +53,11 @@ public class VolumeUnitTest {
     }
 
     @Test
-    public void testGetImperialUnits() {
-        final VolumeUnit[] metricUnits = VolumeUnit.getMetricUnits();
-        final VolumeUnit[] imperialUnits = VolumeUnit.getImperialUnits();
+    void testGetImperialUnits() {
+        final var metricUnits = VolumeUnit.getMetricUnits();
+        final var imperialUnits = VolumeUnit.getImperialUnits();
 
-        for (final VolumeUnit imperialUnit : imperialUnits) {
+        for (final var imperialUnit : imperialUnits) {
             assertTrue(VolumeUnit.isImperial(imperialUnit));
             assertFalse(VolumeUnit.isMetric(imperialUnit));
         }
@@ -70,7 +66,7 @@ public class VolumeUnitTest {
     }
 
     @Test
-    public void testIsMetric() {
+    void testIsMetric() {
         assertTrue(VolumeUnit.isMetric(VolumeUnit.CUBIC_CENTIMETER));
         assertTrue(VolumeUnit.isMetric(VolumeUnit.MILLILITER));
         assertTrue(VolumeUnit.isMetric(VolumeUnit.CUBIC_DECIMETER));
@@ -85,16 +81,11 @@ public class VolumeUnitTest {
         assertFalse(VolumeUnit.isMetric(VolumeUnit.BARREL));
 
         // Force IllegalArgumentException
-        try {
-            //noinspection ResultOfMethodCallIgnored
-            VolumeUnit.isMetric(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> VolumeUnit.isMetric(null));
     }
 
     @Test
-    public void testIsImperial() {
+    void testIsImperial() {
         assertFalse(VolumeUnit.isImperial(VolumeUnit.CUBIC_CENTIMETER));
         assertFalse(VolumeUnit.isImperial(VolumeUnit.MILLILITER));
         assertFalse(VolumeUnit.isImperial(VolumeUnit.CUBIC_DECIMETER));
@@ -109,11 +100,6 @@ public class VolumeUnitTest {
         assertTrue(VolumeUnit.isImperial(VolumeUnit.BARREL));
 
         // Force IllegalArgumentException
-        try {
-            //noinspection ResultOfMethodCallIgnored
-            VolumeUnit.isImperial(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> VolumeUnit.isImperial(null));
     }
 }

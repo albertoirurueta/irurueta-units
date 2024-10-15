@@ -114,7 +114,7 @@ public class WeightFormatter extends MeasureFormatter<Weight, WeightUnit> {
      */
     @Override
     public boolean equals(final Object obj) {
-        final boolean equals = super.equals(obj);
+        final var equals = super.equals(obj);
         return (obj instanceof WeightFormatter) && equals;
     }
 
@@ -140,7 +140,7 @@ public class WeightFormatter extends MeasureFormatter<Weight, WeightUnit> {
      */
     @Override
     public UnitSystem getUnitSystem(final String source) {
-        final WeightUnit unit = findUnit(source);
+        final var unit = findUnit(source);
         return unit != null ? WeightUnit.getUnitSystem(unit) : null;
     }
 
@@ -192,7 +192,7 @@ public class WeightFormatter extends MeasureFormatter<Weight, WeightUnit> {
         }
 
         if (source.contains(US_UK_TON + " ") || source.endsWith(US_UK_TON)) {
-            final Locale locale = getLocale();
+            final var locale = getLocale();
             if (Locale.UK.getCountry().equals(locale.getCountry())) {
                 // UK
                 return WeightUnit.UK_TON;
@@ -225,15 +225,11 @@ public class WeightFormatter extends MeasureFormatter<Weight, WeightUnit> {
      * @return a string representation of weight value and unit.
      */
     @Override
-    public String formatAndConvert(
-            final Number value, final WeightUnit unit,
-            final UnitSystem system) {
-        switch (system) {
-            case IMPERIAL:
-                return formatAndConvertImperial(value, unit);
-            case METRIC:
-            default:
-                return formatAndConvertMetric(value, unit);
+    public String formatAndConvert(final Number value, final WeightUnit unit, final UnitSystem system) {
+        if (system == UnitSystem.IMPERIAL) {
+            return formatAndConvertImperial(value, unit);
+        } else {
+            return formatAndConvertMetric(value, unit);
         }
     }
 
@@ -248,55 +244,45 @@ public class WeightFormatter extends MeasureFormatter<Weight, WeightUnit> {
      * @return a string representation of weight value and unit using metric
      * unit system.
      */
-    public String formatAndConvertMetric(
-            final Number value, final WeightUnit unit) {
-        final double v = value.doubleValue();
+    public String formatAndConvertMetric(final Number value, final WeightUnit unit) {
+        final var v = value.doubleValue();
 
-        final double picogram = WeightConverter.convert(v, unit,
-                WeightUnit.PICOGRAM);
-        if (Math.abs(picogram) < (WeightConverter.GRAMS_PER_NANOGRAM /
-                WeightConverter.GRAMS_PER_PICOGRAM)) {
+        final var picogram = WeightConverter.convert(v, unit, WeightUnit.PICOGRAM);
+        if (Math.abs(picogram) < (WeightConverter.GRAMS_PER_NANOGRAM / WeightConverter.GRAMS_PER_PICOGRAM)) {
             return format(picogram, WeightUnit.PICOGRAM);
         }
 
-        final double nanogram = WeightConverter.convert(v, unit,
-                WeightUnit.NANOGRAM);
-        if (Math.abs(nanogram) < (WeightConverter.GRAMS_PER_MICROGRAM /
-                WeightConverter.GRAMS_PER_NANOGRAM)) {
+        final var nanogram = WeightConverter.convert(v, unit, WeightUnit.NANOGRAM);
+        if (Math.abs(nanogram) < (WeightConverter.GRAMS_PER_MICROGRAM / WeightConverter.GRAMS_PER_NANOGRAM)) {
             return format(nanogram, WeightUnit.NANOGRAM);
         }
 
-        final double microgram = WeightConverter.convert(v, unit,
-                WeightUnit.MICROGRAM);
-        if (Math.abs(microgram) < (WeightConverter.GRAMS_PER_MILLIGRAM /
-                WeightConverter.GRAMS_PER_MICROGRAM)) {
+        final var microgram = WeightConverter.convert(v, unit, WeightUnit.MICROGRAM);
+        if (Math.abs(microgram) < (WeightConverter.GRAMS_PER_MILLIGRAM / WeightConverter.GRAMS_PER_MICROGRAM)) {
             return format(microgram, WeightUnit.MICROGRAM);
         }
 
-        final double milligram = WeightConverter.convert(v, unit,
-                WeightUnit.MILLIGRAM);
+        final var milligram = WeightConverter.convert(v, unit, WeightUnit.MILLIGRAM);
         if (Math.abs(milligram) < (1.0 / WeightConverter.GRAMS_PER_MILLIGRAM)) {
             return format(milligram, WeightUnit.MILLIGRAM);
         }
 
-        final double gram = WeightConverter.convert(v, unit, WeightUnit.GRAM);
+        final var gram = WeightConverter.convert(v, unit, WeightUnit.GRAM);
         if (Math.abs(gram) < WeightConverter.GRAMS_PER_KILOGRAM) {
             return format(gram, WeightUnit.GRAM);
         }
 
-        final double kilogram = WeightConverter.convert(v, unit, WeightUnit.KILOGRAM);
-        if (Math.abs(kilogram) < (WeightConverter.GRAMS_PER_TONNE /
-                WeightConverter.GRAMS_PER_KILOGRAM)) {
+        final var kilogram = WeightConverter.convert(v, unit, WeightUnit.KILOGRAM);
+        if (Math.abs(kilogram) < (WeightConverter.GRAMS_PER_TONNE / WeightConverter.GRAMS_PER_KILOGRAM)) {
             return format(kilogram, WeightUnit.KILOGRAM);
         }
 
-        final double tonne = WeightConverter.convert(v, unit, WeightUnit.TONNE);
-        if (Math.abs(tonne) < (WeightConverter.GRAMS_PER_MEGATONNE /
-                WeightConverter.GRAMS_PER_TONNE)) {
+        final var tonne = WeightConverter.convert(v, unit, WeightUnit.TONNE);
+        if (Math.abs(tonne) < (WeightConverter.GRAMS_PER_MEGATONNE / WeightConverter.GRAMS_PER_TONNE)) {
             return format(tonne, WeightUnit.TONNE);
         }
 
-        final double megatonne = WeightConverter.convert(v, unit, WeightUnit.MEGATONNE);
+        final var megatonne = WeightConverter.convert(v, unit, WeightUnit.MEGATONNE);
         return format(megatonne, WeightUnit.MEGATONNE);
     }
 
@@ -313,24 +299,23 @@ public class WeightFormatter extends MeasureFormatter<Weight, WeightUnit> {
      * unit system.
      */
     public String formatAndConvertImperial(final Number value, final WeightUnit unit) {
-        final double v = value.doubleValue();
+        final var v = value.doubleValue();
 
-        final double ounce = WeightConverter.convert(v, unit, WeightUnit.OUNCE);
-        if (Math.abs(ounce) < (WeightConverter.GRAMS_PER_POUND /
-                WeightConverter.GRAMS_PER_OUNCE)) {
+        final var ounce = WeightConverter.convert(v, unit, WeightUnit.OUNCE);
+        if (Math.abs(ounce) < (WeightConverter.GRAMS_PER_POUND / WeightConverter.GRAMS_PER_OUNCE)) {
             return format(ounce, WeightUnit.OUNCE);
         }
 
-        final double pound = WeightConverter.convert(v, unit, WeightUnit.POUND);
+        final var pound = WeightConverter.convert(v, unit, WeightUnit.POUND);
 
-        final Locale locale = getLocale();
+        final var locale = getLocale();
         if (Locale.UK.getCountry().equals(locale.getCountry())) {
             // UK
             if (Math.abs(pound) < (WeightConverter.GRAMS_PER_UK_TON / WeightConverter.GRAMS_PER_POUND)) {
                 return format(pound, WeightUnit.POUND);
             }
 
-            final double ton = WeightConverter.convert(v, unit, WeightUnit.UK_TON);
+            final var ton = WeightConverter.convert(v, unit, WeightUnit.UK_TON);
             return format(ton, WeightUnit.UK_TON);
         } else {
             // US
@@ -338,7 +323,7 @@ public class WeightFormatter extends MeasureFormatter<Weight, WeightUnit> {
                 return format(pound, WeightUnit.POUND);
             }
 
-            final double ton = WeightConverter.convert(v, unit, WeightUnit.US_TON);
+            final var ton = WeightConverter.convert(v, unit, WeightUnit.US_TON);
             return format(ton, WeightUnit.US_TON);
         }
     }
@@ -351,32 +336,18 @@ public class WeightFormatter extends MeasureFormatter<Weight, WeightUnit> {
      */
     @Override
     public String getUnitSymbol(final WeightUnit unit) {
-        switch (unit) {
-            case PICOGRAM:
-                return PICOGRAM;
-            case NANOGRAM:
-                return NANOGRAM;
-            case MICROGRAM:
-                return MICROGRAM;
-            case MILLIGRAM:
-                return MILLIGRAM;
-            case KILOGRAM:
-                return KILOGRAM;
-            case TONNE:
-                return TONNE;
-            case MEGATONNE:
-                return MEGATONNE;
-            case US_TON:
-            case UK_TON:
-                return US_UK_TON;
-            case POUND:
-                return POUND;
-            case OUNCE:
-                return OUNCE;
-
-            case GRAM:
-            default:
-                return GRAM;
-        }
+        return switch (unit) {
+            case PICOGRAM -> PICOGRAM;
+            case NANOGRAM -> NANOGRAM;
+            case MICROGRAM -> MICROGRAM;
+            case MILLIGRAM -> MILLIGRAM;
+            case KILOGRAM -> KILOGRAM;
+            case TONNE -> TONNE;
+            case MEGATONNE -> MEGATONNE;
+            case US_TON, UK_TON -> US_UK_TON;
+            case POUND -> POUND;
+            case OUNCE -> OUNCE;
+            default -> GRAM;
+        };
     }
 }

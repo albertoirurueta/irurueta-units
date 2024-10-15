@@ -60,9 +60,7 @@ public class Weight extends Measurement<WeightUnit> {
             return false;
         }
 
-        final double otherValue = WeightConverter.convert(
-                other.getValue().doubleValue(), other.getUnit(),
-                getUnit());
+        final var otherValue = WeightConverter.convert(other.getValue().doubleValue(), other.getUnit(), getUnit());
         return Math.abs(getValue().doubleValue() - otherValue) <= tolerance;
     }
 
@@ -80,8 +78,8 @@ public class Weight extends Measurement<WeightUnit> {
             final double value1, final WeightUnit unit1,
             final double value2, final WeightUnit unit2,
             final WeightUnit resultUnit) {
-        final double v1 = WeightConverter.convert(value1, unit1, resultUnit);
-        final double v2 = WeightConverter.convert(value2, unit2, resultUnit);
+        final var v1 = WeightConverter.convert(value1, unit1, resultUnit);
+        final var v2 = WeightConverter.convert(value2, unit2, resultUnit);
         return v1 + v2;
     }
 
@@ -99,8 +97,7 @@ public class Weight extends Measurement<WeightUnit> {
             final Number value1, final WeightUnit unit1,
             final Number value2, final WeightUnit unit2,
             final WeightUnit resultUnit) {
-        return BigDecimal.valueOf(add(value1.doubleValue(), unit1,
-                value2.doubleValue(), unit2, resultUnit));
+        return BigDecimal.valueOf(add(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));
     }
 
     /**
@@ -110,10 +107,8 @@ public class Weight extends Measurement<WeightUnit> {
      * @param arg2   2nd argument.
      * @param result instance where result will be stored.
      */
-    public static void add(
-            final Weight arg1, final Weight arg2, final Weight result) {
-        result.setValue(add(arg1.getValue(), arg1.getUnit(),
-                arg2.getValue(), arg2.getUnit(), result.getUnit()));
+    public static void add(final Weight arg1, final Weight arg2, final Weight result) {
+        result.setValue(add(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));
     }
 
     /**
@@ -124,10 +119,8 @@ public class Weight extends Measurement<WeightUnit> {
      * @param unit unit of returned weight.
      * @return a new instance containing result.
      */
-    public static Weight addAndReturnNew(
-            final Weight arg1, final Weight arg2,
-            final WeightUnit unit) {
-        final Weight result = new Weight();
+    public static Weight addAndReturnNew(final Weight arg1, final Weight arg2, final WeightUnit unit) {
+        final var result = new Weight();
         result.setUnit(unit);
         add(arg1, arg2, result);
         return result;
@@ -142,13 +135,10 @@ public class Weight extends Measurement<WeightUnit> {
      * @param resultUnit unit of returned weight.
      * @return a new weight containing result.
      */
-    public Weight addAndReturnNew(
-            final double value, final WeightUnit unit,
-            final WeightUnit resultUnit) {
-        final Weight result = new Weight();
+    public Weight addAndReturnNew(final double value, final WeightUnit unit, final WeightUnit resultUnit) {
+        final var result = new Weight();
         result.setUnit(resultUnit);
-        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit,
-                resultUnit));
+        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 
@@ -161,10 +151,8 @@ public class Weight extends Measurement<WeightUnit> {
      * @param resultUnit unit of returned weight.
      * @return a new weight containing result.
      */
-    public Weight addAndReturnNew(
-            final Number value, final WeightUnit unit,
-            final WeightUnit resultUnit) {
-        final Weight result = new Weight();
+    public Weight addAndReturnNew(final Number value, final WeightUnit unit, final WeightUnit resultUnit) {
+        final var result = new Weight();
         result.setUnit(resultUnit);
         result.setValue(add(getValue(), getUnit(), value, unit, resultUnit));
         return result;
@@ -234,8 +222,8 @@ public class Weight extends Measurement<WeightUnit> {
             final double value1, final WeightUnit unit1,
             final double value2, final WeightUnit unit2,
             final WeightUnit resultUnit) {
-        final double v1 = WeightConverter.convert(value1, unit1, resultUnit);
-        final double v2 = WeightConverter.convert(value2, unit2, resultUnit);
+        final var v1 = WeightConverter.convert(value1, unit1, resultUnit);
+        final var v2 = WeightConverter.convert(value2, unit2, resultUnit);
         return v1 - v2;
     }
 
@@ -253,8 +241,7 @@ public class Weight extends Measurement<WeightUnit> {
             final Number value1, final WeightUnit unit1,
             final Number value2, final WeightUnit unit2,
             final WeightUnit resultUnit) {
-        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1,
-                value2.doubleValue(), unit2, resultUnit));
+        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));
     }
 
     /**
@@ -264,9 +251,7 @@ public class Weight extends Measurement<WeightUnit> {
      * @param arg2   2nd argument.
      * @param result instance where result will be stored.
      */
-    public static void subtract(
-            final Weight arg1, final Weight arg2,
-            final Weight result) {
+    public static void subtract(final Weight arg1, final Weight arg2, final Weight result) {
         result.setValue(subtract(arg1.getValue(), arg1.getUnit(),
                 arg2.getValue(), arg2.getUnit(), result.getUnit()));
     }
@@ -279,10 +264,8 @@ public class Weight extends Measurement<WeightUnit> {
      * @param unit unit of returned weight.
      * @return a new instance containing result.
      */
-    public static Weight subtractAndReturnNew(
-            final Weight arg1, final Weight arg2,
-            final WeightUnit unit) {
-        final Weight result = new Weight();
+    public static Weight subtractAndReturnNew(final Weight arg1, final Weight arg2, final WeightUnit unit) {
+        final var result = new Weight();
         result.setUnit(unit);
         subtract(arg1, arg2, result);
         return result;
@@ -297,13 +280,10 @@ public class Weight extends Measurement<WeightUnit> {
      * @param resultUnit unit of returned weight.
      * @return a new weight containing result.
      */
-    public Weight subtractAndReturnNew(
-            final double value, final WeightUnit unit,
-            final WeightUnit resultUnit) {
-        final Weight result = new Weight();
+    public Weight subtractAndReturnNew(final double value, final WeightUnit unit, final WeightUnit resultUnit) {
+        final var result = new Weight();
         result.setUnit(resultUnit);
-        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit,
-                resultUnit));
+        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 
@@ -316,13 +296,10 @@ public class Weight extends Measurement<WeightUnit> {
      * @param resultUnit unit of returned weight.
      * @return a new weight containing result.
      */
-    public Weight subtractAndReturnNew(
-            final Number value, final WeightUnit unit,
-            final WeightUnit resultUnit) {
-        final Weight result = new Weight();
+    public Weight subtractAndReturnNew(final Number value, final WeightUnit unit, final WeightUnit resultUnit) {
+        final var result = new Weight();
         result.setUnit(resultUnit);
-        result.setValue(subtract(getValue(), getUnit(), value, unit,
-                resultUnit));
+        result.setValue(subtract(getValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 
@@ -334,8 +311,7 @@ public class Weight extends Measurement<WeightUnit> {
      * @param unit unit of returned weight.
      * @return a new weight containing result.
      */
-    public Weight subtractAndReturnNew(
-            final Weight w, final WeightUnit unit) {
+    public Weight subtractAndReturnNew(final Weight w, final WeightUnit unit) {
         return subtractAndReturnNew(this, w, unit);
     }
 

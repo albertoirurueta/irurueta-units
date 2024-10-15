@@ -15,22 +15,22 @@
  */
 package com.irurueta.units;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Random;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class TemperatureTest {
+class TemperatureTest {
 
     private static final double ERROR = 1e-6;
 
     @Test
-    public void testConstructor() {
+    void testConstructor() {
         // test empty constructor
-        Temperature t = new Temperature();
+        var t = new Temperature();
 
         // check
         assertNull(t.getValue());
@@ -44,29 +44,17 @@ public class TemperatureTest {
         assertEquals(TemperatureUnit.CELSIUS, t.getUnit());
 
         // Force IllegalArgumentException
-        t = null;
-        try {
-            t = new Temperature(null, TemperatureUnit.CELSIUS);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
-        try {
-            t = new Temperature(1000, null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
-        //noinspection ConstantConditions
-        assertNull(t);
+        assertThrows(IllegalArgumentException.class, () -> new Temperature(null, TemperatureUnit.CELSIUS));
+        assertThrows(IllegalArgumentException.class, () -> new Temperature(1000, null));
     }
 
     @Test
-    public void testEquals() {
-        final double value = new Random().nextDouble();
-        final Temperature t1 = new Temperature(value, TemperatureUnit.CELSIUS);
-        final Temperature t2 = new Temperature(value, TemperatureUnit.CELSIUS);
-        final Temperature t3 = new Temperature(value + 1.0,
-                TemperatureUnit.CELSIUS);
-        final Temperature t4 = new Temperature(value, TemperatureUnit.KELVIN);
+    void testEquals() {
+        final var value = new Random().nextDouble();
+        final var t1 = new Temperature(value, TemperatureUnit.CELSIUS);
+        final var t2 = new Temperature(value, TemperatureUnit.CELSIUS);
+        final var t3 = new Temperature(value + 1.0, TemperatureUnit.CELSIUS);
+        final var t4 = new Temperature(value, TemperatureUnit.KELVIN);
 
         //noinspection EqualsWithItself
         assertEquals(t1, t1);
@@ -79,13 +67,12 @@ public class TemperatureTest {
     }
 
     @Test
-    public void testHashCode() {
-        final double value = new Random().nextDouble();
-        final Temperature t1 = new Temperature(value, TemperatureUnit.CELSIUS);
-        final Temperature t2 = new Temperature(value, TemperatureUnit.CELSIUS);
-        final Temperature t3 = new Temperature(value + 1.0,
-                TemperatureUnit.CELSIUS);
-        final Temperature t4 = new Temperature(value, TemperatureUnit.KELVIN);
+    void testHashCode() {
+        final var value = new Random().nextDouble();
+        final var t1 = new Temperature(value, TemperatureUnit.CELSIUS);
+        final var t2 = new Temperature(value, TemperatureUnit.CELSIUS);
+        final var t3 = new Temperature(value + 1.0, TemperatureUnit.CELSIUS);
+        final var t4 = new Temperature(value, TemperatureUnit.KELVIN);
 
         assertEquals(t1.hashCode(), t1.hashCode());
         assertEquals(t1.hashCode(), t2.hashCode());
@@ -94,15 +81,13 @@ public class TemperatureTest {
     }
 
     @Test
-    public void testEqualsWithTolerance() {
-        final double value = new Random().nextDouble();
-        final Temperature t1 = new Temperature(value, TemperatureUnit.CELSIUS);
-        final Temperature t2 = new Temperature(value, TemperatureUnit.CELSIUS);
-        final Temperature t3 = new Temperature(value + 0.5 * ERROR,
-                TemperatureUnit.CELSIUS);
-        final Temperature t4 = new Temperature(value, TemperatureUnit.FAHRENHEIT);
-        final Temperature t5 = new Temperature(
-                TemperatureConverter.celsiusToKelvin(value), TemperatureUnit.KELVIN);
+    void testEqualsWithTolerance() {
+        final var value = new Random().nextDouble();
+        final var t1 = new Temperature(value, TemperatureUnit.CELSIUS);
+        final var t2 = new Temperature(value, TemperatureUnit.CELSIUS);
+        final var t3 = new Temperature(value + 0.5 * ERROR, TemperatureUnit.CELSIUS);
+        final var t4 = new Temperature(value, TemperatureUnit.FAHRENHEIT);
+        final var t5 = new Temperature(TemperatureConverter.celsiusToKelvin(value), TemperatureUnit.KELVIN);
 
         assertTrue(t1.equals(t1, 0.0));
         assertTrue(t1.equals(t2, 0.0));
@@ -115,8 +100,8 @@ public class TemperatureTest {
     }
 
     @Test
-    public void testGetSetValue() {
-        final Temperature t = new Temperature(1, TemperatureUnit.CELSIUS);
+    void testGetSetValue() {
+        final var t = new Temperature(1, TemperatureUnit.CELSIUS);
 
         // check
         assertEquals(1, t.getValue());
@@ -128,16 +113,12 @@ public class TemperatureTest {
         assertEquals(2.5, t.getValue());
 
         // force IllegalArgumentException
-        try {
-            t.setValue(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> t.setValue(null));
     }
 
     @Test
-    public void testGetSetUnit() {
-        final Temperature t = new Temperature(1, TemperatureUnit.CELSIUS);
+    void testGetSetUnit() {
+        final var t = new Temperature(1, TemperatureUnit.CELSIUS);
 
         // check
         assertEquals(TemperatureUnit.CELSIUS, t.getUnit());
@@ -149,71 +130,63 @@ public class TemperatureTest {
         assertEquals(TemperatureUnit.KELVIN, t.getUnit());
 
         // force IllegalArgumentException
-        try {
-            t.setUnit(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> t.setUnit(null));
     }
 
     @Test
-    public void testAdd1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final double result = Temperature.add(value1, TemperatureUnit.CELSIUS,
-                value2, TemperatureUnit.CELSIUS, TemperatureUnit.KELVIN);
+        final var result = Temperature.add(value1, TemperatureUnit.CELSIUS, value2, TemperatureUnit.CELSIUS,
+                TemperatureUnit.KELVIN);
 
         // check
-        final double expected = TemperatureConverter.celsiusToKelvin(value1 + value2);
+        final var expected = TemperatureConverter.celsiusToKelvin(value1 + value2);
         assertEquals(expected, result, ERROR);
 
         // test again for different units
-        final double value2b = TemperatureConverter.celsiusToFahrenheit(value2);
-        final double result2 = Temperature.add(value1, TemperatureUnit.CELSIUS,
-                value2b, TemperatureUnit.FAHRENHEIT, TemperatureUnit.KELVIN);
+        final var value2b = TemperatureConverter.celsiusToFahrenheit(value2);
+        final var result2 = Temperature.add(value1, TemperatureUnit.CELSIUS, value2b, TemperatureUnit.FAHRENHEIT,
+                TemperatureUnit.KELVIN);
 
         // check
         assertEquals(expected, result2, ERROR);
     }
 
     @Test
-    public void testAdd2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Number result = Temperature.add(
-                new BigDecimal(value1), TemperatureUnit.CELSIUS,
-                new BigDecimal(value2), TemperatureUnit.CELSIUS,
-                TemperatureUnit.KELVIN);
+        final var result = Temperature.add(new BigDecimal(value1), TemperatureUnit.CELSIUS,
+                new BigDecimal(value2), TemperatureUnit.CELSIUS, TemperatureUnit.KELVIN);
 
         // check
-        final double expected = TemperatureConverter.celsiusToKelvin(value1 + value2);
+        final var expected = TemperatureConverter.celsiusToKelvin(value1 + value2);
         assertEquals(expected, result.doubleValue(), ERROR);
 
         // test again for different units
-        final double value2b = TemperatureConverter.celsiusToFahrenheit(value2);
-        final Number result2 = Temperature.add(
-                new BigDecimal(value1), TemperatureUnit.CELSIUS,
-                new BigDecimal(value2b), TemperatureUnit.FAHRENHEIT,
-                TemperatureUnit.KELVIN);
+        final var value2b = TemperatureConverter.celsiusToFahrenheit(value2);
+        final var result2 = Temperature.add(new BigDecimal(value1), TemperatureUnit.CELSIUS,
+                new BigDecimal(value2b), TemperatureUnit.FAHRENHEIT, TemperatureUnit.KELVIN);
 
         // check
         assertEquals(expected, result2.doubleValue(), ERROR);
     }
 
     @Test
-    public void testAdd3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Temperature t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
-        final Temperature t2 = new Temperature(value2, TemperatureUnit.CELSIUS);
+        final var t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
+        final var t2 = new Temperature(value2, TemperatureUnit.CELSIUS);
 
-        final Temperature result = new Temperature(0.0, TemperatureUnit.KELVIN);
+        final var result = new Temperature(0.0, TemperatureUnit.KELVIN);
         Temperature.add(t1, t2, result);
 
         // check
@@ -223,16 +196,15 @@ public class TemperatureTest {
         assertEquals(TemperatureUnit.CELSIUS, t2.getUnit());
         assertEquals(value2, t2.getValue().doubleValue(), 0.0);
 
-        final double expected = TemperatureConverter.celsiusToKelvin(value1 + value2);
+        final var expected = TemperatureConverter.celsiusToKelvin(value1 + value2);
         assertEquals(TemperatureUnit.KELVIN, result.getUnit());
         assertEquals(expected, result.getValue().doubleValue(), ERROR);
 
         // test again for different units
-        final double value2b = TemperatureConverter.celsiusToFahrenheit(value2);
-        final Temperature t2b = new Temperature(
-                value2b, TemperatureUnit.FAHRENHEIT);
+        final var value2b = TemperatureConverter.celsiusToFahrenheit(value2);
+        final var t2b = new Temperature(value2b, TemperatureUnit.FAHRENHEIT);
 
-        final Temperature result2 = new Temperature(0.0, TemperatureUnit.KELVIN);
+        final var result2 = new Temperature(0.0, TemperatureUnit.KELVIN);
         Temperature.add(t1, t2b, result2);
 
         // check
@@ -241,92 +213,15 @@ public class TemperatureTest {
     }
 
     @Test
-    public void testAddAndReturnNew1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAddAndReturnNew1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Temperature t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
-        final Temperature t2 = new Temperature(value2, TemperatureUnit.CELSIUS);
+        final var t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
+        final var t2 = new Temperature(value2, TemperatureUnit.CELSIUS);
 
-        final Temperature result = Temperature.addAndReturnNew(
-                t1, t2, TemperatureUnit.KELVIN);
-
-        // check
-        assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
-        assertEquals(value1, t1.getValue().doubleValue(), 0.0);
-
-        assertEquals(TemperatureUnit.CELSIUS, t2.getUnit());
-        assertEquals(value2, t2.getValue().doubleValue(), 0.0);
-
-        final double expected = TemperatureConverter.celsiusToKelvin(value1 + value2);
-        assertEquals(TemperatureUnit.KELVIN, result.getUnit());
-        assertEquals(expected, result.getValue().doubleValue(), ERROR);
-
-        // test again for different units
-        final double value2b = TemperatureConverter.celsiusToFahrenheit(value2);
-        final Temperature t2b = new Temperature(
-                value2b, TemperatureUnit.FAHRENHEIT);
-
-        final Temperature result2 = Temperature.addAndReturnNew(
-                t1, t2b, TemperatureUnit.KELVIN);
-
-        // check
-        assertEquals(TemperatureUnit.KELVIN, result2.getUnit());
-        assertEquals(expected, result2.getValue().doubleValue(), ERROR);
-    }
-
-    @Test
-    public void testAddAndReturnNew2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
-
-        final Temperature t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
-
-        final Temperature result = t1.addAndReturnNew(value2, TemperatureUnit.CELSIUS,
-                TemperatureUnit.KELVIN);
-
-        // check
-        assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
-        assertEquals(value1, t1.getValue().doubleValue(), 0.0);
-
-        final double expected = TemperatureConverter.celsiusToKelvin(value1 + value2);
-        assertEquals(TemperatureUnit.KELVIN, result.getUnit());
-        assertEquals(expected, result.getValue().doubleValue(), ERROR);
-    }
-
-    @Test
-    public void testAddAndReturnNew3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
-
-        final Temperature t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
-
-        final Temperature result = t1.addAndReturnNew(
-                new BigDecimal(value2), TemperatureUnit.CELSIUS,
-                TemperatureUnit.KELVIN);
-
-        // check
-        assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
-        assertEquals(value1, t1.getValue().doubleValue(), 0.0);
-
-        final double expected = TemperatureConverter.celsiusToKelvin(value1 + value2);
-        assertEquals(TemperatureUnit.KELVIN, result.getUnit());
-        assertEquals(expected, result.getValue().doubleValue(), ERROR);
-    }
-
-    @Test
-    public void testAddAndReturnNew4() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
-
-        final Temperature t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
-        final Temperature t2 = new Temperature(value2, TemperatureUnit.CELSIUS);
-
-        final Temperature result = t1.addAndReturnNew(t2, TemperatureUnit.KELVIN);
+        final var result = Temperature.addAndReturnNew(t1, t2, TemperatureUnit.KELVIN);
 
         // check
         assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
@@ -335,16 +230,15 @@ public class TemperatureTest {
         assertEquals(TemperatureUnit.CELSIUS, t2.getUnit());
         assertEquals(value2, t2.getValue().doubleValue(), 0.0);
 
-        final double expected = TemperatureConverter.celsiusToKelvin(value1 + value2);
+        final var expected = TemperatureConverter.celsiusToKelvin(value1 + value2);
         assertEquals(TemperatureUnit.KELVIN, result.getUnit());
         assertEquals(expected, result.getValue().doubleValue(), ERROR);
 
         // test again for different units
-        final double value2b = TemperatureConverter.celsiusToFahrenheit(value2);
-        final Temperature t2b = new Temperature(
-                value2b, TemperatureUnit.FAHRENHEIT);
+        final var value2b = TemperatureConverter.celsiusToFahrenheit(value2);
+        final var t2b = new Temperature(value2b, TemperatureUnit.FAHRENHEIT);
 
-        final Temperature result2 = t1.addAndReturnNew(t2b, TemperatureUnit.KELVIN);
+        final var result2 = Temperature.addAndReturnNew(t1, t2b, TemperatureUnit.KELVIN);
 
         // check
         assertEquals(TemperatureUnit.KELVIN, result2.getUnit());
@@ -352,12 +246,83 @@ public class TemperatureTest {
     }
 
     @Test
-    public void testAdd4() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAddAndReturnNew2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        Temperature t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
+        final var t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
+
+        final var result = t1.addAndReturnNew(value2, TemperatureUnit.CELSIUS, TemperatureUnit.KELVIN);
+
+        // check
+        assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
+        assertEquals(value1, t1.getValue().doubleValue(), 0.0);
+
+        final var expected = TemperatureConverter.celsiusToKelvin(value1 + value2);
+        assertEquals(TemperatureUnit.KELVIN, result.getUnit());
+        assertEquals(expected, result.getValue().doubleValue(), ERROR);
+    }
+
+    @Test
+    void testAddAndReturnNew3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
+
+        final var t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
+
+        final var result = t1.addAndReturnNew(new BigDecimal(value2), TemperatureUnit.CELSIUS, TemperatureUnit.KELVIN);
+
+        // check
+        assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
+        assertEquals(value1, t1.getValue().doubleValue(), 0.0);
+
+        final var expected = TemperatureConverter.celsiusToKelvin(value1 + value2);
+        assertEquals(TemperatureUnit.KELVIN, result.getUnit());
+        assertEquals(expected, result.getValue().doubleValue(), ERROR);
+    }
+
+    @Test
+    void testAddAndReturnNew4() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
+
+        final var t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
+        final var t2 = new Temperature(value2, TemperatureUnit.CELSIUS);
+
+        final var result = t1.addAndReturnNew(t2, TemperatureUnit.KELVIN);
+
+        // check
+        assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
+        assertEquals(value1, t1.getValue().doubleValue(), 0.0);
+
+        assertEquals(TemperatureUnit.CELSIUS, t2.getUnit());
+        assertEquals(value2, t2.getValue().doubleValue(), 0.0);
+
+        final var expected = TemperatureConverter.celsiusToKelvin(value1 + value2);
+        assertEquals(TemperatureUnit.KELVIN, result.getUnit());
+        assertEquals(expected, result.getValue().doubleValue(), ERROR);
+
+        // test again for different units
+        final var value2b = TemperatureConverter.celsiusToFahrenheit(value2);
+        final var t2b = new Temperature(value2b, TemperatureUnit.FAHRENHEIT);
+
+        final var result2 = t1.addAndReturnNew(t2b, TemperatureUnit.KELVIN);
+
+        // check
+        assertEquals(TemperatureUnit.KELVIN, result2.getUnit());
+        assertEquals(expected, result2.getValue().doubleValue(), ERROR);
+    }
+
+    @Test
+    void testAdd4() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
+
+        var t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
 
         t1.add(value2, TemperatureUnit.CELSIUS);
 
@@ -366,7 +331,7 @@ public class TemperatureTest {
         assertEquals(value1 + value2, t1.getValue().doubleValue(), ERROR);
 
         // test again for different units
-        final double value2b = TemperatureConverter.celsiusToFahrenheit(value2);
+        final var value2b = TemperatureConverter.celsiusToFahrenheit(value2);
         t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
 
         t1.add(value2b, TemperatureUnit.FAHRENHEIT);
@@ -377,12 +342,12 @@ public class TemperatureTest {
     }
 
     @Test
-    public void testAdd5() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd5() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        Temperature t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
+        var t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
 
         t1.add(new BigDecimal(value2), TemperatureUnit.CELSIUS);
 
@@ -391,7 +356,7 @@ public class TemperatureTest {
         assertEquals(value1 + value2, t1.getValue().doubleValue(), ERROR);
 
         // test again for different units
-        final double value2b = TemperatureConverter.celsiusToFahrenheit(value2);
+        final var value2b = TemperatureConverter.celsiusToFahrenheit(value2);
         t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
 
         t1.add(new BigDecimal(value2b), TemperatureUnit.FAHRENHEIT);
@@ -402,13 +367,13 @@ public class TemperatureTest {
     }
 
     @Test
-    public void testAdd6() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd6() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        Temperature t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
-        final Temperature t2 = new Temperature(value2, TemperatureUnit.CELSIUS);
+        var t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
+        final var t2 = new Temperature(value2, TemperatureUnit.CELSIUS);
 
         t1.add(t2);
 
@@ -420,9 +385,9 @@ public class TemperatureTest {
         assertEquals(value2, t2.getValue().doubleValue(), 0.0);
 
         // test again for different units
-        final double value2b = TemperatureConverter.celsiusToFahrenheit(value2);
+        final var value2b = TemperatureConverter.celsiusToFahrenheit(value2);
         t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
-        final Temperature t2b = new Temperature(value2b, TemperatureUnit.FAHRENHEIT);
+        final var t2b = new Temperature(value2b, TemperatureUnit.FAHRENHEIT);
 
         t1.add(t2b);
 
@@ -435,16 +400,15 @@ public class TemperatureTest {
     }
 
     @Test
-    public void testAdd7() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd7() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Temperature t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
-        final Temperature t2 = new Temperature(value2, TemperatureUnit.CELSIUS);
+        final var t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
+        final var t2 = new Temperature(value2, TemperatureUnit.CELSIUS);
 
-        final Temperature result = new Temperature(
-                0.0, TemperatureUnit.KELVIN);
+        final Temperature result = new Temperature(0.0, TemperatureUnit.KELVIN);
         t1.add(t2, result);
 
         // check
@@ -454,17 +418,15 @@ public class TemperatureTest {
         assertEquals(TemperatureUnit.CELSIUS, t2.getUnit());
         assertEquals(value2, t2.getValue().doubleValue(), 0.0);
 
-        final double expected = TemperatureConverter.celsiusToKelvin(value1 + value2);
+        final var expected = TemperatureConverter.celsiusToKelvin(value1 + value2);
         assertEquals(TemperatureUnit.KELVIN, result.getUnit());
         assertEquals(expected, result.getValue().doubleValue(), ERROR);
 
         // test again for different units
-        final double value2b = TemperatureConverter.celsiusToFahrenheit(value2);
-        final Temperature t2b = new Temperature(
-                value2b, TemperatureUnit.FAHRENHEIT);
+        final var value2b = TemperatureConverter.celsiusToFahrenheit(value2);
+        final var t2b = new Temperature(value2b, TemperatureUnit.FAHRENHEIT);
 
-        final Temperature result2 = new Temperature(
-                0.0, TemperatureUnit.KELVIN);
+        final var result2 = new Temperature(0.0, TemperatureUnit.KELVIN);
         t1.add(t2b, result2);
 
         // check
@@ -473,21 +435,21 @@ public class TemperatureTest {
     }
 
     @Test
-    public void testSubtract1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final double result = Temperature.subtract(value1, TemperatureUnit.CELSIUS,
+        final var result = Temperature.subtract(value1, TemperatureUnit.CELSIUS,
                 value2, TemperatureUnit.CELSIUS, TemperatureUnit.KELVIN);
 
         // check
-        final double expected = TemperatureConverter.celsiusToKelvin(value1 - value2);
+        final var expected = TemperatureConverter.celsiusToKelvin(value1 - value2);
         assertEquals(expected, result, ERROR);
 
         // test again for different units
-        final double value2b = TemperatureConverter.celsiusToFahrenheit(value2);
-        final double result2 = Temperature.subtract(value1, TemperatureUnit.CELSIUS,
+        final var value2b = TemperatureConverter.celsiusToFahrenheit(value2);
+        final var result2 = Temperature.subtract(value1, TemperatureUnit.CELSIUS,
                 value2b, TemperatureUnit.FAHRENHEIT, TemperatureUnit.KELVIN);
 
         // check
@@ -495,41 +457,37 @@ public class TemperatureTest {
     }
 
     @Test
-    public void testSubtract2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Number result = Temperature.subtract(
-                new BigDecimal(value1), TemperatureUnit.CELSIUS,
-                new BigDecimal(value2), TemperatureUnit.CELSIUS,
-                TemperatureUnit.KELVIN);
+        final var result = Temperature.subtract(new BigDecimal(value1), TemperatureUnit.CELSIUS,
+                new BigDecimal(value2), TemperatureUnit.CELSIUS, TemperatureUnit.KELVIN);
 
         // check
-        final double expected = TemperatureConverter.celsiusToKelvin(value1 - value2);
+        final var expected = TemperatureConverter.celsiusToKelvin(value1 - value2);
         assertEquals(expected, result.doubleValue(), ERROR);
 
         // test again for different units
-        final double value2b = TemperatureConverter.celsiusToFahrenheit(value2);
-        final Number result2 = Temperature.subtract(
-                new BigDecimal(value1), TemperatureUnit.CELSIUS,
-                new BigDecimal(value2b), TemperatureUnit.FAHRENHEIT,
-                TemperatureUnit.KELVIN);
+        final var value2b = TemperatureConverter.celsiusToFahrenheit(value2);
+        final var result2 = Temperature.subtract(new BigDecimal(value1), TemperatureUnit.CELSIUS,
+                new BigDecimal(value2b), TemperatureUnit.FAHRENHEIT, TemperatureUnit.KELVIN);
 
         // check
         assertEquals(expected, result2.doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtract3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Temperature t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
-        final Temperature t2 = new Temperature(value2, TemperatureUnit.CELSIUS);
+        final var t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
+        final var t2 = new Temperature(value2, TemperatureUnit.CELSIUS);
 
-        final Temperature result = new Temperature(0.0, TemperatureUnit.KELVIN);
+        final var result = new Temperature(0.0, TemperatureUnit.KELVIN);
         Temperature.subtract(t1, t2, result);
 
         // check
@@ -539,16 +497,15 @@ public class TemperatureTest {
         assertEquals(TemperatureUnit.CELSIUS, t2.getUnit());
         assertEquals(value2, t2.getValue().doubleValue(), 0.0);
 
-        final double expected = TemperatureConverter.celsiusToKelvin(value1 - value2);
+        final var expected = TemperatureConverter.celsiusToKelvin(value1 - value2);
         assertEquals(TemperatureUnit.KELVIN, result.getUnit());
         assertEquals(expected, result.getValue().doubleValue(), ERROR);
 
         // test again for different units
-        final double value2b = TemperatureConverter.celsiusToFahrenheit(value2);
-        final Temperature t2b = new Temperature(
-                value2b, TemperatureUnit.FAHRENHEIT);
+        final var value2b = TemperatureConverter.celsiusToFahrenheit(value2);
+        final var t2b = new Temperature(value2b, TemperatureUnit.FAHRENHEIT);
 
-        final Temperature result2 = new Temperature(0.0, TemperatureUnit.KELVIN);
+        final var result2 = new Temperature(0.0, TemperatureUnit.KELVIN);
         Temperature.subtract(t1, t2b, result2);
 
         // check
@@ -557,16 +514,15 @@ public class TemperatureTest {
     }
 
     @Test
-    public void testSubtractAndReturnNew1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtractAndReturnNew1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Temperature t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
-        final Temperature t2 = new Temperature(value2, TemperatureUnit.CELSIUS);
+        final var t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
+        final var t2 = new Temperature(value2, TemperatureUnit.CELSIUS);
 
-        final Temperature result = Temperature.subtractAndReturnNew(
-                t1, t2, TemperatureUnit.KELVIN);
+        final var result = Temperature.subtractAndReturnNew(t1, t2, TemperatureUnit.KELVIN);
 
         // check
         assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
@@ -575,17 +531,15 @@ public class TemperatureTest {
         assertEquals(TemperatureUnit.CELSIUS, t2.getUnit());
         assertEquals(value2, t2.getValue().doubleValue(), 0.0);
 
-        final double expected = TemperatureConverter.celsiusToKelvin(value1 - value2);
+        final var expected = TemperatureConverter.celsiusToKelvin(value1 - value2);
         assertEquals(TemperatureUnit.KELVIN, result.getUnit());
         assertEquals(expected, result.getValue().doubleValue(), ERROR);
 
         // test again for different units
-        final double value2b = TemperatureConverter.celsiusToFahrenheit(value2);
-        final Temperature t2b = new Temperature(
-                value2b, TemperatureUnit.FAHRENHEIT);
+        final var value2b = TemperatureConverter.celsiusToFahrenheit(value2);
+        final var t2b = new Temperature(value2b, TemperatureUnit.FAHRENHEIT);
 
-        final Temperature result2 = Temperature.subtractAndReturnNew(
-                t1, t2b, TemperatureUnit.KELVIN);
+        final var result2 = Temperature.subtractAndReturnNew(t1, t2b, TemperatureUnit.KELVIN);
 
         // check
         assertEquals(TemperatureUnit.KELVIN, result2.getUnit());
@@ -593,59 +547,54 @@ public class TemperatureTest {
     }
 
     @Test
-    public void testSubtractAndReturnNew2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtractAndReturnNew2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Temperature t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
+        final var t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
 
-        final Temperature result = t1.subtractAndReturnNew(
-                value2, TemperatureUnit.CELSIUS, TemperatureUnit.KELVIN);
+        final var result = t1.subtractAndReturnNew(value2, TemperatureUnit.CELSIUS, TemperatureUnit.KELVIN);
 
         // check
         assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
         assertEquals(value1, t1.getValue().doubleValue(), 0.0);
 
-        final double expected = TemperatureConverter.celsiusToKelvin(
-                value1 - value2);
+        final double expected = TemperatureConverter.celsiusToKelvin(value1 - value2);
         assertEquals(TemperatureUnit.KELVIN, result.getUnit());
         assertEquals(expected, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtractAndReturnNew3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtractAndReturnNew3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Temperature t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
+        final var t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
 
-        final Temperature result = t1.subtractAndReturnNew(
-                new BigDecimal(value2), TemperatureUnit.CELSIUS,
+        final var result = t1.subtractAndReturnNew(new BigDecimal(value2), TemperatureUnit.CELSIUS,
                 TemperatureUnit.KELVIN);
 
         // check
         assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
         assertEquals(value1, t1.getValue().doubleValue(), 0.0);
 
-        final double expected = TemperatureConverter.celsiusToKelvin(
-                value1 - value2);
+        final var expected = TemperatureConverter.celsiusToKelvin(value1 - value2);
         assertEquals(TemperatureUnit.KELVIN, result.getUnit());
         assertEquals(expected, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtractAndReturnNew4() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtractAndReturnNew4() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Temperature t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
-        final Temperature t2 = new Temperature(value2, TemperatureUnit.CELSIUS);
+        final var t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
+        final var t2 = new Temperature(value2, TemperatureUnit.CELSIUS);
 
-        final Temperature result = t1.subtractAndReturnNew(
-                t2, TemperatureUnit.KELVIN);
+        final var result = t1.subtractAndReturnNew(t2, TemperatureUnit.KELVIN);
 
         // check
         assertEquals(TemperatureUnit.CELSIUS, t1.getUnit());
@@ -654,18 +603,15 @@ public class TemperatureTest {
         assertEquals(TemperatureUnit.CELSIUS, t2.getUnit());
         assertEquals(value2, t2.getValue().doubleValue(), 0.0);
 
-        final double expected = TemperatureConverter.celsiusToKelvin(
-                value1 - value2);
+        final var expected = TemperatureConverter.celsiusToKelvin(value1 - value2);
         assertEquals(TemperatureUnit.KELVIN, result.getUnit());
         assertEquals(expected, result.getValue().doubleValue(), ERROR);
 
         // test again for different units
-        final double value2b = TemperatureConverter.celsiusToFahrenheit(value2);
-        final Temperature t2b = new Temperature(
-                value2b, TemperatureUnit.FAHRENHEIT);
+        final var value2b = TemperatureConverter.celsiusToFahrenheit(value2);
+        final var t2b = new Temperature(value2b, TemperatureUnit.FAHRENHEIT);
 
-        final Temperature result2 = t1.subtractAndReturnNew(
-                t2b, TemperatureUnit.KELVIN);
+        final var result2 = t1.subtractAndReturnNew(t2b, TemperatureUnit.KELVIN);
 
         // check
         assertEquals(TemperatureUnit.KELVIN, result2.getUnit());
@@ -673,12 +619,12 @@ public class TemperatureTest {
     }
 
     @Test
-    public void testSubtract4() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract4() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        Temperature t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
+        var t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
 
         t1.subtract(value2, TemperatureUnit.CELSIUS);
 
@@ -687,7 +633,7 @@ public class TemperatureTest {
         assertEquals(value1 - value2, t1.getValue().doubleValue(), ERROR);
 
         // test again for different units
-        final double value2b = TemperatureConverter.celsiusToFahrenheit(value2);
+        final var value2b = TemperatureConverter.celsiusToFahrenheit(value2);
         t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
 
         t1.subtract(value2b, TemperatureUnit.FAHRENHEIT);
@@ -698,12 +644,12 @@ public class TemperatureTest {
     }
 
     @Test
-    public void testSubtract5() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract5() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        Temperature t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
+        var t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
 
         t1.subtract(new BigDecimal(value2), TemperatureUnit.CELSIUS);
 
@@ -712,7 +658,7 @@ public class TemperatureTest {
         assertEquals(value1 - value2, t1.getValue().doubleValue(), ERROR);
 
         // test again for different units
-        final double value2b = TemperatureConverter.celsiusToFahrenheit(value2);
+        final var value2b = TemperatureConverter.celsiusToFahrenheit(value2);
         t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
 
         t1.subtract(new BigDecimal(value2b), TemperatureUnit.FAHRENHEIT);
@@ -723,13 +669,13 @@ public class TemperatureTest {
     }
 
     @Test
-    public void testSubtract6() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract6() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        Temperature t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
-        final Temperature t2 = new Temperature(value2, TemperatureUnit.CELSIUS);
+        var t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
+        final var t2 = new Temperature(value2, TemperatureUnit.CELSIUS);
 
         t1.subtract(t2);
 
@@ -741,10 +687,9 @@ public class TemperatureTest {
         assertEquals(value2, t2.getValue().doubleValue(), 0.0);
 
         // test again for different units
-        final double value2b = TemperatureConverter.celsiusToFahrenheit(value2);
+        final var value2b = TemperatureConverter.celsiusToFahrenheit(value2);
         t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
-        final Temperature t2b = new Temperature(
-                value2b, TemperatureUnit.FAHRENHEIT);
+        final var t2b = new Temperature(value2b, TemperatureUnit.FAHRENHEIT);
 
         t1.subtract(t2b);
 
@@ -757,16 +702,15 @@ public class TemperatureTest {
     }
 
     @Test
-    public void testSubtract7() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract7() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Temperature t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
-        final Temperature t2 = new Temperature(value2, TemperatureUnit.CELSIUS);
+        final var t1 = new Temperature(value1, TemperatureUnit.CELSIUS);
+        final var t2 = new Temperature(value2, TemperatureUnit.CELSIUS);
 
-        final Temperature result = new Temperature(
-                0.0, TemperatureUnit.KELVIN);
+        final var result = new Temperature(0.0, TemperatureUnit.KELVIN);
         t1.subtract(t2, result);
 
         // check
@@ -776,18 +720,15 @@ public class TemperatureTest {
         assertEquals(TemperatureUnit.CELSIUS, t2.getUnit());
         assertEquals(value2, t2.getValue().doubleValue(), 0.0);
 
-        final double expected = TemperatureConverter.celsiusToKelvin(
-                value1 - value2);
+        final var expected = TemperatureConverter.celsiusToKelvin(value1 - value2);
         assertEquals(TemperatureUnit.KELVIN, result.getUnit());
         assertEquals(expected, result.getValue().doubleValue(), ERROR);
 
         // test again for different units
-        final double value2b = TemperatureConverter.celsiusToFahrenheit(value2);
-        final Temperature t2b = new Temperature(
-                value2b, TemperatureUnit.FAHRENHEIT);
+        final var value2b = TemperatureConverter.celsiusToFahrenheit(value2);
+        final var t2b = new Temperature(value2b, TemperatureUnit.FAHRENHEIT);
 
-        final Temperature result2 = new Temperature(
-                0.0, TemperatureUnit.KELVIN);
+        final var result2 = new Temperature(0.0, TemperatureUnit.KELVIN);
         t1.subtract(t2b, result2);
 
         // check
@@ -796,12 +737,12 @@ public class TemperatureTest {
     }
 
     @Test
-    public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
-        final double value = new Random().nextDouble();
-        final Temperature t1 = new Temperature(value, TemperatureUnit.CELSIUS);
+    void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+        final var value = new Random().nextDouble();
+        final var t1 = new Temperature(value, TemperatureUnit.CELSIUS);
 
-        final byte[] bytes = SerializationHelper.serialize(t1);
-        final Temperature t2 = SerializationHelper.deserialize(bytes);
+        final var bytes = SerializationHelper.serialize(t1);
+        final var t2 = SerializationHelper.deserialize(bytes);
 
         assertEquals(t1, t2);
         assertNotSame(t1, t2);

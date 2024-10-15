@@ -40,8 +40,7 @@ public class AngularAccelerationConverter {
      *               containing output unit.
      */
     public static void convert(
-            final AngularAcceleration input,
-            final AngularAcceleration output) {
+            final AngularAcceleration input, final AngularAcceleration output) {
         convert(input, output.getUnit(), output);
     }
 
@@ -53,9 +52,8 @@ public class AngularAccelerationConverter {
      * @return converted angular acceleration.
      */
     public static AngularAcceleration convertAndReturnNew(
-            final AngularAcceleration input,
-            final AngularAccelerationUnit outputUnit) {
-        final AngularAcceleration result = new AngularAcceleration();
+            final AngularAcceleration input, final AngularAccelerationUnit outputUnit) {
+        final var result = new AngularAcceleration();
         convert(input, outputUnit, result);
         return result;
     }
@@ -67,8 +65,7 @@ public class AngularAccelerationConverter {
      * @param outputUnit          requested output unit.
      */
     public static void convert(
-            final AngularAcceleration angularAcceleration,
-            final AngularAccelerationUnit outputUnit) {
+            final AngularAcceleration angularAcceleration, final AngularAccelerationUnit outputUnit) {
         convert(angularAcceleration, outputUnit, angularAcceleration);
     }
 
@@ -83,7 +80,7 @@ public class AngularAccelerationConverter {
             final AngularAcceleration input,
             final AngularAccelerationUnit outputUnit,
             final AngularAcceleration result) {
-        final Number value = convert(input.getValue(), input.getUnit(), outputUnit);
+        final var value = convert(input.getValue(), input.getUnit(), outputUnit);
         result.setValue(value);
         result.setUnit(outputUnit);
     }
@@ -97,8 +94,7 @@ public class AngularAccelerationConverter {
      * @return converted angular acceleration value.
      */
     public static Number convert(
-            final Number input, final AngularAccelerationUnit inputUnit,
-            final AngularAccelerationUnit outputUnit) {
+            final Number input, final AngularAccelerationUnit inputUnit, final AngularAccelerationUnit outputUnit) {
         return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit, outputUnit));
     }
 
@@ -112,28 +108,20 @@ public class AngularAccelerationConverter {
      */
     @SuppressWarnings("Duplicates")
     public static double convert(
-            final double input, final AngularAccelerationUnit inputUnit,
-            final AngularAccelerationUnit outputUnit) {
-        double radiansPerSquaredSecond;
-
+            final double input, final AngularAccelerationUnit inputUnit, final AngularAccelerationUnit outputUnit) {
         //convert to radians per squared second
-        switch (inputUnit) {
-            case DEGREES_PER_SQUARED_SECOND:
-                radiansPerSquaredSecond = Math.toRadians(input);
-                break;
-            case RADIANS_PER_SQUARED_SECOND:
-            default:
-                radiansPerSquaredSecond = input;
-                break;
+        double radiansPerSquaredSecond;
+        if (inputUnit == AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND) {
+            radiansPerSquaredSecond = Math.toRadians(input);
+        } else {
+            radiansPerSquaredSecond = input;
         }
 
         //convert from radians per squared second to required output unit
-        switch (outputUnit) {
-            case DEGREES_PER_SQUARED_SECOND:
-                return Math.toDegrees(radiansPerSquaredSecond);
-            case RADIANS_PER_SQUARED_SECOND:
-            default:
-                return radiansPerSquaredSecond;
+        if (outputUnit == AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND) {
+            return Math.toDegrees(radiansPerSquaredSecond);
+        } else {
+            return radiansPerSquaredSecond;
         }
     }
 
@@ -143,8 +131,7 @@ public class AngularAccelerationConverter {
      * @param degreesPerSquaredSecond degrees per squared second value.
      * @return same angular acceleration converted to radians per squared second.
      */
-    public static double degreesPerSquaredSecondToRadiansPerSquaredSecond(
-            final double degreesPerSquaredSecond) {
+    public static double degreesPerSquaredSecondToRadiansPerSquaredSecond(final double degreesPerSquaredSecond) {
         return Math.toRadians(degreesPerSquaredSecond);
     }
 
@@ -154,8 +141,7 @@ public class AngularAccelerationConverter {
      * @param radiansPerSquaredSecond radians per squared second value.
      * @return same angular acceleration converted to degrees per squared second.
      */
-    public static double radiansPerSquaredSecondToDegreesPerSquaredSecond(
-            final double radiansPerSquaredSecond) {
+    public static double radiansPerSquaredSecondToDegreesPerSquaredSecond(final double radiansPerSquaredSecond) {
         return Math.toDegrees(radiansPerSquaredSecond);
     }
 }

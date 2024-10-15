@@ -51,8 +51,7 @@ public class Speed extends Measurement<SpeedUnit> {
      * false otherwise.
      */
     @Override
-    public boolean equals(
-            final Measurement<SpeedUnit> other, final double tolerance) {
+    public boolean equals(final Measurement<SpeedUnit> other, final double tolerance) {
         if (super.equals(other, tolerance)) {
             return true;
         }
@@ -62,9 +61,7 @@ public class Speed extends Measurement<SpeedUnit> {
             return false;
         }
 
-        final double otherValue = SpeedConverter.convert(
-                other.getValue().doubleValue(),
-                other.getUnit(), getUnit());
+        final var otherValue = SpeedConverter.convert(other.getValue().doubleValue(), other.getUnit(), getUnit());
         return Math.abs(getValue().doubleValue() - otherValue) <= tolerance;
     }
 
@@ -81,8 +78,8 @@ public class Speed extends Measurement<SpeedUnit> {
     public static double add(final double value1, final SpeedUnit unit1,
                              final double value2, final SpeedUnit unit2,
                              final SpeedUnit resultUnit) {
-        final double v1 = SpeedConverter.convert(value1, unit1, resultUnit);
-        final double v2 = SpeedConverter.convert(value2, unit2, resultUnit);
+        final var v1 = SpeedConverter.convert(value1, unit1, resultUnit);
+        final var v2 = SpeedConverter.convert(value2, unit2, resultUnit);
         return v1 + v2;
     }
 
@@ -99,8 +96,7 @@ public class Speed extends Measurement<SpeedUnit> {
     public static Number add(final Number value1, final SpeedUnit unit1,
                              final Number value2, final SpeedUnit unit2,
                              final SpeedUnit resultUnit) {
-        return BigDecimal.valueOf(add(value1.doubleValue(), unit1,
-                value2.doubleValue(), unit2, resultUnit));
+        return BigDecimal.valueOf(add(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));
     }
 
     /**
@@ -110,10 +106,8 @@ public class Speed extends Measurement<SpeedUnit> {
      * @param arg2   2nd argument.
      * @param result instance where result will be stored.
      */
-    public static void add(
-            final Speed arg1, final Speed arg2, final Speed result) {
-        result.setValue(add(arg1.getValue(), arg1.getUnit(),
-                arg2.getValue(), arg2.getUnit(), result.getUnit()));
+    public static void add(final Speed arg1, final Speed arg2, final Speed result) {
+        result.setValue(add(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));
     }
 
     /**
@@ -124,9 +118,8 @@ public class Speed extends Measurement<SpeedUnit> {
      * @param unit unit of returned speed.
      * @return a new instance containing result.
      */
-    public static Speed addAndReturnNew(
-            final Speed arg1, final Speed arg2, final SpeedUnit unit) {
-        final Speed result = new Speed();
+    public static Speed addAndReturnNew(final Speed arg1, final Speed arg2, final SpeedUnit unit) {
+        final var result = new Speed();
         result.setUnit(unit);
         add(arg1, arg2, result);
         return result;
@@ -142,12 +135,10 @@ public class Speed extends Measurement<SpeedUnit> {
      * @return a new speed containing result.
      */
     public Speed addAndReturnNew(
-            final double value, final SpeedUnit unit,
-            final SpeedUnit resultUnit) {
-        final Speed result = new Speed();
+            final double value, final SpeedUnit unit, final SpeedUnit resultUnit) {
+        final var result = new Speed();
         result.setUnit(resultUnit);
-        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit,
-                resultUnit));
+        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 
@@ -161,9 +152,8 @@ public class Speed extends Measurement<SpeedUnit> {
      * @return a new speed containing result.
      */
     public Speed addAndReturnNew(
-            final Number value, final SpeedUnit unit,
-            final SpeedUnit resultUnit) {
-        final Speed result = new Speed();
+            final Number value, final SpeedUnit unit, final SpeedUnit resultUnit) {
+        final var result = new Speed();
         result.setUnit(resultUnit);
         result.setValue(add(getValue(), getUnit(), value, unit, resultUnit));
         return result;
@@ -233,8 +223,8 @@ public class Speed extends Measurement<SpeedUnit> {
             final double value1, final SpeedUnit unit1,
             final double value2, final SpeedUnit unit2,
             final SpeedUnit resultUnit) {
-        final double v1 = SpeedConverter.convert(value1, unit1, resultUnit);
-        final double v2 = SpeedConverter.convert(value2, unit2, resultUnit);
+        final var v1 = SpeedConverter.convert(value1, unit1, resultUnit);
+        final var v2 = SpeedConverter.convert(value2, unit2, resultUnit);
         return v1 - v2;
     }
 
@@ -252,8 +242,7 @@ public class Speed extends Measurement<SpeedUnit> {
             final Number value1, final SpeedUnit unit1,
             final Number value2, final SpeedUnit unit2,
             final SpeedUnit resultUnit) {
-        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1,
-                value2.doubleValue(), unit2, resultUnit));
+        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));
     }
 
     /**
@@ -263,10 +252,8 @@ public class Speed extends Measurement<SpeedUnit> {
      * @param arg2   2nd argument.
      * @param result instance where result will be stored.
      */
-    public static void subtract(
-            final Speed arg1, final Speed arg2, final Speed result) {
-        result.setValue(subtract(arg1.getValue(), arg1.getUnit(),
-                arg2.getValue(), arg2.getUnit(), result.getUnit()));
+    public static void subtract(final Speed arg1, final Speed arg2, final Speed result) {
+        result.setValue(subtract(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));
     }
 
     /**
@@ -278,9 +265,8 @@ public class Speed extends Measurement<SpeedUnit> {
      * @return a new instance containing result.
      */
     public static Speed subtractAndReturnNew(
-            final Speed arg1, final Speed arg2,
-            final SpeedUnit unit) {
-        final Speed result = new Speed();
+            final Speed arg1, final Speed arg2, final SpeedUnit unit) {
+        final var result = new Speed();
         result.setUnit(unit);
         subtract(arg1, arg2, result);
         return result;
@@ -296,12 +282,10 @@ public class Speed extends Measurement<SpeedUnit> {
      * @return a new speed containing result.
      */
     public Speed subtractAndReturnNew(
-            final double value, final SpeedUnit unit,
-            final SpeedUnit resultUnit) {
-        final Speed result = new Speed();
+            final double value, final SpeedUnit unit, final SpeedUnit resultUnit) {
+        final var result = new Speed();
         result.setUnit(resultUnit);
-        result.setValue(subtract(getValue().doubleValue(), getUnit(), value,
-                unit, resultUnit));
+        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 
@@ -315,9 +299,8 @@ public class Speed extends Measurement<SpeedUnit> {
      * @return a new speed containing result.
      */
     public Speed subtractAndReturnNew(
-            final Number value, final SpeedUnit unit,
-            final SpeedUnit resultUnit) {
-        final Speed result = new Speed();
+            final Number value, final SpeedUnit unit, final SpeedUnit resultUnit) {
+        final var result = new Speed();
         result.setUnit(resultUnit);
         result.setValue(subtract(getValue(), getUnit(), value, unit, resultUnit));
         return result;
@@ -330,8 +313,7 @@ public class Speed extends Measurement<SpeedUnit> {
      * @param unit unit of returned speed.
      * @return a new speed containing result.
      */
-    public Speed subtractAndReturnNew(
-            final Speed s, final SpeedUnit unit) {
+    public Speed subtractAndReturnNew(final Speed s, final SpeedUnit unit) {
         return subtractAndReturnNew(this, s, unit);
     }
 

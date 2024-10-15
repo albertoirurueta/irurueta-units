@@ -86,22 +86,10 @@ public enum VolumeUnit {
             throw new IllegalArgumentException();
         }
 
-        switch (unit) {
-            case CUBIC_INCH:
-            case PINT:
-            case GALLON:
-            case CUBIC_FOOT:
-            case BARREL:
-                return UnitSystem.IMPERIAL;
-            case CUBIC_CENTIMETER:
-            case MILLILITER:
-            case CUBIC_DECIMETER:
-            case LITER:
-            case HECTOLITER:
-            case CUBIC_METER:
-            default:
-                return UnitSystem.METRIC;
-        }
+        return switch (unit) {
+            case CUBIC_INCH, PINT, GALLON, CUBIC_FOOT, BARREL -> UnitSystem.IMPERIAL;
+            default -> UnitSystem.METRIC;
+        };
     }
 
     /**

@@ -96,24 +96,10 @@ public enum SurfaceUnit {
             throw new IllegalArgumentException();
         }
 
-        switch (unit) {
-            case SQUARE_INCH:
-            case SQUARE_FOOT:
-            case SQUARE_YARD:
-            case SQUARE_MILE:
-            case ACRE:
-                return UnitSystem.IMPERIAL;
-            case SQUARE_MILLIMETER:
-            case SQUARE_CENTIMETER:
-            case SQUARE_METER:
-            case SQUARE_KILOMETER:
-            case CENTIARE:
-            case ARE:
-            case DECARE:
-            case HECTARE:
-            default:
-                return UnitSystem.METRIC;
-        }
+        return switch (unit) {
+            case SQUARE_INCH, SQUARE_FOOT, SQUARE_YARD, SQUARE_MILE, ACRE -> UnitSystem.IMPERIAL;
+            default -> UnitSystem.METRIC;
+        };
     }
 
     /**

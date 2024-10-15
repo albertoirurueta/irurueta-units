@@ -84,7 +84,7 @@ public class FrequencyFormatter extends MeasureFormatter<Frequency, FrequencyUni
      */
     @Override
     public boolean equals(final Object obj) {
-        final boolean equals = super.equals(obj);
+        final var equals = super.equals(obj);
         return (obj instanceof FrequencyFormatter) && equals;
     }
 
@@ -122,8 +122,7 @@ public class FrequencyFormatter extends MeasureFormatter<Frequency, FrequencyUni
      * @throws UnknownUnitException if unit cannot be determined.
      */
     @Override
-    public Frequency parse(final String source) throws ParseException,
-            UnknownUnitException {
+    public Frequency parse(final String source) throws ParseException, UnknownUnitException {
         return internalParse(source, new Frequency());
     }
 
@@ -148,7 +147,6 @@ public class FrequencyFormatter extends MeasureFormatter<Frequency, FrequencyUni
         if (source.contains(TERAHERTZ + " ") || source.endsWith(TERAHERTZ)) {
             return FrequencyUnit.TERAHERTZ;
         }
-
         if (source.contains(HERTZ + " ") || source.endsWith(HERTZ)) {
             return FrequencyUnit.HERTZ;
         }
@@ -167,9 +165,7 @@ public class FrequencyFormatter extends MeasureFormatter<Frequency, FrequencyUni
      * @return a string representation of frequency value and unit.
      */
     @Override
-    public String formatAndConvert(
-            final Number value, final FrequencyUnit unit,
-            final UnitSystem system) {
+    public String formatAndConvert(final Number value, final FrequencyUnit unit, final UnitSystem system) {
         return formatAndConvertMetric(value, unit);
     }
 
@@ -184,39 +180,30 @@ public class FrequencyFormatter extends MeasureFormatter<Frequency, FrequencyUni
      * @return a string representation of frequency value and unit using metric
      * unit system.
      */
-    public String formatAndConvertMetric(
-            final Number value, final FrequencyUnit unit) {
-        final double v = value.doubleValue();
+    public String formatAndConvertMetric(final Number value, final FrequencyUnit unit) {
+        final var v = value.doubleValue();
 
-        final double hertz = FrequencyConverter.convert(v, unit,
-                FrequencyUnit.HERTZ);
+        final var hertz = FrequencyConverter.convert(v, unit, FrequencyUnit.HERTZ);
         if (Math.abs(hertz) < FrequencyConverter.HERTZS_PER_KILOHERTZ) {
             return format(hertz, FrequencyUnit.HERTZ);
         }
 
-        final double kiloHertz = FrequencyConverter.convert(v, unit,
-                FrequencyUnit.KILOHERTZ);
-        if (Math.abs(kiloHertz) < (FrequencyConverter.HERTZ_PER_MEGAHERTZ /
-                FrequencyConverter.HERTZS_PER_KILOHERTZ)) {
+        final var kiloHertz = FrequencyConverter.convert(v, unit, FrequencyUnit.KILOHERTZ);
+        if (Math.abs(kiloHertz) < (FrequencyConverter.HERTZ_PER_MEGAHERTZ / FrequencyConverter.HERTZS_PER_KILOHERTZ)) {
             return format(kiloHertz, FrequencyUnit.KILOHERTZ);
         }
 
-        final double megaHertz = FrequencyConverter.convert(v, unit,
-                FrequencyUnit.MEGAHERTZ);
-        if (Math.abs(megaHertz) < (FrequencyConverter.HERTZ_PER_GIGAHERTZ /
-                FrequencyConverter.HERTZ_PER_MEGAHERTZ)) {
+        final var megaHertz = FrequencyConverter.convert(v, unit, FrequencyUnit.MEGAHERTZ);
+        if (Math.abs(megaHertz) < (FrequencyConverter.HERTZ_PER_GIGAHERTZ / FrequencyConverter.HERTZ_PER_MEGAHERTZ)) {
             return format(megaHertz, FrequencyUnit.MEGAHERTZ);
         }
 
-        final double gigaHertz = FrequencyConverter.convert(v, unit,
-                FrequencyUnit.GIGAHERTZ);
-        if (Math.abs(gigaHertz) < (FrequencyConverter.HERTZ_PER_TERAHERTZ /
-                FrequencyConverter.HERTZ_PER_GIGAHERTZ)) {
+        final var gigaHertz = FrequencyConverter.convert(v, unit, FrequencyUnit.GIGAHERTZ);
+        if (Math.abs(gigaHertz) < (FrequencyConverter.HERTZ_PER_TERAHERTZ / FrequencyConverter.HERTZ_PER_GIGAHERTZ)) {
             return format(gigaHertz, FrequencyUnit.GIGAHERTZ);
         }
 
-        final double teraHertz = FrequencyConverter.convert(v, unit,
-                FrequencyUnit.TERAHERTZ);
+        final var teraHertz = FrequencyConverter.convert(v, unit, FrequencyUnit.TERAHERTZ);
         return format(teraHertz, FrequencyUnit.TERAHERTZ);
     }
 
@@ -229,19 +216,13 @@ public class FrequencyFormatter extends MeasureFormatter<Frequency, FrequencyUni
     @SuppressWarnings("DuplicatedCode")
     @Override
     public String getUnitSymbol(final FrequencyUnit unit) {
-        switch (unit) {
-            case KILOHERTZ:
-                return KILOHERTZ;
-            case MEGAHERTZ:
-                return MEGAHERTZ;
-            case GIGAHERTZ:
-                return GIGAHERTZ;
-            case TERAHERTZ:
-                return TERAHERTZ;
-            case HERTZ:
-            default:
-                return HERTZ;
-        }
+        return switch (unit) {
+            case KILOHERTZ -> KILOHERTZ;
+            case MEGAHERTZ -> MEGAHERTZ;
+            case GIGAHERTZ -> GIGAHERTZ;
+            case TERAHERTZ -> TERAHERTZ;
+            default -> HERTZ;
+        };
     }
 
     /**

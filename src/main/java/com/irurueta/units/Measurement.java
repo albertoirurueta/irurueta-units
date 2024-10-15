@@ -28,12 +28,12 @@ public abstract class Measurement<T extends Enum<?>> implements Serializable {
     /**
      * Measurement value.
      */
-    private Number mValue;
+    private Number value;
 
     /**
      * Measurement unit.
      */
-    private T mUnit;
+    private T unit;
 
     /**
      * Constructor.
@@ -47,8 +47,8 @@ public abstract class Measurement<T extends Enum<?>> implements Serializable {
             throw new IllegalArgumentException();
         }
 
-        mValue = value;
-        mUnit = unit;
+        this.value = value;
+        this.unit = unit;
     }
 
     /**
@@ -76,10 +76,10 @@ public abstract class Measurement<T extends Enum<?>> implements Serializable {
         }
 
         //noinspection unchecked
-        final Measurement<T> other = (Measurement<T>) obj;
-        return mValue != null && mUnit != null &&
-                other.mValue != null && other.mUnit != null &&
-                mValue.equals(other.mValue) && mUnit == other.mUnit;
+        final var other = (Measurement<T>) obj;
+        return value != null && unit != null &&
+                other.value != null && other.unit != null &&
+                value.equals(other.value) && unit == other.unit;
     }
 
     /**
@@ -90,9 +90,9 @@ public abstract class Measurement<T extends Enum<?>> implements Serializable {
      */
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 19 * hash + (mValue != null ? mValue.hashCode() : 0);
-        hash = 19 * hash + (mUnit != null ? mUnit.hashCode() : 0);
+        var hash = 7;
+        hash = 19 * hash + (value != null ? value.hashCode() : 0);
+        hash = 19 * hash + (unit != null ? unit.hashCode() : 0);
         return hash;
     }
 
@@ -103,12 +103,11 @@ public abstract class Measurement<T extends Enum<?>> implements Serializable {
      * @param tolerance amount of tolerance to determine whether two measurements are equal or not.
      * @return true if provided measurement is assumed to be equal to this instance, false otherwise.
      */
-    public boolean equals(final Measurement<T> other,
-                          final double tolerance) {
-        return mValue != null && mUnit != null && other != null &&
-                other.mValue != null && other.mUnit != null &&
-                mUnit == other.mUnit &&
-                (Math.abs(mValue.doubleValue() - other.mValue.doubleValue()) <= tolerance);
+    public boolean equals(final Measurement<T> other, final double tolerance) {
+        return value != null && unit != null && other != null &&
+                other.value != null && other.unit != null &&
+                unit == other.unit &&
+                (Math.abs(value.doubleValue() - other.value.doubleValue()) <= tolerance);
     }
 
     /**
@@ -117,7 +116,7 @@ public abstract class Measurement<T extends Enum<?>> implements Serializable {
      * @return measurement value.
      */
     public Number getValue() {
-        return mValue;
+        return value;
     }
 
     /**
@@ -131,7 +130,7 @@ public abstract class Measurement<T extends Enum<?>> implements Serializable {
             throw new IllegalArgumentException();
         }
 
-        mValue = value;
+        this.value = value;
     }
 
     /**
@@ -140,7 +139,7 @@ public abstract class Measurement<T extends Enum<?>> implements Serializable {
      * @return measurement unit.
      */
     public T getUnit() {
-        return mUnit;
+        return unit;
     }
 
     /**
@@ -154,6 +153,6 @@ public abstract class Measurement<T extends Enum<?>> implements Serializable {
             throw new IllegalArgumentException();
         }
 
-        mUnit = unit;
+        this.unit = unit;
     }
 }

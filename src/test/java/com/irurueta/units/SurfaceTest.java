@@ -15,22 +15,22 @@
  */
 package com.irurueta.units;
 
-import org.junit.*;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Random;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class SurfaceTest {
+class SurfaceTest {
 
     private static final double ERROR = 1e-6;
 
     @Test
-    public void testConstructor() {
+    void testConstructor() {
         // test empty constructor
-        Surface s = new Surface();
+        var s = new Surface();
 
         // check
         assertNull(s.getValue());
@@ -44,28 +44,17 @@ public class SurfaceTest {
         assertEquals(SurfaceUnit.SQUARE_METER, s.getUnit());
 
         // force IllegalArgumentException
-        s = null;
-        try {
-            s = new Surface(null, SurfaceUnit.SQUARE_METER);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
-        try {
-            s = new Surface(323, null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
-        //noinspection ConstantConditions
-        assertNull(s);
+        assertThrows(IllegalArgumentException.class, () -> new Surface(null, SurfaceUnit.SQUARE_METER));
+        assertThrows(IllegalArgumentException.class, () -> new Surface(323, null));
     }
 
     @Test
-    public void testEquals() {
-        final double value = new Random().nextDouble();
-        final Surface s1 = new Surface(value, SurfaceUnit.SQUARE_METER);
-        final Surface s2 = new Surface(value, SurfaceUnit.SQUARE_METER);
-        final Surface s3 = new Surface(value + 1.0, SurfaceUnit.SQUARE_METER);
-        final Surface s4 = new Surface(value, SurfaceUnit.SQUARE_CENTIMETER);
+    void testEquals() {
+        final var value = new Random().nextDouble();
+        final var s1 = new Surface(value, SurfaceUnit.SQUARE_METER);
+        final var s2 = new Surface(value, SurfaceUnit.SQUARE_METER);
+        final var s3 = new Surface(value + 1.0, SurfaceUnit.SQUARE_METER);
+        final var s4 = new Surface(value, SurfaceUnit.SQUARE_CENTIMETER);
 
         //noinspection EqualsWithItself
         assertEquals(s1, s1);
@@ -78,12 +67,12 @@ public class SurfaceTest {
     }
 
     @Test
-    public void testHashCode() {
-        final double value = new Random().nextDouble();
-        final Surface s1 = new Surface(value, SurfaceUnit.SQUARE_METER);
-        final Surface s2 = new Surface(value, SurfaceUnit.SQUARE_METER);
-        final Surface s3 = new Surface(value + 1.0, SurfaceUnit.SQUARE_METER);
-        final Surface s4 = new Surface(value, SurfaceUnit.SQUARE_CENTIMETER);
+    void testHashCode() {
+        final var value = new Random().nextDouble();
+        final var s1 = new Surface(value, SurfaceUnit.SQUARE_METER);
+        final var s2 = new Surface(value, SurfaceUnit.SQUARE_METER);
+        final var s3 = new Surface(value + 1.0, SurfaceUnit.SQUARE_METER);
+        final var s4 = new Surface(value, SurfaceUnit.SQUARE_CENTIMETER);
 
         assertEquals(s1.hashCode(), s1.hashCode());
         assertEquals(s1.hashCode(), s2.hashCode());
@@ -92,13 +81,13 @@ public class SurfaceTest {
     }
 
     @Test
-    public void testEqualsWithTolerance() {
-        final double value = new Random().nextDouble();
-        final Surface s1 = new Surface(value, SurfaceUnit.SQUARE_METER);
-        final Surface s2 = new Surface(value, SurfaceUnit.SQUARE_METER);
-        final Surface s3 = new Surface(value + 0.5 * ERROR, SurfaceUnit.SQUARE_METER);
-        final Surface s4 = new Surface(value, SurfaceUnit.SQUARE_CENTIMETER);
-        final Surface s5 = new Surface(value * 10000.0, SurfaceUnit.SQUARE_CENTIMETER);
+    void testEqualsWithTolerance() {
+        final var value = new Random().nextDouble();
+        final var s1 = new Surface(value, SurfaceUnit.SQUARE_METER);
+        final var s2 = new Surface(value, SurfaceUnit.SQUARE_METER);
+        final var s3 = new Surface(value + 0.5 * ERROR, SurfaceUnit.SQUARE_METER);
+        final var s4 = new Surface(value, SurfaceUnit.SQUARE_CENTIMETER);
+        final var s5 = new Surface(value * 10000.0, SurfaceUnit.SQUARE_CENTIMETER);
 
         assertTrue(s1.equals(s1, 0.0));
         assertTrue(s1.equals(s2, 0.0));
@@ -111,8 +100,8 @@ public class SurfaceTest {
     }
 
     @Test
-    public void testGetSetValue() {
-        final Surface s = new Surface(1, SurfaceUnit.SQUARE_METER);
+    void testGetSetValue() {
+        final var s = new Surface(1, SurfaceUnit.SQUARE_METER);
 
         // check
         assertEquals(1, s.getValue());
@@ -124,16 +113,12 @@ public class SurfaceTest {
         assertEquals(2.5, s.getValue());
 
         // force IllegalArgumentException
-        try {
-            s.setValue(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> s.setValue(null));
     }
 
     @Test
-    public void testGetSetUnit() {
-        final Surface s = new Surface(1, SurfaceUnit.SQUARE_METER);
+    void testGetSetUnit() {
+        final var s = new Surface(1, SurfaceUnit.SQUARE_METER);
 
         // check
         assertEquals(SurfaceUnit.SQUARE_METER, s.getUnit());
@@ -145,49 +130,45 @@ public class SurfaceTest {
         assertEquals(SurfaceUnit.SQUARE_YARD, s.getUnit());
 
         // force IllegalArgumentException
-        try {
-            s.setUnit(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> s.setUnit(null));
     }
 
     @Test
-    public void testAdd1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final double result = Surface.add(value1, SurfaceUnit.SQUARE_METER,
-                value2, SurfaceUnit.SQUARE_METER, SurfaceUnit.HECTARE);
+        final var result = Surface.add(value1, SurfaceUnit.SQUARE_METER, value2, SurfaceUnit.SQUARE_METER,
+                SurfaceUnit.HECTARE);
 
         // check
         assertEquals((value1 + value2) * 1e-4, result, ERROR);
     }
 
     @Test
-    public void testAdd2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Number result = Surface.add(new BigDecimal(value1), SurfaceUnit.SQUARE_METER,
-                new BigDecimal(value2), SurfaceUnit.SQUARE_METER, SurfaceUnit.HECTARE);
+        final var result = Surface.add(new BigDecimal(value1), SurfaceUnit.SQUARE_METER, new BigDecimal(value2),
+                SurfaceUnit.SQUARE_METER, SurfaceUnit.HECTARE);
 
         // check
         assertEquals((value1 + value2) * 1e-4, result.doubleValue(), ERROR);
     }
 
     @Test
-    public void testAdd3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Surface s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
-        final Surface s2 = new Surface(value2, SurfaceUnit.SQUARE_METER);
+        final var s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
+        final var s2 = new Surface(value2, SurfaceUnit.SQUARE_METER);
 
-        final Surface result = new Surface(0.0, SurfaceUnit.HECTARE);
+        final var result = new Surface(0.0, SurfaceUnit.HECTARE);
         Surface.add(s1, s2, result);
 
         // check
@@ -198,20 +179,19 @@ public class SurfaceTest {
         assertEquals(value2, s2.getValue().doubleValue(), 0.0);
 
         assertEquals(SurfaceUnit.HECTARE, result.getUnit());
-        assertEquals((value1 + value2) * 1e-4,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 + value2) * 1e-4, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAddAndReturnNew1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAddAndReturnNew1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Surface s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
-        final Surface s2 = new Surface(value2, SurfaceUnit.SQUARE_METER);
+        final var s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
+        final var s2 = new Surface(value2, SurfaceUnit.SQUARE_METER);
 
-        final Surface result = Surface.addAndReturnNew(s1, s2, SurfaceUnit.HECTARE);
+        final var result = Surface.addAndReturnNew(s1, s2, SurfaceUnit.HECTARE);
 
         // check
         assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
@@ -221,19 +201,18 @@ public class SurfaceTest {
         assertEquals(value2, s2.getValue().doubleValue(), 0.0);
 
         assertEquals(SurfaceUnit.HECTARE, result.getUnit());
-        assertEquals((value1 + value2) * 1e-4,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 + value2) * 1e-4, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAddAndReturnNew2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAddAndReturnNew2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Surface s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
+        final var s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
 
-        final Surface result = s1.addAndReturnNew(value2, SurfaceUnit.SQUARE_METER, SurfaceUnit.HECTARE);
+        final var result = s1.addAndReturnNew(value2, SurfaceUnit.SQUARE_METER, SurfaceUnit.HECTARE);
 
         // check
         assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
@@ -245,35 +224,33 @@ public class SurfaceTest {
     }
 
     @Test
-    public void testAddAndReturnNew3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAddAndReturnNew3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Surface s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
+        final var s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
 
-        final Surface result = s1.addAndReturnNew(new BigDecimal(value2),
-                SurfaceUnit.SQUARE_METER, SurfaceUnit.HECTARE);
+        final var result = s1.addAndReturnNew(new BigDecimal(value2), SurfaceUnit.SQUARE_METER, SurfaceUnit.HECTARE);
 
         // check
         assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
         assertEquals(value1, s1.getValue().doubleValue(), 0.0);
 
         assertEquals(SurfaceUnit.HECTARE, result.getUnit());
-        assertEquals((value1 + value2) * 1e-4,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 + value2) * 1e-4, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAddAndReturnNew4() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAddAndReturnNew4() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Surface s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
-        final Surface s2 = new Surface(value2, SurfaceUnit.SQUARE_METER);
+        final var s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
+        final var s2 = new Surface(value2, SurfaceUnit.SQUARE_METER);
 
-        final Surface result = s1.addAndReturnNew(s2, SurfaceUnit.HECTARE);
+        final var result = s1.addAndReturnNew(s2, SurfaceUnit.HECTARE);
 
         // check
         assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
@@ -283,72 +260,68 @@ public class SurfaceTest {
         assertEquals(value2, s2.getValue().doubleValue(), 0.0);
 
         assertEquals(SurfaceUnit.HECTARE, result.getUnit());
-        assertEquals((value1 + value2) * 1e-4,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 + value2) * 1e-4, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAdd4() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd4() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Surface s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
+        final var s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
 
         s1.add(value2, SurfaceUnit.SQUARE_METER);
 
         // check
         assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
-        assertEquals(value1 + value2, s1.getValue().doubleValue(),
-                ERROR);
+        assertEquals(value1 + value2, s1.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAdd5() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd5() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Surface s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
+        final var s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
 
         s1.add(new BigDecimal(value2), SurfaceUnit.SQUARE_METER);
 
         // check
         assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
-        assertEquals(value1 + value2, s1.getValue().doubleValue(),
-                ERROR);
+        assertEquals(value1 + value2, s1.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAdd6() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd6() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Surface s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
-        final Surface s2 = new Surface(value2, SurfaceUnit.SQUARE_METER);
+        final var s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
+        final var s2 = new Surface(value2, SurfaceUnit.SQUARE_METER);
 
         s1.add(s2);
 
         // check
         assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
-        assertEquals(value1 + value2, s1.getValue().doubleValue(),
-                ERROR);
+        assertEquals(value1 + value2, s1.getValue().doubleValue(), ERROR);
 
         assertEquals(SurfaceUnit.SQUARE_METER, s2.getUnit());
         assertEquals(value2, s2.getValue().doubleValue(), 0.0);
     }
 
     @Test
-    public void testAdd7() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd7() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Surface s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
-        final Surface s2 = new Surface(value2, SurfaceUnit.SQUARE_METER);
+        final var s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
+        final var s2 = new Surface(value2, SurfaceUnit.SQUARE_METER);
 
-        final Surface result = new Surface(0.0, SurfaceUnit.HECTARE);
+        final var result = new Surface(0.0, SurfaceUnit.HECTARE);
         s1.add(s2, result);
 
         // check
@@ -359,46 +332,45 @@ public class SurfaceTest {
         assertEquals(value2, s2.getValue().doubleValue(), 0.0);
 
         assertEquals(SurfaceUnit.HECTARE, result.getUnit());
-        assertEquals((value1 + value2) * 1e-4,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 + value2) * 1e-4, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtract1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final double result = Surface.subtract(value1, SurfaceUnit.SQUARE_METER,
-                value2, SurfaceUnit.SQUARE_METER, SurfaceUnit.HECTARE);
+        final var result = Surface.subtract(value1, SurfaceUnit.SQUARE_METER, value2, SurfaceUnit.SQUARE_METER,
+                SurfaceUnit.HECTARE);
 
         // check
         assertEquals((value1 - value2) * 1e-4, result, ERROR);
     }
 
     @Test
-    public void testSubtract2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Number result = Surface.subtract(new BigDecimal(value1), SurfaceUnit.SQUARE_METER,
-                new BigDecimal(value2), SurfaceUnit.SQUARE_METER, SurfaceUnit.HECTARE);
+        final var result = Surface.subtract(new BigDecimal(value1), SurfaceUnit.SQUARE_METER, new BigDecimal(value2),
+                SurfaceUnit.SQUARE_METER, SurfaceUnit.HECTARE);
 
         // check
         assertEquals((value1 - value2) * 1e-4, result.doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtract3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Surface s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
-        final Surface s2 = new Surface(value2, SurfaceUnit.SQUARE_METER);
+        final var s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
+        final var s2 = new Surface(value2, SurfaceUnit.SQUARE_METER);
 
-        final Surface result = new Surface(0.0, SurfaceUnit.HECTARE);
+        final var result = new Surface(0.0, SurfaceUnit.HECTARE);
         Surface.subtract(s1, s2, result);
 
         // check
@@ -409,83 +381,78 @@ public class SurfaceTest {
         assertEquals(value2, s2.getValue().doubleValue(), 0.0);
 
         assertEquals(SurfaceUnit.HECTARE, result.getUnit());
-        assertEquals((value1 - value2) * 1e-4,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 - value2) * 1e-4, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtractAndReturnNew1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtractAndReturnNew1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Surface s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
-        final Surface s2 = new Surface(value2, SurfaceUnit.SQUARE_METER);
+        final var s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
+        final var s2 = new Surface(value2, SurfaceUnit.SQUARE_METER);
 
-        final Surface result = Surface.subtractAndReturnNew(s1, s2,
+        final var result = Surface.subtractAndReturnNew(s1, s2, SurfaceUnit.HECTARE);
+
+        // check
+        assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
+        assertEquals(value1, s1.getValue().doubleValue(), 0.0);
+
+        assertEquals(SurfaceUnit.SQUARE_METER, s2.getUnit());
+        assertEquals(value2, s2.getValue().doubleValue(), 0.0);
+
+        assertEquals(SurfaceUnit.HECTARE, result.getUnit());
+        assertEquals((value1 - value2) * 1e-4, result.getValue().doubleValue(), ERROR);
+    }
+
+    @Test
+    void testSubtractAndReturnNew2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
+
+        final var s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
+
+        final var result = s1.subtractAndReturnNew(value2, SurfaceUnit.SQUARE_METER, SurfaceUnit.HECTARE);
+
+        // check
+        assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
+        assertEquals(value1, s1.getValue().doubleValue(), 0.0);
+
+        assertEquals(SurfaceUnit.HECTARE, result.getUnit());
+        assertEquals((value1 - value2) * 1e-4, result.getValue().doubleValue(), ERROR);
+    }
+
+    @Test
+    void testSubtractAndReturnNew3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
+
+        final var s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
+
+        final var result = s1.subtractAndReturnNew(new BigDecimal(value2), SurfaceUnit.SQUARE_METER,
                 SurfaceUnit.HECTARE);
 
         // check
         assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
         assertEquals(value1, s1.getValue().doubleValue(), 0.0);
 
-        assertEquals(SurfaceUnit.SQUARE_METER, s2.getUnit());
-        assertEquals(value2, s2.getValue().doubleValue(), 0.0);
-
         assertEquals(SurfaceUnit.HECTARE, result.getUnit());
-        assertEquals((value1 - value2) * 1e-4,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 - value2) * 1e-4, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtractAndReturnNew2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtractAndReturnNew4() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Surface s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
+        final var s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
+        final var s2 = new Surface(value2, SurfaceUnit.SQUARE_METER);
 
-        final Surface result = s1.subtractAndReturnNew(value2, SurfaceUnit.SQUARE_METER, SurfaceUnit.HECTARE);
-
-        // check
-        assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
-        assertEquals(value1, s1.getValue().doubleValue(), 0.0);
-
-        assertEquals(SurfaceUnit.HECTARE, result.getUnit());
-        assertEquals((value1 - value2) * 1e-4,
-                result.getValue().doubleValue(), ERROR);
-    }
-
-    @Test
-    public void testSubtractAndReturnNew3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
-
-        final Surface s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
-
-        final Surface result = s1.subtractAndReturnNew(new BigDecimal(value2),
-                SurfaceUnit.SQUARE_METER, SurfaceUnit.HECTARE);
-
-        // check
-        assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
-        assertEquals(value1, s1.getValue().doubleValue(), 0.0);
-
-        assertEquals(SurfaceUnit.HECTARE, result.getUnit());
-        assertEquals((value1 - value2) * 1e-4,
-                result.getValue().doubleValue(), ERROR);
-    }
-
-    @Test
-    public void testSubtractAndReturnNew4() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
-
-        final Surface s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
-        final Surface s2 = new Surface(value2, SurfaceUnit.SQUARE_METER);
-
-        final Surface result = s1.subtractAndReturnNew(s2, SurfaceUnit.HECTARE);
+        final var result = s1.subtractAndReturnNew(s2, SurfaceUnit.HECTARE);
 
         // check
         assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
@@ -495,72 +462,68 @@ public class SurfaceTest {
         assertEquals(value2, s2.getValue().doubleValue(), 0.0);
 
         assertEquals(SurfaceUnit.HECTARE, result.getUnit());
-        assertEquals((value1 - value2) * 1e-4,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 - value2) * 1e-4, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtract4() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract4() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Surface s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
+        final var s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
 
         s1.subtract(value2, SurfaceUnit.SQUARE_METER);
 
         // check
         assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
-        assertEquals(value1 - value2, s1.getValue().doubleValue(),
-                ERROR);
+        assertEquals(value1 - value2, s1.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtract5() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract5() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Surface s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
+        final var s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
 
         s1.subtract(new BigDecimal(value2), SurfaceUnit.SQUARE_METER);
 
         // check
         assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
-        assertEquals(value1 - value2, s1.getValue().doubleValue(),
-                ERROR);
+        assertEquals(value1 - value2, s1.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtract6() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract6() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Surface s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
-        final Surface s2 = new Surface(value2, SurfaceUnit.SQUARE_METER);
+        final var s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
+        final var s2 = new Surface(value2, SurfaceUnit.SQUARE_METER);
 
         s1.subtract(s2);
 
         // check
         assertEquals(SurfaceUnit.SQUARE_METER, s1.getUnit());
-        assertEquals(value1 - value2, s1.getValue().doubleValue(),
-                ERROR);
+        assertEquals(value1 - value2, s1.getValue().doubleValue(), ERROR);
 
         assertEquals(SurfaceUnit.SQUARE_METER, s2.getUnit());
         assertEquals(value2, s2.getValue().doubleValue(), 0.0);
     }
 
     @Test
-    public void testSubtract7() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract7() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Surface s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
-        final Surface s2 = new Surface(value2, SurfaceUnit.SQUARE_METER);
+        final var s1 = new Surface(value1, SurfaceUnit.SQUARE_METER);
+        final var s2 = new Surface(value2, SurfaceUnit.SQUARE_METER);
 
-        final Surface result = new Surface(0.0, SurfaceUnit.HECTARE);
+        final var result = new Surface(0.0, SurfaceUnit.HECTARE);
         s1.subtract(s2, result);
 
         // check
@@ -571,17 +534,16 @@ public class SurfaceTest {
         assertEquals(value2, s2.getValue().doubleValue(), 0.0);
 
         assertEquals(SurfaceUnit.HECTARE, result.getUnit());
-        assertEquals((value1 - value2) * 1e-4,
-                result.getValue().doubleValue(), ERROR);
+        assertEquals((value1 - value2) * 1e-4, result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
-        final double value = new Random().nextDouble();
-        final Surface s1 = new Surface(value, SurfaceUnit.SQUARE_METER);
+    void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+        final var value = new Random().nextDouble();
+        final var s1 = new Surface(value, SurfaceUnit.SQUARE_METER);
 
-        final byte[] bytes = SerializationHelper.serialize(s1);
-        final Surface s2 = SerializationHelper.deserialize(bytes);
+        final var bytes = SerializationHelper.serialize(s1);
+        final var s2 = SerializationHelper.deserialize(bytes);
 
         assertEquals(s1, s2);
         assertNotSame(s1, s2);

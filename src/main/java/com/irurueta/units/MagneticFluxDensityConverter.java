@@ -68,9 +68,7 @@ public class MagneticFluxDensityConverter {
      * @param output output magnetic flux density where result will be stored and
      *               containing output unit.
      */
-    public static void convert(
-            final MagneticFluxDensity input,
-            final MagneticFluxDensity output) {
+    public static void convert(final MagneticFluxDensity input, final MagneticFluxDensity output) {
         convert(input, output.getUnit(), output);
     }
 
@@ -82,9 +80,8 @@ public class MagneticFluxDensityConverter {
      * @return converted magnetic flux density.
      */
     public static MagneticFluxDensity convertAndReturnNew(
-            final MagneticFluxDensity input,
-            final MagneticFluxDensityUnit outputUnit) {
-        final MagneticFluxDensity result = new MagneticFluxDensity();
+            final MagneticFluxDensity input, final MagneticFluxDensityUnit outputUnit) {
+        final var result = new MagneticFluxDensity();
         convert(input, outputUnit, result);
         return result;
     }
@@ -97,8 +94,7 @@ public class MagneticFluxDensityConverter {
      * @param outputUnit          requested output unit.
      */
     public static void convert(
-            final MagneticFluxDensity magneticFluxDensity,
-            final MagneticFluxDensityUnit outputUnit) {
+            final MagneticFluxDensity magneticFluxDensity, final MagneticFluxDensityUnit outputUnit) {
         convert(magneticFluxDensity, outputUnit, magneticFluxDensity);
     }
 
@@ -110,10 +106,9 @@ public class MagneticFluxDensityConverter {
      * @param result     magnetic flux density where result will be stored.
      */
     public static void convert(
-            final MagneticFluxDensity input,
-            final MagneticFluxDensityUnit outputUnit,
+            final MagneticFluxDensity input, final MagneticFluxDensityUnit outputUnit,
             final MagneticFluxDensity result) {
-        final Number value = convert(input.getValue(), input.getUnit(), outputUnit);
+        final var value = convert(input.getValue(), input.getUnit(), outputUnit);
         result.setValue(value);
         result.setUnit(outputUnit);
     }
@@ -128,10 +123,8 @@ public class MagneticFluxDensityConverter {
      * @return converted magnetic flux density value.
      */
     public static Number convert(
-            final Number input, final MagneticFluxDensityUnit inputUnit,
-            final MagneticFluxDensityUnit outputUnit) {
-        return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit,
-                outputUnit));
+            final Number input, final MagneticFluxDensityUnit inputUnit, final MagneticFluxDensityUnit outputUnit) {
+        return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit, outputUnit));
     }
 
     /**
@@ -144,56 +137,28 @@ public class MagneticFluxDensityConverter {
      * @return converted magnetic flux density value.
      */
     public static double convert(
-            final double input, final MagneticFluxDensityUnit inputUnit,
-            final MagneticFluxDensityUnit outputUnit) {
-        double tesla;
-
+            final double input, final MagneticFluxDensityUnit inputUnit, final MagneticFluxDensityUnit outputUnit) {
         // convert to Tesla
-        switch (inputUnit) {
-            case NANOTESLA:
-                tesla = nanoTeslaToTesla(input);
-                break;
-            case MICROTESLA:
-                tesla = microTeslaToTesla(input);
-                break;
-            case MILLITESLA:
-                tesla = milliTeslaToTesla(input);
-                break;
-            case KILOTESLA:
-                tesla = kiloTeslaToTesla(input);
-                break;
-            case MEGATESLA:
-                tesla = megaTeslaToTesla(input);
-                break;
-            case GIGATESLA:
-                tesla = gigaTeslaToTesla(input);
-                break;
+        final var tesla = switch (inputUnit) {
+            case NANOTESLA -> nanoTeslaToTesla(input);
+            case MICROTESLA -> microTeslaToTesla(input);
+            case MILLITESLA -> milliTeslaToTesla(input);
+            case KILOTESLA -> kiloTeslaToTesla(input);
+            case MEGATESLA -> megaTeslaToTesla(input);
+            case GIGATESLA -> gigaTeslaToTesla(input);
+            default -> input;
+        };
 
-            case TESLA:
-            default:
-                tesla = input;
-                break;
-        }
-
-        // convert from Tesla to required output unit
-        switch (outputUnit) {
-            case NANOTESLA:
-                return teslaToNanoTesla(tesla);
-            case MICROTESLA:
-                return teslaToMicroTesla(tesla);
-            case MILLITESLA:
-                return teslaToMilliTesla(tesla);
-            case KILOTESLA:
-                return teslaToKiloTesla(tesla);
-            case MEGATESLA:
-                return teslaToMegaTesla(tesla);
-            case GIGATESLA:
-                return teslaToGigaTesla(tesla);
-
-            case TESLA:
-            default:
-                return tesla;
-        }
+        // convert from Tesla to output unit
+        return switch (outputUnit) {
+            case NANOTESLA -> teslaToNanoTesla(tesla);
+            case MICROTESLA -> teslaToMicroTesla(tesla);
+            case MILLITESLA -> teslaToMilliTesla(tesla);
+            case KILOTESLA -> teslaToKiloTesla(tesla);
+            case MEGATESLA -> teslaToMegaTesla(tesla);
+            case GIGATESLA -> teslaToGigaTesla(tesla);
+            default -> tesla;
+        };
     }
 
     /**

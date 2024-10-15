@@ -15,15 +15,15 @@
  */
 package com.irurueta.units;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class UnitsExceptionTest {
+class UnitsExceptionTest {
 
     @Test
-    public void testConstructor() {
-        UnitsException ex = new UnitsException();
+    void testConstructor() {
+        var ex = new UnitsException();
         assertNotNull(ex);
 
         ex = new UnitsException("message");

@@ -48,13 +48,10 @@ public enum AccelerationUnit {
             throw new IllegalArgumentException();
         }
 
-        switch (unit) {
-            case FEET_PER_SQUARED_SECOND:
-                return UnitSystem.IMPERIAL;
-            case METERS_PER_SQUARED_SECOND:
-            case G:
-            default:
-                return UnitSystem.METRIC;
+        if (unit == FEET_PER_SQUARED_SECOND) {
+            return UnitSystem.IMPERIAL;
+        } else {
+            return UnitSystem.METRIC;
         }
     }
 

@@ -15,88 +15,65 @@
  */
 package com.irurueta.units;
 
-import org.junit.*;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class AccelerationUnitTest {
+class AccelerationUnitTest {
 
     @Test
-    public void testGetUnitSystem() {
-        assertEquals(UnitSystem.METRIC,
-                AccelerationUnit.getUnitSystem(AccelerationUnit.METERS_PER_SQUARED_SECOND));
-        assertEquals(UnitSystem.METRIC,
-                AccelerationUnit.getUnitSystem(AccelerationUnit.G));
-        assertEquals(UnitSystem.IMPERIAL,
-                AccelerationUnit.getUnitSystem(AccelerationUnit.FEET_PER_SQUARED_SECOND));
+    void testGetUnitSystem() {
+        assertEquals(UnitSystem.METRIC, AccelerationUnit.getUnitSystem(AccelerationUnit.METERS_PER_SQUARED_SECOND));
+        assertEquals(UnitSystem.METRIC, AccelerationUnit.getUnitSystem(AccelerationUnit.G));
+        assertEquals(UnitSystem.IMPERIAL, AccelerationUnit.getUnitSystem(AccelerationUnit.FEET_PER_SQUARED_SECOND));
 
         // Force IllegalArgumentException
-        try {
-            AccelerationUnit.getUnitSystem(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> AccelerationUnit.getUnitSystem(null));
     }
 
     @Test
-    public void testGetMetricUnits() {
-        final AccelerationUnit[] metricUnits = AccelerationUnit.getMetricUnits();
-        final AccelerationUnit[] imperialUnits = AccelerationUnit.getImperialUnits();
+    void testGetMetricUnits() {
+        final var metricUnits = AccelerationUnit.getMetricUnits();
+        final var imperialUnits = AccelerationUnit.getImperialUnits();
 
-        for (AccelerationUnit metricUnit : metricUnits) {
+        for (final var metricUnit : metricUnits) {
             assertTrue(AccelerationUnit.isMetric(metricUnit));
             assertFalse(AccelerationUnit.isImperial(metricUnit));
         }
 
-        assertEquals(metricUnits.length + imperialUnits.length,
-                AccelerationUnit.values().length);
+        assertEquals(metricUnits.length + imperialUnits.length, AccelerationUnit.values().length);
     }
 
     @Test
-    public void testGetImperialUnits() {
-        final AccelerationUnit[] metricUnits = AccelerationUnit.getMetricUnits();
-        final AccelerationUnit[] imperialUnits = AccelerationUnit.getImperialUnits();
+    void testGetImperialUnits() {
+        final var metricUnits = AccelerationUnit.getMetricUnits();
+        final var imperialUnits = AccelerationUnit.getImperialUnits();
 
-        for (AccelerationUnit imperialUnit : imperialUnits) {
+        for (final var imperialUnit : imperialUnits) {
             assertTrue(AccelerationUnit.isImperial(imperialUnit));
             assertFalse(AccelerationUnit.isMetric(imperialUnit));
         }
 
-        assertEquals(metricUnits.length + imperialUnits.length,
-                AccelerationUnit.values().length);
+        assertEquals(metricUnits.length + imperialUnits.length, AccelerationUnit.values().length);
     }
 
     @Test
-    public void testIsMetric() {
-        assertTrue(AccelerationUnit.isMetric(
-                AccelerationUnit.METERS_PER_SQUARED_SECOND));
+    void testIsMetric() {
+        assertTrue(AccelerationUnit.isMetric(AccelerationUnit.METERS_PER_SQUARED_SECOND));
         assertTrue(AccelerationUnit.isMetric(AccelerationUnit.G));
-        assertFalse(AccelerationUnit.isMetric(
-                AccelerationUnit.FEET_PER_SQUARED_SECOND));
+        assertFalse(AccelerationUnit.isMetric(AccelerationUnit.FEET_PER_SQUARED_SECOND));
 
         // Force IllegalArgumentException
-        try {
-            //noinspection ResultOfMethodCallIgnored
-            AccelerationUnit.isMetric(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> AccelerationUnit.isMetric(null));
     }
 
     @Test
-    public void testIsImperial() {
-        assertFalse(AccelerationUnit.isImperial(
-                AccelerationUnit.METERS_PER_SQUARED_SECOND));
+    void testIsImperial() {
+        assertFalse(AccelerationUnit.isImperial(AccelerationUnit.METERS_PER_SQUARED_SECOND));
         assertFalse(AccelerationUnit.isImperial(AccelerationUnit.G));
-        assertTrue(AccelerationUnit.isImperial(
-                AccelerationUnit.FEET_PER_SQUARED_SECOND));
+        assertTrue(AccelerationUnit.isImperial(AccelerationUnit.FEET_PER_SQUARED_SECOND));
 
         // Force IllegalArgumentException
-        try {
-            //noinspection ResultOfMethodCallIgnored
-            AccelerationUnit.isImperial(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> AccelerationUnit.isImperial(null));
     }
 }

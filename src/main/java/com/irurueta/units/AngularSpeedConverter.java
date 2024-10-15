@@ -39,8 +39,7 @@ public class AngularSpeedConverter {
      * @param output output angular speed where result will be stored and
      *               containing output unit.
      */
-    public static void convert(
-            final AngularSpeed input, final AngularSpeed output) {
+    public static void convert(final AngularSpeed input, final AngularSpeed output) {
         convert(input, output.getUnit(), output);
     }
 
@@ -51,9 +50,8 @@ public class AngularSpeedConverter {
      * @param outputUnit requested output unit.
      * @return converted angular speed.
      */
-    public static AngularSpeed convertAndReturnNew(
-            final AngularSpeed input, final AngularSpeedUnit outputUnit) {
-        final AngularSpeed result = new AngularSpeed();
+    public static AngularSpeed convertAndReturnNew(final AngularSpeed input, final AngularSpeedUnit outputUnit) {
+        final var result = new AngularSpeed();
         convert(input, outputUnit, result);
         return result;
     }
@@ -64,8 +62,7 @@ public class AngularSpeedConverter {
      * @param angularSpeed input angular speed to be converted and updated.
      * @param outputUnit   requested output unit.
      */
-    public static void convert(
-            final AngularSpeed angularSpeed, final AngularSpeedUnit outputUnit) {
+    public static void convert(final AngularSpeed angularSpeed, final AngularSpeedUnit outputUnit) {
         convert(angularSpeed, outputUnit, angularSpeed);
     }
 
@@ -77,9 +74,8 @@ public class AngularSpeedConverter {
      * @param result     angular speed instance where result will be stored.
      */
     public static void convert(
-            final AngularSpeed input, final AngularSpeedUnit outputUnit,
-            final AngularSpeed result) {
-        final Number value = convert(input.getValue(), input.getUnit(), outputUnit);
+            final AngularSpeed input, final AngularSpeedUnit outputUnit, final AngularSpeed result) {
+        final var value = convert(input.getValue(), input.getUnit(), outputUnit);
         result.setValue(value);
         result.setUnit(outputUnit);
     }
@@ -93,8 +89,7 @@ public class AngularSpeedConverter {
      * @return converted angular speed value.
      */
     public static Number convert(
-            final Number input, final AngularSpeedUnit inputUnit,
-            final AngularSpeedUnit outputUnit) {
+            final Number input, final AngularSpeedUnit inputUnit, final AngularSpeedUnit outputUnit) {
         return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit, outputUnit));
     }
 
@@ -108,28 +103,20 @@ public class AngularSpeedConverter {
      */
     @SuppressWarnings("Duplicates")
     public static double convert(
-            final double input, final AngularSpeedUnit inputUnit,
-            final AngularSpeedUnit outputUnit) {
-        double radiansPerSecond;
-
+            final double input, final AngularSpeedUnit inputUnit, final AngularSpeedUnit outputUnit) {
         //convert to radians per second
-        switch (inputUnit) {
-            case DEGREES_PER_SECOND:
-                radiansPerSecond = Math.toRadians(input);
-                break;
-            case RADIANS_PER_SECOND:
-            default:
-                radiansPerSecond = input;
-                break;
+        double radiansPerSecond;
+        if (inputUnit == AngularSpeedUnit.DEGREES_PER_SECOND) {
+            radiansPerSecond = Math.toRadians(input);
+        } else {
+            radiansPerSecond = input;
         }
 
         //convert from radians per second to required output unit
-        switch (outputUnit) {
-            case DEGREES_PER_SECOND:
-                return Math.toDegrees(radiansPerSecond);
-            case RADIANS_PER_SECOND:
-            default:
-                return radiansPerSecond;
+        if (outputUnit == AngularSpeedUnit.DEGREES_PER_SECOND) {
+            return Math.toDegrees(radiansPerSecond);
+        } else {
+            return radiansPerSecond;
         }
     }
 
@@ -139,8 +126,7 @@ public class AngularSpeedConverter {
      * @param degreesPerSecond degrees per second value.
      * @return same angular speed converted to radians per second.
      */
-    public static double degreesPerSecondToRadiansPerSecond(
-            final double degreesPerSecond) {
+    public static double degreesPerSecondToRadiansPerSecond(final double degreesPerSecond) {
         return Math.toRadians(degreesPerSecond);
     }
 
@@ -150,8 +136,7 @@ public class AngularSpeedConverter {
      * @param radiansPerSecond radians per second value.
      * @return same angular speed converted to degrees per second.
      */
-    public static double radiansPerSecondToDegreesPerSecond(
-            final double radiansPerSecond) {
+    public static double radiansPerSecondToDegreesPerSecond(final double radiansPerSecond) {
         return Math.toDegrees(radiansPerSecond);
     }
 }

@@ -29,8 +29,7 @@ public class MagneticFluxDensity extends Measurement<MagneticFluxDensityUnit> {
      * @param unit  unit of magnetic flux density.
      * @throws IllegalArgumentException if either value or unit is null.
      */
-    public MagneticFluxDensity(
-            final Number value, final MagneticFluxDensityUnit unit) {
+    public MagneticFluxDensity(final Number value, final MagneticFluxDensityUnit unit) {
         super(value, unit);
     }
 
@@ -50,9 +49,7 @@ public class MagneticFluxDensity extends Measurement<MagneticFluxDensityUnit> {
      * @return true if provided magnetic flux density is assumed ot be equal to this instance, false otherwise.
      */
     @Override
-    public boolean equals(
-            final Measurement<MagneticFluxDensityUnit> other,
-            final double tolerance) {
+    public boolean equals(final Measurement<MagneticFluxDensityUnit> other, final double tolerance) {
         if (super.equals(other, tolerance)) {
             return true;
         }
@@ -62,8 +59,7 @@ public class MagneticFluxDensity extends Measurement<MagneticFluxDensityUnit> {
             return false;
         }
 
-        final double otherValue = MagneticFluxDensityConverter.convert(
-                other.getValue().doubleValue(),
+        final var otherValue = MagneticFluxDensityConverter.convert(other.getValue().doubleValue(),
                 other.getUnit(), getUnit());
         return Math.abs(getValue().doubleValue() - otherValue) <= tolerance;
     }
@@ -82,10 +78,8 @@ public class MagneticFluxDensity extends Measurement<MagneticFluxDensityUnit> {
             final double value1, final MagneticFluxDensityUnit unit1,
             final double value2, final MagneticFluxDensityUnit unit2,
             final MagneticFluxDensityUnit resultUnit) {
-        final double v1 = MagneticFluxDensityConverter.convert(value1,
-                unit1, resultUnit);
-        final double v2 = MagneticFluxDensityConverter.convert(value2,
-                unit2, resultUnit);
+        final var v1 = MagneticFluxDensityConverter.convert(value1, unit1, resultUnit);
+        final var v2 = MagneticFluxDensityConverter.convert(value2, unit2, resultUnit);
         return v1 + v2;
     }
 
@@ -103,8 +97,7 @@ public class MagneticFluxDensity extends Measurement<MagneticFluxDensityUnit> {
             final Number value1, final MagneticFluxDensityUnit unit1,
             final Number value2, final MagneticFluxDensityUnit unit2,
             final MagneticFluxDensityUnit resultUnit) {
-        return BigDecimal.valueOf(add(value1.doubleValue(), unit1,
-                value2.doubleValue(), unit2, resultUnit));
+        return BigDecimal.valueOf(add(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));
     }
 
     /**
@@ -116,10 +109,8 @@ public class MagneticFluxDensity extends Measurement<MagneticFluxDensityUnit> {
      * @param result instance where result will be stored.
      */
     public static void add(
-            final MagneticFluxDensity arg1, final MagneticFluxDensity arg2,
-            final MagneticFluxDensity result) {
-        result.setValue(add(arg1.getValue(), arg1.getUnit(),
-                arg2.getValue(), arg2.getUnit(), result.getUnit()));
+            final MagneticFluxDensity arg1, final MagneticFluxDensity arg2, final MagneticFluxDensity result) {
+        result.setValue(add(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));
     }
 
     /**
@@ -131,9 +122,8 @@ public class MagneticFluxDensity extends Measurement<MagneticFluxDensityUnit> {
      * @return a new instance containing result.
      */
     public static MagneticFluxDensity addAndReturnNew(
-            final MagneticFluxDensity arg1, final MagneticFluxDensity arg2,
-            final MagneticFluxDensityUnit unit) {
-        final MagneticFluxDensity result = new MagneticFluxDensity();
+            final MagneticFluxDensity arg1, final MagneticFluxDensity arg2, final MagneticFluxDensityUnit unit) {
+        final var result = new MagneticFluxDensity();
         result.setUnit(unit);
         add(arg1, arg2, result);
         return result;
@@ -149,12 +139,10 @@ public class MagneticFluxDensity extends Measurement<MagneticFluxDensityUnit> {
      * @return a new magnetic flux density containing result.
      */
     public MagneticFluxDensity addAndReturnNew(
-            final double value, final MagneticFluxDensityUnit unit,
-            final MagneticFluxDensityUnit resultUnit) {
-        final MagneticFluxDensity result = new MagneticFluxDensity();
+            final double value, final MagneticFluxDensityUnit unit, final MagneticFluxDensityUnit resultUnit) {
+        final var result = new MagneticFluxDensity();
         result.setUnit(resultUnit);
-        result.setValue(add(getValue().doubleValue(), getUnit(),
-                value, unit, resultUnit));
+        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 
@@ -168,9 +156,8 @@ public class MagneticFluxDensity extends Measurement<MagneticFluxDensityUnit> {
      * @return a new frequency containing result.
      */
     public MagneticFluxDensity addAndReturnNew(
-            final Number value, final MagneticFluxDensityUnit unit,
-            final MagneticFluxDensityUnit resultUnit) {
-        final MagneticFluxDensity result = new MagneticFluxDensity();
+            final Number value, final MagneticFluxDensityUnit unit, final MagneticFluxDensityUnit resultUnit) {
+        final var result = new MagneticFluxDensity();
         result.setUnit(resultUnit);
         result.setValue(add(getValue(), getUnit(), value, unit, resultUnit));
         return result;
@@ -184,8 +171,7 @@ public class MagneticFluxDensity extends Measurement<MagneticFluxDensityUnit> {
      * @param unit unit of returned magnetic flux density.
      * @return a new magnetic flux density containing result.
      */
-    public MagneticFluxDensity addAndReturnNew(
-            final MagneticFluxDensity b, final MagneticFluxDensityUnit unit) {
+    public MagneticFluxDensity addAndReturnNew(final MagneticFluxDensity b, final MagneticFluxDensityUnit unit) {
         return addAndReturnNew(this, b, unit);
     }
 
@@ -228,8 +214,7 @@ public class MagneticFluxDensity extends Measurement<MagneticFluxDensityUnit> {
      * @param b      magnetic flux density to be added.
      * @param result instance where result will be stored.
      */
-    public void add(final MagneticFluxDensity b,
-                    final MagneticFluxDensity result) {
+    public void add(final MagneticFluxDensity b, final MagneticFluxDensity result) {
         add(this, b, result);
     }
 
@@ -248,10 +233,8 @@ public class MagneticFluxDensity extends Measurement<MagneticFluxDensityUnit> {
             final double value1, final MagneticFluxDensityUnit unit1,
             final double value2, final MagneticFluxDensityUnit unit2,
             final MagneticFluxDensityUnit resultUnit) {
-        final double v1 = MagneticFluxDensityConverter.convert(value1,
-                unit1, resultUnit);
-        final double v2 = MagneticFluxDensityConverter.convert(value2,
-                unit2, resultUnit);
+        final var v1 = MagneticFluxDensityConverter.convert(value1, unit1, resultUnit);
+        final var v2 = MagneticFluxDensityConverter.convert(value2, unit2, resultUnit);
         return v1 - v2;
     }
 
@@ -270,8 +253,7 @@ public class MagneticFluxDensity extends Measurement<MagneticFluxDensityUnit> {
             final Number value1, final MagneticFluxDensityUnit unit1,
             final Number value2, final MagneticFluxDensityUnit unit2,
             final MagneticFluxDensityUnit resultUnit) {
-        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1,
-                value2.doubleValue(), unit2, resultUnit));
+        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));
     }
 
     /**
@@ -283,10 +265,8 @@ public class MagneticFluxDensity extends Measurement<MagneticFluxDensityUnit> {
      * @param result instance where result will be stored.
      */
     public static void subtract(
-            final MagneticFluxDensity arg1, final MagneticFluxDensity arg2,
-            final MagneticFluxDensity result) {
-        result.setValue(subtract(arg1.getValue(), arg1.getUnit(),
-                arg2.getValue(), arg2.getUnit(), result.getUnit()));
+            final MagneticFluxDensity arg1, final MagneticFluxDensity arg2, final MagneticFluxDensity result) {
+        result.setValue(subtract(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));
     }
 
     /**
@@ -298,9 +278,8 @@ public class MagneticFluxDensity extends Measurement<MagneticFluxDensityUnit> {
      * @return a new instance containing result.
      */
     public static MagneticFluxDensity subtractAndReturnNew(
-            final MagneticFluxDensity arg1, final MagneticFluxDensity arg2,
-            final MagneticFluxDensityUnit unit) {
-        final MagneticFluxDensity result = new MagneticFluxDensity();
+            final MagneticFluxDensity arg1, final MagneticFluxDensity arg2, final MagneticFluxDensityUnit unit) {
+        final var result = new MagneticFluxDensity();
         result.setUnit(unit);
         subtract(arg1, arg2, result);
         return result;
@@ -316,13 +295,10 @@ public class MagneticFluxDensity extends Measurement<MagneticFluxDensityUnit> {
      * @return a new magnetic flux density containing result.
      */
     public MagneticFluxDensity subtractAndReturnNew(
-            final double value, final MagneticFluxDensityUnit unit,
-            final MagneticFluxDensityUnit resultUnit) {
-        final MagneticFluxDensity result = new MagneticFluxDensity();
+            final double value, final MagneticFluxDensityUnit unit, final MagneticFluxDensityUnit resultUnit) {
+        final var result = new MagneticFluxDensity();
         result.setUnit(resultUnit);
-        result.setValue(subtract(getValue().doubleValue(), getUnit(),
-                value, unit,
-                resultUnit));
+        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 
@@ -336,12 +312,10 @@ public class MagneticFluxDensity extends Measurement<MagneticFluxDensityUnit> {
      * @return a new magnetic flux density containing result.
      */
     public MagneticFluxDensity subtractAndReturnNew(
-            final Number value, final MagneticFluxDensityUnit unit,
-            final MagneticFluxDensityUnit resultUnit) {
-        final MagneticFluxDensity result = new MagneticFluxDensity();
+            final Number value, final MagneticFluxDensityUnit unit, final MagneticFluxDensityUnit resultUnit) {
+        final var result = new MagneticFluxDensity();
         result.setUnit(resultUnit);
-        result.setValue(subtract(getValue(), getUnit(), value, unit,
-                resultUnit));
+        result.setValue(subtract(getValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 
@@ -353,8 +327,7 @@ public class MagneticFluxDensity extends Measurement<MagneticFluxDensityUnit> {
      * @param unit unit of returned magnetic flux density.
      * @return a new magnetic flux density containing result.
      */
-    public MagneticFluxDensity subtractAndReturnNew(
-            final MagneticFluxDensity b, final MagneticFluxDensityUnit unit) {
+    public MagneticFluxDensity subtractAndReturnNew(final MagneticFluxDensity b, final MagneticFluxDensityUnit unit) {
         return subtractAndReturnNew(this, b, unit);
     }
 
@@ -365,8 +338,7 @@ public class MagneticFluxDensity extends Measurement<MagneticFluxDensityUnit> {
      * @param value magnetic flux density value to be subtracted.
      * @param unit  unit of magnetic flux density value.
      */
-    public void subtract(
-            final double value, final MagneticFluxDensityUnit unit) {
+    public void subtract(final double value, final MagneticFluxDensityUnit unit) {
         setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));
     }
 
@@ -377,8 +349,7 @@ public class MagneticFluxDensity extends Measurement<MagneticFluxDensityUnit> {
      * @param value magnetic flux density value to be subtracted.
      * @param unit  unit of magnetic flux density value.
      */
-    public void subtract(
-            final Number value, final MagneticFluxDensityUnit unit) {
+    public void subtract(final Number value, final MagneticFluxDensityUnit unit) {
         setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));
     }
 
@@ -399,8 +370,7 @@ public class MagneticFluxDensity extends Measurement<MagneticFluxDensityUnit> {
      * @param b      magnetic flux density to be subtracted.
      * @param result instance where result will be stored.
      */
-    public void subtract(
-            final MagneticFluxDensity b, final MagneticFluxDensity result) {
+    public void subtract(final MagneticFluxDensity b, final MagneticFluxDensity result) {
         subtract(this, b, result);
     }
 }

@@ -15,14 +15,14 @@
  */
 package com.irurueta.units;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class WeightUnitTest {
+class WeightUnitTest {
 
     @Test
-    public void testGetUnitSystem() {
+    void testGetUnitSystem() {
         assertEquals(UnitSystem.IMPERIAL, WeightUnit.getUnitSystem(WeightUnit.US_TON));
         assertEquals(UnitSystem.IMPERIAL, WeightUnit.getUnitSystem(WeightUnit.UK_TON));
         assertEquals(UnitSystem.IMPERIAL, WeightUnit.getUnitSystem(WeightUnit.POUND));
@@ -37,19 +37,15 @@ public class WeightUnitTest {
         assertEquals(UnitSystem.METRIC, WeightUnit.getUnitSystem(WeightUnit.MEGATONNE));
 
         // Force IllegalArgumentException
-        try {
-            WeightUnit.getUnitSystem(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> WeightUnit.getUnitSystem(null));
     }
 
     @Test
-    public void testGetMetricUnits() {
-        final WeightUnit[] metricUnits = WeightUnit.getMetricUnits();
-        final WeightUnit[] imperialUnits = WeightUnit.getImperialUnits();
+    void testGetMetricUnits() {
+        final var metricUnits = WeightUnit.getMetricUnits();
+        final var imperialUnits = WeightUnit.getImperialUnits();
 
-        for (final WeightUnit metricUnit : metricUnits) {
+        for (final var metricUnit : metricUnits) {
             assertTrue(WeightUnit.isMetric(metricUnit));
             assertFalse(WeightUnit.isImperial(metricUnit));
         }
@@ -58,11 +54,11 @@ public class WeightUnitTest {
     }
 
     @Test
-    public void testGetImperialUnits() {
-        final WeightUnit[] metricUnits = WeightUnit.getMetricUnits();
-        final WeightUnit[] imperialUnits = WeightUnit.getImperialUnits();
+    void testGetImperialUnits() {
+        final var metricUnits = WeightUnit.getMetricUnits();
+        final var imperialUnits = WeightUnit.getImperialUnits();
 
-        for (final WeightUnit imperialUnit : imperialUnits) {
+        for (final var imperialUnit : imperialUnits) {
             assertTrue(WeightUnit.isImperial(imperialUnit));
             assertFalse(WeightUnit.isMetric(imperialUnit));
         }
@@ -71,7 +67,7 @@ public class WeightUnitTest {
     }
 
     @Test
-    public void testIsMetric() {
+    void testIsMetric() {
         assertTrue(WeightUnit.isMetric(WeightUnit.PICOGRAM));
         assertTrue(WeightUnit.isMetric(WeightUnit.NANOGRAM));
         assertTrue(WeightUnit.isMetric(WeightUnit.MICROGRAM));
@@ -87,16 +83,11 @@ public class WeightUnitTest {
         assertFalse(WeightUnit.isMetric(WeightUnit.OUNCE));
 
         // Force IllegalArgumentException
-        try {
-            //noinspection ResultOfMethodCallIgnored
-            WeightUnit.isMetric(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> WeightUnit.isMetric(null));
     }
 
     @Test
-    public void testIsImperial() {
+    void testIsImperial() {
         assertFalse(WeightUnit.isImperial(WeightUnit.PICOGRAM));
         assertFalse(WeightUnit.isImperial(WeightUnit.NANOGRAM));
         assertFalse(WeightUnit.isImperial(WeightUnit.MICROGRAM));
@@ -112,11 +103,6 @@ public class WeightUnitTest {
         assertTrue(WeightUnit.isImperial(WeightUnit.OUNCE));
 
         // Force IllegalArgumentException
-        try {
-            //noinspection ResultOfMethodCallIgnored
-            WeightUnit.isImperial(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> WeightUnit.isImperial(null));
     }
 }

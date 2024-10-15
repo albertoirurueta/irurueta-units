@@ -60,9 +60,7 @@ public class Temperature extends Measurement<TemperatureUnit> {
             return false;
         }
 
-        final double otherValue = TemperatureConverter.convert(
-                other.getValue().doubleValue(),
-                other.getUnit(), getUnit());
+        final var otherValue = TemperatureConverter.convert(other.getValue().doubleValue(), other.getUnit(), getUnit());
         return Math.abs(getValue().doubleValue() - otherValue) <= tolerance;
     }
 
@@ -81,7 +79,7 @@ public class Temperature extends Measurement<TemperatureUnit> {
             final double value2, final TemperatureUnit unit2,
             final TemperatureUnit resultUnit) {
         // 1st convert both values to common unit1
-        final double v2 = TemperatureConverter.convert(value2, unit2, unit1);
+        final var v2 = TemperatureConverter.convert(value2, unit2, unit1);
 
         // then add and convert to result unit
         return TemperatureConverter.convert(value1 + v2, unit1, resultUnit);
@@ -101,8 +99,7 @@ public class Temperature extends Measurement<TemperatureUnit> {
             final Number value1, final TemperatureUnit unit1,
             final Number value2, final TemperatureUnit unit2,
             final TemperatureUnit resultUnit) {
-        return BigDecimal.valueOf(add(value1.doubleValue(), unit1,
-                value2.doubleValue(), unit2, resultUnit));
+        return BigDecimal.valueOf(add(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));
     }
 
     /**
@@ -112,11 +109,8 @@ public class Temperature extends Measurement<TemperatureUnit> {
      * @param arg2   2nd argument.
      * @param result instance where result will be stored.
      */
-    public static void add(
-            final Temperature arg1, final Temperature arg2,
-            final Temperature result) {
-        result.setValue(add(arg1.getValue(), arg1.getUnit(),
-                arg2.getValue(), arg2.getUnit(), result.getUnit()));
+    public static void add(final Temperature arg1, final Temperature arg2, final Temperature result) {
+        result.setValue(add(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));
     }
 
     /**
@@ -127,10 +121,8 @@ public class Temperature extends Measurement<TemperatureUnit> {
      * @param unit unit of returned temperature.
      * @return a new instance containing result.
      */
-    public static Temperature addAndReturnNew(
-            final Temperature arg1, final Temperature arg2,
-            final TemperatureUnit unit) {
-        final Temperature result = new Temperature();
+    public static Temperature addAndReturnNew(final Temperature arg1, final Temperature arg2, final TemperatureUnit unit) {
+        final var result = new Temperature();
         result.setUnit(unit);
         add(arg1, arg2, result);
         return result;
@@ -146,12 +138,10 @@ public class Temperature extends Measurement<TemperatureUnit> {
      * @return a new temperature containing result.
      */
     public Temperature addAndReturnNew(
-            final double value, final TemperatureUnit unit,
-            final TemperatureUnit resultUnit) {
-        final Temperature result = new Temperature();
+            final double value, final TemperatureUnit unit, final TemperatureUnit resultUnit) {
+        final var result = new Temperature();
         result.setUnit(resultUnit);
-        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit,
-                resultUnit));
+        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 
@@ -165,9 +155,8 @@ public class Temperature extends Measurement<TemperatureUnit> {
      * @return a new temperature containing result.
      */
     public Temperature addAndReturnNew(
-            final Number value, final TemperatureUnit unit,
-            final TemperatureUnit resultUnit) {
-        final Temperature result = new Temperature();
+            final Number value, final TemperatureUnit unit, final TemperatureUnit resultUnit) {
+        final var result = new Temperature();
         result.setUnit(resultUnit);
         result.setValue(add(getValue(), getUnit(), value, unit, resultUnit));
         return result;
@@ -181,8 +170,7 @@ public class Temperature extends Measurement<TemperatureUnit> {
      * @param unit unit of returned temperature.
      * @return a new temperature containing result.
      */
-    public Temperature addAndReturnNew(
-            final Temperature t, final TemperatureUnit unit) {
+    public Temperature addAndReturnNew(final Temperature t, final TemperatureUnit unit) {
         return addAndReturnNew(this, t, unit);
     }
 
@@ -243,7 +231,7 @@ public class Temperature extends Measurement<TemperatureUnit> {
             final double value2, final TemperatureUnit unit2,
             final TemperatureUnit resultUnit) {
         // 1st convert both values to common uni1
-        final double v2 = TemperatureConverter.convert(value2, unit2, unit1);
+        final var v2 = TemperatureConverter.convert(value2, unit2, unit1);
 
         // then subtract and convert to result unit
         return TemperatureConverter.convert(value1 - v2, unit1, resultUnit);
@@ -263,8 +251,7 @@ public class Temperature extends Measurement<TemperatureUnit> {
             final Number value1, final TemperatureUnit unit1,
             final Number value2, final TemperatureUnit unit2,
             final TemperatureUnit resultUnit) {
-        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1,
-                value2.doubleValue(), unit2, resultUnit));
+        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));
     }
 
     /**
@@ -275,11 +262,8 @@ public class Temperature extends Measurement<TemperatureUnit> {
      * @param arg2   2nd argument.
      * @param result instance where result will be stored.
      */
-    public static void subtract(
-            final Temperature arg1, final Temperature arg2,
-            final Temperature result) {
-        result.setValue(subtract(arg1.getValue(), arg1.getUnit(),
-                arg2.getValue(), arg2.getUnit(), result.getUnit()));
+    public static void subtract(final Temperature arg1, final Temperature arg2, final Temperature result) {
+        result.setValue(subtract(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));
     }
 
     /**
@@ -291,9 +275,8 @@ public class Temperature extends Measurement<TemperatureUnit> {
      * @return a new instance containing result.
      */
     public static Temperature subtractAndReturnNew(
-            final Temperature arg1, final Temperature arg2,
-            final TemperatureUnit unit) {
-        final Temperature result = new Temperature();
+            final Temperature arg1, final Temperature arg2, final TemperatureUnit unit) {
+        final var result = new Temperature();
         result.setUnit(unit);
         subtract(arg1, arg2, result);
         return result;
@@ -309,12 +292,10 @@ public class Temperature extends Measurement<TemperatureUnit> {
      * @return a new temperature containing result.
      */
     public Temperature subtractAndReturnNew(
-            final double value, final TemperatureUnit unit,
-            final TemperatureUnit resultUnit) {
-        final Temperature result = new Temperature();
+            final double value, final TemperatureUnit unit, final TemperatureUnit resultUnit) {
+        final var result = new Temperature();
         result.setUnit(resultUnit);
-        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit,
-                resultUnit));
+        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 
@@ -328,9 +309,8 @@ public class Temperature extends Measurement<TemperatureUnit> {
      * @return a new temperature containing result.
      */
     public Temperature subtractAndReturnNew(
-            final Number value, final TemperatureUnit unit,
-            final TemperatureUnit resultUnit) {
-        final Temperature result = new Temperature();
+            final Number value, final TemperatureUnit unit, final TemperatureUnit resultUnit) {
+        final var result = new Temperature();
         result.setUnit(resultUnit);
         result.setValue(subtract(getValue(), getUnit(), value, unit, resultUnit));
         return result;
@@ -344,8 +324,7 @@ public class Temperature extends Measurement<TemperatureUnit> {
      * @param unit unit of returned temperature.
      * @return a new temperature containing result.
      */
-    public Temperature subtractAndReturnNew(
-            final Temperature t, final TemperatureUnit unit) {
+    public Temperature subtractAndReturnNew(final Temperature t, final TemperatureUnit unit) {
         return subtractAndReturnNew(this, t, unit);
     }
 

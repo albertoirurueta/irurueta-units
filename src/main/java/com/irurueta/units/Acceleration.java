@@ -50,9 +50,7 @@ public class Acceleration extends Measurement<AccelerationUnit> {
      * @return true if provided acceleration is assumed to be equal to this instance, false otherwise.
      */
     @Override
-    public boolean equals(
-            final Measurement<AccelerationUnit> other,
-            final double tolerance) {
+    public boolean equals(final Measurement<AccelerationUnit> other, final double tolerance) {
         if (super.equals(other, tolerance)) {
             return true;
         }
@@ -62,7 +60,7 @@ public class Acceleration extends Measurement<AccelerationUnit> {
             return false;
         }
 
-        final double otherValue = AccelerationConverter.convert(other.getValue().doubleValue(),
+        final var otherValue = AccelerationConverter.convert(other.getValue().doubleValue(),
                 other.getUnit(), getUnit());
         return Math.abs(getValue().doubleValue() - otherValue) <= tolerance;
     }
@@ -80,8 +78,8 @@ public class Acceleration extends Measurement<AccelerationUnit> {
     public static double add(final double value1, final AccelerationUnit unit1,
                              final double value2, final AccelerationUnit unit2,
                              final AccelerationUnit resultUnit) {
-        final double v1 = AccelerationConverter.convert(value1, unit1, resultUnit);
-        final double v2 = AccelerationConverter.convert(value2, unit2, resultUnit);
+        final var v1 = AccelerationConverter.convert(value1, unit1, resultUnit);
+        final var v2 = AccelerationConverter.convert(value2, unit2, resultUnit);
         return v1 + v2;
     }
 
@@ -98,8 +96,7 @@ public class Acceleration extends Measurement<AccelerationUnit> {
     public static Number add(final Number value1, final AccelerationUnit unit1,
                              final Number value2, final AccelerationUnit unit2,
                              final AccelerationUnit resultUnit) {
-        return BigDecimal.valueOf(add(value1.doubleValue(), unit1,
-                value2.doubleValue(), unit2, resultUnit));
+        return BigDecimal.valueOf(add(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));
     }
 
     /**
@@ -110,8 +107,7 @@ public class Acceleration extends Measurement<AccelerationUnit> {
      * @param result instance where result will be stored.
      */
     public static void add(final Acceleration arg1, final Acceleration arg2, final Acceleration result) {
-        result.setValue(add(arg1.getValue(), arg1.getUnit(),
-                arg2.getValue(), arg2.getUnit(), result.getUnit()));
+        result.setValue(add(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));
     }
 
     /**
@@ -122,9 +118,9 @@ public class Acceleration extends Measurement<AccelerationUnit> {
      * @param unit unit of returned acceleration.
      * @return a new instance containing result.
      */
-    public static Acceleration addAndReturnNew(final Acceleration arg1, final Acceleration arg2,
-                                               final AccelerationUnit unit) {
-        final Acceleration result = new Acceleration();
+    public static Acceleration addAndReturnNew(
+            final Acceleration arg1, final Acceleration arg2, final AccelerationUnit unit) {
+        final var result = new Acceleration();
         result.setUnit(unit);
         add(arg1, arg2, result);
         return result;
@@ -138,12 +134,11 @@ public class Acceleration extends Measurement<AccelerationUnit> {
      * @param resultUnit unit of returned acceleration.
      * @return a new acceleration containing result.
      */
-    public Acceleration addAndReturnNew(final double value, final AccelerationUnit unit,
-                                        final AccelerationUnit resultUnit) {
-        final Acceleration result = new Acceleration();
+    public Acceleration addAndReturnNew(
+            final double value, final AccelerationUnit unit, final AccelerationUnit resultUnit) {
+        final var result = new Acceleration();
         result.setUnit(resultUnit);
-        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit,
-                resultUnit));
+        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 
@@ -155,9 +150,9 @@ public class Acceleration extends Measurement<AccelerationUnit> {
      * @param resultUnit unit of returned acceleration.
      * @return a new acceleration containing result.
      */
-    public Acceleration addAndReturnNew(final Number value, final AccelerationUnit unit,
-                                        final AccelerationUnit resultUnit) {
-        final Acceleration result = new Acceleration();
+    public Acceleration addAndReturnNew(
+            final Number value, final AccelerationUnit unit, final AccelerationUnit resultUnit) {
+        final var result = new Acceleration();
         result.setUnit(resultUnit);
         result.setValue(add(getValue(), getUnit(), value, unit, resultUnit));
         return result;
@@ -226,8 +221,8 @@ public class Acceleration extends Measurement<AccelerationUnit> {
     public static double subtract(final double value1, final AccelerationUnit unit1,
                                   final double value2, final AccelerationUnit unit2,
                                   final AccelerationUnit resultUnit) {
-        final double v1 = AccelerationConverter.convert(value1, unit1, resultUnit);
-        final double v2 = AccelerationConverter.convert(value2, unit2, resultUnit);
+        final var v1 = AccelerationConverter.convert(value1, unit1, resultUnit);
+        final var v2 = AccelerationConverter.convert(value2, unit2, resultUnit);
         return v1 - v2;
     }
 
@@ -257,8 +252,7 @@ public class Acceleration extends Measurement<AccelerationUnit> {
      */
     public static void subtract(final Acceleration arg1, final Acceleration arg2,
                                 final Acceleration result) {
-        result.setValue(subtract(arg1.getValue(), arg1.getUnit(),
-                arg2.getValue(), arg2.getUnit(), result.getUnit()));
+        result.setValue(subtract(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));
     }
 
     /**
@@ -271,7 +265,7 @@ public class Acceleration extends Measurement<AccelerationUnit> {
      */
     public static Acceleration subtractAndReturnNew(
             final Acceleration arg1, final Acceleration arg2, final AccelerationUnit unit) {
-        final Acceleration result = new Acceleration();
+        final var result = new Acceleration();
         result.setUnit(unit);
         subtract(arg1, arg2, result);
         return result;
@@ -286,12 +280,10 @@ public class Acceleration extends Measurement<AccelerationUnit> {
      * @return a new acceleration containing result.
      */
     public Acceleration subtractAndReturnNew(
-            final double value, final AccelerationUnit unit,
-            final AccelerationUnit resultUnit) {
-        final Acceleration result = new Acceleration();
+            final double value, final AccelerationUnit unit, final AccelerationUnit resultUnit) {
+        final var result = new Acceleration();
         result.setUnit(resultUnit);
-        result.setValue(subtract(getValue().doubleValue(), getUnit(), value,
-                unit, resultUnit));
+        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 
@@ -304,9 +296,8 @@ public class Acceleration extends Measurement<AccelerationUnit> {
      * @return a new acceleration containing result.
      */
     public Acceleration subtractAndReturnNew(
-            final Number value, final AccelerationUnit unit,
-            final AccelerationUnit resultUnit) {
-        final Acceleration result = new Acceleration();
+            final Number value, final AccelerationUnit unit, final AccelerationUnit resultUnit) {
+        final var result = new Acceleration();
         result.setUnit(resultUnit);
         result.setValue(subtract(getValue(), getUnit(), value, unit, resultUnit));
         return result;
@@ -319,8 +310,7 @@ public class Acceleration extends Measurement<AccelerationUnit> {
      * @param unit unit of returned acceleration.
      * @return a new acceleration containing result.
      */
-    public Acceleration subtractAndReturnNew(
-            final Acceleration a, final AccelerationUnit unit) {
+    public Acceleration subtractAndReturnNew(final Acceleration a, final AccelerationUnit unit) {
         return subtractAndReturnNew(this, a, unit);
     }
 

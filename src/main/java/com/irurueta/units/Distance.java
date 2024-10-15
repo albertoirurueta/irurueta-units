@@ -51,9 +51,7 @@ public class Distance extends Measurement<DistanceUnit> {
      * false otherwise.
      */
     @Override
-    public boolean equals(
-            final Measurement<DistanceUnit> other,
-            final double tolerance) {
+    public boolean equals(final Measurement<DistanceUnit> other, final double tolerance) {
         if (super.equals(other, tolerance)) {
             return true;
         }
@@ -63,9 +61,7 @@ public class Distance extends Measurement<DistanceUnit> {
             return false;
         }
 
-        final double otherValue = DistanceConverter.convert(
-                other.getValue().doubleValue(), other.getUnit(),
-                getUnit());
+        final var otherValue = DistanceConverter.convert(other.getValue().doubleValue(), other.getUnit(), getUnit());
         return Math.abs(getValue().doubleValue() - otherValue) <= tolerance;
     }
 
@@ -83,8 +79,8 @@ public class Distance extends Measurement<DistanceUnit> {
             final double value1, final DistanceUnit unit1,
             final double value2, final DistanceUnit unit2,
             final DistanceUnit resultUnit) {
-        final double v1 = DistanceConverter.convert(value1, unit1, resultUnit);
-        final double v2 = DistanceConverter.convert(value2, unit2, resultUnit);
+        final var v1 = DistanceConverter.convert(value1, unit1, resultUnit);
+        final var v2 = DistanceConverter.convert(value2, unit2, resultUnit);
         return v1 + v2;
     }
 
@@ -101,8 +97,7 @@ public class Distance extends Measurement<DistanceUnit> {
     public static Number add(final Number value1, final DistanceUnit unit1,
                              final Number value2, final DistanceUnit unit2,
                              final DistanceUnit resultUnit) {
-        return BigDecimal.valueOf(add(value1.doubleValue(), unit1,
-                value2.doubleValue(), unit2, resultUnit));
+        return BigDecimal.valueOf(add(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));
     }
 
     /**
@@ -112,10 +107,8 @@ public class Distance extends Measurement<DistanceUnit> {
      * @param arg2   2nd argument.
      * @param result instance where result will be stored.
      */
-    public static void add(
-            final Distance arg1, final Distance arg2, final Distance result) {
-        result.setValue(add(arg1.getValue(), arg1.getUnit(),
-                arg2.getValue(), arg2.getUnit(), result.getUnit()));
+    public static void add(final Distance arg1, final Distance arg2, final Distance result) {
+        result.setValue(add(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));
     }
 
     /**
@@ -127,9 +120,8 @@ public class Distance extends Measurement<DistanceUnit> {
      * @return a new instance containing result.
      */
     public static Distance addAndReturnNew(
-            final Distance arg1, final Distance arg2,
-            final DistanceUnit unit) {
-        final Distance result = new Distance();
+            final Distance arg1, final Distance arg2, final DistanceUnit unit) {
+        final var result = new Distance();
         result.setUnit(unit);
         add(arg1, arg2, result);
         return result;
@@ -145,12 +137,10 @@ public class Distance extends Measurement<DistanceUnit> {
      * @return a new distance containing result.
      */
     public Distance addAndReturnNew(
-            final double value, final DistanceUnit unit,
-            final DistanceUnit resultUnit) {
-        final Distance result = new Distance();
+            final double value, final DistanceUnit unit, final DistanceUnit resultUnit) {
+        final var result = new Distance();
         result.setUnit(resultUnit);
-        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit,
-                resultUnit));
+        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 
@@ -164,9 +154,8 @@ public class Distance extends Measurement<DistanceUnit> {
      * @return a new distance containing result.
      */
     public Distance addAndReturnNew(
-            final Number value, final DistanceUnit unit,
-            final DistanceUnit resultUnit) {
-        final Distance result = new Distance();
+            final Number value, final DistanceUnit unit, final DistanceUnit resultUnit) {
+        final var result = new Distance();
         result.setUnit(resultUnit);
         result.setValue(add(getValue(), getUnit(), value, unit, resultUnit));
         return result;
@@ -180,8 +169,7 @@ public class Distance extends Measurement<DistanceUnit> {
      * @param unit unit of returned distance.
      * @return a new distance containing result.
      */
-    public Distance addAndReturnNew(
-            final Distance d, final DistanceUnit unit) {
+    public Distance addAndReturnNew(final Distance d, final DistanceUnit unit) {
         return addAndReturnNew(this, d, unit);
     }
 
@@ -239,8 +227,8 @@ public class Distance extends Measurement<DistanceUnit> {
             final double value1, final DistanceUnit unit1,
             final double value2, final DistanceUnit unit2,
             final DistanceUnit resultUnit) {
-        final double v1 = DistanceConverter.convert(value1, unit1, resultUnit);
-        final double v2 = DistanceConverter.convert(value2, unit2, resultUnit);
+        final var v1 = DistanceConverter.convert(value1, unit1, resultUnit);
+        final var v2 = DistanceConverter.convert(value2, unit2, resultUnit);
         return v1 - v2;
     }
 
@@ -258,8 +246,7 @@ public class Distance extends Measurement<DistanceUnit> {
             final Number value1, final DistanceUnit unit1,
             final Number value2, final DistanceUnit unit2,
             final DistanceUnit resultUnit) {
-        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1,
-                value2.doubleValue(), unit2, resultUnit));
+        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));
     }
 
     /**
@@ -270,10 +257,8 @@ public class Distance extends Measurement<DistanceUnit> {
      * @param result instance where result will be stored.
      */
     public static void subtract(
-            final Distance arg1, final Distance arg2,
-            final Distance result) {
-        result.setValue(subtract(arg1.getValue(), arg1.getUnit(),
-                arg2.getValue(), arg2.getUnit(), result.getUnit()));
+            final Distance arg1, final Distance arg2, final Distance result) {
+        result.setValue(subtract(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));
     }
 
     /**
@@ -285,9 +270,8 @@ public class Distance extends Measurement<DistanceUnit> {
      * @return a new instance containing result.
      */
     public static Distance subtractAndReturnNew(
-            final Distance arg1, final Distance arg2,
-            final DistanceUnit unit) {
-        final Distance result = new Distance();
+            final Distance arg1, final Distance arg2, final DistanceUnit unit) {
+        final var result = new Distance();
         result.setUnit(unit);
         subtract(arg1, arg2, result);
         return result;
@@ -303,12 +287,10 @@ public class Distance extends Measurement<DistanceUnit> {
      * @return a new distance containing result.
      */
     public Distance subtractAndReturnNew(
-            final double value, final DistanceUnit unit,
-            final DistanceUnit resultUnit) {
-        final Distance result = new Distance();
+            final double value, final DistanceUnit unit, final DistanceUnit resultUnit) {
+        final var result = new Distance();
         result.setUnit(resultUnit);
-        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit,
-                resultUnit));
+        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit, resultUnit));
         return result;
     }
 
@@ -322,9 +304,8 @@ public class Distance extends Measurement<DistanceUnit> {
      * @return a new distance containing result.
      */
     public Distance subtractAndReturnNew(
-            final Number value, final DistanceUnit unit,
-            final DistanceUnit resultUnit) {
-        final Distance result = new Distance();
+            final Number value, final DistanceUnit unit, final DistanceUnit resultUnit) {
+        final var result = new Distance();
         result.setUnit(resultUnit);
         result.setValue(subtract(getValue(), getUnit(), value, unit, resultUnit));
         return result;
@@ -338,8 +319,7 @@ public class Distance extends Measurement<DistanceUnit> {
      * @param unit unit of returned distance.
      * @return a new distance containing result.
      */
-    public Distance subtractAndReturnNew(
-            final Distance d, final DistanceUnit unit) {
+    public Distance subtractAndReturnNew(final Distance d, final DistanceUnit unit) {
         return subtractAndReturnNew(this, d, unit);
     }
 

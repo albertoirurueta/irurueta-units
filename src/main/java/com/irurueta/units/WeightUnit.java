@@ -91,23 +91,10 @@ public enum WeightUnit {
             throw new IllegalArgumentException();
         }
 
-        switch (unit) {
-            case US_TON:
-            case UK_TON:
-            case POUND:
-            case OUNCE:
-                return UnitSystem.IMPERIAL;
-            case PICOGRAM:
-            case NANOGRAM:
-            case MICROGRAM:
-            case MILLIGRAM:
-            case GRAM:
-            case KILOGRAM:
-            case TONNE:
-            case MEGATONNE:
-            default:
-                return UnitSystem.METRIC;
-        }
+        return switch (unit) {
+            case US_TON, UK_TON, POUND, OUNCE -> UnitSystem.IMPERIAL;
+            default -> UnitSystem.METRIC;
+        };
     }
 
     /**

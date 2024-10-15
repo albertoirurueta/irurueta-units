@@ -15,22 +15,22 @@
  */
 package com.irurueta.units;
 
-import org.junit.*;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Random;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class SpeedTest {
+class SpeedTest {
 
     private static final double ERROR = 1e-6;
 
     @Test
-    public void testConstructor() {
+    void testConstructor() {
         // test empty constructor
-        Speed s = new Speed();
+        var s = new Speed();
 
         // check
         assertNull(s.getValue());
@@ -44,28 +44,17 @@ public class SpeedTest {
         assertEquals(SpeedUnit.METERS_PER_SECOND, s.getUnit());
 
         // force IllegalArgumentException
-        s = null;
-        try {
-            s = new Speed(null, SpeedUnit.METERS_PER_SECOND);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
-        try {
-            s = new Speed(323, null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
-        //noinspection ConstantConditions
-        assertNull(s);
+        assertThrows(IllegalArgumentException.class, () -> new Speed(null, SpeedUnit.METERS_PER_SECOND));
+        assertThrows(IllegalArgumentException.class, () -> new Speed(323, null));
     }
 
     @Test
-    public void testEquals() {
-        final double value = new Random().nextDouble();
-        final Speed s1 = new Speed(value, SpeedUnit.METERS_PER_SECOND);
-        final Speed s2 = new Speed(value, SpeedUnit.METERS_PER_SECOND);
-        final Speed s3 = new Speed(value + 1.0, SpeedUnit.METERS_PER_SECOND);
-        final Speed s4 = new Speed(value, SpeedUnit.KILOMETERS_PER_HOUR);
+    void testEquals() {
+        final var value = new Random().nextDouble();
+        final var s1 = new Speed(value, SpeedUnit.METERS_PER_SECOND);
+        final var s2 = new Speed(value, SpeedUnit.METERS_PER_SECOND);
+        final var s3 = new Speed(value + 1.0, SpeedUnit.METERS_PER_SECOND);
+        final var s4 = new Speed(value, SpeedUnit.KILOMETERS_PER_HOUR);
 
         //noinspection EqualsWithItself
         assertEquals(s1, s1);
@@ -78,12 +67,12 @@ public class SpeedTest {
     }
 
     @Test
-    public void tetHashCode() {
-        final double value = new Random().nextDouble();
-        final Speed s1 = new Speed(value, SpeedUnit.METERS_PER_SECOND);
-        final Speed s2 = new Speed(value, SpeedUnit.METERS_PER_SECOND);
-        final Speed s3 = new Speed(value + 1.0, SpeedUnit.METERS_PER_SECOND);
-        final Speed s4 = new Speed(value, SpeedUnit.KILOMETERS_PER_HOUR);
+    void tetHashCode() {
+        final var value = new Random().nextDouble();
+        final var s1 = new Speed(value, SpeedUnit.METERS_PER_SECOND);
+        final var s2 = new Speed(value, SpeedUnit.METERS_PER_SECOND);
+        final var s3 = new Speed(value + 1.0, SpeedUnit.METERS_PER_SECOND);
+        final var s4 = new Speed(value, SpeedUnit.KILOMETERS_PER_HOUR);
 
         assertEquals(s1.hashCode(), s1.hashCode());
         assertEquals(s1.hashCode(), s2.hashCode());
@@ -92,15 +81,14 @@ public class SpeedTest {
     }
 
     @Test
-    public void testEqualsWithTolerance() {
-        final double value = new Random().nextDouble();
-        final Speed s1 = new Speed(value, SpeedUnit.METERS_PER_SECOND);
-        final Speed s2 = new Speed(value, SpeedUnit.METERS_PER_SECOND);
-        final Speed s3 = new Speed(value + 0.5 * ERROR, SpeedUnit.METERS_PER_SECOND);
-        final Speed s4 = new Speed(value, SpeedUnit.KILOMETERS_PER_HOUR);
-        final Speed s5 = new Speed(SpeedConverter.convert(value,
-                SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
-                SpeedUnit.KILOMETERS_PER_HOUR);
+    void testEqualsWithTolerance() {
+        final var value = new Random().nextDouble();
+        final var s1 = new Speed(value, SpeedUnit.METERS_PER_SECOND);
+        final var s2 = new Speed(value, SpeedUnit.METERS_PER_SECOND);
+        final var s3 = new Speed(value + 0.5 * ERROR, SpeedUnit.METERS_PER_SECOND);
+        final var s4 = new Speed(value, SpeedUnit.KILOMETERS_PER_HOUR);
+        final var s5 = new Speed(SpeedConverter.convert(value, SpeedUnit.METERS_PER_SECOND,
+                SpeedUnit.KILOMETERS_PER_HOUR), SpeedUnit.KILOMETERS_PER_HOUR);
 
         assertTrue(s1.equals(s1, 0.0));
         assertTrue(s1.equals(s2, 0.0));
@@ -113,8 +101,8 @@ public class SpeedTest {
     }
 
     @Test
-    public void testGetSetValue() {
-        final Speed s = new Speed(1, SpeedUnit.METERS_PER_SECOND);
+    void testGetSetValue() {
+        final var s = new Speed(1, SpeedUnit.METERS_PER_SECOND);
 
         // check
         assertEquals(1, s.getValue());
@@ -126,16 +114,12 @@ public class SpeedTest {
         assertEquals(2.5, s.getValue());
 
         //force IllegalArgumentException
-        try {
-            s.setValue(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> s.setValue(null));
     }
 
     @Test
-    public void testGetSetUnit() {
-        final Speed s = new Speed(1, SpeedUnit.METERS_PER_SECOND);
+    void testGetSetUnit() {
+        final var s = new Speed(1, SpeedUnit.METERS_PER_SECOND);
 
         // check
         assertEquals(SpeedUnit.METERS_PER_SECOND, s.getUnit());
@@ -147,54 +131,47 @@ public class SpeedTest {
         assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, s.getUnit());
 
         // force IllegalArgumentException
-        try {
-            s.setUnit(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> s.setUnit(null));
     }
 
     @Test
-    public void testAdd1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final double result = Speed.add(value1, SpeedUnit.METERS_PER_SECOND,
-                value2, SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR);
+        final var result = Speed.add(value1, SpeedUnit.METERS_PER_SECOND, value2,
+                SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR);
 
         // check
-        assertEquals(SpeedConverter.convert(value1 + value2,
-                SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
-                result, ERROR);
+        assertEquals(SpeedConverter.convert(value1 + value2, SpeedUnit.METERS_PER_SECOND,
+                        SpeedUnit.KILOMETERS_PER_HOUR), result, ERROR);
     }
 
     @Test
-    public void testAdd2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Number result = Speed.add(new BigDecimal(value1), SpeedUnit.METERS_PER_SECOND,
-                new BigDecimal(value2), SpeedUnit.METERS_PER_SECOND,
-                SpeedUnit.KILOMETERS_PER_HOUR);
+        final var result = Speed.add(new BigDecimal(value1), SpeedUnit.METERS_PER_SECOND,
+                new BigDecimal(value2), SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR);
 
         // check
-        assertEquals(SpeedConverter.convert(value1 + value2,
-                SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
-                result.doubleValue(), ERROR);
+        assertEquals(SpeedConverter.convert(value1 + value2, SpeedUnit.METERS_PER_SECOND,
+                        SpeedUnit.KILOMETERS_PER_HOUR), result.doubleValue(), ERROR);
     }
 
     @Test
-    public void testAdd3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Speed s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
-        final Speed s2 = new Speed(value2, SpeedUnit.METERS_PER_SECOND);
+        final var s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
+        final var s2 = new Speed(value2, SpeedUnit.METERS_PER_SECOND);
 
-        final Speed result = new Speed(0.0, SpeedUnit.KILOMETERS_PER_HOUR);
+        final var result = new Speed(0.0, SpeedUnit.KILOMETERS_PER_HOUR);
         Speed.add(s1, s2, result);
 
         // check
@@ -205,22 +182,20 @@ public class SpeedTest {
         assertEquals(value2, s2.getValue().doubleValue(), 0.0);
 
         assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, result.getUnit());
-        assertEquals(SpeedConverter.convert(value1 + value2,
-                SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(SpeedConverter.convert(value1 + value2, SpeedUnit.METERS_PER_SECOND,
+                SpeedUnit.KILOMETERS_PER_HOUR), result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAddAndReturnNew1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAddAndReturnNew1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Speed s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
-        final Speed s2 = new Speed(value2, SpeedUnit.METERS_PER_SECOND);
+        final var s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
+        final var s2 = new Speed(value2, SpeedUnit.METERS_PER_SECOND);
 
-        final Speed result = Speed.addAndReturnNew(s1, s2,
-                SpeedUnit.KILOMETERS_PER_HOUR);
+        final var result = Speed.addAndReturnNew(s1, s2, SpeedUnit.KILOMETERS_PER_HOUR);
 
         // check
         assertEquals(SpeedUnit.METERS_PER_SECOND, s1.getUnit());
@@ -230,63 +205,59 @@ public class SpeedTest {
         assertEquals(value2, s2.getValue().doubleValue(), 0.0);
 
         assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, result.getUnit());
-        assertEquals(SpeedConverter.convert(value1 + value2,
-                SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(SpeedConverter.convert(value1 + value2, SpeedUnit.METERS_PER_SECOND,
+                SpeedUnit.KILOMETERS_PER_HOUR), result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAddAndReturnNew2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAddAndReturnNew2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Speed s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
+        final var s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
 
-        final Speed result = s1.addAndReturnNew(value2,
-                SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR);
+        final var result = s1.addAndReturnNew(value2, SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR);
 
         // check
         assertEquals(SpeedUnit.METERS_PER_SECOND, s1.getUnit());
         assertEquals(value1, s1.getValue().doubleValue(), 0.0);
 
         assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, result.getUnit());
-        assertEquals(SpeedConverter.convert(value1 + value2,
-                SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(SpeedConverter.convert(value1 + value2, SpeedUnit.METERS_PER_SECOND,
+                SpeedUnit.KILOMETERS_PER_HOUR), result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAddAndReturnNew3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAddAndReturnNew3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Speed s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
+        final var s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
 
-        final Speed result = s1.addAndReturnNew(new BigDecimal(value2),
-                SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR);
+        final var result = s1.addAndReturnNew(new BigDecimal(value2), SpeedUnit.METERS_PER_SECOND,
+                SpeedUnit.KILOMETERS_PER_HOUR);
 
         // check
         assertEquals(SpeedUnit.METERS_PER_SECOND, s1.getUnit());
         assertEquals(value1, s1.getValue().doubleValue(), 0.0);
 
         assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, result.getUnit());
-        assertEquals(SpeedConverter.convert(value1 + value2,
-                SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(SpeedConverter.convert(value1 + value2, SpeedUnit.METERS_PER_SECOND,
+                SpeedUnit.KILOMETERS_PER_HOUR), result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAddAndReturnNew4() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAddAndReturnNew4() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Speed s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
-        final Speed s2 = new Speed(value2, SpeedUnit.METERS_PER_SECOND);
+        final var s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
+        final var s2 = new Speed(value2, SpeedUnit.METERS_PER_SECOND);
 
-        final Speed result = s1.addAndReturnNew(s2, SpeedUnit.KILOMETERS_PER_HOUR);
+        final var result = s1.addAndReturnNew(s2, SpeedUnit.KILOMETERS_PER_HOUR);
 
         // check
         assertEquals(SpeedUnit.METERS_PER_SECOND, s1.getUnit());
@@ -296,18 +267,17 @@ public class SpeedTest {
         assertEquals(s2.getValue().doubleValue(), value2, 0.0);
 
         assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, result.getUnit());
-        assertEquals(SpeedConverter.convert(value1 + value2,
-                SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(SpeedConverter.convert(value1 + value2, SpeedUnit.METERS_PER_SECOND,
+                SpeedUnit.KILOMETERS_PER_HOUR), result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testAdd4() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd4() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Speed s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
+        final var s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
 
         s1.add(value2, SpeedUnit.METERS_PER_SECOND);
 
@@ -317,12 +287,12 @@ public class SpeedTest {
     }
 
     @Test
-    public void testAdd5() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd5() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Speed s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
+        final var s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
 
         s1.add(new BigDecimal(value2), SpeedUnit.METERS_PER_SECOND);
 
@@ -332,13 +302,13 @@ public class SpeedTest {
     }
 
     @Test
-    public void testAdd6() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd6() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Speed s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
-        final Speed s2 = new Speed(value2, SpeedUnit.METERS_PER_SECOND);
+        final var s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
+        final var s2 = new Speed(value2, SpeedUnit.METERS_PER_SECOND);
 
         s1.add(s2);
 
@@ -351,15 +321,15 @@ public class SpeedTest {
     }
 
     @Test
-    public void testAdd7() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testAdd7() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Speed s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
-        final Speed s2 = new Speed(value2, SpeedUnit.METERS_PER_SECOND);
+        final var s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
+        final var s2 = new Speed(value2, SpeedUnit.METERS_PER_SECOND);
 
-        final Speed result = new Speed(0.0, SpeedUnit.KILOMETERS_PER_HOUR);
+        final var result = new Speed(0.0, SpeedUnit.KILOMETERS_PER_HOUR);
         s1.add(s2, result);
 
         // check
@@ -370,52 +340,48 @@ public class SpeedTest {
         assertEquals(value2, s2.getValue().doubleValue(), 0.0);
 
         assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, result.getUnit());
-        assertEquals(SpeedConverter.convert(value1 + value2,
-                SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(SpeedConverter.convert(value1 + value2, SpeedUnit.METERS_PER_SECOND,
+                SpeedUnit.KILOMETERS_PER_HOUR), result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtract1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final double result = Speed.subtract(value1, SpeedUnit.METERS_PER_SECOND,
-                value2, SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR);
+        final var result = Speed.subtract(value1, SpeedUnit.METERS_PER_SECOND, value2, SpeedUnit.METERS_PER_SECOND,
+                SpeedUnit.KILOMETERS_PER_HOUR);
 
         // check
-        assertEquals(SpeedConverter.convert(value1 - value2,
-                SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
-                result, ERROR);
+        assertEquals(SpeedConverter.convert(value1 - value2, SpeedUnit.METERS_PER_SECOND,
+                SpeedUnit.KILOMETERS_PER_HOUR), result, ERROR);
     }
 
     @Test
-    public void testSubtract2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Number result = Speed.subtract(new BigDecimal(value1),
-                SpeedUnit.METERS_PER_SECOND, new BigDecimal(value2),
+        final var result = Speed.subtract(new BigDecimal(value1), SpeedUnit.METERS_PER_SECOND, new BigDecimal(value2),
                 SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR);
 
         // check
-        assertEquals(SpeedConverter.convert(value1 - value2,
-                SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
-                result.doubleValue(), ERROR);
+        assertEquals(SpeedConverter.convert(value1 - value2, SpeedUnit.METERS_PER_SECOND,
+                SpeedUnit.KILOMETERS_PER_HOUR), result.doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtract3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Speed s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
-        final Speed s2 = new Speed(value2, SpeedUnit.METERS_PER_SECOND);
+        final var s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
+        final var s2 = new Speed(value2, SpeedUnit.METERS_PER_SECOND);
 
-        final Speed result = new Speed(0.0, SpeedUnit.KILOMETERS_PER_HOUR);
+        final var result = new Speed(0.0, SpeedUnit.KILOMETERS_PER_HOUR);
         Speed.subtract(s1, s2, result);
 
         // check
@@ -426,22 +392,20 @@ public class SpeedTest {
         assertEquals(value2, s2.getValue().doubleValue(), 0.0);
 
         assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, result.getUnit());
-        assertEquals(SpeedConverter.convert(value1 - value2,
-                SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(SpeedConverter.convert(value1 - value2, SpeedUnit.METERS_PER_SECOND,
+                SpeedUnit.KILOMETERS_PER_HOUR), result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtractAndReturnNew1() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtractAndReturnNew1() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Speed s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
-        final Speed s2 = new Speed(value2, SpeedUnit.METERS_PER_SECOND);
+        final var s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
+        final var s2 = new Speed(value2, SpeedUnit.METERS_PER_SECOND);
 
-        final Speed result = Speed.subtractAndReturnNew(s1, s2,
-                SpeedUnit.KILOMETERS_PER_HOUR);
+        final var result = Speed.subtractAndReturnNew(s1, s2, SpeedUnit.KILOMETERS_PER_HOUR);
 
         // check
         assertEquals(SpeedUnit.METERS_PER_SECOND, s1.getUnit());
@@ -451,20 +415,38 @@ public class SpeedTest {
         assertEquals(value2, s2.getValue().doubleValue(), 0.0);
 
         assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, result.getUnit());
-        assertEquals(SpeedConverter.convert(value1 - value2,
-                SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(SpeedConverter.convert(value1 - value2, SpeedUnit.METERS_PER_SECOND,
+                SpeedUnit.KILOMETERS_PER_HOUR), result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtractAndReturnNew2() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtractAndReturnNew2() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Speed s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
+        final var s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
 
-        final Speed result = s1.subtractAndReturnNew(value2, SpeedUnit.METERS_PER_SECOND,
+        final var result = s1.subtractAndReturnNew(value2, SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR);
+
+        // check
+        assertEquals(SpeedUnit.METERS_PER_SECOND, s1.getUnit());
+        assertEquals(value1, s1.getValue().doubleValue(), 0.0);
+
+        assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, result.getUnit());
+        assertEquals(SpeedConverter.convert(value1 - value2, SpeedUnit.METERS_PER_SECOND,
+                SpeedUnit.KILOMETERS_PER_HOUR), result.getValue().doubleValue(), ERROR);
+    }
+
+    @Test
+    void testSubtractAndReturnNew3() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
+
+        final var s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
+
+        final var result = s1.subtractAndReturnNew(new BigDecimal(value2), SpeedUnit.METERS_PER_SECOND,
                 SpeedUnit.KILOMETERS_PER_HOUR);
 
         // check
@@ -472,42 +454,20 @@ public class SpeedTest {
         assertEquals(value1, s1.getValue().doubleValue(), 0.0);
 
         assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, result.getUnit());
-        assertEquals(SpeedConverter.convert(value1 - value2,
-                SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(SpeedConverter.convert(value1 - value2, SpeedUnit.METERS_PER_SECOND,
+                SpeedUnit.KILOMETERS_PER_HOUR), result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtractAndReturnNew3() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtractAndReturnNew4() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Speed s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
+        final var s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
+        final var s2 = new Speed(value2, SpeedUnit.METERS_PER_SECOND);
 
-        final Speed result = s1.subtractAndReturnNew(new BigDecimal(value2),
-                SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR);
-
-        // check
-        assertEquals(SpeedUnit.METERS_PER_SECOND, s1.getUnit());
-        assertEquals(value1, s1.getValue().doubleValue(), 0.0);
-
-        assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, result.getUnit());
-        assertEquals(SpeedConverter.convert(value1 - value2,
-                SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
-                result.getValue().doubleValue(), ERROR);
-    }
-
-    @Test
-    public void testSubtractAndReturnNew4() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
-
-        final Speed s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
-        final Speed s2 = new Speed(value2, SpeedUnit.METERS_PER_SECOND);
-
-        final Speed result = s1.subtractAndReturnNew(s2, SpeedUnit.KILOMETERS_PER_HOUR);
+        final var result = s1.subtractAndReturnNew(s2, SpeedUnit.KILOMETERS_PER_HOUR);
 
         // check
         assertEquals(SpeedUnit.METERS_PER_SECOND, s1.getUnit());
@@ -517,18 +477,17 @@ public class SpeedTest {
         assertEquals(value2, s2.getValue().doubleValue(), 0.0);
 
         assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, result.getUnit());
-        assertEquals(SpeedConverter.convert(value1 - value2,
-                SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(SpeedConverter.convert(value1 - value2, SpeedUnit.METERS_PER_SECOND,
+                SpeedUnit.KILOMETERS_PER_HOUR), result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSubtract4() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract4() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Speed s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
+        final var s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
 
         s1.subtract(value2, SpeedUnit.METERS_PER_SECOND);
 
@@ -538,12 +497,12 @@ public class SpeedTest {
     }
 
     @Test
-    public void testSubtract5() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract5() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Speed s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
+        final var s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
 
         s1.subtract(new BigDecimal(value2), SpeedUnit.METERS_PER_SECOND);
 
@@ -553,13 +512,13 @@ public class SpeedTest {
     }
 
     @Test
-    public void testSubtract6() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract6() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Speed s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
-        final Speed s2 = new Speed(value2, SpeedUnit.METERS_PER_SECOND);
+        final var s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
+        final var s2 = new Speed(value2, SpeedUnit.METERS_PER_SECOND);
 
         s1.subtract(s2);
 
@@ -572,15 +531,15 @@ public class SpeedTest {
     }
 
     @Test
-    public void testSubtract7() {
-        final Random r = new Random();
-        final double value1 = r.nextDouble();
-        final double value2 = r.nextDouble();
+    void testSubtract7() {
+        final var r = new Random();
+        final var value1 = r.nextDouble();
+        final var value2 = r.nextDouble();
 
-        final Speed s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
-        final Speed s2 = new Speed(value2, SpeedUnit.METERS_PER_SECOND);
+        final var s1 = new Speed(value1, SpeedUnit.METERS_PER_SECOND);
+        final var s2 = new Speed(value2, SpeedUnit.METERS_PER_SECOND);
 
-        final Speed result = new Speed(0.0, SpeedUnit.KILOMETERS_PER_HOUR);
+        final var result = new Speed(0.0, SpeedUnit.KILOMETERS_PER_HOUR);
         s1.subtract(s2, result);
 
         // check
@@ -591,18 +550,17 @@ public class SpeedTest {
         assertEquals(value2, s2.getValue().doubleValue(), 0.0);
 
         assertEquals(SpeedUnit.KILOMETERS_PER_HOUR, result.getUnit());
-        assertEquals(SpeedConverter.convert(value1 - value2,
-                SpeedUnit.METERS_PER_SECOND, SpeedUnit.KILOMETERS_PER_HOUR),
-                result.getValue().doubleValue(), ERROR);
+        assertEquals(SpeedConverter.convert(value1 - value2, SpeedUnit.METERS_PER_SECOND,
+                SpeedUnit.KILOMETERS_PER_HOUR), result.getValue().doubleValue(), ERROR);
     }
 
     @Test
-    public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
-        final double value = new Random().nextDouble();
-        final Speed s1 = new Speed(value, SpeedUnit.METERS_PER_SECOND);
+    void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+        final var value = new Random().nextDouble();
+        final var s1 = new Speed(value, SpeedUnit.METERS_PER_SECOND);
 
-        final byte[] bytes = SerializationHelper.serialize(s1);
-        final Speed s2 = SerializationHelper.deserialize(bytes);
+        final var bytes = SerializationHelper.serialize(s1);
+        final var s2 = SerializationHelper.deserialize(bytes);
 
         assertEquals(s1, s2);
         assertNotSame(s1, s2);

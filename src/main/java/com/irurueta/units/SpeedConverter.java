@@ -71,7 +71,7 @@ public class SpeedConverter {
      */
     public static Speed convertAndReturnNew(
             final Speed input, final SpeedUnit outputUnit) {
-        final Speed result = new Speed();
+        final var result = new Speed();
         convert(input, outputUnit, result);
         return result;
     }
@@ -82,8 +82,7 @@ public class SpeedConverter {
      * @param speed      input speed to be converted and updated.
      * @param outputUnit requested output unit.
      */
-    public static void convert(
-            final Speed speed, final SpeedUnit outputUnit) {
+    public static void convert(final Speed speed, final SpeedUnit outputUnit) {
         convert(speed, outputUnit, speed);
     }
 
@@ -95,9 +94,8 @@ public class SpeedConverter {
      * @param result     speed instance where result will be stored.
      */
     public static void convert(
-            final Speed input, final SpeedUnit outputUnit,
-            final Speed result) {
-        final Number value = convert(input.getValue(), input.getUnit(), outputUnit);
+            final Speed input, final SpeedUnit outputUnit, final Speed result) {
+        final var value = convert(input.getValue(), input.getUnit(), outputUnit);
         result.setValue(value);
         result.setUnit(outputUnit);
     }
@@ -110,9 +108,7 @@ public class SpeedConverter {
      * @param outputUnit output speed unit.
      * @return converted speed value.
      */
-    public static Number convert(
-            final Number input, final SpeedUnit inputUnit,
-            final SpeedUnit outputUnit) {
+    public static Number convert(final Number input, final SpeedUnit inputUnit, final SpeedUnit outputUnit) {
         return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit, outputUnit));
     }
 
@@ -124,45 +120,24 @@ public class SpeedConverter {
      * @param outputUnit output speed unit.
      * @return converted speed value.
      */
-    public static double convert(
-            final double input, final SpeedUnit inputUnit,
-            final SpeedUnit outputUnit) {
-        double metersPerSecond;
-
+    public static double convert(final double input, final SpeedUnit inputUnit, final SpeedUnit outputUnit) {
         //convert to meters per second
-        switch (inputUnit) {
-            case FEET_PER_SECOND:
-                metersPerSecond = feetPerSecondToMetersPerSecond(input);
-                break;
-            case MILES_PER_HOUR:
-                metersPerSecond = milesPerHourToMetersPerSecond(input);
-                break;
-            case KILOMETERS_PER_HOUR:
-                metersPerSecond = kilometersPerHourToMetersPerSecond(input);
-                break;
-            case KILOMETERS_PER_SECOND:
-                metersPerSecond = kilometersPerSecondToMetersPerSecond(input);
-                break;
-            case METERS_PER_SECOND:
-            default:
-                metersPerSecond = input;
-                break;
-        }
+        final var metersPerSecond = switch (inputUnit) {
+            case FEET_PER_SECOND -> feetPerSecondToMetersPerSecond(input);
+            case MILES_PER_HOUR -> milesPerHourToMetersPerSecond(input);
+            case KILOMETERS_PER_HOUR -> kilometersPerHourToMetersPerSecond(input);
+            case KILOMETERS_PER_SECOND -> kilometersPerSecondToMetersPerSecond(input);
+            default -> input;
+        };
 
         //convert from meters per second to required output unit
-        switch (outputUnit) {
-            case FEET_PER_SECOND:
-                return metersPerSecondToFeetPerSecond(metersPerSecond);
-            case MILES_PER_HOUR:
-                return metersPerSecondToMilesPerHour(metersPerSecond);
-            case KILOMETERS_PER_HOUR:
-                return metersPerSecondToKilometersPerHour(metersPerSecond);
-            case KILOMETERS_PER_SECOND:
-                return metersPerSecondToKilometersPerSecond(metersPerSecond);
-            case METERS_PER_SECOND:
-            default:
-                return metersPerSecond;
-        }
+        return switch (outputUnit) {
+            case FEET_PER_SECOND -> metersPerSecondToFeetPerSecond(metersPerSecond);
+            case MILES_PER_HOUR -> metersPerSecondToMilesPerHour(metersPerSecond);
+            case KILOMETERS_PER_HOUR -> metersPerSecondToKilometersPerHour(metersPerSecond);
+            case KILOMETERS_PER_SECOND -> metersPerSecondToKilometersPerSecond(metersPerSecond);
+            default -> metersPerSecond;
+        };
     }
 
     /**
@@ -171,8 +146,7 @@ public class SpeedConverter {
      * @param feetPerSecond feet per second value.
      * @return same speed converted to meters per second.
      */
-    public static double feetPerSecondToMetersPerSecond(
-            final double feetPerSecond) {
+    public static double feetPerSecondToMetersPerSecond(final double feetPerSecond) {
         return feetPerSecond * METERS_PER_FOOT;
     }
 
@@ -182,8 +156,7 @@ public class SpeedConverter {
      * @param metersPerSecond meters per second value.
      * @return same speed converted to feet per second.
      */
-    public static double metersPerSecondToFeetPerSecond(
-            final double metersPerSecond) {
+    public static double metersPerSecondToFeetPerSecond(final double metersPerSecond) {
         return metersPerSecond / METERS_PER_FOOT;
     }
 
@@ -193,8 +166,7 @@ public class SpeedConverter {
      * @param milesPerHour miles per hour value.
      * @return same speed converted to meters per second.
      */
-    public static double milesPerHourToMetersPerSecond(
-            final double milesPerHour) {
+    public static double milesPerHourToMetersPerSecond(final double milesPerHour) {
         return milesPerHour * METERS_PER_MILE / SECONDS_PER_HOUR;
     }
 
@@ -204,8 +176,7 @@ public class SpeedConverter {
      * @param metersPerSecond meters per second value.
      * @return same speed converted to miles per hour.
      */
-    public static double metersPerSecondToMilesPerHour(
-            final double metersPerSecond) {
+    public static double metersPerSecondToMilesPerHour(final double metersPerSecond) {
         return metersPerSecond / METERS_PER_MILE * SECONDS_PER_HOUR;
     }
 
@@ -215,8 +186,7 @@ public class SpeedConverter {
      * @param kilometersPerHour Kilometers per hour value.
      * @return same speed converted to meters per second.
      */
-    public static double kilometersPerHourToMetersPerSecond(
-            final double kilometersPerHour) {
+    public static double kilometersPerHourToMetersPerSecond(final double kilometersPerHour) {
         return kilometersPerHour * METERS_PER_KILOMETER / SECONDS_PER_HOUR;
     }
 
@@ -226,8 +196,7 @@ public class SpeedConverter {
      * @param metersPerSecond meters per second value.
      * @return same speed converted to Kilometers per hour.
      */
-    public static double metersPerSecondToKilometersPerHour(
-            final double metersPerSecond) {
+    public static double metersPerSecondToKilometersPerHour(final double metersPerSecond) {
         return metersPerSecond / METERS_PER_KILOMETER * SECONDS_PER_HOUR;
     }
 
@@ -237,8 +206,7 @@ public class SpeedConverter {
      * @param kilometersPerSecond Kilometers per second value.
      * @return same speed converted to meters per second.
      */
-    public static double kilometersPerSecondToMetersPerSecond(
-            final double kilometersPerSecond) {
+    public static double kilometersPerSecondToMetersPerSecond(final double kilometersPerSecond) {
         return kilometersPerSecond * METERS_PER_KILOMETER;
     }
 
@@ -248,8 +216,7 @@ public class SpeedConverter {
      * @param metersPerSecond meters per second value.
      * @return same speed converted to Kilometers per second.
      */
-    public static double metersPerSecondToKilometersPerSecond(
-            final double metersPerSecond) {
+    public static double metersPerSecondToKilometersPerSecond(final double metersPerSecond) {
         return metersPerSecond / METERS_PER_KILOMETER;
     }
 }

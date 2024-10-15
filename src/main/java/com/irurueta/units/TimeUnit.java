@@ -88,15 +88,10 @@ public enum TimeUnit {
             throw new IllegalArgumentException();
         }
 
-        switch (unit) {
-            case NANOSECOND:
-            case MICROSECOND:
-            case MILLISECOND:
-            case SECOND:
-                return UnitSystem.METRIC;
-            default:
-                throw new IllegalArgumentException();
-        }
+        return switch (unit) {
+            case NANOSECOND, MICROSECOND, MILLISECOND, SECOND -> UnitSystem.METRIC;
+            default -> throw new IllegalArgumentException();
+        };
     }
 
     /**

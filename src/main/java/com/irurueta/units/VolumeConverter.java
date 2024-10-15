@@ -101,7 +101,7 @@ public class VolumeConverter {
      */
     public static Volume convertAndReturnNew(
             final Volume input, final VolumeUnit outputUnit) {
-        final Volume result = new Volume();
+        final var result = new Volume();
         convert(input, outputUnit, result);
         return result;
     }
@@ -123,11 +123,8 @@ public class VolumeConverter {
      * @param outputUnit requested output unit.
      * @param result     volume instance where result will be stored.
      */
-    public static void convert(
-            final Volume input, final VolumeUnit outputUnit,
-            final Volume result) {
-        final Number value = convert(input.getValue(), input.getUnit(),
-                outputUnit);
+    public static void convert(final Volume input, final VolumeUnit outputUnit, final Volume result) {
+        final var value = convert(input.getValue(), input.getUnit(), outputUnit);
         result.setValue(value);
         result.setUnit(outputUnit);
     }
@@ -140,9 +137,7 @@ public class VolumeConverter {
      * @param outputUnit output volume unit.
      * @return converted volume value.
      */
-    public static Number convert(
-            final Number input, final VolumeUnit inputUnit,
-            final VolumeUnit outputUnit) {
+    public static Number convert(final Number input, final VolumeUnit inputUnit, final VolumeUnit outputUnit) {
         return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit, outputUnit));
     }
 
@@ -154,77 +149,36 @@ public class VolumeConverter {
      * @param outputUnit output volume unit.
      * @return converted volume value.
      */
-    public static double convert(
-            final double input, final VolumeUnit inputUnit,
-            final VolumeUnit outputUnit) {
-        double cubicMeters;
-
+    public static double convert(final double input, final VolumeUnit inputUnit, final VolumeUnit outputUnit) {
         // convert to cubic meters
-        switch (inputUnit) {
-            case CUBIC_CENTIMETER:
-                cubicMeters = cubicCentimeterToCubicMeter(input);
-                break;
-            case MILLILITER:
-                cubicMeters = milliliterToCubicMeter(input);
-                break;
-            case CUBIC_DECIMETER:
-                cubicMeters = cubicDecimeterToCubicMeter(input);
-                break;
-            case LITER:
-                cubicMeters = literToCubicMeter(input);
-                break;
-            case HECTOLITER:
-                cubicMeters = hectoliterToCubicMeter(input);
-                break;
-            case CUBIC_INCH:
-                cubicMeters = cubicInchToCubicMeter(input);
-                break;
-            case PINT:
-                cubicMeters = pintToCubicMeter(input);
-                break;
-            case GALLON:
-                cubicMeters = gallonToCubicMeter(input);
-                break;
-            case CUBIC_FOOT:
-                cubicMeters = cubicFootToCubicMeter(input);
-                break;
-            case BARREL:
-                cubicMeters = barrelToCubicMeter(input);
-                break;
-
-            case CUBIC_METER:
-            default:
-                cubicMeters = input;
-                break;
-        }
+        final var cubicMeters = switch (inputUnit) {
+            case CUBIC_CENTIMETER -> cubicCentimeterToCubicMeter(input);
+            case MILLILITER -> milliliterToCubicMeter(input);
+            case CUBIC_DECIMETER -> cubicDecimeterToCubicMeter(input);
+            case LITER -> literToCubicMeter(input);
+            case HECTOLITER -> hectoliterToCubicMeter(input);
+            case CUBIC_INCH -> cubicInchToCubicMeter(input);
+            case PINT -> pintToCubicMeter(input);
+            case GALLON -> gallonToCubicMeter(input);
+            case CUBIC_FOOT -> cubicFootToCubicMeter(input);
+            case BARREL -> barrelToCubicMeter(input);
+            default -> input;
+        };
 
         // convert from cubic meters to output unit
-        switch (outputUnit) {
-            case CUBIC_CENTIMETER:
-                return cubicMeterToCubicCentimeter(cubicMeters);
-            case MILLILITER:
-                return cubicMeterToMilliliter(cubicMeters);
-            case CUBIC_DECIMETER:
-                return cubicMeterToCubicDecimeter(cubicMeters);
-            case LITER:
-                return cubicMeterToLiter(cubicMeters);
-            case HECTOLITER:
-                return cubicMeterToHectoliter(cubicMeters);
-            case CUBIC_INCH:
-                return cubicMeterToCubicInch(cubicMeters);
-            case PINT:
-                return cubicMeterToPint(cubicMeters);
-            case GALLON:
-                return cubicMeterToGallon(cubicMeters);
-            case CUBIC_FOOT:
-                return cubicMeterToCubicFoot(cubicMeters);
-            case BARREL:
-                return cubicMeterToBarrel(cubicMeters);
-
-            case CUBIC_METER:
-            default:
-                return cubicMeters;
-        }
+        return switch (outputUnit) {
+            case CUBIC_CENTIMETER -> cubicMeterToCubicCentimeter(cubicMeters);
+            case MILLILITER -> cubicMeterToMilliliter(cubicMeters);
+            case CUBIC_DECIMETER -> cubicMeterToCubicDecimeter(cubicMeters);
+            case LITER -> cubicMeterToLiter(cubicMeters);
+            case HECTOLITER -> cubicMeterToHectoliter(cubicMeters);
+            case CUBIC_INCH -> cubicMeterToCubicInch(cubicMeters);
+            case PINT -> cubicMeterToPint(cubicMeters);
+            case GALLON -> cubicMeterToGallon(cubicMeters);
+            case CUBIC_FOOT -> cubicMeterToCubicFoot(cubicMeters);
+            case BARREL -> cubicMeterToBarrel(cubicMeters);
+            default -> cubicMeters;
+        };
     }
 
     /**

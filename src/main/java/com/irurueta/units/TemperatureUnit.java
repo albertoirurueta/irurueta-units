@@ -47,13 +47,10 @@ public enum TemperatureUnit {
             throw new IllegalArgumentException();
         }
 
-        switch (unit) {
-            case FAHRENHEIT:
-                return UnitSystem.IMPERIAL;
-            case CELSIUS:
-            case KELVIN:
-            default:
-                return UnitSystem.METRIC;
+        if (unit == FAHRENHEIT) {
+            return UnitSystem.IMPERIAL;
+        } else {
+            return UnitSystem.METRIC;
         }
     }
 

@@ -15,84 +15,65 @@
  */
 package com.irurueta.units;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class TemperatureUnitTest {
+class TemperatureUnitTest {
 
     @Test
-    public void testGetUnitSystem() {
-        assertEquals(UnitSystem.METRIC,
-                TemperatureUnit.getUnitSystem(TemperatureUnit.CELSIUS));
-        assertEquals(UnitSystem.METRIC,
-                TemperatureUnit.getUnitSystem(TemperatureUnit.KELVIN));
-        assertEquals(UnitSystem.IMPERIAL,
-                TemperatureUnit.getUnitSystem(TemperatureUnit.FAHRENHEIT));
+    void testGetUnitSystem() {
+        assertEquals(UnitSystem.METRIC, TemperatureUnit.getUnitSystem(TemperatureUnit.CELSIUS));
+        assertEquals(UnitSystem.METRIC, TemperatureUnit.getUnitSystem(TemperatureUnit.KELVIN));
+        assertEquals(UnitSystem.IMPERIAL, TemperatureUnit.getUnitSystem(TemperatureUnit.FAHRENHEIT));
 
         // Force IllegalArgumentException
-        try {
-            TemperatureUnit.getUnitSystem(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> TemperatureUnit.getUnitSystem(null));
     }
 
     @Test
-    public void testGetMetricUnits() {
-        final TemperatureUnit[] metricUnits = TemperatureUnit.getMetricUnits();
-        final TemperatureUnit[] imperialUnits = TemperatureUnit.getImperialUnits();
+    void testGetMetricUnits() {
+        final var metricUnits = TemperatureUnit.getMetricUnits();
+        final var imperialUnits = TemperatureUnit.getImperialUnits();
 
-        for (final TemperatureUnit metricUnit : metricUnits) {
+        for (final var metricUnit : metricUnits) {
             assertTrue(TemperatureUnit.isMetric(metricUnit));
             assertFalse(TemperatureUnit.isImperial(metricUnit));
         }
 
-        assertEquals(metricUnits.length + imperialUnits.length,
-                TemperatureUnit.values().length);
+        assertEquals(metricUnits.length + imperialUnits.length, TemperatureUnit.values().length);
     }
 
     @Test
-    public void testGetImperialUnits() {
-        final TemperatureUnit[] metricUnits = TemperatureUnit.getMetricUnits();
-        final TemperatureUnit[] imperialUnits = TemperatureUnit.getImperialUnits();
+    void testGetImperialUnits() {
+        final var metricUnits = TemperatureUnit.getMetricUnits();
+        final var imperialUnits = TemperatureUnit.getImperialUnits();
 
-        for (final TemperatureUnit imperialUnit : imperialUnits) {
+        for (final var imperialUnit : imperialUnits) {
             assertTrue(TemperatureUnit.isImperial(imperialUnit));
             assertFalse(TemperatureUnit.isMetric(imperialUnit));
         }
 
-        assertEquals(metricUnits.length + imperialUnits.length,
-                TemperatureUnit.values().length);
+        assertEquals(metricUnits.length + imperialUnits.length, TemperatureUnit.values().length);
     }
 
     @Test
-    public void testIsMetric() {
+    void testIsMetric() {
         assertTrue(TemperatureUnit.isMetric(TemperatureUnit.CELSIUS));
         assertTrue(TemperatureUnit.isMetric(TemperatureUnit.KELVIN));
         assertFalse(TemperatureUnit.isMetric(TemperatureUnit.FAHRENHEIT));
 
         // Force IllegalArgumentException
-        try {
-            //noinspection ResultOfMethodCallIgnored
-            TemperatureUnit.isMetric(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> TemperatureUnit.isMetric(null));
     }
 
     @Test
-    public void testIsImperial() {
+    void testIsImperial() {
         assertFalse(TemperatureUnit.isImperial(TemperatureUnit.CELSIUS));
         assertFalse(TemperatureUnit.isImperial(TemperatureUnit.KELVIN));
         assertTrue(TemperatureUnit.isImperial(TemperatureUnit.FAHRENHEIT));
 
         // Force IllegalArgumentException
-        try {
-            //noinspection ResultOfMethodCallIgnored
-            TemperatureUnit.isImperial(null);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> TemperatureUnit.isImperial(null));
     }
 }

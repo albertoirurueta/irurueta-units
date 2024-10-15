@@ -21,8 +21,7 @@ import java.util.Locale;
 /**
  * Formats and parses angular speed value and unit.
  */
-public class AngularSpeedFormatter extends
-        MeasureFormatter<AngularSpeed, AngularSpeedUnit> {
+public class AngularSpeedFormatter extends MeasureFormatter<AngularSpeed, AngularSpeedUnit> {
 
     /**
      * Degrees per second symbol.
@@ -70,7 +69,7 @@ public class AngularSpeedFormatter extends
      */
     @Override
     public boolean equals(final Object obj) {
-        final boolean equals = super.equals(obj);
+        final var equals = super.equals(obj);
         return (obj instanceof AngularSpeedFormatter) && equals;
     }
 
@@ -95,7 +94,7 @@ public class AngularSpeedFormatter extends
      */
     @Override
     public UnitSystem getUnitSystem(final String source) {
-        final AngularSpeedUnit unit = findUnit(source);
+        final var unit = findUnit(source);
         return unit != null ? UnitSystem.METRIC : null;
     }
 
@@ -108,8 +107,7 @@ public class AngularSpeedFormatter extends
      * @throws UnknownUnitException if unit cannot be determined.
      */
     @Override
-    public AngularSpeed parse(final String source) throws ParseException,
-            UnknownUnitException {
+    public AngularSpeed parse(final String source) throws ParseException, UnknownUnitException {
         return internalParse(source, new AngularSpeed());
     }
 
@@ -122,12 +120,10 @@ public class AngularSpeedFormatter extends
      */
     @Override
     public AngularSpeedUnit findUnit(final String source) {
-        if (source.contains(DEGREES_PER_SECOND + " ") ||
-                source.endsWith(DEGREES_PER_SECOND)) {
+        if (source.contains(DEGREES_PER_SECOND + " ") || source.endsWith(DEGREES_PER_SECOND)) {
             return AngularSpeedUnit.DEGREES_PER_SECOND;
         }
-        if (source.contains(RADIANS_PER_SECOND + " ") ||
-                source.endsWith(RADIANS_PER_SECOND)) {
+        if (source.contains(RADIANS_PER_SECOND + " ") || source.endsWith(RADIANS_PER_SECOND)) {
             return AngularSpeedUnit.RADIANS_PER_SECOND;
         }
         return null;
@@ -144,9 +140,7 @@ public class AngularSpeedFormatter extends
      * @return a string representation of angular speed value and unit.
      */
     @Override
-    public String formatAndConvert(
-            final Number value, final AngularSpeedUnit unit,
-            final UnitSystem system) {
+    public String formatAndConvert(final Number value, final AngularSpeedUnit unit, final UnitSystem system) {
         return format(value, unit);
     }
 
@@ -158,12 +152,10 @@ public class AngularSpeedFormatter extends
      */
     @Override
     public String getUnitSymbol(final AngularSpeedUnit unit) {
-        switch (unit) {
-            case DEGREES_PER_SECOND:
-                return DEGREES_PER_SECOND;
-            case RADIANS_PER_SECOND:
-            default:
-                return RADIANS_PER_SECOND;
+        if (unit == AngularSpeedUnit.DEGREES_PER_SECOND) {
+            return DEGREES_PER_SECOND;
+        } else {
+            return RADIANS_PER_SECOND;
         }
     }
 }

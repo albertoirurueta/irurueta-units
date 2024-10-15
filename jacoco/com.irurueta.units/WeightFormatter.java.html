@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WeightFormatter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">WeightFormatter.java</span></div><h1>WeightFormatter.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2020 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.units;
+
+import java.text.ParseException;
+import java.util.Locale;
+
+/**
+ * Formats and parses weight value and unit.
+ */
+public class WeightFormatter extends MeasureFormatter&lt;Weight, WeightUnit&gt; {
+
+    /**
+     * Picogram symbol.
+     */
+    public static final String PICOGRAM = &quot;pg&quot;;
+
+    /**
+     * Nanogram symbol.
+     */
+    public static final String NANOGRAM = &quot;ng&quot;;
+
+    /**
+     * Microgram symbol.
+     */
+    public static final String MICROGRAM = &quot;µg&quot;;
+
+    /**
+     * Milligram symbol.
+     */
+    public static final String MILLIGRAM = &quot;mg&quot;;
+
+    /**
+     * Gram symbol.
+     */
+    public static final String GRAM = &quot;g&quot;;
+
+    /**
+     * Kilogram symbol.
+     */
+    public static final String KILOGRAM = &quot;Kg&quot;;
+
+    /**
+     * Metric tonne symbol.
+     */
+    public static final String TONNE = &quot;t&quot;;
+
+    /**
+     * Megatonne symbol.
+     */
+    public static final String MEGATONNE = &quot;Mt&quot;;
+
+    /**
+     * U.S. OR U.K. ton symbol.
+     */
+    public static final String US_UK_TON = &quot;ton&quot;;
+
+    /**
+     * Pound symbol.
+     */
+    public static final String POUND = &quot;lb&quot;;
+
+    /**
+     * Ounce symbol.
+     */
+    public static final String OUNCE = &quot;oz&quot;;
+
+    /**
+     * Constructor.
+     */
+    public WeightFormatter() {
+<span class="fc" id="L85">        super();</span>
+<span class="fc" id="L86">    }</span>
+
+    /**
+     * Constructor with locale.
+     *
+     * @param locale locale.
+     * @throws IllegalArgumentException if locale is null.
+     */
+    public WeightFormatter(final Locale locale) {
+<span class="fc" id="L95">        super(locale);</span>
+<span class="fc" id="L96">    }</span>
+
+    /**
+     * Copy constructor.
+     *
+     * @param formatter input instance to copy from.
+     * @throws NullPointerException if provided formatter is null.
+     */
+    public WeightFormatter(final WeightFormatter formatter) {
+<span class="fc" id="L105">        this(formatter.getLocale());</span>
+<span class="fc" id="L106">    }</span>
+
+    /**
+     * Determines if two weight formatters are equal by comparing all of their
+     * internal parameters.
+     *
+     * @param obj another object to compare.
+     * @return true if provided object is assumed to be equal to this instance.
+     */
+    @Override
+    public boolean equals(final Object obj) {
+<span class="fc" id="L117">        final var equals = super.equals(obj);</span>
+<span class="fc bfc" id="L118" title="All 4 branches covered.">        return (obj instanceof WeightFormatter) &amp;&amp; equals;</span>
+    }
+
+    /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare objects.
+     * This implementation only calls parent implementation to avoid static analyzer warning.
+     *
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+<span class="fc" id="L130">        return super.hashCode();</span>
+    }
+
+    /**
+     * Gets unit system for detected unit into provided string representation
+     * of a measurement.
+     *
+     * @param source a measurement string representation to be checked.
+     * @return a unit system (either metric or imperial) or null if unit
+     * cannot be determined.
+     */
+    @Override
+    public UnitSystem getUnitSystem(final String source) {
+<span class="fc" id="L143">        final var unit = findUnit(source);</span>
+<span class="fc bfc" id="L144" title="All 2 branches covered.">        return unit != null ? WeightUnit.getUnitSystem(unit) : null;</span>
+    }
+
+    /**
+     * Parses provided string and tries to determine a weight value and unit.
+     *
+     * @param source a string to be parsed.
+     * @return a weight containing a value and unit.
+     * @throws ParseException       if provided string cannot be parsed.
+     * @throws UnknownUnitException if unit cannot be determined.
+     */
+    @Override
+    public Weight parse(final String source) throws ParseException, UnknownUnitException {
+<span class="fc" id="L157">        return internalParse(source, new Weight());</span>
+    }
+
+    /**
+     * Attempts to determine a weight unit within a measurement string
+     * representation.
+     *
+     * @param source a weight measurement string representation.
+     * @return a weight unit, or null if none can be determined.
+     */
+    @Override
+    public WeightUnit findUnit(final String source) {
+<span class="fc bfc" id="L169" title="All 4 branches covered.">        if (source.contains(PICOGRAM + &quot; &quot;) || source.endsWith(PICOGRAM)) {</span>
+<span class="fc" id="L170">            return WeightUnit.PICOGRAM;</span>
+        }
+<span class="fc bfc" id="L172" title="All 4 branches covered.">        if (source.contains(NANOGRAM + &quot; &quot;) || source.endsWith(NANOGRAM)) {</span>
+<span class="fc" id="L173">            return WeightUnit.NANOGRAM;</span>
+        }
+<span class="fc bfc" id="L175" title="All 4 branches covered.">        if (source.contains(MICROGRAM + &quot; &quot;) || source.endsWith(MICROGRAM)) {</span>
+<span class="fc" id="L176">            return WeightUnit.MICROGRAM;</span>
+        }
+<span class="fc bfc" id="L178" title="All 4 branches covered.">        if (source.contains(MILLIGRAM + &quot; &quot;) || source.endsWith(MILLIGRAM)) {</span>
+<span class="fc" id="L179">            return WeightUnit.MILLIGRAM;</span>
+        }
+<span class="fc bfc" id="L181" title="All 4 branches covered.">        if (source.contains(KILOGRAM + &quot; &quot;) || source.endsWith(KILOGRAM)) {</span>
+<span class="fc" id="L182">            return WeightUnit.KILOGRAM;</span>
+        }
+<span class="fc bfc" id="L184" title="All 4 branches covered.">        if (source.contains(MEGATONNE + &quot; &quot;) || source.endsWith(MEGATONNE)) {</span>
+<span class="fc" id="L185">            return WeightUnit.MEGATONNE;</span>
+        }
+<span class="fc bfc" id="L187" title="All 4 branches covered.">        if (source.contains(POUND + &quot; &quot;) || source.endsWith(POUND)) {</span>
+<span class="fc" id="L188">            return WeightUnit.POUND;</span>
+        }
+<span class="fc bfc" id="L190" title="All 4 branches covered.">        if (source.contains(OUNCE + &quot; &quot;) || source.endsWith(OUNCE)) {</span>
+<span class="fc" id="L191">            return WeightUnit.OUNCE;</span>
+        }
+
+<span class="fc bfc" id="L194" title="All 4 branches covered.">        if (source.contains(US_UK_TON + &quot; &quot;) || source.endsWith(US_UK_TON)) {</span>
+<span class="fc" id="L195">            final var locale = getLocale();</span>
+<span class="pc bpc" id="L196" title="1 of 2 branches missed.">            if (Locale.UK.getCountry().equals(locale.getCountry())) {</span>
+                // UK
+<span class="nc" id="L198">                return WeightUnit.UK_TON;</span>
+            } else {
+                // US
+<span class="fc" id="L201">                return WeightUnit.US_TON;</span>
+            }
+        }
+
+<span class="fc bfc" id="L205" title="All 4 branches covered.">        if (source.contains(TONNE + &quot; &quot;) || source.endsWith(TONNE)) {</span>
+<span class="fc" id="L206">            return WeightUnit.TONNE;</span>
+        }
+<span class="fc bfc" id="L208" title="All 4 branches covered.">        if (source.contains(GRAM + &quot; &quot;) || source.endsWith(GRAM)) {</span>
+<span class="fc" id="L209">            return WeightUnit.GRAM;</span>
+        }
+
+<span class="fc" id="L212">        return null;</span>
+    }
+
+    /**
+     * Formats and converts provided weight value and unit using provided
+     * unit system.
+     * If provided value is too large for provided unit, this method will
+     * convert it to a more appropriate unit using provided unit system (either
+     * metric or imperial).
+     *
+     * @param value  a weight value.
+     * @param unit   a weight unit.
+     * @param system system unit to convert measurement to.
+     * @return a string representation of weight value and unit.
+     */
+    @Override
+    public String formatAndConvert(final Number value, final WeightUnit unit, final UnitSystem system) {
+<span class="fc bfc" id="L229" title="All 2 branches covered.">        if (system == UnitSystem.IMPERIAL) {</span>
+<span class="fc" id="L230">            return formatAndConvertImperial(value, unit);</span>
+        } else {
+<span class="fc" id="L232">            return formatAndConvertMetric(value, unit);</span>
+        }
+    }
+
+    /**
+     * Formats and converts provided weight value and unit using metric unit
+     * system.
+     * If provided weight value is too large for provided weight unit,
+     * this method will convert to a more appropriate unit.
+     *
+     * @param value a weight value.
+     * @param unit  a weight unit.
+     * @return a string representation of weight value and unit using metric
+     * unit system.
+     */
+    public String formatAndConvertMetric(final Number value, final WeightUnit unit) {
+<span class="fc" id="L248">        final var v = value.doubleValue();</span>
+
+<span class="fc" id="L250">        final var picogram = WeightConverter.convert(v, unit, WeightUnit.PICOGRAM);</span>
+<span class="fc bfc" id="L251" title="All 2 branches covered.">        if (Math.abs(picogram) &lt; (WeightConverter.GRAMS_PER_NANOGRAM / WeightConverter.GRAMS_PER_PICOGRAM)) {</span>
+<span class="fc" id="L252">            return format(picogram, WeightUnit.PICOGRAM);</span>
+        }
+
+<span class="fc" id="L255">        final var nanogram = WeightConverter.convert(v, unit, WeightUnit.NANOGRAM);</span>
+<span class="fc bfc" id="L256" title="All 2 branches covered.">        if (Math.abs(nanogram) &lt; (WeightConverter.GRAMS_PER_MICROGRAM / WeightConverter.GRAMS_PER_NANOGRAM)) {</span>
+<span class="fc" id="L257">            return format(nanogram, WeightUnit.NANOGRAM);</span>
+        }
+
+<span class="fc" id="L260">        final var microgram = WeightConverter.convert(v, unit, WeightUnit.MICROGRAM);</span>
+<span class="fc bfc" id="L261" title="All 2 branches covered.">        if (Math.abs(microgram) &lt; (WeightConverter.GRAMS_PER_MILLIGRAM / WeightConverter.GRAMS_PER_MICROGRAM)) {</span>
+<span class="fc" id="L262">            return format(microgram, WeightUnit.MICROGRAM);</span>
+        }
+
+<span class="fc" id="L265">        final var milligram = WeightConverter.convert(v, unit, WeightUnit.MILLIGRAM);</span>
+<span class="fc bfc" id="L266" title="All 2 branches covered.">        if (Math.abs(milligram) &lt; (1.0 / WeightConverter.GRAMS_PER_MILLIGRAM)) {</span>
+<span class="fc" id="L267">            return format(milligram, WeightUnit.MILLIGRAM);</span>
+        }
+
+<span class="fc" id="L270">        final var gram = WeightConverter.convert(v, unit, WeightUnit.GRAM);</span>
+<span class="fc bfc" id="L271" title="All 2 branches covered.">        if (Math.abs(gram) &lt; WeightConverter.GRAMS_PER_KILOGRAM) {</span>
+<span class="fc" id="L272">            return format(gram, WeightUnit.GRAM);</span>
+        }
+
+<span class="fc" id="L275">        final var kilogram = WeightConverter.convert(v, unit, WeightUnit.KILOGRAM);</span>
+<span class="fc bfc" id="L276" title="All 2 branches covered.">        if (Math.abs(kilogram) &lt; (WeightConverter.GRAMS_PER_TONNE / WeightConverter.GRAMS_PER_KILOGRAM)) {</span>
+<span class="fc" id="L277">            return format(kilogram, WeightUnit.KILOGRAM);</span>
+        }
+
+<span class="fc" id="L280">        final var tonne = WeightConverter.convert(v, unit, WeightUnit.TONNE);</span>
+<span class="fc bfc" id="L281" title="All 2 branches covered.">        if (Math.abs(tonne) &lt; (WeightConverter.GRAMS_PER_MEGATONNE / WeightConverter.GRAMS_PER_TONNE)) {</span>
+<span class="fc" id="L282">            return format(tonne, WeightUnit.TONNE);</span>
+        }
+
+<span class="fc" id="L285">        final var megatonne = WeightConverter.convert(v, unit, WeightUnit.MEGATONNE);</span>
+<span class="fc" id="L286">        return format(megatonne, WeightUnit.MEGATONNE);</span>
+    }
+
+
+    /**
+     * Formats and converts provided weight value and unit using imperial unit
+     * system.
+     * If provided weight value is too large for provided weight unit,
+     * this method will convert to a more appropriate unit.
+     *
+     * @param value a weight value.
+     * @param unit  a weight unit.
+     * @return a string representation of weight value and unit using imperial
+     * unit system.
+     */
+    public String formatAndConvertImperial(final Number value, final WeightUnit unit) {
+<span class="fc" id="L302">        final var v = value.doubleValue();</span>
+
+<span class="fc" id="L304">        final var ounce = WeightConverter.convert(v, unit, WeightUnit.OUNCE);</span>
+<span class="fc bfc" id="L305" title="All 2 branches covered.">        if (Math.abs(ounce) &lt; (WeightConverter.GRAMS_PER_POUND / WeightConverter.GRAMS_PER_OUNCE)) {</span>
+<span class="fc" id="L306">            return format(ounce, WeightUnit.OUNCE);</span>
+        }
+
+<span class="fc" id="L309">        final var pound = WeightConverter.convert(v, unit, WeightUnit.POUND);</span>
+
+<span class="fc" id="L311">        final var locale = getLocale();</span>
+<span class="pc bpc" id="L312" title="1 of 2 branches missed.">        if (Locale.UK.getCountry().equals(locale.getCountry())) {</span>
+            // UK
+<span class="nc bnc" id="L314" title="All 2 branches missed.">            if (Math.abs(pound) &lt; (WeightConverter.GRAMS_PER_UK_TON / WeightConverter.GRAMS_PER_POUND)) {</span>
+<span class="nc" id="L315">                return format(pound, WeightUnit.POUND);</span>
+            }
+
+<span class="nc" id="L318">            final var ton = WeightConverter.convert(v, unit, WeightUnit.UK_TON);</span>
+<span class="nc" id="L319">            return format(ton, WeightUnit.UK_TON);</span>
+        } else {
+            // US
+<span class="fc bfc" id="L322" title="All 2 branches covered.">            if (Math.abs(pound) &lt; (WeightConverter.GRAMS_PER_US_TON / WeightConverter.GRAMS_PER_POUND)) {</span>
+<span class="fc" id="L323">                return format(pound, WeightUnit.POUND);</span>
+            }
+
+<span class="fc" id="L326">            final var ton = WeightConverter.convert(v, unit, WeightUnit.US_TON);</span>
+<span class="fc" id="L327">            return format(ton, WeightUnit.US_TON);</span>
+        }
+    }
+
+    /**
+     * Returns unit string representation.
+     *
+     * @param unit a weight unit.
+     * @return its string representation.
+     */
+    @Override
+    public String getUnitSymbol(final WeightUnit unit) {
+<span class="fc bfc" id="L339" title="All 11 branches covered.">        return switch (unit) {</span>
+<span class="fc" id="L340">            case PICOGRAM -&gt; PICOGRAM;</span>
+<span class="fc" id="L341">            case NANOGRAM -&gt; NANOGRAM;</span>
+<span class="fc" id="L342">            case MICROGRAM -&gt; MICROGRAM;</span>
+<span class="fc" id="L343">            case MILLIGRAM -&gt; MILLIGRAM;</span>
+<span class="fc" id="L344">            case KILOGRAM -&gt; KILOGRAM;</span>
+<span class="fc" id="L345">            case TONNE -&gt; TONNE;</span>
+<span class="fc" id="L346">            case MEGATONNE -&gt; MEGATONNE;</span>
+<span class="fc" id="L347">            case US_TON, UK_TON -&gt; US_UK_TON;</span>
+<span class="fc" id="L348">            case POUND -&gt; POUND;</span>
+<span class="fc" id="L349">            case OUNCE -&gt; OUNCE;</span>
+<span class="fc" id="L350">            default -&gt; GRAM;</span>
+        };
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

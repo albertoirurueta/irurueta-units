@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FrequencyFormatter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">FrequencyFormatter.java</span></div><h1>FrequencyFormatter.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2018 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.units;
+
+import java.text.ParseException;
+import java.util.Locale;
+
+/**
+ * Formats and parses frequency value and unit.
+ */
+public class FrequencyFormatter extends MeasureFormatter&lt;Frequency, FrequencyUnit&gt; {
+
+    /**
+     * Hertz symbol.
+     */
+    public static final String HERTZ = &quot;Hz&quot;;
+
+    /**
+     * KiloHertz symbol.
+     */
+    public static final String KILOHERTZ = &quot;KHz&quot;;
+
+    /**
+     * MegaHertz symbol.
+     */
+    public static final String MEGAHERTZ = &quot;MHz&quot;;
+
+    /**
+     * GigaHertz symbol.
+     */
+    public static final String GIGAHERTZ = &quot;GHz&quot;;
+
+    /**
+     * TeraHertz symbol.
+     */
+    public static final String TERAHERTZ = &quot;THz&quot;;
+
+    /**
+     * Constructor.
+     */
+    public FrequencyFormatter() {
+<span class="fc" id="L55">        super();</span>
+<span class="fc" id="L56">    }</span>
+
+    /**
+     * Constructor with locale.
+     *
+     * @param locale locale.
+     * @throws IllegalArgumentException if locale is null.
+     */
+    public FrequencyFormatter(final Locale locale) {
+<span class="fc" id="L65">        super(locale);</span>
+<span class="fc" id="L66">    }</span>
+
+    /**
+     * Copy constructor.
+     *
+     * @param formatter input instance to copy from.
+     * @throws NullPointerException if provided formatter is null.
+     */
+    public FrequencyFormatter(final FrequencyFormatter formatter) {
+<span class="fc" id="L75">        this(formatter.getLocale());</span>
+<span class="fc" id="L76">    }</span>
+
+    /**
+     * Determines if two frequency formatters are equal by comparing all of their
+     * internal parameters.
+     *
+     * @param obj another object to compare.
+     * @return true if provided object is assumed to be equal to this instance.
+     */
+    @Override
+    public boolean equals(final Object obj) {
+<span class="fc" id="L87">        final var equals = super.equals(obj);</span>
+<span class="fc bfc" id="L88" title="All 4 branches covered.">        return (obj instanceof FrequencyFormatter) &amp;&amp; equals;</span>
+    }
+
+    /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare objects.
+     * This implementation only calls parent implementation to avoid static analyzer warning.
+     *
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+<span class="fc" id="L100">        return super.hashCode();</span>
+    }
+
+    /**
+     * Gets unit system for detected unit into provided string representation
+     * of a measurement.
+     *
+     * @param source a measurement string representation to be checked.
+     * @return a unit system (either metric or imperial) or null if unit
+     * cannot be determined.
+     */
+    @Override
+    public UnitSystem getUnitSystem(final String source) {
+<span class="fc" id="L113">        return UnitSystem.METRIC;</span>
+    }
+
+    /**
+     * Parses provided string and tries to determine a frequency value and unit.
+     *
+     * @param source a string to be parsed.
+     * @return a frequency containing a value and unit.
+     * @throws ParseException       if provided string cannot be parsed.
+     * @throws UnknownUnitException if unit cannot be determined.
+     */
+    @Override
+    public Frequency parse(final String source) throws ParseException, UnknownUnitException {
+<span class="fc" id="L126">        return internalParse(source, new Frequency());</span>
+    }
+
+    /**
+     * Attempts to determine a frequency unit within a frequency string
+     * representation.
+     *
+     * @param source a frequency measurement string representation.
+     * @return a frequency unit, or null if none can be determined.
+     */
+    @Override
+    public FrequencyUnit findUnit(final String source) {
+<span class="fc bfc" id="L138" title="All 4 branches covered.">        if (source.contains(KILOHERTZ + &quot; &quot;) || source.endsWith(KILOHERTZ)) {</span>
+<span class="fc" id="L139">            return FrequencyUnit.KILOHERTZ;</span>
+        }
+<span class="fc bfc" id="L141" title="All 4 branches covered.">        if (source.contains(MEGAHERTZ + &quot; &quot;) || source.endsWith(MEGAHERTZ)) {</span>
+<span class="fc" id="L142">            return FrequencyUnit.MEGAHERTZ;</span>
+        }
+<span class="fc bfc" id="L144" title="All 4 branches covered.">        if (source.contains(GIGAHERTZ + &quot; &quot;) || source.endsWith(GIGAHERTZ)) {</span>
+<span class="fc" id="L145">            return FrequencyUnit.GIGAHERTZ;</span>
+        }
+<span class="fc bfc" id="L147" title="All 4 branches covered.">        if (source.contains(TERAHERTZ + &quot; &quot;) || source.endsWith(TERAHERTZ)) {</span>
+<span class="fc" id="L148">            return FrequencyUnit.TERAHERTZ;</span>
+        }
+<span class="fc bfc" id="L150" title="All 4 branches covered.">        if (source.contains(HERTZ + &quot; &quot;) || source.endsWith(HERTZ)) {</span>
+<span class="fc" id="L151">            return FrequencyUnit.HERTZ;</span>
+        }
+<span class="fc" id="L153">        return null;</span>
+    }
+
+    /**
+     * Formats and converts provided frequency value and unit using provided unit
+     * system.
+     * If provided value is too large for provided unit, this method will convert
+     * it to a more appropriate unit. This implementation ignores unit system.
+     *
+     * @param value  a measurement value.
+     * @param unit   a measurement unit.
+     * @param system system unit to convert measurement to (it is ignored).
+     * @return a string representation of frequency value and unit.
+     */
+    @Override
+    public String formatAndConvert(final Number value, final FrequencyUnit unit, final UnitSystem system) {
+<span class="fc" id="L169">        return formatAndConvertMetric(value, unit);</span>
+    }
+
+    /**
+     * Formats and converts provided frequency value and unit using metric unit
+     * system.
+     * If provided frequency value is too large for provided frequency unit, this
+     * method will convert it to a more appropriate unit.
+     *
+     * @param value a frequency value.
+     * @param unit  a frequency unit.
+     * @return a string representation of frequency value and unit using metric
+     * unit system.
+     */
+    public String formatAndConvertMetric(final Number value, final FrequencyUnit unit) {
+<span class="fc" id="L184">        final var v = value.doubleValue();</span>
+
+<span class="fc" id="L186">        final var hertz = FrequencyConverter.convert(v, unit, FrequencyUnit.HERTZ);</span>
+<span class="fc bfc" id="L187" title="All 2 branches covered.">        if (Math.abs(hertz) &lt; FrequencyConverter.HERTZS_PER_KILOHERTZ) {</span>
+<span class="fc" id="L188">            return format(hertz, FrequencyUnit.HERTZ);</span>
+        }
+
+<span class="fc" id="L191">        final var kiloHertz = FrequencyConverter.convert(v, unit, FrequencyUnit.KILOHERTZ);</span>
+<span class="fc bfc" id="L192" title="All 2 branches covered.">        if (Math.abs(kiloHertz) &lt; (FrequencyConverter.HERTZ_PER_MEGAHERTZ / FrequencyConverter.HERTZS_PER_KILOHERTZ)) {</span>
+<span class="fc" id="L193">            return format(kiloHertz, FrequencyUnit.KILOHERTZ);</span>
+        }
+
+<span class="fc" id="L196">        final var megaHertz = FrequencyConverter.convert(v, unit, FrequencyUnit.MEGAHERTZ);</span>
+<span class="fc bfc" id="L197" title="All 2 branches covered.">        if (Math.abs(megaHertz) &lt; (FrequencyConverter.HERTZ_PER_GIGAHERTZ / FrequencyConverter.HERTZ_PER_MEGAHERTZ)) {</span>
+<span class="fc" id="L198">            return format(megaHertz, FrequencyUnit.MEGAHERTZ);</span>
+        }
+
+<span class="fc" id="L201">        final var gigaHertz = FrequencyConverter.convert(v, unit, FrequencyUnit.GIGAHERTZ);</span>
+<span class="fc bfc" id="L202" title="All 2 branches covered.">        if (Math.abs(gigaHertz) &lt; (FrequencyConverter.HERTZ_PER_TERAHERTZ / FrequencyConverter.HERTZ_PER_GIGAHERTZ)) {</span>
+<span class="fc" id="L203">            return format(gigaHertz, FrequencyUnit.GIGAHERTZ);</span>
+        }
+
+<span class="fc" id="L206">        final var teraHertz = FrequencyConverter.convert(v, unit, FrequencyUnit.TERAHERTZ);</span>
+<span class="fc" id="L207">        return format(teraHertz, FrequencyUnit.TERAHERTZ);</span>
+    }
+
+    /**
+     * Returns unit string representation.
+     *
+     * @param unit a frequency unit.
+     * @return its string representation
+     */
+    @SuppressWarnings(&quot;DuplicatedCode&quot;)
+    @Override
+    public String getUnitSymbol(final FrequencyUnit unit) {
+<span class="fc bfc" id="L219" title="All 5 branches covered.">        return switch (unit) {</span>
+<span class="fc" id="L220">            case KILOHERTZ -&gt; KILOHERTZ;</span>
+<span class="fc" id="L221">            case MEGAHERTZ -&gt; MEGAHERTZ;</span>
+<span class="fc" id="L222">            case GIGAHERTZ -&gt; GIGAHERTZ;</span>
+<span class="fc" id="L223">            case TERAHERTZ -&gt; TERAHERTZ;</span>
+<span class="fc" id="L224">            default -&gt; HERTZ;</span>
+        };
+    }
+
+    /**
+     * Returns unit system this instance will use based on its assigned locale.
+     * Notice that if no locale was assigned, then the default system locale
+     * will be used.
+     *
+     * @return unit system this instance will use.
+     */
+    @Override
+    public UnitSystem getUnitSystem() {
+<span class="fc" id="L237">        return UnitSystem.METRIC;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

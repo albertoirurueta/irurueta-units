@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SurfaceConverter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">SurfaceConverter.java</span></div><h1>SurfaceConverter.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2018 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.units;
+
+import java.math.BigDecimal;
+
+/**
+ * Does surface conversions to different units.
+ * To prevent loss of accuracy, conversion should only be done as a final step
+ * before displaying surface measurements.
+ */
+@SuppressWarnings(&quot;WeakerAccess&quot;)
+public class SurfaceConverter {
+
+    /**
+     * Number of square meters in 1 square millimeter.
+     */
+    static final double SQUARE_METERS_PER_SQUARE_MILLIMETER =
+            DistanceConverter.METERS_PER_MILLIMETER * DistanceConverter.METERS_PER_MILLIMETER;
+
+    /**
+     * Number of square meters in 1 square centimeter.
+     */
+    static final double SQUARE_METERS_PER_SQUARE_CENTIMETER =
+            DistanceConverter.METERS_PER_CENTIMETER * DistanceConverter.METERS_PER_CENTIMETER;
+
+    /**
+     * Number of square meters in 1 square kilometer.
+     */
+    static final double SQUARE_METERS_PER_SQUARE_KILOMETER =
+            DistanceConverter.METERS_PER_KILOMETER * DistanceConverter.METERS_PER_KILOMETER;
+
+    /**
+     * Number of square meters in 1 square inch.
+     */
+    static final double SQUARE_METERS_PER_SQUARE_INCH =
+            DistanceConverter.METERS_PER_INCH * DistanceConverter.METERS_PER_INCH;
+
+    /**
+     * Number of square meters in 1 square foot.
+     */
+    static final double SQUARE_METERS_PER_SQUARE_FOOT =
+            DistanceConverter.METERS_PER_FOOT * DistanceConverter.METERS_PER_FOOT;
+
+    /**
+     * Number of square meters in 1 square yard.
+     */
+    static final double SQUARE_METERS_PER_SQUARE_YARD =
+            DistanceConverter.METERS_PER_YARD * DistanceConverter.METERS_PER_YARD;
+
+    /**
+     * Number of square meters in 1 square mile.
+     */
+    static final double SQUARE_METERS_PER_SQUARE_MILE =
+            DistanceConverter.METERS_PER_MILE * DistanceConverter.METERS_PER_MILE;
+
+    /**
+     * Number of square meters in 1 centiare.
+     */
+    private static final double SQUARE_METERS_PER_CENTIARE = 1.0;
+
+    /**
+     * Number of square meters in 1 are.
+     */
+    private static final double SQUARE_METERS_PER_ARE = 100.0;
+
+    /**
+     * Number of square meters in 1 decare.
+     */
+    private static final double SQUARE_METERS_PER_DECARE = 1000.0;
+
+    /**
+     * Number of square meters in 1 hectare.
+     */
+    private static final double SQUARE_METERS_PER_HECTARE = 10000.0;
+
+    /**
+     * Number of square meters in 1 acre.
+     */
+    private static final double SQUARE_METERS_PER_ACRE = 4046.8564224;
+
+    /**
+     * Constructor.
+     * Prevents instantiation of helper class.
+     */
+    private SurfaceConverter() {
+    }
+
+    /**
+     * Converts a surface to provided output surface unit.
+     *
+     * @param input  input surface to be converted.
+     * @param output output surface where result will be stored and
+     *               containing output unit.
+     */
+    public static void convert(final Surface input, final Surface output) {
+<span class="fc" id="L110">        convert(input, output.getUnit(), output);</span>
+<span class="fc" id="L111">    }</span>
+
+    /**
+     * Converts a surface to requested output unit.
+     *
+     * @param input      input surface to be converted.
+     * @param outputUnit requested output unit.
+     * @return converted surface unit.
+     */
+    public static Surface convertAndReturnNew(final Surface input, final SurfaceUnit outputUnit) {
+<span class="fc" id="L121">        final var result = new Surface();</span>
+<span class="fc" id="L122">        convert(input, outputUnit, result);</span>
+<span class="fc" id="L123">        return result;</span>
+    }
+
+    /**
+     * Converts and updates a surface to requested output unit.
+     *
+     * @param surface    input surface to be converted and updated.
+     * @param outputUnit requested output unit.
+     */
+    public static void convert(final Surface surface, final SurfaceUnit outputUnit) {
+<span class="fc" id="L133">        convert(surface, outputUnit, surface);</span>
+<span class="fc" id="L134">    }</span>
+
+    /**
+     * Converts a surface to requested output unit.
+     *
+     * @param input      input surface to be converted.
+     * @param outputUnit requested output unit.
+     * @param result     surface unit where result will be stored.
+     */
+    public static void convert(final Surface input, final SurfaceUnit outputUnit, final Surface result) {
+<span class="fc" id="L144">        final var value = convert(input.getValue(), input.getUnit(), outputUnit);</span>
+<span class="fc" id="L145">        result.setValue(value);</span>
+<span class="fc" id="L146">        result.setUnit(outputUnit);</span>
+<span class="fc" id="L147">    }</span>
+
+    /**
+     * Converts a surface value from input unit to provided output unit.
+     *
+     * @param input      surface value.
+     * @param inputUnit  input surface unit.
+     * @param outputUnit output surface unit.
+     * @return converted surface value.
+     */
+    public static Number convert(final Number input, final SurfaceUnit inputUnit, final SurfaceUnit outputUnit) {
+<span class="fc" id="L158">        return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit, outputUnit));</span>
+    }
+
+    /**
+     * Converts a surface value from input unit to provided output unit.
+     *
+     * @param input      surface value.
+     * @param inputUnit  input surface unit.
+     * @param outputUnit output surface unit.
+     * @return converted surface value.
+     */
+    public static double convert(final double input, final SurfaceUnit inputUnit, final SurfaceUnit outputUnit) {
+        //convert to square meters.
+<span class="fc bfc" id="L171" title="All 13 branches covered.">        final var squareMeters = switch (inputUnit) {</span>
+<span class="fc" id="L172">            case SQUARE_MILLIMETER -&gt; squareMillimeterToSquareMeter(input);</span>
+<span class="fc" id="L173">            case SQUARE_CENTIMETER -&gt; squareCentimeterToSquareMeter(input);</span>
+<span class="fc" id="L174">            case SQUARE_KILOMETER -&gt; squareKilometerToSquareMeter(input);</span>
+<span class="fc" id="L175">            case SQUARE_INCH -&gt; squareInchToSquareMeter(input);</span>
+<span class="fc" id="L176">            case SQUARE_FOOT -&gt; squareFootToSquareMeter(input);</span>
+<span class="fc" id="L177">            case SQUARE_YARD -&gt; squareYardToSquareMeter(input);</span>
+<span class="fc" id="L178">            case SQUARE_MILE -&gt; squareMileToSquareMeter(input);</span>
+<span class="fc" id="L179">            case CENTIARE -&gt; centiareToSquareMeter(input);</span>
+<span class="fc" id="L180">            case ARE -&gt; areToSquareMeter(input);</span>
+<span class="fc" id="L181">            case DECARE -&gt; decareToSquareMeter(input);</span>
+<span class="fc" id="L182">            case HECTARE -&gt; hectareToSquareMeter(input);</span>
+<span class="fc" id="L183">            case ACRE -&gt; acreToSquareMeter(input);</span>
+<span class="fc" id="L184">            default -&gt; input;</span>
+        };
+
+        //convert from square meter to required output unit
+<span class="fc bfc" id="L188" title="All 13 branches covered.">        return switch (outputUnit) {</span>
+<span class="fc" id="L189">            case SQUARE_MILLIMETER -&gt; squareMeterToSquareMillimeter(squareMeters);</span>
+<span class="fc" id="L190">            case SQUARE_CENTIMETER -&gt; squareMeterToSquareCentimeter(squareMeters);</span>
+<span class="fc" id="L191">            case SQUARE_KILOMETER -&gt; squareMeterToSquareKilometer(squareMeters);</span>
+<span class="fc" id="L192">            case SQUARE_INCH -&gt; squareMeterToSquareInch(squareMeters);</span>
+<span class="fc" id="L193">            case SQUARE_FOOT -&gt; squareMeterToSquareFoot(squareMeters);</span>
+<span class="fc" id="L194">            case SQUARE_YARD -&gt; squareMeterToSquareYard(squareMeters);</span>
+<span class="fc" id="L195">            case SQUARE_MILE -&gt; squareMeterToSquareMile(squareMeters);</span>
+<span class="fc" id="L196">            case CENTIARE -&gt; squareMeterToCentiare(squareMeters);</span>
+<span class="fc" id="L197">            case ARE -&gt; squareMeterToAre(squareMeters);</span>
+<span class="fc" id="L198">            case DECARE -&gt; squareMeterToDecare(squareMeters);</span>
+<span class="fc" id="L199">            case HECTARE -&gt; squareMeterToHectare(squareMeters);</span>
+<span class="fc" id="L200">            case ACRE -&gt; squareMeterToAcre(squareMeters);</span>
+<span class="fc" id="L201">            default -&gt; squareMeters;</span>
+        };
+    }
+
+    /**
+     * Converts provided square meter value to square millimeters.
+     *
+     * @param squareMeter square meter value.
+     * @return same surface converted to square millimeters.
+     */
+    public static double squareMeterToSquareMillimeter(final double squareMeter) {
+<span class="fc" id="L212">        return squareMeter / SQUARE_METERS_PER_SQUARE_MILLIMETER;</span>
+    }
+
+    /**
+     * Converts provided square millimeter value to square meters.
+     *
+     * @param squareMillimeter square millimeter value.
+     * @return same surface converted to square meters.
+     */
+    public static double squareMillimeterToSquareMeter(final double squareMillimeter) {
+<span class="fc" id="L222">        return squareMillimeter * SQUARE_METERS_PER_SQUARE_MILLIMETER;</span>
+    }
+
+    /**
+     * Converts provided square meter value to square centimeters.
+     *
+     * @param squareMeter square meter value.
+     * @return same surface converted to square centimeters.
+     */
+    public static double squareMeterToSquareCentimeter(final double squareMeter) {
+<span class="fc" id="L232">        return squareMeter / SQUARE_METERS_PER_SQUARE_CENTIMETER;</span>
+    }
+
+    /**
+     * Converts provided square centimeter value to square meters.
+     *
+     * @param squareCentimeter square centimeter value.
+     * @return same surface converted to square meters.
+     */
+    public static double squareCentimeterToSquareMeter(final double squareCentimeter) {
+<span class="fc" id="L242">        return squareCentimeter * SQUARE_METERS_PER_SQUARE_CENTIMETER;</span>
+    }
+
+    /**
+     * Converts provided square meter value to square kilometers.
+     *
+     * @param squareMeter square meter value.
+     * @return same surface converted to square kilometers.
+     */
+    public static double squareMeterToSquareKilometer(final double squareMeter) {
+<span class="fc" id="L252">        return squareMeter / SQUARE_METERS_PER_SQUARE_KILOMETER;</span>
+    }
+
+    /**
+     * Converts provided square kilometer value to square meters.
+     *
+     * @param squareKilometer square kilometer value.
+     * @return same surface converted to square meters.
+     */
+    public static double squareKilometerToSquareMeter(final double squareKilometer) {
+<span class="fc" id="L262">        return squareKilometer * SQUARE_METERS_PER_SQUARE_KILOMETER;</span>
+    }
+
+    /**
+     * Converts provided square meter value to square inches.
+     *
+     * @param squareMeter square meter value.
+     * @return same surface converted to square inches.
+     */
+    public static double squareMeterToSquareInch(final double squareMeter) {
+<span class="fc" id="L272">        return squareMeter / SQUARE_METERS_PER_SQUARE_INCH;</span>
+    }
+
+    /**
+     * Converts provided square inch value to square meters.
+     *
+     * @param squareInch square inch value.
+     * @return same surface converted to square meters.
+     */
+    public static double squareInchToSquareMeter(final double squareInch) {
+<span class="fc" id="L282">        return squareInch * SQUARE_METERS_PER_SQUARE_INCH;</span>
+    }
+
+    /**
+     * Converts provided square meter value to square feet.
+     *
+     * @param squareMeter square meter value.
+     * @return same surface converted to square feet.
+     */
+    public static double squareMeterToSquareFoot(final double squareMeter) {
+<span class="fc" id="L292">        return squareMeter / SQUARE_METERS_PER_SQUARE_FOOT;</span>
+    }
+
+    /**
+     * Converts provided square foot value to square meters.
+     *
+     * @param squareFoot square foot value.
+     * @return same surface converted to square meters.
+     */
+    public static double squareFootToSquareMeter(final double squareFoot) {
+<span class="fc" id="L302">        return squareFoot * SQUARE_METERS_PER_SQUARE_FOOT;</span>
+    }
+
+    /**
+     * Converts provided square meter value to square yards.
+     *
+     * @param squareMeter square meter value.
+     * @return same surface converted to square yards.
+     */
+    public static double squareMeterToSquareYard(final double squareMeter) {
+<span class="fc" id="L312">        return squareMeter / SQUARE_METERS_PER_SQUARE_YARD;</span>
+    }
+
+    /**
+     * Converts provided square yard value to square meters.
+     *
+     * @param squareYard square yard value.
+     * @return same surface converted to square meters.
+     */
+    public static double squareYardToSquareMeter(final double squareYard) {
+<span class="fc" id="L322">        return squareYard * SQUARE_METERS_PER_SQUARE_YARD;</span>
+    }
+
+    /**
+     * Converts provided square meter value to square miles.
+     *
+     * @param squareMeter square meter value.
+     * @return same surface converted to square miles.
+     */
+    public static double squareMeterToSquareMile(final double squareMeter) {
+<span class="fc" id="L332">        return squareMeter / SQUARE_METERS_PER_SQUARE_MILE;</span>
+    }
+
+    /**
+     * Converts provided square mile value to square meters.
+     *
+     * @param squareMile square mile value.
+     * @return same surface converted to square meters.
+     */
+    public static double squareMileToSquareMeter(final double squareMile) {
+<span class="fc" id="L342">        return squareMile * SQUARE_METERS_PER_SQUARE_MILE;</span>
+    }
+
+    /**
+     * Converts provided square meter value to centiares.
+     *
+     * @param squareMeter square meter value.
+     * @return same surface converted to centiares.
+     */
+    public static double squareMeterToCentiare(final double squareMeter) {
+<span class="fc" id="L352">        return squareMeter / SQUARE_METERS_PER_CENTIARE;</span>
+    }
+
+    /**
+     * Converts provided centiare value to square meters.
+     *
+     * @param centiare centiare value.
+     * @return same surface converted to square meters.
+     */
+    public static double centiareToSquareMeter(final double centiare) {
+<span class="fc" id="L362">        return centiare * SQUARE_METERS_PER_CENTIARE;</span>
+    }
+
+    /**
+     * Converts provided square meter value to ares.
+     *
+     * @param squareMeter square meter value.
+     * @return same surface converted to ares.
+     */
+    public static double squareMeterToAre(final double squareMeter) {
+<span class="fc" id="L372">        return squareMeter / SQUARE_METERS_PER_ARE;</span>
+    }
+
+    /**
+     * Converts provided are value to square meters.
+     *
+     * @param are are value.
+     * @return same surface converted to square meters.
+     */
+    public static double areToSquareMeter(final double are) {
+<span class="fc" id="L382">        return are * SQUARE_METERS_PER_ARE;</span>
+    }
+
+    /**
+     * Converts provided square meter value to decares.
+     *
+     * @param squareMeter square meter value.
+     * @return same surface converted to decares.
+     */
+    public static double squareMeterToDecare(final double squareMeter) {
+<span class="fc" id="L392">        return squareMeter / SQUARE_METERS_PER_DECARE;</span>
+    }
+
+    /**
+     * Converts provided decare value to square meters.
+     *
+     * @param decare decare value.
+     * @return same surface converted to square meters.
+     */
+    public static double decareToSquareMeter(final double decare) {
+<span class="fc" id="L402">        return decare * SQUARE_METERS_PER_DECARE;</span>
+    }
+
+    /**
+     * Converts provided square meter value to hectares.
+     *
+     * @param squareMeter square meter value.
+     * @return same surface converted to hectares.
+     */
+    public static double squareMeterToHectare(final double squareMeter) {
+<span class="fc" id="L412">        return squareMeter / SQUARE_METERS_PER_HECTARE;</span>
+    }
+
+    /**
+     * Converts provided hectare value to square meters.
+     *
+     * @param hectare hectare value.
+     * @return same surface converted to square meters.
+     */
+    public static double hectareToSquareMeter(final double hectare) {
+<span class="fc" id="L422">        return hectare * SQUARE_METERS_PER_HECTARE;</span>
+    }
+
+    /**
+     * Converts provided square meter value to acres.
+     *
+     * @param squareMeter square meter value.
+     * @return same surface converted ot acres.
+     */
+    public static double squareMeterToAcre(final double squareMeter) {
+<span class="fc" id="L432">        return squareMeter / SQUARE_METERS_PER_ACRE;</span>
+    }
+
+    /**
+     * Converts provided acre value to square meters.
+     *
+     * @param acre acre value.
+     * @return same surface converted to square meters.
+     */
+    public static double acreToSquareMeter(final double acre) {
+<span class="fc" id="L442">        return acre * SQUARE_METERS_PER_ACRE;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

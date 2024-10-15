@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VolumeFormatter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">VolumeFormatter.java</span></div><h1>VolumeFormatter.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2020 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.units;
+
+import java.text.ParseException;
+import java.util.Locale;
+
+/**
+ * Formats and parses volume value and unit.
+ */
+public class VolumeFormatter extends MeasureFormatter&lt;Volume, VolumeUnit&gt; {
+
+    /**
+     * Cubic centimeter symbol.
+     */
+    public static final String CUBIC_CENTIMETER = &quot;cm³&quot;;
+
+    /**
+     * Milliliter symbol.
+     */
+    public static final String MILLILITER = &quot;mL&quot;;
+
+    /**
+     * Cubic decimeter symbol.
+     */
+    public static final String CUBIC_DECIMETER = &quot;dm³&quot;;
+
+    /**
+     * Liter symbol.
+     */
+    public static final String LITER = &quot;L&quot;;
+
+    /**
+     * Hectoliter symbol.
+     */
+    public static final String HECTOLITER = &quot;hL&quot;;
+
+    /**
+     * Cubic meter symbol.
+     */
+    public static final String CUBIC_METER = &quot;m³&quot;;
+
+    /**
+     * Cubic inch symbol.
+     */
+    public static final String CUBIC_INCH = &quot;in³&quot;;
+
+    /**
+     * Pint symbol.
+     */
+    public static final String PINT = &quot;pt&quot;;
+
+    /**
+     * Gallon symbol.
+     */
+    public static final String GALLON = &quot;gal&quot;;
+
+    /**
+     * Cubic foot symbol.
+     */
+    public static final String CUBIC_FOOT = &quot;ft³&quot;;
+
+    /**
+     * Barrel symbol.
+     */
+    public static final String BARREL = &quot;bbl&quot;;
+
+    /**
+     * Constructor.
+     */
+    public VolumeFormatter() {
+<span class="fc" id="L85">        super();</span>
+<span class="fc" id="L86">    }</span>
+
+    /**
+     * Constructor with locale.
+     *
+     * @param locale locale.
+     * @throws IllegalArgumentException if locale is null.
+     */
+    public VolumeFormatter(final Locale locale) {
+<span class="fc" id="L95">        super(locale);</span>
+<span class="fc" id="L96">    }</span>
+
+    /**
+     * Copy constructor.
+     *
+     * @param formatter input instance to copy from.
+     * @throws NullPointerException if provided formatter is null.
+     */
+    public VolumeFormatter(final VolumeFormatter formatter) {
+<span class="fc" id="L105">        this(formatter.getLocale());</span>
+<span class="fc" id="L106">    }</span>
+
+    /**
+     * Determines if two volume formatters are equal by comparing all of their internal
+     * parameters.
+     *
+     * @param obj another object to compare.
+     * @return true if provided object is assumed to be equal to this instance.
+     */
+    @Override
+    public boolean equals(final Object obj) {
+<span class="fc" id="L117">        final var equals = super.equals(obj);</span>
+<span class="fc bfc" id="L118" title="All 4 branches covered.">        return (obj instanceof VolumeFormatter) &amp;&amp; equals;</span>
+    }
+
+    /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare objects.
+     * This implementation only calls parent implementation to avoid static analyzer warning.
+     *
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+<span class="fc" id="L130">        return super.hashCode();</span>
+    }
+
+    /**
+     * Gets unit system for detected unit into provided string representation
+     * of a measurement.
+     *
+     * @param source a measurement string representation to be checked.
+     * @return a unit system (either metric or imperial) or null if unit cannot be determined.
+     */
+    @Override
+    public UnitSystem getUnitSystem(final String source) {
+<span class="fc" id="L142">        final var unit = findUnit(source);</span>
+<span class="fc bfc" id="L143" title="All 2 branches covered.">        return unit != null ? VolumeUnit.getUnitSystem(unit) : null;</span>
+    }
+
+    /**
+     * Parses provided string and tries to determine a volume value and unit.
+     *
+     * @param source a string to be parsed.
+     * @return a volume containing a value and unit.
+     * @throws ParseException       if provided string cannot be parsed.
+     * @throws UnknownUnitException if unit cannot be determined.
+     */
+    @Override
+    public Volume parse(final String source) throws ParseException, UnknownUnitException {
+<span class="fc" id="L156">        return internalParse(source, new Volume());</span>
+    }
+
+    /**
+     * Attempts to determine a volume unit within a measurement string representation.
+     *
+     * @param source a volume measurement string representation.
+     * @return a volume unit, or null if none can be determined.
+     */
+    @Override
+    public VolumeUnit findUnit(final String source) {
+<span class="fc bfc" id="L167" title="All 4 branches covered.">        if (source.contains(CUBIC_CENTIMETER + &quot; &quot;) || source.endsWith(CUBIC_CENTIMETER)) {</span>
+<span class="fc" id="L168">            return VolumeUnit.CUBIC_CENTIMETER;</span>
+        }
+<span class="fc bfc" id="L170" title="All 4 branches covered.">        if (source.contains(MILLILITER + &quot; &quot;) || source.endsWith(MILLILITER)) {</span>
+<span class="fc" id="L171">            return VolumeUnit.MILLILITER;</span>
+        }
+<span class="fc bfc" id="L173" title="All 4 branches covered.">        if (source.contains(CUBIC_DECIMETER + &quot; &quot;) || source.endsWith(CUBIC_DECIMETER)) {</span>
+<span class="fc" id="L174">            return VolumeUnit.CUBIC_DECIMETER;</span>
+        }
+<span class="fc bfc" id="L176" title="All 4 branches covered.">        if (source.contains(HECTOLITER + &quot; &quot;) || source.endsWith(HECTOLITER)) {</span>
+<span class="fc" id="L177">            return VolumeUnit.HECTOLITER;</span>
+        }
+<span class="fc bfc" id="L179" title="All 4 branches covered.">        if (source.contains(LITER + &quot; &quot;) || source.endsWith(LITER)) {</span>
+<span class="fc" id="L180">            return VolumeUnit.LITER;</span>
+        }
+<span class="fc bfc" id="L182" title="All 4 branches covered.">        if (source.contains(CUBIC_METER + &quot; &quot;) || source.endsWith(CUBIC_METER)) {</span>
+<span class="fc" id="L183">            return VolumeUnit.CUBIC_METER;</span>
+        }
+<span class="fc bfc" id="L185" title="All 4 branches covered.">        if (source.contains(CUBIC_INCH + &quot; &quot;) || source.endsWith(CUBIC_INCH)) {</span>
+<span class="fc" id="L186">            return VolumeUnit.CUBIC_INCH;</span>
+        }
+<span class="fc bfc" id="L188" title="All 4 branches covered.">        if (source.contains(PINT + &quot; &quot;) || source.endsWith(PINT)) {</span>
+<span class="fc" id="L189">            return VolumeUnit.PINT;</span>
+        }
+<span class="fc bfc" id="L191" title="All 4 branches covered.">        if (source.contains(GALLON + &quot; &quot;) || source.endsWith(GALLON)) {</span>
+<span class="fc" id="L192">            return VolumeUnit.GALLON;</span>
+        }
+<span class="fc bfc" id="L194" title="All 4 branches covered.">        if (source.contains(CUBIC_FOOT + &quot; &quot;) || source.endsWith(CUBIC_FOOT)) {</span>
+<span class="fc" id="L195">            return VolumeUnit.CUBIC_FOOT;</span>
+        }
+<span class="fc bfc" id="L197" title="All 4 branches covered.">        if (source.contains(BARREL + &quot; &quot;) || source.endsWith(BARREL)) {</span>
+<span class="fc" id="L198">            return VolumeUnit.BARREL;</span>
+        }
+
+<span class="fc" id="L201">        return null;</span>
+    }
+
+    /**
+     * Formats and converts provided volume value and unit using provided unit system.
+     * If provided value is too large for provided unit, this method will convert it
+     * to a more appropriate unit using provided unit system (either metric or imperial).
+     *
+     * @param value  a volume value.
+     * @param unit   a volume unit.
+     * @param system system unit to convert measurement to.
+     * @return a string representation of volume value and unit.
+     */
+    @Override
+    public String formatAndConvert(final Number value, final VolumeUnit unit, final UnitSystem system) {
+<span class="fc bfc" id="L216" title="All 2 branches covered.">        if (system == UnitSystem.IMPERIAL) {</span>
+<span class="fc" id="L217">            return formatAndConvertImperial(value, unit);</span>
+        } else {
+<span class="fc" id="L219">            return formatAndConvertMetric(value, unit);</span>
+        }
+    }
+
+    /**
+     * Formats and converts provided volume value and unit using metric unit system.
+     * If provided volume value is too large for provided volume unit,
+     * this method will convert to a more appropriate unit.
+     *
+     * @param value a volume value.
+     * @param unit a volume unit.
+     * @return a string representation of volume value and unit using metric unit
+     * system.
+     */
+    public String formatAndConvertMetric(final Number value, final VolumeUnit unit) {
+<span class="fc" id="L234">        final var v = value.doubleValue();</span>
+
+<span class="fc" id="L236">        final var cubicCentimeter = VolumeConverter.convert(v, unit, VolumeUnit.CUBIC_CENTIMETER);</span>
+<span class="fc bfc" id="L237" title="All 2 branches covered.">        if (Math.abs(cubicCentimeter) &lt; (VolumeConverter.CUBIC_METER_PER_LITER</span>
+                / VolumeConverter.CUBIC_METER_PER_CUBIC_CENTIMETER)) {
+<span class="fc" id="L239">            return format(cubicCentimeter, VolumeUnit.CUBIC_CENTIMETER);</span>
+        }
+
+<span class="fc" id="L242">        final var liter = VolumeConverter.convert(v, unit, VolumeUnit.LITER);</span>
+<span class="fc bfc" id="L243" title="All 2 branches covered.">        if (Math.abs(liter) &lt; (VolumeConverter.CUBIC_METER_PER_HECTOLITER / VolumeConverter.CUBIC_METER_PER_LITER)) {</span>
+<span class="fc" id="L244">            return format(liter, VolumeUnit.LITER);</span>
+        }
+
+<span class="fc" id="L247">        final var hectoliter = VolumeConverter.convert(v, unit, VolumeUnit.HECTOLITER);</span>
+<span class="fc bfc" id="L248" title="All 2 branches covered.">        if (Math.abs(hectoliter) &lt; (1.0 / VolumeConverter.CUBIC_METER_PER_HECTOLITER)) {</span>
+<span class="fc" id="L249">            return format(hectoliter, VolumeUnit.HECTOLITER);</span>
+        }
+
+<span class="fc" id="L252">        final var cubicMeter = VolumeConverter.convert(v, unit, VolumeUnit.CUBIC_METER);</span>
+<span class="fc" id="L253">        return format(cubicMeter, VolumeUnit.CUBIC_METER);</span>
+    }
+
+    /**
+     * Formats and converts provided volume value and unit using imperial unit system.
+     * If provided volume value is too large for provided volume unit,
+     * this method will convert to a more appropriate unit.
+     *
+     * @param value a volume value.
+     * @param unit a volume unit.
+     * @return a string representation of volume value and unit using imperial unit
+     * system.
+     */
+    public String formatAndConvertImperial(final Number value, final VolumeUnit unit) {
+<span class="fc" id="L267">        final var v = value.doubleValue();</span>
+
+<span class="fc" id="L269">        final var cubicInch = VolumeConverter.convert(v, unit, VolumeUnit.CUBIC_INCH);</span>
+<span class="fc bfc" id="L270" title="All 2 branches covered.">        if (Math.abs(cubicInch) &lt; (VolumeConverter.CUBIC_METER_PER_PINT / VolumeConverter.CUBIC_METER_PER_CUBIC_INCH)) {</span>
+<span class="fc" id="L271">            return format(cubicInch, VolumeUnit.CUBIC_INCH);</span>
+        }
+
+<span class="fc" id="L274">        final var pint = VolumeConverter.convert(v, unit, VolumeUnit.PINT);</span>
+<span class="fc bfc" id="L275" title="All 2 branches covered.">        if (Math.abs(pint) &lt; (VolumeConverter.CUBIC_METER_PER_GALLON / VolumeConverter.CUBIC_METER_PER_PINT)) {</span>
+<span class="fc" id="L276">            return format(pint, VolumeUnit.PINT);</span>
+        }
+
+<span class="fc" id="L279">        final var gallon = VolumeConverter.convert(v, unit, VolumeUnit.GALLON);</span>
+<span class="fc bfc" id="L280" title="All 2 branches covered.">        if (Math.abs(gallon) &lt; (VolumeConverter.CUBIC_METER_PER_CUBIC_FOOT / VolumeConverter.CUBIC_METER_PER_GALLON)) {</span>
+<span class="fc" id="L281">            return format(gallon, VolumeUnit.GALLON);</span>
+        }
+
+<span class="fc" id="L284">        final var cubicFoot = VolumeConverter.convert(v, unit, VolumeUnit.CUBIC_FOOT);</span>
+<span class="fc bfc" id="L285" title="All 2 branches covered.">        if (Math.abs(cubicFoot) &lt; (VolumeConverter.CUBIC_METER_PER_BARREL</span>
+                / VolumeConverter.CUBIC_METER_PER_CUBIC_FOOT)) {
+<span class="fc" id="L287">            return format(cubicFoot, VolumeUnit.CUBIC_FOOT);</span>
+        }
+
+<span class="fc" id="L290">        final var barrel = VolumeConverter.convert(v, unit, VolumeUnit.BARREL);</span>
+<span class="fc" id="L291">        return format(barrel, VolumeUnit.BARREL);</span>
+    }
+
+    /**
+     * Returns unit string representation.
+     *
+     * @param unit a volume unit.
+     * @return its string representation.
+     */
+    @SuppressWarnings(&quot;DuplicatedCode&quot;)
+    @Override
+    public String getUnitSymbol(final VolumeUnit unit) {
+<span class="fc bfc" id="L303" title="All 11 branches covered.">        return switch (unit) {</span>
+<span class="fc" id="L304">            case CUBIC_CENTIMETER -&gt; CUBIC_CENTIMETER;</span>
+<span class="fc" id="L305">            case MILLILITER -&gt; MILLILITER;</span>
+<span class="fc" id="L306">            case CUBIC_DECIMETER -&gt; CUBIC_DECIMETER;</span>
+<span class="fc" id="L307">            case LITER -&gt; LITER;</span>
+<span class="fc" id="L308">            case HECTOLITER -&gt; HECTOLITER;</span>
+<span class="fc" id="L309">            case CUBIC_INCH -&gt; CUBIC_INCH;</span>
+<span class="fc" id="L310">            case PINT -&gt; PINT;</span>
+<span class="fc" id="L311">            case GALLON -&gt; GALLON;</span>
+<span class="fc" id="L312">            case CUBIC_FOOT -&gt; CUBIC_FOOT;</span>
+<span class="fc" id="L313">            case BARREL -&gt; BARREL;</span>
+<span class="fc" id="L314">            default -&gt; CUBIC_METER;</span>
+        };
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

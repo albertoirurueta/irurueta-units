@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TemperatureFormatter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">TemperatureFormatter.java</span></div><h1>TemperatureFormatter.java</h1><pre class="source lang-java linenums">package com.irurueta.units;
+
+import java.text.ParseException;
+import java.util.Locale;
+
+/**
+ * Formats and parses temperature value and unit.
+ */
+public class TemperatureFormatter extends MeasureFormatter&lt;Temperature, TemperatureUnit&gt; {
+
+    /**
+     * Celsius symbol.
+     */
+    public static final String CELSIUS = &quot;ºC&quot;;
+
+    /**
+     * Fahrenheit symbol.
+     */
+    public static final String FAHRENHEIT = &quot;ºF&quot;;
+
+    /**
+     * Kelvin symbol.
+     */
+    public static final String KELVIN = &quot;K&quot;;
+
+    /**
+     * Constructor.
+     */
+    public TemperatureFormatter() {
+<span class="fc" id="L30">        super();</span>
+<span class="fc" id="L31">    }</span>
+
+    /**
+     * Constructor with locale.
+     *
+     * @param locale locale.
+     * @throws IllegalArgumentException if locale is null.
+     */
+    public TemperatureFormatter(final Locale locale) {
+<span class="fc" id="L40">        super(locale);</span>
+<span class="fc" id="L41">    }</span>
+
+    /**
+     * Copy constructor.
+     *
+     * @param formatter input instance to copy from.
+     * @throws NullPointerException if provided formatter is null.
+     */
+    public TemperatureFormatter(final TemperatureFormatter formatter) {
+<span class="fc" id="L50">        this(formatter.getLocale());</span>
+<span class="fc" id="L51">    }</span>
+
+    /**
+     * Determines if two temperature formatters are equal by comparing all of their
+     * internal parameters.
+     *
+     * @param obj another object to compare.
+     * @return true if provided object is assumed to be equal to this instance.
+     */
+    @Override
+    public boolean equals(final Object obj) {
+<span class="fc" id="L62">        final var equals = super.equals(obj);</span>
+<span class="fc bfc" id="L63" title="All 4 branches covered.">        return (obj instanceof TemperatureFormatter) &amp;&amp; equals;</span>
+    }
+
+    /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare
+     * objects. This implementation only calls parent implementation to avoid
+     * static analyzer warning.
+     *
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+<span class="fc" id="L76">        return super.hashCode();</span>
+    }
+
+    /**
+     * Gets unit system for detected unit into provided string representation
+     * of a measurement.
+     *
+     * @param source a measurement string representation to be checked.
+     * @return a unit system (either metric or imperial) or null if unit
+     * cannot be determined.
+     */
+    @Override
+    public UnitSystem getUnitSystem(final String source) {
+<span class="fc" id="L89">        final var unit = findUnit(source);</span>
+<span class="pc bpc" id="L90" title="1 of 2 branches missed.">        return unit != null ? TemperatureUnit.getUnitSystem(unit) : null;</span>
+    }
+
+    /**
+     * Parses provided string and tries to determine a temperature value and unit.
+     *
+     * @param source a string to be parsed.
+     * @return a temperature containing a value and unit.
+     * @throws ParseException       if provided string cannot be parsed.
+     * @throws UnknownUnitException if unit cannot be determined.
+     */
+    @Override
+    public Temperature parse(final String source) throws ParseException, UnknownUnitException {
+<span class="fc" id="L103">        return internalParse(source, new Temperature());</span>
+    }
+
+    /**
+     * Attempts to determine a temperature unit within a measurement string
+     * representation.
+     *
+     * @param source a measurement string representation.
+     * @return a temperature unit, or null if none can be determined.
+     */
+    @Override
+    public TemperatureUnit findUnit(final String source) {
+<span class="fc bfc" id="L115" title="All 4 branches covered.">        if (source.contains(CELSIUS + &quot; &quot;) || source.endsWith(CELSIUS)) {</span>
+<span class="fc" id="L116">            return TemperatureUnit.CELSIUS;</span>
+        }
+<span class="fc bfc" id="L118" title="All 4 branches covered.">        if (source.contains(FAHRENHEIT + &quot; &quot;) || source.endsWith(FAHRENHEIT)) {</span>
+<span class="fc" id="L119">            return TemperatureUnit.FAHRENHEIT;</span>
+        }
+<span class="fc bfc" id="L121" title="All 4 branches covered.">        if (source.contains(KELVIN + &quot; &quot;) || source.endsWith(KELVIN)) {</span>
+<span class="fc" id="L122">            return TemperatureUnit.KELVIN;</span>
+        }
+<span class="fc" id="L124">        return null;</span>
+    }
+
+    /**
+     * Formats and converts provided temperature value and unit using provided
+     * unit system.
+     * If provided value is too large for provided unit, this method will
+     * convert it to a more appropriate unit using provided unit system (either
+     * metric or imperial).
+     * &lt;p&gt;
+     * This implementation just formats provided value using provided unit,
+     * ignoring provided unit system.
+     *
+     * @param value  a temperature value.
+     * @param unit   a temperature unit.
+     * @param system system unit to convert temperature to.
+     * @return a string representation of temperature value and unit.
+     */
+    @Override
+    public String formatAndConvert(final Number value, final TemperatureUnit unit, final UnitSystem system) {
+<span class="fc" id="L144">        return format(value, unit);</span>
+    }
+
+    /**
+     * Returns unit string representation.
+     *
+     * @param unit a temperature unit.
+     * @return its string representation.
+     */
+    @Override
+    public String getUnitSymbol(final TemperatureUnit unit) {
+<span class="fc bfc" id="L155" title="All 3 branches covered.">        return switch (unit) {</span>
+<span class="fc" id="L156">            case FAHRENHEIT -&gt; FAHRENHEIT;</span>
+<span class="fc" id="L157">            case CELSIUS -&gt; CELSIUS;</span>
+<span class="fc" id="L158">            default -&gt; KELVIN;</span>
+        };
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

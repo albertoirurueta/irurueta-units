@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Time.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">Time.java</span></div><h1>Time.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2018 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.units;
+
+import java.math.BigDecimal;
+
+/**
+ * Contains a time value and unit.
+ */
+public class Time extends Measurement&lt;TimeUnit&gt; {
+
+    /**
+     * Constructor with value and unit.
+     *
+     * @param value time value.
+     * @param unit  unit of distance.
+     * @throws IllegalArgumentException if either value or unit is null.
+     */
+    @SuppressWarnings(&quot;WeakerAccess&quot;)
+    public Time(final Number value, final TimeUnit unit) {
+<span class="fc" id="L34">        super(value, unit);</span>
+<span class="fc" id="L35">    }</span>
+
+    /**
+     * Constructor.
+     */
+    Time() {
+<span class="fc" id="L41">        super();</span>
+<span class="fc" id="L42">    }</span>
+
+    /**
+     * Determines if two time instances are equal up to a certain tolerance.
+     * If needed, this method attempts unit conversion to compare both objects.
+     *
+     * @param other     another time to compare.
+     * @param tolerance amount of tolerance to determine whether two time instances are equal or not.
+     * @return true if provided time is assumed to be equal to this instance, false
+     * otherwise.
+     */
+    @Override
+    public boolean equals(final Measurement&lt;TimeUnit&gt; other, final double tolerance) {
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        if (super.equals(other, tolerance)) {</span>
+<span class="fc" id="L56">            return true;</span>
+        }
+
+        //attempt conversion to common units
+<span class="fc bfc" id="L60" title="All 2 branches covered.">        if (other == null) {</span>
+<span class="fc" id="L61">            return false;</span>
+        }
+
+<span class="fc" id="L64">        final var otherValue = TimeConverter.convert(other.getValue().doubleValue(), other.getUnit(), getUnit());</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        return Math.abs(getValue().doubleValue() - otherValue) &lt;= tolerance;</span>
+    }
+
+    /**
+     * Adds two time values and units and returns the result.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit.
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
+     * @param resultUnit unit of result to be returned.
+     * @return result of addition.
+     */
+    public static double add(final double value1, final TimeUnit unit1,
+                             final double value2, final TimeUnit unit2,
+                             final TimeUnit resultUnit) {
+<span class="fc" id="L81">        final var v1 = TimeConverter.convert(value1, unit1, resultUnit);</span>
+<span class="fc" id="L82">        final var v2 = TimeConverter.convert(value2, unit2, resultUnit);</span>
+<span class="fc" id="L83">        return v1 + v2;</span>
+    }
+
+    /**
+     * Adds two time values and units and returns the result.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit.
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
+     * @param resultUnit unit of result to be returned.
+     * @return result of addition.
+     */
+    public static Number add(final Number value1, final TimeUnit unit1,
+                             final Number value2, final TimeUnit unit2,
+                             final TimeUnit resultUnit) {
+<span class="fc" id="L99">        return BigDecimal.valueOf(add(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));</span>
+    }
+
+    /**
+     * Adds two time instances and stores the result into provided instance.
+     *
+     * @param arg1   1st argument.
+     * @param arg2   2nd argument.
+     * @param result instance where result will be stored.
+     */
+    public static void add(final Time arg1, final Time arg2, final Time result) {
+<span class="fc" id="L110">        result.setValue(add(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));</span>
+<span class="fc" id="L111">    }</span>
+
+    /**
+     * Adds two time instances.
+     *
+     * @param arg1 1st argument.
+     * @param arg2 2nd argument.
+     * @param unit unit of returned time.
+     * @return a new instance containing result.
+     */
+    public static Time addAndReturnNew(final Time arg1, final Time arg2, final TimeUnit unit) {
+<span class="fc" id="L122">        final var result = new Time();</span>
+<span class="fc" id="L123">        result.setUnit(unit);</span>
+<span class="fc" id="L124">        add(arg1, arg2, result);</span>
+<span class="fc" id="L125">        return result;</span>
+    }
+
+    /**
+     * Adds provided time value and unit and returns a new time instance using
+     * provided unit.
+     *
+     * @param value      value to be added.
+     * @param unit       unit of value to be added.
+     * @param resultUnit unit of returned time.
+     * @return a new time containing result.
+     */
+    public Time addAndReturnNew(
+            final double value, final TimeUnit unit,
+            final TimeUnit resultUnit) {
+<span class="fc" id="L140">        final var result = new Time();</span>
+<span class="fc" id="L141">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L142">        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit, resultUnit));</span>
+<span class="fc" id="L143">        return result;</span>
+    }
+
+    /**
+     * Adds provided time value and unit and returns a new time instance using
+     * provided unit.
+     *
+     * @param value      value to be added.
+     * @param unit       unit of value to be added.
+     * @param resultUnit unit of returned time.
+     * @return a new time containing result.
+     */
+    public Time addAndReturnNew(
+            final Number value, final TimeUnit unit,
+            final TimeUnit resultUnit) {
+<span class="fc" id="L158">        final var result = new Time();</span>
+<span class="fc" id="L159">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L160">        result.setValue(add(getValue(), getUnit(), value, unit, resultUnit));</span>
+<span class="fc" id="L161">        return result;</span>
+    }
+
+    /**
+     * Adds provided time to current instance and returns a new time
+     * instance.
+     *
+     * @param t    time to be added.
+     * @param unit unit of returned time.
+     * @return a new time containing result.
+     */
+    public Time addAndReturnNew(final Time t, final TimeUnit unit) {
+<span class="fc" id="L173">        return addAndReturnNew(this, t, unit);</span>
+    }
+
+    /**
+     * Adds provided time value and unit and updates current time instance.
+     *
+     * @param value time value to be added.
+     * @param unit  unit of time value.
+     */
+    public void add(final double value, final TimeUnit unit) {
+<span class="fc" id="L183">        setValue(add(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L184">    }</span>
+
+    /**
+     * Adds provided time value and unit and updates current time instance.
+     *
+     * @param value time value to be added.
+     * @param unit  unit of time value.
+     */
+    public void add(final Number value, final TimeUnit unit) {
+<span class="fc" id="L193">        setValue(add(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L194">    }</span>
+
+    /**
+     * Adds provided time and updates current time instance.
+     *
+     * @param time time to be added.
+     */
+    public void add(final Time time) {
+<span class="fc" id="L202">        add(this, time, this);</span>
+<span class="fc" id="L203">    }</span>
+
+    /**
+     * Adds provided time and stores the result into provided time instance.
+     *
+     * @param t      time to be added.
+     * @param result instance where result will be stored.
+     */
+    public void add(final Time t, final Time result) {
+<span class="fc" id="L212">        add(this, t, result);</span>
+<span class="fc" id="L213">    }</span>
+
+    /**
+     * Subtracts two time values and units and returns the result.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit.
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
+     * @param resultUnit unit of result to be returned.
+     * @return result of subtraction.
+     */
+    public static double subtract(
+            final double value1, final TimeUnit unit1,
+            final double value2, final TimeUnit unit2,
+            final TimeUnit resultUnit) {
+<span class="fc" id="L229">        final var v1 = TimeConverter.convert(value1, unit1, resultUnit);</span>
+<span class="fc" id="L230">        final var v2 = TimeConverter.convert(value2, unit2, resultUnit);</span>
+<span class="fc" id="L231">        return v1 - v2;</span>
+    }
+
+    /**
+     * Subtracts two time values and units and returns the result.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit.
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
+     * @param resultUnit unit of result to be returned.
+     * @return result of subtraction.
+     */
+    public static Number subtract(
+            final Number value1, final TimeUnit unit1,
+            final Number value2, final TimeUnit unit2,
+            final TimeUnit resultUnit) {
+<span class="fc" id="L248">        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));</span>
+    }
+
+    /**
+     * Subtracts two time instances and stores the result into provided instance.
+     *
+     * @param arg1   1st argument.
+     * @param arg2   2nd argument.
+     * @param result instance where result will be stored.
+     */
+    public static void subtract(final Time arg1, final Time arg2, final Time result) {
+<span class="fc" id="L259">        result.setValue(subtract(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));</span>
+<span class="fc" id="L260">    }</span>
+
+    /**
+     * Subtracts two time instances.
+     *
+     * @param arg1 1st argument.
+     * @param arg2 2nd argument.
+     * @param unit unit of returned time.
+     * @return a new instance containing result.
+     */
+    public static Time subtractAndReturnNew(
+            final Time arg1, final Time arg2, final TimeUnit unit) {
+<span class="fc" id="L272">        final var result = new Time();</span>
+<span class="fc" id="L273">        result.setUnit(unit);</span>
+<span class="fc" id="L274">        subtract(arg1, arg2, result);</span>
+<span class="fc" id="L275">        return result;</span>
+    }
+
+    /**
+     * Subtracts provided time value and unit and returns a new time instance using
+     * provided unit.
+     *
+     * @param value      value to be subtracted.
+     * @param unit       unit of value to be subtracted.
+     * @param resultUnit unit of returned time.
+     * @return a new time containing result.
+     */
+    public Time subtractAndReturnNew(final double value, final TimeUnit unit, final TimeUnit resultUnit) {
+<span class="fc" id="L288">        final var result = new Time();</span>
+<span class="fc" id="L289">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L290">        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit, resultUnit));</span>
+<span class="fc" id="L291">        return result;</span>
+    }
+
+    /**
+     * Subtracts provided time value and unit and returns a new time instance using
+     * provided unit.
+     *
+     * @param value      value to be subtracted.
+     * @param unit       unit of value to be subtracted.
+     * @param resultUnit unit of returned time.
+     * @return a new time containing result.
+     */
+    public Time subtractAndReturnNew(final Number value, final TimeUnit unit, final TimeUnit resultUnit) {
+<span class="fc" id="L304">        final var result = new Time();</span>
+<span class="fc" id="L305">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L306">        result.setValue(subtract(getValue(), getUnit(), value, unit, resultUnit));</span>
+<span class="fc" id="L307">        return result;</span>
+    }
+
+    /**
+     * Subtracts provided time to current instance and returns a new
+     * instance.
+     *
+     * @param t    time to be subtracted.
+     * @param unit unit of returned time.
+     * @return a new time containing result.
+     */
+    public Time subtractAndReturnNew(final Time t, final TimeUnit unit) {
+<span class="fc" id="L319">        return subtractAndReturnNew(this, t, unit);</span>
+    }
+
+    /**
+     * Subtracts provided time value and unit and updates current time instance.
+     *
+     * @param value time value to be subtracted.
+     * @param unit  unit of time value.
+     */
+    public void subtract(final double value, final TimeUnit unit) {
+<span class="fc" id="L329">        setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L330">    }</span>
+
+    /**
+     * Subtracts provided time value and unit and updates current time instance.
+     *
+     * @param value time value to be subtracted.
+     * @param unit  unit of time value.
+     */
+    public void subtract(final Number value, final TimeUnit unit) {
+<span class="fc" id="L339">        setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L340">    }</span>
+
+    /**
+     * Subtract provided time and updates current time.
+     *
+     * @param time time to be subtracted.
+     */
+    public void subtract(final Time time) {
+<span class="fc" id="L348">        subtract(this, time, this);</span>
+<span class="fc" id="L349">    }</span>
+
+    /**
+     * Subtracts provided time and stores the result into provided time.
+     *
+     * @param t      time to be subtracted.
+     * @param result instance where result will be stored.
+     */
+    public void subtract(final Time t, final Time result) {
+<span class="fc" id="L358">        subtract(this, t, result);</span>
+<span class="fc" id="L359">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

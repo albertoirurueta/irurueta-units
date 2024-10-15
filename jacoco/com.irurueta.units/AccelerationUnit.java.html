@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AccelerationUnit.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">AccelerationUnit.java</span></div><h1>AccelerationUnit.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2018 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.irurueta.units;
+
+/**
+ * Enumerator containing recognized typical acceleration units.
+ */
+<span class="fc" id="L22">public enum AccelerationUnit {</span>
+    /**
+     * Meters per squared second (m/s^2).
+     */
+<span class="fc" id="L26">    METERS_PER_SQUARED_SECOND,</span>
+
+    /**
+     * Relative to gravitational acceleration (9.81 m/s^2).
+     */
+<span class="fc" id="L31">    G,</span>
+
+    /**
+     * Feet per squared second (ft/s^2).
+     */
+<span class="fc" id="L36">    FEET_PER_SQUARED_SECOND;</span>
+
+    /**
+     * Returns unit system for provided acceleration unit.
+     *
+     * @param unit acceleration unit to be checked.
+     * @return unit system (metric or imperial).
+     * @throws IllegalArgumentException if unit is null or not supported.
+     */
+    @SuppressWarnings(&quot;DuplicatedCode&quot;)
+    public static UnitSystem getUnitSystem(final AccelerationUnit unit) {
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        if (unit == null) {</span>
+<span class="fc" id="L48">            throw new IllegalArgumentException();</span>
+        }
+
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        if (unit == FEET_PER_SQUARED_SECOND) {</span>
+<span class="fc" id="L52">            return UnitSystem.IMPERIAL;</span>
+        } else {
+<span class="fc" id="L54">            return UnitSystem.METRIC;</span>
+        }
+    }
+
+    /**
+     * Gets all supported metric acceleration units.
+     *
+     * @return all supported metric acceleration units.
+     */
+    public static AccelerationUnit[] getMetricUnits() {
+<span class="fc" id="L64">        return new AccelerationUnit[]{</span>
+                METERS_PER_SQUARED_SECOND,
+                G
+        };
+    }
+
+    /**
+     * Gets all supported imperial acceleration units.
+     *
+     * @return all supported imperial acceleration units.
+     */
+    public static AccelerationUnit[] getImperialUnits() {
+<span class="fc" id="L76">        return new AccelerationUnit[]{</span>
+                FEET_PER_SQUARED_SECOND
+        };
+    }
+
+    /**
+     * Indicates whether provided unit belongs to the metric unit system.
+     *
+     * @param unit acceleration unit to be checked.
+     * @return true if unit belongs to metric unit system.
+     * @throws IllegalArgumentException if unit is null or not supported.
+     */
+    public static boolean isMetric(final AccelerationUnit unit) {
+<span class="fc bfc" id="L89" title="All 2 branches covered.">        return getUnitSystem(unit) == UnitSystem.METRIC;</span>
+    }
+
+    /**
+     * Indicates whether provided unit belongs to the imperial unit system.
+     *
+     * @param unit acceleration unit to be checked.
+     * @return true if unit belongs to imperial unit system.
+     * @throws IllegalArgumentException if unit is null or not supported.
+     */
+    public static boolean isImperial(final AccelerationUnit unit) {
+<span class="fc bfc" id="L100" title="All 2 branches covered.">        return getUnitSystem(unit) == UnitSystem.IMPERIAL;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

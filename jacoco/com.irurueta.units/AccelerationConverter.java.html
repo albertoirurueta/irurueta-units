@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AccelerationConverter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">AccelerationConverter.java</span></div><h1>AccelerationConverter.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2018 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.irurueta.units;
+
+import java.math.BigDecimal;
+
+/**
+ * Does acceleration conversions to different units. To prevent loss of accuracy, conversion should only be done as a
+ * final step before displaying acceleration measurements.
+ */
+@SuppressWarnings(&quot;WeakerAccess&quot;)
+public class AccelerationConverter {
+
+    /**
+     * Standard gravity (g) on Earth. This value is equivalent to 1G
+     */
+    public static final double STANDARD_GRAVITY = 9.80665;
+
+    /**
+     * Number of meters in 1 foot.
+     */
+    static final double METERS_PER_FOOT = 0.3048;
+
+    /**
+     * Constructor. Prevents instantiation of helper class.
+     */
+    private AccelerationConverter() {
+    }
+
+    /**
+     * Converts an acceleration instance to provided output acceleration unit.
+     *
+     * @param input  input acceleration to be converted.
+     * @param output output acceleration where result will be stored containing output unit.
+     */
+    public static void convert(final Acceleration input, final Acceleration output) {
+<span class="fc" id="L51">        convert(input, output.getUnit(), output);</span>
+<span class="fc" id="L52">    }</span>
+
+    /**
+     * Converts an acceleration instance to requested output unit.
+     *
+     * @param input      input acceleration to be converted.
+     * @param outputUnit requested output unit.
+     * @return converted acceleration.
+     */
+    public static Acceleration convertAndReturnNew(final Acceleration input, final AccelerationUnit outputUnit) {
+<span class="fc" id="L62">        final var result = new Acceleration();</span>
+<span class="fc" id="L63">        convert(input, outputUnit, result);</span>
+<span class="fc" id="L64">        return result;</span>
+    }
+
+    /**
+     * Converts and updated an acceleration to requested output unit.
+     *
+     * @param acceleration input acceleration to be converted and updated
+     * @param outputUnit   requested output unit.
+     */
+    public static void convert(final Acceleration acceleration, final AccelerationUnit outputUnit) {
+<span class="fc" id="L74">        convert(acceleration, outputUnit, acceleration);</span>
+<span class="fc" id="L75">    }</span>
+
+    /**
+     * Converts an acceleration to requested output unit.
+     *
+     * @param input      input acceleration to be converted.
+     * @param outputUnit requested output unit.
+     * @param result     acceleration instance where result will be stored.
+     */
+    public static void convert(
+            final Acceleration input, final AccelerationUnit outputUnit, final Acceleration result) {
+<span class="fc" id="L86">        final var value = convert(input.getValue(), input.getUnit(), outputUnit);</span>
+<span class="fc" id="L87">        result.setValue(value);</span>
+<span class="fc" id="L88">        result.setUnit(outputUnit);</span>
+<span class="fc" id="L89">    }</span>
+
+    /**
+     * Converts an acceleration value from input unit to provided output unit.
+     *
+     * @param input      acceleration value.
+     * @param inputUnit  input acceleration unit
+     * @param outputUnit output acceleration unit.
+     * @return converted acceleration value.
+     */
+    public static Number convert(
+            final Number input, final AccelerationUnit inputUnit, final AccelerationUnit outputUnit) {
+<span class="fc" id="L101">        return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit, outputUnit));</span>
+    }
+
+    /**
+     * Converts an acceleration value from input unit to provided output unit.
+     *
+     * @param input      acceleration value.
+     * @param inputUnit  input acceleration unit.
+     * @param outputUnit output acceleration unit.
+     * @return converted acceleration value.
+     */
+    public static double convert(
+            final double input, final AccelerationUnit inputUnit, final AccelerationUnit outputUnit) {
+
+        //convert to meters per squared second
+<span class="fc bfc" id="L116" title="All 3 branches covered.">        final var metersPerSquaredSecond = switch (inputUnit) {</span>
+<span class="fc" id="L117">            case FEET_PER_SQUARED_SECOND -&gt; feetPerSquaredSecondToMetersPerSquaredSecond(input);</span>
+<span class="fc" id="L118">            case G -&gt; gravityToMetersPerSquaredSecond(input);</span>
+<span class="fc" id="L119">            default -&gt; input;</span>
+        };
+
+        //convert from meters per squared second to required output unit
+<span class="fc bfc" id="L123" title="All 3 branches covered.">        return switch (outputUnit) {</span>
+<span class="fc" id="L124">            case FEET_PER_SQUARED_SECOND -&gt; metersPerSquaredSecondToFeetPerSquaredSecond(metersPerSquaredSecond);</span>
+<span class="fc" id="L125">            case G -&gt; metersPerSquaredSecondToGravity(metersPerSquaredSecond);</span>
+<span class="fc" id="L126">            default -&gt; metersPerSquaredSecond;</span>
+        };
+    }
+
+    /**
+     * Converts provided feet per squared second value to meters per squared second.
+     *
+     * @param feetPerSquaredSecond feet per squared second value.
+     * @return same acceleration converted to meters per squared second.
+     */
+    public static double feetPerSquaredSecondToMetersPerSquaredSecond(final double feetPerSquaredSecond) {
+<span class="fc" id="L137">        return feetPerSquaredSecond * METERS_PER_FOOT;</span>
+    }
+
+    /**
+     * Converts provided meters per squared second value to feet per squared second.
+     *
+     * @param metersPerSquaredSecond meters per squared second value.
+     * @return same acceleration converted to feet per squared second.
+     */
+    public static double metersPerSquaredSecondToFeetPerSquaredSecond(final double metersPerSquaredSecond) {
+<span class="fc" id="L147">        return metersPerSquaredSecond / METERS_PER_FOOT;</span>
+    }
+
+    /**
+     * Converts provided acceleration expressed in terms of standard gravity (9.8 m/s^2) to meters per squared second.
+     *
+     * @param g acceleration relative to standard gravity.
+     * @return same acceleration converted to meters per squared second.
+     */
+    public static double gravityToMetersPerSquaredSecond(final double g) {
+<span class="fc" id="L157">        return g * STANDARD_GRAVITY;</span>
+    }
+
+    /**
+     * Converts provided acceleration expressed in meters per squared second to a value relative to the standard
+     * gravity (9.81 m/s^2).
+     *
+     * @param metersPerSquaredSecond meters per squared second value.
+     * @return same acceleration expressed in relative terms to the standard gravity.
+     */
+    public static double metersPerSquaredSecondToGravity(final double metersPerSquaredSecond) {
+<span class="fc" id="L168">        return metersPerSquaredSecond / STANDARD_GRAVITY;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

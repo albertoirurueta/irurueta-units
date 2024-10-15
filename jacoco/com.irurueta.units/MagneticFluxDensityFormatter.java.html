@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MagneticFluxDensityFormatter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">MagneticFluxDensityFormatter.java</span></div><h1>MagneticFluxDensityFormatter.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2020 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.units;
+
+import java.text.ParseException;
+import java.util.Locale;
+
+/**
+ * Formats and parses magnetic flux density value and unit.
+ */
+public class MagneticFluxDensityFormatter extends MeasureFormatter&lt;MagneticFluxDensity, MagneticFluxDensityUnit&gt; {
+
+    /**
+     * Nanotesla symbol.
+     */
+    public static final String NANOTESLA = &quot;nT&quot;;
+
+    /**
+     * Microtesla symbol.
+     */
+    public static final String MICROTESLA = &quot;µT&quot;;
+
+    /**
+     * Millitesla symbol.
+     */
+    public static final String MILLITESLA = &quot;mT&quot;;
+
+    /**
+     * Tesla symbol.
+     */
+    public static final String TESLA = &quot;T&quot;;
+
+    /**
+     * Kilotesla symbol.
+     */
+    public static final String KILOTESLA = &quot;KT&quot;;
+
+    /**
+     * Megatesla symbol.
+     */
+    public static final String MEGATESLA = &quot;MT&quot;;
+
+    /**
+     * Gigatesla symbol.
+     */
+    public static final String GIGATESLA = &quot;GT&quot;;
+
+    /**
+     * Constructor.
+     */
+    public MagneticFluxDensityFormatter() {
+<span class="fc" id="L65">        super();</span>
+<span class="fc" id="L66">    }</span>
+
+    /**
+     * Constructor with locale.
+     *
+     * @param locale locale.
+     * @throws IllegalArgumentException if locale is null.
+     */
+    public MagneticFluxDensityFormatter(final Locale locale) {
+<span class="fc" id="L75">        super(locale);</span>
+<span class="fc" id="L76">    }</span>
+
+    /**
+     * Copy constructor.
+     *
+     * @param formatter input instance to copy from.
+     * @throws NullPointerException if provided formatter is null.
+     */
+    public MagneticFluxDensityFormatter(final MagneticFluxDensityFormatter formatter) {
+<span class="fc" id="L85">        this(formatter.getLocale());</span>
+<span class="fc" id="L86">    }</span>
+
+    /**
+     * Determines if two magnetic flux density formatters are equal by comparing all of their
+     * internal parameters.
+     *
+     * @param obj another object to compare.
+     * @return true if provided object is assumed to be equal to this instance.
+     */
+    @Override
+    public boolean equals(final Object obj) {
+<span class="fc" id="L97">        final var equals = super.equals(obj);</span>
+<span class="fc bfc" id="L98" title="All 4 branches covered.">        return (obj instanceof MagneticFluxDensityFormatter) &amp;&amp; equals;</span>
+    }
+
+    /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare objects.
+     * This implementation only calls parent implementation to avoid static analyzer warning.
+     *
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+<span class="fc" id="L110">        return super.hashCode();</span>
+    }
+    
+    /**
+     * Gets unit system for detected unit into provided string representation
+     * of a measurement.
+     *
+     * @param source a measurement string representation to be checked.
+     * @return a unit system (either metric or imperial) or null if unit
+     * cannot be determined.
+     */
+    @Override
+    public UnitSystem getUnitSystem(final String source) {
+<span class="fc" id="L123">        return UnitSystem.METRIC;</span>
+    }
+
+    /**
+     * Parses provided string and tries to determine a magnetic flux density
+     * value and unit.
+     *
+     * @param source a string to be parsed.
+     * @return a magnetic flux density containing a value and unit.
+     * @throws ParseException       if provided string cannot be parsed.
+     * @throws UnknownUnitException if unit cannot be determined.
+     */
+    @Override
+    public MagneticFluxDensity parse(final String source) throws ParseException, UnknownUnitException {
+<span class="fc" id="L137">        return internalParse(source, new MagneticFluxDensity());</span>
+    }
+
+    /**
+     * Attempts to determine a magnetic flux density unit within a string
+     * representation.
+     *
+     * @param source a magnetic flux density string representation.
+     * @return a magnetic flux density unit, or null if nonce can be
+     * determined.
+     */
+    @Override
+    public MagneticFluxDensityUnit findUnit(final String source) {
+<span class="fc bfc" id="L150" title="All 4 branches covered.">        if (source.contains(NANOTESLA + &quot; &quot;) || source.endsWith(NANOTESLA)) {</span>
+<span class="fc" id="L151">            return MagneticFluxDensityUnit.NANOTESLA;</span>
+        }
+<span class="fc bfc" id="L153" title="All 4 branches covered.">        if (source.contains(MICROTESLA + &quot; &quot;) || source.endsWith(MICROTESLA)) {</span>
+<span class="fc" id="L154">            return MagneticFluxDensityUnit.MICROTESLA;</span>
+        }
+<span class="fc bfc" id="L156" title="All 4 branches covered.">        if (source.contains(MILLITESLA + &quot; &quot;) || source.endsWith(MILLITESLA)) {</span>
+<span class="fc" id="L157">            return MagneticFluxDensityUnit.MILLITESLA;</span>
+        }
+<span class="fc bfc" id="L159" title="All 4 branches covered.">        if (source.contains(KILOTESLA + &quot; &quot;) || source.endsWith(KILOTESLA)) {</span>
+<span class="fc" id="L160">            return MagneticFluxDensityUnit.KILOTESLA;</span>
+        }
+<span class="fc bfc" id="L162" title="All 4 branches covered.">        if (source.contains(MEGATESLA + &quot; &quot;) || source.endsWith(MEGATESLA)) {</span>
+<span class="fc" id="L163">            return MagneticFluxDensityUnit.MEGATESLA;</span>
+        }
+<span class="fc bfc" id="L165" title="All 4 branches covered.">        if (source.contains(GIGATESLA + &quot; &quot;) || source.endsWith(GIGATESLA)) {</span>
+<span class="fc" id="L166">            return MagneticFluxDensityUnit.GIGATESLA;</span>
+        }
+<span class="fc bfc" id="L168" title="All 4 branches covered.">        if (source.contains(TESLA + &quot; &quot;) || source.endsWith(TESLA)) {</span>
+<span class="fc" id="L169">            return MagneticFluxDensityUnit.TESLA;</span>
+        }
+<span class="fc" id="L171">        return null;</span>
+    }
+
+    /**
+     * Formats and converts provided magnetic flux density value and unit
+     * using provided unit system.
+     * If provided value is too large for provided unit, this method will convert
+     * it to a more appropriate unit. This implementation ignores unit system.
+     *
+     * @param value  a measurement value.
+     * @param unit   a measurement unit.
+     * @param system system unit to convert measurement to (it is ignored).
+     * @return a string representation of magnetic flux density value
+     * and unit.
+     */
+    @Override
+    public String formatAndConvert(final Number value, final MagneticFluxDensityUnit unit, final UnitSystem system) {
+<span class="fc" id="L188">        return formatAndConvertMetric(value, unit);</span>
+    }
+
+    /**
+     * Formats and converts provided magnetic flux density value and unit
+     * using metric unit system.
+     * If provided magnetic flux density value is too large for provided
+     * magnetic flux density unit, this method will convert it to a more
+     * appropriate unit.
+     *
+     * @param value a magnetic flux density value.
+     * @param unit  a magnetic flux density unit.
+     * @return a string representation of magnetic flux density value and
+     * unit using metric unit system.
+     */
+    public String formatAndConvertMetric(final Number value, final MagneticFluxDensityUnit unit) {
+<span class="fc" id="L204">        final var v = value.doubleValue();</span>
+
+<span class="fc" id="L206">        final var nanoTesla = MagneticFluxDensityConverter.convert(v, unit, MagneticFluxDensityUnit.NANOTESLA);</span>
+<span class="fc bfc" id="L207" title="All 2 branches covered.">        if (Math.abs(nanoTesla) &lt; MagneticFluxDensityConverter.TESLAS_PER_MICROTESLA</span>
+                / MagneticFluxDensityConverter.TESLAS_PER_NANOTESLA) {
+<span class="fc" id="L209">            return format(nanoTesla, MagneticFluxDensityUnit.NANOTESLA);</span>
+        }
+
+<span class="fc" id="L212">        final var microTesla = MagneticFluxDensityConverter.convert(v, unit, MagneticFluxDensityUnit.MICROTESLA);</span>
+<span class="fc bfc" id="L213" title="All 2 branches covered.">        if (Math.abs(microTesla) &lt; (MagneticFluxDensityConverter.TESLAS_PER_MILLITESLA</span>
+                / MagneticFluxDensityConverter.TESLAS_PER_MICROTESLA)) {
+<span class="fc" id="L215">            return format(microTesla, MagneticFluxDensityUnit.MICROTESLA);</span>
+        }
+
+<span class="fc" id="L218">        final var milliTesla = MagneticFluxDensityConverter.convert(v, unit, MagneticFluxDensityUnit.MILLITESLA);</span>
+<span class="fc bfc" id="L219" title="All 2 branches covered.">        if (Math.abs(milliTesla) &lt; (1.0 / MagneticFluxDensityConverter.TESLAS_PER_MILLITESLA)) {</span>
+<span class="fc" id="L220">            return format(milliTesla, MagneticFluxDensityUnit.MILLITESLA);</span>
+        }
+
+<span class="fc" id="L223">        final var tesla = MagneticFluxDensityConverter.convert(v, unit, MagneticFluxDensityUnit.TESLA);</span>
+<span class="fc bfc" id="L224" title="All 2 branches covered.">        if (Math.abs(tesla) &lt; MagneticFluxDensityConverter.TESLAS_PER_KILOTESLA) {</span>
+<span class="fc" id="L225">            return format(tesla, MagneticFluxDensityUnit.TESLA);</span>
+        }
+
+<span class="fc" id="L228">        final var kiloTesla = MagneticFluxDensityConverter.convert(v, unit, MagneticFluxDensityUnit.KILOTESLA);</span>
+<span class="fc bfc" id="L229" title="All 2 branches covered.">        if (Math.abs(kiloTesla) &lt; (MagneticFluxDensityConverter.TESLAS_PER_MEGATESLA</span>
+                / MagneticFluxDensityConverter.TESLAS_PER_KILOTESLA)) {
+<span class="fc" id="L231">            return format(kiloTesla, MagneticFluxDensityUnit.KILOTESLA);</span>
+        }
+
+<span class="fc" id="L234">        final var megaTesla = MagneticFluxDensityConverter.convert(v, unit, MagneticFluxDensityUnit.MEGATESLA);</span>
+<span class="fc bfc" id="L235" title="All 2 branches covered.">        if (Math.abs(megaTesla) &lt; (MagneticFluxDensityConverter.TESLAS_PER_GIGATESLA</span>
+                / MagneticFluxDensityConverter.TESLAS_PER_MEGATESLA)) {
+<span class="fc" id="L237">            return format(megaTesla, MagneticFluxDensityUnit.MEGATESLA);</span>
+        }
+
+<span class="fc" id="L240">        final var gigaTesla = MagneticFluxDensityConverter.convert(v, unit, MagneticFluxDensityUnit.GIGATESLA);</span>
+<span class="fc" id="L241">        return format(gigaTesla, MagneticFluxDensityUnit.GIGATESLA);</span>
+    }
+
+    /**
+     * Returns unit string representation.
+     *
+     * @param unit a frequency unit.
+     * @return its string representation
+     */
+    @Override
+    public String getUnitSymbol(MagneticFluxDensityUnit unit) {
+<span class="fc bfc" id="L252" title="All 7 branches covered.">        return switch (unit) {</span>
+<span class="fc" id="L253">            case NANOTESLA -&gt; NANOTESLA;</span>
+<span class="fc" id="L254">            case MICROTESLA -&gt; MICROTESLA;</span>
+<span class="fc" id="L255">            case MILLITESLA -&gt; MILLITESLA;</span>
+<span class="fc" id="L256">            case KILOTESLA -&gt; KILOTESLA;</span>
+<span class="fc" id="L257">            case MEGATESLA -&gt; MEGATESLA;</span>
+<span class="fc" id="L258">            case GIGATESLA -&gt; GIGATESLA;</span>
+<span class="fc" id="L259">            default -&gt; TESLA;</span>
+        };
+    }
+
+    /**
+     * Returns unit system this instance will use based on its assigned locale.
+     * Notice that if no locale was assigned, then the default system locale
+     * will be used.
+     *
+     * @return unit system this instance will use.
+     */
+    @Override
+    public UnitSystem getUnitSystem() {
+<span class="fc" id="L272">        return UnitSystem.METRIC;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

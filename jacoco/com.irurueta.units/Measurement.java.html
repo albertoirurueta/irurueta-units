@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Measurement.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">Measurement.java</span></div><h1>Measurement.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2018 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.irurueta.units;
+
+import java.io.Serializable;
+
+/**
+ * Base class to define a measurement unit and value.
+ *
+ * @param &lt;T&gt; a measurement unit.
+ */
+public abstract class Measurement&lt;T extends Enum&lt;?&gt;&gt; implements Serializable {
+
+    /**
+     * Measurement value.
+     */
+    private Number value;
+
+    /**
+     * Measurement unit.
+     */
+    private T unit;
+
+    /**
+     * Constructor.
+     *
+     * @param value measurement value.
+     * @param unit  measurement unit.
+     * @throws IllegalArgumentException if either value or unit is null.
+     */
+<span class="fc" id="L45">    protected Measurement(final Number value, final T unit) {</span>
+<span class="fc bfc" id="L46" title="All 4 branches covered.">        if (value == null || unit == null) {</span>
+<span class="fc" id="L47">            throw new IllegalArgumentException();</span>
+        }
+
+<span class="fc" id="L50">        this.value = value;</span>
+<span class="fc" id="L51">        this.unit = unit;</span>
+<span class="fc" id="L52">    }</span>
+
+    /**
+     * Constructor.
+     */
+<span class="fc" id="L57">    Measurement() {</span>
+<span class="fc" id="L58">    }</span>
+
+    /**
+     * Determines if two measurements are equal.
+     *
+     * @param obj another object to compare.
+     * @return true if provided object is assumed to be equal to this instance, false otherwise.
+     */
+    @Override
+    public boolean equals(final Object obj) {
+<span class="pc bpc" id="L68" title="1 of 2 branches missed.">        if (obj == null) {</span>
+<span class="nc" id="L69">            return false;</span>
+        }
+<span class="fc bfc" id="L71" title="All 2 branches covered.">        if (!(obj instanceof Measurement)) {</span>
+<span class="fc" id="L72">            return false;</span>
+        }
+<span class="fc bfc" id="L74" title="All 2 branches covered.">        if (this == obj) {</span>
+<span class="fc" id="L75">            return true;</span>
+        }
+
+        //noinspection unchecked
+<span class="fc" id="L79">        final var other = (Measurement&lt;T&gt;) obj;</span>
+<span class="pc bpc" id="L80" title="4 of 8 branches missed.">        return value != null &amp;&amp; unit != null &amp;&amp;</span>
+                other.value != null &amp;&amp; other.unit != null &amp;&amp;
+<span class="fc bfc" id="L82" title="All 4 branches covered.">                value.equals(other.value) &amp;&amp; unit == other.unit;</span>
+    }
+
+    /**
+     * Hash code generated for this instance. Hash codes can be internally used by some collections to coarsely
+     * compare objects.
+     *
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+<span class="fc" id="L93">        var hash = 7;</span>
+<span class="pc bpc" id="L94" title="1 of 2 branches missed.">        hash = 19 * hash + (value != null ? value.hashCode() : 0);</span>
+<span class="pc bpc" id="L95" title="1 of 2 branches missed.">        hash = 19 * hash + (unit != null ? unit.hashCode() : 0);</span>
+<span class="fc" id="L96">        return hash;</span>
+    }
+
+    /**
+     * Determines if two measurements are equal up to a certain tolerance.
+     *
+     * @param other     another measurement to compare.
+     * @param tolerance amount of tolerance to determine whether two measurements are equal or not.
+     * @return true if provided measurement is assumed to be equal to this instance, false otherwise.
+     */
+    public boolean equals(final Measurement&lt;T&gt; other, final double tolerance) {
+<span class="pc bpc" id="L107" title="4 of 12 branches missed.">        return value != null &amp;&amp; unit != null &amp;&amp; other != null &amp;&amp;</span>
+                other.value != null &amp;&amp; other.unit != null &amp;&amp;
+                unit == other.unit &amp;&amp;
+<span class="fc bfc" id="L110" title="All 2 branches covered.">                (Math.abs(value.doubleValue() - other.value.doubleValue()) &lt;= tolerance);</span>
+    }
+
+    /**
+     * Returns measurement value.
+     *
+     * @return measurement value.
+     */
+    public Number getValue() {
+<span class="fc" id="L119">        return value;</span>
+    }
+
+    /**
+     * Sets measurement value.
+     *
+     * @param value measurement value.
+     * @throws IllegalArgumentException if measurement value is null.
+     */
+    public void setValue(final Number value) {
+<span class="fc bfc" id="L129" title="All 2 branches covered.">        if (value == null) {</span>
+<span class="fc" id="L130">            throw new IllegalArgumentException();</span>
+        }
+
+<span class="fc" id="L133">        this.value = value;</span>
+<span class="fc" id="L134">    }</span>
+
+    /**
+     * Returns measurement unit.
+     *
+     * @return measurement unit.
+     */
+    public T getUnit() {
+<span class="fc" id="L142">        return unit;</span>
+    }
+
+    /**
+     * Sets measurement unit.
+     *
+     * @param unit measurement unit.
+     * @throws IllegalArgumentException if measurement unit is null.
+     */
+    public void setUnit(final T unit) {
+<span class="fc bfc" id="L152" title="All 2 branches covered.">        if (unit == null) {</span>
+<span class="fc" id="L153">            throw new IllegalArgumentException();</span>
+        }
+
+<span class="fc" id="L156">        this.unit = unit;</span>
+<span class="fc" id="L157">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

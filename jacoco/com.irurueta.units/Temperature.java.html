@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Temperature.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">Temperature.java</span></div><h1>Temperature.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2020 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.units;
+
+import java.math.BigDecimal;
+
+/**
+ * Contains a temperature value and unit.
+ */
+public class Temperature extends Measurement&lt;TemperatureUnit&gt; {
+
+    /**
+     * Constructor with value and unit.
+     *
+     * @param value temperature value.
+     * @param unit  unit of temperature.
+     * @throws IllegalArgumentException if either value or unit is null.
+     */
+    public Temperature(final Number value, final TemperatureUnit unit) {
+<span class="fc" id="L33">        super(value, unit);</span>
+<span class="fc" id="L34">    }</span>
+
+    /**
+     * Constructor.
+     */
+    Temperature() {
+<span class="fc" id="L40">        super();</span>
+<span class="fc" id="L41">    }</span>
+
+    /**
+     * Determines if two temperatures are equal up to a certain tolerance.
+     * If needed, this method attempts unit conversion to compare both objects.
+     *
+     * @param other     another measurement to compare.
+     * @param tolerance amount of tolerance to determine whether two temperature instances are equal or not.
+     * @return true if provided temperature is assumed to be equal to this instance,
+     * false otherwise.
+     */
+    @Override
+    public boolean equals(final Measurement&lt;TemperatureUnit&gt; other, final double tolerance) {
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        if (super.equals(other, tolerance)) {</span>
+<span class="fc" id="L55">            return true;</span>
+        }
+
+        // attempt conversion to common units
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        if (other == null) {</span>
+<span class="fc" id="L60">            return false;</span>
+        }
+
+<span class="fc" id="L63">        final var otherValue = TemperatureConverter.convert(other.getValue().doubleValue(), other.getUnit(), getUnit());</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        return Math.abs(getValue().doubleValue() - otherValue) &lt;= tolerance;</span>
+    }
+
+    /**
+     * Adds two temperature values and units and returns the result.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit.
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
+     * @param resultUnit unit of result to be returned.
+     * @return result of addition.
+     */
+    public static double add(
+            final double value1, final TemperatureUnit unit1,
+            final double value2, final TemperatureUnit unit2,
+            final TemperatureUnit resultUnit) {
+        // 1st convert both values to common unit1
+<span class="fc" id="L82">        final var v2 = TemperatureConverter.convert(value2, unit2, unit1);</span>
+
+        // then add and convert to result unit
+<span class="fc" id="L85">        return TemperatureConverter.convert(value1 + v2, unit1, resultUnit);</span>
+    }
+
+    /**
+     * Adds two temperature values and units and returns the result.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit.
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
+     * @param resultUnit unit of result to be returned.
+     * @return result of addition.
+     */
+    public static Number add(
+            final Number value1, final TemperatureUnit unit1,
+            final Number value2, final TemperatureUnit unit2,
+            final TemperatureUnit resultUnit) {
+<span class="fc" id="L102">        return BigDecimal.valueOf(add(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));</span>
+    }
+
+    /**
+     * Adds two temperature instances and stores the result into provided instance.
+     *
+     * @param arg1   1st argument.
+     * @param arg2   2nd argument.
+     * @param result instance where result will be stored.
+     */
+    public static void add(final Temperature arg1, final Temperature arg2, final Temperature result) {
+<span class="fc" id="L113">        result.setValue(add(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));</span>
+<span class="fc" id="L114">    }</span>
+
+    /**
+     * Adds two temperature instances.
+     *
+     * @param arg1 1st argument.
+     * @param arg2 2nd argument.
+     * @param unit unit of returned temperature.
+     * @return a new instance containing result.
+     */
+    public static Temperature addAndReturnNew(final Temperature arg1, final Temperature arg2, final TemperatureUnit unit) {
+<span class="fc" id="L125">        final var result = new Temperature();</span>
+<span class="fc" id="L126">        result.setUnit(unit);</span>
+<span class="fc" id="L127">        add(arg1, arg2, result);</span>
+<span class="fc" id="L128">        return result;</span>
+    }
+
+    /**
+     * Adds provided temperature value and unit and returns a new temperature
+     * instance using provided unit.
+     *
+     * @param value      value to be added.
+     * @param unit       unit of value to be added.
+     * @param resultUnit unit of returned temperature.
+     * @return a new temperature containing result.
+     */
+    public Temperature addAndReturnNew(
+            final double value, final TemperatureUnit unit, final TemperatureUnit resultUnit) {
+<span class="fc" id="L142">        final var result = new Temperature();</span>
+<span class="fc" id="L143">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L144">        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit, resultUnit));</span>
+<span class="fc" id="L145">        return result;</span>
+    }
+
+    /**
+     * Adds provided temperature value and unit and returns a new temperature
+     * instance using provided unit.
+     *
+     * @param value      value to be added.
+     * @param unit       unit of value to be added.
+     * @param resultUnit unit of returned temperature.
+     * @return a new temperature containing result.
+     */
+    public Temperature addAndReturnNew(
+            final Number value, final TemperatureUnit unit, final TemperatureUnit resultUnit) {
+<span class="fc" id="L159">        final var result = new Temperature();</span>
+<span class="fc" id="L160">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L161">        result.setValue(add(getValue(), getUnit(), value, unit, resultUnit));</span>
+<span class="fc" id="L162">        return result;</span>
+    }
+
+    /**
+     * Adds provided temperature to current instance and returns a new temperature
+     * instance.
+     *
+     * @param t    temperature to be added.
+     * @param unit unit of returned temperature.
+     * @return a new temperature containing result.
+     */
+    public Temperature addAndReturnNew(final Temperature t, final TemperatureUnit unit) {
+<span class="fc" id="L174">        return addAndReturnNew(this, t, unit);</span>
+    }
+
+    /**
+     * Adds provided temperature value and unit and updates current temperature
+     * instance.
+     *
+     * @param value temperature value to be added.
+     * @param unit  unit of temperature value.
+     */
+    public void add(final double value, final TemperatureUnit unit) {
+<span class="fc" id="L185">        setValue(add(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L186">    }</span>
+
+    /**
+     * Adds provided temperature value and unit and updates current temperature
+     * instance.
+     *
+     * @param value temperature value to be added.
+     * @param unit  unit of temperature value.
+     */
+    public void add(final Number value, final TemperatureUnit unit) {
+<span class="fc" id="L196">        setValue(add(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L197">    }</span>
+
+    /**
+     * Adds provided temperature and updates current temperature instance.
+     *
+     * @param temperature temperature to be added.
+     */
+    public void add(final Temperature temperature) {
+<span class="fc" id="L205">        add(this, temperature, this);</span>
+<span class="fc" id="L206">    }</span>
+
+    /**
+     * Adds provided temperature and stores the result into provided temperature
+     * instance.
+     *
+     * @param t      temperature to be added.
+     * @param result instance where result will be stored.
+     */
+    public void add(final Temperature t, final Temperature result) {
+<span class="fc" id="L216">        add(this, t, result);</span>
+<span class="fc" id="L217">    }</span>
+
+    /**
+     * Subtracts two temperature values and unit and returns the result.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit.
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
+     * @param resultUnit unit of result to be returned.
+     * @return result of subtraction.
+     */
+    public static double subtract(
+            final double value1, final TemperatureUnit unit1,
+            final double value2, final TemperatureUnit unit2,
+            final TemperatureUnit resultUnit) {
+        // 1st convert both values to common uni1
+<span class="fc" id="L234">        final var v2 = TemperatureConverter.convert(value2, unit2, unit1);</span>
+
+        // then subtract and convert to result unit
+<span class="fc" id="L237">        return TemperatureConverter.convert(value1 - v2, unit1, resultUnit);</span>
+    }
+
+    /**
+     * Subtracts two temperature values and units and returns the result.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit.
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
+     * @param resultUnit unit of result to be returned.
+     * @return result of subtraction.
+     */
+    public static Number subtract(
+            final Number value1, final TemperatureUnit unit1,
+            final Number value2, final TemperatureUnit unit2,
+            final TemperatureUnit resultUnit) {
+<span class="fc" id="L254">        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));</span>
+    }
+
+    /**
+     * Subtracts two temperature instances and stores the result into provided
+     * instance.
+     *
+     * @param arg1   1st argument.
+     * @param arg2   2nd argument.
+     * @param result instance where result will be stored.
+     */
+    public static void subtract(final Temperature arg1, final Temperature arg2, final Temperature result) {
+<span class="fc" id="L266">        result.setValue(subtract(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));</span>
+<span class="fc" id="L267">    }</span>
+
+    /**
+     * Subtracts two temperature instances.
+     *
+     * @param arg1 1st argument.
+     * @param arg2 2nd argument.
+     * @param unit unit of returned temperature.
+     * @return a new instance containing result.
+     */
+    public static Temperature subtractAndReturnNew(
+            final Temperature arg1, final Temperature arg2, final TemperatureUnit unit) {
+<span class="fc" id="L279">        final var result = new Temperature();</span>
+<span class="fc" id="L280">        result.setUnit(unit);</span>
+<span class="fc" id="L281">        subtract(arg1, arg2, result);</span>
+<span class="fc" id="L282">        return result;</span>
+    }
+
+    /**
+     * Subtracts provided temperature value and unit and returns a new temperature
+     * instance using provided unit.
+     *
+     * @param value      value to be subtracted.
+     * @param unit       unit of value to be subtracted.
+     * @param resultUnit unit of returned temperature.
+     * @return a new temperature containing result.
+     */
+    public Temperature subtractAndReturnNew(
+            final double value, final TemperatureUnit unit, final TemperatureUnit resultUnit) {
+<span class="fc" id="L296">        final var result = new Temperature();</span>
+<span class="fc" id="L297">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L298">        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit, resultUnit));</span>
+<span class="fc" id="L299">        return result;</span>
+    }
+
+    /**
+     * Subtracts provided temperature value and unit and returns a new temperature
+     * instance using provided unit.
+     *
+     * @param value      value to be subtracted.
+     * @param unit       unit of value to be subtracted.
+     * @param resultUnit unit of returned temperature.
+     * @return a new temperature containing result.
+     */
+    public Temperature subtractAndReturnNew(
+            final Number value, final TemperatureUnit unit, final TemperatureUnit resultUnit) {
+<span class="fc" id="L313">        final var result = new Temperature();</span>
+<span class="fc" id="L314">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L315">        result.setValue(subtract(getValue(), getUnit(), value, unit, resultUnit));</span>
+<span class="fc" id="L316">        return result;</span>
+    }
+
+    /**
+     * Subtracts provided temperature from current instance and returns a new
+     * instance.
+     *
+     * @param t    temperature to be subtracted.
+     * @param unit unit of returned temperature.
+     * @return a new temperature containing result.
+     */
+    public Temperature subtractAndReturnNew(final Temperature t, final TemperatureUnit unit) {
+<span class="fc" id="L328">        return subtractAndReturnNew(this, t, unit);</span>
+    }
+
+    /**
+     * Subtracts provided temperature value and unit and updates current
+     * temperature instance.
+     *
+     * @param value temperature value to be subtracted.
+     * @param unit  unit of temperature value.
+     */
+    public void subtract(final double value, final TemperatureUnit unit) {
+<span class="fc" id="L339">        setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L340">    }</span>
+
+    /**
+     * Subtracts provided temperature value and unit and updates current
+     * temperature instance.
+     *
+     * @param value temperature value to be subtracted.
+     * @param unit  unit of temperature value.
+     */
+    public void subtract(final Number value, final TemperatureUnit unit) {
+<span class="fc" id="L350">        setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L351">    }</span>
+
+    /**
+     * Subtracts provided temperature and updates current temperature.
+     *
+     * @param temperature temperature to be subtracted.
+     */
+    public void subtract(final Temperature temperature) {
+<span class="fc" id="L359">        subtract(this, temperature, this);</span>
+<span class="fc" id="L360">    }</span>
+
+    /**
+     * Subtracts provided temperature and stores the result into provided
+     * temperature.
+     *
+     * @param t      temperature to be subtracted.
+     * @param result instance where result will be stored.
+     */
+    public void subtract(final Temperature t, final Temperature result) {
+<span class="fc" id="L370">        subtract(this, t, result);</span>
+<span class="fc" id="L371">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

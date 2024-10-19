@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MagneticFluxDensity.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">MagneticFluxDensity.java</span></div><h1>MagneticFluxDensity.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2020 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.units;
+
+import java.math.BigDecimal;
+
+/**
+ * Contains a magnetic flux density value and unit.
+ */
+public class MagneticFluxDensity extends Measurement&lt;MagneticFluxDensityUnit&gt; {
+
+    /**
+     * Constructor with value and unit.
+     *
+     * @param value magnetic flux density value.
+     * @param unit  unit of magnetic flux density.
+     * @throws IllegalArgumentException if either value or unit is null.
+     */
+    public MagneticFluxDensity(final Number value, final MagneticFluxDensityUnit unit) {
+<span class="fc" id="L33">        super(value, unit);</span>
+<span class="fc" id="L34">    }</span>
+
+    /**
+     * Constructor.
+     */
+    MagneticFluxDensity() {
+<span class="fc" id="L40">        super();</span>
+<span class="fc" id="L41">    }</span>
+
+    /**
+     * Determines if two magnetic flux densities are equal up to a certain tolerance.
+     * If needed, this method attempts unit conversion to compare both objects.
+     *
+     * @param other     another measurement to compare.
+     * @param tolerance amount of tolerance to determine whether two magnetic flux density instances are equal or not.
+     * @return true if provided magnetic flux density is assumed ot be equal to this instance, false otherwise.
+     */
+    @Override
+    public boolean equals(final Measurement&lt;MagneticFluxDensityUnit&gt; other, final double tolerance) {
+<span class="fc bfc" id="L53" title="All 2 branches covered.">        if (super.equals(other, tolerance)) {</span>
+<span class="fc" id="L54">            return true;</span>
+        }
+
+        // attempt conversion to common units
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        if (other == null) {</span>
+<span class="fc" id="L59">            return false;</span>
+        }
+
+<span class="fc" id="L62">        final var otherValue = MagneticFluxDensityConverter.convert(other.getValue().doubleValue(),</span>
+<span class="fc" id="L63">                other.getUnit(), getUnit());</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        return Math.abs(getValue().doubleValue() - otherValue) &lt;= tolerance;</span>
+    }
+
+    /**
+     * Ads two magnetic flux density values and units and returns the result.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
+     * @param resultUnit unit of result to be returned.
+     * @return result of addition.
+     */
+    public static double add(
+            final double value1, final MagneticFluxDensityUnit unit1,
+            final double value2, final MagneticFluxDensityUnit unit2,
+            final MagneticFluxDensityUnit resultUnit) {
+<span class="fc" id="L81">        final var v1 = MagneticFluxDensityConverter.convert(value1, unit1, resultUnit);</span>
+<span class="fc" id="L82">        final var v2 = MagneticFluxDensityConverter.convert(value2, unit2, resultUnit);</span>
+<span class="fc" id="L83">        return v1 + v2;</span>
+    }
+
+    /**
+     * Adds two magnetic flux density values and units and returns the result.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit.
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
+     * @param resultUnit unit of result to be returned.
+     * @return result of addition.
+     */
+    public static Number add(
+            final Number value1, final MagneticFluxDensityUnit unit1,
+            final Number value2, final MagneticFluxDensityUnit unit2,
+            final MagneticFluxDensityUnit resultUnit) {
+<span class="fc" id="L100">        return BigDecimal.valueOf(add(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));</span>
+    }
+
+    /**
+     * Adds two magnetic flux density instances and stores the result into
+     * provided instance.
+     *
+     * @param arg1   1st argument.
+     * @param arg2   2nd argument.
+     * @param result instance where result will be stored.
+     */
+    public static void add(
+            final MagneticFluxDensity arg1, final MagneticFluxDensity arg2, final MagneticFluxDensity result) {
+<span class="fc" id="L113">        result.setValue(add(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));</span>
+<span class="fc" id="L114">    }</span>
+
+    /**
+     * Adds two magnetic flux density instances.
+     *
+     * @param arg1 1st argument.
+     * @param arg2 2nd argument.
+     * @param unit unit of returned magnetic flux density.
+     * @return a new instance containing result.
+     */
+    public static MagneticFluxDensity addAndReturnNew(
+            final MagneticFluxDensity arg1, final MagneticFluxDensity arg2, final MagneticFluxDensityUnit unit) {
+<span class="fc" id="L126">        final var result = new MagneticFluxDensity();</span>
+<span class="fc" id="L127">        result.setUnit(unit);</span>
+<span class="fc" id="L128">        add(arg1, arg2, result);</span>
+<span class="fc" id="L129">        return result;</span>
+    }
+
+    /**
+     * Adds provided magnetic flux density value and unit and returns a new
+     * magnetic flux density instance using provided unit.
+     *
+     * @param value      value to be added.
+     * @param unit       unit of value to be added.
+     * @param resultUnit unit of returned magnetic flux density.
+     * @return a new magnetic flux density containing result.
+     */
+    public MagneticFluxDensity addAndReturnNew(
+            final double value, final MagneticFluxDensityUnit unit, final MagneticFluxDensityUnit resultUnit) {
+<span class="fc" id="L143">        final var result = new MagneticFluxDensity();</span>
+<span class="fc" id="L144">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L145">        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit, resultUnit));</span>
+<span class="fc" id="L146">        return result;</span>
+    }
+
+    /**
+     * Adds provided magnetic flux density value and unit and returns a new
+     * magnetic flux density instance using provided unit.
+     *
+     * @param value      value to be added.
+     * @param unit       unit of value to be added.
+     * @param resultUnit unit of returned frequency.
+     * @return a new frequency containing result.
+     */
+    public MagneticFluxDensity addAndReturnNew(
+            final Number value, final MagneticFluxDensityUnit unit, final MagneticFluxDensityUnit resultUnit) {
+<span class="fc" id="L160">        final var result = new MagneticFluxDensity();</span>
+<span class="fc" id="L161">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L162">        result.setValue(add(getValue(), getUnit(), value, unit, resultUnit));</span>
+<span class="fc" id="L163">        return result;</span>
+    }
+
+    /**
+     * Adds provided magnetic flux density to current instance and returns
+     * a new magnetic flux density instance.
+     *
+     * @param b    magnetic flux density to be added.
+     * @param unit unit of returned magnetic flux density.
+     * @return a new magnetic flux density containing result.
+     */
+    public MagneticFluxDensity addAndReturnNew(final MagneticFluxDensity b, final MagneticFluxDensityUnit unit) {
+<span class="fc" id="L175">        return addAndReturnNew(this, b, unit);</span>
+    }
+
+    /**
+     * Adds provided magnetic flux density value and unit and updates current
+     * magnetic flux density instance.
+     *
+     * @param value magnetic flux density value to be added.
+     * @param unit  unit of magnetic flux density value.
+     */
+    public void add(final double value, final MagneticFluxDensityUnit unit) {
+<span class="fc" id="L186">        setValue(add(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L187">    }</span>
+
+    /**
+     * Adds provided magnetic flux density value and unit and updates current
+     * magnetic flux density instance.
+     *
+     * @param value magnetic flux density value to be added.
+     * @param unit  unit of magnetic flux density value.
+     */
+    public void add(final Number value, final MagneticFluxDensityUnit unit) {
+<span class="fc" id="L197">        setValue(add(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L198">    }</span>
+
+    /**
+     * Adds provided magnetic flux density and updates current magnetic
+     * flux density instance.
+     *
+     * @param magneticFluxDensity magnetic flux density to be added.
+     */
+    public void add(final MagneticFluxDensity magneticFluxDensity) {
+<span class="fc" id="L207">        add(this, magneticFluxDensity, this);</span>
+<span class="fc" id="L208">    }</span>
+
+    /**
+     * Adds provided magnetic flux density and stores the result into
+     * provided magnetic flux density instance.
+     *
+     * @param b      magnetic flux density to be added.
+     * @param result instance where result will be stored.
+     */
+    public void add(final MagneticFluxDensity b, final MagneticFluxDensity result) {
+<span class="fc" id="L218">        add(this, b, result);</span>
+<span class="fc" id="L219">    }</span>
+
+    /**
+     * Subtracts two magnetic flux density values and units and returns the
+     * result.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit.
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
+     * @param resultUnit unit of result to be returned.
+     * @return result of subtraction.
+     */
+    public static double subtract(
+            final double value1, final MagneticFluxDensityUnit unit1,
+            final double value2, final MagneticFluxDensityUnit unit2,
+            final MagneticFluxDensityUnit resultUnit) {
+<span class="fc" id="L236">        final var v1 = MagneticFluxDensityConverter.convert(value1, unit1, resultUnit);</span>
+<span class="fc" id="L237">        final var v2 = MagneticFluxDensityConverter.convert(value2, unit2, resultUnit);</span>
+<span class="fc" id="L238">        return v1 - v2;</span>
+    }
+
+    /**
+     * Subtracts two magnetic flux density values and units and returns the
+     * result.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit.
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
+     * @param resultUnit unit of result to be returned.
+     * @return result of subtraction.
+     */
+    public static Number subtract(
+            final Number value1, final MagneticFluxDensityUnit unit1,
+            final Number value2, final MagneticFluxDensityUnit unit2,
+            final MagneticFluxDensityUnit resultUnit) {
+<span class="fc" id="L256">        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));</span>
+    }
+
+    /**
+     * Subtracts two magnetic flux density instances and stores the result
+     * into provided instance.
+     *
+     * @param arg1   1st argument.
+     * @param arg2   2nd argument.
+     * @param result instance where result will be stored.
+     */
+    public static void subtract(
+            final MagneticFluxDensity arg1, final MagneticFluxDensity arg2, final MagneticFluxDensity result) {
+<span class="fc" id="L269">        result.setValue(subtract(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));</span>
+<span class="fc" id="L270">    }</span>
+
+    /**
+     * Subtracts two magnetic flux density instances.
+     *
+     * @param arg1 1st argument.
+     * @param arg2 2nd argument.
+     * @param unit unit of returned magnetic flux density.
+     * @return a new instance containing result.
+     */
+    public static MagneticFluxDensity subtractAndReturnNew(
+            final MagneticFluxDensity arg1, final MagneticFluxDensity arg2, final MagneticFluxDensityUnit unit) {
+<span class="fc" id="L282">        final var result = new MagneticFluxDensity();</span>
+<span class="fc" id="L283">        result.setUnit(unit);</span>
+<span class="fc" id="L284">        subtract(arg1, arg2, result);</span>
+<span class="fc" id="L285">        return result;</span>
+    }
+
+    /**
+     * Subtracts provided magnetic flux density value and unit and returns a
+     * new magnetic flux density instance using provided unit.
+     *
+     * @param value      value to be subtracted.
+     * @param unit       unit of value to be subtracted.
+     * @param resultUnit unit of returned magnetic flux density.
+     * @return a new magnetic flux density containing result.
+     */
+    public MagneticFluxDensity subtractAndReturnNew(
+            final double value, final MagneticFluxDensityUnit unit, final MagneticFluxDensityUnit resultUnit) {
+<span class="fc" id="L299">        final var result = new MagneticFluxDensity();</span>
+<span class="fc" id="L300">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L301">        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit, resultUnit));</span>
+<span class="fc" id="L302">        return result;</span>
+    }
+
+    /**
+     * Subtracts provided magnetic flux density value and unit and returns a
+     * new magnetic flux density instance using provided unit.
+     *
+     * @param value      value to be subtracted.
+     * @param unit       unit of value to be subtracted.
+     * @param resultUnit unit of returned magnetic flux density.
+     * @return a new magnetic flux density containing result.
+     */
+    public MagneticFluxDensity subtractAndReturnNew(
+            final Number value, final MagneticFluxDensityUnit unit, final MagneticFluxDensityUnit resultUnit) {
+<span class="fc" id="L316">        final var result = new MagneticFluxDensity();</span>
+<span class="fc" id="L317">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L318">        result.setValue(subtract(getValue(), getUnit(), value, unit, resultUnit));</span>
+<span class="fc" id="L319">        return result;</span>
+    }
+
+    /**
+     * Subtracts provided magnetic flux density from current instance and
+     * returns a new instance.
+     *
+     * @param b    magnetic flux density to be subtracted.
+     * @param unit unit of returned magnetic flux density.
+     * @return a new magnetic flux density containing result.
+     */
+    public MagneticFluxDensity subtractAndReturnNew(final MagneticFluxDensity b, final MagneticFluxDensityUnit unit) {
+<span class="fc" id="L331">        return subtractAndReturnNew(this, b, unit);</span>
+    }
+
+    /**
+     * Subtracts provided magnetic flux density value and unit and updates
+     * current magnetic flux density instance.
+     *
+     * @param value magnetic flux density value to be subtracted.
+     * @param unit  unit of magnetic flux density value.
+     */
+    public void subtract(final double value, final MagneticFluxDensityUnit unit) {
+<span class="fc" id="L342">        setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L343">    }</span>
+
+    /**
+     * Subtracts provided magnetic flux density value and unit and update current
+     * magnetic flux density instance.
+     *
+     * @param value magnetic flux density value to be subtracted.
+     * @param unit  unit of magnetic flux density value.
+     */
+    public void subtract(final Number value, final MagneticFluxDensityUnit unit) {
+<span class="fc" id="L353">        setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L354">    }</span>
+
+    /**
+     * Subtracts provided magnetic flux density and updates current magnetic
+     * flux density.
+     *
+     * @param b magnetic flux density to be subtracted.
+     */
+    public void subtract(final MagneticFluxDensity b) {
+<span class="fc" id="L363">        subtract(this, b, this);</span>
+<span class="fc" id="L364">    }</span>
+
+    /**
+     * Subtracts provided magnetic flux density and stores the result into
+     * provided magnetic flux density.
+     *
+     * @param b      magnetic flux density to be subtracted.
+     * @param result instance where result will be stored.
+     */
+    public void subtract(final MagneticFluxDensity b, final MagneticFluxDensity result) {
+<span class="fc" id="L374">        subtract(this, b, result);</span>
+<span class="fc" id="L375">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

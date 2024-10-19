@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AccelerationFormatter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">AccelerationFormatter.java</span></div><h1>AccelerationFormatter.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2018 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.irurueta.units;
+
+import java.text.ParseException;
+import java.util.Locale;
+
+/**
+ * Formats and parses acceleration value and unit.
+ */
+public class AccelerationFormatter extends MeasureFormatter&lt;Acceleration, AccelerationUnit&gt; {
+
+    /**
+     * Meters per squared second symbol.
+     */
+    public static final String METERS_PER_SQUARED_SECOND = &quot;m/s²&quot;;
+
+    /**
+     * Standard gravity symbol.
+     */
+    public static final String G = &quot;g₀&quot;;
+
+    /**
+     * Feet per squared second symbol.
+     */
+    public static final String FEET_PER_SQUARED_SECOND = &quot;ft/s²&quot;;
+
+    /**
+     * Constructor.
+     */
+    public AccelerationFormatter() {
+<span class="fc" id="L46">        super();</span>
+<span class="fc" id="L47">    }</span>
+
+    /**
+     * Constructor with locale.
+     *
+     * @param locale locale.
+     * @throws IllegalArgumentException if locale is null.
+     */
+    public AccelerationFormatter(final Locale locale) {
+<span class="fc" id="L56">        super(locale);</span>
+<span class="fc" id="L57">    }</span>
+
+    /**
+     * Copy constructor.
+     *
+     * @param formatter input instance to copy from.
+     * @throws NullPointerException if provided formatter is null.
+     */
+    public AccelerationFormatter(final AccelerationFormatter formatter) {
+<span class="fc" id="L66">        this(formatter.getLocale());</span>
+<span class="fc" id="L67">    }</span>
+
+    /**
+     * Determines if two acceleration formatters are equal by comparing all of their internal parameters.
+     *
+     * @param obj another object to compare.
+     * @return true if provided object is assumed to be equal to this instance.
+     */
+    @Override
+    public boolean equals(final Object obj) {
+<span class="fc" id="L77">        final var equals = super.equals(obj);</span>
+<span class="fc bfc" id="L78" title="All 4 branches covered.">        return (obj instanceof AccelerationFormatter) &amp;&amp; equals;</span>
+    }
+
+    /**
+     * Hash code generated for this instance. Hash codes can be internally used by some collections to coarsely
+     * compare objects. This implementation only calls parent implementation to avoid static analyzer warning.
+     *
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+<span class="fc" id="L89">        return super.hashCode();</span>
+    }
+
+    /**
+     * Gets unit system for detected unit into provided string representation of a measurement.
+     *
+     * @param source a measurement string representation to be checked.
+     * @return a unit system (either metric or imperial) or null if unit cannot be determined.
+     */
+    public UnitSystem getUnitSystem(final String source) {
+<span class="fc" id="L99">        final var unit = findUnit(source);</span>
+<span class="fc bfc" id="L100" title="All 2 branches covered.">        return unit != null ? AccelerationUnit.getUnitSystem(unit) : null;</span>
+    }
+
+    /**
+     * Parses provided string and tries to determine acceleration value and unit.
+     *
+     * @param source a string to be parsed.
+     * @return an acceleration containing a value and unit.
+     * @throws ParseException       if provided string cannot be parsed.
+     * @throws UnknownUnitException if unit cannot be determined.
+     */
+    @Override
+    public Acceleration parse(final String source) throws ParseException, UnknownUnitException {
+<span class="fc" id="L113">        return internalParse(source, new Acceleration());</span>
+    }
+
+    /**
+     * Attempts to determine an acceleration unit within a measurement string representation.
+     *
+     * @param source a measurement string representation.
+     * @return an acceleration unit, or null if none can be determined.
+     */
+    @Override
+    public AccelerationUnit findUnit(final String source) {
+<span class="fc bfc" id="L124" title="All 4 branches covered.">        if (source.contains(METERS_PER_SQUARED_SECOND + &quot; &quot;) || source.endsWith(METERS_PER_SQUARED_SECOND)) {</span>
+<span class="fc" id="L125">            return AccelerationUnit.METERS_PER_SQUARED_SECOND;</span>
+        }
+<span class="fc bfc" id="L127" title="All 4 branches covered.">        if (source.contains(G + &quot; &quot;) || source.endsWith(G)) {</span>
+<span class="fc" id="L128">            return AccelerationUnit.G;</span>
+        }
+<span class="fc bfc" id="L130" title="All 4 branches covered.">        if (source.contains(FEET_PER_SQUARED_SECOND + &quot; &quot;) || source.endsWith(FEET_PER_SQUARED_SECOND)) {</span>
+<span class="fc" id="L131">            return AccelerationUnit.FEET_PER_SQUARED_SECOND;</span>
+        }
+<span class="fc" id="L133">        return null;</span>
+    }
+
+    /**
+     * Formats and converts provided acceleration value and unit using provided unit system. If provided value is
+     * too large for provided unit, this method will convert it to a more appropriate unit using provided unit
+     * system (either metric or imperial).
+     *
+     * @param value  an acceleration value.
+     * @param unit   an acceleration unit.
+     * @param system system unit to convert measurement to.
+     * @return a string representation of acceleration value and unit.
+     */
+    public String formatAndConvert(
+            final Number value, final AccelerationUnit unit, final UnitSystem system) {
+<span class="fc bfc" id="L148" title="All 2 branches covered.">        if (system == UnitSystem.IMPERIAL) {</span>
+<span class="fc" id="L149">            return formatAndConvertImperial(value, unit);</span>
+        } else {
+<span class="fc" id="L151">            return formatAndConvertMetric(value, unit);</span>
+        }
+    }
+
+    /**
+     * Formats and converts provided acceleration value and unit using metric unit system.
+     *
+     * @param value an acceleration value.
+     * @param unit  an acceleration unit.
+     * @return a string representation of acceleration value and unit using metric unit system.
+     */
+    public String formatAndConvertMetric(final Number value, final AccelerationUnit unit) {
+        //always format as meters per squared second
+<span class="fc" id="L164">        return format(AccelerationConverter.convert(value, unit, AccelerationUnit.METERS_PER_SQUARED_SECOND),</span>
+                AccelerationUnit.METERS_PER_SQUARED_SECOND);
+    }
+
+    /**
+     * Formats and converts provided acceleration value and unit using imperial unit system.
+     *
+     * @param value an acceleration value.
+     * @param unit  an acceleration unit.
+     * @return a string representation of acceleration value and unit using imperial unit system.
+     */
+    public String formatAndConvertImperial(final Number value, final AccelerationUnit unit) {
+        //always format as feet per squared second
+<span class="fc" id="L177">        return format(AccelerationConverter.convert(value, unit, AccelerationUnit.FEET_PER_SQUARED_SECOND),</span>
+                AccelerationUnit.FEET_PER_SQUARED_SECOND);
+    }
+
+    /**
+     * Returns unit string representation.
+     *
+     * @param unit an acceleration unit.
+     * @return its string representation.
+     */
+    @Override
+    public String getUnitSymbol(final AccelerationUnit unit) {
+<span class="fc bfc" id="L189" title="All 3 branches covered.">        return switch (unit) {</span>
+<span class="fc" id="L190">            case FEET_PER_SQUARED_SECOND -&gt; FEET_PER_SQUARED_SECOND;</span>
+<span class="fc" id="L191">            case G -&gt; G;</span>
+<span class="fc" id="L192">            default -&gt; METERS_PER_SQUARED_SECOND;</span>
+        };
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

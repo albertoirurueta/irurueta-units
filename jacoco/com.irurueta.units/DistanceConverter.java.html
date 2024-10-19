@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DistanceConverter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">DistanceConverter.java</span></div><h1>DistanceConverter.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2018 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.units;
+
+import java.math.BigDecimal;
+
+/**
+ * Does distance conversions to different units.
+ * To prevent loss of accuracy, conversion should only be done as a final step
+ * before displaying distance measurements.
+ */
+@SuppressWarnings(&quot;WeakerAccess&quot;)
+public class DistanceConverter {
+
+    /**
+     * Number of meters in 1 millimeter.
+     */
+    static final double METERS_PER_MILLIMETER = 0.001;
+
+    /**
+     * Number of meters in 1 centimeter.
+     */
+    static final double METERS_PER_CENTIMETER = 0.01;
+
+    /**
+     * Number of meters in 1 kilometer.
+     */
+    static final double METERS_PER_KILOMETER = 1000.0;
+
+    /**
+     * Number of meters in 1 inch.
+     */
+    static final double METERS_PER_INCH = 0.0254;
+
+    /**
+     * Number of meters in 1 foot.
+     */
+    static final double METERS_PER_FOOT = 0.3048;
+
+    /**
+     * Number of meters in 1 yard.
+     */
+    static final double METERS_PER_YARD = 0.9144;
+
+    /**
+     * Number of meters in 1 mile.
+     */
+    static final double METERS_PER_MILE = 1609.344;
+
+    /**
+     * Constructor.
+     * Prevents instantiation of helper class.
+     */
+    private DistanceConverter() {
+    }
+
+    /**
+     * Converts a distance to provided output distance unit.
+     *
+     * @param input  input distance to be converted.
+     * @param output output distance where result will be stored and
+     *               containing output unit.
+     */
+    public static void convert(final Distance input, final Distance output) {
+<span class="fc" id="L78">        convert(input, output.getUnit(), output);</span>
+<span class="fc" id="L79">    }</span>
+
+    /**
+     * Converts a distance to requested output unit.
+     *
+     * @param input      input distance to be converted.
+     * @param outputUnit requested output unit.
+     * @return converted distance.
+     */
+    public static Distance convertAndReturnNew(final Distance input, final DistanceUnit outputUnit) {
+<span class="fc" id="L89">        final var result = new Distance();</span>
+<span class="fc" id="L90">        convert(input, outputUnit, result);</span>
+<span class="fc" id="L91">        return result;</span>
+    }
+
+    /**
+     * Converts and updates a distance to requested output unit.
+     *
+     * @param distance   input distance to be converted and updated.
+     * @param outputUnit requested output unit.
+     */
+    public static void convert(final Distance distance, final DistanceUnit outputUnit) {
+<span class="fc" id="L101">        convert(distance, outputUnit, distance);</span>
+<span class="fc" id="L102">    }</span>
+
+    /**
+     * Converts a distance to requested output unit.
+     *
+     * @param input      input distance to be converted.
+     * @param outputUnit requested output unit.
+     * @param result     distance instance where result will be stored.
+     */
+    public static void convert(
+            final Distance input, final DistanceUnit outputUnit, final Distance result) {
+<span class="fc" id="L113">        final var value = convert(input.getValue(), input.getUnit(), outputUnit);</span>
+<span class="fc" id="L114">        result.setValue(value);</span>
+<span class="fc" id="L115">        result.setUnit(outputUnit);</span>
+<span class="fc" id="L116">    }</span>
+
+    /**
+     * Converts a distance value from input unit to provided output unit.
+     *
+     * @param input      distance value.
+     * @param inputUnit  input distance unit.
+     * @param outputUnit output distance unit.
+     * @return converted distance value.
+     */
+    public static Number convert(final Number input, final DistanceUnit inputUnit, final DistanceUnit outputUnit) {
+<span class="fc" id="L127">        return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit, outputUnit));</span>
+    }
+
+    /**
+     * Converts a distance value from input unit to provided output unit.
+     *
+     * @param input      distance value.
+     * @param inputUnit  input distance unit.
+     * @param outputUnit output distance unit.
+     * @return converted distance value.
+     */
+    public static double convert(
+            final double input, final DistanceUnit inputUnit, final DistanceUnit outputUnit) {
+        // convert to meters
+<span class="fc bfc" id="L141" title="All 8 branches covered.">        final var meters = switch (inputUnit) {</span>
+<span class="fc" id="L142">            case MILLIMETER -&gt; millimeterToMeter(input);</span>
+<span class="fc" id="L143">            case CENTIMETER -&gt; centimeterToMeter(input);</span>
+<span class="fc" id="L144">            case KILOMETER -&gt; kilometerToMeter(input);</span>
+<span class="fc" id="L145">            case INCH -&gt; inchToMeter(input);</span>
+<span class="fc" id="L146">            case FOOT -&gt; footToMeter(input);</span>
+<span class="fc" id="L147">            case YARD -&gt; yardToMeter(input);</span>
+<span class="fc" id="L148">            case MILE -&gt; mileToMeter(input);</span>
+<span class="fc" id="L149">            default -&gt; input;</span>
+        };
+
+        // convert from meter to required output unit
+<span class="fc bfc" id="L153" title="All 8 branches covered.">        return switch (outputUnit) {</span>
+<span class="fc" id="L154">            case MILLIMETER -&gt; meterToMillimeter(meters);</span>
+<span class="fc" id="L155">            case CENTIMETER -&gt; meterToCentimeter(meters);</span>
+<span class="fc" id="L156">            case KILOMETER -&gt; meterToKilometer(meters);</span>
+<span class="fc" id="L157">            case INCH -&gt; meterToInch(meters);</span>
+<span class="fc" id="L158">            case FOOT -&gt; meterToFoot(meters);</span>
+<span class="fc" id="L159">            case YARD -&gt; meterToYard(meters);</span>
+<span class="fc" id="L160">            case MILE -&gt; meterToMile(meters);</span>
+<span class="fc" id="L161">            default -&gt; meters;</span>
+        };
+    }
+
+    /**
+     * Converts provided meter value to millimeters.
+     *
+     * @param meter meter value.
+     * @return same distance converted to millimeters.
+     */
+    public static double meterToMillimeter(final double meter) {
+<span class="fc" id="L172">        return meter / METERS_PER_MILLIMETER;</span>
+    }
+
+    /**
+     * Converts provided milimeter value to meters.
+     *
+     * @param millimeter milimeter value.
+     * @return same distance converted to meters.
+     */
+    public static double millimeterToMeter(final double millimeter) {
+<span class="fc" id="L182">        return millimeter * METERS_PER_MILLIMETER;</span>
+    }
+
+    /**
+     * Converts provided meter value to centimeters.
+     *
+     * @param meter meter value.
+     * @return same distance converted to centimeters.
+     */
+    public static double meterToCentimeter(final double meter) {
+<span class="fc" id="L192">        return meter / METERS_PER_CENTIMETER;</span>
+    }
+
+    /**
+     * Converts provided centimeter value to meters.
+     *
+     * @param centimeter centimeter value.
+     * @return same distance converted to meters.
+     */
+    public static double centimeterToMeter(final double centimeter) {
+<span class="fc" id="L202">        return centimeter * METERS_PER_CENTIMETER;</span>
+    }
+
+    /**
+     * Converts provided meter value to kilometers.
+     *
+     * @param meter meter value.
+     * @return same distance converted to kilometer.
+     */
+    public static double meterToKilometer(final double meter) {
+<span class="fc" id="L212">        return meter / METERS_PER_KILOMETER;</span>
+    }
+
+    /**
+     * Converts provided kilometer value to meters.
+     *
+     * @param kilometer kilometer value.
+     * @return same distance converted to meters.
+     */
+    public static double kilometerToMeter(final double kilometer) {
+<span class="fc" id="L222">        return kilometer * METERS_PER_KILOMETER;</span>
+    }
+
+    /**
+     * Converts provided meter value to inches.
+     *
+     * @param meter meter value.
+     * @return same distance converted to inches.
+     */
+    public static double meterToInch(final double meter) {
+<span class="fc" id="L232">        return meter / METERS_PER_INCH;</span>
+    }
+
+    /**
+     * Converts provided inch value to meters.
+     *
+     * @param inch inch value.
+     * @return same distance converted to meters.
+     */
+    public static double inchToMeter(final double inch) {
+<span class="fc" id="L242">        return inch * METERS_PER_INCH;</span>
+    }
+
+    /**
+     * Converts provided meter value to feet.
+     *
+     * @param meter meter value.
+     * @return same distance converted to feet.
+     */
+    public static double meterToFoot(final double meter) {
+<span class="fc" id="L252">        return meter / METERS_PER_FOOT;</span>
+    }
+
+    /**
+     * Converts provided foot value to meters.
+     *
+     * @param foot foot value.
+     * @return same distance converted to meters.
+     */
+    public static double footToMeter(final double foot) {
+<span class="fc" id="L262">        return foot * METERS_PER_FOOT;</span>
+    }
+
+    /**
+     * Converts provided meter value to yards.
+     *
+     * @param meter meter value.
+     * @return same distance converted to yards.
+     */
+    public static double meterToYard(final double meter) {
+<span class="fc" id="L272">        return meter / METERS_PER_YARD;</span>
+    }
+
+    /**
+     * Converts provided yard value to meters.
+     *
+     * @param yard yard value.
+     * @return same distance converted to meters.
+     */
+    public static double yardToMeter(final double yard) {
+<span class="fc" id="L282">        return yard * METERS_PER_YARD;</span>
+    }
+
+    /**
+     * Converts provided meter value to miles.
+     *
+     * @param meter meter value.
+     * @return same distance converted to miles.
+     */
+    public static double meterToMile(final double meter) {
+<span class="fc" id="L292">        return meter / METERS_PER_MILE;</span>
+    }
+
+    /**
+     * Converts provided mile value to meters.
+     *
+     * @param mile mile value.
+     * @return same distance converted to meters.
+     */
+    public static double mileToMeter(final double mile) {
+<span class="fc" id="L302">        return mile * METERS_PER_MILE;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

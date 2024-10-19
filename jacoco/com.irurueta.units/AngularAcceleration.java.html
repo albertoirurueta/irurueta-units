@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AngularAcceleration.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">AngularAcceleration.java</span></div><h1>AngularAcceleration.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2018 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.units;
+
+import java.math.BigDecimal;
+
+/**
+ * Contains angular acceleration value and unit.
+ */
+@SuppressWarnings(&quot;WeakerAccess&quot;)
+public class AngularAcceleration extends Measurement&lt;AngularAccelerationUnit&gt; {
+
+    /**
+     * Constructor with value and unit.
+     *
+     * @param value angular acceleration value.
+     * @param unit  unit of angular acceleration.
+     * @throws IllegalArgumentException if either value or unit is null.
+     */
+    public AngularAcceleration(final Number value, final AngularAccelerationUnit unit) {
+<span class="fc" id="L34">        super(value, unit);</span>
+<span class="fc" id="L35">    }</span>
+
+    /**
+     * Constructor.
+     */
+    AngularAcceleration() {
+<span class="fc" id="L41">        super();</span>
+<span class="fc" id="L42">    }</span>
+
+    /**
+     * Determines if two angular acceleration values are equal up to a certain tolerance.
+     * If needed, this method attempts unit conversion to compare both objects.
+     *
+     * @param other     another measurement to compare.
+     * @param tolerance true if provided measurement is assumed to be equal to this
+     *                  instance up to provided tolerance.
+     * @return true if provided angular acceleration is assumed to be equal to this
+     * instance, false otherwise.
+     */
+    @Override
+    public boolean equals(
+            final Measurement&lt;AngularAccelerationUnit&gt; other, final double tolerance) {
+<span class="fc bfc" id="L57" title="All 2 branches covered.">        if (super.equals(other, tolerance)) {</span>
+<span class="fc" id="L58">            return true;</span>
+        }
+
+        //attempt conversion to common units
+<span class="fc bfc" id="L62" title="All 2 branches covered.">        if (other == null) {</span>
+<span class="fc" id="L63">            return false;</span>
+        }
+
+<span class="fc" id="L66">        final var otherValue = AngularAccelerationConverter.convert(</span>
+<span class="fc" id="L67">                other.getValue().doubleValue(), other.getUnit(), getUnit());</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">        return Math.abs(getValue().doubleValue() - otherValue) &lt;= tolerance;</span>
+    }
+
+    /**
+     * Adds two angular acceleration values and units and returns the result.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit.
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
+     * @param resultUnit unit of result to be returned.
+     * @return result of addition.
+     */
+    public static double add(final double value1, final AngularAccelerationUnit unit1,
+                             final double value2, final AngularAccelerationUnit unit2,
+                             final AngularAccelerationUnit resultUnit) {
+<span class="fc" id="L84">        final var v1 = AngularAccelerationConverter.convert(value1, unit1, resultUnit);</span>
+<span class="fc" id="L85">        final var v2 = AngularAccelerationConverter.convert(value2, unit2, resultUnit);</span>
+<span class="fc" id="L86">        return v1 + v2;</span>
+    }
+
+    /**
+     * Adds two angular acceleration values and units and returns the result.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit.
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
+     * @param resultUnit unit of result to be returned.
+     * @return result of addition.
+     */
+    public static Number add(final Number value1, final AngularAccelerationUnit unit1,
+                             final Number value2, final AngularAccelerationUnit unit2,
+                             final AngularAccelerationUnit resultUnit) {
+<span class="fc" id="L102">        return BigDecimal.valueOf(add(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));</span>
+    }
+
+    /**
+     * Adds two angular accelerations and stores the result into provided instance.
+     *
+     * @param arg1   1st argument.
+     * @param arg2   2nd argument.
+     * @param result instance where result will be stored.
+     */
+    public static void add(final AngularAcceleration arg1, final AngularAcceleration arg2,
+                           final AngularAcceleration result) {
+<span class="fc" id="L114">        result.setValue(add(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));</span>
+<span class="fc" id="L115">    }</span>
+
+    /**
+     * Adds two angular accelerations.
+     *
+     * @param arg1 1st argument.
+     * @param arg2 2nd argument.
+     * @param unit unit of returned angular acceleration.
+     * @return a new instance containing result.
+     */
+    public static AngularAcceleration addAndReturnNew(
+            final AngularAcceleration arg1, final AngularAcceleration arg2, final AngularAccelerationUnit unit) {
+<span class="fc" id="L127">        final var result = new AngularAcceleration();</span>
+<span class="fc" id="L128">        result.setUnit(unit);</span>
+<span class="fc" id="L129">        add(arg1, arg2, result);</span>
+<span class="fc" id="L130">        return result;</span>
+    }
+
+    /**
+     * Adds provided angular acceleration value and unit and returns a new angular
+     * acceleration instance using provided unit.
+     *
+     * @param value      value to be added.
+     * @param unit       unit of value to be added.
+     * @param resultUnit unit of returned angular acceleration.
+     * @return a new angular acceleration containing result.
+     */
+    public AngularAcceleration addAndReturnNew(
+            final double value, final AngularAccelerationUnit unit, final AngularAccelerationUnit resultUnit) {
+<span class="fc" id="L144">        final AngularAcceleration result = new AngularAcceleration();</span>
+<span class="fc" id="L145">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L146">        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit, resultUnit));</span>
+<span class="fc" id="L147">        return result;</span>
+    }
+
+    /**
+     * Adds provided angular acceleration value and unit and returns a new angular
+     * acceleration instance using provided unit.
+     *
+     * @param value      value to be added.
+     * @param unit       unit of value to be added.
+     * @param resultUnit unit of returned angular acceleration.
+     * @return a new angular acceleration containing result.
+     */
+    public AngularAcceleration addAndReturnNew(
+            final Number value, final AngularAccelerationUnit unit, final AngularAccelerationUnit resultUnit) {
+<span class="fc" id="L161">        final var result = new AngularAcceleration();</span>
+<span class="fc" id="L162">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L163">        result.setValue(add(getValue(), getUnit(), value, unit, resultUnit));</span>
+<span class="fc" id="L164">        return result;</span>
+    }
+
+    /**
+     * Adds provided angular acceleration to current instance and returns a new angular
+     * acceleration.
+     *
+     * @param a    angular acceleration to be added.
+     * @param unit unit of returned angular acceleration.
+     * @return a new angular acceleration containing result.
+     */
+    public AngularAcceleration addAndReturnNew(final AngularAcceleration a, final AngularAccelerationUnit unit) {
+<span class="fc" id="L176">        return addAndReturnNew(this, a, unit);</span>
+    }
+
+    /**
+     * Adds provided angular acceleration value and unit and updates current angular
+     * acceleration instance.
+     *
+     * @param value angular acceleration value to be added.
+     * @param unit  unit of angular acceleration value.
+     */
+    public void add(final double value, final AngularAccelerationUnit unit) {
+<span class="fc" id="L187">        setValue(add(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L188">    }</span>
+
+    /**
+     * Adds provided angular acceleration value and unit and updates current angular
+     * acceleration instance.
+     *
+     * @param value angular acceleration value to be added.
+     * @param unit  unit of angular acceleration value.
+     */
+    public void add(final Number value, final AngularAccelerationUnit unit) {
+<span class="fc" id="L198">        setValue(add(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L199">    }</span>
+
+    /**
+     * Adds provided angular acceleration and updates current angular acceleration.
+     *
+     * @param a angular acceleration to be added.
+     */
+    public void add(final AngularAcceleration a) {
+<span class="fc" id="L207">        add(this, a, this);</span>
+<span class="fc" id="L208">    }</span>
+
+    /**
+     * Adds provided angular acceleration and stores the result into provided angular
+     * acceleration.
+     *
+     * @param a      angular acceleration to be added.
+     * @param result instance where result will be stored.
+     */
+    public void add(final AngularAcceleration a, final AngularAcceleration result) {
+<span class="fc" id="L218">        add(this, a, result);</span>
+<span class="fc" id="L219">    }</span>
+
+    /**
+     * Subtracts two angular acceleration values and units and returns the result.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit.
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
+     * @param resultUnit unit of result to be returned.
+     * @return result of subtraction.
+     */
+    public static double subtract(
+            final double value1, final AngularAccelerationUnit unit1,
+            final double value2, final AngularAccelerationUnit unit2,
+            final AngularAccelerationUnit resultUnit) {
+<span class="fc" id="L235">        final var v1 = AngularAccelerationConverter.convert(value1, unit1, resultUnit);</span>
+<span class="fc" id="L236">        final var v2 = AngularAccelerationConverter.convert(value2, unit2, resultUnit);</span>
+<span class="fc" id="L237">        return v1 - v2;</span>
+    }
+
+    /**
+     * Subtracts two angular acceleration values and units and returns the result.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit.
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
+     * @param resultUnit unit of result to be returned.
+     * @return result of subtraction.
+     */
+    public static Number subtract(
+            final Number value1, final AngularAccelerationUnit unit1,
+            final Number value2, final AngularAccelerationUnit unit2,
+            final AngularAccelerationUnit resultUnit) {
+<span class="fc" id="L254">        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));</span>
+    }
+
+    /**
+     * Subtracts two angular accelerations and stores the result into provided instance.
+     *
+     * @param arg1   1st argument.
+     * @param arg2   2nd argument.
+     * @param result instance where result will be stored.
+     */
+    public static void subtract(
+            final AngularAcceleration arg1, final AngularAcceleration arg2,
+            final AngularAcceleration result) {
+<span class="fc" id="L267">        result.setValue(subtract(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));</span>
+<span class="fc" id="L268">    }</span>
+
+    /**
+     * Subtracts two angular accelerations.
+     *
+     * @param arg1 1st argument.
+     * @param arg2 2nd argument.
+     * @param unit unit of returned angular acceleration.
+     * @return a new angular acceleration containing result.
+     */
+    public static AngularAcceleration subtractAndReturnNew(
+            final AngularAcceleration arg1,
+            final AngularAcceleration arg2,
+            final AngularAccelerationUnit unit) {
+<span class="fc" id="L282">        final var result = new AngularAcceleration();</span>
+<span class="fc" id="L283">        result.setUnit(unit);</span>
+<span class="fc" id="L284">        subtract(arg1, arg2, result);</span>
+<span class="fc" id="L285">        return result;</span>
+    }
+
+    /**
+     * Subtracts provided angular acceleration value and unit and returns a new angular
+     * acceleration instance using provided unit.
+     *
+     * @param value      value to be subtracted.
+     * @param unit       unit of value to be subtracted.
+     * @param resultUnit unit of returned angular acceleration.
+     * @return a new angular acceleration containing result.
+     */
+    public AngularAcceleration subtractAndReturnNew(
+            final double value, final AngularAccelerationUnit unit, final AngularAccelerationUnit resultUnit) {
+<span class="fc" id="L299">        final var result = new AngularAcceleration();</span>
+<span class="fc" id="L300">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L301">        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit, resultUnit));</span>
+<span class="fc" id="L302">        return result;</span>
+    }
+
+    /**
+     * Subtracts provided angular acceleration value and unit and returns a new angular
+     * acceleration instance using provided unit.
+     *
+     * @param value      value to be subtracted.
+     * @param unit       unit of value to be subtracted.
+     * @param resultUnit unit of returned angular acceleration.
+     * @return a new angular acceleration containing result.
+     */
+    public AngularAcceleration subtractAndReturnNew(
+            final Number value, final AngularAccelerationUnit unit, final AngularAccelerationUnit resultUnit) {
+<span class="fc" id="L316">        final var result = new AngularAcceleration();</span>
+<span class="fc" id="L317">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L318">        result.setValue(subtract(getValue(), getUnit(), value, unit, resultUnit));</span>
+<span class="fc" id="L319">        return result;</span>
+    }
+
+    /**
+     * Subtracts provided angular acceleration to current instance and returns a new
+     * angular acceleration.
+     *
+     * @param a    angular acceleration to be subtracted.
+     * @param unit unit of returned angular acceleration.
+     * @return a new angular acceleration containing result.
+     */
+    public AngularAcceleration subtractAndReturnNew(final AngularAcceleration a, final AngularAccelerationUnit unit) {
+<span class="fc" id="L331">        return subtractAndReturnNew(this, a, unit);</span>
+    }
+
+    /**
+     * Subtracts provided angular acceleration value and unit and updates current
+     * angular acceleration instance.
+     *
+     * @param value angular acceleration value to be subtracted.
+     * @param unit  unit of angular acceleration value.
+     */
+    public void subtract(final double value, final AngularAccelerationUnit unit) {
+<span class="fc" id="L342">        setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L343">    }</span>
+
+    /**
+     * Subtracts provided angular acceleration value and unit and updates current
+     * angular acceleration instance.
+     *
+     * @param value angular acceleration to be subtracted.
+     * @param unit  unit of angular acceleration value.
+     */
+    public void subtract(final Number value, final AngularAccelerationUnit unit) {
+<span class="fc" id="L353">        setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L354">    }</span>
+
+    /**
+     * Subtracts provided angular acceleration and updates current angular acceleration.
+     *
+     * @param a angular acceleration to be subtracted.
+     */
+    public void subtract(final AngularAcceleration a) {
+<span class="fc" id="L362">        subtract(this, a, this);</span>
+<span class="fc" id="L363">    }</span>
+
+    /**
+     * Subtracts provided angular acceleration and stores the result into provided
+     * angular acceleration.
+     *
+     * @param a      angular acceleration to be subtracted.
+     * @param result instance where result will be stored.
+     */
+    public void subtract(final AngularAcceleration a, final AngularAcceleration result) {
+<span class="fc" id="L373">        subtract(this, a, result);</span>
+<span class="fc" id="L374">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

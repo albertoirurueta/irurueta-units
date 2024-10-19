@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AngularSpeed.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">AngularSpeed.java</span></div><h1>AngularSpeed.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2018 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.units;
+
+import java.math.BigDecimal;
+
+/**
+ * Contains angular speed value and unit.
+ */
+@SuppressWarnings(&quot;WeakerAccess&quot;)
+public class AngularSpeed extends Measurement&lt;AngularSpeedUnit&gt; {
+
+    /**
+     * Constructor with value and unit.
+     *
+     * @param value angular speed value.
+     * @param unit  unit of angular speed.
+     * @throws IllegalArgumentException if either value or unit is null.
+     */
+    public AngularSpeed(final Number value, final AngularSpeedUnit unit) {
+<span class="fc" id="L34">        super(value, unit);</span>
+<span class="fc" id="L35">    }</span>
+
+    /**
+     * Constructor.
+     */
+    AngularSpeed() {
+<span class="fc" id="L41">        super();</span>
+<span class="fc" id="L42">    }</span>
+
+    /**
+     * Determines if two angular speed values are equal up to a certain tolerance.
+     * If needed, this method attempts unit conversion to compare both objects.
+     *
+     * @param other     another measurement to compare.
+     * @param tolerance amount of tolerance to determine whether two angular speed instances are equal or not.
+     * @return true if provided angular speed is assumed to be equal to this instance,
+     * false otherwise.
+     */
+    @Override
+    public boolean equals(final Measurement&lt;AngularSpeedUnit&gt; other, double tolerance) {
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        if (super.equals(other, tolerance)) {</span>
+<span class="fc" id="L56">            return true;</span>
+        }
+
+        //attempt conversion to common units
+<span class="fc bfc" id="L60" title="All 2 branches covered.">        if (other == null) {</span>
+<span class="fc" id="L61">            return false;</span>
+        }
+
+<span class="fc" id="L64">        final var otherValue = AngularSpeedConverter.convert(other.getValue().doubleValue(),</span>
+<span class="fc" id="L65">                other.getUnit(), getUnit());</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">        return Math.abs(getValue().doubleValue() - otherValue) &lt;= tolerance;</span>
+    }
+
+    /**
+     * Adds two angular speed values and units and returns the result.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit.
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
+     * @param resultUnit unit of result to be returned.
+     * @return result of addition.
+     */
+    public static double add(
+            final double value1, final AngularSpeedUnit unit1,
+            final double value2, final AngularSpeedUnit unit2,
+            final AngularSpeedUnit resultUnit) {
+<span class="fc" id="L83">        final var v1 = AngularSpeedConverter.convert(value1, unit1, resultUnit);</span>
+<span class="fc" id="L84">        final var v2 = AngularSpeedConverter.convert(value2, unit2, resultUnit);</span>
+<span class="fc" id="L85">        return v1 + v2;</span>
+    }
+
+    /**
+     * Adds two angular acceleration values and units and returns the result.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit.
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
+     * @param resultUnit unit of result to be returned.
+     * @return result of addition.
+     */
+    public static Number add(
+            final Number value1, final AngularSpeedUnit unit1,
+            final Number value2, final AngularSpeedUnit unit2,
+            final AngularSpeedUnit resultUnit) {
+<span class="fc" id="L102">        return BigDecimal.valueOf(add(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));</span>
+    }
+
+    /**
+     * Adds two angular speeds and stores the result into provided instance.
+     *
+     * @param arg1   1st argument.
+     * @param arg2   2nd argument.
+     * @param result instance where result will be stored.
+     */
+    public static void add(
+            final AngularSpeed arg1, final AngularSpeed arg2, final AngularSpeed result) {
+<span class="fc" id="L114">        result.setValue(add(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));</span>
+<span class="fc" id="L115">    }</span>
+
+    /**
+     * Adds two angular speeds.
+     *
+     * @param arg1 1st argument.
+     * @param arg2 2nd argument.
+     * @param unit unit of returned angular speed.
+     * @return a new instance containing result.
+     */
+    public static AngularSpeed addAndReturnNew(
+            final AngularSpeed arg1, final AngularSpeed arg2, final AngularSpeedUnit unit) {
+<span class="fc" id="L127">        final var result = new AngularSpeed();</span>
+<span class="fc" id="L128">        result.setUnit(unit);</span>
+<span class="fc" id="L129">        add(arg1, arg2, result);</span>
+<span class="fc" id="L130">        return result;</span>
+    }
+
+    /**
+     * Adds provided angular speed value and unit and returns a new angular speed
+     * instance using provided unit.
+     *
+     * @param value      value to be added.
+     * @param unit       unit of value to be added.
+     * @param resultUnit unit of returned angular speed.
+     * @return a new angular speed containing result.
+     */
+    public AngularSpeed addAndReturnNew(
+            final double value, final AngularSpeedUnit unit, final AngularSpeedUnit resultUnit) {
+<span class="fc" id="L144">        final var result = new AngularSpeed();</span>
+<span class="fc" id="L145">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L146">        result.setValue(add(getValue().doubleValue(), getUnit(), value, unit, resultUnit));</span>
+<span class="fc" id="L147">        return result;</span>
+    }
+
+    /**
+     * Adds provided angular speed value and unit and returns a new angular speed
+     * instance using provided unit.
+     *
+     * @param value      value to be added.
+     * @param unit       unit of value to be added.
+     * @param resultUnit unit of returned angular speed.
+     * @return a new angular speed containing result.
+     */
+    public AngularSpeed addAndReturnNew(
+            final Number value, final AngularSpeedUnit unit, final AngularSpeedUnit resultUnit) {
+<span class="fc" id="L161">        final var result = new AngularSpeed();</span>
+<span class="fc" id="L162">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L163">        result.setValue(add(getValue(), getUnit(), value, unit, resultUnit));</span>
+<span class="fc" id="L164">        return result;</span>
+    }
+
+    /**
+     * Adds provided angular speed to current instance and returns a new angular
+     * speed.
+     *
+     * @param s    angular speed to be added.
+     * @param unit unit of returned angular speed.
+     * @return a new angular speed containing result.
+     */
+    public AngularSpeed addAndReturnNew(final AngularSpeed s, final AngularSpeedUnit unit) {
+<span class="fc" id="L176">        return addAndReturnNew(this, s, unit);</span>
+    }
+
+    /**
+     * Adds provided angular speed value and unit and updates current angular speed
+     * instance.
+     *
+     * @param value angular speed value to be added.
+     * @param unit  unit of angular speed value.
+     */
+    public void add(final double value, final AngularSpeedUnit unit) {
+<span class="fc" id="L187">        setValue(add(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L188">    }</span>
+
+    /**
+     * Adds provided angular speed value and unit and updates current angular speed
+     * instance.
+     *
+     * @param value angular speed value to be added.
+     * @param unit  unit of angular speed value.
+     */
+    public void add(final Number value, final AngularSpeedUnit unit) {
+<span class="fc" id="L198">        setValue(add(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L199">    }</span>
+
+    /**
+     * Adds provided angular speed and updates current angular speed.
+     *
+     * @param s angular speed to be added.
+     */
+    public void add(final AngularSpeed s) {
+<span class="fc" id="L207">        add(this, s, this);</span>
+<span class="fc" id="L208">    }</span>
+
+    /**
+     * Adds provided angular speed and stores the result into provided angular speed.
+     *
+     * @param s      angular speed to be added.
+     * @param result instance where result will be stored.
+     */
+    public void add(final AngularSpeed s, final AngularSpeed result) {
+<span class="fc" id="L217">        add(this, s, result);</span>
+<span class="fc" id="L218">    }</span>
+
+    /**
+     * Subtracts two angular speed values and units and returns the result.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit.
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
+     * @param resultUnit unit of result to be returned.
+     * @return result of subtraction.
+     */
+    public static double subtract(
+            final double value1, final AngularSpeedUnit unit1,
+            final double value2, final AngularSpeedUnit unit2,
+            final AngularSpeedUnit resultUnit) {
+<span class="fc" id="L234">        final var v1 = AngularSpeedConverter.convert(value1, unit1, resultUnit);</span>
+<span class="fc" id="L235">        final var v2 = AngularSpeedConverter.convert(value2, unit2, resultUnit);</span>
+<span class="fc" id="L236">        return v1 - v2;</span>
+    }
+
+    /**
+     * Subtracts two angular speed values and units and returns the result.
+     *
+     * @param value1     1st argument value.
+     * @param unit1      1st argument unit.
+     * @param value2     2nd argument value.
+     * @param unit2      2nd argument unit.
+     * @param resultUnit unit of result to be returned.
+     * @return result of subtraction.
+     */
+    public static Number subtract(
+            final Number value1, final AngularSpeedUnit unit1,
+            final Number value2, final AngularSpeedUnit unit2,
+            final AngularSpeedUnit resultUnit) {
+<span class="fc" id="L253">        return BigDecimal.valueOf(subtract(value1.doubleValue(), unit1, value2.doubleValue(), unit2, resultUnit));</span>
+    }
+
+    /**
+     * Subtracts two angular speeds and stores the result into provided instance.
+     *
+     * @param arg1   1st argument.
+     * @param arg2   2nd argument.
+     * @param result instance where result will be stored.
+     */
+    public static void subtract(
+            final AngularSpeed arg1, final AngularSpeed arg2, final AngularSpeed result) {
+<span class="fc" id="L265">        result.setValue(subtract(arg1.getValue(), arg1.getUnit(), arg2.getValue(), arg2.getUnit(), result.getUnit()));</span>
+<span class="fc" id="L266">    }</span>
+
+    /**
+     * Subtracts two angular speeds.
+     *
+     * @param arg1 1st argument.
+     * @param arg2 2nd argument.
+     * @param unit unit of returned angular speed.
+     * @return a new angular speed containing result.
+     */
+    public static AngularSpeed subtractAndReturnNew(
+            final AngularSpeed arg1, final AngularSpeed arg2, final AngularSpeedUnit unit) {
+<span class="fc" id="L278">        final var result = new AngularSpeed();</span>
+<span class="fc" id="L279">        result.setUnit(unit);</span>
+<span class="fc" id="L280">        subtract(arg1, arg2, result);</span>
+<span class="fc" id="L281">        return result;</span>
+    }
+
+    /**
+     * Subtracts provided angular speed value and unit and returns a new angular speed
+     * instance using provided unit.
+     *
+     * @param value      value to be subtracted.
+     * @param unit       unit of value to be subtracted.
+     * @param resultUnit unit of returned angular speed.
+     * @return a new angular speed containing result.
+     */
+    public AngularSpeed subtractAndReturnNew(
+            final double value, final AngularSpeedUnit unit, final AngularSpeedUnit resultUnit) {
+<span class="fc" id="L295">        final var result = new AngularSpeed();</span>
+<span class="fc" id="L296">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L297">        result.setValue(subtract(getValue().doubleValue(), getUnit(), value, unit, resultUnit));</span>
+<span class="fc" id="L298">        return result;</span>
+    }
+
+    /**
+     * Subtracts provided angular speed value and unit and returns a new angular speed
+     * instance using provided unit.
+     *
+     * @param value      value to be subtracted.
+     * @param unit       unit of value to be subtracted.
+     * @param resultUnit unit of returned angular speed.
+     * @return a new angular speed containing result.
+     */
+    public AngularSpeed subtractAndReturnNew(
+            final Number value, final AngularSpeedUnit unit, final AngularSpeedUnit resultUnit) {
+<span class="fc" id="L312">        final var result = new AngularSpeed();</span>
+<span class="fc" id="L313">        result.setUnit(resultUnit);</span>
+<span class="fc" id="L314">        result.setValue(subtract(getValue(), getUnit(), value, unit, resultUnit));</span>
+<span class="fc" id="L315">        return result;</span>
+    }
+
+    /**
+     * Subtracts provided angular speed to current instance and returns a new angular
+     * speed.
+     *
+     * @param s    angular speed to be subtracted.
+     * @param unit unit of returned angular speed.
+     * @return a new angular speed containing result.
+     */
+    public AngularSpeed subtractAndReturnNew(final AngularSpeed s, final AngularSpeedUnit unit) {
+<span class="fc" id="L327">        return subtractAndReturnNew(this, s, unit);</span>
+    }
+
+    /**
+     * Subtracts provided angular speed value and unit and updates current angular
+     * speed instance.
+     *
+     * @param value angular speed value to be subtracted.
+     * @param unit  unit of angular speed value.
+     */
+    public void subtract(final double value, final AngularSpeedUnit unit) {
+<span class="fc" id="L338">        setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L339">    }</span>
+
+    /**
+     * Subtracts provided angular speed value and unit and updates current angular
+     * speed instance.
+     *
+     * @param value angular speed value to be subtracted.
+     * @param unit  unit of angular speed value.
+     */
+    public void subtract(final Number value, final AngularSpeedUnit unit) {
+<span class="fc" id="L349">        setValue(subtract(getValue(), getUnit(), value, unit, getUnit()));</span>
+<span class="fc" id="L350">    }</span>
+
+    /**
+     * Subtracts provided angular speed and updates current angular speed.
+     *
+     * @param s angular speed to be subtracted.
+     */
+    public void subtract(final AngularSpeed s) {
+<span class="fc" id="L358">        subtract(this, s, this);</span>
+<span class="fc" id="L359">    }</span>
+
+    /**
+     * Subtracts provided angular speed and stores the result into provided
+     * angular speed.
+     *
+     * @param s      angular speed to be subtracted.
+     * @param result instance where result will be stored.
+     */
+    public void subtract(final AngularSpeed s, final AngularSpeed result) {
+<span class="fc" id="L369">        subtract(this, s, result);</span>
+<span class="fc" id="L370">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

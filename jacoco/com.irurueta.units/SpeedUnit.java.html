@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SpeedUnit.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">SpeedUnit.java</span></div><h1>SpeedUnit.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2018 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.units;
+
+/**
+ * Enumerator containing recognized typical speed units.
+ */
+<span class="fc" id="L21">public enum SpeedUnit {</span>
+    /**
+     * Meters per second (m/s).
+     */
+<span class="fc" id="L25">    METERS_PER_SECOND,</span>
+
+    /**
+     * Kilometers per hour (Km/h)
+     */
+<span class="fc" id="L30">    KILOMETERS_PER_HOUR,</span>
+
+    /**
+     * Kilometers per second (Km/s)
+     */
+<span class="fc" id="L35">    KILOMETERS_PER_SECOND,</span>
+
+    /**
+     * Feet per second (ft/s)
+     */
+<span class="fc" id="L40">    FEET_PER_SECOND,</span>
+
+    /**
+     * Miles per hour (mph)
+     */
+<span class="fc" id="L45">    MILES_PER_HOUR;</span>
+
+    /**
+     * Returns unit system for provided speed unit.
+     *
+     * @param unit speed unit to be checked.
+     * @return unit system (metric or imperial).
+     * @throws IllegalArgumentException if unit is null or not supported.
+     */
+    public static UnitSystem getUnitSystem(final SpeedUnit unit) {
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        if (unit == null) {</span>
+<span class="fc" id="L56">            throw new IllegalArgumentException();</span>
+        }
+
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        return switch (unit) {</span>
+<span class="fc" id="L60">            case FEET_PER_SECOND, MILES_PER_HOUR -&gt; UnitSystem.IMPERIAL;</span>
+<span class="fc" id="L61">            default -&gt; UnitSystem.METRIC;</span>
+        };
+    }
+
+    /**
+     * Gets all supported metric speed units.
+     *
+     * @return all supported metric speed units.
+     */
+    public static SpeedUnit[] getMetricUnits() {
+<span class="fc" id="L71">        return new SpeedUnit[]{</span>
+                METERS_PER_SECOND,
+                KILOMETERS_PER_HOUR,
+                KILOMETERS_PER_SECOND
+        };
+    }
+
+    /**
+     * Gets all supported imperial speed units.
+     *
+     * @return all supported imperial speed units.
+     */
+    public static SpeedUnit[] getImperialUnits() {
+<span class="fc" id="L84">        return new SpeedUnit[]{</span>
+                FEET_PER_SECOND,
+                MILES_PER_HOUR
+        };
+    }
+
+    /**
+     * Indicates whether provided unit belongs to the metric unit system.
+     *
+     * @param unit speed unit to be checked.
+     * @return true if unit belongs to metric unit system.
+     * @throws IllegalArgumentException if unit is null or not supported.
+     */
+    public static boolean isMetric(final SpeedUnit unit) {
+<span class="fc bfc" id="L98" title="All 2 branches covered.">        return getUnitSystem(unit) == UnitSystem.METRIC;</span>
+    }
+
+    /**
+     * Indicates whether provided unit belongs to the imperial unit system.
+     *
+     * @param unit speed unit to be checked.
+     * @return true if unit belongs to imperial unit system.
+     * @throws IllegalArgumentException if unit is null or not supported.
+     */
+    public static boolean isImperial(final SpeedUnit unit) {
+<span class="fc bfc" id="L109" title="All 2 branches covered.">        return getUnitSystem(unit) == UnitSystem.IMPERIAL;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

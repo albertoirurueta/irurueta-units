@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VolumeConverter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">VolumeConverter.java</span></div><h1>VolumeConverter.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2020 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.units;
+
+import java.math.BigDecimal;
+
+/**
+ * Does volume conversions to different units.
+ * To prevent loss of accuracy, conversion should only be done as a final step
+ * before displaying volume measurements.
+ */
+public class VolumeConverter {
+
+    /**
+     * Number of cubic meters in 1 cubic centimeter.
+     */
+    static final double CUBIC_METER_PER_CUBIC_CENTIMETER = 1e-6;
+
+    /**
+     * Number of cubic meters in 1 milliliter.
+     */
+    static final double CUBIC_METER_PER_MILLILITER = 1e-6;
+
+    /**
+     * Number of cubic meters in 1 cubic decimeter.
+     */
+    static final double CUBIC_METER_PER_CUBIC_DECIMETER = 1e-3;
+
+    /**
+     * Number of cubic meters in 1 liter.
+     */
+    static final double CUBIC_METER_PER_LITER = 1e-3;
+
+    /**
+     * Number of cubic meters in 1 hectoliter.
+     */
+    static final double CUBIC_METER_PER_HECTOLITER = 1e-1;
+
+    /**
+     * Number of cubic meters in 1 cubic inch.
+     */
+    static final double CUBIC_METER_PER_CUBIC_INCH = 0.000016387064;
+
+    /**
+     * Number of cubic meters in 1 pint.
+     */
+    static final double CUBIC_METER_PER_PINT = 0.000473176473;
+
+    /**
+     * Number of cubic meters in 1 gallon.
+     */
+    static final double CUBIC_METER_PER_GALLON = 0.003785411784;
+
+    /**
+     * Number of cubic meters in 1 cubic foot.
+     */
+    static final double CUBIC_METER_PER_CUBIC_FOOT = 0.028316846592;
+
+    /**
+     * Number of cubic meters in 1 barrel.
+     */
+    static final double CUBIC_METER_PER_BARREL = 0.158987294928;
+
+    /**
+     * Constructor.
+     * Prevents instantiation of helper class.
+     */
+    private VolumeConverter() {
+    }
+
+    /**
+     * Converts a volume in provided output volume unit.
+     *
+     * @param input  input volume to be converted.
+     * @param output output volume where result will be stored and
+     *               containing output unit.
+     */
+    public static void convert(final Volume input, final Volume output) {
+<span class="fc" id="L92">        convert(input, output.getUnit(), output);</span>
+<span class="fc" id="L93">    }</span>
+
+    /**
+     * Converts a volume to requested output unit.
+     *
+     * @param input      input volume to be converted.
+     * @param outputUnit requested output unit.
+     * @return converted volume.
+     */
+    public static Volume convertAndReturnNew(
+            final Volume input, final VolumeUnit outputUnit) {
+<span class="fc" id="L104">        final var result = new Volume();</span>
+<span class="fc" id="L105">        convert(input, outputUnit, result);</span>
+<span class="fc" id="L106">        return result;</span>
+    }
+
+    /**
+     * Converts and updates a volume to requested output unit.
+     *
+     * @param volume     input volume to be converted and updated.
+     * @param outputUnit requested output unit.
+     */
+    public static void convert(final Volume volume, final VolumeUnit outputUnit) {
+<span class="fc" id="L116">        convert(volume, outputUnit, volume);</span>
+<span class="fc" id="L117">    }</span>
+
+    /**
+     * Converts a volume to requested output unit.
+     *
+     * @param input      input volume to be converted.
+     * @param outputUnit requested output unit.
+     * @param result     volume instance where result will be stored.
+     */
+    public static void convert(final Volume input, final VolumeUnit outputUnit, final Volume result) {
+<span class="fc" id="L127">        final var value = convert(input.getValue(), input.getUnit(), outputUnit);</span>
+<span class="fc" id="L128">        result.setValue(value);</span>
+<span class="fc" id="L129">        result.setUnit(outputUnit);</span>
+<span class="fc" id="L130">    }</span>
+
+    /**
+     * Converts a volume value from input unit to provided output unit.
+     *
+     * @param input      volume value.
+     * @param inputUnit  input volume unit.
+     * @param outputUnit output volume unit.
+     * @return converted volume value.
+     */
+    public static Number convert(final Number input, final VolumeUnit inputUnit, final VolumeUnit outputUnit) {
+<span class="fc" id="L141">        return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit, outputUnit));</span>
+    }
+
+    /**
+     * Converts a volume value from input unit to provided output unit.
+     *
+     * @param input      volume value.
+     * @param inputUnit  input volume unit.
+     * @param outputUnit output volume unit.
+     * @return converted volume value.
+     */
+    public static double convert(final double input, final VolumeUnit inputUnit, final VolumeUnit outputUnit) {
+        // convert to cubic meters
+<span class="fc bfc" id="L154" title="All 11 branches covered.">        final var cubicMeters = switch (inputUnit) {</span>
+<span class="fc" id="L155">            case CUBIC_CENTIMETER -&gt; cubicCentimeterToCubicMeter(input);</span>
+<span class="fc" id="L156">            case MILLILITER -&gt; milliliterToCubicMeter(input);</span>
+<span class="fc" id="L157">            case CUBIC_DECIMETER -&gt; cubicDecimeterToCubicMeter(input);</span>
+<span class="fc" id="L158">            case LITER -&gt; literToCubicMeter(input);</span>
+<span class="fc" id="L159">            case HECTOLITER -&gt; hectoliterToCubicMeter(input);</span>
+<span class="fc" id="L160">            case CUBIC_INCH -&gt; cubicInchToCubicMeter(input);</span>
+<span class="fc" id="L161">            case PINT -&gt; pintToCubicMeter(input);</span>
+<span class="fc" id="L162">            case GALLON -&gt; gallonToCubicMeter(input);</span>
+<span class="fc" id="L163">            case CUBIC_FOOT -&gt; cubicFootToCubicMeter(input);</span>
+<span class="fc" id="L164">            case BARREL -&gt; barrelToCubicMeter(input);</span>
+<span class="fc" id="L165">            default -&gt; input;</span>
+        };
+
+        // convert from cubic meters to output unit
+<span class="fc bfc" id="L169" title="All 11 branches covered.">        return switch (outputUnit) {</span>
+<span class="fc" id="L170">            case CUBIC_CENTIMETER -&gt; cubicMeterToCubicCentimeter(cubicMeters);</span>
+<span class="fc" id="L171">            case MILLILITER -&gt; cubicMeterToMilliliter(cubicMeters);</span>
+<span class="fc" id="L172">            case CUBIC_DECIMETER -&gt; cubicMeterToCubicDecimeter(cubicMeters);</span>
+<span class="fc" id="L173">            case LITER -&gt; cubicMeterToLiter(cubicMeters);</span>
+<span class="fc" id="L174">            case HECTOLITER -&gt; cubicMeterToHectoliter(cubicMeters);</span>
+<span class="fc" id="L175">            case CUBIC_INCH -&gt; cubicMeterToCubicInch(cubicMeters);</span>
+<span class="fc" id="L176">            case PINT -&gt; cubicMeterToPint(cubicMeters);</span>
+<span class="fc" id="L177">            case GALLON -&gt; cubicMeterToGallon(cubicMeters);</span>
+<span class="fc" id="L178">            case CUBIC_FOOT -&gt; cubicMeterToCubicFoot(cubicMeters);</span>
+<span class="fc" id="L179">            case BARREL -&gt; cubicMeterToBarrel(cubicMeters);</span>
+<span class="fc" id="L180">            default -&gt; cubicMeters;</span>
+        };
+    }
+
+    /**
+     * Converts provided cubic meter value to cubic centimeters.
+     *
+     * @param cubicMeter cubic meter value.
+     * @return same volume converted to cubic centimeters.
+     */
+    public static double cubicMeterToCubicCentimeter(final double cubicMeter) {
+<span class="fc" id="L191">        return cubicMeter / CUBIC_METER_PER_CUBIC_CENTIMETER;</span>
+    }
+
+    /**
+     * Converts provided cubic centimeter value to cubic meters.
+     *
+     * @param cubicCentimeter cubic centimeter value.
+     * @return same volume converted to cubic meters.
+     */
+    public static double cubicCentimeterToCubicMeter(final double cubicCentimeter) {
+<span class="fc" id="L201">        return cubicCentimeter * CUBIC_METER_PER_CUBIC_CENTIMETER;</span>
+    }
+
+    /**
+     * Converts provided cubic meter value to milliliters.
+     *
+     * @param cubicMeter cubic meter value.
+     * @return same volume converted to milliliters.
+     */
+    public static double cubicMeterToMilliliter(final double cubicMeter) {
+<span class="fc" id="L211">        return cubicMeter / CUBIC_METER_PER_MILLILITER;</span>
+    }
+
+    /**
+     * Converts provided milliliter value to cubic meters.
+     *
+     * @param milliliter milliliter value.
+     * @return same volume converted to cubic meters.
+     */
+    public static double milliliterToCubicMeter(final double milliliter) {
+<span class="fc" id="L221">        return milliliter * CUBIC_METER_PER_MILLILITER;</span>
+    }
+
+    /**
+     * Converts provided cubic meter value to cubic decimeters.
+     *
+     * @param cubicMeter cubic meter value.
+     * @return same volume converted to cubic decimeters.
+     */
+    public static double cubicMeterToCubicDecimeter(final double cubicMeter) {
+<span class="fc" id="L231">        return cubicMeter / CUBIC_METER_PER_CUBIC_DECIMETER;</span>
+    }
+
+    /**
+     * Converts provided cubic decimeter value to cubic meters.
+     *
+     * @param cubicDecimeter cubic decimeter value.
+     * @return same volume converted to cubic meters.
+     */
+    public static double cubicDecimeterToCubicMeter(final double cubicDecimeter) {
+<span class="fc" id="L241">        return cubicDecimeter * CUBIC_METER_PER_CUBIC_DECIMETER;</span>
+    }
+
+    /**
+     * Converts provided cubic meter value to liters.
+     *
+     * @param cubicMeter cubic meter value.
+     * @return same volume converted to liters.
+     */
+    public static double cubicMeterToLiter(final double cubicMeter) {
+<span class="fc" id="L251">        return cubicMeter / CUBIC_METER_PER_LITER;</span>
+    }
+
+    /**
+     * Converts provided liter value to cubic meters.
+     *
+     * @param liter liter value.
+     * @return same volume converted to cubic meters.
+     */
+    public static double literToCubicMeter(final double liter) {
+<span class="fc" id="L261">        return liter * CUBIC_METER_PER_LITER;</span>
+    }
+
+    /**
+     * Converts provided cubic meter value to hectoliters.
+     *
+     * @param cubicMeter cubic meter value.
+     * @return same volume converted to hectoliters.
+     */
+    public static double cubicMeterToHectoliter(final double cubicMeter) {
+<span class="fc" id="L271">        return cubicMeter / CUBIC_METER_PER_HECTOLITER;</span>
+    }
+
+    /**
+     * Converts provided hectoliter value to cubic meters.
+     *
+     * @param hectoliter hectoliter value.
+     * @return same volume converted to cubic meters.
+     */
+    public static double hectoliterToCubicMeter(final double hectoliter) {
+<span class="fc" id="L281">        return hectoliter * CUBIC_METER_PER_HECTOLITER;</span>
+    }
+
+    /**
+     * Converts provided cubic meter value to cubic inches.
+     *
+     * @param cubicMeter cubic meter value.
+     * @return same volume converted to cubic inches.
+     */
+    public static double cubicMeterToCubicInch(final double cubicMeter) {
+<span class="fc" id="L291">        return cubicMeter / CUBIC_METER_PER_CUBIC_INCH;</span>
+    }
+
+    /**
+     * Converts provided cubic inch value to cubic meters.
+     *
+     * @param cubicInch cubic inch value.
+     * @return same volume converted to cubic meters.
+     */
+    public static double cubicInchToCubicMeter(final double cubicInch) {
+<span class="fc" id="L301">        return cubicInch * CUBIC_METER_PER_CUBIC_INCH;</span>
+    }
+
+    /**
+     * Converts provided cubic meter value to pints.
+     *
+     * @param cubicMeter cubic meter value.
+     * @return same volume converted to pints.
+     */
+    public static double cubicMeterToPint(final double cubicMeter) {
+<span class="fc" id="L311">        return cubicMeter / CUBIC_METER_PER_PINT;</span>
+    }
+
+    /**
+     * Converts provided pint value to cubic meters.
+     *
+     * @param pint pint value.
+     * @return same volume converted to cubic meters.
+     */
+    public static double pintToCubicMeter(final double pint) {
+<span class="fc" id="L321">        return pint * CUBIC_METER_PER_PINT;</span>
+    }
+
+    /**
+     * Converts provided cubic meter value to gallons.
+     *
+     * @param cubicMeter cubic meter value.
+     * @return same volume converted to gallons.
+     */
+    public static double cubicMeterToGallon(final double cubicMeter) {
+<span class="fc" id="L331">        return cubicMeter / CUBIC_METER_PER_GALLON;</span>
+    }
+
+    /**
+     * Converts provided gallon value to cubic meters.
+     *
+     * @param gallon gallon value.
+     * @return same volume converted to cubic meters.
+     */
+    public static double gallonToCubicMeter(final double gallon) {
+<span class="fc" id="L341">        return gallon * CUBIC_METER_PER_GALLON;</span>
+    }
+
+    /**
+     * Converts provided cubic meter value to cubic feet.
+     *
+     * @param cubicMeter cubic meter value.
+     * @return same volume converted to cubic feet.
+     */
+    public static double cubicMeterToCubicFoot(final double cubicMeter) {
+<span class="fc" id="L351">        return cubicMeter / CUBIC_METER_PER_CUBIC_FOOT;</span>
+    }
+
+    /**
+     * Converts provided cubic foot value to cubic meters.
+     *
+     * @param cubicFoot cubic foot value.
+     * @return same volume converted to cubic meters.
+     */
+    public static double cubicFootToCubicMeter(final double cubicFoot) {
+<span class="fc" id="L361">        return cubicFoot * CUBIC_METER_PER_CUBIC_FOOT;</span>
+    }
+
+    /**
+     * Converts provided cubic meter value to barrels.
+     *
+     * @param cubicMeter cubic meter value.
+     * @return same volume converted to barrels.
+     */
+    public static double cubicMeterToBarrel(final double cubicMeter) {
+<span class="fc" id="L371">        return cubicMeter / CUBIC_METER_PER_BARREL;</span>
+    }
+
+    /**
+     * Converts provided barrel value to cubic meters.
+     *
+     * @param barrel barrel value.
+     * @return same volume converted to cubic meters.
+     */
+    public static double barrelToCubicMeter(final double barrel) {
+<span class="fc" id="L381">        return barrel * CUBIC_METER_PER_BARREL;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

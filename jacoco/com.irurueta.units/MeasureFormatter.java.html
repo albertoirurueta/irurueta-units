@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MeasureFormatter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">MeasureFormatter.java</span></div><h1>MeasureFormatter.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2018 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.units;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.FieldPosition;
+import java.text.MessageFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.Locale;
+import java.util.Objects;
+
+/**
+ * Base class to format and parse a given measure using its value and unit.
+ *
+ * @param &lt;M&gt; type of measurement (i.e. Distance or Surface).
+ * @param &lt;U&gt; type of unit (i.e. DistanceUnit or SurfaceUnit).
+ */
+@SuppressWarnings(&quot;WeakerAccess&quot;)
+public abstract class MeasureFormatter&lt;M extends Measurement&lt;U&gt;, U extends Enum&lt;?&gt;&gt; implements Cloneable {
+
+    /**
+     * Default pattern to format values and units together into a single string.
+     * {0} corresponds to the value, {1} corresponds to the unit part.
+     */
+    public static final String DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN = &quot;{0} {1}&quot;;
+
+    /**
+     * Internal string formatter.
+     */
+    NumberFormat numberFormat;
+
+    /**
+     * Internal string formatter.
+     */
+    private MessageFormat format;
+
+    /**
+     * Internal locale.
+     */
+    private Locale locale;
+
+    /**
+     * Pattern to format values and unit together into a single string. {0} corresponds to
+     * the value, {1} corresponds to the unit part.
+     */
+    private String valueAndUnitFormatPattern;
+
+    /**
+     * Constructor.
+     */
+<span class="fc" id="L66">    MeasureFormatter() {</span>
+<span class="fc" id="L67">        numberFormat = NumberFormat.getInstance();</span>
+<span class="fc" id="L68">        locale = Locale.getDefault();</span>
+<span class="fc" id="L69">        valueAndUnitFormatPattern = DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN;</span>
+<span class="fc" id="L70">    }</span>
+
+    /**
+     * Constructor with locale.
+     *
+     * @param locale locale.
+     * @throws IllegalArgumentException if locale is null.
+     */
+<span class="fc" id="L78">    MeasureFormatter(final Locale locale) {</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">        if (locale == null) {</span>
+<span class="fc" id="L80">            throw new IllegalArgumentException();</span>
+        }
+
+<span class="fc" id="L83">        numberFormat = NumberFormat.getInstance(locale);</span>
+<span class="fc" id="L84">        this.locale = locale;</span>
+<span class="fc" id="L85">        valueAndUnitFormatPattern = DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN;</span>
+<span class="fc" id="L86">    }</span>
+
+    /**
+     * Determines if two measure formatters are equal by comparing all of its internal
+     * parameters.
+     *
+     * @param obj another object to compare.
+     * @return true if provided object is assumed to be equal to this instance.
+     */
+    @Override
+    public boolean equals(final Object obj) {
+<span class="pc bpc" id="L97" title="1 of 2 branches missed.">        if (obj == null) {</span>
+<span class="nc" id="L98">            return false;</span>
+        }
+<span class="fc bfc" id="L100" title="All 2 branches covered.">        if (!(obj instanceof MeasureFormatter)) {</span>
+<span class="fc" id="L101">            return false;</span>
+        }
+<span class="fc bfc" id="L103" title="All 2 branches covered.">        if (this == obj) {</span>
+<span class="fc" id="L104">            return true;</span>
+        }
+
+        //noinspection unchecked
+<span class="fc" id="L108">        final var other = (MeasureFormatter&lt;M, U&gt;) obj;</span>
+<span class="fc bfc" id="L109" title="All 2 branches covered.">        return numberFormat.equals(other.numberFormat) &amp;&amp;</span>
+<span class="pc bpc" id="L110" title="1 of 2 branches missed.">                locale.equals(other.locale) &amp;&amp;</span>
+<span class="pc bpc" id="L111" title="1 of 2 branches missed.">                valueAndUnitFormatPattern.equals(other.valueAndUnitFormatPattern);</span>
+    }
+
+    /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare objects.
+     *
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+<span class="fc" id="L122">        return Objects.hash(numberFormat, format, locale, valueAndUnitFormatPattern);</span>
+    }
+
+    /**
+     * Formats provided measurement value and unit into a string representation.
+     *
+     * @param value a measurement value.
+     * @param unit  a measurement unit.
+     * @return string representation of provided measurement value and unit.
+     */
+    public String format(final Number value, final U unit) {
+<span class="fc" id="L133">        return MessageFormat.format(valueAndUnitFormatPattern, numberFormat.format(value), getUnitSymbol(unit));</span>
+    }
+
+    /**
+     * Formats provided measurement value and unit into a string representation
+     * and appends the result into provided string buffer.
+     *
+     * @param value      a measurement value.
+     * @param unit       a measurement unit.
+     * @param toAppendTo buffer to append the result to.
+     * @param pos        field position where result will be appended.
+     * @return provided string buffer where result is appended.
+     */
+    public StringBuffer format(
+            final Number value, final U unit,
+            final StringBuffer toAppendTo, final FieldPosition pos) {
+<span class="fc bfc" id="L149" title="All 2 branches covered.">        if (format == null) {</span>
+<span class="fc" id="L150">            format = new MessageFormat(valueAndUnitFormatPattern);</span>
+        }
+<span class="fc" id="L152">        return format.format(new Object[]{numberFormat.format(value), getUnitSymbol(unit)}, toAppendTo, pos);</span>
+    }
+
+    /**
+     * Formats provided measurement value and unit into a string representation.
+     *
+     * @param value a measurement value.
+     * @param unit  a measurement unit.
+     * @return string representation of provided measurement value and unit.
+     */
+    public String format(final double value, final U unit) {
+<span class="fc" id="L163">        return format(BigDecimal.valueOf(value), unit);</span>
+    }
+
+    /**
+     * Formats provided measurement value and unit into a string representation
+     * and appends the result into provided string buffer.
+     *
+     * @param value      a measurement value.
+     * @param unit       a measurement unit.
+     * @param toAppendTo buffer to append the result to.
+     * @param pos        field position where result will be appended.
+     * @return provided string buffer where result is appended.
+     */
+    public StringBuffer format(
+            final double value, final U unit, final StringBuffer toAppendTo, final FieldPosition pos) {
+<span class="fc" id="L178">        return format(BigDecimal.valueOf(value), unit, toAppendTo, pos);</span>
+    }
+
+    /**
+     * Formats provided measurement into a string representation.
+     *
+     * @param measurement a measurement.
+     * @return string representation of provided measurement.
+     */
+    public String format(final M measurement) {
+<span class="fc" id="L188">        return format(measurement.getValue(), measurement.getUnit());</span>
+    }
+
+    /**
+     * Formats provided measurement into a string representation and appends the
+     * result into provided string buffer.
+     *
+     * @param measurement a measurement.
+     * @param toAppendTo  buffer to append the result to.
+     * @param pos         field position where result will be appended.
+     * @return provided string buffer where result is appended.
+     */
+    public StringBuffer format(
+            final M measurement, final StringBuffer toAppendTo, final FieldPosition pos) {
+<span class="fc" id="L202">        return format(measurement.getValue(), measurement.getUnit(), toAppendTo, pos);</span>
+    }
+
+    /**
+     * Formats and converts provided measurement value and unit using unit system
+     * assigned to locale of this instance (if no locale has been provided it
+     * is assumed that the system default locale is used).
+     * If provided value is too large for provided unit, this method will
+     * convert it to a more appropriate unit.
+     *
+     * @param value a measurement value.
+     * @param unit  a measurement unit.
+     * @return a string representation of measurement value and unit.
+     */
+    public String formatAndConvert(final Number value, final U unit) {
+<span class="fc" id="L217">        return formatAndConvert(value, unit, getUnitSystem());</span>
+    }
+
+    /**
+     * Formats and converts provided measurement value and unit using unit system
+     * assigned to locale of this instance (if no locale has been provided it
+     * is assumed that the system default locale is used).
+     * If provided value is too large for provided unit, this method will
+     * convert it to a more appropriate unit.
+     *
+     * @param value a measurement value.
+     * @param unit  a measurement unit.
+     * @return a string representation of measurement value and unit.
+     */
+    public String formatAndConvert(final double value, final U unit) {
+<span class="fc" id="L232">        return formatAndConvert(BigDecimal.valueOf(value), unit);</span>
+    }
+
+    /**
+     * Formats and converts provided measurement using unit system assigned to
+     * locale of this instance (if no locale has been provided it is assumed
+     * that the system default locale is used).
+     * If provided measurement value is too large for its unit, this method
+     * will convert it to a more appropriate unit.
+     *
+     * @param measurement measurement to be formatted.
+     * @return a string representation of measurement value and unit.
+     */
+    public String formatAndConvert(final M measurement) {
+<span class="fc" id="L246">        return formatAndConvert(measurement.getValue(), measurement.getUnit());</span>
+    }
+
+    /**
+     * Formats and converts provided measurement value and unit using provided
+     * unit system.
+     * If provided value is too large for provided unit, this method will
+     * convert it to a more appropriate unit using provided unit system (either
+     * metric or imperial).
+     *
+     * @param value  a measurement value.
+     * @param unit   a measurement unit.
+     * @param system system unit to convert measurement to.
+     * @return a string representation of measurement value and unit.
+     */
+    public abstract String formatAndConvert(final Number value, final U unit, final UnitSystem system);
+
+    /**
+     * Formats and converts provided measurement value and unit using provided
+     * unit system.
+     * If provided value is too large for provided unit, this method will
+     * convert it to a more appropriate unit using provided unit system (either
+     * metric or imperial).
+     *
+     * @param value  a measurement value.
+     * @param unit   a measurement unit.
+     * @param system system unit to convert measurement to.
+     * @return a string representation of measurement value and unit.
+     */
+    public String formatAndConvert(final double value, final U unit, final UnitSystem system) {
+<span class="fc" id="L276">        return formatAndConvert(BigDecimal.valueOf(value), unit, system);</span>
+    }
+
+    /**
+     * Formats and converts provided measurement using provided unit system.
+     * If provided measurement value is too large for its unit, this method
+     * will convert it to a more appropriate unit using provided unit
+     * system.
+     *
+     * @param measurement a measurement to be formatted.
+     * @param unitSystem  system unit to convert measurement to.
+     * @return a string representation of measurement value and unit.
+     */
+    public String formatAndConvert(final M measurement, final UnitSystem unitSystem) {
+<span class="fc" id="L290">        return formatAndConvert(measurement.getValue(), measurement.getUnit(), unitSystem);</span>
+    }
+
+    /**
+     * Returns available locales for this formatter.
+     *
+     * @return available locales.
+     */
+    public static Locale[] getAvailableLocales() {
+<span class="fc" id="L299">        return NumberFormat.getAvailableLocales();</span>
+    }
+
+    /**
+     * Gets locale assigned to this instance.
+     * Locale determines number format and unit system (metric or imperial)
+     * if not specified.
+     *
+     * @return a locale.
+     */
+    public Locale getLocale() {
+<span class="fc" id="L310">        return locale;</span>
+    }
+
+    /**
+     * Returns maximum fraction digits to be shown when formatting a measure.
+     *
+     * @return maximum fraction digits.
+     */
+    public int getMaximumFractionDigits() {
+<span class="fc" id="L319">        return numberFormat.getMaximumFractionDigits();</span>
+    }
+
+    /**
+     * Sets maximum fraction digits to use when formatting a measure.
+     *
+     * @param newValue maximum fraction digits to be set.
+     */
+    public void setMaximumFractionDigits(final int newValue) {
+<span class="fc" id="L328">        numberFormat.setMaximumFractionDigits(newValue);</span>
+<span class="fc" id="L329">    }</span>
+
+    /**
+     * Returns maximum integer digits to be shown when formatting a measure.
+     *
+     * @return maximum integer digits.
+     */
+    public int getMaximumIntegerDigits() {
+<span class="fc" id="L337">        return numberFormat.getMaximumIntegerDigits();</span>
+    }
+
+    /**
+     * Sets maximum integer digits to use when formatting a measure.
+     *
+     * @param newValue maximum integer digits to be set.
+     */
+    public void setMaximumIntegerDigits(final int newValue) {
+<span class="fc" id="L346">        numberFormat.setMaximumIntegerDigits(newValue);</span>
+<span class="fc" id="L347">    }</span>
+
+    /**
+     * Returns minimum fraction digits to be shown when formatting a measure.
+     *
+     * @return minimum fraction digits.
+     */
+    public int getMinimumFractionDigits() {
+<span class="fc" id="L355">        return numberFormat.getMinimumFractionDigits();</span>
+    }
+
+    /**
+     * Sets minimum fraction digits to use when formatting a measure.
+     *
+     * @param newValue minimum fraction digits to be set.
+     */
+    public void setMinimumFractionDigits(final int newValue) {
+<span class="fc" id="L364">        numberFormat.setMinimumFractionDigits(newValue);</span>
+<span class="fc" id="L365">    }</span>
+
+    /**
+     * Returns minimum integer digits to be shown when formatting a measure.
+     *
+     * @return minimum integer digits.
+     */
+    public int getMinimumIntegerDigits() {
+<span class="fc" id="L373">        return numberFormat.getMinimumIntegerDigits();</span>
+    }
+
+    /**
+     * Sets minimum integer digits to use when formatting a measure.
+     *
+     * @param newValue minimum integer digits to be set.
+     */
+    public void setMinimumIntegerDigits(final int newValue) {
+<span class="fc" id="L382">        numberFormat.setMinimumIntegerDigits(newValue);</span>
+<span class="fc" id="L383">    }</span>
+
+    /**
+     * Returns rounding mode to be used when formatting a measure.
+     *
+     * @return rounding mode to be used when formatting a measure.
+     */
+    public RoundingMode getRoundingMode() {
+<span class="fc" id="L391">        return numberFormat.getRoundingMode();</span>
+    }
+
+    /**
+     * Specifies rounding mode to use when formatting a measure.
+     *
+     * @param roundingMode rounding mode to be set.
+     */
+    public void setRoundingMode(final RoundingMode roundingMode) {
+<span class="fc" id="L400">        numberFormat.setRoundingMode(roundingMode);</span>
+<span class="fc" id="L401">    }</span>
+
+    /**
+     * Indicates if grouping is used when formatting a measure.
+     *
+     * @return true if grouping is used, false otherwise.
+     */
+    public boolean isGroupingUsed() {
+<span class="fc" id="L409">        return numberFormat.isGroupingUsed();</span>
+    }
+
+    /**
+     * Sets if grouping is used when formatting a measure.
+     *
+     * @param newValue true if grouping is enabled, false otherwise.
+     */
+    public void setGroupingUsed(final boolean newValue) {
+<span class="fc" id="L418">        numberFormat.setGroupingUsed(newValue);</span>
+<span class="fc" id="L419">    }</span>
+
+    /**
+     * Indicates if only integer values are parsed.
+     *
+     * @return true if only integer values are parsed, false otherwise.
+     */
+    public boolean isParseIntegerOnly() {
+<span class="fc" id="L427">        return numberFormat.isParseIntegerOnly();</span>
+    }
+
+    /**
+     * Specifies whether only integer values are parsed or not.
+     *
+     * @param value if true only integer values will be parsed.
+     */
+    public void setParseIntegerOnly(final boolean value) {
+<span class="fc" id="L436">        numberFormat.setParseIntegerOnly(value);</span>
+<span class="fc" id="L437">    }</span>
+
+    /**
+     * Obtains pattern to format values and unit together into a single string.
+     * {0} corresponds to the value, {1} corresponds to the unit part.
+     *
+     * @return pattern to format values and unit together.
+     */
+    public String getValueAndUnitFormatPattern() {
+<span class="fc" id="L446">        return valueAndUnitFormatPattern;</span>
+    }
+
+    /**
+     * Sets pattern to format values and unit together into a single string.
+     * {0} corresponds to the value, {1} corresponds to the unit part.
+     *
+     * @param valueAndUnitFormatPattern pattern to format values and unit
+     *                                  together.
+     * @throws IllegalArgumentException if provided pattern is null.
+     */
+    public void setValueAndUnitFormatPattern(final String valueAndUnitFormatPattern) {
+<span class="fc bfc" id="L458" title="All 2 branches covered.">        if (valueAndUnitFormatPattern == null) {</span>
+<span class="fc" id="L459">            throw new IllegalArgumentException();</span>
+        }
+<span class="fc" id="L461">        this.valueAndUnitFormatPattern = valueAndUnitFormatPattern;</span>
+<span class="fc" id="L462">    }</span>
+
+    /**
+     * Returns unit system this instance will use based on its assigned locale.
+     * Notice that if no locale was assigned, then the default system locale
+     * will be used.
+     *
+     * @return unit system this instance will use.
+     */
+    public UnitSystem getUnitSystem() {
+<span class="fc" id="L472">        return UnitLocale.getFrom(locale);</span>
+    }
+
+    /**
+     * Indicates whether provided string representation contains a valid
+     * measurement unit or not.
+     *
+     * @param source a string measurement representation to be checked.
+     * @return true if provided string has a valid (i.e. recognized) unit, false
+     * otherwise.
+     */
+    public boolean isValidUnit(final String source) {
+<span class="fc bfc" id="L484" title="All 2 branches covered.">        return findUnit(source) != null;</span>
+    }
+
+    /**
+     * Indicates whether provided string representation is a valid measurement
+     * representation or not.
+     *
+     * @param source a string measurement representation to be checked.
+     * @return true if provided string representation is valid (contains valid
+     * value and unit), false otherwise.
+     */
+    public boolean isValidMeasurement(final String source) {
+        try {
+<span class="fc" id="L497">            numberFormat.parse(source);</span>
+<span class="fc" id="L498">            return isValidUnit(source);</span>
+<span class="fc" id="L499">        } catch (final ParseException e) {</span>
+<span class="fc" id="L500">            return false;</span>
+        }
+    }
+
+    /**
+     * Indicates whether provided string representation of a measurement
+     * contains a metric system unit.
+     *
+     * @param source a measurement string representation to be checked.
+     * @return true if found unit is metric, false otherwise or if unit
+     * cannot be determined.
+     */
+    public boolean isMetricUnit(final String source) {
+<span class="fc bfc" id="L513" title="All 2 branches covered.">        return getUnitSystem(source) == UnitSystem.METRIC;</span>
+    }
+
+    /**
+     * Indicates whether provided string representation of a measurement
+     * contains an imperial system unit.
+     *
+     * @param source a measurement string representation to be checked.
+     * @return true if found unit is imperial, false otherwise or if unit
+     * cannot be determined.
+     */
+    public boolean isImperialUnit(final String source) {
+<span class="fc bfc" id="L525" title="All 2 branches covered.">        return getUnitSystem(source) == UnitSystem.IMPERIAL;</span>
+    }
+
+    /**
+     * Gets unit system for detected unit into provided string representation
+     * of a measurement.
+     *
+     * @param source a measurement string representation to be checked.
+     * @return a unit system (either metric or imperial) or null if unit
+     * cannot be determined.
+     */
+    public abstract UnitSystem getUnitSystem(final String source);
+
+    /**
+     * Parses a string into a measure.
+     *
+     * @param source text to be parsed.
+     * @return a measure containing measure value and unit obtained from parsed
+     * text.
+     * @throws ParseException       if parsing failed.
+     * @throws UnknownUnitException if unit cannot be determined.
+     */
+    public abstract M parse(final String source) throws ParseException, UnknownUnitException;
+
+    /**
+     * Finds measure unit from within a measurement string representation.
+     *
+     * @param source a measurement string representation.
+     * @return a measure unit or null if none can be determined.
+     */
+    public abstract U findUnit(final String source);
+
+    /**
+     * Obtains measure unit symbol.
+     *
+     * @param unit a measure unit.
+     * @return measure unit symbol.
+     */
+    public abstract String getUnitSymbol(final U unit);
+
+    /**
+     * Internal method to parse a string into a measure.
+     *
+     * @param source  text to be parsed.
+     * @param measure a measure to be initialized with parsed contents.
+     * @return provided measure.
+     * @throws ParseException       if parsing failed.
+     * @throws UnknownUnitException if unit cannot be determined.
+     */
+    M internalParse(final String source, final M measure) throws ParseException, UnknownUnitException {
+<span class="fc" id="L575">        measure.setValue(numberFormat.parse(source));</span>
+        try {
+<span class="fc" id="L577">            measure.setUnit(findUnit(source));</span>
+<span class="fc" id="L578">        } catch (final IllegalArgumentException e) {</span>
+<span class="fc" id="L579">            throw new UnknownUnitException(e);</span>
+<span class="fc" id="L580">        }</span>
+<span class="fc" id="L581">        return measure;</span>
+    }
+
+    /**
+     * Internal method to clone this measure formatter.
+     *
+     * @param copy an instantiated copy of a measure formatter that needs to be initialized.
+     * @return provided copy.
+     */
+    MeasureFormatter&lt;M, U&gt; internalClone(final MeasureFormatter&lt;M, U&gt; copy) {
+<span class="fc" id="L591">        copy.numberFormat = (NumberFormat) numberFormat.clone();</span>
+<span class="fc bfc" id="L592" title="All 2 branches covered.">        if (format != null) {</span>
+<span class="fc" id="L593">            copy.format = (MessageFormat) format.clone();</span>
+        }
+<span class="pc bpc" id="L595" title="1 of 2 branches missed.">        if (locale != null) {</span>
+<span class="fc" id="L596">            copy.locale = (Locale) locale.clone();</span>
+        }
+<span class="fc" id="L598">        return copy;</span>
+    }
+
+    @Override
+    protected MeasureFormatter&lt;M , U&gt; clone() throws CloneNotSupportedException {
+        //noinspection unchecked
+<span class="fc" id="L604">        return internalClone((MeasureFormatter&lt;M , U&gt;) super.clone());</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -67,7 +67,7 @@ For a released dependency, pin the version you want to use. Example:
 <dependency>
     <groupId>com.irurueta</groupId>
     <artifactId>irurueta-units</artifactId>
-    <version>1.3.2</version>
+    <version>1.4.0</version>
 </dependency>
 ```
 
@@ -77,7 +77,7 @@ For local development against the current repository snapshot:
 <dependency>
     <groupId>com.irurueta</groupId>
     <artifactId>irurueta-units</artifactId>
-    <version>1.4.0-SNAPSHOT</version>
+    <version>1.5.0-SNAPSHOT</version>
 </dependency>
 ```
 

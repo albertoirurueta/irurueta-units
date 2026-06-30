@@ -1,0 +1,82 @@
+= Supported Units
+:description: Measurement families and unit enums supported by Irurueta Units.
+
+The following table lists the concrete measurement classes and their unit enums.
+
+[cols="1,1,3", options="header"]
+|===
+| Measurement
+| Unit enum
+| Units
+
+| `Acceleration`
+| `AccelerationUnit`
+| `METERS_PER_SQUARED_SECOND`, `G`, `FEET_PER_SQUARED_SECOND`
+
+| `Angle`
+| `AngleUnit`
+| `RADIANS`
+
+| `AngularAcceleration`
+| `AngularAccelerationUnit`
+| `RADIANS_PER_SQUARED_SECOND`
+
+| `AngularSpeed`
+| `AngularSpeedUnit`
+| `RADIANS_PER_SECOND`
+
+| `Distance`
+| `DistanceUnit`
+| `MILLIMETER`, `CENTIMETER`, `METER`, `KILOMETER`, `INCH`, `FOOT`, `YARD`, `MILE`
+
+| `Frequency`
+| `FrequencyUnit`
+| `HERTZ`, `KILOHERTZ`, `MEGAHERTZ`, `GIGAHERTZ`
+
+| `MagneticFluxDensity`
+| `MagneticFluxDensityUnit`
+| `NANOTESLA`, `MICROTESLA`, `MILLITESLA`, `TESLA`, `KILOTESLA`, `MEGATESLA`
+
+| `Speed`
+| `SpeedUnit`
+| `METERS_PER_SECOND`, `KILOMETERS_PER_HOUR`, `KILOMETERS_PER_SECOND`, `FEET_PER_SECOND`, `MILES_PER_HOUR`
+
+| `Surface`
+| `SurfaceUnit`
+| `SQUARE_MILLIMETER`, `SQUARE_CENTIMETER`, `SQUARE_METER`, `SQUARE_KILOMETER`, `SQUARE_INCH`, `SQUARE_FOOT`, `SQUARE_YARD`, `SQUARE_MILE`, `CENTIARE`, `ARE`, `DECARE`, `HECTARE`, `ACRE`
+
+| `Temperature`
+| `TemperatureUnit`
+| `CELSIUS`, `FAHRENHEIT`, `KELVIN`
+
+| `Time`
+| `TimeUnit`
+| `NANOSECOND`, `MICROSECOND`, `MILLISECOND`, `SECOND`, `MINUTE`, `HOUR`, `DAY`, `WEEK`, `MONTH`, `YEAR`, `CENTURY`
+
+| `Volume`
+| `VolumeUnit`
+| `CUBIC_CENTIMETER`, `MILLILITER`, `CUBIC_DECIMETER`, `LITER`, `HECTOLITER`, `CUBIC_METER`, `CUBIC_INCH`, `PINT`, `GALLON`, `CUBIC_FOOT`, `BARREL`
+
+| `Weight`
+| `WeightUnit`
+| `PICOGRAM`, `NANOGRAM`, `MICROGRAM`, `MILLIGRAM`, `GRAM`, `KILOGRAM`, `TONNE`, `MEGATONNE`, `US_TON`, `UK_TON`, `POUND`, `OUNCE`
+|===
+
+== Metric and imperial helpers
+
+Several unit enums expose helpers for classifying units:
+
+[source,java]
+----
+import com.irurueta.units.DistanceUnit;
+import com.irurueta.units.UnitSystem;
+
+UnitSystem system = DistanceUnit.getUnitSystem(DistanceUnit.MILE);
+boolean metric = DistanceUnit.isMetric(DistanceUnit.KILOMETER);
+boolean imperial = DistanceUnit.isImperial(DistanceUnit.FOOT);
+
+DistanceUnit[] metricDistanceUnits = DistanceUnit.getMetricUnits();
+DistanceUnit[] imperialDistanceUnits = DistanceUnit.getImperialUnits();
+----
+
+These helpers are available on families where the distinction applies, such as distance, speed, surface, volume, weight, acceleration, and temperature.

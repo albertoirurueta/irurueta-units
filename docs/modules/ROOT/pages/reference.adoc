@@ -9,13 +9,13 @@ The Maven reports are generated during Maven site execution and are available af
 | Report
 | Description
 
-| link:mvn-site/apidocs/index.html[Javadoc]
+| https://albertoirurueta.github.io/irurueta-units/mvn-site/apidocs/com/irurueta/units/package-summary.html[Javadoc]
 | API reference generated as part of Maven site execution.
 
-| link:mvn-site/jacoco/index.html[JaCoCo]
+| https://albertoirurueta.github.io/irurueta-units/mvn-site/jacoco/index.html[JaCoCo]
 | Code coverage report generated during the Maven build.
 
-| link:mvn-site/surefire-report.html[Surefire]
+| https://albertoirurueta.github.io/irurueta-units/mvn-site/surefire.html[Surefire]
 | Unit test execution report.
 
 | link:https://sonarcloud.io/project/overview?id=albertoirurueta_irurueta-units[SonarCloud]

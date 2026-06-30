@@ -1,5 +1,5 @@
 name: irurueta-units
-version: ~
+version: 1.4.0
 title: Irurueta Units
 nav:
   - modules/ROOT/nav.adoc

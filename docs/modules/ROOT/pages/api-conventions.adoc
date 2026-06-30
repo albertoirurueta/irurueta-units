@@ -1,0 +1,64 @@
+= API Conventions
+:description: Common patterns used across Irurueta Units classes.
+
+The library uses regular naming conventions, so learning one measurement family makes the rest familiar.
+
+== Naming pattern
+
+For each supported quantity, the public API typically contains:
+
+`Quantity`::
+Measurement value object, for example `Distance`, `Speed`, or `Temperature`.
+
+`QuantityUnit`::
+Unit enum, for example `DistanceUnit`.
+
+`QuantityConverter`::
+Static conversion utility, for example `DistanceConverter`.
+
+`QuantityFormatter`::
+Formatter and parser, for example `DistanceFormatter`.
+
+== Mutating and non-mutating methods
+
+Converter and arithmetic APIs usually offer several styles:
+
+[source,java]
+----
+Distance converted = DistanceConverter.convertAndReturnNew(
+        input,
+        DistanceUnit.METER);
+
+DistanceConverter.convert(input, DistanceUnit.METER); // updates input
+
+Distance output = new Distance(0.0, DistanceUnit.METER);
+DistanceConverter.convert(input, output); // writes into output unit
+----
+
+Methods named `convertAndReturnNew`, `addAndReturnNew`, or `subtractAndReturnNew` allocate a new measurement.
+Methods named `convert`, `add`, or `subtract` may update an existing measurement or write into a provided result object, depending on the overload.
+
+== Number handling
+
+Measurement values are stored as `Number`.
+Most APIs provide both `double` and `Number` overloads.
+The `Number` overloads commonly return `BigDecimal` values created from the corresponding `double` conversion.
+
+== Exceptions
+
+`IllegalArgumentException`::
+Thrown when required values such as a measurement value, unit, locale, or format pattern are `null`.
+
+`ParseException`::
+Thrown by formatter `parse` methods when the numeric part of a string cannot be parsed.
+
+`UnknownUnitException`::
+Thrown by formatter `parse` methods when a unit symbol cannot be recognized.
+
+`UnitsException`::
+Base checked exception for unit-specific checked exceptions.
+
+== Build metadata
+
+`BuildInfo` exposes build metadata generated during Maven validation.
+It can be useful for diagnostics when an application needs to report the library artifact, version, branch, commit, or build timestamp embedded in the JAR.

@@ -1,0 +1,123 @@
+= Measurements and Conversion
+:description: Use measurement value objects and converter utilities.
+
+Each concrete measurement stores a `Number` value and a unit enum.
+For example, `Distance` stores a value together with a `DistanceUnit`, and `Temperature` stores a value together with a `TemperatureUnit`.
+
+== Create a measurement
+
+[source,java]
+----
+import com.irurueta.units.Distance;
+import com.irurueta.units.DistanceUnit;
+
+Distance distance = new Distance(1200.0, DistanceUnit.METER);
+
+Number value = distance.getValue();
+DistanceUnit unit = distance.getUnit();
+
+distance.setValue(1.2);
+distance.setUnit(DistanceUnit.KILOMETER);
+----
+
+Constructors and setters reject `null` values and units with `IllegalArgumentException`.
+
+== Convert raw values
+
+Converter classes expose static methods for direct numeric conversion.
+
+[source,java]
+----
+import com.irurueta.units.DistanceConverter;
+import com.irurueta.units.DistanceUnit;
+import com.irurueta.units.TemperatureConverter;
+import com.irurueta.units.TemperatureUnit;
+
+double kilometers = DistanceConverter.convert(
+        1.0,
+        DistanceUnit.MILE,
+        DistanceUnit.KILOMETER);
+
+double fahrenheit = TemperatureConverter.convert(
+        20.0,
+        TemperatureUnit.CELSIUS,
+        TemperatureUnit.FAHRENHEIT);
+----
+
+Most converters use a base unit internally.
+For example, distance conversion goes through meters, and temperature conversion handles the Celsius, Fahrenheit, and Kelvin offsets explicitly.
+The Javadocs recommend converting as a final step before display when precision matters.
+
+[mermaid]
+----
+flowchart LR
+    Input["Input value + input unit"]
+    Base["Family base unit\nfor example meters"]
+    Output["Output value + output unit"]
+
+    Input --> Base --> Output
+----
+
+== Convert measurement objects
+
+Converters can update an existing object, write into a result object, or return a new object.
+
+[source,java]
+----
+import com.irurueta.units.Distance;
+import com.irurueta.units.DistanceConverter;
+import com.irurueta.units.DistanceUnit;
+
+Distance input = new Distance(10.0, DistanceUnit.FOOT);
+
+Distance output = DistanceConverter.convertAndReturnNew(
+        input,
+        DistanceUnit.METER);
+
+Distance reusable = new Distance(0.0, DistanceUnit.CENTIMETER);
+DistanceConverter.convert(input, reusable);
+
+DistanceConverter.convert(input, DistanceUnit.INCH); // updates input
+----
+
+== Add and subtract measurements
+
+Measurement classes support unit-aware arithmetic for compatible quantities.
+The result unit is explicit, so callers control the unit stored in the returned or provided result object.
+
+[source,java]
+----
+import com.irurueta.units.Distance;
+import com.irurueta.units.DistanceUnit;
+
+Distance first = new Distance(2.0, DistanceUnit.METER);
+Distance second = new Distance(50.0, DistanceUnit.CENTIMETER);
+
+Distance total = first.addAndReturnNew(second, DistanceUnit.CENTIMETER);
+Distance difference = first.subtractAndReturnNew(second, DistanceUnit.METER);
+
+double totalFeet = Distance.add(
+        1.0,
+        DistanceUnit.METER,
+        12.0,
+        DistanceUnit.INCH,
+        DistanceUnit.FOOT);
+----
+
+== Compare with tolerance
+
+`equals(Object)` compares both value and unit directly.
+For physical equality across different units, use the tolerance-aware overload.
+
+[source,java]
+----
+import com.irurueta.units.Distance;
+import com.irurueta.units.DistanceUnit;
+
+Distance meters = new Distance(1.0, DistanceUnit.METER);
+Distance centimeters = new Distance(100.0, DistanceUnit.CENTIMETER);
+
+boolean sameLength = meters.equals(centimeters, 1e-9);
+----
+
+The tolerance is expressed in the unit of the left-hand measurement after conversion.

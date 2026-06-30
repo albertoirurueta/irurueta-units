@@ -1,0 +1,84 @@
+= Irurueta Units
+:description: Java library for representing, converting, formatting, and parsing measurement units.
+
+Irurueta Units is a lightweight Java library for working with physical measurements.
+It provides type-specific value objects such as `Distance`, `Speed`, `Temperature`, `Time`, and `Weight`; unit enumerations such as `DistanceUnit` and `TemperatureUnit`; converter utilities; and locale-aware formatters.
+
+The library is useful when an application needs to keep a numeric value together with its unit, convert between metric and imperial representations, parse user-entered measurements, or display values using symbols that users expect.
+
+== What the library contains
+
+The public API is organized around four concepts:
+
+[mermaid]
+----
+graph TD
+    Measurement["Measurement base class"]
+    Quantity["Concrete measurement classes"]
+    Unit["Unit enum classes"]
+    Converter["Converter utilities"]
+    Formatter["Formatter utilities"]
+    Text["Measurement text"]
+
+    Measurement --> Quantity
+    Unit --> Quantity
+    Quantity --> Converter
+    Unit --> Converter
+    Quantity --> Formatter
+    Unit --> Formatter
+    Formatter --> Text
+    Text --> Formatter
+----
+
+`Measurement`::
+Base class for a numeric value and an enum unit.
+Concrete measurements include `Distance`, `Surface`, `Volume`, `Speed`, `Acceleration`, `Angle`, `AngularSpeed`, `AngularAcceleration`, `Time`, `Frequency`, `Temperature`, `Weight`, and `MagneticFluxDensity`.
+
+`*Unit`::
+Enum types that list the units supported for each measurement family.
+Examples are `DistanceUnit.METER`, `DistanceUnit.MILE`, `TemperatureUnit.CELSIUS`, and `WeightUnit.POUND`.
+
+`*Converter`::
+Static utility classes for converting raw numbers or measurement objects.
+For example, `DistanceConverter.convert(1.0, DistanceUnit.MILE, DistanceUnit.KILOMETER)` returns the equivalent value in kilometers.
+
+`*Formatter`::
+Locale-aware classes that format and parse text such as `5.5 m`, `14 ft`, or `36.6 C`.
+They also choose a more appropriate output unit for metric or imperial unit systems when requested.
+
+== Quick example
+
+[source,java]
+----
+import com.irurueta.units.Distance;
+import com.irurueta.units.DistanceConverter;
+import com.irurueta.units.DistanceFormatter;
+import com.irurueta.units.DistanceUnit;
+import com.irurueta.units.UnitSystem;
+
+import java.text.ParseException;
+import java.util.Locale;
+
+Distance route = new Distance(5.0, DistanceUnit.KILOMETER);
+
+Distance miles = DistanceConverter.convertAndReturnNew(route, DistanceUnit.MILE);
+double feet = DistanceConverter.convert(
+        12.0,
+        DistanceUnit.METER,
+        DistanceUnit.FOOT);
+
+Distance total = route.addAndReturnNew(
+        new Distance(350.0, DistanceUnit.METER),
+        DistanceUnit.METER);
+
+DistanceFormatter formatter = new DistanceFormatter(Locale.US);
+formatter.setMaximumFractionDigits(2);
+
+String display = formatter.formatAndConvert(total, UnitSystem.IMPERIAL);
+Distance parsed = formatter.parse("12.5 ft");
+----
+
+== Documentation map
+
+Start with xref:installation.adoc[] to add the dependency.
+Then read xref:measurements.adoc[] for value objects and conversion examples, xref:formatting.adoc[] for display and parsing, and xref:supported-units.adoc[] for the complete unit catalog.

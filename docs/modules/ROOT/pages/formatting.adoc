@@ -1,0 +1,100 @@
+= Formatting and Parsing
+:description: Format, convert for display, and parse measurement strings.
+
+Formatter classes turn measurements into text and parse text back into measurement objects.
+They extend `MeasureFormatter`, which wraps Java's `NumberFormat` and therefore honors locale-specific decimal separators, grouping, rounding, and parse rules.
+
+[mermaid]
+----
+flowchart TD
+    Measurement["Measurement\nvalue + unit"]
+    Formatter["Formatter"]
+    Locale["Locale\nnumber format + default unit system"]
+    Text["Text\nvalue + unit symbol"]
+    Parser["parse"]
+
+    Measurement --> Formatter
+    Locale --> Formatter
+    Formatter --> Text
+    Text --> Parser
+    Parser --> Measurement
+----
+
+== Format a measurement
+
+[source,java]
+----
+import com.irurueta.units.Distance;
+import com.irurueta.units.DistanceFormatter;
+import com.irurueta.units.DistanceUnit;
+
+DistanceFormatter formatter = new DistanceFormatter();
+formatter.setMaximumFractionDigits(2);
+
+String text = formatter.format(new Distance(5.5, DistanceUnit.METER));
+String raw = formatter.format(2500.0, DistanceUnit.MILLIMETER);
+----
+
+By default, value and unit are combined with the pattern `\{0} \{1}`.
+You can change it when an application needs another layout.
+
+[source,java]
+----
+formatter.setValueAndUnitFormatPattern("{0}{1}");
+String compact = formatter.format(5.5, DistanceUnit.METER);
+----
+
+== Choose metric or imperial display
+
+Formatters can convert to a suitable unit before formatting.
+Pass `UnitSystem.METRIC` or `UnitSystem.IMPERIAL` when you want deterministic output.
+
+[source,java]
+----
+import com.irurueta.units.DistanceFormatter;
+import com.irurueta.units.DistanceUnit;
+import com.irurueta.units.UnitSystem;
+
+DistanceFormatter formatter = new DistanceFormatter();
+formatter.setMaximumFractionDigits(1);
+
+String metric = formatter.formatAndConvert(
+        1500.0,
+        DistanceUnit.METER,
+        UnitSystem.METRIC);
+
+String imperial = formatter.formatAndConvert(
+        1500.0,
+        DistanceUnit.METER,
+        UnitSystem.IMPERIAL);
+----
+
+When no unit system is passed, the formatter uses the unit system inferred from its locale.
+`UnitLocale` maps the United States, Liberia, and Myanmar/Burma to imperial; other locales default to metric.
+The Javadocs note that locale detection is approximate, so applications should let users override it when the choice matters.
+
+== Locale-aware parsing
+
+[source,java]
+----
+import com.irurueta.units.Distance;
+import com.irurueta.units.DistanceFormatter;
+
+import java.text.ParseException;
+import java.util.Locale;
+
+DistanceFormatter formatter = new DistanceFormatter(Locale.US);
+
+Distance parsed = formatter.parse("12.5 ft");
+
+boolean hasKnownUnit = formatter.isValidUnit("12.5 ft");
+boolean isMeasurement = formatter.isValidMeasurement("12.5 ft");
+----
+
+Parsing can throw `ParseException` when the numeric value cannot be read and `UnknownUnitException` when the unit symbol is not recognized.
+
+== Unit symbols
+
+Each formatter owns the symbols for its measurement family.
+For example, `DistanceFormatter` recognizes symbols such as `mm`, `cm`, `m`, `Km`, `in`, `ft`, `yd`, and `mi`.
+Use `getUnitSymbol(unit)` when UI code needs the exact symbol used by the formatter.

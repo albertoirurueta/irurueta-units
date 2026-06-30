@@ -51,8 +51,6 @@ graph LR
 
 - [Project documentation](https://albertoirurueta.github.io/irurueta-units/)
 - [Javadoc report](https://albertoirurueta.github.io/irurueta-units/mvn-site/apidocs/index.html)
-- [JaCoCo coverage report](https://albertoirurueta.github.io/irurueta-units/mvn-site/jacoco/index.html)
-- [Surefire test report](https://albertoirurueta.github.io/irurueta-units/mvn-site/surefire-report.html)
 - [SonarCloud dashboard](https://sonarcloud.io/project/overview?id=albertoirurueta_irurueta-units)
 - [Maven Site](https://albertoirurueta.github.io/irurueta-units/mvn-site)
 

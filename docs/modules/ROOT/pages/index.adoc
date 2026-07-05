@@ -1,6 +1,8 @@
 = Irurueta Units
 :description: Java library for representing, converting, formatting, and parsing measurement units.
 
+NOTE: This documentation was generated with the assistance of AI. Please report any inaccuracies.
+
 Irurueta Units is a lightweight Java library for working with physical measurements.
 It provides type-specific value objects such as `Distance`, `Speed`, `Temperature`, `Time`, and `Weight`; unit enumerations such as `DistanceUnit` and `TemperatureUnit`; converter utilities; and locale-aware formatters.
 

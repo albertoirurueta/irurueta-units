@@ -4,7 +4,7 @@
 NOTE: This documentation was generated with the assistance of AI. Please report any inaccuracies.
 
 Irurueta Units is a lightweight Java library for working with physical measurements.
-It provides type-specific value objects such as `Distance`, `Speed`, `Temperature`, `Time`, and `Weight`; unit enumerations such as `DistanceUnit` and `TemperatureUnit`; converter utilities; and locale-aware formatters.
+It provides type-specific value objects such as `Distance`, `Speed`, `Temperature`, `Time`, `Weight`, `Force`, `Pressure`, `Energy`, and `Power`; unit enumerations such as `DistanceUnit` and `TemperatureUnit`; converter utilities; and locale-aware formatters.
 
 The library is useful when an application needs to keep a numeric value together with its unit, convert between metric and imperial representations, parse user-entered measurements, or display values using symbols that users expect.
 
@@ -34,7 +34,7 @@ graph TD
 
 `Measurement`::
 Base class for a numeric value and an enum unit.
-Concrete measurements include `Distance`, `Surface`, `Volume`, `Speed`, `Acceleration`, `Angle`, `AngularSpeed`, `AngularAcceleration`, `Time`, `Frequency`, `Temperature`, `Weight`, and `MagneticFluxDensity`.
+Concrete measurements include `Distance`, `Surface`, `Volume`, `Speed`, `Acceleration`, `Angle`, `AngularSpeed`, `AngularAcceleration`, `Time`, `Frequency`, `Temperature`, `Weight`, `MagneticFluxDensity`, `Force`, `Pressure`, `Energy`, and `Power`.
 
 `*Unit`::
 Enum types that list the units supported for each measurement family.

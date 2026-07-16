@@ -1,6 +1,7 @@
 ---
 name: update-docs
 description: Update a repository's Antora AsciiDoc documentation to reflect changes already made to the codebase (new/changed APIs, types, behavior, or conventions). Invoke as `/update-docs` to cover uncommitted changes plus commits on the current branch not yet on the base branch, or `/update-docs <git-ref-or-range>` to scope it to a specific ref/range (e.g. a commit, `main..HEAD`, a tag). Diagrams use Mermaid (`[mermaid]` blocks) and equations use MathJax (raw `\( \)` / `\[ \]` LaTeX) where they clarify behavior and the docs pipeline already supports them. Use whenever source changes should be reflected in the docs site instead of leaving pages stale.
+model: sonnet
 ---
 
 # Update Docs
@@ -33,8 +34,8 @@ Don't assume a fixed docs path. Find the Antora module(s) actually present, typi
 file(s) in the repository (`find . -name antora.yml -not -path '*/node_modules/*'`).
 
 - **No `antora.yml` found anywhere**: there is no documentation module yet to update. Ask the user whether Antora
-  documentation should be set up now (via the `antora-setup` skill) before continuing — don't assume either way.
-  - **User agrees**: delegate scaffolding to the `antora-setup` skill, run as a sub-agent via the Agent tool.
+  documentation should be set up now (via the `setup-antora` skill) before continuing — don't assume either way.
+  - **User agrees**: delegate scaffolding to the `setup-antora` skill, run as a sub-agent via the Agent tool.
     Brief that sub-agent with the actual context (what changed, per Step 1/3) so its starter pages aren't generic
     boilerplate disconnected from this update. After it finishes, re-run the `find . -name antora.yml ...` search
     to pick up the newly created module and proceed with the rest of this step as normal. If the sub-agent

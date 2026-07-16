@@ -1,6 +1,7 @@
 ---
 name: explore
 description: Explore this repository codebase, optionally grounded in a specific GitHub issue or Jira ticket used as the task to investigate, and detect the programming language(s) and framework(s) in play — both in the existing codebase and in the requested change — plus whether Antora documentation exists and where, and which platform hosts the repository (GitHub, Bitbucket, Azure DevOps, or TFS). Invoke as `/explore <ticket-id>` where `<ticket-id>` is either a GitHub issue ID (e.g. `42`) or a Jira key (e.g. `PROJ-123`) — the skill auto-detects which. If invoked as `/explore` with no argument, ask the user for a ticket ID; if they decline or give none, just explore the current codebase. Looks up GitHub issues with the `gh` CLI (or GitHub MCP tools if `gh` is unavailable) and Jira tickets via any connected Jira MCP tools. Use for onboarding, understanding "what would it take to fix issue #N"/"ticket PROJ-123", or getting oriented before planning work. Its "Tech stack" findings (languages/frameworks, Antora docs location, repository host) are meant to be reused by later skills in the same conversation (e.g. `plan`, `code`, `update-docs`, code review, branch/PR creation) to pick language/framework-appropriate flows, best practices, and the right git-platform tooling.
+model: opus
 ---
 
 # Explore

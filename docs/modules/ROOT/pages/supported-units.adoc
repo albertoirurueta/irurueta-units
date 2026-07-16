@@ -29,6 +29,14 @@ The following table lists the concrete measurement classes and their unit enums.
 | `DistanceUnit`
 | `MILLIMETER`, `CENTIMETER`, `METER`, `KILOMETER`, `INCH`, `FOOT`, `YARD`, `MILE`
 
+| `Energy`
+| `EnergyUnit`
+| `JOULE`, `KILOJOULE`, `CALORIE`, `KILOCALORIE`, `KILOWATT_HOUR`, `BTU`
+
+| `Force`
+| `ForceUnit`
+| `NEWTON`, `KILONEWTON`, `POUND_FORCE`, `DYNE`, `KILOGRAM_FORCE`
+
 | `Frequency`
 | `FrequencyUnit`
 | `HERTZ`, `KILOHERTZ`, `MEGAHERTZ`, `GIGAHERTZ`
@@ -36,6 +44,14 @@ The following table lists the concrete measurement classes and their unit enums.
 | `MagneticFluxDensity`
 | `MagneticFluxDensityUnit`
 | `NANOTESLA`, `MICROTESLA`, `MILLITESLA`, `TESLA`, `KILOTESLA`, `MEGATESLA`
+
+| `Power`
+| `PowerUnit`
+| `WATT`, `KILOWATT`, `MEGAWATT`, `HORSEPOWER`
+
+| `Pressure`
+| `PressureUnit`
+| `PASCAL`, `KILOPASCAL`, `BAR`, `ATMOSPHERE`, `PSI`
 
 | `Speed`
 | `SpeedUnit`
@@ -79,4 +95,4 @@ DistanceUnit[] metricDistanceUnits = DistanceUnit.getMetricUnits();
 DistanceUnit[] imperialDistanceUnits = DistanceUnit.getImperialUnits();
 ----
 
-These helpers are available on families where the distinction applies, such as distance, speed, surface, volume, weight, acceleration, and temperature.
+These helpers are available on families where the distinction applies, such as distance, speed, surface, volume, weight, acceleration, temperature, force, pressure, energy, and power.

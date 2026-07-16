@@ -183,6 +183,10 @@ npx antora antora-playbook.yml
 | `Frequency` | `HERTZ`, `KILOHERTZ`, `MEGAHERTZ`, `GIGAHERTZ` |
 | `Angle` and angular motion | `RADIANS`, `RADIANS_PER_SECOND`, `RADIANS_PER_SQUARED_SECOND` |
 | `MagneticFluxDensity` | `NANOTESLA`, `MICROTESLA`, `MILLITESLA`, `TESLA` |
+| `Force` | `NEWTON`, `KILONEWTON`, `POUND_FORCE`, `DYNE` |
+| `Pressure` | `PASCAL`, `BAR`, `ATMOSPHERE`, `PSI` |
+| `Energy` | `JOULE`, `KILOJOULE`, `KILOWATT_HOUR`, `BTU` |
+| `Power` | `WATT`, `KILOWATT`, `HORSEPOWER` |
 
 ## 🤝 Contributing
 

@@ -34,7 +34,7 @@ graph TD
 
 `Measurement`::
 Base class for a numeric value and an enum unit.
-Concrete measurements include `Distance`, `Surface`, `Volume`, `Speed`, `Acceleration`, `Angle`, `AngularSpeed`, `AngularAcceleration`, `Time`, `Frequency`, `Temperature`, `Weight`, and `MagneticFluxDensity`.
+Concrete measurements include `Distance`, `Surface`, `Volume`, `Speed`, `Acceleration`, `Angle`, `AngularSpeed`, `AngularAcceleration`, `Time`, `Frequency`, `Temperature`, `Weight`, `MagneticFluxDensity`, `Force`, `Pressure`, `Energy`, and `Power`.
 
 `*Unit`::
 Enum types that list the units supported for each measurement family.

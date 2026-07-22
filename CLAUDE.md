@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 A Java library (`com.irurueta:irurueta-units`) for representing, converting, formatting, and parsing physical
 measurement units (Distance, Speed, Temperature, Time, Volume, Weight, Surface, Acceleration, Angle,
 AngularSpeed, AngularAcceleration, Frequency, MagneticFluxDensity). No runtime third-party dependencies;
-Java 17 target; Maven build.
+Java 21 target; Maven build.
 
 ## Commands
 

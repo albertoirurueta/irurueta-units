@@ -1,5 +1,7 @@
 = Supported Units
 :description: Measurement families and unit enums supported by Irurueta Units.
+:repo-base: https://github.com/albertoirurueta/irurueta-units/blob/1.4.0/src/main/java/com/irurueta/units
+:javadoc-base: https://albertoirurueta.github.io/irurueta-units/mvn-site/apidocs/com/irurueta/units
 
 The following table lists the concrete measurement classes and their unit enums.
 
@@ -78,5 +80,8 @@ boolean imperial = DistanceUnit.isImperial(DistanceUnit.FOOT);
 DistanceUnit[] metricDistanceUnits = DistanceUnit.getMetricUnits();
 DistanceUnit[] imperialDistanceUnits = DistanceUnit.getImperialUnits();
 ----
+
+*Classes used:* link:{repo-base}/DistanceUnit.java[DistanceUnit] (link:{javadoc-base}/DistanceUnit.html[Javadoc]) ·
+link:{repo-base}/UnitSystem.java[UnitSystem] (link:{javadoc-base}/UnitSystem.html[Javadoc])
 
 These helpers are available on families where the distinction applies, such as distance, speed, surface, volume, weight, acceleration, and temperature.

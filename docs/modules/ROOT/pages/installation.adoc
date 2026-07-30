@@ -1,5 +1,7 @@
 = Installation
 :description: Add Irurueta Units to a Java project.
+:repo-base: https://github.com/albertoirurueta/irurueta-units/blob/1.4.0/src/main/java/com/irurueta/units
+:javadoc-base: https://albertoirurueta.github.io/irurueta-units/mvn-site/apidocs/com/irurueta/units
 
 Irurueta Units is published as a Maven artifact with group id `com.irurueta` and artifact id `irurueta-units`.
 The project itself is built as a Java 21 Maven JAR.
@@ -37,3 +39,8 @@ import com.irurueta.units.DistanceConverter;
 import com.irurueta.units.DistanceFormatter;
 import com.irurueta.units.DistanceUnit;
 ----
+
+*Classes used:* link:{repo-base}/Distance.java[Distance] (link:{javadoc-base}/Distance.html[Javadoc]) ·
+link:{repo-base}/DistanceConverter.java[DistanceConverter] (link:{javadoc-base}/DistanceConverter.html[Javadoc]) ·
+link:{repo-base}/DistanceFormatter.java[DistanceFormatter] (link:{javadoc-base}/DistanceFormatter.html[Javadoc]) ·
+link:{repo-base}/DistanceUnit.java[DistanceUnit] (link:{javadoc-base}/DistanceUnit.html[Javadoc])

@@ -1,5 +1,7 @@
 = Measurements and Conversion
 :description: Use measurement value objects and converter utilities.
+:repo-base: https://github.com/albertoirurueta/irurueta-units/blob/1.4.0/src/main/java/com/irurueta/units
+:javadoc-base: https://albertoirurueta.github.io/irurueta-units/mvn-site/apidocs/com/irurueta/units
 
 Each concrete measurement stores a `Number` value and a unit enum.
 For example, `Distance` stores a value together with a `DistanceUnit`, and `Temperature` stores a value together with a `TemperatureUnit`.
@@ -19,6 +21,9 @@ DistanceUnit unit = distance.getUnit();
 distance.setValue(1.2);
 distance.setUnit(DistanceUnit.KILOMETER);
 ----
+
+*Classes used:* link:{repo-base}/Distance.java[Distance] (link:{javadoc-base}/Distance.html[Javadoc]) ·
+link:{repo-base}/DistanceUnit.java[DistanceUnit] (link:{javadoc-base}/DistanceUnit.html[Javadoc])
 
 Constructors and setters reject `null` values and units with `IllegalArgumentException`.
 
@@ -43,6 +48,11 @@ double fahrenheit = TemperatureConverter.convert(
         TemperatureUnit.CELSIUS,
         TemperatureUnit.FAHRENHEIT);
 ----
+
+*Classes used:* link:{repo-base}/DistanceConverter.java[DistanceConverter] (link:{javadoc-base}/DistanceConverter.html[Javadoc]) ·
+link:{repo-base}/DistanceUnit.java[DistanceUnit] (link:{javadoc-base}/DistanceUnit.html[Javadoc]) ·
+link:{repo-base}/TemperatureConverter.java[TemperatureConverter] (link:{javadoc-base}/TemperatureConverter.html[Javadoc]) ·
+link:{repo-base}/TemperatureUnit.java[TemperatureUnit] (link:{javadoc-base}/TemperatureUnit.html[Javadoc])
 
 Most converters use a base unit internally.
 For example, distance conversion goes through meters, and temperature conversion handles the Celsius, Fahrenheit, and Kelvin offsets explicitly.
@@ -80,6 +90,10 @@ DistanceConverter.convert(input, reusable);
 DistanceConverter.convert(input, DistanceUnit.INCH); // updates input
 ----
 
+*Classes used:* link:{repo-base}/Distance.java[Distance] (link:{javadoc-base}/Distance.html[Javadoc]) ·
+link:{repo-base}/DistanceConverter.java[DistanceConverter] (link:{javadoc-base}/DistanceConverter.html[Javadoc]) ·
+link:{repo-base}/DistanceUnit.java[DistanceUnit] (link:{javadoc-base}/DistanceUnit.html[Javadoc])
+
 == Add and subtract measurements
 
 Measurement classes support unit-aware arithmetic for compatible quantities.
@@ -104,6 +118,9 @@ double totalFeet = Distance.add(
         DistanceUnit.FOOT);
 ----
 
+*Classes used:* link:{repo-base}/Distance.java[Distance] (link:{javadoc-base}/Distance.html[Javadoc]) ·
+link:{repo-base}/DistanceUnit.java[DistanceUnit] (link:{javadoc-base}/DistanceUnit.html[Javadoc])
+
 == Compare with tolerance
 
 `equals(Object)` compares both value and unit directly.
@@ -119,5 +136,8 @@ Distance centimeters = new Distance(100.0, DistanceUnit.CENTIMETER);
 
 boolean sameLength = meters.equals(centimeters, 1e-9);
 ----
+
+*Classes used:* link:{repo-base}/Distance.java[Distance] (link:{javadoc-base}/Distance.html[Javadoc]) ·
+link:{repo-base}/DistanceUnit.java[DistanceUnit] (link:{javadoc-base}/DistanceUnit.html[Javadoc])
 
 The tolerance is expressed in the unit of the left-hand measurement after conversion.

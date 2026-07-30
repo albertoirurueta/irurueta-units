@@ -1,5 +1,7 @@
 = Irurueta Units
 :description: Java library for representing, converting, formatting, and parsing measurement units.
+:repo-base: https://github.com/albertoirurueta/irurueta-units/blob/1.4.0/src/main/java/com/irurueta/units
+:javadoc-base: https://albertoirurueta.github.io/irurueta-units/mvn-site/apidocs/com/irurueta/units
 
 NOTE: This documentation was generated with the assistance of AI. Please report any inaccuracies.
 
@@ -79,6 +81,12 @@ formatter.setMaximumFractionDigits(2);
 String display = formatter.formatAndConvert(total, UnitSystem.IMPERIAL);
 Distance parsed = formatter.parse("12.5 ft");
 ----
+
+*Classes used:* link:{repo-base}/Distance.java[Distance] (link:{javadoc-base}/Distance.html[Javadoc]) ·
+link:{repo-base}/DistanceConverter.java[DistanceConverter] (link:{javadoc-base}/DistanceConverter.html[Javadoc]) ·
+link:{repo-base}/DistanceFormatter.java[DistanceFormatter] (link:{javadoc-base}/DistanceFormatter.html[Javadoc]) ·
+link:{repo-base}/DistanceUnit.java[DistanceUnit] (link:{javadoc-base}/DistanceUnit.html[Javadoc]) ·
+link:{repo-base}/UnitSystem.java[UnitSystem] (link:{javadoc-base}/UnitSystem.html[Javadoc])
 
 == Documentation map
 

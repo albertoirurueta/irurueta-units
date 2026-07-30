@@ -1,5 +1,7 @@
 = API Conventions
 :description: Common patterns used across Irurueta Units classes.
+:repo-base: https://github.com/albertoirurueta/irurueta-units/blob/1.4.0/src/main/java/com/irurueta/units
+:javadoc-base: https://albertoirurueta.github.io/irurueta-units/mvn-site/apidocs/com/irurueta/units
 
 The library uses regular naming conventions, so learning one measurement family makes the rest familiar.
 
@@ -35,6 +37,10 @@ Distance output = new Distance(0.0, DistanceUnit.METER);
 DistanceConverter.convert(input, output); // writes into output unit
 ----
 
+*Classes used:* link:{repo-base}/Distance.java[Distance] (link:{javadoc-base}/Distance.html[Javadoc]) ·
+link:{repo-base}/DistanceConverter.java[DistanceConverter] (link:{javadoc-base}/DistanceConverter.html[Javadoc]) ·
+link:{repo-base}/DistanceUnit.java[DistanceUnit] (link:{javadoc-base}/DistanceUnit.html[Javadoc])
+
 Methods named `convertAndReturnNew`, `addAndReturnNew`, or `subtractAndReturnNew` allocate a new measurement.
 Methods named `convert`, `add`, or `subtract` may update an existing measurement or write into a provided result object, depending on the overload.
 
@@ -60,5 +66,5 @@ Base checked exception for unit-specific checked exceptions.
 
 == Build metadata
 
-`BuildInfo` exposes build metadata generated during Maven validation.
+link:{repo-base}/BuildInfo.java[BuildInfo] (link:{javadoc-base}/BuildInfo.html[Javadoc]) exposes build metadata generated during Maven validation.
 It can be useful for diagnostics when an application needs to report the library artifact, version, branch, commit, or build timestamp embedded in the JAR.

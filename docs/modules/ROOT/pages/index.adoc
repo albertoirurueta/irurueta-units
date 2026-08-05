@@ -1,5 +1,6 @@
 = Irurueta Units
 :description: Java library for representing, converting, formatting, and parsing measurement units.
+:keywords: java measurement units library, unit conversion java, distance speed temperature weight, measurement value objects, unit converter formatter, metric imperial units java
 :repo-base: https://github.com/albertoirurueta/irurueta-units/blob/1.4.0/src/main/java/com/irurueta/units
 :javadoc-base: https://albertoirurueta.github.io/irurueta-units/mvn-site/apidocs/com/irurueta/units
 

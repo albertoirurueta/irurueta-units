@@ -1,5 +1,6 @@
 = Installation
 :description: Add Irurueta Units to a Java project.
+:keywords: irurueta-units maven dependency, gradle dependency java, install java measurement library, maven central com.irurueta, java 17 library setup
 :repo-base: https://github.com/albertoirurueta/irurueta-units/blob/1.4.0/src/main/java/com/irurueta/units
 :javadoc-base: https://albertoirurueta.github.io/irurueta-units/mvn-site/apidocs/com/irurueta/units
 

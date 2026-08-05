@@ -1,5 +1,6 @@
 = Supported Units
 :description: Measurement families and unit enums supported by Irurueta Units.
+:keywords: supported unit enums java, distance weight temperature units, metric imperial unit list, unit system helpers java, java measurement unit catalog
 :repo-base: https://github.com/albertoirurueta/irurueta-units/blob/1.4.0/src/main/java/com/irurueta/units
 :javadoc-base: https://albertoirurueta.github.io/irurueta-units/mvn-site/apidocs/com/irurueta/units
 

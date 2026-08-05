@@ -1,5 +1,6 @@
 = Reference
 :description: Links to generated API, test, coverage, and code quality reports.
+:keywords: irurueta-units javadoc, jacoco code coverage report, surefire test report, sonarcloud code quality, maven site reports
 
 This page links to reports produced by the project build and quality tooling.
 The Maven reports are generated during Maven site execution and are available after `target/site` is copied into the documentation output as `mvn-site`.

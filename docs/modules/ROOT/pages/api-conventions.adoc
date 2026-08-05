@@ -1,5 +1,6 @@
 = API Conventions
 :description: Common patterns used across Irurueta Units classes.
+:keywords: java api naming conventions, convertAndReturnNew pattern, mutating non-mutating methods java, java exceptions unit conversion, BuildInfo java, unit conversion api design
 :repo-base: https://github.com/albertoirurueta/irurueta-units/blob/1.4.0/src/main/java/com/irurueta/units
 :javadoc-base: https://albertoirurueta.github.io/irurueta-units/mvn-site/apidocs/com/irurueta/units
 

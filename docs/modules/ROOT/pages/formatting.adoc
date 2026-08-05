@@ -1,5 +1,6 @@
 = Formatting and Parsing
 :description: Format, convert for display, and parse measurement strings.
+:keywords: measurement formatter java, locale-aware number formatting, parse measurement string java, metric imperial unit system, distance formatter, unit symbols java
 :repo-base: https://github.com/albertoirurueta/irurueta-units/blob/1.4.0/src/main/java/com/irurueta/units
 :javadoc-base: https://albertoirurueta.github.io/irurueta-units/mvn-site/apidocs/com/irurueta/units
 

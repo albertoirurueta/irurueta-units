@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ForceConverter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">ForceConverter.java</span></div><h1>ForceConverter.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2026 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.units;
+
+import java.math.BigDecimal;
+
+/**
+ * Does force conversions to different units.
+ * To prevent loss of accuracy, conversion should only be done as a final step
+ * before displaying force measurements.
+ */
+@SuppressWarnings(&quot;WeakerAccess&quot;)
+public final class ForceConverter {
+
+    /**
+     * Number of newtons in 1 kilonewton.
+     */
+    static final double NEWTONS_PER_KILONEWTON = 1000.0;
+
+    /**
+     * Number of newtons in 1 pound-force.
+     */
+    static final double NEWTONS_PER_POUND_FORCE = 4.4482216152605;
+
+    /**
+     * Number of newtons in 1 dyne.
+     */
+    static final double NEWTONS_PER_DYNE = 1.0e-5;
+
+    /**
+     * Number of newtons in 1 kilogram-force.
+     */
+    static final double NEWTONS_PER_KILOGRAM_FORCE = 9.80665;
+
+    /**
+     * Constructor.
+     * Prevents instantiation of helper class.
+     */
+    private ForceConverter() {
+    }
+
+    /**
+     * Converts a force instance to provided output force unit.
+     *
+     * @param input  input force to be converted.
+     * @param output output force where result will be stored containing output unit.
+     */
+    public static void convert(final Force input, final Force output) {
+<span class="fc" id="L62">        convert(input, output.getUnit(), output);</span>
+<span class="fc" id="L63">    }</span>
+
+    /**
+     * Converts a force instance to requested output unit.
+     *
+     * @param input      input force to be converted.
+     * @param outputUnit requested output unit.
+     * @return converted force.
+     */
+    public static Force convertAndReturnNew(final Force input, final ForceUnit outputUnit) {
+<span class="fc" id="L73">        final var result = new Force();</span>
+<span class="fc" id="L74">        convert(input, outputUnit, result);</span>
+<span class="fc" id="L75">        return result;</span>
+    }
+
+    /**
+     * Converts and updates a force to requested output unit.
+     *
+     * @param force      input force to be converted and updated.
+     * @param outputUnit requested output unit.
+     */
+    public static void convert(final Force force, final ForceUnit outputUnit) {
+<span class="fc" id="L85">        convert(force, outputUnit, force);</span>
+<span class="fc" id="L86">    }</span>
+
+    /**
+     * Converts a force to requested output unit.
+     *
+     * @param input      input force to be converted.
+     * @param outputUnit requested output unit.
+     * @param result     force instance where result will be stored.
+     */
+    public static void convert(final Force input, final ForceUnit outputUnit, final Force result) {
+<span class="fc" id="L96">        final var value = convert(input.getValue(), input.getUnit(), outputUnit);</span>
+<span class="fc" id="L97">        result.setValue(value);</span>
+<span class="fc" id="L98">        result.setUnit(outputUnit);</span>
+<span class="fc" id="L99">    }</span>
+
+    /**
+     * Converts a force value from input unit to provided output unit.
+     *
+     * @param input      force value.
+     * @param inputUnit  input force unit.
+     * @param outputUnit output force unit.
+     * @return converted force value.
+     */
+    public static Number convert(final Number input, final ForceUnit inputUnit, final ForceUnit outputUnit) {
+<span class="fc" id="L110">        return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit, outputUnit));</span>
+    }
+
+    /**
+     * Converts a force value from input unit to provided output unit.
+     *
+     * @param input      force value.
+     * @param inputUnit  input force unit.
+     * @param outputUnit output force unit.
+     * @return converted force value.
+     */
+    public static double convert(final double input, final ForceUnit inputUnit, final ForceUnit outputUnit) {
+        //convert to newtons
+<span class="fc bfc" id="L123" title="All 5 branches covered.">        final var newtons = switch (inputUnit) {</span>
+<span class="fc" id="L124">            case KILONEWTON -&gt; kilonewtonToNewton(input);</span>
+<span class="fc" id="L125">            case POUND_FORCE -&gt; poundForceToNewton(input);</span>
+<span class="fc" id="L126">            case DYNE -&gt; dyneToNewton(input);</span>
+<span class="fc" id="L127">            case KILOGRAM_FORCE -&gt; kilogramForceToNewton(input);</span>
+<span class="fc" id="L128">            default -&gt; input;</span>
+        };
+
+        //convert from newtons to required output unit
+<span class="fc bfc" id="L132" title="All 5 branches covered.">        return switch (outputUnit) {</span>
+<span class="fc" id="L133">            case KILONEWTON -&gt; newtonToKilonewton(newtons);</span>
+<span class="fc" id="L134">            case POUND_FORCE -&gt; newtonToPoundForce(newtons);</span>
+<span class="fc" id="L135">            case DYNE -&gt; newtonToDyne(newtons);</span>
+<span class="fc" id="L136">            case KILOGRAM_FORCE -&gt; newtonToKilogramForce(newtons);</span>
+<span class="fc" id="L137">            default -&gt; newtons;</span>
+        };
+    }
+
+    /**
+     * Converts provided kilonewtons value to newtons.
+     *
+     * @param kilonewton kilonewtons value.
+     * @return same force converted to newtons.
+     */
+    public static double kilonewtonToNewton(final double kilonewton) {
+<span class="fc" id="L148">        return kilonewton * NEWTONS_PER_KILONEWTON;</span>
+    }
+
+    /**
+     * Converts provided newtons value to kilonewtons.
+     *
+     * @param newton newtons value.
+     * @return same force converted to kilonewtons.
+     */
+    public static double newtonToKilonewton(final double newton) {
+<span class="fc" id="L158">        return newton / NEWTONS_PER_KILONEWTON;</span>
+    }
+
+    /**
+     * Converts provided pound-force value to newtons.
+     *
+     * @param poundForce pound-force value.
+     * @return same force converted to newtons.
+     */
+    public static double poundForceToNewton(final double poundForce) {
+<span class="fc" id="L168">        return poundForce * NEWTONS_PER_POUND_FORCE;</span>
+    }
+
+    /**
+     * Converts provided newtons value to pound-force.
+     *
+     * @param newton newtons value.
+     * @return same force converted to pound-force.
+     */
+    public static double newtonToPoundForce(final double newton) {
+<span class="fc" id="L178">        return newton / NEWTONS_PER_POUND_FORCE;</span>
+    }
+
+    /**
+     * Converts provided dynes value to newtons.
+     *
+     * @param dyne dynes value.
+     * @return same force converted to newtons.
+     */
+    public static double dyneToNewton(final double dyne) {
+<span class="fc" id="L188">        return dyne * NEWTONS_PER_DYNE;</span>
+    }
+
+    /**
+     * Converts provided newtons value to dynes.
+     *
+     * @param newton newtons value.
+     * @return same force converted to dynes.
+     */
+    public static double newtonToDyne(final double newton) {
+<span class="fc" id="L198">        return newton / NEWTONS_PER_DYNE;</span>
+    }
+
+    /**
+     * Converts provided kilogram-force value to newtons.
+     *
+     * @param kilogramForce kilogram-force value.
+     * @return same force converted to newtons.
+     */
+    public static double kilogramForceToNewton(final double kilogramForce) {
+<span class="fc" id="L208">        return kilogramForce * NEWTONS_PER_KILOGRAM_FORCE;</span>
+    }
+
+    /**
+     * Converts provided newtons value to kilogram-force.
+     *
+     * @param newton newtons value.
+     * @return same force converted to kilogram-force.
+     */
+    public static double newtonToKilogramForce(final double newton) {
+<span class="fc" id="L218">        return newton / NEWTONS_PER_KILOGRAM_FORCE;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

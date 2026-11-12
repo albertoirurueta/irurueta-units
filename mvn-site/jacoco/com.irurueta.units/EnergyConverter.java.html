@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EnergyConverter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">EnergyConverter.java</span></div><h1>EnergyConverter.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2026 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.units;
+
+import java.math.BigDecimal;
+
+/**
+ * Does energy conversions to different units.
+ * To prevent loss of accuracy, conversion should only be done as a final step
+ * before displaying energy measurements.
+ */
+@SuppressWarnings(&quot;WeakerAccess&quot;)
+public final class EnergyConverter {
+
+    /**
+     * Number of joules in 1 kilojoule.
+     */
+    static final double JOULES_PER_KILOJOULE = 1000.0;
+
+    /**
+     * Number of joules in 1 megajoule.
+     */
+    static final double JOULES_PER_MEGAJOULE = 1.0e6;
+
+    /**
+     * Number of joules in 1 thermochemical calorie.
+     */
+    static final double JOULES_PER_CALORIE = 4.184;
+
+    /**
+     * Number of joules in 1 thermochemical kilocalorie.
+     */
+    static final double JOULES_PER_KILOCALORIE = JOULES_PER_KILOJOULE * JOULES_PER_CALORIE;
+
+    /**
+     * Number of joules in 1 kilowatt hour.
+     */
+    static final double JOULES_PER_KILOWATT_HOUR = 3.6e6;
+
+    /**
+     * Number of joules in 1 International Table BTU.
+     */
+    static final double JOULES_PER_BTU = 1055.05585262;
+
+    /**
+     * Constructor.
+     * Prevents instantiation of helper class.
+     */
+    private EnergyConverter() {
+    }
+
+    /**
+     * Converts an energy instance to provided output energy unit.
+     *
+     * @param input  input energy to be converted.
+     * @param output output energy where result will be stored containing output unit.
+     */
+    public static void convert(final Energy input, final Energy output) {
+<span class="fc" id="L72">        convert(input, output.getUnit(), output);</span>
+<span class="fc" id="L73">    }</span>
+
+    /**
+     * Converts an energy instance to requested output unit.
+     *
+     * @param input      input energy to be converted.
+     * @param outputUnit requested output unit.
+     * @return converted energy.
+     */
+    public static Energy convertAndReturnNew(
+            final Energy input, final EnergyUnit outputUnit) {
+<span class="fc" id="L84">        final var result = new Energy();</span>
+<span class="fc" id="L85">        convert(input, outputUnit, result);</span>
+<span class="fc" id="L86">        return result;</span>
+    }
+
+    /**
+     * Converts and updates an energy to requested output unit.
+     *
+     * @param energy     input energy to be converted and updated.
+     * @param outputUnit requested output unit.
+     */
+    public static void convert(final Energy energy, final EnergyUnit outputUnit) {
+<span class="fc" id="L96">        convert(energy, outputUnit, energy);</span>
+<span class="fc" id="L97">    }</span>
+
+    /**
+     * Converts an energy to requested output unit.
+     *
+     * @param input      input energy to be converted.
+     * @param outputUnit requested output unit.
+     * @param result     energy instance where result will be stored.
+     */
+    public static void convert(
+            final Energy input, final EnergyUnit outputUnit, final Energy result) {
+<span class="fc" id="L108">        final var value = convert(input.getValue(), input.getUnit(), outputUnit);</span>
+<span class="fc" id="L109">        result.setValue(value);</span>
+<span class="fc" id="L110">        result.setUnit(outputUnit);</span>
+<span class="fc" id="L111">    }</span>
+
+    /**
+     * Converts an energy value from input unit to provided output unit.
+     *
+     * @param input      energy value.
+     * @param inputUnit  input energy unit.
+     * @param outputUnit output energy unit.
+     * @return converted energy value.
+     */
+    public static Number convert(final Number input, final EnergyUnit inputUnit, final EnergyUnit outputUnit) {
+<span class="fc" id="L122">        return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit, outputUnit));</span>
+    }
+
+    /**
+     * Converts an energy value from input unit to provided output unit.
+     *
+     * @param input      energy value.
+     * @param inputUnit  input energy unit.
+     * @param outputUnit output energy unit.
+     * @return converted energy value.
+     */
+    public static double convert(final double input, final EnergyUnit inputUnit, final EnergyUnit outputUnit) {
+        //convert to joules
+<span class="fc bfc" id="L135" title="All 7 branches covered.">        final var joules = switch (inputUnit) {</span>
+<span class="fc" id="L136">            case KILOJOULE -&gt; kilojouleToJoule(input);</span>
+<span class="fc" id="L137">            case MEGAJOULE -&gt; megajouleToJoule(input);</span>
+<span class="fc" id="L138">            case CALORIE -&gt; calorieToJoule(input);</span>
+<span class="fc" id="L139">            case KILOCALORIE -&gt; kilocalorieToJoule(input);</span>
+<span class="fc" id="L140">            case KILOWATT_HOUR -&gt; kilowattHourToJoule(input);</span>
+<span class="fc" id="L141">            case BTU -&gt; btuToJoule(input);</span>
+<span class="fc" id="L142">            default -&gt; input;</span>
+        };
+
+        //convert from joules to required output unit
+<span class="fc bfc" id="L146" title="All 7 branches covered.">        return switch (outputUnit) {</span>
+<span class="fc" id="L147">            case KILOJOULE -&gt; jouleToKilojoule(joules);</span>
+<span class="fc" id="L148">            case MEGAJOULE -&gt; jouleToMegajoule(joules);</span>
+<span class="fc" id="L149">            case CALORIE -&gt; jouleToCalorie(joules);</span>
+<span class="fc" id="L150">            case KILOCALORIE -&gt; jouleToKilocalorie(joules);</span>
+<span class="fc" id="L151">            case KILOWATT_HOUR -&gt; jouleToKilowattHour(joules);</span>
+<span class="fc" id="L152">            case BTU -&gt; jouleToBtu(joules);</span>
+<span class="fc" id="L153">            default -&gt; joules;</span>
+        };
+    }
+
+    /**
+     * Converts provided kilojoule value to joules.
+     *
+     * @param kilojoule kilojoule value.
+     * @return same energy converted to joules.
+     */
+    public static double kilojouleToJoule(final double kilojoule) {
+<span class="fc" id="L164">        return kilojoule * JOULES_PER_KILOJOULE;</span>
+    }
+
+    /**
+     * Converts provided joules value to kilojoule.
+     *
+     * @param joule joules value.
+     * @return same energy converted to kilojoule.
+     */
+    public static double jouleToKilojoule(final double joule) {
+<span class="fc" id="L174">        return joule / JOULES_PER_KILOJOULE;</span>
+    }
+
+    /**
+     * Converts provided megajoule value to joules.
+     *
+     * @param megajoule megajoule value.
+     * @return same energy converted to joules.
+     */
+    public static double megajouleToJoule(final double megajoule) {
+<span class="fc" id="L184">        return megajoule * JOULES_PER_MEGAJOULE;</span>
+    }
+
+    /**
+     * Converts provided joules value to megajoule.
+     *
+     * @param joule joules value.
+     * @return same energy converted to megajoule.
+     */
+    public static double jouleToMegajoule(final double joule) {
+<span class="fc" id="L194">        return joule / JOULES_PER_MEGAJOULE;</span>
+    }
+
+    /**
+     * Converts provided calorie value to joules.
+     *
+     * @param calorie calorie value.
+     * @return same energy converted to joules.
+     */
+    public static double calorieToJoule(final double calorie) {
+<span class="fc" id="L204">        return calorie * JOULES_PER_CALORIE;</span>
+    }
+
+    /**
+     * Converts provided joules value to calorie.
+     *
+     * @param joule joules value.
+     * @return same energy converted to calorie.
+     */
+    public static double jouleToCalorie(final double joule) {
+<span class="fc" id="L214">        return joule / JOULES_PER_CALORIE;</span>
+    }
+
+    /**
+     * Converts provided kilocalorie value to joules.
+     *
+     * @param kilocalorie kilocalorie value.
+     * @return same energy converted to joules.
+     */
+    public static double kilocalorieToJoule(final double kilocalorie) {
+<span class="fc" id="L224">        return kilocalorie * JOULES_PER_KILOCALORIE;</span>
+    }
+
+    /**
+     * Converts provided joules value to kilocalorie.
+     *
+     * @param joule joules value.
+     * @return same energy converted to kilocalorie.
+     */
+    public static double jouleToKilocalorie(final double joule) {
+<span class="fc" id="L234">        return joule / JOULES_PER_KILOCALORIE;</span>
+    }
+
+    /**
+     * Converts provided kilowatt hour value to joules.
+     *
+     * @param kilowattHour kilowatt hour value.
+     * @return same energy converted to joules.
+     */
+    public static double kilowattHourToJoule(final double kilowattHour) {
+<span class="fc" id="L244">        return kilowattHour * JOULES_PER_KILOWATT_HOUR;</span>
+    }
+
+    /**
+     * Converts provided joules value to kilowatt hour.
+     *
+     * @param joule joules value.
+     * @return same energy converted to kilowatt hour.
+     */
+    public static double jouleToKilowattHour(final double joule) {
+<span class="fc" id="L254">        return joule / JOULES_PER_KILOWATT_HOUR;</span>
+    }
+
+    /**
+     * Converts provided BTU value to joules.
+     *
+     * @param btu BTU value.
+     * @return same energy converted to joules.
+     */
+    public static double btuToJoule(final double btu) {
+<span class="fc" id="L264">        return btu * JOULES_PER_BTU;</span>
+    }
+
+    /**
+     * Converts provided joules value to BTU.
+     *
+     * @param joule joules value.
+     * @return same energy converted to BTU.
+     */
+    public static double jouleToBtu(final double joule) {
+<span class="fc" id="L274">        return joule / JOULES_PER_BTU;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

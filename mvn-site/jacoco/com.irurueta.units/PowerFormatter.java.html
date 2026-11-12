@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PowerFormatter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">PowerFormatter.java</span></div><h1>PowerFormatter.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2026 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.units;
+
+import java.text.ParseException;
+import java.util.Locale;
+
+/**
+ * Formats and parses power value and unit.
+ */
+public class PowerFormatter extends MeasureFormatter&lt;Power, PowerUnit&gt; {
+
+    /**
+     * Watt symbol.
+     */
+    public static final String WATT = &quot;W&quot;;
+
+    /**
+     * Kilowatt symbol.
+     */
+    public static final String KILOWATT = &quot;kW&quot;;
+
+    /**
+     * Megawatt symbol.
+     */
+    public static final String MEGAWATT = &quot;MW&quot;;
+
+    /**
+     * Gigawatt symbol.
+     */
+    public static final String GIGAWATT = &quot;GW&quot;;
+
+    /**
+     * Horsepower symbol.
+     */
+    public static final String HORSEPOWER = &quot;hp&quot;;
+
+    /**
+     * Constructor.
+     */
+    public PowerFormatter() {
+<span class="fc" id="L55">        super();</span>
+<span class="fc" id="L56">    }</span>
+
+    /**
+     * Constructor with locale.
+     *
+     * @param locale locale.
+     * @throws IllegalArgumentException if locale is null.
+     */
+    public PowerFormatter(final Locale locale) {
+<span class="fc" id="L65">        super(locale);</span>
+<span class="fc" id="L66">    }</span>
+
+    /**
+     * Copy constructor.
+     *
+     * @param formatter input instance to copy from.
+     * @throws NullPointerException if provided formatter is null.
+     */
+    public PowerFormatter(final PowerFormatter formatter) {
+<span class="fc" id="L75">        this(formatter.getLocale());</span>
+<span class="fc" id="L76">    }</span>
+
+    /**
+     * Determines if two power formatters are equal by comparing all of their internal
+     * parameters.
+     *
+     * @param obj another object to compare.
+     * @return true if provided object is assumed to be equal to this instance.
+     */
+    @Override
+    public boolean equals(final Object obj) {
+<span class="fc" id="L87">        final var equals = super.equals(obj);</span>
+<span class="fc bfc" id="L88" title="All 4 branches covered.">        return (obj instanceof PowerFormatter) &amp;&amp; equals;</span>
+    }
+
+    /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare objects.
+     * This implementation only calls parent implementation to avoid static analyzer warning.
+     * It is kept because {@link #equals(Object)} is overridden, so both
+     * methods remain consistent.
+     *
+     * @return hash code.
+     */
+    @Override
+    @SuppressWarnings(&quot;PMD.UselessOverridingMethod&quot;)
+    public int hashCode() {
+<span class="fc" id="L103">        return super.hashCode();</span>
+    }
+
+    /**
+     * Gets unit system for detected unit into provided string representation
+     * of a measurement.
+     *
+     * @param source a measurement string representation to be checked.
+     * @return a unit system (either metric or imperial) or null if unit
+     * cannot be determined.
+     */
+    @Override
+    public UnitSystem getUnitSystem(final String source) {
+<span class="fc" id="L116">        final var unit = findUnit(source);</span>
+<span class="fc bfc" id="L117" title="All 2 branches covered.">        return unit != null ? PowerUnit.getUnitSystem(unit) : null;</span>
+    }
+
+    /**
+     * Parses provided string and tries to determine power value and unit.
+     *
+     * @param source a string to be parsed.
+     * @return a power containing a value and unit.
+     * @throws ParseException       if provided string cannot be parsed.
+     * @throws UnknownUnitException if unit cannot be determined.
+     */
+    @Override
+    public Power parse(final String source) throws ParseException, UnknownUnitException {
+<span class="fc" id="L130">        return internalParse(source, new Power());</span>
+    }
+
+    /**
+     * Attempts to determine a power unit within a measurement string representation.
+     *
+     * @param source a measurement string representation.
+     * @return a power unit, or null if none can be determined.
+     */
+    @Override
+    public PowerUnit findUnit(final String source) {
+<span class="fc bfc" id="L141" title="All 2 branches covered.">        if (containsSymbol(source, KILOWATT)) {</span>
+<span class="fc" id="L142">            return PowerUnit.KILOWATT;</span>
+        }
+<span class="fc bfc" id="L144" title="All 2 branches covered.">        if (containsSymbol(source, MEGAWATT)) {</span>
+<span class="fc" id="L145">            return PowerUnit.MEGAWATT;</span>
+        }
+<span class="fc bfc" id="L147" title="All 2 branches covered.">        if (containsSymbol(source, GIGAWATT)) {</span>
+<span class="fc" id="L148">            return PowerUnit.GIGAWATT;</span>
+        }
+<span class="fc bfc" id="L150" title="All 2 branches covered.">        if (containsSymbol(source, HORSEPOWER)) {</span>
+<span class="fc" id="L151">            return PowerUnit.HORSEPOWER;</span>
+        }
+<span class="fc bfc" id="L153" title="All 2 branches covered.">        if (containsSymbol(source, WATT)) {</span>
+<span class="fc" id="L154">            return PowerUnit.WATT;</span>
+        }
+<span class="fc" id="L156">        return null;</span>
+    }
+
+    /**
+     * Formats and converts provided power value and unit using provided
+     * unit system.
+     * If provided value is too large for provided unit, this method will
+     * convert it to a more appropriate unit using provided unit system (either
+     * metric or imperial).
+     *
+     * @param value  a power value.
+     * @param unit   a power unit.
+     * @param system system unit to convert power to.
+     * @return a string representation of power value and unit.
+     */
+    @Override
+    public String formatAndConvert(final Number value, final PowerUnit unit, final UnitSystem system) {
+<span class="fc bfc" id="L173" title="All 2 branches covered.">        if (system == UnitSystem.IMPERIAL) {</span>
+<span class="fc" id="L174">            return formatAndConvertImperial(value, unit);</span>
+        } else {
+<span class="fc" id="L176">            return formatAndConvertMetric(value, unit);</span>
+        }
+    }
+
+    /**
+     * Formats and converts provided power value and unit using metric unit
+     * system.
+     * Values below 1 kW are represented in watts, values below 1 MW in kilowatts,
+     * values below 1 GW in megawatts and larger values in gigawatts.
+     *
+     * @param value a power value.
+     * @param unit  a power unit.
+     * @return a string representation of power value and unit using metric
+     * unit system.
+     */
+    public String formatAndConvertMetric(final Number value, final PowerUnit unit) {
+<span class="fc" id="L192">        final var v = value.doubleValue();</span>
+
+<span class="fc" id="L194">        final var watts = PowerConverter.convert(v, unit, PowerUnit.WATT);</span>
+<span class="fc bfc" id="L195" title="All 2 branches covered.">        if (Math.abs(watts) &lt; PowerConverter.WATTS_PER_KILOWATT) {</span>
+<span class="fc" id="L196">            return format(watts, PowerUnit.WATT);</span>
+        }
+
+<span class="fc" id="L199">        final var kilowatts = PowerConverter.convert(v, unit, PowerUnit.KILOWATT);</span>
+<span class="fc bfc" id="L200" title="All 2 branches covered.">        if (Math.abs(kilowatts) &lt; PowerConverter.WATTS_PER_KILOWATT) {</span>
+<span class="fc" id="L201">            return format(kilowatts, PowerUnit.KILOWATT);</span>
+        }
+
+<span class="fc" id="L204">        final var megawatts = PowerConverter.convert(v, unit, PowerUnit.MEGAWATT);</span>
+<span class="fc bfc" id="L205" title="All 2 branches covered.">        if (Math.abs(megawatts) &lt; PowerConverter.WATTS_PER_KILOWATT) {</span>
+<span class="fc" id="L206">            return format(megawatts, PowerUnit.MEGAWATT);</span>
+        }
+
+<span class="fc" id="L209">        final var gigawatts = PowerConverter.convert(v, unit, PowerUnit.GIGAWATT);</span>
+<span class="fc" id="L210">        return format(gigawatts, PowerUnit.GIGAWATT);</span>
+    }
+
+    /**
+     * Formats and converts provided power value and unit using imperial unit
+     * system.
+     * Horsepower is the only imperial power unit, so any value is represented
+     * in horsepower.
+     *
+     * @param value a power value.
+     * @param unit  a power unit.
+     * @return a string representation of power value and unit using imperial
+     * unit system.
+     */
+    public String formatAndConvertImperial(final Number value, final PowerUnit unit) {
+<span class="fc" id="L225">        final var horsepower = PowerConverter.convert(value.doubleValue(), unit, PowerUnit.HORSEPOWER);</span>
+<span class="fc" id="L226">        return format(horsepower, PowerUnit.HORSEPOWER);</span>
+    }
+
+    /**
+     * Returns unit string representation.
+     *
+     * @param unit a power unit.
+     * @return its string representation.
+     */
+    @SuppressWarnings(&quot;DuplicatedCode&quot;)
+    @Override
+    public String getUnitSymbol(final PowerUnit unit) {
+<span class="fc bfc" id="L238" title="All 5 branches covered.">        return switch (unit) {</span>
+<span class="fc" id="L239">            case KILOWATT -&gt; KILOWATT;</span>
+<span class="fc" id="L240">            case MEGAWATT -&gt; MEGAWATT;</span>
+<span class="fc" id="L241">            case GIGAWATT -&gt; GIGAWATT;</span>
+<span class="fc" id="L242">            case HORSEPOWER -&gt; HORSEPOWER;</span>
+<span class="fc" id="L243">            default -&gt; WATT;</span>
+        };
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

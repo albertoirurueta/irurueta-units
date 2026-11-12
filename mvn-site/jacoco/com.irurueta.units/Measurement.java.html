@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Measurement.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">Measurement.java</span></div><h1>Measurement.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2018 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.irurueta.units;
+
+import java.io.Serializable;
+
+/**
+ * Base class to define a measurement unit and value.
+ *
+ * @param &lt;T&gt; a measurement unit.
+ */
+public abstract class Measurement&lt;T extends Enum&lt;?&gt;&gt; implements Serializable {
+
+    /**
+     * Initial value used when computing hash codes.
+     */
+    private static final int HASH_SEED = 7;
+
+    /**
+     * Multiplier used when computing hash codes.
+     */
+    private static final int HASH_MULTIPLIER = 19;
+
+    /**
+     * Measurement value.
+     */
+    private Number value;
+
+    /**
+     * Measurement unit.
+     */
+    private T unit;
+
+    /**
+     * Constructor.
+     *
+     * @param initialValue measurement value.
+     * @param initialUnit  measurement unit.
+     * @throws IllegalArgumentException if either value or unit is null.
+     */
+    protected Measurement(final Number initialValue, final T initialUnit) {
+<span class="fc" id="L56">        this(validate(initialValue, initialUnit));</span>
+<span class="fc" id="L57">    }</span>
+
+    /**
+     * Internal constructor with already validated arguments.
+     *
+     * @param arguments validated (not null) measurement value and unit.
+     */
+<span class="fc" id="L64">    private Measurement(final ValidArguments&lt;T&gt; arguments) {</span>
+<span class="fc" id="L65">        value = arguments.value();</span>
+<span class="fc" id="L66">        unit = arguments.unit();</span>
+<span class="fc" id="L67">    }</span>
+
+    /**
+     * Constructor.
+     */
+<span class="fc" id="L72">    Measurement() {</span>
+<span class="fc" id="L73">    }</span>
+
+    /**
+     * Checks that provided measurement value and unit are not null.
+     * Validation is performed here (instead of directly within the constructor) so that no exception
+     * is thrown from the constructor body itself.
+     *
+     * @param initialValue measurement value to be checked.
+     * @param initialUnit  measurement unit to be checked.
+     * @param &lt;U&gt;          type of measurement unit.
+     * @return validated measurement value and unit.
+     * @throws IllegalArgumentException if either value or unit is null.
+     */
+    private static &lt;U extends Enum&lt;?&gt;&gt; ValidArguments&lt;U&gt; validate(final Number initialValue, final U initialUnit) {
+<span class="fc bfc" id="L87" title="All 4 branches covered.">        if (initialValue == null || initialUnit == null) {</span>
+<span class="fc" id="L88">            throw new IllegalArgumentException();</span>
+        }
+<span class="fc" id="L90">        return new ValidArguments&lt;&gt;(initialValue, initialUnit);</span>
+    }
+
+    /**
+     * Determines if two measurements are equal.
+     *
+     * @param obj another object to compare.
+     * @return true if provided object is assumed to be equal to this instance, false otherwise.
+     */
+    @Override
+    public boolean equals(final Object obj) {
+<span class="pc bpc" id="L101" title="1 of 2 branches missed.">        if (obj == null) {</span>
+<span class="nc" id="L102">            return false;</span>
+        }
+<span class="fc bfc" id="L104" title="All 2 branches covered.">        if (!(obj instanceof Measurement)) {</span>
+<span class="fc" id="L105">            return false;</span>
+        }
+<span class="fc bfc" id="L107" title="All 2 branches covered.">        if (this == obj) {</span>
+<span class="fc" id="L108">            return true;</span>
+        }
+
+        //noinspection unchecked
+<span class="fc" id="L112">        final var other = (Measurement&lt;T&gt;) obj;</span>
+<span class="pc bpc" id="L113" title="4 of 8 branches missed.">        return value != null &amp;&amp; unit != null</span>
+                &amp;&amp; other.value != null &amp;&amp; other.unit != null
+<span class="fc bfc" id="L115" title="All 4 branches covered.">                &amp;&amp; value.equals(other.value) &amp;&amp; unit == other.unit;</span>
+    }
+
+    /**
+     * Hash code generated for this instance. Hash codes can be internally used by some collections to coarsely
+     * compare objects.
+     *
+     * @return hash code.
+     */
+    @Override
+    public int hashCode() {
+<span class="fc" id="L126">        var hash = HASH_SEED;</span>
+<span class="pc bpc" id="L127" title="1 of 2 branches missed.">        hash = HASH_MULTIPLIER * hash + (value != null ? value.hashCode() : 0);</span>
+<span class="pc bpc" id="L128" title="1 of 2 branches missed.">        hash = HASH_MULTIPLIER * hash + (unit != null ? unit.hashCode() : 0);</span>
+<span class="fc" id="L129">        return hash;</span>
+    }
+
+    /**
+     * Determines if two measurements are equal up to a certain tolerance.
+     *
+     * @param other     another measurement to compare.
+     * @param tolerance amount of tolerance to determine whether two measurements are equal or not.
+     * @return true if provided measurement is assumed to be equal to this instance, false otherwise.
+     */
+    public boolean equals(final Measurement&lt;T&gt; other, final double tolerance) {
+<span class="pc bpc" id="L140" title="4 of 12 branches missed.">        return value != null &amp;&amp; unit != null &amp;&amp; other != null</span>
+                &amp;&amp; other.value != null &amp;&amp; other.unit != null
+                &amp;&amp; unit == other.unit
+<span class="fc bfc" id="L143" title="All 2 branches covered.">                &amp;&amp; (Math.abs(value.doubleValue() - other.value.doubleValue()) &lt;= tolerance);</span>
+    }
+
+    /**
+     * Returns measurement value.
+     *
+     * @return measurement value.
+     */
+    public Number getValue() {
+<span class="fc" id="L152">        return value;</span>
+    }
+
+    /**
+     * Sets measurement value.
+     *
+     * @param newValue measurement value.
+     * @throws IllegalArgumentException if measurement value is null.
+     */
+    public void setValue(final Number newValue) {
+<span class="fc bfc" id="L162" title="All 2 branches covered.">        if (newValue == null) {</span>
+<span class="fc" id="L163">            throw new IllegalArgumentException();</span>
+        }
+
+<span class="fc" id="L166">        value = newValue;</span>
+<span class="fc" id="L167">    }</span>
+
+    /**
+     * Returns measurement unit.
+     *
+     * @return measurement unit.
+     */
+    public T getUnit() {
+<span class="fc" id="L175">        return unit;</span>
+    }
+
+    /**
+     * Sets measurement unit.
+     *
+     * @param newUnit measurement unit.
+     * @throws IllegalArgumentException if measurement unit is null.
+     */
+    public void setUnit(final T newUnit) {
+<span class="fc bfc" id="L185" title="All 2 branches covered.">        if (newUnit == null) {</span>
+<span class="fc" id="L186">            throw new IllegalArgumentException();</span>
+        }
+
+<span class="fc" id="L189">        unit = newUnit;</span>
+<span class="fc" id="L190">    }</span>
+
+    /**
+     * Measurement value and unit that have already been validated to be not null.
+     *
+     * @param value measurement value.
+     * @param unit  measurement unit.
+     * @param &lt;U&gt;   type of measurement unit.
+     */
+<span class="fc" id="L199">    private record ValidArguments&lt;U extends Enum&lt;?&gt;&gt;(Number value, U unit) {</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

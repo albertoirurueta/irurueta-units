@@ -1,0 +1,1541 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TimeFormatter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">TimeFormatter.java</span></div><h1>TimeFormatter.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2018 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.units;
+
+import java.text.FieldPosition;
+import java.text.MessageFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.Locale;
+import java.util.regex.Pattern;
+
+/**
+ * Formats and parses time value and unit.
+ */
+@SuppressWarnings(&quot;DuplicatedCode&quot;)
+public class TimeFormatter extends MeasureFormatter&lt;Time, TimeUnit&gt; {
+
+    /**
+     * Flag indicating whether nanoseconds must be included when formatting a time
+     * instance.
+     */
+    public static final int FORMAT_NANOSECONDS = 1;
+
+    /**
+     * Flag indicating whether microseconds must be included when formatting a time
+     * instance.
+     */
+    public static final int FORMAT_MICROSECONDS = 1 &lt;&lt; 1;
+
+    /**
+     * Flag indicating whether milliseconds must be included when formatting a time
+     * instance.
+     */
+    public static final int FORMAT_MILLISECONDS = 1 &lt;&lt; 2;
+
+    /**
+     * Flag indicating whether seconds must be included when formatting a time
+     * instance.
+     */
+    public static final int FORMAT_SECONDS = 1 &lt;&lt; TimeFormatter.SECONDS_BIT;
+
+    /**
+     * Flag indicating whether minutes must be included when formatting a time
+     * instance.
+     */
+    public static final int FORMAT_MINUTES = 1 &lt;&lt; TimeFormatter.MINUTES_BIT;
+
+    /**
+     * Flag indicating whether hours must be included when formatting a time
+     * instance.
+     */
+    public static final int FORMAT_HOURS = 1 &lt;&lt; TimeFormatter.HOURS_BIT;
+
+    /**
+     * Flag indicating whether days must be included when formatting a time
+     * instance.
+     */
+    public static final int FORMAT_DAYS = 1 &lt;&lt; TimeFormatter.DAYS_BIT;
+
+    /**
+     * Flag indicating whether weeks must be included when formatting a time
+     * instance.
+     */
+    public static final int FORMAT_WEEKS = 1 &lt;&lt; TimeFormatter.WEEKS_BIT;
+
+    /**
+     * Flag indicating whether months must be included when formatting a time
+     * instance.
+     */
+    public static final int FORMAT_MONTHS = 1 &lt;&lt; TimeFormatter.MONTHS_BIT;
+
+    /**
+     * Flag indicating whether years must be included when formatting a time
+     * instance.
+     */
+    public static final int FORMAT_YEARS = 1 &lt;&lt; TimeFormatter.YEARS_BIT;
+
+    /**
+     * Flag indicating whether centuries must be included when formatting a time
+     * instance.
+     */
+    public static final int FORMAT_CENTURIES = 1 &lt;&lt; TimeFormatter.CENTURIES_BIT;
+
+    /**
+     * Flag indicating that all units must be included when formatting a time
+     * instance.
+     */
+    public static final int FORMAT_ALL = FORMAT_NANOSECONDS | FORMAT_MICROSECONDS | FORMAT_MILLISECONDS
+            | FORMAT_SECONDS | FORMAT_MINUTES | FORMAT_HOURS | FORMAT_DAYS | FORMAT_WEEKS | FORMAT_MONTHS
+            | FORMAT_YEARS | FORMAT_CENTURIES;
+
+    /**
+     * Flag indicating that all time units (smaller than a day) must be used when
+     * formatting a time instance.
+     */
+    public static final int FORMAT_TIME_ALL = FORMAT_NANOSECONDS | FORMAT_MICROSECONDS | FORMAT_MILLISECONDS
+            | FORMAT_SECONDS | FORMAT_MINUTES | FORMAT_HOURS;
+
+    /**
+     * Flag indicating that standard time units (hours, minutes and seconds) must be
+     * used when formatting a time instance.
+     */
+    public static final int FORMAT_TIME_STANDARD = FORMAT_SECONDS | FORMAT_MINUTES | FORMAT_HOURS;
+
+    /**
+     * Flag indicating that all date units (greater than hours) must be used when
+     * formatting a time instance.
+     */
+    public static final int FORMAT_DATE_ALL = FORMAT_DAYS | FORMAT_WEEKS | FORMAT_MONTHS | FORMAT_YEARS
+            | FORMAT_CENTURIES;
+
+    /**
+     * Flag indicating that standard date units (days, months and years) must be
+     * used when formatting a time instance.
+     */
+    public static final int FORMAT_DATE_STANDARD = FORMAT_DAYS | FORMAT_MONTHS | FORMAT_YEARS;
+
+    /**
+     * Nanosecond symbol.
+     */
+    public static final String NANOSECOND_SYMBOL = &quot;ns&quot;;
+
+    /**
+     * Microsecond symbol.
+     */
+    public static final String MICROSECOND_SYMBOL = &quot;µs&quot;;
+
+    /**
+     * Millisecond symbol.
+     */
+    public static final String MILLISECOND_SYMBOL = &quot;ms&quot;;
+
+    /**
+     * Second symbol.
+     */
+    public static final String SECOND_SYMBOL = &quot;s&quot;;
+
+    /**
+     * Minute symbol.
+     */
+    public static final String MINUTE_SYMBOL = &quot;min&quot;;
+
+    /**
+     * Hour symbol.
+     */
+    public static final String HOUR_SYMBOL = &quot;h&quot;;
+
+    /**
+     * Day symbol.
+     */
+    public static final String DAY_SYMBOL = &quot;d&quot;;
+
+    /**
+     * Week symbol.
+     */
+    public static final String WEEK_SYMBOL = &quot;wk&quot;;
+
+    /**
+     * Month symbol.
+     */
+    public static final String MONTH_SYMBOL = &quot;mon&quot;;
+
+    /**
+     * Year symbol.
+     */
+    public static final String YEAR_SYMBOL = &quot;yr&quot;;
+
+    /**
+     * n-th century symbol.
+     */
+    public static final String CENTURY_SYMBOL = &quot;th c.&quot;;
+
+    /**
+     * Bit position of the {@link #FORMAT_SECONDS} flag.
+     */
+    private static final int SECONDS_BIT = 3;
+
+    /**
+     * Bit position of the {@link #FORMAT_MINUTES} flag.
+     */
+    private static final int MINUTES_BIT = 4;
+
+    /**
+     * Bit position of the {@link #FORMAT_HOURS} flag.
+     */
+    private static final int HOURS_BIT = 5;
+
+    /**
+     * Bit position of the {@link #FORMAT_DAYS} flag.
+     */
+    private static final int DAYS_BIT = 6;
+
+    /**
+     * Bit position of the {@link #FORMAT_WEEKS} flag.
+     */
+    private static final int WEEKS_BIT = 7;
+
+    /**
+     * Bit position of the {@link #FORMAT_MONTHS} flag.
+     */
+    private static final int MONTHS_BIT = 8;
+
+    /**
+     * Bit position of the {@link #FORMAT_YEARS} flag.
+     */
+    private static final int YEARS_BIT = 9;
+
+    /**
+     * Bit position of the {@link #FORMAT_CENTURIES} flag.
+     */
+    private static final int CENTURIES_BIT = 10;
+
+    /**
+     * First century symbol.
+     */
+    private static final String FIRST_CENTURY_SYMBOL = &quot;st c.&quot;;
+
+    /**
+     * Second century symbol.
+     */
+    private static final String SECOND_CENTURY_SYMBOL = &quot;nd c.&quot;;
+
+    /**
+     * Third century symbol.
+     */
+    private static final String THIRD_CENTURY_SIMBOL = &quot;rd c.&quot;;
+
+    /**
+     * Default pattern to format centuries.
+     * {0} corresponds to the value, {1} corresponds to the unit part.
+     */
+    private static final String CENTURY_FORMAT_PATTERN = &quot;{0}{1}&quot;;
+
+    /**
+     * Minimum number of digits for hours and minutes.
+     */
+    private static final int INTEGER_DIGITS = 2;
+
+    /**
+     * Pattern to format hour and minutes (hh:mm.s).
+     */
+    private static final String HOUR_MINUTE_PATTERN = &quot;^(\\d+):(\\d{2,})$&quot;;
+
+
+    /**
+     * Pattern to format hour, minutes and seconds (hh:mm:ss.ms).
+     */
+    private static final String HOUR_MINUTE_SECOND_PATTERN = &quot;^(\\d+):(\\d{2}):(\\d{2,})$&quot;;
+
+    /**
+     * Pattern to parse 1st century format.
+     */
+    private static final String FIRST_CENTURY_PATTERN = &quot;(.*)(\\s+)(\\d+)(\\s?st c.)(\\s+)(.*)&quot;;
+
+    /**
+     * Pattern to parse 2nd century format.
+     */
+    private static final String SECOND_CENTURY_PATTERN = &quot;(.*)(\\s+)(\\d+)(\\s?nd c.)(\\s+)(.*)&quot;;
+
+    /**
+     * Pattern to parse 3rd century format.
+     */
+    private static final String THIRD_CENTURY_PATTERN = &quot;(.*)(\\s+)(\\d+)(\\s?rd c.)(\\s+)(.*)&quot;;
+
+    /**
+     * Pattern to parse n-th century format.
+     */
+    private static final String CENTURY_PATTERN = &quot;(.*)(\\s+)(\\d+)(\\s?th c.)(\\s+)(.*)&quot;;
+
+    /**
+     * Pattern to parse year format.
+     */
+    private static final String YEAR_PATTERN = &quot;(.*)(\\s+)(\\d+)(\\s?yr)(\\s+)(.*)&quot;;
+
+    /**
+     * Pattern to parse month format.
+     */
+    private static final String MONTH_PATTERN = &quot;(.*)(\\s+)(\\d+)(\\s?mon)(\\s+)(.*)&quot;;
+
+    /**
+     * Pattern to parse week format.
+     */
+    private static final String WEEK_PATTERN = &quot;(.*)(\\s+)(\\d+)(\\s?wk)(\\s+)(.*)&quot;;
+
+    /**
+     * Pattern to parse day format.
+     */
+    private static final String DAY_PATTERN = &quot;(.*)(\\s+)(\\d+)(\\s?d)(\\s+)(.*)&quot;;
+
+    /**
+     * Pattern to parse hour format.
+     */
+    private static final String HOUR_PATTERN = &quot;(.*)(\\s+)(\\d+)(\\s?h)(\\s+)(.*)&quot;;
+
+    /**
+     * Pattern to parse minute format.
+     */
+    private static final String MINUTE_PATTERN = &quot;(.*)(\\s+)(\\d+)(\\s?min)(\\s+)(.*)&quot;;
+
+    /**
+     * Pattern to parse second format.
+     */
+    private static final String SECOND_PATTERN = &quot;(.*)(\\s+)(\\d+)(\\s?s)(\\s+)(.*)&quot;;
+
+    /**
+     * Pattern to parse millisecond format.
+     */
+    private static final String MILLISECOND_PATTERN = &quot;(.*)(\\s+)(\\d+)(\\s?ms)(\\s+)(.*)&quot;;
+
+    /**
+     * Pattern to parse microsecond format.
+     */
+    private static final String MICROSECOND_PATTERN = &quot;(.*)(\\s+)(\\d+)(\\s?µs)(\\s+)(.*)&quot;;
+
+    /**
+     * Pattern to parse nanosecond format.
+     */
+    private static final String NANOSECOND_PATTERN = &quot;(.*)(\\s+)(\\d+)(\\s?ns)(\\s+)(.*)&quot;;
+
+    /**
+     * Defines a space.
+     */
+    private static final String SPACE = &quot; &quot;;
+
+    /**
+     * Colon separator used in hour, minute and second formats.
+     */
+    private static final String COLON = &quot;:&quot;;
+
+    /**
+     * Maximum absolute value of centuries that is still formatted using the third century symbol.
+     */
+    private static final double THIRD_CENTURY_LIMIT = 3.0;
+
+    /**
+     * Index of the regular expression group containing the numeric value when parsing a unit.
+     */
+    private static final int VALUE_GROUP = 3;
+
+    /**
+     * Index of the amount to be shown for a given unit within the array returned when splitting units.
+     */
+    private static final int VALUE_INDEX = 0;
+
+    /**
+     * Index of the remainder to be expressed using smaller units within the array returned when splitting units.
+     */
+    private static final int DIFF_INDEX = 1;
+
+    /**
+     * Pattern to parse time in hour and minute format (hh:mm.s).
+     */
+    private Pattern hourMinutePattern;
+
+    /**
+     * Pattern to parse time in hour, minute and second format (hh:mm:ss.ms).
+     */
+    private Pattern hourMinuteSecondPattern;
+
+    /**
+     * Pattern to parse 1st century format.
+     */
+    private Pattern firstCenturyPattern;
+
+    /**
+     * Pattern to parse 2nd century format.
+     */
+    private Pattern secondCenturyPattern;
+
+    /**
+     * Pattern to parse 3rd century format.
+     */
+    private Pattern thirdCenturyPattern;
+
+    /**
+     * Pattern to parse n-th century format.
+     */
+    private Pattern centuryPattern;
+
+    /**
+     * Pattern to parse year format.
+     */
+    private Pattern yearPattern;
+
+    /**
+     * Pattern to parse month format.
+     */
+    private Pattern monthPattern;
+
+    /**
+     * Pattern to parse week format.
+     */
+    private Pattern weekPattern;
+
+    /**
+     * Pattern to parse day format.
+     */
+    private Pattern dayPattern;
+
+    /**
+     * Pattern to parse hour format.
+     */
+    private Pattern hourPattern;
+
+    /**
+     * Pattern to parse minute format.
+     */
+    private Pattern minutePattern;
+
+    /**
+     * Pattern to parse second format.
+     */
+    private Pattern secondPattern;
+
+    /**
+     * Pattern to parse millisecond format.
+     */
+    private Pattern millisecondPattern;
+
+    /**
+     * Pattern to parse microsecond format.
+     */
+    private Pattern microsecondPattern;
+
+    /**
+     * Pattern to parse nanosecond format.
+     */
+    private Pattern nanosecondPattern;
+
+    /**
+     * Constructor.
+     */
+    @SuppressWarnings(&quot;WeakerAccess&quot;)
+    public TimeFormatter() {
+<span class="fc" id="L448">        super();</span>
+<span class="fc" id="L449">    }</span>
+
+    /**
+     * Constructor with locale.
+     *
+     * @param locale locale.
+     * @throws IllegalArgumentException if locale is null.
+     */
+    @SuppressWarnings(&quot;WeakerAccess&quot;)
+    public TimeFormatter(final Locale locale) {
+<span class="fc" id="L459">        super(locale);</span>
+<span class="fc" id="L460">    }</span>
+
+    /**
+     * Copy constructor.
+     *
+     * @param formatter input instance to copy from.
+     * @throws NullPointerException if provided formatter is null.
+     */
+    public TimeFormatter(final TimeFormatter formatter) {
+<span class="fc" id="L469">        this(formatter.getLocale());</span>
+<span class="fc" id="L470">        hourMinutePattern = formatter.hourMinutePattern;</span>
+<span class="fc" id="L471">        hourMinuteSecondPattern = formatter.hourMinuteSecondPattern;</span>
+<span class="fc" id="L472">        firstCenturyPattern = formatter.firstCenturyPattern;</span>
+<span class="fc" id="L473">        secondCenturyPattern = formatter.secondCenturyPattern;</span>
+<span class="fc" id="L474">        thirdCenturyPattern = formatter.thirdCenturyPattern;</span>
+<span class="fc" id="L475">        centuryPattern = formatter.centuryPattern;</span>
+<span class="fc" id="L476">        yearPattern = formatter.yearPattern;</span>
+<span class="fc" id="L477">        monthPattern = formatter.monthPattern;</span>
+<span class="fc" id="L478">        weekPattern = formatter.weekPattern;</span>
+<span class="fc" id="L479">        dayPattern = formatter.dayPattern;</span>
+<span class="fc" id="L480">        hourPattern = formatter.hourPattern;</span>
+<span class="fc" id="L481">        minutePattern = formatter.minutePattern;</span>
+<span class="fc" id="L482">        secondPattern = formatter.secondPattern;</span>
+<span class="fc" id="L483">        millisecondPattern = formatter.millisecondPattern;</span>
+<span class="fc" id="L484">        microsecondPattern = formatter.microsecondPattern;</span>
+<span class="fc" id="L485">        nanosecondPattern = formatter.nanosecondPattern;</span>
+<span class="fc" id="L486">    }</span>
+
+    /**
+     * Determines if two time formatters are equal by comparing all of its internal parameters.
+     *
+     * @param obj another object to compare.
+     * @return true if provided object is assumed to be equal to this instance.
+     */
+    @Override
+    public boolean equals(final Object obj) {
+<span class="fc" id="L496">        final var equals = super.equals(obj);</span>
+<span class="fc bfc" id="L497" title="All 4 branches covered.">        return (obj instanceof TimeFormatter) &amp;&amp; equals;</span>
+    }
+
+    /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare objects.
+     * This implementation only calls parent implementation to avoid static analyzer warning.
+     * It is kept because {@link #equals(Object)} is overridden, so both
+     * methods remain consistent.
+     *
+     * @return hash code.
+     */
+    @Override
+    @SuppressWarnings(&quot;PMD.UselessOverridingMethod&quot;)
+    public int hashCode() {
+<span class="fc" id="L512">        return super.hashCode();</span>
+    }
+
+    /**
+     * Gets unit system for detected unit into provided string representation
+     * of a measurement.
+     *
+     * @param source a measurement string representation to be checked.
+     * @return returns metric system only for units belonging to the International
+     * System of units.
+     */
+    @Override
+    public UnitSystem getUnitSystem(final String source) {
+<span class="fc" id="L525">        final var unit = findUnit(source);</span>
+        try {
+<span class="pc bpc" id="L527" title="1 of 2 branches missed.">            return unit != null ? TimeUnit.getUnitSystem(unit) : null;</span>
+<span class="fc" id="L528">        } catch (final IllegalArgumentException e) {</span>
+<span class="fc" id="L529">            return null;</span>
+        }
+    }
+
+    /**
+     * Formats provided time value and unit into a string representation.
+     *
+     * @param value a time value.
+     * @param unit  a time unit.
+     * @return string representation of provided measurement value and unit.
+     */
+    @Override
+    public String format(final Number value, final TimeUnit unit) {
+<span class="fc bfc" id="L542" title="All 2 branches covered.">        if (unit == TimeUnit.CENTURY) {</span>
+<span class="fc" id="L543">            final var v = value.doubleValue();</span>
+
+            final String symbol;
+<span class="fc bfc" id="L546" title="All 2 branches covered.">            if (Math.abs(v) &lt;= 1.0) {</span>
+<span class="fc" id="L547">                symbol = FIRST_CENTURY_SYMBOL;</span>
+<span class="fc bfc" id="L548" title="All 2 branches covered.">            } else if (Math.abs(v) &lt;= 2.0) {</span>
+<span class="fc" id="L549">                symbol = SECOND_CENTURY_SYMBOL;</span>
+<span class="fc bfc" id="L550" title="All 2 branches covered.">            } else if (Math.abs(v) &lt;= THIRD_CENTURY_LIMIT) {</span>
+<span class="fc" id="L551">                symbol = THIRD_CENTURY_SIMBOL;</span>
+            } else {
+<span class="fc" id="L553">                symbol = CENTURY_SYMBOL;</span>
+            }
+<span class="fc" id="L555">            return MessageFormat.format(CENTURY_FORMAT_PATTERN, getNumberFormat().format(value), symbol);</span>
+        } else {
+<span class="fc" id="L557">            return super.format(value, unit);</span>
+        }
+    }
+
+    /**
+     * Formats provided time value and unit into a string representation
+     * and appends the result into provided string buffer.
+     *
+     * @param value      a time value.
+     * @param unit       a time unit.
+     * @param toAppendTo buffer to append the result to.
+     * @param pos        field position where result will be appended.
+     * @return provided string buffer where result is appended.
+     */
+    @Override
+    public StringBuffer format(
+            final Number value, final TimeUnit unit, final StringBuffer toAppendTo, final FieldPosition pos) {
+<span class="fc bfc" id="L574" title="All 2 branches covered.">        if (unit == TimeUnit.CENTURY) {</span>
+<span class="fc" id="L575">            final var v = value.doubleValue();</span>
+
+            final String symbol;
+<span class="fc bfc" id="L578" title="All 2 branches covered.">            if (Math.abs(v) &lt;= 1.0) {</span>
+<span class="fc" id="L579">                symbol = FIRST_CENTURY_SYMBOL;</span>
+<span class="fc bfc" id="L580" title="All 2 branches covered.">            } else if (Math.abs(v) &lt;= 2.0) {</span>
+<span class="fc" id="L581">                symbol = SECOND_CENTURY_SYMBOL;</span>
+<span class="fc bfc" id="L582" title="All 2 branches covered.">            } else if (Math.abs(v) &lt;= THIRD_CENTURY_LIMIT) {</span>
+<span class="fc" id="L583">                symbol = THIRD_CENTURY_SIMBOL;</span>
+            } else {
+<span class="fc" id="L585">                symbol = CENTURY_SYMBOL;</span>
+            }
+
+<span class="fc" id="L588">            final var format = new MessageFormat(CENTURY_FORMAT_PATTERN);</span>
+<span class="fc" id="L589">            return format.format(new Object[]{getNumberFormat().format(value), symbol}, toAppendTo, pos);</span>
+        } else {
+<span class="fc" id="L591">            return super.format(value, unit, toAppendTo, pos);</span>
+        }
+    }
+
+    /**
+     * Formats and converts provided time value and unit.
+     * Unit system is ignored since time is always expressed in metric system,
+     * but some units might not belong to the international system of units.
+     * If provided value is too large for provided unit, this method will
+     * convert it to a more appropriate unit.
+     *
+     * @param value  a measurement value.
+     * @param unit   a measurement unit.
+     * @param system it is ignored.
+     * @return a string representation of measurement value and unit.
+     */
+    @Override
+    public String formatAndConvert(
+            final Number value, final TimeUnit unit, final UnitSystem system) {
+<span class="fc" id="L610">        final var v = value.doubleValue();</span>
+
+<span class="fc" id="L612">        final var nanoseconds = TimeConverter.convert(v, unit, TimeUnit.NANOSECOND);</span>
+<span class="fc bfc" id="L613" title="All 2 branches covered.">        if (Math.abs(nanoseconds) &lt; (TimeConverter.SECONDS_PER_MICROSECOND / TimeConverter.SECONDS_PER_NANOSECOND)) {</span>
+<span class="fc" id="L614">            return format(nanoseconds, TimeUnit.NANOSECOND);</span>
+        }
+
+<span class="fc" id="L617">        final var microseconds = TimeConverter.convert(v, unit, TimeUnit.MICROSECOND);</span>
+<span class="fc bfc" id="L618" title="All 2 branches covered.">        if (Math.abs(microseconds) &lt; (TimeConverter.SECONDS_PER_MILLISECOND / TimeConverter.SECONDS_PER_MICROSECOND)) {</span>
+<span class="fc" id="L619">            return format(microseconds, TimeUnit.MICROSECOND);</span>
+        }
+
+<span class="fc" id="L622">        final var milliseconds = TimeConverter.convert(v, unit, TimeUnit.MILLISECOND);</span>
+<span class="fc bfc" id="L623" title="All 2 branches covered.">        if (Math.abs(milliseconds) &lt; (1.0 / TimeConverter.SECONDS_PER_MILLISECOND)) {</span>
+<span class="fc" id="L624">            return format(milliseconds, TimeUnit.MILLISECOND);</span>
+        }
+
+<span class="fc" id="L627">        final var seconds = TimeConverter.convert(v, unit, TimeUnit.SECOND);</span>
+<span class="fc bfc" id="L628" title="All 2 branches covered.">        if (Math.abs(seconds) &lt; TimeConverter.SECONDS_PER_MINUTE) {</span>
+<span class="fc" id="L629">            return format(seconds, TimeUnit.SECOND);</span>
+        }
+
+<span class="fc" id="L632">        final var minutes = TimeConverter.convert(v, unit, TimeUnit.MINUTE);</span>
+<span class="fc bfc" id="L633" title="All 2 branches covered.">        if (Math.abs(minutes) &lt; (TimeConverter.SECONDS_PER_HOUR / TimeConverter.SECONDS_PER_MINUTE)) {</span>
+<span class="fc" id="L634">            return format(minutes, TimeUnit.MINUTE);</span>
+        }
+
+<span class="fc" id="L637">        final var hours = TimeConverter.convert(v, unit, TimeUnit.HOUR);</span>
+<span class="fc bfc" id="L638" title="All 2 branches covered.">        if (Math.abs(hours) &lt; (TimeConverter.SECONDS_PER_DAY / TimeConverter.SECONDS_PER_HOUR)) {</span>
+<span class="fc" id="L639">            return format(hours, TimeUnit.HOUR);</span>
+        }
+
+<span class="fc" id="L642">        final var days = TimeConverter.convert(v, unit, TimeUnit.DAY);</span>
+<span class="fc bfc" id="L643" title="All 2 branches covered.">        if (Math.abs(days) &lt; (TimeConverter.SECONDS_PER_WEEK / TimeConverter.SECONDS_PER_DAY)) {</span>
+<span class="fc" id="L644">            return format(days, TimeUnit.DAY);</span>
+        }
+
+<span class="fc" id="L647">        final var weeks = TimeConverter.convert(v, unit, TimeUnit.WEEK);</span>
+<span class="fc bfc" id="L648" title="All 2 branches covered.">        if (Math.abs(weeks) &lt; (TimeConverter.SECONDS_PER_MONTH / TimeConverter.SECONDS_PER_WEEK)) {</span>
+<span class="fc" id="L649">            return format(weeks, TimeUnit.WEEK);</span>
+        }
+
+<span class="fc" id="L652">        final var months = TimeConverter.convert(v, unit, TimeUnit.MONTH);</span>
+<span class="fc bfc" id="L653" title="All 2 branches covered.">        if (Math.abs(months) &lt; (TimeConverter.SECONDS_PER_YEAR / TimeConverter.SECONDS_PER_MONTH)) {</span>
+<span class="fc" id="L654">            return format(months, TimeUnit.MONTH);</span>
+        }
+
+<span class="fc" id="L657">        final var years = TimeConverter.convert(v, unit, TimeUnit.YEAR);</span>
+<span class="fc bfc" id="L658" title="All 2 branches covered.">        if (Math.abs(years) &lt; (TimeConverter.SECONDS_PER_CENTURY / TimeConverter.SECONDS_PER_YEAR)) {</span>
+<span class="fc" id="L659">            return format(years, TimeUnit.YEAR);</span>
+        }
+
+<span class="fc" id="L662">        final var centuries = TimeConverter.convert(v, unit, TimeUnit.CENTURY);</span>
+<span class="fc" id="L663">        return format(centuries, TimeUnit.CENTURY);</span>
+    }
+
+    /**
+     * Returns unit system this instance will use based on its assigned locale.
+     *
+     * @return always returns metric system
+     */
+    @Override
+    public UnitSystem getUnitSystem() {
+<span class="fc" id="L673">        return UnitSystem.METRIC;</span>
+    }
+
+
+    /**
+     * Parses provided string and tries to determine a time value and unit.
+     *
+     * @param source text to be parsed.
+     * @return time containing a value and unit.
+     * @throws ParseException       if provided string cannot be parsed.
+     * @throws UnknownUnitException if unit cannot be determined.
+     */
+    @Override
+    public Time parse(final String source) throws ParseException, UnknownUnitException {
+<span class="fc" id="L687">        return internalParse(source, new Time());</span>
+    }
+
+    /**
+     * Attempts to determine a time unit within a measurement string
+     * representation.
+     *
+     * @param source a measurement string representation.
+     * @return a time unit, or null if none can be determined.
+     */
+    @Override
+    public TimeUnit findUnit(final String source) {
+<span class="fc bfc" id="L699" title="All 2 branches covered.">        if (containsSymbol(source, NANOSECOND_SYMBOL)) {</span>
+<span class="fc" id="L700">            return TimeUnit.NANOSECOND;</span>
+        }
+<span class="fc bfc" id="L702" title="All 2 branches covered.">        if (containsSymbol(source, MICROSECOND_SYMBOL)) {</span>
+<span class="fc" id="L703">            return TimeUnit.MICROSECOND;</span>
+        }
+<span class="fc bfc" id="L705" title="All 2 branches covered.">        if (containsSymbol(source, MILLISECOND_SYMBOL)) {</span>
+<span class="fc" id="L706">            return TimeUnit.MILLISECOND;</span>
+        }
+<span class="fc bfc" id="L708" title="All 2 branches covered.">        if (containsSymbol(source, SECOND_SYMBOL)) {</span>
+<span class="fc" id="L709">            return TimeUnit.SECOND;</span>
+        }
+<span class="fc bfc" id="L711" title="All 2 branches covered.">        if (containsSymbol(source, MINUTE_SYMBOL)) {</span>
+<span class="fc" id="L712">            return TimeUnit.MINUTE;</span>
+        }
+<span class="fc bfc" id="L714" title="All 2 branches covered.">        if (containsSymbol(source, WEEK_SYMBOL)) {</span>
+<span class="fc" id="L715">            return TimeUnit.WEEK;</span>
+        }
+<span class="fc bfc" id="L717" title="All 2 branches covered.">        if (containsSymbol(source, MONTH_SYMBOL)) {</span>
+<span class="fc" id="L718">            return TimeUnit.MONTH;</span>
+        }
+<span class="fc bfc" id="L720" title="All 2 branches covered.">        if (containsSymbol(source, YEAR_SYMBOL)) {</span>
+<span class="fc" id="L721">            return TimeUnit.YEAR;</span>
+        }
+<span class="fc bfc" id="L723" title="All 4 branches covered.">        if (source.contains(CENTURY_SYMBOL) || source.contains(FIRST_CENTURY_SYMBOL)</span>
+<span class="fc bfc" id="L724" title="All 4 branches covered.">                || source.contains(SECOND_CENTURY_SYMBOL) || source.contains(THIRD_CENTURY_SIMBOL)) {</span>
+<span class="fc" id="L725">            return TimeUnit.CENTURY;</span>
+        }
+
+<span class="fc bfc" id="L728" title="All 2 branches covered.">        if (containsSymbol(source, DAY_SYMBOL)) {</span>
+<span class="fc" id="L729">            return TimeUnit.DAY;</span>
+        }
+<span class="fc bfc" id="L731" title="All 2 branches covered.">        if (containsSymbol(source, HOUR_SYMBOL)) {</span>
+<span class="fc" id="L732">            return TimeUnit.HOUR;</span>
+        }
+
+<span class="fc" id="L735">        return null;</span>
+    }
+
+    /**
+     * Returns unit string representation.
+     *
+     * @param unit a measure unit.
+     * @return its string representation.
+     */
+    @Override
+    public String getUnitSymbol(final TimeUnit unit) {
+<span class="fc bfc" id="L746" title="All 11 branches covered.">        return switch (unit) {</span>
+<span class="fc" id="L747">            case NANOSECOND -&gt; NANOSECOND_SYMBOL;</span>
+<span class="fc" id="L748">            case MICROSECOND -&gt; MICROSECOND_SYMBOL;</span>
+<span class="fc" id="L749">            case MILLISECOND -&gt; MILLISECOND_SYMBOL;</span>
+<span class="fc" id="L750">            case MINUTE -&gt; MINUTE_SYMBOL;</span>
+<span class="fc" id="L751">            case HOUR -&gt; HOUR_SYMBOL;</span>
+<span class="fc" id="L752">            case DAY -&gt; DAY_SYMBOL;</span>
+<span class="fc" id="L753">            case WEEK -&gt; WEEK_SYMBOL;</span>
+<span class="fc" id="L754">            case MONTH -&gt; MONTH_SYMBOL;</span>
+<span class="fc" id="L755">            case YEAR -&gt; YEAR_SYMBOL;</span>
+<span class="fc" id="L756">            case CENTURY -&gt; CENTURY_SYMBOL;</span>
+<span class="fc" id="L757">            default -&gt; SECOND_SYMBOL;</span>
+        };
+    }
+
+    /**
+     * Formats time instance using hour and minute format (hh:mm.ms).
+     *
+     * @param time time to be formatted.
+     * @return a string representation of provided time instance using hour and
+     * minute format (hh:mm.ms).
+     */
+    public String formatHourMinute(final Time time) {
+<span class="fc" id="L769">        final var exactHours = TimeConverter.convert(time.getValue().doubleValue(), time.getUnit(), TimeUnit.HOUR);</span>
+<span class="fc" id="L770">        final var hours = Math.floor(exactHours);</span>
+<span class="fc" id="L771">        final var diffHours = exactHours - hours;</span>
+
+<span class="fc" id="L773">        final var minutes = TimeConverter.convert(diffHours, TimeUnit.HOUR, TimeUnit.MINUTE);</span>
+
+<span class="fc" id="L775">        final var hourFormat = NumberFormat.getInstance(getLocale());</span>
+<span class="fc" id="L776">        hourFormat.setMinimumIntegerDigits(INTEGER_DIGITS);</span>
+<span class="fc" id="L777">        hourFormat.setMinimumFractionDigits(0);</span>
+<span class="fc" id="L778">        hourFormat.setMaximumFractionDigits(0);</span>
+
+<span class="fc" id="L780">        final var minuteFormat = NumberFormat.getInstance(getLocale());</span>
+<span class="fc" id="L781">        minuteFormat.setMinimumIntegerDigits(INTEGER_DIGITS);</span>
+<span class="fc" id="L782">        minuteFormat.setMaximumIntegerDigits(INTEGER_DIGITS);</span>
+
+<span class="fc" id="L784">        final var nf = getNumberFormat();</span>
+<span class="fc" id="L785">        hourFormat.setMaximumIntegerDigits(nf.getMaximumIntegerDigits());</span>
+<span class="fc" id="L786">        hourFormat.setRoundingMode(nf.getRoundingMode());</span>
+<span class="fc" id="L787">        hourFormat.setGroupingUsed(nf.isGroupingUsed());</span>
+
+<span class="fc" id="L789">        minuteFormat.setMinimumFractionDigits(nf.getMinimumFractionDigits());</span>
+<span class="fc" id="L790">        minuteFormat.setMaximumFractionDigits(nf.getMaximumFractionDigits());</span>
+<span class="fc" id="L791">        minuteFormat.setRoundingMode(nf.getRoundingMode());</span>
+<span class="fc" id="L792">        minuteFormat.setGroupingUsed(nf.isGroupingUsed());</span>
+<span class="fc" id="L793">        return hourFormat.format(hours) + COLON + minuteFormat.format(minutes);</span>
+    }
+
+    /**
+     * Parses provided string representation using hour and minute format (hh:mm).
+     * Note: decimals are not accepted on either hour or minute values.
+     *
+     * @param source string to be parsed.
+     * @return parsed time.
+     * @throws ParseException       if parsing fails.
+     * @throws UnknownUnitException if format is not recognized.
+     */
+    public Time parseHourMinute(final CharSequence source)
+            throws ParseException, UnknownUnitException {
+<span class="fc bfc" id="L807" title="All 2 branches covered.">        if (hourMinutePattern == null) {</span>
+<span class="fc" id="L808">            hourMinutePattern = Pattern.compile(HOUR_MINUTE_PATTERN);</span>
+        }
+
+<span class="fc" id="L811">        final var matcher = hourMinutePattern.matcher(source);</span>
+<span class="fc bfc" id="L812" title="All 2 branches covered.">        if (!matcher.matches()) {</span>
+<span class="fc" id="L813">            throw new UnknownUnitException();</span>
+        }
+
+<span class="fc" id="L816">        final var hourString = matcher.group(1);</span>
+<span class="fc" id="L817">        final var minuteString = matcher.group(2);</span>
+
+<span class="fc" id="L819">        final var hour = getNumberFormat().parse(hourString);</span>
+<span class="fc" id="L820">        final var minute = getNumberFormat().parse(minuteString);</span>
+
+<span class="fc" id="L822">        final var result = new Time(hour, TimeUnit.HOUR);</span>
+<span class="fc" id="L823">        TimeConverter.convert(result, TimeUnit.MINUTE);</span>
+<span class="fc" id="L824">        result.add(new Time(minute, TimeUnit.MINUTE));</span>
+<span class="fc" id="L825">        return result;</span>
+    }
+
+    /**
+     * Formats this instance using hour, minute and second format (hh:mm::ss.ms).
+     *
+     * @param time time to be formatted.
+     * @return a string representation of provided time instance using hour, minute
+     * and second format (hh:mm:ss.ms).
+     */
+    public String formatHourMinuteSecond(final Time time) {
+<span class="fc" id="L836">        final var exactHours = TimeConverter.convert(time.getValue().doubleValue(), time.getUnit(), TimeUnit.HOUR);</span>
+<span class="fc" id="L837">        final var hours = Math.floor(exactHours);</span>
+<span class="fc" id="L838">        final var diffHours = exactHours - hours;</span>
+
+<span class="fc" id="L840">        final var exactMinutes = TimeConverter.convert(diffHours, TimeUnit.HOUR, TimeUnit.MINUTE);</span>
+<span class="fc" id="L841">        final var minutes = Math.floor(exactMinutes);</span>
+<span class="fc" id="L842">        final var diffMinutes = exactMinutes - minutes;</span>
+
+<span class="fc" id="L844">        final var seconds = TimeConverter.convert(diffMinutes, TimeUnit.MINUTE, TimeUnit.SECOND);</span>
+
+<span class="fc" id="L846">        final var hourFormat = NumberFormat.getInstance(getLocale());</span>
+<span class="fc" id="L847">        hourFormat.setMinimumIntegerDigits(INTEGER_DIGITS);</span>
+<span class="fc" id="L848">        hourFormat.setMinimumFractionDigits(0);</span>
+<span class="fc" id="L849">        hourFormat.setMaximumFractionDigits(0);</span>
+
+<span class="fc" id="L851">        final var minuteFormat = NumberFormat.getInstance(getLocale());</span>
+<span class="fc" id="L852">        minuteFormat.setMinimumIntegerDigits(INTEGER_DIGITS);</span>
+<span class="fc" id="L853">        minuteFormat.setMinimumFractionDigits(0);</span>
+<span class="fc" id="L854">        minuteFormat.setMaximumFractionDigits(0);</span>
+
+<span class="fc" id="L856">        final var secondFormat = NumberFormat.getInstance(getLocale());</span>
+<span class="fc" id="L857">        secondFormat.setMinimumIntegerDigits(INTEGER_DIGITS);</span>
+<span class="fc" id="L858">        secondFormat.setMaximumIntegerDigits(INTEGER_DIGITS);</span>
+
+<span class="fc" id="L860">        final var nf = getNumberFormat();</span>
+<span class="fc" id="L861">        hourFormat.setMaximumIntegerDigits(nf.getMaximumIntegerDigits());</span>
+<span class="fc" id="L862">        hourFormat.setRoundingMode(nf.getRoundingMode());</span>
+<span class="fc" id="L863">        hourFormat.setGroupingUsed(nf.isGroupingUsed());</span>
+
+<span class="fc" id="L865">        minuteFormat.setMaximumIntegerDigits(nf.getMaximumIntegerDigits());</span>
+<span class="fc" id="L866">        minuteFormat.setRoundingMode(nf.getRoundingMode());</span>
+<span class="fc" id="L867">        minuteFormat.setGroupingUsed(nf.isGroupingUsed());</span>
+
+<span class="fc" id="L869">        secondFormat.setMinimumFractionDigits(nf.getMinimumFractionDigits());</span>
+<span class="fc" id="L870">        secondFormat.setMaximumFractionDigits(nf.getMaximumFractionDigits());</span>
+<span class="fc" id="L871">        secondFormat.setRoundingMode(nf.getRoundingMode());</span>
+<span class="fc" id="L872">        secondFormat.setGroupingUsed(nf.isGroupingUsed());</span>
+<span class="fc" id="L873">        return hourFormat.format(hours) + COLON + minuteFormat.format(minutes) + COLON + secondFormat.format(seconds);</span>
+    }
+
+    /**
+     * Parses provided string representation using hour, minute and second format (hh:mm:ss).
+     * Note: decimals are not accepted on either hour, minute or seconds values
+     *
+     * @param source string to be parsed.
+     * @return parsed time.
+     * @throws ParseException       if parsing fails.
+     * @throws UnknownUnitException if format is not recognized.
+     */
+    public Time parseHourMinuteSecond(final CharSequence source) throws ParseException, UnknownUnitException {
+<span class="fc bfc" id="L886" title="All 2 branches covered.">        if (hourMinuteSecondPattern == null) {</span>
+<span class="fc" id="L887">            hourMinuteSecondPattern = Pattern.compile(HOUR_MINUTE_SECOND_PATTERN);</span>
+        }
+
+<span class="fc" id="L890">        final var matcher = hourMinuteSecondPattern.matcher(source);</span>
+<span class="fc bfc" id="L891" title="All 2 branches covered.">        if (!matcher.matches()) {</span>
+<span class="fc" id="L892">            throw new UnknownUnitException();</span>
+        }
+
+<span class="fc" id="L895">        final var hourString = matcher.group(1);</span>
+<span class="fc" id="L896">        final var minuteString = matcher.group(2);</span>
+<span class="fc" id="L897">        final var secondString = matcher.group(3);</span>
+
+<span class="fc" id="L899">        final var hour = getNumberFormat().parse(hourString);</span>
+<span class="fc" id="L900">        final var minute = getNumberFormat().parse(minuteString);</span>
+<span class="fc" id="L901">        final var second = getNumberFormat().parse(secondString);</span>
+
+<span class="fc" id="L903">        final var result = new Time(hour, TimeUnit.HOUR);</span>
+<span class="fc" id="L904">        TimeConverter.convert(result, TimeUnit.MINUTE);</span>
+<span class="fc" id="L905">        result.add(new Time(minute, TimeUnit.MINUTE));</span>
+<span class="fc" id="L906">        TimeConverter.convert(result, TimeUnit.SECOND);</span>
+<span class="fc" id="L907">        result.add(new Time(second, TimeUnit.SECOND));</span>
+<span class="fc" id="L908">        return result;</span>
+    }
+
+    /**
+     * Formats provided time instance using required units as flags.
+     * Flags can be provided as bitwise combinations of FORMAT constants.
+     * Only non zero units will be included.
+     *
+     * @param time  time to be formatted.
+     * @param flags flags indicating units to include.
+     * @return formatted time.
+     */
+    public String formatMultiple(final Time time, final int flags) {
+<span class="fc" id="L921">        return formatMultiple(time, flags, true);</span>
+    }
+
+    /**
+     * Formats provided time instance using required units as flags.
+     * Flags can be provided as bitwise combinations of FORMAT constants.
+     *
+     * @param time        time to be formatted.
+     * @param flags       flags indicating units to include.
+     * @param onlyNonZero true indicates to include only non zero units, false to
+     *                    include all selected units even if they are zero.
+     * @return formatted time.
+     */
+    public String formatMultiple(final Time time, final int flags, final boolean onlyNonZero) {
+
+        // centuries
+<span class="fc" id="L937">        final var exactCenturies = TimeConverter.convert(time.getValue().doubleValue(), time.getUnit(),</span>
+                TimeUnit.CENTURY);
+<span class="fc" id="L939">        final var centuriesSplit = splitUnit(exactCenturies, flags, FORMAT_CENTURIES,</span>
+                FORMAT_YEARS | FORMAT_MONTHS | FORMAT_WEEKS | FORMAT_DAYS | FORMAT_HOURS | FORMAT_MINUTES
+                        | FORMAT_SECONDS | FORMAT_MILLISECONDS | FORMAT_MICROSECONDS | FORMAT_NANOSECONDS);
+<span class="fc" id="L942">        final var centuries = centuriesSplit[VALUE_INDEX];</span>
+
+        // years
+<span class="fc" id="L945">        final var exactYears = TimeConverter.convert(centuriesSplit[DIFF_INDEX], TimeUnit.CENTURY, TimeUnit.YEAR);</span>
+<span class="fc" id="L946">        final var yearsSplit = splitUnit(exactYears, flags, FORMAT_YEARS,</span>
+                FORMAT_MONTHS | FORMAT_WEEKS | FORMAT_DAYS | FORMAT_HOURS | FORMAT_MINUTES | FORMAT_SECONDS
+                        | FORMAT_MILLISECONDS | FORMAT_MICROSECONDS | FORMAT_NANOSECONDS);
+<span class="fc" id="L949">        final var years = yearsSplit[VALUE_INDEX];</span>
+
+        // months
+<span class="fc" id="L952">        final var exactMonths = TimeConverter.convert(yearsSplit[DIFF_INDEX], TimeUnit.YEAR, TimeUnit.MONTH);</span>
+<span class="fc" id="L953">        final var monthsSplit = splitUnit(exactMonths, flags, FORMAT_MONTHS,</span>
+                FORMAT_WEEKS | FORMAT_DAYS | FORMAT_HOURS | FORMAT_MINUTES | FORMAT_SECONDS
+                        | FORMAT_MILLISECONDS | FORMAT_MICROSECONDS | FORMAT_NANOSECONDS);
+<span class="fc" id="L956">        final var months = monthsSplit[VALUE_INDEX];</span>
+
+        // weeks
+<span class="fc" id="L959">        final var exactWeeks = TimeConverter.convert(monthsSplit[DIFF_INDEX], TimeUnit.MONTH, TimeUnit.WEEK);</span>
+<span class="fc" id="L960">        final var weeksSplit = splitUnit(exactWeeks, flags, FORMAT_WEEKS,</span>
+                FORMAT_DAYS | FORMAT_HOURS | FORMAT_MINUTES | FORMAT_SECONDS | FORMAT_MILLISECONDS
+                        | FORMAT_MICROSECONDS | FORMAT_NANOSECONDS);
+<span class="fc" id="L963">        final var weeks = weeksSplit[VALUE_INDEX];</span>
+
+        // days
+<span class="fc" id="L966">        final var exactDays = TimeConverter.convert(weeksSplit[DIFF_INDEX], TimeUnit.WEEK, TimeUnit.DAY);</span>
+<span class="fc" id="L967">        final var daysSplit = splitUnit(exactDays, flags, FORMAT_DAYS,</span>
+                FORMAT_HOURS | FORMAT_MINUTES | FORMAT_SECONDS | FORMAT_MILLISECONDS | FORMAT_MICROSECONDS
+                        | FORMAT_NANOSECONDS);
+<span class="fc" id="L970">        final var days = daysSplit[VALUE_INDEX];</span>
+
+        // hours
+<span class="fc" id="L973">        final var exactHours = TimeConverter.convert(daysSplit[DIFF_INDEX], TimeUnit.DAY, TimeUnit.HOUR);</span>
+<span class="fc" id="L974">        final var hoursSplit = splitUnit(exactHours, flags, FORMAT_HOURS,</span>
+                FORMAT_MINUTES | FORMAT_SECONDS | FORMAT_MILLISECONDS | FORMAT_MICROSECONDS | FORMAT_NANOSECONDS);
+<span class="fc" id="L976">        final var hours = hoursSplit[VALUE_INDEX];</span>
+
+        // minutes
+<span class="fc" id="L979">        final var exactMinutes = TimeConverter.convert(hoursSplit[DIFF_INDEX], TimeUnit.HOUR, TimeUnit.MINUTE);</span>
+<span class="fc" id="L980">        final var minutesSplit = splitUnit(exactMinutes, flags, FORMAT_MINUTES,</span>
+                FORMAT_SECONDS | FORMAT_MILLISECONDS | FORMAT_MICROSECONDS | FORMAT_NANOSECONDS);
+<span class="fc" id="L982">        final var minutes = minutesSplit[VALUE_INDEX];</span>
+
+        // seconds
+<span class="fc" id="L985">        final var exactSeconds = TimeConverter.convert(minutesSplit[DIFF_INDEX], TimeUnit.MINUTE, TimeUnit.SECOND);</span>
+<span class="fc" id="L986">        final var secondsSplit = splitUnit(exactSeconds, flags, FORMAT_SECONDS,</span>
+                FORMAT_MILLISECONDS | FORMAT_MICROSECONDS | FORMAT_NANOSECONDS);
+<span class="fc" id="L988">        final var seconds = secondsSplit[VALUE_INDEX];</span>
+
+        // milliseconds
+<span class="fc" id="L991">        final var exactMilliseconds = TimeConverter.convert(secondsSplit[DIFF_INDEX], TimeUnit.SECOND,</span>
+                TimeUnit.MILLISECOND);
+<span class="fc" id="L993">        final var millisecondsSplit = splitUnit(exactMilliseconds, flags, FORMAT_MILLISECONDS,</span>
+                FORMAT_MICROSECONDS | FORMAT_NANOSECONDS);
+<span class="fc" id="L995">        final var milliseconds = millisecondsSplit[VALUE_INDEX];</span>
+
+        // microseconds
+<span class="fc" id="L998">        final var exactMicroseconds = TimeConverter.convert(millisecondsSplit[DIFF_INDEX], TimeUnit.MILLISECOND,</span>
+                TimeUnit.MICROSECOND);
+<span class="fc" id="L1000">        final var microsecondsSplit = splitUnit(exactMicroseconds, flags, FORMAT_MICROSECONDS, FORMAT_NANOSECONDS);</span>
+<span class="fc" id="L1001">        final var microseconds = microsecondsSplit[VALUE_INDEX];</span>
+
+        // nanoseconds
+<span class="fc" id="L1004">        var nanoseconds = 0.0;</span>
+<span class="fc bfc" id="L1005" title="All 2 branches covered.">        if ((flags &amp; FORMAT_NANOSECONDS) != 0) {</span>
+<span class="fc" id="L1006">            nanoseconds = TimeConverter.convert(microsecondsSplit[DIFF_INDEX], TimeUnit.MICROSECOND,</span>
+                    TimeUnit.NANOSECOND);
+        }
+
+        // format result
+<span class="fc" id="L1011">        final var builder = new StringBuilder();</span>
+<span class="fc bfc" id="L1012" title="All 6 branches covered.">        if (((flags &amp; FORMAT_CENTURIES) != 0) &amp;&amp; (!onlyNonZero || centuries != 0.0)) {</span>
+<span class="fc" id="L1013">            builder.append(format(centuries, TimeUnit.CENTURY));</span>
+        }
+<span class="fc bfc" id="L1015" title="All 6 branches covered.">        if (((flags &amp; FORMAT_YEARS) != 0) &amp;&amp; (!onlyNonZero || years != 0.0)) {</span>
+<span class="fc" id="L1016">            appendSpaceIfNeeded(builder).append(format(years, TimeUnit.YEAR));</span>
+        }
+<span class="fc bfc" id="L1018" title="All 6 branches covered.">        if (((flags &amp; FORMAT_MONTHS) != 0) &amp;&amp; (!onlyNonZero || months != 0.0)) {</span>
+<span class="fc" id="L1019">            appendSpaceIfNeeded(builder).append(format(months, TimeUnit.MONTH));</span>
+        }
+<span class="fc bfc" id="L1021" title="All 6 branches covered.">        if (((flags &amp; FORMAT_WEEKS) != 0) &amp;&amp; (!onlyNonZero || weeks != 0.0)) {</span>
+<span class="fc" id="L1022">            appendSpaceIfNeeded(builder).append(format(weeks, TimeUnit.WEEK));</span>
+        }
+<span class="fc bfc" id="L1024" title="All 6 branches covered.">        if (((flags &amp; FORMAT_DAYS) != 0) &amp;&amp; (!onlyNonZero || days != 0.0)) {</span>
+<span class="fc" id="L1025">            appendSpaceIfNeeded(builder).append(</span>
+<span class="fc" id="L1026">                    format(days, TimeUnit.DAY));</span>
+        }
+<span class="fc bfc" id="L1028" title="All 6 branches covered.">        if (((flags &amp; FORMAT_HOURS) != 0) &amp;&amp; (!onlyNonZero || hours != 0.0)) {</span>
+<span class="fc" id="L1029">            appendSpaceIfNeeded(builder).append(format(hours, TimeUnit.HOUR));</span>
+        }
+<span class="fc bfc" id="L1031" title="All 6 branches covered.">        if (((flags &amp; FORMAT_MINUTES) != 0) &amp;&amp; (!onlyNonZero || minutes != 0.0)) {</span>
+<span class="fc" id="L1032">            appendSpaceIfNeeded(builder).append(format(minutes, TimeUnit.MINUTE));</span>
+        }
+<span class="fc bfc" id="L1034" title="All 6 branches covered.">        if (((flags &amp; FORMAT_SECONDS) != 0) &amp;&amp; (!onlyNonZero || seconds != 0.0)) {</span>
+<span class="fc" id="L1035">            appendSpaceIfNeeded(builder).append(format(seconds, TimeUnit.SECOND));</span>
+        }
+<span class="fc bfc" id="L1037" title="All 6 branches covered.">        if (((flags &amp; FORMAT_MILLISECONDS) != 0) &amp;&amp; (!onlyNonZero || milliseconds != 0.0)) {</span>
+<span class="fc" id="L1038">            appendSpaceIfNeeded(builder).append(format(milliseconds, TimeUnit.MILLISECOND));</span>
+        }
+<span class="fc bfc" id="L1040" title="All 6 branches covered.">        if (((flags &amp; FORMAT_MICROSECONDS) != 0) &amp;&amp; (!onlyNonZero || microseconds != 0.0)) {</span>
+<span class="fc" id="L1041">            appendSpaceIfNeeded(builder).append(format(microseconds, TimeUnit.MICROSECOND));</span>
+        }
+<span class="fc bfc" id="L1043" title="All 6 branches covered.">        if (((flags &amp; FORMAT_NANOSECONDS) != 0) &amp;&amp; (!onlyNonZero || nanoseconds != 0.0)) {</span>
+<span class="fc" id="L1044">            appendSpaceIfNeeded(builder).append(format(nanoseconds, TimeUnit.NANOSECOND));</span>
+        }
+<span class="fc" id="L1046">        return builder.toString();</span>
+    }
+
+    /**
+     * Splits an exact amount of a given unit into the part to be shown using that unit and the remainder
+     * to be expressed using smaller units.
+     *
+     * @param exact        exact amount expressed in the unit being processed.
+     * @param flags        flags indicating units to include.
+     * @param unitFlag     flag of the unit being processed.
+     * @param smallerFlags flags of all units smaller than the unit being processed.
+     * @return array containing the amount to be shown using this unit (at {@link #VALUE_INDEX}) and the
+     * remainder to be expressed using smaller units (at {@link #DIFF_INDEX}).
+     */
+    private static double[] splitUnit(
+            final double exact, final int flags, final int unitFlag, final int smallerFlags) {
+<span class="fc" id="L1062">        var value = 0.0;</span>
+        final double diff;
+<span class="fc bfc" id="L1064" title="All 2 branches covered.">        if ((flags &amp; unitFlag) != 0) {</span>
+<span class="fc bfc" id="L1065" title="All 2 branches covered.">            if ((flags &amp; smallerFlags) != 0) {</span>
+                // there are smaller units
+<span class="fc" id="L1067">                value = Math.floor(exact);</span>
+            } else {
+<span class="fc" id="L1069">                value = exact;</span>
+            }
+<span class="fc" id="L1071">            diff = exact - value;</span>
+        } else {
+<span class="fc" id="L1073">            diff = exact;</span>
+        }
+<span class="fc" id="L1075">        return new double[]{value, diff};</span>
+    }
+
+    /**
+     * Parses a string containing multiple units and returns the summation of all
+     * found values as a single Time instance.
+     * This method does not allow decimal values with fractions or thousand
+     * separators.
+     *
+     * @param source string to be parsed.
+     * @return summation of all time values that have been parsed.
+     * @throws ParseException       if parsing fails.
+     * @throws UnknownUnitException if format is not recognized.
+     */
+    public Time parseMultiple(final CharSequence source) throws ParseException, UnknownUnitException {
+<span class="fc" id="L1090">        final var wrapped = SPACE + source + SPACE;</span>
+<span class="fc" id="L1091">        Time result = null;</span>
+
+<span class="fc" id="L1093">        final var firstCentury = parse1stCentury(wrapped);</span>
+<span class="fc" id="L1094">        final var secondCentury = parse2ndCentury(wrapped);</span>
+<span class="fc" id="L1095">        final var thirdCentury = parse3rdCentury(wrapped);</span>
+<span class="fc" id="L1096">        final var century = parseCentury(wrapped);</span>
+<span class="fc" id="L1097">        final var year = parseYear(wrapped);</span>
+<span class="fc" id="L1098">        final var month = parseMonth(wrapped);</span>
+<span class="fc" id="L1099">        final var week = parseWeek(wrapped);</span>
+<span class="fc" id="L1100">        final var day = parseDay(wrapped);</span>
+<span class="fc" id="L1101">        final var hour = parseHour(wrapped);</span>
+<span class="fc" id="L1102">        final var minute = parseMinute(wrapped);</span>
+<span class="fc" id="L1103">        final var second = parseSecond(wrapped);</span>
+<span class="fc" id="L1104">        final var millisecond = parseMillisecond(wrapped);</span>
+<span class="fc" id="L1105">        final var microsecond = parseMicrosecond(wrapped);</span>
+<span class="fc" id="L1106">        final var nanosecond = parseNanosecond(wrapped);</span>
+
+        // century
+<span class="fc bfc" id="L1109" title="All 2 branches covered.">        if (firstCentury != null) {</span>
+<span class="fc" id="L1110">            result = firstCentury;</span>
+        }
+<span class="fc bfc" id="L1112" title="All 2 branches covered.">        if (secondCentury != null) {</span>
+<span class="fc" id="L1113">            result = secondCentury;</span>
+        }
+<span class="fc bfc" id="L1115" title="All 2 branches covered.">        if (thirdCentury != null) {</span>
+<span class="fc" id="L1116">            result = thirdCentury;</span>
+        }
+<span class="fc bfc" id="L1118" title="All 2 branches covered.">        if (century != null) {</span>
+<span class="fc" id="L1119">            result = century;</span>
+        }
+
+        // year
+<span class="fc bfc" id="L1123" title="All 2 branches covered.">        if (year != null) {</span>
+<span class="fc bfc" id="L1124" title="All 2 branches covered.">            if (result == null) {</span>
+<span class="fc" id="L1125">                result = year;</span>
+            } else {
+<span class="fc" id="L1127">                result.add(year);</span>
+            }
+        }
+
+        // month
+<span class="fc bfc" id="L1132" title="All 2 branches covered.">        if (month != null) {</span>
+<span class="fc bfc" id="L1133" title="All 2 branches covered.">            if (result == null) {</span>
+<span class="fc" id="L1134">                result = month;</span>
+            } else {
+<span class="fc" id="L1136">                result.add(month);</span>
+            }
+        }
+
+        // week
+<span class="fc bfc" id="L1141" title="All 2 branches covered.">        if (week != null) {</span>
+<span class="fc bfc" id="L1142" title="All 2 branches covered.">            if (result == null) {</span>
+<span class="fc" id="L1143">                result = week;</span>
+            } else {
+<span class="fc" id="L1145">                result.add(week);</span>
+            }
+        }
+
+        // day
+<span class="fc bfc" id="L1150" title="All 2 branches covered.">        if (day != null) {</span>
+<span class="fc bfc" id="L1151" title="All 2 branches covered.">            if (result == null) {</span>
+<span class="fc" id="L1152">                result = day;</span>
+            } else {
+<span class="fc" id="L1154">                result.add(day);</span>
+            }
+        }
+
+        // hour
+<span class="fc bfc" id="L1159" title="All 2 branches covered.">        if (hour != null) {</span>
+<span class="fc bfc" id="L1160" title="All 2 branches covered.">            if (result == null) {</span>
+<span class="fc" id="L1161">                result = hour;</span>
+            } else {
+<span class="fc" id="L1163">                result.add(hour);</span>
+            }
+        }
+
+        // minute
+<span class="fc bfc" id="L1168" title="All 2 branches covered.">        if (minute != null) {</span>
+<span class="fc bfc" id="L1169" title="All 2 branches covered.">            if (result == null) {</span>
+<span class="fc" id="L1170">                result = minute;</span>
+            } else {
+<span class="fc" id="L1172">                result.add(minute);</span>
+            }
+        }
+
+        // second
+<span class="fc bfc" id="L1177" title="All 2 branches covered.">        if (second != null) {</span>
+<span class="fc bfc" id="L1178" title="All 2 branches covered.">            if (result == null) {</span>
+<span class="fc" id="L1179">                result = second;</span>
+            } else {
+<span class="fc" id="L1181">                result.add(second);</span>
+            }
+        }
+
+        // millisecond
+<span class="fc bfc" id="L1186" title="All 2 branches covered.">        if (millisecond != null) {</span>
+<span class="fc bfc" id="L1187" title="All 2 branches covered.">            if (result == null) {</span>
+<span class="fc" id="L1188">                result = millisecond;</span>
+            } else {
+<span class="fc" id="L1190">                result.add(millisecond);</span>
+            }
+        }
+
+        // microsecond
+<span class="fc bfc" id="L1195" title="All 2 branches covered.">        if (microsecond != null) {</span>
+<span class="fc bfc" id="L1196" title="All 2 branches covered.">            if (result == null) {</span>
+<span class="fc" id="L1197">                result = microsecond;</span>
+            } else {
+<span class="fc" id="L1199">                result.add(microsecond);</span>
+            }
+        }
+
+        // nanosecond
+<span class="fc bfc" id="L1204" title="All 2 branches covered.">        if (nanosecond != null) {</span>
+<span class="fc bfc" id="L1205" title="All 2 branches covered.">            if (result == null) {</span>
+<span class="fc" id="L1206">                result = nanosecond;</span>
+            } else {
+<span class="fc" id="L1208">                result.add(nanosecond);</span>
+            }
+        }
+
+<span class="fc bfc" id="L1212" title="All 2 branches covered.">        if (result == null) {</span>
+            // no valid unit was found
+<span class="fc" id="L1214">            throw new UnknownUnitException();</span>
+        }
+
+<span class="fc" id="L1217">        return result;</span>
+    }
+
+    /**
+     * Parses string as 1st century format.
+     * This method does not allow decimal values with fractions or thousand
+     * separators.
+     *
+     * @param source string to be parsed.
+     * @return parsed time in century units.
+     * @throws ParseException if parsing fails.
+     */
+    private Time parse1stCentury(final CharSequence source) throws ParseException {
+<span class="fc bfc" id="L1230" title="All 2 branches covered.">        if (firstCenturyPattern == null) {</span>
+<span class="fc" id="L1231">            firstCenturyPattern = Pattern.compile(FIRST_CENTURY_PATTERN);</span>
+        }
+
+<span class="fc" id="L1234">        final var matcher = firstCenturyPattern.matcher(source);</span>
+<span class="fc bfc" id="L1235" title="All 2 branches covered.">        if (!matcher.matches()) {</span>
+<span class="fc" id="L1236">            return null;</span>
+        }
+
+<span class="fc" id="L1239">        return new Time(getNumberFormat().parse(matcher.group(VALUE_GROUP)), TimeUnit.CENTURY);</span>
+    }
+
+    /**
+     * Parses string as 2nd century format.
+     * This method does not allow decimal values with fractions or thousand
+     * separators.
+     *
+     * @param source string to be parsed.
+     * @return parsed time in century units.
+     * @throws ParseException if parsing fails.
+     */
+    private Time parse2ndCentury(final CharSequence source) throws ParseException {
+<span class="fc bfc" id="L1252" title="All 2 branches covered.">        if (secondCenturyPattern == null) {</span>
+<span class="fc" id="L1253">            secondCenturyPattern = Pattern.compile(SECOND_CENTURY_PATTERN);</span>
+        }
+
+<span class="fc" id="L1256">        final var matcher = secondCenturyPattern.matcher(source);</span>
+<span class="fc bfc" id="L1257" title="All 2 branches covered.">        if (!matcher.matches()) {</span>
+<span class="fc" id="L1258">            return null;</span>
+        }
+
+<span class="fc" id="L1261">        return new Time(getNumberFormat().parse(matcher.group(VALUE_GROUP)), TimeUnit.CENTURY);</span>
+    }
+
+    /**
+     * Parses string as 3rd century format.
+     * This method does not allow decimal values with fractions or thousand
+     * separators.
+     *
+     * @param source string to be parsed.
+     * @return parsed time in century units.
+     * @throws ParseException if parsing fails.
+     */
+    private Time parse3rdCentury(final CharSequence source) throws ParseException {
+<span class="fc bfc" id="L1274" title="All 2 branches covered.">        if (thirdCenturyPattern == null) {</span>
+<span class="fc" id="L1275">            thirdCenturyPattern = Pattern.compile(THIRD_CENTURY_PATTERN);</span>
+        }
+
+<span class="fc" id="L1278">        final var matcher = thirdCenturyPattern.matcher(source);</span>
+<span class="fc bfc" id="L1279" title="All 2 branches covered.">        if (!matcher.matches()) {</span>
+<span class="fc" id="L1280">            return null;</span>
+        }
+
+<span class="fc" id="L1283">        return new Time(getNumberFormat().parse(matcher.group(VALUE_GROUP)), TimeUnit.CENTURY);</span>
+    }
+
+    /**
+     * Parses string as n-th century format.
+     * This method does not allow decimal values with fractions or thousand
+     * separators.
+     *
+     * @param source string to be parsed.
+     * @return parsed time in century units.
+     * @throws ParseException if parsing fails.
+     */
+    private Time parseCentury(final CharSequence source) throws ParseException {
+<span class="fc bfc" id="L1296" title="All 2 branches covered.">        if (centuryPattern == null) {</span>
+<span class="fc" id="L1297">            centuryPattern = Pattern.compile(CENTURY_PATTERN);</span>
+        }
+
+<span class="fc" id="L1300">        final var matcher = centuryPattern.matcher(source);</span>
+<span class="fc bfc" id="L1301" title="All 2 branches covered.">        if (!matcher.matches()) {</span>
+<span class="fc" id="L1302">            return null;</span>
+        }
+
+<span class="fc" id="L1305">        return new Time(getNumberFormat().parse(matcher.group(VALUE_GROUP)), TimeUnit.CENTURY);</span>
+    }
+
+    /**
+     * Parses string as year format.
+     * This method does not allow decimal values with fractions or thousand
+     * separators.
+     *
+     * @param source string to be parsed.
+     * @return parsed time in year units.
+     * @throws ParseException if parsing fails.
+     */
+    private Time parseYear(final CharSequence source) throws ParseException {
+<span class="fc bfc" id="L1318" title="All 2 branches covered.">        if (yearPattern == null) {</span>
+<span class="fc" id="L1319">            yearPattern = Pattern.compile(YEAR_PATTERN);</span>
+        }
+
+<span class="fc" id="L1322">        final var matcher = yearPattern.matcher(source);</span>
+<span class="fc bfc" id="L1323" title="All 2 branches covered.">        if (!matcher.matches()) {</span>
+<span class="fc" id="L1324">            return null;</span>
+        }
+
+<span class="fc" id="L1327">        return new Time(getNumberFormat().parse(matcher.group(VALUE_GROUP)), TimeUnit.YEAR);</span>
+    }
+
+    /**
+     * Parses string as month format.
+     * This method does not allow decimal values with fractions or thousand
+     * separators.
+     *
+     * @param source string to be parsed.
+     * @return parsed time in month units.
+     * @throws ParseException if parsing fails.
+     */
+    private Time parseMonth(final CharSequence source) throws ParseException {
+<span class="fc bfc" id="L1340" title="All 2 branches covered.">        if (monthPattern == null) {</span>
+<span class="fc" id="L1341">            monthPattern = Pattern.compile(MONTH_PATTERN);</span>
+        }
+
+<span class="fc" id="L1344">        final var matcher = monthPattern.matcher(source);</span>
+<span class="fc bfc" id="L1345" title="All 2 branches covered.">        if (!matcher.matches()) {</span>
+<span class="fc" id="L1346">            return null;</span>
+        }
+
+<span class="fc" id="L1349">        return new Time(getNumberFormat().parse(matcher.group(VALUE_GROUP)), TimeUnit.MONTH);</span>
+    }
+
+    /**
+     * Parses string as week format.
+     * This method does not allow decimal values with fractions or thousand
+     * separators.
+     *
+     * @param source string to be parsed.
+     * @return parsed time in week units.
+     * @throws ParseException if parsing fails.
+     */
+    private Time parseWeek(final CharSequence source) throws ParseException {
+<span class="fc bfc" id="L1362" title="All 2 branches covered.">        if (weekPattern == null) {</span>
+<span class="fc" id="L1363">            weekPattern = Pattern.compile(WEEK_PATTERN);</span>
+        }
+
+<span class="fc" id="L1366">        final var matcher = weekPattern.matcher(source);</span>
+<span class="fc bfc" id="L1367" title="All 2 branches covered.">        if (!matcher.matches()) {</span>
+<span class="fc" id="L1368">            return null;</span>
+        }
+
+<span class="fc" id="L1371">        return new Time(getNumberFormat().parse(matcher.group(VALUE_GROUP)), TimeUnit.WEEK);</span>
+    }
+
+    /**
+     * Parses string as day format.
+     * This method does not allow decimal values with fractions or thousand
+     * separators.
+     *
+     * @param source string to be parsed.
+     * @return parsed time in day units.
+     * @throws ParseException if parsing fails.
+     */
+    private Time parseDay(final CharSequence source) throws ParseException {
+<span class="fc bfc" id="L1384" title="All 2 branches covered.">        if (dayPattern == null) {</span>
+<span class="fc" id="L1385">            dayPattern = Pattern.compile(DAY_PATTERN);</span>
+        }
+
+<span class="fc" id="L1388">        final var matcher = dayPattern.matcher(source);</span>
+<span class="fc bfc" id="L1389" title="All 2 branches covered.">        if (!matcher.matches()) {</span>
+<span class="fc" id="L1390">            return null;</span>
+        }
+
+<span class="fc" id="L1393">        return new Time(getNumberFormat().parse(matcher.group(VALUE_GROUP)), TimeUnit.DAY);</span>
+    }
+
+    /**
+     * Parses string as hour format.
+     * This method does not allow decimal values with fractions or thousand
+     * separators.
+     *
+     * @param source string to be parsed.
+     * @return parsed time in hour units.
+     * @throws ParseException if parsing fails.
+     */
+    private Time parseHour(final CharSequence source) throws ParseException {
+<span class="fc bfc" id="L1406" title="All 2 branches covered.">        if (hourPattern == null) {</span>
+<span class="fc" id="L1407">            hourPattern = Pattern.compile(HOUR_PATTERN);</span>
+        }
+
+<span class="fc" id="L1410">        final var matcher = hourPattern.matcher(source);</span>
+<span class="fc bfc" id="L1411" title="All 2 branches covered.">        if (!matcher.matches()) {</span>
+<span class="fc" id="L1412">            return null;</span>
+        }
+
+<span class="fc" id="L1415">        return new Time(getNumberFormat().parse(matcher.group(VALUE_GROUP)), TimeUnit.HOUR);</span>
+    }
+
+    /**
+     * Parses string as minute format.
+     * This method does not allow decimal values with fractions or thousand
+     * separators.
+     *
+     * @param source string to be parsed.
+     * @return parsed time in minute units.
+     * @throws ParseException if parsing fails.
+     */
+    private Time parseMinute(final CharSequence source) throws ParseException {
+<span class="fc bfc" id="L1428" title="All 2 branches covered.">        if (minutePattern == null) {</span>
+<span class="fc" id="L1429">            minutePattern = Pattern.compile(MINUTE_PATTERN);</span>
+        }
+
+<span class="fc" id="L1432">        final var matcher = minutePattern.matcher(source);</span>
+<span class="fc bfc" id="L1433" title="All 2 branches covered.">        if (!matcher.matches()) {</span>
+<span class="fc" id="L1434">            return null;</span>
+        }
+
+<span class="fc" id="L1437">        return new Time(getNumberFormat().parse(matcher.group(VALUE_GROUP)), TimeUnit.MINUTE);</span>
+    }
+
+    /**
+     * Parses string as second format.
+     * This method does not allow decimal values with fractions or thousand
+     * separators.
+     *
+     * @param source string to be parsed.
+     * @return parsed time in second units.
+     * @throws ParseException if parsing fails.
+     */
+    private Time parseSecond(final CharSequence source) throws ParseException {
+<span class="fc bfc" id="L1450" title="All 2 branches covered.">        if (secondPattern == null) {</span>
+<span class="fc" id="L1451">            secondPattern = Pattern.compile(SECOND_PATTERN);</span>
+        }
+
+<span class="fc" id="L1454">        final var matcher = secondPattern.matcher(source);</span>
+<span class="fc bfc" id="L1455" title="All 2 branches covered.">        if (!matcher.matches()) {</span>
+<span class="fc" id="L1456">            return null;</span>
+        }
+
+<span class="fc" id="L1459">        return new Time(getNumberFormat().parse(matcher.group(VALUE_GROUP)), TimeUnit.SECOND);</span>
+    }
+
+    /**
+     * Parses string as millisecond format.
+     * This method does not allow decimal values with fractions or thousand
+     * separators.
+     *
+     * @param source string to be parsed.
+     * @return parsed time in millisecond units.
+     * @throws ParseException if parsing fails.
+     */
+    private Time parseMillisecond(final CharSequence source) throws ParseException {
+<span class="fc bfc" id="L1472" title="All 2 branches covered.">        if (millisecondPattern == null) {</span>
+<span class="fc" id="L1473">            millisecondPattern = Pattern.compile(MILLISECOND_PATTERN);</span>
+        }
+
+<span class="fc" id="L1476">        final var matcher = millisecondPattern.matcher(source);</span>
+<span class="fc bfc" id="L1477" title="All 2 branches covered.">        if (!matcher.matches()) {</span>
+<span class="fc" id="L1478">            return null;</span>
+        }
+
+<span class="fc" id="L1481">        return new Time(getNumberFormat().parse(matcher.group(VALUE_GROUP)), TimeUnit.MILLISECOND);</span>
+    }
+
+    /**
+     * Parses string as microsecond format.
+     * This method does not allow decimal values with fractions or thousand
+     * separators.
+     *
+     * @param source string to be parsed.
+     * @return parsed time in microsecond units.
+     * @throws ParseException if parsing fails.
+     */
+    private Time parseMicrosecond(final CharSequence source) throws ParseException {
+<span class="fc bfc" id="L1494" title="All 2 branches covered.">        if (microsecondPattern == null) {</span>
+<span class="fc" id="L1495">            microsecondPattern = Pattern.compile(MICROSECOND_PATTERN);</span>
+        }
+
+<span class="fc" id="L1498">        final var matcher = microsecondPattern.matcher(source);</span>
+<span class="fc bfc" id="L1499" title="All 2 branches covered.">        if (!matcher.matches()) {</span>
+<span class="fc" id="L1500">            return null;</span>
+        }
+
+<span class="fc" id="L1503">        return new Time(getNumberFormat().parse(matcher.group(VALUE_GROUP)), TimeUnit.MICROSECOND);</span>
+    }
+
+    /**
+     * Parses string as nanosecond format.
+     * This method does not allow decimal values with fractions or thousand
+     * separators.
+     *
+     * @param source string to be parsed.
+     * @return parsed time in nanosecond units.
+     * @throws ParseException if parsing fails.
+     */
+    private Time parseNanosecond(final CharSequence source) throws ParseException {
+<span class="fc bfc" id="L1516" title="All 2 branches covered.">        if (nanosecondPattern == null) {</span>
+<span class="fc" id="L1517">            nanosecondPattern = Pattern.compile(NANOSECOND_PATTERN);</span>
+        }
+
+<span class="fc" id="L1520">        final var matcher = nanosecondPattern.matcher(source);</span>
+<span class="fc bfc" id="L1521" title="All 2 branches covered.">        if (!matcher.matches()) {</span>
+<span class="fc" id="L1522">            return null;</span>
+        }
+
+<span class="fc" id="L1525">        return new Time(getNumberFormat().parse(matcher.group(VALUE_GROUP)), TimeUnit.NANOSECOND);</span>
+    }
+
+    /**
+     * Appends a space if builder is not empty.
+     *
+     * @param builder builder to add space to.
+     * @return same instance provided as parameter.
+     */
+    private StringBuilder appendSpaceIfNeeded(final StringBuilder builder) {
+<span class="fc bfc" id="L1535" title="All 2 branches covered.">        if (!builder.isEmpty()) {</span>
+<span class="fc" id="L1536">            builder.append(SPACE);</span>
+        }
+<span class="fc" id="L1538">        return builder;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

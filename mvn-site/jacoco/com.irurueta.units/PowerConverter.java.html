@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PowerConverter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">PowerConverter.java</span></div><h1>PowerConverter.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2026 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.units;
+
+import java.math.BigDecimal;
+
+/**
+ * Does power conversions to different units.
+ * To prevent loss of accuracy, conversion should only be done as a final step
+ * before displaying power measurements.
+ */
+@SuppressWarnings(&quot;WeakerAccess&quot;)
+public final class PowerConverter {
+
+    /**
+     * Number of watts in 1 kilowatt.
+     */
+    static final double WATTS_PER_KILOWATT = 1000.0;
+
+    /**
+     * Number of watts in 1 megawatt.
+     */
+    static final double WATTS_PER_MEGAWATT = 1.0e6;
+
+    /**
+     * Number of watts in 1 gigawatt.
+     */
+    static final double WATTS_PER_GIGAWATT = 1.0e9;
+
+    /**
+     * Number of watts in 1 mechanical horsepower.
+     */
+    static final double WATTS_PER_HORSEPOWER = 745.69987158227022;
+
+    /**
+     * Constructor.
+     * Prevents instantiation of helper class.
+     */
+    private PowerConverter() {
+    }
+
+    /**
+     * Converts a power instance to provided output power unit.
+     *
+     * @param input  input power to be converted.
+     * @param output output power where result will be stored containing output unit.
+     */
+    public static void convert(final Power input, final Power output) {
+<span class="fc" id="L62">        convert(input, output.getUnit(), output);</span>
+<span class="fc" id="L63">    }</span>
+
+    /**
+     * Converts a power instance to requested output unit.
+     *
+     * @param input      input power to be converted.
+     * @param outputUnit requested output unit.
+     * @return converted power.
+     */
+    public static Power convertAndReturnNew(
+            final Power input, final PowerUnit outputUnit) {
+<span class="fc" id="L74">        final var result = new Power();</span>
+<span class="fc" id="L75">        convert(input, outputUnit, result);</span>
+<span class="fc" id="L76">        return result;</span>
+    }
+
+    /**
+     * Converts and updates a power to requested output unit.
+     *
+     * @param power      input power to be converted and updated.
+     * @param outputUnit requested output unit.
+     */
+    public static void convert(final Power power, final PowerUnit outputUnit) {
+<span class="fc" id="L86">        convert(power, outputUnit, power);</span>
+<span class="fc" id="L87">    }</span>
+
+    /**
+     * Converts a power to requested output unit.
+     *
+     * @param input      input power to be converted.
+     * @param outputUnit requested output unit.
+     * @param result     power instance where result will be stored.
+     */
+    public static void convert(
+            final Power input, final PowerUnit outputUnit, final Power result) {
+<span class="fc" id="L98">        final var value = convert(input.getValue(), input.getUnit(), outputUnit);</span>
+<span class="fc" id="L99">        result.setValue(value);</span>
+<span class="fc" id="L100">        result.setUnit(outputUnit);</span>
+<span class="fc" id="L101">    }</span>
+
+    /**
+     * Converts a power value from input unit to provided output unit.
+     *
+     * @param input      power value.
+     * @param inputUnit  input power unit.
+     * @param outputUnit output power unit.
+     * @return converted power value.
+     */
+    public static Number convert(final Number input, final PowerUnit inputUnit, final PowerUnit outputUnit) {
+<span class="fc" id="L112">        return BigDecimal.valueOf(convert(input.doubleValue(), inputUnit, outputUnit));</span>
+    }
+
+    /**
+     * Converts a power value from input unit to provided output unit.
+     *
+     * @param input      power value.
+     * @param inputUnit  input power unit.
+     * @param outputUnit output power unit.
+     * @return converted power value.
+     */
+    public static double convert(final double input, final PowerUnit inputUnit, final PowerUnit outputUnit) {
+        //convert to watts
+<span class="fc bfc" id="L125" title="All 5 branches covered.">        final var watts = switch (inputUnit) {</span>
+<span class="fc" id="L126">            case KILOWATT -&gt; kilowattsToWatts(input);</span>
+<span class="fc" id="L127">            case MEGAWATT -&gt; megawattsToWatts(input);</span>
+<span class="fc" id="L128">            case GIGAWATT -&gt; gigawattsToWatts(input);</span>
+<span class="fc" id="L129">            case HORSEPOWER -&gt; horsepowerToWatts(input);</span>
+<span class="fc" id="L130">            default -&gt; input;</span>
+        };
+
+        //convert from watts to required output unit
+<span class="fc bfc" id="L134" title="All 5 branches covered.">        return switch (outputUnit) {</span>
+<span class="fc" id="L135">            case KILOWATT -&gt; wattsToKilowatts(watts);</span>
+<span class="fc" id="L136">            case MEGAWATT -&gt; wattsToMegawatts(watts);</span>
+<span class="fc" id="L137">            case GIGAWATT -&gt; wattsToGigawatts(watts);</span>
+<span class="fc" id="L138">            case HORSEPOWER -&gt; wattsToHorsepower(watts);</span>
+<span class="fc" id="L139">            default -&gt; watts;</span>
+        };
+    }
+
+    /**
+     * Converts provided kilowatts value to watts.
+     *
+     * @param kilowatts kilowatts value.
+     * @return same power converted to watts.
+     */
+    public static double kilowattsToWatts(final double kilowatts) {
+<span class="fc" id="L150">        return kilowatts * WATTS_PER_KILOWATT;</span>
+    }
+
+    /**
+     * Converts provided watts value to kilowatts.
+     *
+     * @param watts watts value.
+     * @return same power converted to kilowatts.
+     */
+    public static double wattsToKilowatts(final double watts) {
+<span class="fc" id="L160">        return watts / WATTS_PER_KILOWATT;</span>
+    }
+
+    /**
+     * Converts provided megawatts value to watts.
+     *
+     * @param megawatts megawatts value.
+     * @return same power converted to watts.
+     */
+    public static double megawattsToWatts(final double megawatts) {
+<span class="fc" id="L170">        return megawatts * WATTS_PER_MEGAWATT;</span>
+    }
+
+    /**
+     * Converts provided watts value to megawatts.
+     *
+     * @param watts watts value.
+     * @return same power converted to megawatts.
+     */
+    public static double wattsToMegawatts(final double watts) {
+<span class="fc" id="L180">        return watts / WATTS_PER_MEGAWATT;</span>
+    }
+
+    /**
+     * Converts provided gigawatts value to watts.
+     *
+     * @param gigawatts gigawatts value.
+     * @return same power converted to watts.
+     */
+    public static double gigawattsToWatts(final double gigawatts) {
+<span class="fc" id="L190">        return gigawatts * WATTS_PER_GIGAWATT;</span>
+    }
+
+    /**
+     * Converts provided watts value to gigawatts.
+     *
+     * @param watts watts value.
+     * @return same power converted to gigawatts.
+     */
+    public static double wattsToGigawatts(final double watts) {
+<span class="fc" id="L200">        return watts / WATTS_PER_GIGAWATT;</span>
+    }
+
+    /**
+     * Converts provided horsepower value to watts.
+     *
+     * @param horsepower horsepower value.
+     * @return same power converted to watts.
+     */
+    public static double horsepowerToWatts(final double horsepower) {
+<span class="fc" id="L210">        return horsepower * WATTS_PER_HORSEPOWER;</span>
+    }
+
+    /**
+     * Converts provided watts value to horsepower.
+     *
+     * @param watts watts value.
+     * @return same power converted to horsepower.
+     */
+    public static double wattsToHorsepower(final double watts) {
+<span class="fc" id="L220">        return watts / WATTS_PER_HORSEPOWER;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

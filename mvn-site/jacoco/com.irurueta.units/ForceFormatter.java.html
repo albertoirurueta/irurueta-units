@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ForceFormatter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">ForceFormatter.java</span></div><h1>ForceFormatter.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2026 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.units;
+
+import java.text.ParseException;
+import java.util.Locale;
+
+/**
+ * Formats and parses force value and unit.
+ */
+public class ForceFormatter extends MeasureFormatter&lt;Force, ForceUnit&gt; {
+
+    /**
+     * Newton symbol.
+     */
+    public static final String NEWTON = &quot;N&quot;;
+
+    /**
+     * Kilonewton symbol.
+     */
+    public static final String KILONEWTON = &quot;kN&quot;;
+
+    /**
+     * Pound-force symbol.
+     */
+    public static final String POUND_FORCE = &quot;lbf&quot;;
+
+    /**
+     * Dyne symbol.
+     */
+    public static final String DYNE = &quot;dyn&quot;;
+
+    /**
+     * Kilogram-force symbol.
+     */
+    public static final String KILOGRAM_FORCE = &quot;kgf&quot;;
+
+    /**
+     * Constructor.
+     */
+    public ForceFormatter() {
+<span class="fc" id="L55">        super();</span>
+<span class="fc" id="L56">    }</span>
+
+    /**
+     * Constructor with locale.
+     *
+     * @param locale locale.
+     * @throws IllegalArgumentException if locale is null.
+     */
+    public ForceFormatter(final Locale locale) {
+<span class="fc" id="L65">        super(locale);</span>
+<span class="fc" id="L66">    }</span>
+
+    /**
+     * Copy constructor.
+     *
+     * @param formatter input instance to copy from.
+     * @throws NullPointerException if provided formatter is null.
+     */
+    public ForceFormatter(final ForceFormatter formatter) {
+<span class="fc" id="L75">        this(formatter.getLocale());</span>
+<span class="fc" id="L76">    }</span>
+
+    /**
+     * Determines if two force formatters are equal by comparing all of their internal
+     * parameters.
+     *
+     * @param obj another object to compare.
+     * @return true if provided object is assumed to be equal to this instance.
+     */
+    @Override
+    public boolean equals(final Object obj) {
+<span class="fc" id="L87">        final var equals = super.equals(obj);</span>
+<span class="fc bfc" id="L88" title="All 4 branches covered.">        return (obj instanceof ForceFormatter) &amp;&amp; equals;</span>
+    }
+
+    /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare objects.
+     * This implementation only calls parent implementation to avoid static analyzer warning.
+     * It is kept because {@link #equals(Object)} is overridden, so both
+     * methods remain consistent.
+     *
+     * @return hash code.
+     */
+    @Override
+    @SuppressWarnings(&quot;PMD.UselessOverridingMethod&quot;)
+    public int hashCode() {
+<span class="fc" id="L103">        return super.hashCode();</span>
+    }
+
+    /**
+     * Gets unit system for detected unit into provided string representation
+     * of a measurement.
+     *
+     * @param source a measurement string representation to be checked.
+     * @return a unit system (either metric or imperial) or null if unit
+     * cannot be determined.
+     */
+    @Override
+    public UnitSystem getUnitSystem(final String source) {
+<span class="fc" id="L116">        final var unit = findUnit(source);</span>
+<span class="fc bfc" id="L117" title="All 2 branches covered.">        return unit != null ? ForceUnit.getUnitSystem(unit) : null;</span>
+    }
+
+    /**
+     * Parses provided string and tries to determine force value and unit.
+     *
+     * @param source a string to be parsed.
+     * @return a force containing a value and unit.
+     * @throws ParseException       if provided string cannot be parsed.
+     * @throws UnknownUnitException if unit cannot be determined.
+     */
+    @Override
+    public Force parse(final String source) throws ParseException, UnknownUnitException {
+<span class="fc" id="L130">        return internalParse(source, new Force());</span>
+    }
+
+    /**
+     * Attempts to determine a force unit within a measurement string representation.
+     *
+     * @param source a measurement string representation.
+     * @return a force unit, or null if none can be determined.
+     */
+    @Override
+    public ForceUnit findUnit(final String source) {
+        //kilonewton must be checked before newton, since its symbol ends with the newton symbol
+<span class="fc bfc" id="L142" title="All 2 branches covered.">        if (containsSymbol(source, KILONEWTON)) {</span>
+<span class="fc" id="L143">            return ForceUnit.KILONEWTON;</span>
+        }
+<span class="fc bfc" id="L145" title="All 2 branches covered.">        if (containsSymbol(source, POUND_FORCE)) {</span>
+<span class="fc" id="L146">            return ForceUnit.POUND_FORCE;</span>
+        }
+<span class="fc bfc" id="L148" title="All 2 branches covered.">        if (containsSymbol(source, DYNE)) {</span>
+<span class="fc" id="L149">            return ForceUnit.DYNE;</span>
+        }
+<span class="fc bfc" id="L151" title="All 2 branches covered.">        if (containsSymbol(source, KILOGRAM_FORCE)) {</span>
+<span class="fc" id="L152">            return ForceUnit.KILOGRAM_FORCE;</span>
+        }
+<span class="fc bfc" id="L154" title="All 2 branches covered.">        if (containsSymbol(source, NEWTON)) {</span>
+<span class="fc" id="L155">            return ForceUnit.NEWTON;</span>
+        }
+<span class="fc" id="L157">        return null;</span>
+    }
+
+    /**
+     * Formats and converts provided force value and unit using provided
+     * unit system.
+     * If provided value is too large for provided unit, this method will
+     * convert it to a more appropriate unit using provided unit system (either
+     * metric or imperial).
+     *
+     * @param value  a force value.
+     * @param unit   a force unit.
+     * @param system system unit to convert force to.
+     * @return a string representation of force value and unit.
+     */
+    @Override
+    public String formatAndConvert(final Number value, final ForceUnit unit, final UnitSystem system) {
+<span class="fc bfc" id="L174" title="All 2 branches covered.">        if (system == UnitSystem.IMPERIAL) {</span>
+<span class="fc" id="L175">            return formatAndConvertImperial(value, unit);</span>
+        } else {
+<span class="fc" id="L177">            return formatAndConvertMetric(value, unit);</span>
+        }
+    }
+
+    /**
+     * Formats and converts provided force value and unit using metric unit
+     * system.
+     * Values whose magnitude is lower than 1000 newtons are represented in newtons, otherwise
+     * they are converted to kilonewtons.
+     *
+     * @param value a force value.
+     * @param unit  a force unit.
+     * @return a string representation of force value and unit using metric
+     * unit system.
+     */
+    public String formatAndConvertMetric(final Number value, final ForceUnit unit) {
+<span class="fc" id="L193">        final var v = value.doubleValue();</span>
+
+<span class="fc" id="L195">        final var newtons = ForceConverter.convert(v, unit, ForceUnit.NEWTON);</span>
+<span class="fc bfc" id="L196" title="All 2 branches covered.">        if (Math.abs(newtons) &lt; ForceConverter.NEWTONS_PER_KILONEWTON) {</span>
+<span class="fc" id="L197">            return format(newtons, ForceUnit.NEWTON);</span>
+        }
+
+<span class="fc" id="L200">        final var kilonewtons = ForceConverter.convert(v, unit, ForceUnit.KILONEWTON);</span>
+<span class="fc" id="L201">        return format(kilonewtons, ForceUnit.KILONEWTON);</span>
+    }
+
+    /**
+     * Formats and converts provided force value and unit using imperial unit
+     * system.
+     * Pound-force is the only imperial force unit, hence any value is converted to it.
+     *
+     * @param value a force value.
+     * @param unit  a force unit.
+     * @return a string representation of force value and unit using imperial
+     * unit system.
+     */
+    public String formatAndConvertImperial(final Number value, final ForceUnit unit) {
+<span class="fc" id="L215">        final var poundsForce = ForceConverter.convert(value.doubleValue(), unit, ForceUnit.POUND_FORCE);</span>
+<span class="fc" id="L216">        return format(poundsForce, ForceUnit.POUND_FORCE);</span>
+    }
+
+    /**
+     * Returns unit string representation.
+     *
+     * @param unit a force unit.
+     * @return its string representation.
+     */
+    @SuppressWarnings(&quot;DuplicatedCode&quot;)
+    @Override
+    public String getUnitSymbol(final ForceUnit unit) {
+<span class="fc bfc" id="L228" title="All 5 branches covered.">        return switch (unit) {</span>
+<span class="fc" id="L229">            case KILONEWTON -&gt; KILONEWTON;</span>
+<span class="fc" id="L230">            case POUND_FORCE -&gt; POUND_FORCE;</span>
+<span class="fc" id="L231">            case DYNE -&gt; DYNE;</span>
+<span class="fc" id="L232">            case KILOGRAM_FORCE -&gt; KILOGRAM_FORCE;</span>
+<span class="fc" id="L233">            default -&gt; NEWTON;</span>
+        };
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

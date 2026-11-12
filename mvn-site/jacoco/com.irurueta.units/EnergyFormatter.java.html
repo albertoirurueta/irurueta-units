@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EnergyFormatter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-units</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.units</a> &gt; <span class="el_source">EnergyFormatter.java</span></div><h1>EnergyFormatter.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2026 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.units;
+
+import java.text.ParseException;
+import java.util.Locale;
+
+/**
+ * Formats and parses energy value and unit.
+ */
+public class EnergyFormatter extends MeasureFormatter&lt;Energy, EnergyUnit&gt; {
+
+    /**
+     * Joule symbol.
+     */
+    public static final String JOULE = &quot;J&quot;;
+
+    /**
+     * Kilojoule symbol.
+     */
+    public static final String KILOJOULE = &quot;kJ&quot;;
+
+    /**
+     * Megajoule symbol.
+     */
+    public static final String MEGAJOULE = &quot;MJ&quot;;
+
+    /**
+     * Calorie symbol.
+     */
+    public static final String CALORIE = &quot;cal&quot;;
+
+    /**
+     * Kilocalorie symbol.
+     */
+    public static final String KILOCALORIE = &quot;kcal&quot;;
+
+    /**
+     * Kilowatt hour symbol.
+     */
+    public static final String KILOWATT_HOUR = &quot;kWh&quot;;
+
+    /**
+     * British thermal unit symbol.
+     */
+    public static final String BTU = &quot;BTU&quot;;
+
+    /**
+     * Constructor.
+     */
+    public EnergyFormatter() {
+<span class="fc" id="L65">        super();</span>
+<span class="fc" id="L66">    }</span>
+
+    /**
+     * Constructor with locale.
+     *
+     * @param locale locale.
+     * @throws IllegalArgumentException if locale is null.
+     */
+    public EnergyFormatter(final Locale locale) {
+<span class="fc" id="L75">        super(locale);</span>
+<span class="fc" id="L76">    }</span>
+
+    /**
+     * Copy constructor.
+     *
+     * @param formatter input instance to copy from.
+     * @throws NullPointerException if provided formatter is null.
+     */
+    public EnergyFormatter(final EnergyFormatter formatter) {
+<span class="fc" id="L85">        this(formatter.getLocale());</span>
+<span class="fc" id="L86">    }</span>
+
+    /**
+     * Determines if two energy formatters are equal by comparing all of their internal
+     * parameters.
+     *
+     * @param obj another object to compare.
+     * @return true if provided object is assumed to be equal to this instance.
+     */
+    @Override
+    public boolean equals(final Object obj) {
+<span class="fc" id="L97">        final var equals = super.equals(obj);</span>
+<span class="fc bfc" id="L98" title="All 4 branches covered.">        return (obj instanceof EnergyFormatter) &amp;&amp; equals;</span>
+    }
+
+    /**
+     * Hash code generated for this instance.
+     * Hash codes can be internally used by some collections to coarsely compare objects.
+     * This implementation only calls parent implementation to avoid static analyzer warning.
+     * It is kept because {@link #equals(Object)} is overridden, so both
+     * methods remain consistent.
+     *
+     * @return hash code.
+     */
+    @Override
+    @SuppressWarnings(&quot;PMD.UselessOverridingMethod&quot;)
+    public int hashCode() {
+<span class="fc" id="L113">        return super.hashCode();</span>
+    }
+
+    /**
+     * Gets unit system for detected unit into provided string representation
+     * of a measurement.
+     *
+     * @param source a measurement string representation to be checked.
+     * @return a unit system (either metric or imperial) or null if unit
+     * cannot be determined.
+     */
+    @Override
+    public UnitSystem getUnitSystem(final String source) {
+<span class="fc" id="L126">        final var unit = findUnit(source);</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">        return unit != null ? EnergyUnit.getUnitSystem(unit) : null;</span>
+    }
+
+    /**
+     * Parses provided string and tries to determine energy value and unit.
+     *
+     * @param source a string to be parsed.
+     * @return an energy containing a value and unit.
+     * @throws ParseException       if provided string cannot be parsed.
+     * @throws UnknownUnitException if unit cannot be determined.
+     */
+    @Override
+    public Energy parse(final String source) throws ParseException, UnknownUnitException {
+<span class="fc" id="L140">        return internalParse(source, new Energy());</span>
+    }
+
+    /**
+     * Attempts to determine an energy unit within a measurement string representation.
+     *
+     * @param source a measurement string representation.
+     * @return an energy unit, or null if none can be determined.
+     */
+    @Override
+    public EnergyUnit findUnit(final String source) {
+<span class="fc bfc" id="L151" title="All 2 branches covered.">        if (containsSymbol(source, KILOWATT_HOUR)) {</span>
+<span class="fc" id="L152">            return EnergyUnit.KILOWATT_HOUR;</span>
+        }
+<span class="fc bfc" id="L154" title="All 2 branches covered.">        if (containsSymbol(source, KILOCALORIE)) {</span>
+<span class="fc" id="L155">            return EnergyUnit.KILOCALORIE;</span>
+        }
+<span class="fc bfc" id="L157" title="All 2 branches covered.">        if (containsSymbol(source, KILOJOULE)) {</span>
+<span class="fc" id="L158">            return EnergyUnit.KILOJOULE;</span>
+        }
+<span class="fc bfc" id="L160" title="All 2 branches covered.">        if (containsSymbol(source, MEGAJOULE)) {</span>
+<span class="fc" id="L161">            return EnergyUnit.MEGAJOULE;</span>
+        }
+<span class="fc bfc" id="L163" title="All 2 branches covered.">        if (containsSymbol(source, CALORIE)) {</span>
+<span class="fc" id="L164">            return EnergyUnit.CALORIE;</span>
+        }
+<span class="fc bfc" id="L166" title="All 2 branches covered.">        if (containsSymbol(source, BTU)) {</span>
+<span class="fc" id="L167">            return EnergyUnit.BTU;</span>
+        }
+<span class="fc bfc" id="L169" title="All 2 branches covered.">        if (containsSymbol(source, JOULE)) {</span>
+<span class="fc" id="L170">            return EnergyUnit.JOULE;</span>
+        }
+<span class="fc" id="L172">        return null;</span>
+    }
+
+    /**
+     * Formats and converts provided energy value and unit using provided
+     * unit system.
+     * If provided value is too large for provided unit, this method will
+     * convert it to a more appropriate unit using provided unit system (either
+     * metric or imperial).
+     *
+     * @param value  an energy value.
+     * @param unit   an energy unit.
+     * @param system system unit to convert energy to.
+     * @return a string representation of energy value and unit.
+     */
+    @Override
+    public String formatAndConvert(final Number value, final EnergyUnit unit, final UnitSystem system) {
+<span class="fc bfc" id="L189" title="All 2 branches covered.">        if (system == UnitSystem.IMPERIAL) {</span>
+<span class="fc" id="L190">            return formatAndConvertImperial(value, unit);</span>
+        } else {
+<span class="fc" id="L192">            return formatAndConvertMetric(value, unit);</span>
+        }
+    }
+
+    /**
+     * Formats and converts provided energy value and unit using metric unit
+     * system.
+     * Value is shown in joules when its magnitude is below 1 kJ, in kilojoules
+     * when below 1 kWh, and in kilowatt hours otherwise. Calories and
+     * kilocalories are never selected automatically.
+     *
+     * @param value an energy value.
+     * @param unit  an energy unit.
+     * @return a string representation of energy value and unit using metric
+     * unit system.
+     */
+    public String formatAndConvertMetric(final Number value, final EnergyUnit unit) {
+<span class="fc" id="L209">        final var v = value.doubleValue();</span>
+
+<span class="fc" id="L211">        final var joules = EnergyConverter.convert(v, unit, EnergyUnit.JOULE);</span>
+<span class="fc bfc" id="L212" title="All 2 branches covered.">        if (Math.abs(joules) &lt; EnergyConverter.JOULES_PER_KILOJOULE) {</span>
+<span class="fc" id="L213">            return format(joules, EnergyUnit.JOULE);</span>
+        }
+
+<span class="fc" id="L216">        final var kilojoules = EnergyConverter.convert(v, unit, EnergyUnit.KILOJOULE);</span>
+<span class="fc bfc" id="L217" title="All 2 branches covered.">        if (Math.abs(joules) &lt; EnergyConverter.JOULES_PER_KILOWATT_HOUR) {</span>
+<span class="fc" id="L218">            return format(kilojoules, EnergyUnit.KILOJOULE);</span>
+        }
+
+<span class="fc" id="L221">        final var kilowattHours = EnergyConverter.convert(v, unit, EnergyUnit.KILOWATT_HOUR);</span>
+<span class="fc" id="L222">        return format(kilowattHours, EnergyUnit.KILOWATT_HOUR);</span>
+    }
+
+    /**
+     * Formats and converts provided energy value and unit using imperial unit
+     * system.
+     * Imperial unit system only contains BTU, so value is always converted
+     * to BTU.
+     *
+     * @param value an energy value.
+     * @param unit  an energy unit.
+     * @return a string representation of energy value and unit using imperial
+     * unit system.
+     */
+    public String formatAndConvertImperial(final Number value, final EnergyUnit unit) {
+<span class="fc" id="L237">        final var btu = EnergyConverter.convert(value.doubleValue(), unit, EnergyUnit.BTU);</span>
+<span class="fc" id="L238">        return format(btu, EnergyUnit.BTU);</span>
+    }
+
+    /**
+     * Returns unit string representation.
+     *
+     * @param unit an energy unit.
+     * @return its string representation.
+     */
+    @SuppressWarnings(&quot;DuplicatedCode&quot;)
+    @Override
+    public String getUnitSymbol(final EnergyUnit unit) {
+<span class="fc bfc" id="L250" title="All 7 branches covered.">        return switch (unit) {</span>
+<span class="fc" id="L251">            case KILOJOULE -&gt; KILOJOULE;</span>
+<span class="fc" id="L252">            case MEGAJOULE -&gt; MEGAJOULE;</span>
+<span class="fc" id="L253">            case CALORIE -&gt; CALORIE;</span>
+<span class="fc" id="L254">            case KILOCALORIE -&gt; KILOCALORIE;</span>
+<span class="fc" id="L255">            case KILOWATT_HOUR -&gt; KILOWATT_HOUR;</span>
+<span class="fc" id="L256">            case BTU -&gt; BTU;</span>
+<span class="fc" id="L257">            default -&gt; JOULE;</span>
+        };
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

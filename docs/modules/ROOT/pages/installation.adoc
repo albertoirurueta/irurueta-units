@@ -1,7 +1,7 @@
 = Installation
 :description: Add Irurueta Units to a Java project.
 :keywords: irurueta-units maven dependency, gradle dependency java, install java measurement library, maven central com.irurueta, java 17 library setup
-:repo-base: https://github.com/albertoirurueta/irurueta-units/blob/1.4.0/src/main/java/com/irurueta/units
+:repo-base: https://github.com/albertoirurueta/irurueta-units/blob/1.4.1/src/main/java/com/irurueta/units
 :javadoc-base: https://albertoirurueta.github.io/irurueta-units/mvn-site/apidocs/com/irurueta/units
 
 Irurueta Units is published as a Maven artifact with group id `com.irurueta` and artifact id `irurueta-units`.
@@ -14,18 +14,18 @@ The project itself is built as a Java 21 Maven JAR.
 <dependency>
     <groupId>com.irurueta</groupId>
     <artifactId>irurueta-units</artifactId>
-    <version>1.4.0</version>
+    <version>1.4.1</version>
 </dependency>
 ----
 
-If you are consuming a snapshot build from this checkout, use the repository version shown in `pom.xml`, for example `1.4.0-SNAPSHOT`.
+If you are consuming a snapshot build from this checkout, use the repository version shown in `pom.xml`, for example `1.5.0-SNAPSHOT`.
 
 == Gradle
 
 [source,kotlin]
 ----
 dependencies {
-    implementation("com.irurueta:irurueta-units:1.4.0")
+    implementation("com.irurueta:irurueta-units:1.4.1")
 }
 ----
 

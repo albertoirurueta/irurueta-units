@@ -1,7 +1,7 @@
 = Measurements and Conversion
 :description: Use measurement value objects and converter utilities.
 :keywords: java measurement value objects, distance converter java, temperature converter java, convert measurement units, add subtract measurements java, measurement equals tolerance
-:repo-base: https://github.com/albertoirurueta/irurueta-units/blob/1.4.0/src/main/java/com/irurueta/units
+:repo-base: https://github.com/albertoirurueta/irurueta-units/blob/1.4.1/src/main/java/com/irurueta/units
 :javadoc-base: https://albertoirurueta.github.io/irurueta-units/mvn-site/apidocs/com/irurueta/units
 
 Each concrete measurement stores a `Number` value and a unit enum.

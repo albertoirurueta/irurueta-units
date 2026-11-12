@@ -7,6 +7,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [1.4.1] - 2026-11-12
+
 ### Added
 
 - Added `Force`, `Pressure`, `Energy` and `Power` measurement families, each with its unit enum, measurement class,
@@ -26,6 +28,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   change: named constants instead of magic numbers, `final` utility/helper classes, no redundant modifiers or hidden
   fields, and consistent indentation; the one line over the 120-column limit was wrapped. `checkstyle.xml` is now
   wired into the build via `maven-checkstyle-plugin` (`mvn checkstyle:check`) (GitHub issue #23).
+- All converter utility classes, `BuildInfo` and `UnitLocale` are now `final`; public method signatures are
+  unchanged.
+
+### Fixed
+
+- Formatters across all existing measurement families now match unit symbols as whole tokens when parsing, so a
+  symbol that is only the suffix of a longer letter run is no longer misdetected.
 
 ## [1.4.0] - 2026-06-30
 
@@ -88,7 +97,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Project migrated from Travis CI to GitHub Actions, with Checkstyle rules and SonarCloud/code-quality
   tooling in place.
 
-[Unreleased]: https://github.com/albertoirurueta/irurueta-units/compare/1.4.0...HEAD
+[Unreleased]: https://github.com/albertoirurueta/irurueta-units/compare/1.4.1...HEAD
+[1.4.1]: https://github.com/albertoirurueta/irurueta-units/compare/1.4.0...1.4.1
 [1.4.0]: https://github.com/albertoirurueta/irurueta-units/compare/1.3.2...1.4.0
 [1.3.2]: https://github.com/albertoirurueta/irurueta-units/compare/1.3.1...1.3.2
 [1.3.1]: https://github.com/albertoirurueta/irurueta-units/compare/1.3.0...1.3.1

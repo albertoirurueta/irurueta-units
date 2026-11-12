@@ -41,7 +41,7 @@ graph LR
 
 ## 🚦 Project status
 
-- Current development version: `1.4.0-SNAPSHOT`
+- Current development version: `1.5.0-SNAPSHOT`
 - Java target: Java 21
 - Build system: Maven
 - License: Apache License 2.0
@@ -68,7 +68,7 @@ For a released dependency, pin the version you want to use. Example:
 <dependency>
     <groupId>com.irurueta</groupId>
     <artifactId>irurueta-units</artifactId>
-    <version>1.4.0</version>
+    <version>1.4.1</version>
 </dependency>
 ```
 
@@ -86,7 +86,7 @@ For local development against the current repository snapshot:
 
 ```kotlin
 dependencies {
-    implementation("com.irurueta:irurueta-units:1.3.2")
+    implementation("com.irurueta:irurueta-units:1.4.1")
 }
 ```
 

@@ -41,8 +41,8 @@ graph LR
 
 ## 🚦 Project status
 
-- Current development version: `1.4.0-SNAPSHOT`
-- Java target: Java 17
+- Current development version: `1.5.0-SNAPSHOT`
+- Java target: Java 21
 - Build system: Maven
 - License: Apache License 2.0
 - Quality checks: GitHub Actions, JaCoCo, Surefire, SpotBugs, and SonarCloud
@@ -53,6 +53,7 @@ graph LR
 - [Javadoc report](https://albertoirurueta.github.io/irurueta-units/mvn-site/apidocs/index.html)
 - [JaCoCo coverage report](https://albertoirurueta.github.io/irurueta-units/mvn-site/jacoco/index.html)
 - [Surefire test report](https://albertoirurueta.github.io/irurueta-units/mvn-site/surefire-report.html)
+- [Maven site report](http://albertoirurueta.github.io/irurueta-units/mvn-site)
 - [SonarCloud dashboard](https://sonarcloud.io/project/overview?id=albertoirurueta_irurueta-units)
 
 The Antora documentation source lives in [`docs/modules/ROOT`](docs/modules/ROOT).
@@ -67,7 +68,7 @@ For a released dependency, pin the version you want to use. Example:
 <dependency>
     <groupId>com.irurueta</groupId>
     <artifactId>irurueta-units</artifactId>
-    <version>1.4.0</version>
+    <version>1.4.1</version>
 </dependency>
 ```
 
@@ -85,7 +86,7 @@ For local development against the current repository snapshot:
 
 ```kotlin
 dependencies {
-    implementation("com.irurueta:irurueta-units:1.3.2")
+    implementation("com.irurueta:irurueta-units:1.4.1")
 }
 ```
 
@@ -162,12 +163,17 @@ mvn package       # build the JAR and generate JaCoCo coverage
 mvn site          # generate Maven site reports
 ```
 
-To build the Antora documentation locally:
+To build the Antora documentation locally (Node.js 20 or later):
 
 ```bash
 cd docs
+npm ci
 npx antora antora-playbook.yml
+npx pagefind --site build/site
 ```
+
+Search only works when `docs/build/site` is served over HTTP (for example
+`python3 -m http.server --directory build/site`), not from `file://`.
 
 ## 🧭 Supported measurement families
 
@@ -184,6 +190,10 @@ npx antora antora-playbook.yml
 | `Frequency` | `HERTZ`, `KILOHERTZ`, `MEGAHERTZ`, `GIGAHERTZ` |
 | `Angle` and angular motion | `RADIANS`, `RADIANS_PER_SECOND`, `RADIANS_PER_SQUARED_SECOND` |
 | `MagneticFluxDensity` | `NANOTESLA`, `MICROTESLA`, `MILLITESLA`, `TESLA` |
+| `Force` | `NEWTON`, `KILONEWTON`, `POUND_FORCE`, `DYNE`, `KILOGRAM_FORCE` |
+| `Pressure` | `PASCAL`, `KILOPASCAL`, `BAR`, `ATMOSPHERE`, `PSI` |
+| `Energy` | `JOULE`, `KILOJOULE`, `MEGAJOULE`, `CALORIE`, `KILOCALORIE`, `KILOWATT_HOUR`, `BTU` |
+| `Power` | `WATT`, `KILOWATT`, `MEGAWATT`, `GIGAWATT`, `HORSEPOWER` |
 
 ## 🤝 Contributing
 
@@ -198,6 +208,7 @@ For changes affecting documentation, also run:
 
 ```bash
 cd docs
+npm ci
 npx antora antora-playbook.yml
 ```
 

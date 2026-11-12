@@ -81,10 +81,13 @@ public class AccelerationFormatter extends MeasureFormatter<Acceleration, Accele
     /**
      * Hash code generated for this instance. Hash codes can be internally used by some collections to coarsely
      * compare objects. This implementation only calls parent implementation to avoid static analyzer warning.
+     * It is kept because {@link #equals(Object)} is overridden, so both
+     * methods remain consistent.
      *
      * @return hash code.
      */
     @Override
+    @SuppressWarnings("PMD.UselessOverridingMethod")
     public int hashCode() {
         return super.hashCode();
     }
@@ -121,13 +124,13 @@ public class AccelerationFormatter extends MeasureFormatter<Acceleration, Accele
      */
     @Override
     public AccelerationUnit findUnit(final String source) {
-        if (source.contains(METERS_PER_SQUARED_SECOND + " ") || source.endsWith(METERS_PER_SQUARED_SECOND)) {
+        if (containsSymbol(source, METERS_PER_SQUARED_SECOND)) {
             return AccelerationUnit.METERS_PER_SQUARED_SECOND;
         }
-        if (source.contains(G + " ") || source.endsWith(G)) {
+        if (containsSymbol(source, G)) {
             return AccelerationUnit.G;
         }
-        if (source.contains(FEET_PER_SQUARED_SECOND + " ") || source.endsWith(FEET_PER_SQUARED_SECOND)) {
+        if (containsSymbol(source, FEET_PER_SQUARED_SECOND)) {
             return AccelerationUnit.FEET_PER_SQUARED_SECOND;
         }
         return null;

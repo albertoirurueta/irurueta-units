@@ -106,10 +106,13 @@ public class DistanceFormatter extends MeasureFormatter<Distance, DistanceUnit> 
      * Hash code generated for this instance.
      * Hash codes can be internally used by some collections to coarsely compare objects.
      * This implementation only calls parent implementation to avoid static analyzer warning.
+     * It is kept because {@link #equals(Object)} is overridden, so both
+     * methods remain consistent.
      *
      * @return hash code.
      */
     @Override
+    @SuppressWarnings("PMD.UselessOverridingMethod")
     public int hashCode() {
         return super.hashCode();
     }
@@ -150,29 +153,29 @@ public class DistanceFormatter extends MeasureFormatter<Distance, DistanceUnit> 
      */
     @Override
     public DistanceUnit findUnit(final String source) {
-        if (source.contains(MILLIMETER + " ") || source.endsWith(MILLIMETER)) {
+        if (containsSymbol(source, MILLIMETER)) {
             return DistanceUnit.MILLIMETER;
         }
-        if (source.contains(CENTIMETER + " ") || source.endsWith(CENTIMETER)) {
+        if (containsSymbol(source, CENTIMETER)) {
             return DistanceUnit.CENTIMETER;
         }
-        if (source.contains(KILOMETER + " ") || source.endsWith(KILOMETER)) {
+        if (containsSymbol(source, KILOMETER)) {
             return DistanceUnit.KILOMETER;
         }
-        if (source.contains(INCH + " ") || source.endsWith(INCH)) {
+        if (containsSymbol(source, INCH)) {
             return DistanceUnit.INCH;
         }
-        if (source.contains(FOOT + " ") || source.endsWith(FOOT)) {
+        if (containsSymbol(source, FOOT)) {
             return DistanceUnit.FOOT;
         }
-        if (source.contains(YARD + " ") || source.endsWith(YARD)) {
+        if (containsSymbol(source, YARD)) {
             return DistanceUnit.YARD;
         }
-        if (source.contains(MILE + " ") || source.endsWith(MILE)) {
+        if (containsSymbol(source, MILE)) {
             return DistanceUnit.MILE;
         }
 
-        if (source.contains(METER + " ") || source.endsWith(METER)) {
+        if (containsSymbol(source, METER)) {
             return DistanceUnit.METER;
         }
         return null;

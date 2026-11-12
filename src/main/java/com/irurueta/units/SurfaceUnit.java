@@ -109,14 +109,14 @@ public enum SurfaceUnit {
      */
     public static SurfaceUnit[] getMetricUnits() {
         return new SurfaceUnit[]{
-                SQUARE_MILLIMETER,
-                SQUARE_CENTIMETER,
-                SQUARE_METER,
-                SQUARE_KILOMETER,
-                CENTIARE,
-                ARE,
-                DECARE,
-                HECTARE
+            SQUARE_MILLIMETER,
+            SQUARE_CENTIMETER,
+            SQUARE_METER,
+            SQUARE_KILOMETER,
+            CENTIARE,
+            ARE,
+            DECARE,
+            HECTARE
         };
     }
 
@@ -127,11 +127,11 @@ public enum SurfaceUnit {
      */
     public static SurfaceUnit[] getImperialUnits() {
         return new SurfaceUnit[]{
-                SQUARE_INCH,
-                SQUARE_FOOT,
-                SQUARE_YARD,
-                SQUARE_MILE,
-                ACRE
+            SQUARE_INCH,
+            SQUARE_FOOT,
+            SQUARE_YARD,
+            SQUARE_MILE,
+            ACRE
         };
     }
 

@@ -23,7 +23,7 @@ import java.math.BigDecimal;
  * before displaying speed measurements.
  */
 @SuppressWarnings("WeakerAccess")
-public class SpeedConverter {
+public final class SpeedConverter {
 
     /**
      * Number of meters in 1 kilometer.

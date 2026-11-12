@@ -22,12 +22,27 @@ import java.math.BigDecimal;
  * To prevent loss of accuracy, conversion should only be done as a final step
  * before displaying temperature measurements.
  */
-public class TemperatureConverter {
+public final class TemperatureConverter {
 
     /**
      * Absolute zero temperature expressed in Kelvins (K).
      */
     public static final double ABSOLUTE_ZERO = -273.15;
+
+    /**
+     * Offset of the Fahrenheit scale with respect to the Celsius scale.
+     */
+    private static final double FAHRENHEIT_OFFSET = 32.0;
+
+    /**
+     * Numerator of the Fahrenheit to Celsius scale factor.
+     */
+    private static final double FAHRENHEIT_RANGE = 9.0;
+
+    /**
+     * Denominator of the Fahrenheit to Celsius scale factor.
+     */
+    private static final double CELSIUS_RANGE = 5.0;
 
     /**
      * Constructor.
@@ -149,7 +164,7 @@ public class TemperatureConverter {
      * @return some amount of temperature converted to Fahrenheit.
      */
     public static double celsiusToFahrenheit(final double celsius) {
-        return celsius * 9.0 / 5.0 + 32.0;
+        return celsius * FAHRENHEIT_RANGE / CELSIUS_RANGE + FAHRENHEIT_OFFSET;
     }
 
     /**
@@ -159,6 +174,6 @@ public class TemperatureConverter {
      * @return some amount of temperature converted to Celsius.
      */
     public static double fahrenheitToCelsius(final double fahrenheit) {
-        return (fahrenheit - 32.0) * 5.0 / 9.0;
+        return (fahrenheit - FAHRENHEIT_OFFSET) * CELSIUS_RANGE / FAHRENHEIT_RANGE;
     }
 }

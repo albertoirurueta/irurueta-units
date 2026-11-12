@@ -77,10 +77,13 @@ public class AngularSpeedFormatter extends MeasureFormatter<AngularSpeed, Angula
      * Hash code generated for this instance.
      * Hash codes can be internally used by some collections to coarsely compare objects.
      * This implementation only calls parent implementation to avoid static analyzer warning.
+     * It is kept because {@link #equals(Object)} is overridden, so both
+     * methods remain consistent.
      *
      * @return hash code.
      */
     @Override
+    @SuppressWarnings("PMD.UselessOverridingMethod")
     public int hashCode() {
         return super.hashCode();
     }
@@ -120,10 +123,10 @@ public class AngularSpeedFormatter extends MeasureFormatter<AngularSpeed, Angula
      */
     @Override
     public AngularSpeedUnit findUnit(final String source) {
-        if (source.contains(DEGREES_PER_SECOND + " ") || source.endsWith(DEGREES_PER_SECOND)) {
+        if (containsSymbol(source, DEGREES_PER_SECOND)) {
             return AngularSpeedUnit.DEGREES_PER_SECOND;
         }
-        if (source.contains(RADIANS_PER_SECOND + " ") || source.endsWith(RADIANS_PER_SECOND)) {
+        if (containsSymbol(source, RADIANS_PER_SECOND)) {
             return AngularSpeedUnit.RADIANS_PER_SECOND;
         }
         return null;

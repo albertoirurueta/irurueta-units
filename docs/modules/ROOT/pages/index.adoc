@@ -1,5 +1,10 @@
 = Irurueta Units
 :description: Java library for representing, converting, formatting, and parsing measurement units.
+:keywords: java measurement units library, unit conversion java, distance speed temperature weight, measurement value objects, unit converter formatter, metric imperial units java
+:repo-base: https://github.com/albertoirurueta/irurueta-units/blob/1.4.1/src/main/java/com/irurueta/units
+:javadoc-base: https://albertoirurueta.github.io/irurueta-units/mvn-site/apidocs/com/irurueta/units
+
+NOTE: This documentation was generated with the assistance of AI. Please report any inaccuracies.
 
 Irurueta Units is a lightweight Java library for working with physical measurements.
 It provides type-specific value objects such as `Distance`, `Speed`, `Temperature`, `Time`, and `Weight`; unit enumerations such as `DistanceUnit` and `TemperatureUnit`; converter utilities; and locale-aware formatters.
@@ -32,7 +37,7 @@ graph TD
 
 `Measurement`::
 Base class for a numeric value and an enum unit.
-Concrete measurements include `Distance`, `Surface`, `Volume`, `Speed`, `Acceleration`, `Angle`, `AngularSpeed`, `AngularAcceleration`, `Time`, `Frequency`, `Temperature`, `Weight`, and `MagneticFluxDensity`.
+Concrete measurements include `Distance`, `Surface`, `Volume`, `Speed`, `Acceleration`, `Angle`, `AngularSpeed`, `AngularAcceleration`, `Time`, `Frequency`, `Temperature`, `Weight`, `MagneticFluxDensity`, `Force`, `Pressure`, `Energy`, and `Power`.
 
 `*Unit`::
 Enum types that list the units supported for each measurement family.
@@ -77,6 +82,12 @@ formatter.setMaximumFractionDigits(2);
 String display = formatter.formatAndConvert(total, UnitSystem.IMPERIAL);
 Distance parsed = formatter.parse("12.5 ft");
 ----
+
+*Classes used:* link:{repo-base}/Distance.java[Distance] (link:{javadoc-base}/Distance.html[Javadoc]) ·
+link:{repo-base}/DistanceConverter.java[DistanceConverter] (link:{javadoc-base}/DistanceConverter.html[Javadoc]) ·
+link:{repo-base}/DistanceFormatter.java[DistanceFormatter] (link:{javadoc-base}/DistanceFormatter.html[Javadoc]) ·
+link:{repo-base}/DistanceUnit.java[DistanceUnit] (link:{javadoc-base}/DistanceUnit.html[Javadoc]) ·
+link:{repo-base}/UnitSystem.java[UnitSystem] (link:{javadoc-base}/UnitSystem.html[Javadoc])
 
 == Documentation map
 

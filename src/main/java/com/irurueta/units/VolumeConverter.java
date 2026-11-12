@@ -22,7 +22,7 @@ import java.math.BigDecimal;
  * To prevent loss of accuracy, conversion should only be done as a final step
  * before displaying volume measurements.
  */
-public class VolumeConverter {
+public final class VolumeConverter {
 
     /**
      * Number of cubic meters in 1 cubic centimeter.

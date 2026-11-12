@@ -92,10 +92,13 @@ public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit> {
      * Hash code generated for this instance.
      * Hash codes can be internally used by some collections to coarsely compare objects.
      * This implementation only calls parent implementation to avoid static analyzer warning.
+     * It is kept because {@link #equals(Object)} is overridden, so both
+     * methods remain consistent.
      *
      * @return hash code.
      */
     @Override
+    @SuppressWarnings("PMD.UselessOverridingMethod")
     public int hashCode() {
         return super.hashCode();
     }
@@ -135,19 +138,19 @@ public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit> {
      */
     @Override
     public SpeedUnit findUnit(final String source) {
-        if (source.contains(KILOMETERS_PER_HOUR + " ") || source.endsWith(KILOMETERS_PER_HOUR)) {
+        if (containsSymbol(source, KILOMETERS_PER_HOUR)) {
             return SpeedUnit.KILOMETERS_PER_HOUR;
         }
-        if (source.contains(KILOMETERS_PER_SECOND + " ") || source.endsWith(KILOMETERS_PER_SECOND)) {
+        if (containsSymbol(source, KILOMETERS_PER_SECOND)) {
             return SpeedUnit.KILOMETERS_PER_SECOND;
         }
-        if (source.contains(FEET_PER_SECOND + " ") || source.endsWith(FEET_PER_SECOND)) {
+        if (containsSymbol(source, FEET_PER_SECOND)) {
             return SpeedUnit.FEET_PER_SECOND;
         }
-        if (source.contains(MILES_PER_HOUR + " ") || source.endsWith(MILES_PER_HOUR)) {
+        if (containsSymbol(source, MILES_PER_HOUR)) {
             return SpeedUnit.MILES_PER_HOUR;
         }
-        if (source.contains(METERS_PER_SECOND + " ") || source.endsWith(METERS_PER_SECOND)) {
+        if (containsSymbol(source, METERS_PER_SECOND)) {
             return SpeedUnit.METERS_PER_SECOND;
         }
         return null;

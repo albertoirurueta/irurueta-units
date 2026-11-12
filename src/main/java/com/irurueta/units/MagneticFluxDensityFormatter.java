@@ -102,14 +102,17 @@ public class MagneticFluxDensityFormatter extends MeasureFormatter<MagneticFluxD
      * Hash code generated for this instance.
      * Hash codes can be internally used by some collections to coarsely compare objects.
      * This implementation only calls parent implementation to avoid static analyzer warning.
+     * It is kept because {@link #equals(Object)} is overridden, so both
+     * methods remain consistent.
      *
      * @return hash code.
      */
     @Override
+    @SuppressWarnings("PMD.UselessOverridingMethod")
     public int hashCode() {
         return super.hashCode();
     }
-    
+
     /**
      * Gets unit system for detected unit into provided string representation
      * of a measurement.
@@ -147,25 +150,25 @@ public class MagneticFluxDensityFormatter extends MeasureFormatter<MagneticFluxD
      */
     @Override
     public MagneticFluxDensityUnit findUnit(final String source) {
-        if (source.contains(NANOTESLA + " ") || source.endsWith(NANOTESLA)) {
+        if (containsSymbol(source, NANOTESLA)) {
             return MagneticFluxDensityUnit.NANOTESLA;
         }
-        if (source.contains(MICROTESLA + " ") || source.endsWith(MICROTESLA)) {
+        if (containsSymbol(source, MICROTESLA)) {
             return MagneticFluxDensityUnit.MICROTESLA;
         }
-        if (source.contains(MILLITESLA + " ") || source.endsWith(MILLITESLA)) {
+        if (containsSymbol(source, MILLITESLA)) {
             return MagneticFluxDensityUnit.MILLITESLA;
         }
-        if (source.contains(KILOTESLA + " ") || source.endsWith(KILOTESLA)) {
+        if (containsSymbol(source, KILOTESLA)) {
             return MagneticFluxDensityUnit.KILOTESLA;
         }
-        if (source.contains(MEGATESLA + " ") || source.endsWith(MEGATESLA)) {
+        if (containsSymbol(source, MEGATESLA)) {
             return MagneticFluxDensityUnit.MEGATESLA;
         }
-        if (source.contains(GIGATESLA + " ") || source.endsWith(GIGATESLA)) {
+        if (containsSymbol(source, GIGATESLA)) {
             return MagneticFluxDensityUnit.GIGATESLA;
         }
-        if (source.contains(TESLA + " ") || source.endsWith(TESLA)) {
+        if (containsSymbol(source, TESLA)) {
             return MagneticFluxDensityUnit.TESLA;
         }
         return null;
@@ -248,7 +251,7 @@ public class MagneticFluxDensityFormatter extends MeasureFormatter<MagneticFluxD
      * @return its string representation
      */
     @Override
-    public String getUnitSymbol(MagneticFluxDensityUnit unit) {
+    public String getUnitSymbol(final MagneticFluxDensityUnit unit) {
         return switch (unit) {
             case NANOTESLA -> NANOTESLA;
             case MICROTESLA -> MICROTESLA;

@@ -68,10 +68,13 @@ public class TemperatureFormatter extends MeasureFormatter<Temperature, Temperat
      * Hash codes can be internally used by some collections to coarsely compare
      * objects. This implementation only calls parent implementation to avoid
      * static analyzer warning.
+     * It is kept because {@link #equals(Object)} is overridden, so both
+     * methods remain consistent.
      *
      * @return hash code.
      */
     @Override
+    @SuppressWarnings("PMD.UselessOverridingMethod")
     public int hashCode() {
         return super.hashCode();
     }
@@ -112,13 +115,13 @@ public class TemperatureFormatter extends MeasureFormatter<Temperature, Temperat
      */
     @Override
     public TemperatureUnit findUnit(final String source) {
-        if (source.contains(CELSIUS + " ") || source.endsWith(CELSIUS)) {
+        if (containsSymbol(source, CELSIUS)) {
             return TemperatureUnit.CELSIUS;
         }
-        if (source.contains(FAHRENHEIT + " ") || source.endsWith(FAHRENHEIT)) {
+        if (containsSymbol(source, FAHRENHEIT)) {
             return TemperatureUnit.FAHRENHEIT;
         }
-        if (source.contains(KELVIN + " ") || source.endsWith(KELVIN)) {
+        if (containsSymbol(source, KELVIN)) {
             return TemperatureUnit.KELVIN;
         }
         return null;

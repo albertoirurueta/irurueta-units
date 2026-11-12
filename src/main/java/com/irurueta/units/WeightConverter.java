@@ -22,7 +22,7 @@ import java.math.BigDecimal;
  * To prevent loss of accuracy, conversion should only be done as a final step
  * before displaying weight measurements.
  */
-public class WeightConverter {
+public final class WeightConverter {
 
     /**
      * Number of grams in 1 picogram.

@@ -77,10 +77,13 @@ public class AngularAccelerationFormatter extends MeasureFormatter<AngularAccele
      * Hash code generated for this instance.
      * Hash codes can be internally used by some collections to coarsely compare objects.
      * This implementation only calls parent implementation to avoid static analyzer warning.
+     * It is kept because {@link #equals(Object)} is overridden, so both
+     * methods remain consistent.
      *
      * @return hash code.
      */
     @Override
+    @SuppressWarnings("PMD.UselessOverridingMethod")
     public int hashCode() {
         return super.hashCode();
     }
@@ -121,10 +124,10 @@ public class AngularAccelerationFormatter extends MeasureFormatter<AngularAccele
      */
     @Override
     public AngularAccelerationUnit findUnit(final String source) {
-        if (source.contains(DEGREES_PER_SQUARED_SECOND + " ") || source.endsWith(DEGREES_PER_SQUARED_SECOND)) {
+        if (containsSymbol(source, DEGREES_PER_SQUARED_SECOND)) {
             return AngularAccelerationUnit.DEGREES_PER_SQUARED_SECOND;
         }
-        if (source.contains(RADIANS_PER_SQUARED_SECOND + " ") || source.endsWith(RADIANS_PER_SQUARED_SECOND)) {
+        if (containsSymbol(source, RADIANS_PER_SQUARED_SECOND)) {
             return AngularAccelerationUnit.RADIANS_PER_SQUARED_SECOND;
         }
         return null;

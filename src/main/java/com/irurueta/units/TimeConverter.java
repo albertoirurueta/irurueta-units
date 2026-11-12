@@ -23,7 +23,7 @@ import java.math.BigDecimal;
  * before displaying time measurements.
  */
 @SuppressWarnings("WeakerAccess")
-public class TimeConverter {
+public final class TimeConverter {
 
     /**
      * Number of seconds in 1 nanosecond.

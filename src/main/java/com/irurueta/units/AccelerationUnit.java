@@ -62,8 +62,8 @@ public enum AccelerationUnit {
      */
     public static AccelerationUnit[] getMetricUnits() {
         return new AccelerationUnit[]{
-                METERS_PER_SQUARED_SECOND,
-                G
+            METERS_PER_SQUARED_SECOND,
+            G
         };
     }
 
@@ -74,7 +74,7 @@ public enum AccelerationUnit {
      */
     public static AccelerationUnit[] getImperialUnits() {
         return new AccelerationUnit[]{
-                FEET_PER_SQUARED_SECOND
+            FEET_PER_SQUARED_SECOND
         };
     }
 

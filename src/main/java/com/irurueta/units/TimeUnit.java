@@ -101,10 +101,10 @@ public enum TimeUnit {
      */
     public static TimeUnit[] getMetricUnits() {
         return new TimeUnit[]{
-            NANOSECOND,
-            MICROSECOND,
-            MILLISECOND,
-            SECOND
+                NANOSECOND,
+                MICROSECOND,
+                MILLISECOND,
+                SECOND
         };
     }
 
@@ -116,13 +116,13 @@ public enum TimeUnit {
      */
     public static TimeUnit[] getNonInternationalSystemUnits() {
         return new TimeUnit[]{
-            MINUTE,
-            HOUR,
-            DAY,
-            WEEK,
-            MONTH,
-            YEAR,
-            CENTURY
+                MINUTE,
+                HOUR,
+                DAY,
+                WEEK,
+                MONTH,
+                YEAR,
+                CENTURY
         };
     }
 

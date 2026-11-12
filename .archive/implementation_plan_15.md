@@ -86,6 +86,7 @@ Open clarifications: none
     initializer children to 12 spaces.
   - [x] Task 2.2. `ForceUnit.java`, `PressureUnit.java`: rewrite flagged constant Javadoc so the first sentence ends
     with a period (e.g. `Newton, symbol N.`).
+    - No change needed: the fresh baseline flagged neither ForceUnit nor PressureUnit.
 - [x] Task 3. Fix the older unit enums _(java)_
   - [x] Task 3.1. `SpeedUnit`, `DistanceUnit`, `WeightUnit`, `VolumeUnit`, `TimeUnit`, `SurfaceUnit`,
     `TemperatureUnit`, `AccelerationUnit`: re-indent array initializer children to 12 spaces, plus any other unit enum
@@ -114,8 +115,19 @@ Open clarifications: none
   - [x] Task 6.1. Run the full test suite via `iru-gate-runner` (`mvn test`); all tests pass unchanged and coverage
     stays at or above its previous level.
   - [x] Task 6.2. Re-run Checkstyle, PMD and SpotBugs via `iru-gate-runner` and diff against Task 1: the four in-scope
-    rules drop to zero, every other rule's count is unchanged, SpotBugs stays at 0 findings.
+    rules drop to zero, every other rule's count is unchanged, SpotBugs stays at its baseline of 3 findings.
   - [x] Task 6.3. Confirm no `src/main/resources/.../build-info.properties` churn is staged (it is regenerated every
     build and must not be committed).
 
   - Result: 1346 tests pass (JaCoCo lines 3457/3466 covered, branches 1461/1499). Checkstyle 1215 (baseline 1221; JavadocStyle 6->0, LineLength 1132 = baseline after wrapping 10 lines lengthened by `+ SPACE` in Distance/MagneticFluxDensity/Temperature/Time/Volume formatters, all others unchanged); PMD 2 (UselessOverridingMethod 17->0, UnnecessaryModifier 1, UselessParentheses 1 unchanged); SpotBugs 3 = baseline (no new). build-info.properties modified in working tree only, nothing staged.
+
+## Review follow-up (PR #24)
+
+- The fresh baseline already showed Indentation and MultipleStringLiterals at 0, so the issue's counts did not
+  reproduce. The enum re-indentation was reverted (the original 16-space layout passes Checkstyle and matches the IDE).
+- Switching the older formatters to `MeasureFormatter.containsSymbol` was tried and reverted: its letter-boundary
+  check changes parsing (e.g. `WeightFormatterTest` expects `"5,5 lg"` to match grams via `endsWith("g")`). This ticket
+  must not change behavior, so the per-class `SPACE` constants stay. Unifying `findUnit` on `containsSymbol` is a
+  behavior change for a separate ticket.
+- `AccelerationFormatter`/`AngleFormatter` got the missing `hashCode()` justification, and `TemperatureFormatter`'s
+  wording was aligned with the other formatters.

@@ -99,12 +99,12 @@ public enum VolumeUnit {
      */
     public static VolumeUnit[] getMetricUnits() {
         return new VolumeUnit[]{
-            CUBIC_CENTIMETER,
-            MILLILITER,
-            CUBIC_DECIMETER,
-            LITER,
-            HECTOLITER,
-            CUBIC_METER
+                CUBIC_CENTIMETER,
+                MILLILITER,
+                CUBIC_DECIMETER,
+                LITER,
+                HECTOLITER,
+                CUBIC_METER
         };
     }
 
@@ -115,11 +115,11 @@ public enum VolumeUnit {
      */
     public static VolumeUnit[] getImperialUnits() {
         return new VolumeUnit[]{
-            CUBIC_INCH,
-            PINT,
-            GALLON,
-            CUBIC_FOOT,
-            BARREL
+                CUBIC_INCH,
+                PINT,
+                GALLON,
+                CUBIC_FOOT,
+                BARREL
         };
     }
 

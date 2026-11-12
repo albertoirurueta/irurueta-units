@@ -115,6 +115,8 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> {
     /**
      * Hash code generated for this instance. Hash codes can be internally used by some collections to coarsely
      * compare objects. This implementation only calls parent implementation to avoid static analyzer warning.
+     * It is kept because {@link #equals(Object)} is overridden, so both
+     * methods remain consistent.
      *
      * @return hash code.
      */

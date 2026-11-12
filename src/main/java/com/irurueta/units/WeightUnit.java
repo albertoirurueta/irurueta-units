@@ -104,14 +104,14 @@ public enum WeightUnit {
      */
     public static WeightUnit[] getMetricUnits() {
         return new WeightUnit[]{
-            PICOGRAM,
-            NANOGRAM,
-            MICROGRAM,
-            MILLIGRAM,
-            GRAM,
-            KILOGRAM,
-            TONNE,
-            MEGATONNE
+                PICOGRAM,
+                NANOGRAM,
+                MICROGRAM,
+                MILLIGRAM,
+                GRAM,
+                KILOGRAM,
+                TONNE,
+                MEGATONNE
         };
     }
 
@@ -122,10 +122,10 @@ public enum WeightUnit {
      */
     public static WeightUnit[] getImperialUnits() {
         return new WeightUnit[]{
-            US_TON,
-            UK_TON,
-            POUND,
-            OUNCE
+                US_TON,
+                UK_TON,
+                POUND,
+                OUNCE
         };
     }
 

@@ -69,10 +69,10 @@ public enum PressureUnit {
      */
     public static PressureUnit[] getMetricUnits() {
         return new PressureUnit[]{
-            PASCAL,
-            KILOPASCAL,
-            BAR,
-            ATMOSPHERE
+                PASCAL,
+                KILOPASCAL,
+                BAR,
+                ATMOSPHERE
         };
     }
 
@@ -83,7 +83,7 @@ public enum PressureUnit {
      */
     public static PressureUnit[] getImperialUnits() {
         return new PressureUnit[]{
-            PSI
+                PSI
         };
     }
 

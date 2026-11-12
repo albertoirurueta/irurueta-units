@@ -61,8 +61,8 @@ public enum TemperatureUnit {
      */
     public static TemperatureUnit[] getMetricUnits() {
         return new TemperatureUnit[]{
-            CELSIUS,
-            KELVIN
+                CELSIUS,
+                KELVIN
         };
     }
 
@@ -73,7 +73,7 @@ public enum TemperatureUnit {
      */
     public static TemperatureUnit[] getImperialUnits() {
         return new TemperatureUnit[]{
-            FAHRENHEIT
+                FAHRENHEIT
         };
     }
 

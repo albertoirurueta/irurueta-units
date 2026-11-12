@@ -69,10 +69,10 @@ public enum ForceUnit {
      */
     public static ForceUnit[] getMetricUnits() {
         return new ForceUnit[]{
-            NEWTON,
-            KILONEWTON,
-            DYNE,
-            KILOGRAM_FORCE
+                NEWTON,
+                KILONEWTON,
+                DYNE,
+                KILOGRAM_FORCE
         };
     }
 
@@ -83,7 +83,7 @@ public enum ForceUnit {
      */
     public static ForceUnit[] getImperialUnits() {
         return new ForceUnit[]{
-            POUND_FORCE
+                POUND_FORCE
         };
     }
 

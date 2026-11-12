@@ -1,0 +1,12 @@
+= What's new
+:description: Release notes for Irurueta Units.
+
+NOTE: This documentation was generated with the assistance of AI. Please report any inaccuracies.
+
+== 1.4.1
+
+* ✨ New measurement families: `Force`, `Pressure`, `Energy` and `Power`, each with its unit enum, measurement class, converter and formatter.
+* 🐛 Formatters match unit symbols as whole tokens when parsing, so unsupported prefixed units (for example `hPa` or `TW`) raise `UnknownUnitException` instead of being misparsed.
+* ♻️ Converter utility classes, `BuildInfo` and `UnitLocale` are now `final`.
+* ♻️ Java target raised from 17 to 21; SonarCloud analysis now runs through `sonar-maven-plugin`.
+* ♻️ Static analysis cleanup (Checkstyle, PMD, SpotBugs) with no behavior change; Checkstyle is wired into the build.

@@ -59,11 +59,6 @@ public class MagneticFluxDensityFormatter extends MeasureFormatter<MagneticFluxD
     public static final String GIGATESLA = "GT";
 
     /**
-     * Defines a space.
-     */
-    private static final String SPACE = " ";
-
-    /**
      * Constructor.
      */
     public MagneticFluxDensityFormatter() {
@@ -155,27 +150,25 @@ public class MagneticFluxDensityFormatter extends MeasureFormatter<MagneticFluxD
      */
     @Override
     public MagneticFluxDensityUnit findUnit(final String source) {
-        if (source.contains(NANOTESLA + SPACE) || source.endsWith(NANOTESLA)) {
+        if (containsSymbol(source, NANOTESLA)) {
             return MagneticFluxDensityUnit.NANOTESLA;
         }
-        if (source.contains(MICROTESLA + SPACE)
-                || source.endsWith(MICROTESLA)) {
+        if (containsSymbol(source, MICROTESLA)) {
             return MagneticFluxDensityUnit.MICROTESLA;
         }
-        if (source.contains(MILLITESLA + SPACE)
-                || source.endsWith(MILLITESLA)) {
+        if (containsSymbol(source, MILLITESLA)) {
             return MagneticFluxDensityUnit.MILLITESLA;
         }
-        if (source.contains(KILOTESLA + SPACE) || source.endsWith(KILOTESLA)) {
+        if (containsSymbol(source, KILOTESLA)) {
             return MagneticFluxDensityUnit.KILOTESLA;
         }
-        if (source.contains(MEGATESLA + SPACE) || source.endsWith(MEGATESLA)) {
+        if (containsSymbol(source, MEGATESLA)) {
             return MagneticFluxDensityUnit.MEGATESLA;
         }
-        if (source.contains(GIGATESLA + SPACE) || source.endsWith(GIGATESLA)) {
+        if (containsSymbol(source, GIGATESLA)) {
             return MagneticFluxDensityUnit.GIGATESLA;
         }
-        if (source.contains(TESLA + SPACE) || source.endsWith(TESLA)) {
+        if (containsSymbol(source, TESLA)) {
             return MagneticFluxDensityUnit.TESLA;
         }
         return null;

@@ -64,11 +64,6 @@ public class DistanceFormatter extends MeasureFormatter<Distance, DistanceUnit> 
     public static final String MILE = "mi";
 
     /**
-     * Defines a space.
-     */
-    private static final String SPACE = " ";
-
-    /**
      * Constructor.
      */
     public DistanceFormatter() {
@@ -158,31 +153,29 @@ public class DistanceFormatter extends MeasureFormatter<Distance, DistanceUnit> 
      */
     @Override
     public DistanceUnit findUnit(final String source) {
-        if (source.contains(MILLIMETER + SPACE)
-                || source.endsWith(MILLIMETER)) {
+        if (containsSymbol(source, MILLIMETER)) {
             return DistanceUnit.MILLIMETER;
         }
-        if (source.contains(CENTIMETER + SPACE)
-                || source.endsWith(CENTIMETER)) {
+        if (containsSymbol(source, CENTIMETER)) {
             return DistanceUnit.CENTIMETER;
         }
-        if (source.contains(KILOMETER + SPACE) || source.endsWith(KILOMETER)) {
+        if (containsSymbol(source, KILOMETER)) {
             return DistanceUnit.KILOMETER;
         }
-        if (source.contains(INCH + SPACE) || source.endsWith(INCH)) {
+        if (containsSymbol(source, INCH)) {
             return DistanceUnit.INCH;
         }
-        if (source.contains(FOOT + SPACE) || source.endsWith(FOOT)) {
+        if (containsSymbol(source, FOOT)) {
             return DistanceUnit.FOOT;
         }
-        if (source.contains(YARD + SPACE) || source.endsWith(YARD)) {
+        if (containsSymbol(source, YARD)) {
             return DistanceUnit.YARD;
         }
-        if (source.contains(MILE + SPACE) || source.endsWith(MILE)) {
+        if (containsSymbol(source, MILE)) {
             return DistanceUnit.MILE;
         }
 
-        if (source.contains(METER + SPACE) || source.endsWith(METER)) {
+        if (containsSymbol(source, METER)) {
             return DistanceUnit.METER;
         }
         return null;

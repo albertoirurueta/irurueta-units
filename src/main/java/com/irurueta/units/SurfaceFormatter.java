@@ -88,11 +88,6 @@ public class SurfaceFormatter extends MeasureFormatter<Surface, SurfaceUnit> {
     public static final String ACRE = "acre";
 
     /**
-     * Defines a space.
-     */
-    private static final String SPACE = " ";
-
-    /**
      * Constructor.
      */
     @SuppressWarnings("WeakerAccess")
@@ -185,44 +180,44 @@ public class SurfaceFormatter extends MeasureFormatter<Surface, SurfaceUnit> {
      */
     @Override
     public SurfaceUnit findUnit(final String source) {
-        if (source.contains(SQUARE_MILLIMETER + SPACE) || source.endsWith(SQUARE_MILLIMETER)) {
+        if (containsSymbol(source, SQUARE_MILLIMETER)) {
             return SurfaceUnit.SQUARE_MILLIMETER;
         }
-        if (source.contains(SQUARE_CENTIMETER + SPACE) || source.endsWith(SQUARE_CENTIMETER)) {
+        if (containsSymbol(source, SQUARE_CENTIMETER)) {
             return SurfaceUnit.SQUARE_CENTIMETER;
         }
-        if (source.contains(SQUARE_KILOMETER + SPACE) || source.endsWith(SQUARE_KILOMETER)) {
+        if (containsSymbol(source, SQUARE_KILOMETER)) {
             return SurfaceUnit.SQUARE_KILOMETER;
         }
-        if (source.contains(SQUARE_INCH + SPACE) || source.endsWith(SQUARE_INCH)) {
+        if (containsSymbol(source, SQUARE_INCH)) {
             return SurfaceUnit.SQUARE_INCH;
         }
-        if (source.contains(SQUARE_FOOT + SPACE) || source.endsWith(SQUARE_FOOT)) {
+        if (containsSymbol(source, SQUARE_FOOT)) {
             return SurfaceUnit.SQUARE_FOOT;
         }
-        if (source.contains(SQUARE_YARD + SPACE) || source.endsWith(SQUARE_YARD)) {
+        if (containsSymbol(source, SQUARE_YARD)) {
             return SurfaceUnit.SQUARE_YARD;
         }
-        if (source.contains(SQUARE_MILE + SPACE) || source.endsWith(SQUARE_MILE)) {
+        if (containsSymbol(source, SQUARE_MILE)) {
             return SurfaceUnit.SQUARE_MILE;
         }
-        if (source.contains(CENTIARE + SPACE) || source.endsWith(CENTIARE)) {
+        if (containsSymbol(source, CENTIARE)) {
             return SurfaceUnit.CENTIARE;
         }
-        if (source.contains(DECARE + SPACE) || source.endsWith(DECARE)) {
+        if (containsSymbol(source, DECARE)) {
             return SurfaceUnit.DECARE;
         }
-        if (source.contains(HECTARE + SPACE) || source.endsWith(HECTARE)) {
+        if (containsSymbol(source, HECTARE)) {
             return SurfaceUnit.HECTARE;
         }
-        if (source.contains(ACRE + SPACE) || source.endsWith(ACRE)) {
+        if (containsSymbol(source, ACRE)) {
             return SurfaceUnit.ACRE;
         }
 
-        if (source.contains(ARE + SPACE) || source.endsWith(ARE)) {
+        if (containsSymbol(source, ARE)) {
             return SurfaceUnit.ARE;
         }
-        if (source.contains(SQUARE_METER + SPACE) || source.endsWith(SQUARE_METER)) {
+        if (containsSymbol(source, SQUARE_METER)) {
             return SurfaceUnit.SQUARE_METER;
         }
         return null;

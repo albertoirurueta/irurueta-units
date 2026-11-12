@@ -24,11 +24,6 @@ public class TemperatureFormatter extends MeasureFormatter<Temperature, Temperat
     public static final String KELVIN = "K";
 
     /**
-     * Defines a space.
-     */
-    private static final String SPACE = " ";
-
-    /**
      * Constructor.
      */
     public TemperatureFormatter() {
@@ -120,14 +115,13 @@ public class TemperatureFormatter extends MeasureFormatter<Temperature, Temperat
      */
     @Override
     public TemperatureUnit findUnit(final String source) {
-        if (source.contains(CELSIUS + SPACE) || source.endsWith(CELSIUS)) {
+        if (containsSymbol(source, CELSIUS)) {
             return TemperatureUnit.CELSIUS;
         }
-        if (source.contains(FAHRENHEIT + SPACE)
-                || source.endsWith(FAHRENHEIT)) {
+        if (containsSymbol(source, FAHRENHEIT)) {
             return TemperatureUnit.FAHRENHEIT;
         }
-        if (source.contains(KELVIN + SPACE) || source.endsWith(KELVIN)) {
+        if (containsSymbol(source, KELVIN)) {
             return TemperatureUnit.KELVIN;
         }
         return null;

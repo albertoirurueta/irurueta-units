@@ -34,11 +34,6 @@ public class AngularSpeedFormatter extends MeasureFormatter<AngularSpeed, Angula
     public static final String RADIANS_PER_SECOND = "rad/s";
 
     /**
-     * Defines a space.
-     */
-    private static final String SPACE = " ";
-
-    /**
      * Constructor.
      */
     public AngularSpeedFormatter() {
@@ -128,10 +123,10 @@ public class AngularSpeedFormatter extends MeasureFormatter<AngularSpeed, Angula
      */
     @Override
     public AngularSpeedUnit findUnit(final String source) {
-        if (source.contains(DEGREES_PER_SECOND + SPACE) || source.endsWith(DEGREES_PER_SECOND)) {
+        if (containsSymbol(source, DEGREES_PER_SECOND)) {
             return AngularSpeedUnit.DEGREES_PER_SECOND;
         }
-        if (source.contains(RADIANS_PER_SECOND + SPACE) || source.endsWith(RADIANS_PER_SECOND)) {
+        if (containsSymbol(source, RADIANS_PER_SECOND)) {
             return AngularSpeedUnit.RADIANS_PER_SECOND;
         }
         return null;

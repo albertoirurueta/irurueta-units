@@ -49,11 +49,6 @@ public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit> {
     public static final String MILES_PER_HOUR = "mph";
 
     /**
-     * Defines a space.
-     */
-    private static final String SPACE = " ";
-
-    /**
      * Constructor.
      */
     public SpeedFormatter() {
@@ -143,19 +138,19 @@ public class SpeedFormatter extends MeasureFormatter<Speed, SpeedUnit> {
      */
     @Override
     public SpeedUnit findUnit(final String source) {
-        if (source.contains(KILOMETERS_PER_HOUR + SPACE) || source.endsWith(KILOMETERS_PER_HOUR)) {
+        if (containsSymbol(source, KILOMETERS_PER_HOUR)) {
             return SpeedUnit.KILOMETERS_PER_HOUR;
         }
-        if (source.contains(KILOMETERS_PER_SECOND + SPACE) || source.endsWith(KILOMETERS_PER_SECOND)) {
+        if (containsSymbol(source, KILOMETERS_PER_SECOND)) {
             return SpeedUnit.KILOMETERS_PER_SECOND;
         }
-        if (source.contains(FEET_PER_SECOND + SPACE) || source.endsWith(FEET_PER_SECOND)) {
+        if (containsSymbol(source, FEET_PER_SECOND)) {
             return SpeedUnit.FEET_PER_SECOND;
         }
-        if (source.contains(MILES_PER_HOUR + SPACE) || source.endsWith(MILES_PER_HOUR)) {
+        if (containsSymbol(source, MILES_PER_HOUR)) {
             return SpeedUnit.MILES_PER_HOUR;
         }
-        if (source.contains(METERS_PER_SECOND + SPACE) || source.endsWith(METERS_PER_SECOND)) {
+        if (containsSymbol(source, METERS_PER_SECOND)) {
             return SpeedUnit.METERS_PER_SECOND;
         }
         return null;

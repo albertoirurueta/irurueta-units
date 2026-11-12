@@ -631,28 +631,28 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> {
      */
     @Override
     public TimeUnit findUnit(final String source) {
-        if (source.contains(NANOSECOND_SYMBOL + SPACE) || source.endsWith(NANOSECOND_SYMBOL)) {
+        if (containsSymbol(source, NANOSECOND_SYMBOL)) {
             return TimeUnit.NANOSECOND;
         }
-        if (source.contains(MICROSECOND_SYMBOL + SPACE) || source.endsWith(MICROSECOND_SYMBOL)) {
+        if (containsSymbol(source, MICROSECOND_SYMBOL)) {
             return TimeUnit.MICROSECOND;
         }
-        if (source.contains(MILLISECOND_SYMBOL + SPACE) || source.endsWith(MILLISECOND_SYMBOL)) {
+        if (containsSymbol(source, MILLISECOND_SYMBOL)) {
             return TimeUnit.MILLISECOND;
         }
-        if (source.contains(SECOND_SYMBOL + SPACE) || source.endsWith(SECOND_SYMBOL)) {
+        if (containsSymbol(source, SECOND_SYMBOL)) {
             return TimeUnit.SECOND;
         }
-        if (source.contains(MINUTE_SYMBOL + SPACE) || source.endsWith(MINUTE_SYMBOL)) {
+        if (containsSymbol(source, MINUTE_SYMBOL)) {
             return TimeUnit.MINUTE;
         }
-        if (source.contains(WEEK_SYMBOL + SPACE) || source.endsWith(WEEK_SYMBOL)) {
+        if (containsSymbol(source, WEEK_SYMBOL)) {
             return TimeUnit.WEEK;
         }
-        if (source.contains(MONTH_SYMBOL + SPACE) || source.endsWith(MONTH_SYMBOL)) {
+        if (containsSymbol(source, MONTH_SYMBOL)) {
             return TimeUnit.MONTH;
         }
-        if (source.contains(YEAR_SYMBOL + SPACE) || source.endsWith(YEAR_SYMBOL)) {
+        if (containsSymbol(source, YEAR_SYMBOL)) {
             return TimeUnit.YEAR;
         }
         if (source.contains(CENTURY_SYMBOL) || source.contains(FIRST_CENTURY_SYMBOL)
@@ -660,11 +660,10 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> {
             return TimeUnit.CENTURY;
         }
 
-        if (source.contains(DAY_SYMBOL + SPACE)
-                || source.endsWith(DAY_SYMBOL)) {
+        if (containsSymbol(source, DAY_SYMBOL)) {
             return TimeUnit.DAY;
         }
-        if (source.contains(HOUR_SYMBOL + SPACE) || source.endsWith(HOUR_SYMBOL)) {
+        if (containsSymbol(source, HOUR_SYMBOL)) {
             return TimeUnit.HOUR;
         }
 

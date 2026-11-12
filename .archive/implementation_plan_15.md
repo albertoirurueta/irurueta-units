@@ -125,9 +125,11 @@ Open clarifications: none
 
 - The fresh baseline already showed Indentation and MultipleStringLiterals at 0, so the issue's counts did not
   reproduce. The enum re-indentation was reverted (the original 16-space layout passes Checkstyle and matches the IDE).
-- Switching the older formatters to `MeasureFormatter.containsSymbol` was tried and reverted: its letter-boundary
-  check changes parsing (e.g. `WeightFormatterTest` expects `"5,5 lg"` to match grams via `endsWith("g")`). This ticket
-  must not change behavior, so the per-class `SPACE` constants stay. Unifying `findUnit` on `containsSymbol` is a
-  behavior change for a separate ticket.
+- The 13 older formatters' `findUnit` now call the existing `MeasureFormatter.containsSymbol(source, symbol)`, as the
+  Energy/Force/Power/Pressure formatters already did, instead of `contains(X + SPACE) || endsWith(X)`. This removes the
+  per-class `SPACE` constants (TimeFormatter keeps its own, used elsewhere) and the extra line wraps. Behavior is now
+  whole-token: `WeightFormatterTest` had a typo (`"5,5 lg"`, meant `"5,5 lb"`) that only passed because the old check
+  matched the trailing `g` as grams; it now tests `lb` and asserts `lg` is rejected.
+  Result: 1346 tests pass; Checkstyle 1184 (LineLength 1132 -> 1101), PMD 2, SpotBugs 3.
 - `AccelerationFormatter`/`AngleFormatter` got the missing `hashCode()` justification, and `TemperatureFormatter`'s
   wording was aligned with the other formatters.

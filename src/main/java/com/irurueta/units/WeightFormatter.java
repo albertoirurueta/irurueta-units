@@ -79,11 +79,6 @@ public class WeightFormatter extends MeasureFormatter<Weight, WeightUnit> {
     public static final String OUNCE = "oz";
 
     /**
-     * Defines a space.
-     */
-    private static final String SPACE = " ";
-
-    /**
      * Constructor.
      */
     public WeightFormatter() {
@@ -174,32 +169,32 @@ public class WeightFormatter extends MeasureFormatter<Weight, WeightUnit> {
      */
     @Override
     public WeightUnit findUnit(final String source) {
-        if (source.contains(PICOGRAM + SPACE) || source.endsWith(PICOGRAM)) {
+        if (containsSymbol(source, PICOGRAM)) {
             return WeightUnit.PICOGRAM;
         }
-        if (source.contains(NANOGRAM + SPACE) || source.endsWith(NANOGRAM)) {
+        if (containsSymbol(source, NANOGRAM)) {
             return WeightUnit.NANOGRAM;
         }
-        if (source.contains(MICROGRAM + SPACE) || source.endsWith(MICROGRAM)) {
+        if (containsSymbol(source, MICROGRAM)) {
             return WeightUnit.MICROGRAM;
         }
-        if (source.contains(MILLIGRAM + SPACE) || source.endsWith(MILLIGRAM)) {
+        if (containsSymbol(source, MILLIGRAM)) {
             return WeightUnit.MILLIGRAM;
         }
-        if (source.contains(KILOGRAM + SPACE) || source.endsWith(KILOGRAM)) {
+        if (containsSymbol(source, KILOGRAM)) {
             return WeightUnit.KILOGRAM;
         }
-        if (source.contains(MEGATONNE + SPACE) || source.endsWith(MEGATONNE)) {
+        if (containsSymbol(source, MEGATONNE)) {
             return WeightUnit.MEGATONNE;
         }
-        if (source.contains(POUND + SPACE) || source.endsWith(POUND)) {
+        if (containsSymbol(source, POUND)) {
             return WeightUnit.POUND;
         }
-        if (source.contains(OUNCE + SPACE) || source.endsWith(OUNCE)) {
+        if (containsSymbol(source, OUNCE)) {
             return WeightUnit.OUNCE;
         }
 
-        if (source.contains(US_UK_TON + SPACE) || source.endsWith(US_UK_TON)) {
+        if (containsSymbol(source, US_UK_TON)) {
             final var locale = getLocale();
             if (Locale.UK.getCountry().equals(locale.getCountry())) {
                 // UK
@@ -210,10 +205,10 @@ public class WeightFormatter extends MeasureFormatter<Weight, WeightUnit> {
             }
         }
 
-        if (source.contains(TONNE + SPACE) || source.endsWith(TONNE)) {
+        if (containsSymbol(source, TONNE)) {
             return WeightUnit.TONNE;
         }
-        if (source.contains(GRAM + SPACE) || source.endsWith(GRAM)) {
+        if (containsSymbol(source, GRAM)) {
             return WeightUnit.GRAM;
         }
 

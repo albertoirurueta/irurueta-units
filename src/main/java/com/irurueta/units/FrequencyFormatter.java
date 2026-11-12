@@ -49,11 +49,6 @@ public class FrequencyFormatter extends MeasureFormatter<Frequency, FrequencyUni
     public static final String TERAHERTZ = "THz";
 
     /**
-     * Defines a space.
-     */
-    private static final String SPACE = " ";
-
-    /**
      * Constructor.
      */
     public FrequencyFormatter() {
@@ -143,19 +138,19 @@ public class FrequencyFormatter extends MeasureFormatter<Frequency, FrequencyUni
      */
     @Override
     public FrequencyUnit findUnit(final String source) {
-        if (source.contains(KILOHERTZ + SPACE) || source.endsWith(KILOHERTZ)) {
+        if (containsSymbol(source, KILOHERTZ)) {
             return FrequencyUnit.KILOHERTZ;
         }
-        if (source.contains(MEGAHERTZ + SPACE) || source.endsWith(MEGAHERTZ)) {
+        if (containsSymbol(source, MEGAHERTZ)) {
             return FrequencyUnit.MEGAHERTZ;
         }
-        if (source.contains(GIGAHERTZ + SPACE) || source.endsWith(GIGAHERTZ)) {
+        if (containsSymbol(source, GIGAHERTZ)) {
             return FrequencyUnit.GIGAHERTZ;
         }
-        if (source.contains(TERAHERTZ + SPACE) || source.endsWith(TERAHERTZ)) {
+        if (containsSymbol(source, TERAHERTZ)) {
             return FrequencyUnit.TERAHERTZ;
         }
-        if (source.contains(HERTZ + SPACE) || source.endsWith(HERTZ)) {
+        if (containsSymbol(source, HERTZ)) {
             return FrequencyUnit.HERTZ;
         }
         return null;

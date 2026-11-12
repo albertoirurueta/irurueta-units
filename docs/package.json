@@ -2,6 +2,7 @@
   "scripts": {
     "build": "antora antora-playbook.yml",
     "search:index": "pagefind --site build/site",
+    "test:mermaid": "node --test \"scripts/mermaid/*.test.mjs\"",
     "validate:mermaid": "node scripts/mermaid/validate-mermaid.mjs modules --render"
   },
   "engines": {

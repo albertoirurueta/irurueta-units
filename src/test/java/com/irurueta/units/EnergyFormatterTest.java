@@ -26,10 +26,16 @@ import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Unit tests for {@link EnergyFormatter}.
+ */
 class EnergyFormatterTest {
 
+    /**
+     * Checks the empty, locale and copy constructors, and that a null locale or formatter is rejected.
+     */
     @Test
-    void testConstructor() {
+    void constructor_whenEmptyLocaleOrCopy_initializesExpectedState() {
         // test empty constructor
         var formatter = new EnergyFormatter();
 
@@ -87,8 +93,13 @@ class EnergyFormatterTest {
         assertThrows(NullPointerException.class, () -> new EnergyFormatter((EnergyFormatter) null));
     }
 
+    /**
+     * Checks cloning, before and after the internal number format is initialized.
+     *
+     * @throws CloneNotSupportedException never happens.
+     */
     @Test
-    void testClone() throws CloneNotSupportedException {
+    void clone_whenCalled_returnsEqualDifferentInstance() throws CloneNotSupportedException {
         final var formatter1 = new EnergyFormatter();
         final var formatter2 = (EnergyFormatter) formatter1.clone();
 
@@ -105,8 +116,11 @@ class EnergyFormatterTest {
         assertEquals(formatter1, formatter3);
     }
 
+    /**
+     * Checks equality semantics.
+     */
     @Test
-    void testEquals() {
+    void equals_whenDifferentLocales_comparesLocale() {
         final var formatter1 = new EnergyFormatter(Locale.ENGLISH);
         final var formatter2 = new EnergyFormatter(Locale.ENGLISH);
         final var formatter3 = new EnergyFormatter(Locale.FRENCH);
@@ -122,8 +136,11 @@ class EnergyFormatterTest {
         assertNotEquals(null, formatter1);
     }
 
+    /**
+     * Checks hash code semantics.
+     */
     @Test
-    void testHashCode() {
+    void hashCode_whenDifferentLocales_isConsistentWithEquals() {
         final var formatter1 = new EnergyFormatter(Locale.ENGLISH);
         final var formatter2 = new EnergyFormatter(Locale.ENGLISH);
         final var formatter3 = new EnergyFormatter(Locale.FRENCH);
@@ -133,8 +150,11 @@ class EnergyFormatterTest {
         assertNotEquals(formatter1.hashCode(), formatter3.hashCode());
     }
 
+    /**
+     * Checks formatting of {@link Number} values.
+     */
     @Test
-    void testFormatNumber() {
+    void format_whenNumber_returnsValueAndSymbol() {
         final var value = 5.50;
         final var l = new Locale("es", "ES");
 
@@ -147,8 +167,11 @@ class EnergyFormatterTest {
         assertEquals("5,5 BTU", formatter.format(new BigDecimal(value), EnergyUnit.BTU));
     }
 
+    /**
+     * Checks formatting of {@link Number} values into a buffer.
+     */
     @Test
-    void testFormatNumberAndStringBuffer() {
+    void format_whenNumberAndBuffer_appendsValueAndSymbol() {
         final var value = 5.50;
         final var l = new Locale("es", "ES");
 
@@ -175,8 +198,11 @@ class EnergyFormatterTest {
                 new FieldPosition(0)).toString());
     }
 
+    /**
+     * Checks formatting of double values.
+     */
     @Test
-    void testFormatDouble() {
+    void format_whenDouble_returnsValueAndSymbol() {
         final var value = 5.50;
         final var l = new Locale("es", "ES");
 
@@ -189,8 +215,11 @@ class EnergyFormatterTest {
         assertEquals("5,5 BTU", formatter.format(value, EnergyUnit.BTU));
     }
 
+    /**
+     * Checks formatting of double values into a buffer.
+     */
     @Test
-    void testFormatDoubleAndStringBuffer() {
+    void format_whenDoubleAndBuffer_appendsValueAndSymbol() {
         final var value = 5.50;
         final var l = new Locale("es", "ES");
 
@@ -217,8 +246,11 @@ class EnergyFormatterTest {
                 new FieldPosition(0)).toString());
     }
 
+    /**
+     * Checks formatting of energies.
+     */
     @Test
-    void testFormatEnergy() {
+    void format_whenEnergy_returnsValueAndSymbol() {
         final var value = 5.50;
         final var l = new Locale("es", "ES");
 
@@ -231,8 +263,11 @@ class EnergyFormatterTest {
         assertEquals("5,5 BTU", formatter.format(new Energy(value, EnergyUnit.BTU)));
     }
 
+    /**
+     * Checks formatting of energies into a buffer.
+     */
     @Test
-    void testFormatEnergyAndStringBuffer() {
+    void format_whenEnergyAndBuffer_appendsValueAndSymbol() {
         final var value = 5.50;
         final var l = new Locale("es", "ES");
 
@@ -259,8 +294,11 @@ class EnergyFormatterTest {
                 new FieldPosition(0)).toString());
     }
 
+    /**
+     * Checks that formatting and converting a {@link Number} uses the locale unit system.
+     */
     @Test
-    void testFormatAndConvertNumber() {
+    void formatAndConvert_whenNumberAndNoUnitSystem_usesLocaleSystem() {
         // test for metric system
         var formatter = new EnergyFormatter(new Locale("es", "ES"));
         formatter.setMaximumFractionDigits(2);
@@ -279,8 +317,11 @@ class EnergyFormatterTest {
         assertEquals("65 BTU", formatter.formatAndConvert(new BigDecimal("65.0"), EnergyUnit.BTU));
     }
 
+    /**
+     * Checks that formatting and converting a double uses the locale unit system.
+     */
     @Test
-    void testFormatAndConvertDouble() {
+    void formatAndConvert_whenDoubleAndNoUnitSystem_usesLocaleSystem() {
         // test for metric system
         var formatter = new EnergyFormatter(new Locale("es", "ES"));
         formatter.setMaximumFractionDigits(2);
@@ -299,8 +340,11 @@ class EnergyFormatterTest {
         assertEquals("65 BTU", formatter.formatAndConvert(65.0, EnergyUnit.BTU));
     }
 
+    /**
+     * Checks that formatting and converting an energy uses the locale unit system.
+     */
     @Test
-    void testFormatAndConvertEnergy() {
+    void formatAndConvert_whenEnergyAndNoUnitSystem_usesLocaleSystem() {
         // test for metric system
         var formatter = new EnergyFormatter(new Locale("es", "ES"));
         formatter.setMaximumFractionDigits(2);
@@ -319,8 +363,11 @@ class EnergyFormatterTest {
         assertEquals("65 BTU", formatter.formatAndConvert(new Energy(65.0, EnergyUnit.BTU)));
     }
 
+    /**
+     * Checks formatting and conversion of {@link Number} values with an explicit unit system.
+     */
     @Test
-    void testFormatAndConvertNumberAndUnitSystem() {
+    void formatAndConvert_whenNumberAndUnitSystem_usesGivenSystem() {
         final var formatter = new EnergyFormatter(new Locale("es", "ES"));
         formatter.setMaximumFractionDigits(2);
 
@@ -333,8 +380,11 @@ class EnergyFormatterTest {
         assertEquals("65 BTU", formatter.formatAndConvert(new BigDecimal("65.0"), EnergyUnit.BTU, UnitSystem.IMPERIAL));
     }
 
+    /**
+     * Checks formatting and conversion of double values with an explicit unit system.
+     */
     @Test
-    void testFormatAndConvertDoubleAndUnitSystem() {
+    void formatAndConvert_whenDoubleAndUnitSystem_usesGivenSystem() {
         final var formatter = new EnergyFormatter(new Locale("es", "ES"));
         formatter.setMaximumFractionDigits(2);
 
@@ -347,8 +397,11 @@ class EnergyFormatterTest {
         assertEquals("65 BTU", formatter.formatAndConvert(65.0, EnergyUnit.BTU, UnitSystem.IMPERIAL));
     }
 
+    /**
+     * Checks formatting and conversion of energies with an explicit unit system.
+     */
     @Test
-    void testFormatAndConvertEnergyAndUnitSystem() {
+    void formatAndConvert_whenEnergyAndUnitSystem_usesGivenSystem() {
         final var formatter = new EnergyFormatter(new Locale("es", "ES"));
         formatter.setMaximumFractionDigits(2);
 
@@ -361,8 +414,11 @@ class EnergyFormatterTest {
         assertEquals("65 BTU", formatter.formatAndConvert(new Energy(65.0, EnergyUnit.BTU), UnitSystem.IMPERIAL));
     }
 
+    /**
+     * Checks that metric formatting picks the most suitable metric unit.
+     */
     @Test
-    void testFormatAndConvertMetric() {
+    void formatAndConvertMetric_whenDifferentMagnitudes_picksBestMetricUnit() {
         final var formatter = new EnergyFormatter(new Locale("es", "ES"));
         formatter.setMaximumFractionDigits(2);
 
@@ -374,8 +430,11 @@ class EnergyFormatterTest {
         assertEquals("68,58 kJ", formatter.formatAndConvertMetric(new BigDecimal("65.0"), EnergyUnit.BTU));
     }
 
+    /**
+     * Checks that imperial formatting always uses BTU.
+     */
     @Test
-    void testFormatAndConvertImperial() {
+    void formatAndConvertImperial_whenAnyUnit_returnsBtu() {
         final var formatter = new EnergyFormatter(new Locale("es", "ES"));
         formatter.setMaximumFractionDigits(2);
 
@@ -383,14 +442,20 @@ class EnergyFormatterTest {
         assertEquals("65 BTU", formatter.formatAndConvertImperial(new BigDecimal("65.0"), EnergyUnit.BTU));
     }
 
+    /**
+     * Checks available locales.
+     */
     @Test
-    void testGetAvailableLocales() {
+    void getAvailableLocales_whenCalled_returnsNumberFormatLocales() {
         final var locales = EnergyFormatter.getAvailableLocales();
         assertArrayEquals(locales, NumberFormat.getAvailableLocales());
     }
 
+    /**
+     * Checks getter and setter of maximum fraction digits.
+     */
     @Test
-    void testGetSetMaximumFractionDigits() {
+    void setMaximumFractionDigits_whenValid_updatesValue() {
         final var formatter = new EnergyFormatter();
 
         assertEquals(formatter.getMaximumFractionDigits(), NumberFormat.getInstance().getMaximumFractionDigits());
@@ -402,8 +467,11 @@ class EnergyFormatterTest {
         assertEquals(2, formatter.getMaximumFractionDigits());
     }
 
+    /**
+     * Checks getter and setter of maximum integer digits.
+     */
     @Test
-    void testGetSetMaximumIntegerDigits() {
+    void setMaximumIntegerDigits_whenValid_updatesValue() {
         final var formatter = new EnergyFormatter();
 
         assertEquals(formatter.getMaximumIntegerDigits(), NumberFormat.getInstance().getMaximumIntegerDigits());
@@ -415,8 +483,11 @@ class EnergyFormatterTest {
         assertEquals(2, formatter.getMaximumIntegerDigits());
     }
 
+    /**
+     * Checks getter and setter of minimum fraction digits.
+     */
     @Test
-    void testGetSetMinimumFractionDigits() {
+    void setMinimumFractionDigits_whenValid_updatesValue() {
         final var formatter = new EnergyFormatter();
 
         assertEquals(formatter.getMinimumFractionDigits(), NumberFormat.getInstance().getMinimumFractionDigits());
@@ -428,8 +499,11 @@ class EnergyFormatterTest {
         assertEquals(2, formatter.getMinimumFractionDigits());
     }
 
+    /**
+     * Checks getter and setter of minimum integer digits.
+     */
     @Test
-    void testGetSetMinimumIntegerDigits() {
+    void setMinimumIntegerDigits_whenValid_updatesValue() {
         final var formatter = new EnergyFormatter();
 
         assertEquals(formatter.getMinimumIntegerDigits(), NumberFormat.getInstance().getMinimumIntegerDigits());
@@ -441,8 +515,11 @@ class EnergyFormatterTest {
         assertEquals(2, formatter.getMinimumIntegerDigits());
     }
 
+    /**
+     * Checks getter and setter of rounding mode.
+     */
     @Test
-    void testGetSetRoundingMode() {
+    void setRoundingMode_whenValid_updatesValue() {
         final var formatter = new EnergyFormatter();
 
         assertEquals(formatter.getRoundingMode(), NumberFormat.getInstance().getRoundingMode());
@@ -454,8 +531,11 @@ class EnergyFormatterTest {
         assertEquals(RoundingMode.UNNECESSARY, formatter.getRoundingMode());
     }
 
+    /**
+     * Checks getter and setter of grouping flag.
+     */
     @Test
-    void testIsSetGroupingUsed() {
+    void setGroupingUsed_whenToggled_updatesValue() {
         final var formatter = new EnergyFormatter();
 
         assertEquals(formatter.isGroupingUsed(), NumberFormat.getInstance().isGroupingUsed());
@@ -467,8 +547,11 @@ class EnergyFormatterTest {
         assertEquals(formatter.isGroupingUsed(), !NumberFormat.getInstance().isGroupingUsed());
     }
 
+    /**
+     * Checks getter and setter of parse integer only flag.
+     */
     @Test
-    void testIsSetParseIntegerOnly() {
+    void setParseIntegerOnly_whenToggled_updatesValue() {
         final var formatter = new EnergyFormatter();
 
         assertEquals(formatter.isParseIntegerOnly(), NumberFormat.getInstance().isParseIntegerOnly());
@@ -480,8 +563,11 @@ class EnergyFormatterTest {
         assertEquals(formatter.isParseIntegerOnly(), !NumberFormat.getInstance().isParseIntegerOnly());
     }
 
+    /**
+     * Checks getter and setter of the value and unit format pattern, and that a null pattern is rejected.
+     */
     @Test
-    void testGetSetValueAndUnitFormatPattern() {
+    void setValueAndUnitFormatPattern_whenValidOrNull_updatesPatternOrThrows() {
         final var formatter = new EnergyFormatter();
 
         assertEquals(MeasureFormatter.DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN, formatter.getValueAndUnitFormatPattern());
@@ -496,8 +582,11 @@ class EnergyFormatterTest {
         assertThrows(IllegalArgumentException.class, () -> formatter.setValueAndUnitFormatPattern(null));
     }
 
+    /**
+     * Checks that the unit system depends on the locale.
+     */
     @Test
-    void testGetUnitSystem() {
+    void getUnitSystem_whenLocale_returnsLocaleUnitSystem() {
         var formatter = new EnergyFormatter(new Locale("es", "ES"));
         assertEquals(UnitSystem.METRIC, formatter.getUnitSystem());
 
@@ -505,8 +594,11 @@ class EnergyFormatterTest {
         assertEquals(UnitSystem.IMPERIAL, formatter.getUnitSystem());
     }
 
+    /**
+     * Checks that every known symbol is a valid unit, with or without trailing space.
+     */
     @Test
-    void testIsValidUnit() {
+    void isValidUnit_whenKnownSymbol_returnsTrue() {
         final var formatter = new EnergyFormatter();
 
         assertTrue(formatter.isValidUnit("J"));
@@ -523,8 +615,11 @@ class EnergyFormatterTest {
         assertTrue(formatter.isValidUnit("BTU "));
     }
 
+    /**
+     * Checks measurement validation.
+     */
     @Test
-    void testIsValidMeasurement() {
+    void isValidMeasurement_whenSource_returnsExpectedResult() {
         final var formatter = new EnergyFormatter(new Locale("es", "ES"));
 
         var text = "5,5 J";
@@ -549,8 +644,11 @@ class EnergyFormatterTest {
         assertFalse(formatter.isValidMeasurement(text));
     }
 
+    /**
+     * Checks metric unit detection on text.
+     */
     @Test
-    void testIsMetricUnit() {
+    void isMetricUnit_whenSource_returnsExpectedResult() {
         final var formatter = new EnergyFormatter(new Locale("es", "ES"));
 
         var text = "5,5 J";
@@ -575,8 +673,11 @@ class EnergyFormatterTest {
         assertFalse(formatter.isMetricUnit(text));
     }
 
+    /**
+     * Checks imperial unit detection on text.
+     */
     @Test
-    void testIsImperialUnit() {
+    void isImperialUnit_whenSource_returnsExpectedResult() {
         final var formatter = new EnergyFormatter(new Locale("es", "ES"));
 
         var text = "5,5 J";
@@ -601,8 +702,11 @@ class EnergyFormatterTest {
         assertFalse(formatter.isImperialUnit(text));
     }
 
+    /**
+     * Checks unit system detection on text.
+     */
     @Test
-    void testGetUnitSystemFromSource() {
+    void getUnitSystem_whenSource_returnsDetectedSystem() {
         final var formatter = new EnergyFormatter(new Locale("es", "ES"));
 
         var text = "5,5 J";
@@ -627,8 +731,14 @@ class EnergyFormatterTest {
         assertNull(formatter.getUnitSystem(text));
     }
 
+    /**
+     * Checks parsing of valid text, and that unknown units and missing values are rejected.
+     *
+     * @throws ParseException never happens.
+     * @throws UnknownUnitException never happens.
+     */
     @Test
-    void testParse() throws ParseException, UnknownUnitException {
+    void parse_whenSource_returnsValueAndUnitOrThrows() throws ParseException, UnknownUnitException {
         final var formatter = new EnergyFormatter(new Locale("es", "ES"));
 
         var text = "5,5 J";
@@ -668,8 +778,11 @@ class EnergyFormatterTest {
         assertThrows(ParseException.class, () -> formatter.parse("m"));
     }
 
+    /**
+     * Checks unit detection on text.
+     */
     @Test
-    void testFindUnit() {
+    void findUnit_whenSource_returnsDetectedUnit() {
         final var formatter = new EnergyFormatter(new Locale("es", "ES"));
 
         var text = "5,5 J";
@@ -694,8 +807,27 @@ class EnergyFormatterTest {
         assertNull(formatter.findUnit(text));
     }
 
+    /**
+     * Checks that symbols only match as whole tokens, so that unsupported prefixed units (such as megajoules or
+     * millijoules) are rejected rather than misparsed as joules, while a symbol followed by trailing text still
+     * matches.
+     */
     @Test
-    void testGetUnitSymbol() {
+    void findUnit_whenUnsupportedPrefixedUnit_returnsNullAndParseThrowsUnknownUnitException() {
+        final var formatter = new EnergyFormatter(new Locale("es", "ES"));
+
+        assertNull(formatter.findUnit("5,5 MJ"));
+        assertNull(formatter.findUnit("5,5 mJ"));
+        assertThrows(UnknownUnitException.class, () -> formatter.parse("5,5 MJ"));
+
+        assertEquals(EnergyUnit.KILOJOULE, formatter.findUnit("5,5 kJ total"));
+    }
+
+    /**
+     * Checks unit symbols.
+     */
+    @Test
+    void getUnitSymbol_whenUnit_returnsSymbol() {
         final var formatter = new EnergyFormatter();
 
         assertEquals(EnergyFormatter.JOULE, formatter.getUnitSymbol(EnergyUnit.JOULE));

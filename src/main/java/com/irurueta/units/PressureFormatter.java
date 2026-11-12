@@ -135,19 +135,19 @@ public class PressureFormatter extends MeasureFormatter<Pressure, PressureUnit> 
      */
     @Override
     public PressureUnit findUnit(final String source) {
-        if (source.contains(KILOPASCAL + " ") || source.endsWith(KILOPASCAL)) {
+        if (containsSymbol(source, KILOPASCAL)) {
             return PressureUnit.KILOPASCAL;
         }
-        if (source.contains(PASCAL + " ") || source.endsWith(PASCAL)) {
+        if (containsSymbol(source, PASCAL)) {
             return PressureUnit.PASCAL;
         }
-        if (source.contains(BAR + " ") || source.endsWith(BAR)) {
+        if (containsSymbol(source, BAR)) {
             return PressureUnit.BAR;
         }
-        if (source.contains(ATMOSPHERE + " ") || source.endsWith(ATMOSPHERE)) {
+        if (containsSymbol(source, ATMOSPHERE)) {
             return PressureUnit.ATMOSPHERE;
         }
-        if (source.contains(PSI + " ") || source.endsWith(PSI)) {
+        if (containsSymbol(source, PSI)) {
             return PressureUnit.PSI;
         }
         return null;

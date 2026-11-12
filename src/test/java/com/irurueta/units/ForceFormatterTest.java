@@ -633,6 +633,19 @@ class ForceFormatterTest {
     }
 
     /**
+     * Checks that unsupported prefixed units are rejected instead of being parsed as a supported unit.
+     */
+    @Test
+    void findUnit_whenUnsupportedPrefix_returnsNullAndParseFails() {
+        final var formatter = new ForceFormatter(SPAIN);
+
+        assertNull(formatter.findUnit("5,5 MN"));
+        assertNull(formatter.findUnit("5,5 mN"));
+        assertEquals(ForceUnit.KILONEWTON, formatter.findUnit("1 MN = 1000 kN"));
+        assertThrows(UnknownUnitException.class, () -> formatter.parse("5,5 MN"));
+    }
+
+    /**
      * Checks unit symbols.
      */
     @Test

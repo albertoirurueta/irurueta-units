@@ -278,7 +278,23 @@ class PowerFormatterTest {
         assertEquals(PowerUnit.HORSEPOWER, formatter.findUnit("5,5 hp"));
         assertEquals(PowerUnit.WATT, formatter.findUnit("5,5 W extra"));
         assertEquals(PowerUnit.KILOWATT, formatter.findUnit("5,5 kW extra"));
+        assertEquals(PowerUnit.MEGAWATT, formatter.findUnit("5,5 MW extra"));
+        assertEquals(PowerUnit.HORSEPOWER, formatter.findUnit("5,5 hp extra"));
+        assertEquals(PowerUnit.WATT, formatter.findUnit("5,5W"));
         assertNull(formatter.findUnit("5,5 s"));
+    }
+
+    /**
+     * Checks that unsupported prefixed units are rejected instead of being parsed as a supported unit.
+     */
+    @Test
+    void findUnit_whenUnsupportedPrefix_returnsNullAndParseFails() {
+        final var formatter = new PowerFormatter(SPAIN);
+
+        assertNull(formatter.findUnit("5,5 GW"));
+        assertNull(formatter.findUnit("5,5 mW"));
+        assertEquals(PowerUnit.MEGAWATT, formatter.findUnit("1 GW = 1000 MW"));
+        assertThrows(UnknownUnitException.class, () -> formatter.parse("5,5 GW"));
     }
 
     /**

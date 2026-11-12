@@ -140,22 +140,22 @@ public class EnergyFormatter extends MeasureFormatter<Energy, EnergyUnit> {
      */
     @Override
     public EnergyUnit findUnit(final String source) {
-        if (source.contains(KILOWATT_HOUR + " ") || source.endsWith(KILOWATT_HOUR)) {
+        if (containsSymbol(source, KILOWATT_HOUR)) {
             return EnergyUnit.KILOWATT_HOUR;
         }
-        if (source.contains(KILOCALORIE + " ") || source.endsWith(KILOCALORIE)) {
+        if (containsSymbol(source, KILOCALORIE)) {
             return EnergyUnit.KILOCALORIE;
         }
-        if (source.contains(KILOJOULE + " ") || source.endsWith(KILOJOULE)) {
+        if (containsSymbol(source, KILOJOULE)) {
             return EnergyUnit.KILOJOULE;
         }
-        if (source.contains(CALORIE + " ") || source.endsWith(CALORIE)) {
+        if (containsSymbol(source, CALORIE)) {
             return EnergyUnit.CALORIE;
         }
-        if (source.contains(BTU + " ") || source.endsWith(BTU)) {
+        if (containsSymbol(source, BTU)) {
             return EnergyUnit.BTU;
         }
-        if (source.contains(JOULE + " ") || source.endsWith(JOULE)) {
+        if (containsSymbol(source, JOULE)) {
             return EnergyUnit.JOULE;
         }
         return null;

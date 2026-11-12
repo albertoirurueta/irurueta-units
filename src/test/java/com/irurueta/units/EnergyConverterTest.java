@@ -22,18 +22,46 @@ import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Unit tests for {@link EnergyConverter}.
+ */
 class EnergyConverterTest {
 
+    /**
+     * Number of joules in 1 kilojoule.
+     */
     private static final double JOULES_PER_KILOJOULE = 1000.0;
+
+    /**
+     * Number of joules in 1 calorie.
+     */
     private static final double JOULES_PER_CALORIE = 4.184;
+
+    /**
+     * Number of joules in 1 kilocalorie.
+     */
     private static final double JOULES_PER_KILOCALORIE = 4184.0;
+
+    /**
+     * Number of joules in 1 kilowatt-hour.
+     */
     private static final double JOULES_PER_KILOWATT_HOUR = 3.6e6;
+
+    /**
+     * Number of joules in 1 BTU.
+     */
     private static final double JOULES_PER_BTU = 1055.05585262;
 
+    /**
+     * Tolerance used when comparing floating point values.
+     */
     private static final double ERROR = 1e-6;
 
+    /**
+     * Checks conversions against well-known energy equivalences.
+     */
     @Test
-    void testKnownValues() {
+    void convert_whenWellKnownEquivalences_returnsExpectedValues() {
         assertEquals(4184.0, EnergyConverter.convert(1.0, EnergyUnit.KILOCALORIE, EnergyUnit.JOULE), ERROR);
         assertEquals(1000.0, EnergyConverter.convert(1.0, EnergyUnit.KILOCALORIE, EnergyUnit.CALORIE), ERROR);
         assertEquals(3600.0, EnergyConverter.convert(1.0, EnergyUnit.KILOWATT_HOUR, EnergyUnit.KILOJOULE), ERROR);
@@ -41,48 +69,67 @@ class EnergyConverterTest {
         assertEquals(1055.05585262, EnergyConverter.convert(1.0, EnergyUnit.BTU, EnergyUnit.JOULE), ERROR);
     }
 
+    /**
+     * Checks conversion between joules and kilojoules in both directions.
+     */
     @Test
-    void testJouleKilojoule() {
+    void jouleToKilojoule_whenRandomValue_returnsExpectedResult() {
         final var inputValue = new Random().nextDouble();
 
         assertEquals(inputValue / JOULES_PER_KILOJOULE, EnergyConverter.jouleToKilojoule(inputValue), ERROR);
         assertEquals(inputValue * JOULES_PER_KILOJOULE, EnergyConverter.kilojouleToJoule(inputValue), ERROR);
     }
 
+    /**
+     * Checks conversion between joules and calories in both directions.
+     */
     @Test
-    void testJouleCalorie() {
+    void jouleToCalorie_whenRandomValue_returnsExpectedResult() {
         final var inputValue = new Random().nextDouble();
 
         assertEquals(inputValue / JOULES_PER_CALORIE, EnergyConverter.jouleToCalorie(inputValue), ERROR);
         assertEquals(inputValue * JOULES_PER_CALORIE, EnergyConverter.calorieToJoule(inputValue), ERROR);
     }
 
+    /**
+     * Checks conversion between joules and kilocalories in both directions.
+     */
     @Test
-    void testJouleKilocalorie() {
+    void jouleToKilocalorie_whenRandomValue_returnsExpectedResult() {
         final var inputValue = new Random().nextDouble();
 
         assertEquals(inputValue / JOULES_PER_KILOCALORIE, EnergyConverter.jouleToKilocalorie(inputValue), ERROR);
         assertEquals(inputValue * JOULES_PER_KILOCALORIE, EnergyConverter.kilocalorieToJoule(inputValue), ERROR);
     }
 
+    /**
+     * Checks conversion between joules and kilowatt-hours in both directions.
+     */
     @Test
-    void testJouleKilowattHour() {
+    void jouleToKilowattHour_whenRandomValue_returnsExpectedResult() {
         final var inputValue = new Random().nextDouble();
 
         assertEquals(inputValue / JOULES_PER_KILOWATT_HOUR, EnergyConverter.jouleToKilowattHour(inputValue), ERROR);
         assertEquals(inputValue * JOULES_PER_KILOWATT_HOUR, EnergyConverter.kilowattHourToJoule(inputValue), ERROR);
     }
 
+    /**
+     * Checks conversion between joules and BTU in both directions.
+     */
     @Test
-    void testJouleBtu() {
+    void jouleToBtu_whenRandomValue_returnsExpectedResult() {
         final var inputValue = new Random().nextDouble();
 
         assertEquals(inputValue / JOULES_PER_BTU, EnergyConverter.jouleToBtu(inputValue), ERROR);
         assertEquals(inputValue * JOULES_PER_BTU, EnergyConverter.btuToJoule(inputValue), ERROR);
     }
 
+    /**
+     * Checks every unit pair against a conversion through joules, and that converting back recovers the
+     * original value.
+     */
     @Test
-    void testConvertDouble() {
+    void convert_whenDoubleAndAllUnitPairs_matchesConversionThroughJoulesAndRoundTrips() {
         final var inputValue = new Random().nextDouble();
 
         for (final var from : EnergyUnit.values()) {
@@ -97,8 +144,11 @@ class EnergyConverterTest {
         }
     }
 
+    /**
+     * Checks conversion of {@link Number} values.
+     */
     @Test
-    void testConvertNumber() {
+    void convert_whenNumber_returnsExpectedValue() {
         final var inputValue = BigDecimal.valueOf(new Random().nextDouble());
 
         assertEquals(inputValue.doubleValue(),
@@ -107,8 +157,11 @@ class EnergyConverterTest {
                 EnergyConverter.convert(inputValue, EnergyUnit.JOULE, EnergyUnit.KILOJOULE).doubleValue(), ERROR);
     }
 
+    /**
+     * Checks that converting an energy stores the result in the provided instance without modifying the input.
+     */
     @Test
-    void testConvertEnergy() {
+    void convert_whenEnergyAndResult_storesResultInProvidedInstance() {
         final var value = new Random().nextDouble();
         final var inputEnergy = new Energy(value, EnergyUnit.JOULE);
 
@@ -124,8 +177,11 @@ class EnergyConverterTest {
                 outputEnergy.getValue().doubleValue(), 0.0);
     }
 
+    /**
+     * Checks that converting an energy to a unit updates that same instance.
+     */
     @Test
-    void testConvertAndUpdateEnergy() {
+    void convert_whenEnergyAndUnit_updatesInstance() {
         final var value = new Random().nextDouble();
         final var energy = new Energy(value, EnergyUnit.JOULE);
 
@@ -137,8 +193,11 @@ class EnergyConverterTest {
                 energy.getValue().doubleValue(), 0.0);
     }
 
+    /**
+     * Checks that converting and returning a new energy leaves the input unchanged.
+     */
     @Test
-    void testConvertAndReturnNewEnergy() {
+    void convertAndReturnNew_whenEnergy_returnsNewConvertedEnergy() {
         final var value = new Random().nextDouble();
         final var inputEnergy = new Energy(value, EnergyUnit.JOULE);
 
@@ -153,8 +212,11 @@ class EnergyConverterTest {
                 outputEnergy.getValue().doubleValue(), 0.0);
     }
 
+    /**
+     * Checks that converting into an output energy uses the unit already set on the output.
+     */
     @Test
-    void testConvertToOutputEnergyUnit() {
+    void convert_whenEnergyAndOutputEnergy_usesOutputUnit() {
         final var value = new Random().nextDouble();
         final var inputEnergy = new Energy(value, EnergyUnit.JOULE);
 
@@ -171,14 +233,24 @@ class EnergyConverterTest {
                 outputEnergy.getValue().doubleValue(), 0.0);
     }
 
+    /**
+     * Checks that null units or a null value are rejected.
+     */
     @Test
-    void testConvertNullArguments() {
+    void convert_whenNullArguments_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> EnergyConverter.convert(1.0, null, EnergyUnit.JOULE));
         assertThrows(NullPointerException.class, () -> EnergyConverter.convert(1.0, EnergyUnit.JOULE, null));
         assertThrows(NullPointerException.class,
                 () -> EnergyConverter.convert((Number) null, EnergyUnit.JOULE, EnergyUnit.JOULE));
     }
 
+    /**
+     * Converts a value expressed in the given unit to joules.
+     *
+     * @param value value to convert.
+     * @param unit unit of the value.
+     * @return value expressed in joules.
+     */
     private static double toJoules(final double value, final EnergyUnit unit) {
         return switch (unit) {
             case KILOJOULE -> value * JOULES_PER_KILOJOULE;
@@ -190,6 +262,13 @@ class EnergyConverterTest {
         };
     }
 
+    /**
+     * Converts a value expressed in joules to the given unit.
+     *
+     * @param joules value in joules.
+     * @param unit target unit.
+     * @return value expressed in the target unit.
+     */
     private static double fromJoules(final double joules, final EnergyUnit unit) {
         return switch (unit) {
             case KILOJOULE -> joules / JOULES_PER_KILOJOULE;

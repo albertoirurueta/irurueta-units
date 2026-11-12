@@ -38,7 +38,7 @@ public class EnergyConverter {
     /**
      * Number of joules in 1 thermochemical kilocalorie.
      */
-    static final double JOULES_PER_KILOCALORIE = 4184.0;
+    static final double JOULES_PER_KILOCALORIE = JOULES_PER_KILOJOULE * JOULES_PER_CALORIE;
 
     /**
      * Number of joules in 1 kilowatt hour.

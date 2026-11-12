@@ -130,16 +130,16 @@ public class PowerFormatter extends MeasureFormatter<Power, PowerUnit> {
      */
     @Override
     public PowerUnit findUnit(final String source) {
-        if (source.contains(KILOWATT + " ") || source.endsWith(KILOWATT)) {
+        if (containsSymbol(source, KILOWATT)) {
             return PowerUnit.KILOWATT;
         }
-        if (source.contains(MEGAWATT + " ") || source.endsWith(MEGAWATT)) {
+        if (containsSymbol(source, MEGAWATT)) {
             return PowerUnit.MEGAWATT;
         }
-        if (source.contains(HORSEPOWER + " ") || source.endsWith(HORSEPOWER)) {
+        if (containsSymbol(source, HORSEPOWER)) {
             return PowerUnit.HORSEPOWER;
         }
-        if (source.contains(WATT + " ") || source.endsWith(WATT)) {
+        if (containsSymbol(source, WATT)) {
             return PowerUnit.WATT;
         }
         return null;

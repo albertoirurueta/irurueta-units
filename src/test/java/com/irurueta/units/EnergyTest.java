@@ -23,12 +23,22 @@ import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Unit tests for {@link Energy}.
+ */
 class EnergyTest {
 
+    /**
+     * Tolerance used when comparing floating point values.
+     */
     private static final double ERROR = 1e-6;
 
+    /**
+     * Checks the empty constructor, the constructor with value and unit, and that a null value or unit is
+     * rejected.
+     */
     @Test
-    void testConstructor() {
+    void constructor_whenEmptyOrValueAndUnit_storesThemAndRejectsNulls() {
         // test empty constructor
         var s = new Energy();
 
@@ -48,8 +58,11 @@ class EnergyTest {
         assertThrows(IllegalArgumentException.class, () -> new Energy(323, null));
     }
 
+    /**
+     * Checks equality semantics.
+     */
     @Test
-    void testEquals() {
+    void equals_whenDifferentInstances_comparesValueAndUnit() {
         final var value = new Random().nextDouble();
         final var s1 = new Energy(value, EnergyUnit.JOULE);
         final var s2 = new Energy(value, EnergyUnit.JOULE);
@@ -66,8 +79,11 @@ class EnergyTest {
         assertNotEquals(s1, new Object());
     }
 
+    /**
+     * Checks hash code semantics.
+     */
     @Test
-    void tetHashCode() {
+    void hashCode_whenDifferentInstances_isConsistentWithEquals() {
         final var value = new Random().nextDouble();
         final var s1 = new Energy(value, EnergyUnit.JOULE);
         final var s2 = new Energy(value, EnergyUnit.JOULE);
@@ -80,8 +96,11 @@ class EnergyTest {
         assertNotEquals(s1.hashCode(), s4.hashCode());
     }
 
+    /**
+     * Checks tolerance based equality, including unit conversion and null handling.
+     */
     @Test
-    void testEqualsWithTolerance() {
+    void equals_whenTolerance_comparesAfterUnitConversion() {
         final var value = new Random().nextDouble();
         final var s1 = new Energy(value, EnergyUnit.JOULE);
         final var s2 = new Energy(value, EnergyUnit.JOULE);
@@ -100,8 +119,11 @@ class EnergyTest {
         assertFalse(s1.equals(null, ERROR));
     }
 
+    /**
+     * Checks getter and setter of value, and that a null value is rejected.
+     */
     @Test
-    void testGetSetValue() {
+    void setValue_whenValueOrNull_updatesValueOrThrows() {
         final var s = new Energy(1, EnergyUnit.JOULE);
 
         // check
@@ -117,8 +139,11 @@ class EnergyTest {
         assertThrows(IllegalArgumentException.class, () -> s.setValue(null));
     }
 
+    /**
+     * Checks getter and setter of unit, and that a null unit is rejected.
+     */
     @Test
-    void testGetSetUnit() {
+    void setUnit_whenUnitOrNull_updatesUnitOrThrows() {
         final var s = new Energy(1, EnergyUnit.JOULE);
 
         // check
@@ -134,8 +159,11 @@ class EnergyTest {
         assertThrows(IllegalArgumentException.class, () -> s.setUnit(null));
     }
 
+    /**
+     * Checks static addition of double values with conversion to an output unit.
+     */
     @Test
-    void testAdd1() {
+    void add_whenStaticDoubles_returnsConvertedSum() {
         final var r = new Random();
         final var value1 = r.nextDouble();
         final var value2 = r.nextDouble();
@@ -148,8 +176,11 @@ class EnergyTest {
                         EnergyUnit.KILOJOULE), result, ERROR);
     }
 
+    /**
+     * Checks static addition of {@link Number} values with conversion to an output unit.
+     */
     @Test
-    void testAdd2() {
+    void add_whenStaticNumbers_returnsConvertedSum() {
         final var r = new Random();
         final var value1 = r.nextDouble();
         final var value2 = r.nextDouble();
@@ -162,8 +193,11 @@ class EnergyTest {
                         EnergyUnit.KILOJOULE), result.doubleValue(), ERROR);
     }
 
+    /**
+     * Checks static addition of energies storing the result in a provided instance.
+     */
     @Test
-    void testAdd3() {
+    void add_whenStaticEnergies_storesResultInProvidedInstance() {
         final var r = new Random();
         final var value1 = r.nextDouble();
         final var value2 = r.nextDouble();
@@ -186,8 +220,11 @@ class EnergyTest {
                 EnergyUnit.KILOJOULE), result.getValue().doubleValue(), ERROR);
     }
 
+    /**
+     * Checks static addition of energies returning a new instance.
+     */
     @Test
-    void testAddAndReturnNew1() {
+    void addAndReturnNew_whenStaticEnergies_returnsNewEnergy() {
         final var r = new Random();
         final var value1 = r.nextDouble();
         final var value2 = r.nextDouble();
@@ -209,8 +246,11 @@ class EnergyTest {
                 EnergyUnit.KILOJOULE), result.getValue().doubleValue(), ERROR);
     }
 
+    /**
+     * Checks adding a double value and returning a new instance.
+     */
     @Test
-    void testAddAndReturnNew2() {
+    void addAndReturnNew_whenDoubleValue_returnsNewEnergy() {
         final var r = new Random();
         final var value1 = r.nextDouble();
         final var value2 = r.nextDouble();
@@ -228,8 +268,11 @@ class EnergyTest {
                 EnergyUnit.KILOJOULE), result.getValue().doubleValue(), ERROR);
     }
 
+    /**
+     * Checks adding a {@link Number} value and returning a new instance.
+     */
     @Test
-    void testAddAndReturnNew3() {
+    void addAndReturnNew_whenNumberValue_returnsNewEnergy() {
         final var r = new Random();
         final var value1 = r.nextDouble();
         final var value2 = r.nextDouble();
@@ -248,8 +291,11 @@ class EnergyTest {
                 EnergyUnit.KILOJOULE), result.getValue().doubleValue(), ERROR);
     }
 
+    /**
+     * Checks adding an energy and returning a new instance.
+     */
     @Test
-    void testAddAndReturnNew4() {
+    void addAndReturnNew_whenEnergy_returnsNewEnergy() {
         final var r = new Random();
         final var value1 = r.nextDouble();
         final var value2 = r.nextDouble();
@@ -271,8 +317,11 @@ class EnergyTest {
                 EnergyUnit.KILOJOULE), result.getValue().doubleValue(), ERROR);
     }
 
+    /**
+     * Checks adding a double value in place.
+     */
     @Test
-    void testAdd4() {
+    void add_whenDoubleValue_updatesInstance() {
         final var r = new Random();
         final var value1 = r.nextDouble();
         final var value2 = r.nextDouble();
@@ -286,8 +335,11 @@ class EnergyTest {
         assertEquals(value1 + value2, s1.getValue().doubleValue(), ERROR);
     }
 
+    /**
+     * Checks adding a {@link Number} value in place.
+     */
     @Test
-    void testAdd5() {
+    void add_whenNumberValue_updatesInstance() {
         final var r = new Random();
         final var value1 = r.nextDouble();
         final var value2 = r.nextDouble();
@@ -301,8 +353,11 @@ class EnergyTest {
         assertEquals(value1 + value2, s1.getValue().doubleValue(), ERROR);
     }
 
+    /**
+     * Checks adding an energy in place.
+     */
     @Test
-    void testAdd6() {
+    void add_whenEnergy_updatesInstance() {
         final var r = new Random();
         final var value1 = r.nextDouble();
         final var value2 = r.nextDouble();
@@ -320,8 +375,11 @@ class EnergyTest {
         assertEquals(value2, s2.getValue().doubleValue(), 0.0);
     }
 
+    /**
+     * Checks adding an energy storing the result in a provided instance.
+     */
     @Test
-    void testAdd7() {
+    void add_whenEnergyAndResult_storesResultInProvidedInstance() {
         final var r = new Random();
         final var value1 = r.nextDouble();
         final var value2 = r.nextDouble();
@@ -344,8 +402,11 @@ class EnergyTest {
                 EnergyUnit.KILOJOULE), result.getValue().doubleValue(), ERROR);
     }
 
+    /**
+     * Checks static subtraction of double values with conversion to an output unit.
+     */
     @Test
-    void testSubtract1() {
+    void subtract_whenStaticDoubles_returnsConvertedDifference() {
         final var r = new Random();
         final var value1 = r.nextDouble();
         final var value2 = r.nextDouble();
@@ -358,8 +419,11 @@ class EnergyTest {
                 EnergyUnit.KILOJOULE), result, ERROR);
     }
 
+    /**
+     * Checks static subtraction of {@link Number} values with conversion to an output unit.
+     */
     @Test
-    void testSubtract2() {
+    void subtract_whenStaticNumbers_returnsConvertedDifference() {
         final var r = new Random();
         final var value1 = r.nextDouble();
         final var value2 = r.nextDouble();
@@ -372,8 +436,11 @@ class EnergyTest {
                 EnergyUnit.KILOJOULE), result.doubleValue(), ERROR);
     }
 
+    /**
+     * Checks static subtraction of energies storing the result in a provided instance.
+     */
     @Test
-    void testSubtract3() {
+    void subtract_whenStaticEnergies_storesResultInProvidedInstance() {
         final var r = new Random();
         final var value1 = r.nextDouble();
         final var value2 = r.nextDouble();
@@ -396,8 +463,11 @@ class EnergyTest {
                 EnergyUnit.KILOJOULE), result.getValue().doubleValue(), ERROR);
     }
 
+    /**
+     * Checks static subtraction of energies returning a new instance.
+     */
     @Test
-    void testSubtractAndReturnNew1() {
+    void subtractAndReturnNew_whenStaticEnergies_returnsNewEnergy() {
         final var r = new Random();
         final var value1 = r.nextDouble();
         final var value2 = r.nextDouble();
@@ -419,8 +489,11 @@ class EnergyTest {
                 EnergyUnit.KILOJOULE), result.getValue().doubleValue(), ERROR);
     }
 
+    /**
+     * Checks subtracting a double value and returning a new instance.
+     */
     @Test
-    void testSubtractAndReturnNew2() {
+    void subtractAndReturnNew_whenDoubleValue_returnsNewEnergy() {
         final var r = new Random();
         final var value1 = r.nextDouble();
         final var value2 = r.nextDouble();
@@ -438,8 +511,11 @@ class EnergyTest {
                 EnergyUnit.KILOJOULE), result.getValue().doubleValue(), ERROR);
     }
 
+    /**
+     * Checks subtracting a {@link Number} value and returning a new instance.
+     */
     @Test
-    void testSubtractAndReturnNew3() {
+    void subtractAndReturnNew_whenNumberValue_returnsNewEnergy() {
         final var r = new Random();
         final var value1 = r.nextDouble();
         final var value2 = r.nextDouble();
@@ -458,8 +534,11 @@ class EnergyTest {
                 EnergyUnit.KILOJOULE), result.getValue().doubleValue(), ERROR);
     }
 
+    /**
+     * Checks subtracting an energy and returning a new instance.
+     */
     @Test
-    void testSubtractAndReturnNew4() {
+    void subtractAndReturnNew_whenEnergy_returnsNewEnergy() {
         final var r = new Random();
         final var value1 = r.nextDouble();
         final var value2 = r.nextDouble();
@@ -481,8 +560,11 @@ class EnergyTest {
                 EnergyUnit.KILOJOULE), result.getValue().doubleValue(), ERROR);
     }
 
+    /**
+     * Checks subtracting a double value in place.
+     */
     @Test
-    void testSubtract4() {
+    void subtract_whenDoubleValue_updatesInstance() {
         final var r = new Random();
         final var value1 = r.nextDouble();
         final var value2 = r.nextDouble();
@@ -496,8 +578,11 @@ class EnergyTest {
         assertEquals(value1 - value2, s1.getValue().doubleValue(), ERROR);
     }
 
+    /**
+     * Checks subtracting a {@link Number} value in place.
+     */
     @Test
-    void testSubtract5() {
+    void subtract_whenNumberValue_updatesInstance() {
         final var r = new Random();
         final var value1 = r.nextDouble();
         final var value2 = r.nextDouble();
@@ -511,8 +596,11 @@ class EnergyTest {
         assertEquals(value1 - value2, s1.getValue().doubleValue(), ERROR);
     }
 
+    /**
+     * Checks subtracting an energy in place.
+     */
     @Test
-    void testSubtract6() {
+    void subtract_whenEnergy_updatesInstance() {
         final var r = new Random();
         final var value1 = r.nextDouble();
         final var value2 = r.nextDouble();
@@ -530,8 +618,11 @@ class EnergyTest {
         assertEquals(value2, s2.getValue().doubleValue(), 0.0);
     }
 
+    /**
+     * Checks subtracting an energy storing the result in a provided instance.
+     */
     @Test
-    void testSubtract7() {
+    void subtract_whenEnergyAndResult_storesResultInProvidedInstance() {
         final var r = new Random();
         final var value1 = r.nextDouble();
         final var value2 = r.nextDouble();
@@ -554,8 +645,14 @@ class EnergyTest {
                 EnergyUnit.KILOJOULE), result.getValue().doubleValue(), ERROR);
     }
 
+    /**
+     * Checks that serialization and deserialization preserve the measurement.
+     *
+     * @throws IOException never happens.
+     * @throws ClassNotFoundException never happens.
+     */
     @Test
-    void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+    void serialize_whenRoundTrip_returnsEqualInstance() throws IOException, ClassNotFoundException {
         final var value = new Random().nextDouble();
         final var s1 = new Energy(value, EnergyUnit.JOULE);
 

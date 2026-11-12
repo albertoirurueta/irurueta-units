@@ -19,10 +19,16 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Unit tests for {@link EnergyUnit}.
+ */
 class EnergyUnitTest {
 
+    /**
+     * Checks that every unit maps to its expected unit system and that a null unit is rejected.
+     */
     @Test
-    void testGetUnitSystem() {
+    void getUnitSystem_whenUnit_returnsExpectedSystemOrThrowsWhenNull() {
         assertEquals(UnitSystem.METRIC, EnergyUnit.getUnitSystem(EnergyUnit.JOULE));
         assertEquals(UnitSystem.METRIC, EnergyUnit.getUnitSystem(EnergyUnit.KILOJOULE));
         assertEquals(UnitSystem.METRIC, EnergyUnit.getUnitSystem(EnergyUnit.CALORIE));
@@ -34,8 +40,11 @@ class EnergyUnitTest {
         assertThrows(IllegalArgumentException.class, () -> EnergyUnit.getUnitSystem(null));
     }
 
+    /**
+     * Checks that metric units are metric and that metric and imperial units cover all units.
+     */
     @Test
-    void testGetMetricUnits() {
+    void getMetricUnits_whenCalled_returnsOnlyMetricUnits() {
         final var metricUnits = EnergyUnit.getMetricUnits();
         final var imperialUnits = EnergyUnit.getImperialUnits();
 
@@ -47,8 +56,11 @@ class EnergyUnitTest {
         assertEquals(metricUnits.length + imperialUnits.length, EnergyUnit.values().length);
     }
 
+    /**
+     * Checks that imperial units are imperial and that metric and imperial units cover all units.
+     */
     @Test
-    void testGetImperialUnits() {
+    void getImperialUnits_whenCalled_returnsOnlyImperialUnits() {
         final var metricUnits = EnergyUnit.getMetricUnits();
         final var imperialUnits = EnergyUnit.getImperialUnits();
 
@@ -60,8 +72,11 @@ class EnergyUnitTest {
         assertEquals(metricUnits.length + imperialUnits.length, EnergyUnit.values().length);
     }
 
+    /**
+     * Checks metric detection for every unit and that a null unit is rejected.
+     */
     @Test
-    void testIsMetric() {
+    void isMetric_whenUnit_returnsExpectedResultOrThrowsWhenNull() {
         assertTrue(EnergyUnit.isMetric(EnergyUnit.JOULE));
         assertTrue(EnergyUnit.isMetric(EnergyUnit.KILOJOULE));
         assertTrue(EnergyUnit.isMetric(EnergyUnit.CALORIE));
@@ -73,8 +88,11 @@ class EnergyUnitTest {
         assertThrows(IllegalArgumentException.class, () -> EnergyUnit.isMetric(null));
     }
 
+    /**
+     * Checks imperial detection for every unit and that a null unit is rejected.
+     */
     @Test
-    void testIsImperial() {
+    void isImperial_whenUnit_returnsExpectedResultOrThrowsWhenNull() {
         assertFalse(EnergyUnit.isImperial(EnergyUnit.JOULE));
         assertFalse(EnergyUnit.isImperial(EnergyUnit.KILOJOULE));
         assertFalse(EnergyUnit.isImperial(EnergyUnit.CALORIE));

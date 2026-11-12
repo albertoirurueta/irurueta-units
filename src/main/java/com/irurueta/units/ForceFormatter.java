@@ -136,19 +136,19 @@ public class ForceFormatter extends MeasureFormatter<Force, ForceUnit> {
     @Override
     public ForceUnit findUnit(final String source) {
         //kilonewton must be checked before newton, since its symbol ends with the newton symbol
-        if (source.contains(KILONEWTON + " ") || source.endsWith(KILONEWTON)) {
+        if (containsSymbol(source, KILONEWTON)) {
             return ForceUnit.KILONEWTON;
         }
-        if (source.contains(POUND_FORCE + " ") || source.endsWith(POUND_FORCE)) {
+        if (containsSymbol(source, POUND_FORCE)) {
             return ForceUnit.POUND_FORCE;
         }
-        if (source.contains(DYNE + " ") || source.endsWith(DYNE)) {
+        if (containsSymbol(source, DYNE)) {
             return ForceUnit.DYNE;
         }
-        if (source.contains(KILOGRAM_FORCE + " ") || source.endsWith(KILOGRAM_FORCE)) {
+        if (containsSymbol(source, KILOGRAM_FORCE)) {
             return ForceUnit.KILOGRAM_FORCE;
         }
-        if (source.contains(NEWTON + " ") || source.endsWith(NEWTON)) {
+        if (containsSymbol(source, NEWTON)) {
             return ForceUnit.NEWTON;
         }
         return null;

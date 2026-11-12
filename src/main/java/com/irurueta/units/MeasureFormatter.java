@@ -582,6 +582,30 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
     }
 
     /**
+     * Determines whether provided unit symbol appears in source as a whole token.
+     * A symbol is matched only when it is preceded by the start of the string or by a non-letter
+     * character, and followed by a space or the end of the string. This prevents a symbol such as
+     * "Pa" from matching an unsupported prefixed unit such as "hPa" or "MPa".
+     *
+     * @param source a measurement string representation.
+     * @param symbol unit symbol to look for.
+     * @return true if symbol appears in source as a whole token, false otherwise.
+     */
+    static boolean containsSymbol(final String source, final String symbol) {
+        var index = source.indexOf(symbol);
+        while (index >= 0) {
+            final var end = index + symbol.length();
+            final var validStart = index == 0 || !Character.isLetter(source.charAt(index - 1));
+            final var validEnd = end == source.length() || source.charAt(end) == ' ';
+            if (validStart && validEnd) {
+                return true;
+            }
+            index = source.indexOf(symbol, index + 1);
+        }
+        return false;
+    }
+
+    /**
      * Internal method to clone this measure formatter.
      *
      * @param copy an instantiated copy of a measure formatter that needs to be initialized.

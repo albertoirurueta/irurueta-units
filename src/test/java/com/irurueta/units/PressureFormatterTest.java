@@ -375,6 +375,21 @@ class PressureFormatterTest {
     }
 
     /**
+     * Checks that unsupported prefixed units are rejected instead of being parsed as a supported unit.
+     */
+    @Test
+    void findUnit_whenUnsupportedPrefix_returnsNullAndParseFails() {
+        final var formatter = new PressureFormatter(SPAIN);
+
+        assertNull(formatter.findUnit("5,5 hPa"));
+        assertNull(formatter.findUnit("5,5 MPa"));
+        assertEquals(PressureUnit.PASCAL, formatter.findUnit("1 hPa = 100 Pa"));
+        assertEquals(PressureUnit.PASCAL, formatter.findUnit("Pa"));
+        assertNull(formatter.findUnit("5,5 Pax"));
+        assertThrows(UnknownUnitException.class, () -> formatter.parse("5,5 hPa"));
+    }
+
+    /**
      * Checks unit symbols.
      */
     @Test

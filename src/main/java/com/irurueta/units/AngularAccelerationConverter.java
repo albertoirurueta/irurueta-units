@@ -23,7 +23,7 @@ import java.math.BigDecimal;
  * before displaying angular acceleration measurements.
  */
 @SuppressWarnings("WeakerAccess")
-public class AngularAccelerationConverter {
+public final class AngularAccelerationConverter {
 
     /**
      * Constructor.

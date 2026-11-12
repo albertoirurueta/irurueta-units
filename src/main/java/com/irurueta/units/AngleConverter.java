@@ -23,7 +23,7 @@ import java.math.BigDecimal;
  * step before displaying angle measurements.
  */
 @SuppressWarnings("WeakerAccess")
-public class AngleConverter {
+public final class AngleConverter {
 
     /**
      * Length for degrees and minutes.

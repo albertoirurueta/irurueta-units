@@ -69,10 +69,10 @@ public enum PowerUnit {
      */
     public static PowerUnit[] getMetricUnits() {
         return new PowerUnit[]{
-                WATT,
-                KILOWATT,
-                MEGAWATT,
-                GIGAWATT
+            WATT,
+            KILOWATT,
+            MEGAWATT,
+            GIGAWATT
         };
     }
 
@@ -83,7 +83,7 @@ public enum PowerUnit {
      */
     public static PowerUnit[] getImperialUnits() {
         return new PowerUnit[]{
-                HORSEPOWER
+            HORSEPOWER
         };
     }
 

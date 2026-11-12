@@ -23,7 +23,7 @@ import java.math.BigDecimal;
  * before displaying force measurements.
  */
 @SuppressWarnings("WeakerAccess")
-public class ForceConverter {
+public final class ForceConverter {
 
     /**
      * Number of newtons in 1 kilonewton.

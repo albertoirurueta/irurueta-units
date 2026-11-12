@@ -23,7 +23,7 @@ import java.math.BigDecimal;
  * before displaying frequency measurements.
  */
 @SuppressWarnings("WeakerAccess")
-public class FrequencyConverter {
+public final class FrequencyConverter {
 
     /**
      * Number of Hertz's in one KiloHertz.

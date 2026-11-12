@@ -69,9 +69,9 @@ public enum SpeedUnit {
      */
     public static SpeedUnit[] getMetricUnits() {
         return new SpeedUnit[]{
-                METERS_PER_SECOND,
-                KILOMETERS_PER_HOUR,
-                KILOMETERS_PER_SECOND
+            METERS_PER_SECOND,
+            KILOMETERS_PER_HOUR,
+            KILOMETERS_PER_SECOND
         };
     }
 
@@ -82,8 +82,8 @@ public enum SpeedUnit {
      */
     public static SpeedUnit[] getImperialUnits() {
         return new SpeedUnit[]{
-                FEET_PER_SECOND,
-                MILES_PER_HOUR
+            FEET_PER_SECOND,
+            MILES_PER_HOUR
         };
     }
 

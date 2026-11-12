@@ -112,7 +112,7 @@ public class MagneticFluxDensityFormatter extends MeasureFormatter<MagneticFluxD
     public int hashCode() {
         return super.hashCode();
     }
-    
+
     /**
      * Gets unit system for detected unit into provided string representation
      * of a measurement.
@@ -251,7 +251,7 @@ public class MagneticFluxDensityFormatter extends MeasureFormatter<MagneticFluxD
      * @return its string representation
      */
     @Override
-    public String getUnitSymbol(MagneticFluxDensityUnit unit) {
+    public String getUnitSymbol(final MagneticFluxDensityUnit unit) {
         return switch (unit) {
             case NANOTESLA -> NANOTESLA;
             case MICROTESLA -> MICROTESLA;

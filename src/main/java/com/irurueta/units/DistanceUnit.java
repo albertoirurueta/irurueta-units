@@ -84,10 +84,10 @@ public enum DistanceUnit {
      */
     public static DistanceUnit[] getMetricUnits() {
         return new DistanceUnit[]{
-                MILLIMETER,
-                CENTIMETER,
-                METER,
-                KILOMETER
+            MILLIMETER,
+            CENTIMETER,
+            METER,
+            KILOMETER
         };
     }
 
@@ -98,10 +98,10 @@ public enum DistanceUnit {
      */
     public static DistanceUnit[] getImperialUnits() {
         return new DistanceUnit[]{
-                INCH,
-                FOOT,
-                YARD,
-                MILE
+            INCH,
+            FOOT,
+            YARD,
+            MILE
         };
     }
 

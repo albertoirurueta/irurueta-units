@@ -23,7 +23,7 @@ import java.math.BigDecimal;
  * before displaying energy measurements.
  */
 @SuppressWarnings("WeakerAccess")
-public class EnergyConverter {
+public final class EnergyConverter {
 
     /**
      * Number of joules in 1 kilojoule.

@@ -51,7 +51,7 @@ public class AngularSpeed extends Measurement<AngularSpeedUnit> {
      * false otherwise.
      */
     @Override
-    public boolean equals(final Measurement<AngularSpeedUnit> other, double tolerance) {
+    public boolean equals(final Measurement<AngularSpeedUnit> other, final double tolerance) {
         if (super.equals(other, tolerance)) {
             return true;
         }

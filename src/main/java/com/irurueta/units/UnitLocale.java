@@ -24,7 +24,7 @@ import java.util.Locale;
  * it.
  */
 @SuppressWarnings("WeakerAccess")
-public class UnitLocale {
+public final class UnitLocale {
 
     /**
      * USA ISO country code.

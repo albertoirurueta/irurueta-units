@@ -25,22 +25,22 @@ public enum SpeedUnit {
     METERS_PER_SECOND,
 
     /**
-     * Kilometers per hour (Km/h)
+     * Kilometers per hour (Km/h).
      */
     KILOMETERS_PER_HOUR,
 
     /**
-     * Kilometers per second (Km/s)
+     * Kilometers per second (Km/s).
      */
     KILOMETERS_PER_SECOND,
 
     /**
-     * Feet per second (ft/s)
+     * Feet per second (ft/s).
      */
     FEET_PER_SECOND,
 
     /**
-     * Miles per hour (mph)
+     * Miles per hour (mph).
      */
     MILES_PER_HOUR;
 
@@ -69,9 +69,9 @@ public enum SpeedUnit {
      */
     public static SpeedUnit[] getMetricUnits() {
         return new SpeedUnit[]{
-                METERS_PER_SECOND,
-                KILOMETERS_PER_HOUR,
-                KILOMETERS_PER_SECOND
+            METERS_PER_SECOND,
+            KILOMETERS_PER_HOUR,
+            KILOMETERS_PER_SECOND
         };
     }
 
@@ -82,8 +82,8 @@ public enum SpeedUnit {
      */
     public static SpeedUnit[] getImperialUnits() {
         return new SpeedUnit[]{
-                FEET_PER_SECOND,
-                MILES_PER_HOUR
+            FEET_PER_SECOND,
+            MILES_PER_HOUR
         };
     }
 

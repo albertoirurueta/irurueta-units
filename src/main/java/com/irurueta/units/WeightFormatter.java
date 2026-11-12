@@ -79,6 +79,11 @@ public class WeightFormatter extends MeasureFormatter<Weight, WeightUnit> {
     public static final String OUNCE = "oz";
 
     /**
+     * Defines a space.
+     */
+    private static final String SPACE = " ";
+
+    /**
      * Constructor.
      */
     public WeightFormatter() {
@@ -122,10 +127,13 @@ public class WeightFormatter extends MeasureFormatter<Weight, WeightUnit> {
      * Hash code generated for this instance.
      * Hash codes can be internally used by some collections to coarsely compare objects.
      * This implementation only calls parent implementation to avoid static analyzer warning.
+     * It is kept because {@link #equals(Object)} is overridden, so both
+     * methods remain consistent.
      *
      * @return hash code.
      */
     @Override
+    @SuppressWarnings("PMD.UselessOverridingMethod")
     public int hashCode() {
         return super.hashCode();
     }
@@ -166,32 +174,32 @@ public class WeightFormatter extends MeasureFormatter<Weight, WeightUnit> {
      */
     @Override
     public WeightUnit findUnit(final String source) {
-        if (source.contains(PICOGRAM + " ") || source.endsWith(PICOGRAM)) {
+        if (source.contains(PICOGRAM + SPACE) || source.endsWith(PICOGRAM)) {
             return WeightUnit.PICOGRAM;
         }
-        if (source.contains(NANOGRAM + " ") || source.endsWith(NANOGRAM)) {
+        if (source.contains(NANOGRAM + SPACE) || source.endsWith(NANOGRAM)) {
             return WeightUnit.NANOGRAM;
         }
-        if (source.contains(MICROGRAM + " ") || source.endsWith(MICROGRAM)) {
+        if (source.contains(MICROGRAM + SPACE) || source.endsWith(MICROGRAM)) {
             return WeightUnit.MICROGRAM;
         }
-        if (source.contains(MILLIGRAM + " ") || source.endsWith(MILLIGRAM)) {
+        if (source.contains(MILLIGRAM + SPACE) || source.endsWith(MILLIGRAM)) {
             return WeightUnit.MILLIGRAM;
         }
-        if (source.contains(KILOGRAM + " ") || source.endsWith(KILOGRAM)) {
+        if (source.contains(KILOGRAM + SPACE) || source.endsWith(KILOGRAM)) {
             return WeightUnit.KILOGRAM;
         }
-        if (source.contains(MEGATONNE + " ") || source.endsWith(MEGATONNE)) {
+        if (source.contains(MEGATONNE + SPACE) || source.endsWith(MEGATONNE)) {
             return WeightUnit.MEGATONNE;
         }
-        if (source.contains(POUND + " ") || source.endsWith(POUND)) {
+        if (source.contains(POUND + SPACE) || source.endsWith(POUND)) {
             return WeightUnit.POUND;
         }
-        if (source.contains(OUNCE + " ") || source.endsWith(OUNCE)) {
+        if (source.contains(OUNCE + SPACE) || source.endsWith(OUNCE)) {
             return WeightUnit.OUNCE;
         }
 
-        if (source.contains(US_UK_TON + " ") || source.endsWith(US_UK_TON)) {
+        if (source.contains(US_UK_TON + SPACE) || source.endsWith(US_UK_TON)) {
             final var locale = getLocale();
             if (Locale.UK.getCountry().equals(locale.getCountry())) {
                 // UK
@@ -202,10 +210,10 @@ public class WeightFormatter extends MeasureFormatter<Weight, WeightUnit> {
             }
         }
 
-        if (source.contains(TONNE + " ") || source.endsWith(TONNE)) {
+        if (source.contains(TONNE + SPACE) || source.endsWith(TONNE)) {
             return WeightUnit.TONNE;
         }
-        if (source.contains(GRAM + " ") || source.endsWith(GRAM)) {
+        if (source.contains(GRAM + SPACE) || source.endsWith(GRAM)) {
             return WeightUnit.GRAM;
         }
 

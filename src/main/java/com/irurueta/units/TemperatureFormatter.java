@@ -24,6 +24,11 @@ public class TemperatureFormatter extends MeasureFormatter<Temperature, Temperat
     public static final String KELVIN = "K";
 
     /**
+     * Defines a space.
+     */
+    private static final String SPACE = " ";
+
+    /**
      * Constructor.
      */
     public TemperatureFormatter() {
@@ -67,11 +72,13 @@ public class TemperatureFormatter extends MeasureFormatter<Temperature, Temperat
      * Hash code generated for this instance.
      * Hash codes can be internally used by some collections to coarsely compare
      * objects. This implementation only calls parent implementation to avoid
-     * static analyzer warning.
+     * static analyzer warning. It is kept because
+     * {@link #equals(Object)} is overridden.
      *
      * @return hash code.
      */
     @Override
+    @SuppressWarnings("PMD.UselessOverridingMethod")
     public int hashCode() {
         return super.hashCode();
     }
@@ -112,13 +119,14 @@ public class TemperatureFormatter extends MeasureFormatter<Temperature, Temperat
      */
     @Override
     public TemperatureUnit findUnit(final String source) {
-        if (source.contains(CELSIUS + " ") || source.endsWith(CELSIUS)) {
+        if (source.contains(CELSIUS + SPACE) || source.endsWith(CELSIUS)) {
             return TemperatureUnit.CELSIUS;
         }
-        if (source.contains(FAHRENHEIT + " ") || source.endsWith(FAHRENHEIT)) {
+        if (source.contains(FAHRENHEIT + SPACE)
+                || source.endsWith(FAHRENHEIT)) {
             return TemperatureUnit.FAHRENHEIT;
         }
-        if (source.contains(KELVIN + " ") || source.endsWith(KELVIN)) {
+        if (source.contains(KELVIN + SPACE) || source.endsWith(KELVIN)) {
             return TemperatureUnit.KELVIN;
         }
         return null;

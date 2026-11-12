@@ -59,6 +59,11 @@ public class MagneticFluxDensityFormatter extends MeasureFormatter<MagneticFluxD
     public static final String GIGATESLA = "GT";
 
     /**
+     * Defines a space.
+     */
+    private static final String SPACE = " ";
+
+    /**
      * Constructor.
      */
     public MagneticFluxDensityFormatter() {
@@ -102,10 +107,13 @@ public class MagneticFluxDensityFormatter extends MeasureFormatter<MagneticFluxD
      * Hash code generated for this instance.
      * Hash codes can be internally used by some collections to coarsely compare objects.
      * This implementation only calls parent implementation to avoid static analyzer warning.
+     * It is kept because {@link #equals(Object)} is overridden, so both
+     * methods remain consistent.
      *
      * @return hash code.
      */
     @Override
+    @SuppressWarnings("PMD.UselessOverridingMethod")
     public int hashCode() {
         return super.hashCode();
     }
@@ -147,25 +155,27 @@ public class MagneticFluxDensityFormatter extends MeasureFormatter<MagneticFluxD
      */
     @Override
     public MagneticFluxDensityUnit findUnit(final String source) {
-        if (source.contains(NANOTESLA + " ") || source.endsWith(NANOTESLA)) {
+        if (source.contains(NANOTESLA + SPACE) || source.endsWith(NANOTESLA)) {
             return MagneticFluxDensityUnit.NANOTESLA;
         }
-        if (source.contains(MICROTESLA + " ") || source.endsWith(MICROTESLA)) {
+        if (source.contains(MICROTESLA + SPACE)
+                || source.endsWith(MICROTESLA)) {
             return MagneticFluxDensityUnit.MICROTESLA;
         }
-        if (source.contains(MILLITESLA + " ") || source.endsWith(MILLITESLA)) {
+        if (source.contains(MILLITESLA + SPACE)
+                || source.endsWith(MILLITESLA)) {
             return MagneticFluxDensityUnit.MILLITESLA;
         }
-        if (source.contains(KILOTESLA + " ") || source.endsWith(KILOTESLA)) {
+        if (source.contains(KILOTESLA + SPACE) || source.endsWith(KILOTESLA)) {
             return MagneticFluxDensityUnit.KILOTESLA;
         }
-        if (source.contains(MEGATESLA + " ") || source.endsWith(MEGATESLA)) {
+        if (source.contains(MEGATESLA + SPACE) || source.endsWith(MEGATESLA)) {
             return MagneticFluxDensityUnit.MEGATESLA;
         }
-        if (source.contains(GIGATESLA + " ") || source.endsWith(GIGATESLA)) {
+        if (source.contains(GIGATESLA + SPACE) || source.endsWith(GIGATESLA)) {
             return MagneticFluxDensityUnit.GIGATESLA;
         }
-        if (source.contains(TESLA + " ") || source.endsWith(TESLA)) {
+        if (source.contains(TESLA + SPACE) || source.endsWith(TESLA)) {
             return MagneticFluxDensityUnit.TESLA;
         }
         return null;

@@ -40,6 +40,11 @@ public class AccelerationFormatter extends MeasureFormatter<Acceleration, Accele
     public static final String FEET_PER_SQUARED_SECOND = "ft/s²";
 
     /**
+     * Defines a space.
+     */
+    private static final String SPACE = " ";
+
+    /**
      * Constructor.
      */
     public AccelerationFormatter() {
@@ -85,6 +90,7 @@ public class AccelerationFormatter extends MeasureFormatter<Acceleration, Accele
      * @return hash code.
      */
     @Override
+    @SuppressWarnings("PMD.UselessOverridingMethod")
     public int hashCode() {
         return super.hashCode();
     }
@@ -121,13 +127,13 @@ public class AccelerationFormatter extends MeasureFormatter<Acceleration, Accele
      */
     @Override
     public AccelerationUnit findUnit(final String source) {
-        if (source.contains(METERS_PER_SQUARED_SECOND + " ") || source.endsWith(METERS_PER_SQUARED_SECOND)) {
+        if (source.contains(METERS_PER_SQUARED_SECOND + SPACE) || source.endsWith(METERS_PER_SQUARED_SECOND)) {
             return AccelerationUnit.METERS_PER_SQUARED_SECOND;
         }
-        if (source.contains(G + " ") || source.endsWith(G)) {
+        if (source.contains(G + SPACE) || source.endsWith(G)) {
             return AccelerationUnit.G;
         }
-        if (source.contains(FEET_PER_SQUARED_SECOND + " ") || source.endsWith(FEET_PER_SQUARED_SECOND)) {
+        if (source.contains(FEET_PER_SQUARED_SECOND + SPACE) || source.endsWith(FEET_PER_SQUARED_SECOND)) {
             return AccelerationUnit.FEET_PER_SQUARED_SECOND;
         }
         return null;

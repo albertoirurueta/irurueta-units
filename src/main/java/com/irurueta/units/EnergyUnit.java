@@ -79,12 +79,12 @@ public enum EnergyUnit {
      */
     public static EnergyUnit[] getMetricUnits() {
         return new EnergyUnit[]{
-                JOULE,
-                KILOJOULE,
-                MEGAJOULE,
-                CALORIE,
-                KILOCALORIE,
-                KILOWATT_HOUR
+            JOULE,
+            KILOJOULE,
+            MEGAJOULE,
+            CALORIE,
+            KILOCALORIE,
+            KILOWATT_HOUR
         };
     }
 
@@ -95,7 +95,7 @@ public enum EnergyUnit {
      */
     public static EnergyUnit[] getImperialUnits() {
         return new EnergyUnit[]{
-                BTU
+            BTU
         };
     }
 

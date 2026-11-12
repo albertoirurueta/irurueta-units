@@ -79,6 +79,11 @@ public class VolumeFormatter extends MeasureFormatter<Volume, VolumeUnit> {
     public static final String BARREL = "bbl";
 
     /**
+     * Defines a space.
+     */
+    private static final String SPACE = " ";
+
+    /**
      * Constructor.
      */
     public VolumeFormatter() {
@@ -122,10 +127,13 @@ public class VolumeFormatter extends MeasureFormatter<Volume, VolumeUnit> {
      * Hash code generated for this instance.
      * Hash codes can be internally used by some collections to coarsely compare objects.
      * This implementation only calls parent implementation to avoid static analyzer warning.
+     * It is kept because {@link #equals(Object)} is overridden, so both
+     * methods remain consistent.
      *
      * @return hash code.
      */
     @Override
+    @SuppressWarnings("PMD.UselessOverridingMethod")
     public int hashCode() {
         return super.hashCode();
     }
@@ -164,37 +172,41 @@ public class VolumeFormatter extends MeasureFormatter<Volume, VolumeUnit> {
      */
     @Override
     public VolumeUnit findUnit(final String source) {
-        if (source.contains(CUBIC_CENTIMETER + " ") || source.endsWith(CUBIC_CENTIMETER)) {
+        if (source.contains(CUBIC_CENTIMETER + SPACE) || source.endsWith(CUBIC_CENTIMETER)) {
             return VolumeUnit.CUBIC_CENTIMETER;
         }
-        if (source.contains(MILLILITER + " ") || source.endsWith(MILLILITER)) {
+        if (source.contains(MILLILITER + SPACE)
+                || source.endsWith(MILLILITER)) {
             return VolumeUnit.MILLILITER;
         }
-        if (source.contains(CUBIC_DECIMETER + " ") || source.endsWith(CUBIC_DECIMETER)) {
+        if (source.contains(CUBIC_DECIMETER + SPACE) || source.endsWith(CUBIC_DECIMETER)) {
             return VolumeUnit.CUBIC_DECIMETER;
         }
-        if (source.contains(HECTOLITER + " ") || source.endsWith(HECTOLITER)) {
+        if (source.contains(HECTOLITER + SPACE)
+                || source.endsWith(HECTOLITER)) {
             return VolumeUnit.HECTOLITER;
         }
-        if (source.contains(LITER + " ") || source.endsWith(LITER)) {
+        if (source.contains(LITER + SPACE) || source.endsWith(LITER)) {
             return VolumeUnit.LITER;
         }
-        if (source.contains(CUBIC_METER + " ") || source.endsWith(CUBIC_METER)) {
+        if (source.contains(CUBIC_METER + SPACE) || source.endsWith(CUBIC_METER)) {
             return VolumeUnit.CUBIC_METER;
         }
-        if (source.contains(CUBIC_INCH + " ") || source.endsWith(CUBIC_INCH)) {
+        if (source.contains(CUBIC_INCH + SPACE)
+                || source.endsWith(CUBIC_INCH)) {
             return VolumeUnit.CUBIC_INCH;
         }
-        if (source.contains(PINT + " ") || source.endsWith(PINT)) {
+        if (source.contains(PINT + SPACE) || source.endsWith(PINT)) {
             return VolumeUnit.PINT;
         }
-        if (source.contains(GALLON + " ") || source.endsWith(GALLON)) {
+        if (source.contains(GALLON + SPACE) || source.endsWith(GALLON)) {
             return VolumeUnit.GALLON;
         }
-        if (source.contains(CUBIC_FOOT + " ") || source.endsWith(CUBIC_FOOT)) {
+        if (source.contains(CUBIC_FOOT + SPACE)
+                || source.endsWith(CUBIC_FOOT)) {
             return VolumeUnit.CUBIC_FOOT;
         }
-        if (source.contains(BARREL + " ") || source.endsWith(BARREL)) {
+        if (source.contains(BARREL + SPACE) || source.endsWith(BARREL)) {
             return VolumeUnit.BARREL;
         }
 

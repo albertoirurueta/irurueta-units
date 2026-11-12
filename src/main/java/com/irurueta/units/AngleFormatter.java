@@ -37,6 +37,11 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> {
     public static final String RADIAN = "rad";
 
     /**
+     * Defines a space.
+     */
+    private static final String SPACE = " ";
+
+    /**
      * Pattern to format degrees and minutes.
      */
     private static final String DEGREES_AND_MINUTES_MESSAGE_PATTERN = "{0}º {1}''";
@@ -114,6 +119,7 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> {
      * @return hash code.
      */
     @Override
+    @SuppressWarnings("PMD.UselessOverridingMethod")
     public int hashCode() {
         return super.hashCode();
     }
@@ -151,10 +157,10 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> {
      */
     @Override
     public AngleUnit findUnit(final String source) {
-        if (source.contains(DEGREE + " ") || source.endsWith(DEGREE)) {
+        if (source.contains(DEGREE + SPACE) || source.endsWith(DEGREE)) {
             return AngleUnit.DEGREES;
         }
-        if (source.contains(RADIAN + " ") || source.endsWith(RADIAN)) {
+        if (source.contains(RADIAN + SPACE) || source.endsWith(RADIAN)) {
             return AngleUnit.RADIANS;
         }
         return null;

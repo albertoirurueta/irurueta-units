@@ -49,6 +49,11 @@ public class FrequencyFormatter extends MeasureFormatter<Frequency, FrequencyUni
     public static final String TERAHERTZ = "THz";
 
     /**
+     * Defines a space.
+     */
+    private static final String SPACE = " ";
+
+    /**
      * Constructor.
      */
     public FrequencyFormatter() {
@@ -92,10 +97,13 @@ public class FrequencyFormatter extends MeasureFormatter<Frequency, FrequencyUni
      * Hash code generated for this instance.
      * Hash codes can be internally used by some collections to coarsely compare objects.
      * This implementation only calls parent implementation to avoid static analyzer warning.
+     * It is kept because {@link #equals(Object)} is overridden, so both
+     * methods remain consistent.
      *
      * @return hash code.
      */
     @Override
+    @SuppressWarnings("PMD.UselessOverridingMethod")
     public int hashCode() {
         return super.hashCode();
     }
@@ -135,19 +143,19 @@ public class FrequencyFormatter extends MeasureFormatter<Frequency, FrequencyUni
      */
     @Override
     public FrequencyUnit findUnit(final String source) {
-        if (source.contains(KILOHERTZ + " ") || source.endsWith(KILOHERTZ)) {
+        if (source.contains(KILOHERTZ + SPACE) || source.endsWith(KILOHERTZ)) {
             return FrequencyUnit.KILOHERTZ;
         }
-        if (source.contains(MEGAHERTZ + " ") || source.endsWith(MEGAHERTZ)) {
+        if (source.contains(MEGAHERTZ + SPACE) || source.endsWith(MEGAHERTZ)) {
             return FrequencyUnit.MEGAHERTZ;
         }
-        if (source.contains(GIGAHERTZ + " ") || source.endsWith(GIGAHERTZ)) {
+        if (source.contains(GIGAHERTZ + SPACE) || source.endsWith(GIGAHERTZ)) {
             return FrequencyUnit.GIGAHERTZ;
         }
-        if (source.contains(TERAHERTZ + " ") || source.endsWith(TERAHERTZ)) {
+        if (source.contains(TERAHERTZ + SPACE) || source.endsWith(TERAHERTZ)) {
             return FrequencyUnit.TERAHERTZ;
         }
-        if (source.contains(HERTZ + " ") || source.endsWith(HERTZ)) {
+        if (source.contains(HERTZ + SPACE) || source.endsWith(HERTZ)) {
             return FrequencyUnit.HERTZ;
         }
         return null;

@@ -50,49 +50,49 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> {
      * Flag indicating whether seconds must be included when formatting a time
      * instance.
      */
-    public static final int FORMAT_SECONDS = FORMAT_MILLISECONDS << 1;
+    public static final int FORMAT_SECONDS = 1 << TimeFormatter.SECONDS_BIT;
 
     /**
      * Flag indicating whether minutes must be included when formatting a time
      * instance.
      */
-    public static final int FORMAT_MINUTES = FORMAT_SECONDS << 1;
+    public static final int FORMAT_MINUTES = 1 << TimeFormatter.MINUTES_BIT;
 
     /**
      * Flag indicating whether hours must be included when formatting a time
      * instance.
      */
-    public static final int FORMAT_HOURS = FORMAT_MINUTES << 1;
+    public static final int FORMAT_HOURS = 1 << TimeFormatter.HOURS_BIT;
 
     /**
      * Flag indicating whether days must be included when formatting a time
      * instance.
      */
-    public static final int FORMAT_DAYS = FORMAT_HOURS << 1;
+    public static final int FORMAT_DAYS = 1 << TimeFormatter.DAYS_BIT;
 
     /**
      * Flag indicating whether weeks must be included when formatting a time
      * instance.
      */
-    public static final int FORMAT_WEEKS = FORMAT_DAYS << 1;
+    public static final int FORMAT_WEEKS = 1 << TimeFormatter.WEEKS_BIT;
 
     /**
      * Flag indicating whether months must be included when formatting a time
      * instance.
      */
-    public static final int FORMAT_MONTHS = FORMAT_WEEKS << 1;
+    public static final int FORMAT_MONTHS = 1 << TimeFormatter.MONTHS_BIT;
 
     /**
      * Flag indicating whether years must be included when formatting a time
      * instance.
      */
-    public static final int FORMAT_YEARS = FORMAT_MONTHS << 1;
+    public static final int FORMAT_YEARS = 1 << TimeFormatter.YEARS_BIT;
 
     /**
      * Flag indicating whether centuries must be included when formatting a time
      * instance.
      */
-    public static final int FORMAT_CENTURIES = FORMAT_YEARS << 1;
+    public static final int FORMAT_CENTURIES = 1 << TimeFormatter.CENTURIES_BIT;
 
     /**
      * Flag indicating that all units must be included when formatting a time
@@ -182,6 +182,46 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> {
      * n-th century symbol.
      */
     public static final String CENTURY_SYMBOL = "th c.";
+
+    /**
+     * Bit position of the {@link #FORMAT_SECONDS} flag.
+     */
+    private static final int SECONDS_BIT = 3;
+
+    /**
+     * Bit position of the {@link #FORMAT_MINUTES} flag.
+     */
+    private static final int MINUTES_BIT = 4;
+
+    /**
+     * Bit position of the {@link #FORMAT_HOURS} flag.
+     */
+    private static final int HOURS_BIT = 5;
+
+    /**
+     * Bit position of the {@link #FORMAT_DAYS} flag.
+     */
+    private static final int DAYS_BIT = 6;
+
+    /**
+     * Bit position of the {@link #FORMAT_WEEKS} flag.
+     */
+    private static final int WEEKS_BIT = 7;
+
+    /**
+     * Bit position of the {@link #FORMAT_MONTHS} flag.
+     */
+    private static final int MONTHS_BIT = 8;
+
+    /**
+     * Bit position of the {@link #FORMAT_YEARS} flag.
+     */
+    private static final int YEARS_BIT = 9;
+
+    /**
+     * Bit position of the {@link #FORMAT_CENTURIES} flag.
+     */
+    private static final int CENTURIES_BIT = 10;
 
     /**
      * First century symbol.
@@ -741,16 +781,15 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> {
         minuteFormat.setMinimumIntegerDigits(INTEGER_DIGITS);
         minuteFormat.setMaximumIntegerDigits(INTEGER_DIGITS);
 
-        if (getNumberFormat() != null) {
-            hourFormat.setMaximumIntegerDigits(getNumberFormat().getMaximumIntegerDigits());
-            hourFormat.setRoundingMode(getNumberFormat().getRoundingMode());
-            hourFormat.setGroupingUsed(getNumberFormat().isGroupingUsed());
+        final var nf = getNumberFormat();
+        hourFormat.setMaximumIntegerDigits(nf.getMaximumIntegerDigits());
+        hourFormat.setRoundingMode(nf.getRoundingMode());
+        hourFormat.setGroupingUsed(nf.isGroupingUsed());
 
-            minuteFormat.setMinimumFractionDigits(getNumberFormat().getMinimumFractionDigits());
-            minuteFormat.setMaximumFractionDigits(getNumberFormat().getMaximumFractionDigits());
-            minuteFormat.setRoundingMode(getNumberFormat().getRoundingMode());
-            minuteFormat.setGroupingUsed(getNumberFormat().isGroupingUsed());
-        }
+        minuteFormat.setMinimumFractionDigits(nf.getMinimumFractionDigits());
+        minuteFormat.setMaximumFractionDigits(nf.getMaximumFractionDigits());
+        minuteFormat.setRoundingMode(nf.getRoundingMode());
+        minuteFormat.setGroupingUsed(nf.isGroupingUsed());
         return hourFormat.format(hours) + COLON + minuteFormat.format(minutes);
     }
 
@@ -818,20 +857,19 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> {
         secondFormat.setMinimumIntegerDigits(INTEGER_DIGITS);
         secondFormat.setMaximumIntegerDigits(INTEGER_DIGITS);
 
-        if (getNumberFormat() != null) {
-            hourFormat.setMaximumIntegerDigits(getNumberFormat().getMaximumIntegerDigits());
-            hourFormat.setRoundingMode(getNumberFormat().getRoundingMode());
-            hourFormat.setGroupingUsed(getNumberFormat().isGroupingUsed());
+        final var nf = getNumberFormat();
+        hourFormat.setMaximumIntegerDigits(nf.getMaximumIntegerDigits());
+        hourFormat.setRoundingMode(nf.getRoundingMode());
+        hourFormat.setGroupingUsed(nf.isGroupingUsed());
 
-            minuteFormat.setMaximumIntegerDigits(getNumberFormat().getMaximumIntegerDigits());
-            minuteFormat.setRoundingMode(getNumberFormat().getRoundingMode());
-            minuteFormat.setGroupingUsed(getNumberFormat().isGroupingUsed());
+        minuteFormat.setMaximumIntegerDigits(nf.getMaximumIntegerDigits());
+        minuteFormat.setRoundingMode(nf.getRoundingMode());
+        minuteFormat.setGroupingUsed(nf.isGroupingUsed());
 
-            secondFormat.setMinimumFractionDigits(getNumberFormat().getMinimumFractionDigits());
-            secondFormat.setMaximumFractionDigits(getNumberFormat().getMaximumFractionDigits());
-            secondFormat.setRoundingMode(getNumberFormat().getRoundingMode());
-            secondFormat.setGroupingUsed(getNumberFormat().isGroupingUsed());
-        }
+        secondFormat.setMinimumFractionDigits(nf.getMinimumFractionDigits());
+        secondFormat.setMaximumFractionDigits(nf.getMaximumFractionDigits());
+        secondFormat.setRoundingMode(nf.getRoundingMode());
+        secondFormat.setGroupingUsed(nf.isGroupingUsed());
         return hourFormat.format(hours) + COLON + minuteFormat.format(minutes) + COLON + secondFormat.format(seconds);
     }
 

@@ -53,20 +53,17 @@ public abstract class Measurement<T extends Enum<?>> implements Serializable {
      * @throws IllegalArgumentException if either value or unit is null.
      */
     protected Measurement(final Number initialValue, final T initialUnit) {
-        this(requireNonNullArgument(initialUnit), requireNonNullArgument(initialValue));
+        this(validate(initialValue, initialUnit));
     }
 
     /**
      * Internal constructor with already validated arguments.
      *
-     * Arguments order differs from the public constructor to keep both signatures distinct.
-     *
-     * @param validUnit  measurement unit (already validated to be not null).
-     * @param validValue measurement value (already validated to be not null).
+     * @param arguments validated (not null) measurement value and unit.
      */
-    private Measurement(final T validUnit, final Number validValue) {
-        value = validValue;
-        unit = validUnit;
+    private Measurement(final ValidArguments<T> arguments) {
+        value = arguments.value();
+        unit = arguments.unit();
     }
 
     /**
@@ -76,20 +73,21 @@ public abstract class Measurement<T extends Enum<?>> implements Serializable {
     }
 
     /**
-     * Checks that provided argument is not null.
+     * Checks that provided measurement value and unit are not null.
      * Validation is performed here (instead of directly within the constructor) so that no exception
      * is thrown from the constructor body itself.
      *
-     * @param argument argument to be checked.
-     * @param <A>      type of argument.
-     * @return provided argument.
-     * @throws IllegalArgumentException if argument is null.
+     * @param initialValue measurement value to be checked.
+     * @param initialUnit  measurement unit to be checked.
+     * @param <U>          type of measurement unit.
+     * @return validated measurement value and unit.
+     * @throws IllegalArgumentException if either value or unit is null.
      */
-    private static <A> A requireNonNullArgument(final A argument) {
-        if (argument == null) {
+    private static <U extends Enum<?>> ValidArguments<U> validate(final Number initialValue, final U initialUnit) {
+        if (initialValue == null || initialUnit == null) {
             throw new IllegalArgumentException();
         }
-        return argument;
+        return new ValidArguments<>(initialValue, initialUnit);
     }
 
     /**
@@ -189,5 +187,15 @@ public abstract class Measurement<T extends Enum<?>> implements Serializable {
         }
 
         unit = newUnit;
+    }
+
+    /**
+     * Measurement value and unit that have already been validated to be not null.
+     *
+     * @param value measurement value.
+     * @param unit  measurement unit.
+     * @param <U>   type of measurement unit.
+     */
+    private record ValidArguments<U extends Enum<?>>(Number value, U unit) {
     }
 }

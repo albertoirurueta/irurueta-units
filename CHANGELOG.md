@@ -24,8 +24,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   `pom.xml` properties.
 - Cleaned up pre-existing static analysis findings (Checkstyle, PMD and SpotBugs) across the library with no behavior
   change: named constants instead of magic numbers, `final` utility/helper classes, no redundant modifiers or hidden
-  fields, consistent indentation and line length. `checkstyle.xml` is now wired into the build via
-  `maven-checkstyle-plugin` (`mvn checkstyle:check`) (GitHub issue #23).
+  fields, and consistent indentation; the one line over the 120-column limit was wrapped. `checkstyle.xml` is now
+  wired into the build via `maven-checkstyle-plugin` (`mvn checkstyle:check`) (GitHub issue #23).
 
 ## [1.4.0] - 2026-06-30
 

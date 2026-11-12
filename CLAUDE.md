@@ -21,10 +21,13 @@ mvn checkstyle:check                       # run checkstyle against checkstyle.x
 mvn com.github.spotbugs:spotbugs-maven-plugin:check   # run SpotBugs
 ```
 
-Docs (Antora, under `docs/`) build separately with Node:
+Docs (Antora 3.2, under `docs/`) build separately with Node 20+. The toolchain is pinned in `docs/package.json`
+and `docs/package-lock.json` (install with `npm ci`, never per-package); search uses Pagefind:
 
 ```bash
-cd docs && npx antora antora-playbook.yml
+cd docs && npm ci && npx antora antora-playbook.yml
+cd docs && npx pagefind --site build/site          # search index (serve over HTTP to test)
+cd docs && npm i --no-save mermaid@11 jsdom@31 puppeteer@25 && npm run validate:mermaid
 ```
 
 There is no separate lint step outside of Checkstyle/SpotBugs/PMD, all wired through the Maven `site`

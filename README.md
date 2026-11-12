@@ -163,12 +163,17 @@ mvn package       # build the JAR and generate JaCoCo coverage
 mvn site          # generate Maven site reports
 ```
 
-To build the Antora documentation locally:
+To build the Antora documentation locally (Node.js 20 or later):
 
 ```bash
 cd docs
+npm ci
 npx antora antora-playbook.yml
+npx pagefind --site build/site
 ```
+
+Search only works when `docs/build/site` is served over HTTP (for example
+`python3 -m http.server --directory build/site`), not from `file://`.
 
 ## 🧭 Supported measurement families
 
@@ -199,6 +204,7 @@ For changes affecting documentation, also run:
 
 ```bash
 cd docs
+npm ci
 npx antora antora-playbook.yml
 ```
 

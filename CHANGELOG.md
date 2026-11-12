@@ -7,6 +7,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Added `Force`, `Pressure`, `Energy` and `Power` measurement families, each with its unit enum, measurement class,
+  converter and formatter (`ForceUnit`, `PressureUnit`, `EnergyUnit`, `PowerUnit` and related classes), plus unit tests
+  (GitHub issue #13).
+
 ### Changed
 
 - Raised the Java compiler source/target and CI JDK version from 17 to 21.

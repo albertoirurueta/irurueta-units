@@ -39,6 +39,11 @@ public class PowerFormatter extends MeasureFormatter<Power, PowerUnit> {
     public static final String MEGAWATT = "MW";
 
     /**
+     * Gigawatt symbol.
+     */
+    public static final String GIGAWATT = "GW";
+
+    /**
      * Horsepower symbol.
      */
     public static final String HORSEPOWER = "hp";
@@ -136,6 +141,9 @@ public class PowerFormatter extends MeasureFormatter<Power, PowerUnit> {
         if (containsSymbol(source, MEGAWATT)) {
             return PowerUnit.MEGAWATT;
         }
+        if (containsSymbol(source, GIGAWATT)) {
+            return PowerUnit.GIGAWATT;
+        }
         if (containsSymbol(source, HORSEPOWER)) {
             return PowerUnit.HORSEPOWER;
         }
@@ -169,8 +177,8 @@ public class PowerFormatter extends MeasureFormatter<Power, PowerUnit> {
     /**
      * Formats and converts provided power value and unit using metric unit
      * system.
-     * Values below 1 kW are represented in watts, values below 1 MW in kilowatts
-     * and larger values in megawatts.
+     * Values below 1 kW are represented in watts, values below 1 MW in kilowatts,
+     * values below 1 GW in megawatts and larger values in gigawatts.
      *
      * @param value a power value.
      * @param unit  a power unit.
@@ -191,7 +199,12 @@ public class PowerFormatter extends MeasureFormatter<Power, PowerUnit> {
         }
 
         final var megawatts = PowerConverter.convert(v, unit, PowerUnit.MEGAWATT);
-        return format(megawatts, PowerUnit.MEGAWATT);
+        if (Math.abs(megawatts) < PowerConverter.WATTS_PER_KILOWATT) {
+            return format(megawatts, PowerUnit.MEGAWATT);
+        }
+
+        final var gigawatts = PowerConverter.convert(v, unit, PowerUnit.GIGAWATT);
+        return format(gigawatts, PowerUnit.GIGAWATT);
     }
 
     /**
@@ -222,6 +235,7 @@ public class PowerFormatter extends MeasureFormatter<Power, PowerUnit> {
         return switch (unit) {
             case KILOWATT -> KILOWATT;
             case MEGAWATT -> MEGAWATT;
+            case GIGAWATT -> GIGAWATT;
             case HORSEPOWER -> HORSEPOWER;
             default -> WATT;
         };

@@ -30,6 +30,11 @@ public enum EnergyUnit {
     KILOJOULE,
 
     /**
+     * Megajoule (MJ).
+     */
+    MEGAJOULE,
+
+    /**
      * Thermochemical calorie (cal).
      */
     CALORIE,
@@ -76,6 +81,7 @@ public enum EnergyUnit {
         return new EnergyUnit[]{
                 JOULE,
                 KILOJOULE,
+                MEGAJOULE,
                 CALORIE,
                 KILOCALORIE,
                 KILOWATT_HOUR

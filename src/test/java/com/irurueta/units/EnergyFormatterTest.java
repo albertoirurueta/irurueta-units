@@ -791,6 +791,9 @@ class EnergyFormatterTest {
         text = "5,5 kJ";
         assertEquals(EnergyUnit.KILOJOULE, formatter.findUnit(text));
 
+        text = "5,5 MJ";
+        assertEquals(EnergyUnit.MEGAJOULE, formatter.findUnit(text));
+
         text = "5,5 cal";
         assertEquals(EnergyUnit.CALORIE, formatter.findUnit(text));
 
@@ -808,7 +811,7 @@ class EnergyFormatterTest {
     }
 
     /**
-     * Checks that symbols only match as whole tokens, so that unsupported prefixed units (such as megajoules or
+     * Checks that symbols only match as whole tokens, so that unsupported prefixed units (such as gigajoules or
      * millijoules) are rejected rather than misparsed as joules, while a symbol followed by trailing text still
      * matches.
      */
@@ -816,9 +819,9 @@ class EnergyFormatterTest {
     void findUnit_whenUnsupportedPrefixedUnit_returnsNullAndParseThrowsUnknownUnitException() {
         final var formatter = new EnergyFormatter(new Locale("es", "ES"));
 
-        assertNull(formatter.findUnit("5,5 MJ"));
+        assertNull(formatter.findUnit("5,5 GJ"));
         assertNull(formatter.findUnit("5,5 mJ"));
-        assertThrows(UnknownUnitException.class, () -> formatter.parse("5,5 MJ"));
+        assertThrows(UnknownUnitException.class, () -> formatter.parse("5,5 GJ"));
 
         assertEquals(EnergyUnit.KILOJOULE, formatter.findUnit("5,5 kJ total"));
     }
@@ -832,6 +835,7 @@ class EnergyFormatterTest {
 
         assertEquals(EnergyFormatter.JOULE, formatter.getUnitSymbol(EnergyUnit.JOULE));
         assertEquals(EnergyFormatter.KILOJOULE, formatter.getUnitSymbol(EnergyUnit.KILOJOULE));
+        assertEquals(EnergyFormatter.MEGAJOULE, formatter.getUnitSymbol(EnergyUnit.MEGAJOULE));
         assertEquals(EnergyFormatter.CALORIE, formatter.getUnitSymbol(EnergyUnit.CALORIE));
         assertEquals(EnergyFormatter.KILOCALORIE, formatter.getUnitSymbol(EnergyUnit.KILOCALORIE));
         assertEquals(EnergyFormatter.KILOWATT_HOUR, formatter.getUnitSymbol(EnergyUnit.KILOWATT_HOUR));

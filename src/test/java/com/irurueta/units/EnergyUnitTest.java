@@ -31,6 +31,7 @@ class EnergyUnitTest {
     void getUnitSystem_whenUnit_returnsExpectedSystemOrThrowsWhenNull() {
         assertEquals(UnitSystem.METRIC, EnergyUnit.getUnitSystem(EnergyUnit.JOULE));
         assertEquals(UnitSystem.METRIC, EnergyUnit.getUnitSystem(EnergyUnit.KILOJOULE));
+        assertEquals(UnitSystem.METRIC, EnergyUnit.getUnitSystem(EnergyUnit.MEGAJOULE));
         assertEquals(UnitSystem.METRIC, EnergyUnit.getUnitSystem(EnergyUnit.CALORIE));
         assertEquals(UnitSystem.METRIC, EnergyUnit.getUnitSystem(EnergyUnit.KILOCALORIE));
         assertEquals(UnitSystem.METRIC, EnergyUnit.getUnitSystem(EnergyUnit.KILOWATT_HOUR));
@@ -79,6 +80,7 @@ class EnergyUnitTest {
     void isMetric_whenUnit_returnsExpectedResultOrThrowsWhenNull() {
         assertTrue(EnergyUnit.isMetric(EnergyUnit.JOULE));
         assertTrue(EnergyUnit.isMetric(EnergyUnit.KILOJOULE));
+        assertTrue(EnergyUnit.isMetric(EnergyUnit.MEGAJOULE));
         assertTrue(EnergyUnit.isMetric(EnergyUnit.CALORIE));
         assertTrue(EnergyUnit.isMetric(EnergyUnit.KILOCALORIE));
         assertTrue(EnergyUnit.isMetric(EnergyUnit.KILOWATT_HOUR));
@@ -95,6 +97,7 @@ class EnergyUnitTest {
     void isImperial_whenUnit_returnsExpectedResultOrThrowsWhenNull() {
         assertFalse(EnergyUnit.isImperial(EnergyUnit.JOULE));
         assertFalse(EnergyUnit.isImperial(EnergyUnit.KILOJOULE));
+        assertFalse(EnergyUnit.isImperial(EnergyUnit.MEGAJOULE));
         assertFalse(EnergyUnit.isImperial(EnergyUnit.CALORIE));
         assertFalse(EnergyUnit.isImperial(EnergyUnit.KILOCALORIE));
         assertFalse(EnergyUnit.isImperial(EnergyUnit.KILOWATT_HOUR));

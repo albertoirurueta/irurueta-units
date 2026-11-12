@@ -35,6 +35,11 @@ public enum PowerUnit {
     MEGAWATT,
 
     /**
+     * Gigawatt (GW).
+     */
+    GIGAWATT,
+
+    /**
      * Mechanical horsepower (hp).
      */
     HORSEPOWER;
@@ -66,7 +71,8 @@ public enum PowerUnit {
         return new PowerUnit[]{
                 WATT,
                 KILOWATT,
-                MEGAWATT
+                MEGAWATT,
+                GIGAWATT
         };
     }
 

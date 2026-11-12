@@ -138,6 +138,7 @@ class PowerFormatterTest {
         assertEquals("5,5 W", formatter.format(new BigDecimal("5.5"), PowerUnit.WATT));
         assertEquals("5,5 kW", formatter.format(VALUE, PowerUnit.KILOWATT));
         assertEquals("5,5 MW", formatter.format(new Power(VALUE, PowerUnit.MEGAWATT)));
+        assertEquals("5,5 GW", formatter.format(new Power(VALUE, PowerUnit.GIGAWATT)));
         assertEquals("5,5 hp", formatter.format(VALUE, PowerUnit.HORSEPOWER));
 
         assertEquals("5,5 W", formatter.format(new BigDecimal("5.5"), PowerUnit.WATT, new StringBuffer(),
@@ -161,7 +162,10 @@ class PowerFormatterTest {
         assertEquals("5,5 kW", formatter.formatAndConvertMetric(VALUE, PowerUnit.KILOWATT));
         assertEquals("5,5 MW", formatter.formatAndConvertMetric(5.5e6, PowerUnit.WATT));
         assertEquals("5,5 MW", formatter.formatAndConvertMetric(VALUE, PowerUnit.MEGAWATT));
-        assertEquals("5.500 MW", formatter.formatAndConvertMetric(5.5e9, PowerUnit.WATT));
+        assertEquals("5,5 GW", formatter.formatAndConvertMetric(5.5e9, PowerUnit.WATT));
+        assertEquals("5,5 GW", formatter.formatAndConvertMetric(VALUE, PowerUnit.GIGAWATT));
+        assertEquals("5,5 MW", formatter.formatAndConvertMetric(5.5e-3, PowerUnit.GIGAWATT));
+        assertEquals("5.500 GW", formatter.formatAndConvertMetric(5.5e12, PowerUnit.WATT));
         assertEquals("4,101 kW", formatter.formatAndConvertMetric(5.5, PowerUnit.HORSEPOWER));
     }
 
@@ -279,6 +283,8 @@ class PowerFormatterTest {
         assertEquals(PowerUnit.WATT, formatter.findUnit("5,5 W extra"));
         assertEquals(PowerUnit.KILOWATT, formatter.findUnit("5,5 kW extra"));
         assertEquals(PowerUnit.MEGAWATT, formatter.findUnit("5,5 MW extra"));
+        assertEquals(PowerUnit.GIGAWATT, formatter.findUnit("5,5 GW"));
+        assertEquals(PowerUnit.GIGAWATT, formatter.findUnit("5,5 GW extra"));
         assertEquals(PowerUnit.HORSEPOWER, formatter.findUnit("5,5 hp extra"));
         assertEquals(PowerUnit.WATT, formatter.findUnit("5,5W"));
         assertNull(formatter.findUnit("5,5 s"));
@@ -291,10 +297,10 @@ class PowerFormatterTest {
     void findUnit_whenUnsupportedPrefix_returnsNullAndParseFails() {
         final var formatter = new PowerFormatter(SPAIN);
 
-        assertNull(formatter.findUnit("5,5 GW"));
+        assertNull(formatter.findUnit("5,5 TW"));
         assertNull(formatter.findUnit("5,5 mW"));
-        assertEquals(PowerUnit.MEGAWATT, formatter.findUnit("1 GW = 1000 MW"));
-        assertThrows(UnknownUnitException.class, () -> formatter.parse("5,5 GW"));
+        assertEquals(PowerUnit.GIGAWATT, formatter.findUnit("1 TW = 1000 GW"));
+        assertThrows(UnknownUnitException.class, () -> formatter.parse("5,5 TW"));
     }
 
     /**
@@ -307,6 +313,7 @@ class PowerFormatterTest {
         assertEquals(PowerFormatter.WATT, formatter.getUnitSymbol(PowerUnit.WATT));
         assertEquals(PowerFormatter.KILOWATT, formatter.getUnitSymbol(PowerUnit.KILOWATT));
         assertEquals(PowerFormatter.MEGAWATT, formatter.getUnitSymbol(PowerUnit.MEGAWATT));
+        assertEquals(PowerFormatter.GIGAWATT, formatter.getUnitSymbol(PowerUnit.GIGAWATT));
         assertEquals(PowerFormatter.HORSEPOWER, formatter.getUnitSymbol(PowerUnit.HORSEPOWER));
     }
 }

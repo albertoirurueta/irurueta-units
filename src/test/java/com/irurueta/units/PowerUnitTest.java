@@ -32,6 +32,7 @@ class PowerUnitTest {
         assertEquals(UnitSystem.METRIC, PowerUnit.getUnitSystem(PowerUnit.WATT));
         assertEquals(UnitSystem.METRIC, PowerUnit.getUnitSystem(PowerUnit.KILOWATT));
         assertEquals(UnitSystem.METRIC, PowerUnit.getUnitSystem(PowerUnit.MEGAWATT));
+        assertEquals(UnitSystem.METRIC, PowerUnit.getUnitSystem(PowerUnit.GIGAWATT));
         assertEquals(UnitSystem.IMPERIAL, PowerUnit.getUnitSystem(PowerUnit.HORSEPOWER));
     }
 
@@ -83,6 +84,7 @@ class PowerUnitTest {
         assertTrue(PowerUnit.isMetric(PowerUnit.WATT));
         assertTrue(PowerUnit.isMetric(PowerUnit.KILOWATT));
         assertTrue(PowerUnit.isMetric(PowerUnit.MEGAWATT));
+        assertTrue(PowerUnit.isMetric(PowerUnit.GIGAWATT));
         assertFalse(PowerUnit.isMetric(PowerUnit.HORSEPOWER));
     }
 
@@ -102,6 +104,7 @@ class PowerUnitTest {
         assertFalse(PowerUnit.isImperial(PowerUnit.WATT));
         assertFalse(PowerUnit.isImperial(PowerUnit.KILOWATT));
         assertFalse(PowerUnit.isImperial(PowerUnit.MEGAWATT));
+        assertFalse(PowerUnit.isImperial(PowerUnit.GIGAWATT));
         assertTrue(PowerUnit.isImperial(PowerUnit.HORSEPOWER));
     }
 

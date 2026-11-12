@@ -36,6 +36,11 @@ public class PowerConverter {
     static final double WATTS_PER_MEGAWATT = 1.0e6;
 
     /**
+     * Number of watts in 1 gigawatt.
+     */
+    static final double WATTS_PER_GIGAWATT = 1.0e9;
+
+    /**
      * Number of watts in 1 mechanical horsepower.
      */
     static final double WATTS_PER_HORSEPOWER = 745.69987158227022;
@@ -120,6 +125,7 @@ public class PowerConverter {
         final var watts = switch (inputUnit) {
             case KILOWATT -> kilowattsToWatts(input);
             case MEGAWATT -> megawattsToWatts(input);
+            case GIGAWATT -> gigawattsToWatts(input);
             case HORSEPOWER -> horsepowerToWatts(input);
             default -> input;
         };
@@ -128,6 +134,7 @@ public class PowerConverter {
         return switch (outputUnit) {
             case KILOWATT -> wattsToKilowatts(watts);
             case MEGAWATT -> wattsToMegawatts(watts);
+            case GIGAWATT -> wattsToGigawatts(watts);
             case HORSEPOWER -> wattsToHorsepower(watts);
             default -> watts;
         };
@@ -171,6 +178,26 @@ public class PowerConverter {
      */
     public static double wattsToMegawatts(final double watts) {
         return watts / WATTS_PER_MEGAWATT;
+    }
+
+    /**
+     * Converts provided gigawatts value to watts.
+     *
+     * @param gigawatts gigawatts value.
+     * @return same power converted to watts.
+     */
+    public static double gigawattsToWatts(final double gigawatts) {
+        return gigawatts * WATTS_PER_GIGAWATT;
+    }
+
+    /**
+     * Converts provided watts value to gigawatts.
+     *
+     * @param watts watts value.
+     * @return same power converted to gigawatts.
+     */
+    public static double wattsToGigawatts(final double watts) {
+        return watts / WATTS_PER_GIGAWATT;
     }
 
     /**

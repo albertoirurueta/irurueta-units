@@ -37,6 +37,11 @@ class PowerConverterTest {
     private static final double WATTS_PER_MEGAWATT = 1.0e6;
 
     /**
+     * Number of watts in 1 gigawatt.
+     */
+    private static final double WATTS_PER_GIGAWATT = 1.0e9;
+
+    /**
      * Number of watts in 1 mechanical horsepower.
      */
     private static final double WATTS_PER_HORSEPOWER = 745.69987158227022;
@@ -70,6 +75,15 @@ class PowerConverterTest {
     }
 
     /**
+     * Checks gigawatt to watt conversions.
+     */
+    @Test
+    void gigawattsToWatts_whenValueProvided_convertsBothWays() {
+        assertEquals(VALUE * WATTS_PER_GIGAWATT, PowerConverter.gigawattsToWatts(VALUE), ERROR);
+        assertEquals(VALUE / WATTS_PER_GIGAWATT, PowerConverter.wattsToGigawatts(VALUE), ERROR);
+    }
+
+    /**
      * Checks horsepower to watt conversions.
      */
     @Test
@@ -85,6 +99,8 @@ class PowerConverterTest {
     void convert_whenKnownValues_returnsExpectedResult() {
         assertEquals(1000.0, PowerConverter.convert(1.0, PowerUnit.KILOWATT, PowerUnit.WATT), ERROR);
         assertEquals(1000.0, PowerConverter.convert(1.0, PowerUnit.MEGAWATT, PowerUnit.KILOWATT), ERROR);
+        assertEquals(1000.0, PowerConverter.convert(1.0, PowerUnit.GIGAWATT, PowerUnit.MEGAWATT), ERROR);
+        assertEquals(1.0e-3, PowerConverter.convert(1.0, PowerUnit.MEGAWATT, PowerUnit.GIGAWATT), ERROR);
         assertEquals(745.69987158227022, PowerConverter.convert(1.0, PowerUnit.HORSEPOWER, PowerUnit.WATT), ERROR);
     }
 

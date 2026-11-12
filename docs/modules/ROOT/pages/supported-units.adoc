@@ -34,7 +34,7 @@ The following table lists the concrete measurement classes and their unit enums.
 
 | `Energy`
 | `EnergyUnit`
-| `JOULE`, `KILOJOULE`, `CALORIE`, `KILOCALORIE`, `KILOWATT_HOUR`, `BTU`
+| `JOULE`, `KILOJOULE`, `MEGAJOULE`, `CALORIE`, `KILOCALORIE`, `KILOWATT_HOUR`, `BTU`
 
 | `Force`
 | `ForceUnit`
@@ -50,7 +50,7 @@ The following table lists the concrete measurement classes and their unit enums.
 
 | `Power`
 | `PowerUnit`
-| `WATT`, `KILOWATT`, `MEGAWATT`, `HORSEPOWER`
+| `WATT`, `KILOWATT`, `MEGAWATT`, `GIGAWATT`, `HORSEPOWER`
 
 | `Pressure`
 | `PressureUnit`

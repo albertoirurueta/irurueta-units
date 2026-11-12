@@ -34,6 +34,11 @@ public class EnergyFormatter extends MeasureFormatter<Energy, EnergyUnit> {
     public static final String KILOJOULE = "kJ";
 
     /**
+     * Megajoule symbol.
+     */
+    public static final String MEGAJOULE = "MJ";
+
+    /**
      * Calorie symbol.
      */
     public static final String CALORIE = "cal";
@@ -149,6 +154,9 @@ public class EnergyFormatter extends MeasureFormatter<Energy, EnergyUnit> {
         if (containsSymbol(source, KILOJOULE)) {
             return EnergyUnit.KILOJOULE;
         }
+        if (containsSymbol(source, MEGAJOULE)) {
+            return EnergyUnit.MEGAJOULE;
+        }
         if (containsSymbol(source, CALORIE)) {
             return EnergyUnit.CALORIE;
         }
@@ -238,6 +246,7 @@ public class EnergyFormatter extends MeasureFormatter<Energy, EnergyUnit> {
     public String getUnitSymbol(final EnergyUnit unit) {
         return switch (unit) {
             case KILOJOULE -> KILOJOULE;
+            case MEGAJOULE -> MEGAJOULE;
             case CALORIE -> CALORIE;
             case KILOCALORIE -> KILOCALORIE;
             case KILOWATT_HOUR -> KILOWATT_HOUR;

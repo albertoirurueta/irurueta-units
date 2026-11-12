@@ -192,8 +192,8 @@ Search only works when `docs/build/site` is served over HTTP (for example
 | `MagneticFluxDensity` | `NANOTESLA`, `MICROTESLA`, `MILLITESLA`, `TESLA` |
 | `Force` | `NEWTON`, `KILONEWTON`, `POUND_FORCE`, `DYNE`, `KILOGRAM_FORCE` |
 | `Pressure` | `PASCAL`, `KILOPASCAL`, `BAR`, `ATMOSPHERE`, `PSI` |
-| `Energy` | `JOULE`, `KILOJOULE`, `CALORIE`, `KILOCALORIE`, `KILOWATT_HOUR`, `BTU` |
-| `Power` | `WATT`, `KILOWATT`, `MEGAWATT`, `HORSEPOWER` |
+| `Energy` | `JOULE`, `KILOJOULE`, `MEGAJOULE`, `CALORIE`, `KILOCALORIE`, `KILOWATT_HOUR`, `BTU` |
+| `Power` | `WATT`, `KILOWATT`, `MEGAWATT`, `GIGAWATT`, `HORSEPOWER` |
 
 ## 🤝 Contributing
 

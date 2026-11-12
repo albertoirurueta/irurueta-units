@@ -31,6 +31,11 @@ public class EnergyConverter {
     static final double JOULES_PER_KILOJOULE = 1000.0;
 
     /**
+     * Number of joules in 1 megajoule.
+     */
+    static final double JOULES_PER_MEGAJOULE = 1.0e6;
+
+    /**
      * Number of joules in 1 thermochemical calorie.
      */
     static final double JOULES_PER_CALORIE = 4.184;
@@ -129,6 +134,7 @@ public class EnergyConverter {
         //convert to joules
         final var joules = switch (inputUnit) {
             case KILOJOULE -> kilojouleToJoule(input);
+            case MEGAJOULE -> megajouleToJoule(input);
             case CALORIE -> calorieToJoule(input);
             case KILOCALORIE -> kilocalorieToJoule(input);
             case KILOWATT_HOUR -> kilowattHourToJoule(input);
@@ -139,6 +145,7 @@ public class EnergyConverter {
         //convert from joules to required output unit
         return switch (outputUnit) {
             case KILOJOULE -> jouleToKilojoule(joules);
+            case MEGAJOULE -> jouleToMegajoule(joules);
             case CALORIE -> jouleToCalorie(joules);
             case KILOCALORIE -> jouleToKilocalorie(joules);
             case KILOWATT_HOUR -> jouleToKilowattHour(joules);
@@ -165,6 +172,26 @@ public class EnergyConverter {
      */
     public static double jouleToKilojoule(final double joule) {
         return joule / JOULES_PER_KILOJOULE;
+    }
+
+    /**
+     * Converts provided megajoule value to joules.
+     *
+     * @param megajoule megajoule value.
+     * @return same energy converted to joules.
+     */
+    public static double megajouleToJoule(final double megajoule) {
+        return megajoule * JOULES_PER_MEGAJOULE;
+    }
+
+    /**
+     * Converts provided joules value to megajoule.
+     *
+     * @param joule joules value.
+     * @return same energy converted to megajoule.
+     */
+    public static double jouleToMegajoule(final double joule) {
+        return joule / JOULES_PER_MEGAJOULE;
     }
 
     /**

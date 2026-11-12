@@ -33,6 +33,11 @@ class EnergyConverterTest {
     private static final double JOULES_PER_KILOJOULE = 1000.0;
 
     /**
+     * Number of joules in 1 megajoule.
+     */
+    private static final double JOULES_PER_MEGAJOULE = 1.0e6;
+
+    /**
      * Number of joules in 1 calorie.
      */
     private static final double JOULES_PER_CALORIE = 4.184;
@@ -78,6 +83,18 @@ class EnergyConverterTest {
 
         assertEquals(inputValue / JOULES_PER_KILOJOULE, EnergyConverter.jouleToKilojoule(inputValue), ERROR);
         assertEquals(inputValue * JOULES_PER_KILOJOULE, EnergyConverter.kilojouleToJoule(inputValue), ERROR);
+    }
+
+    /**
+     * Checks conversion between joules and megajoules in both directions.
+     */
+    @Test
+    void jouleToMegajoule_whenRandomValue_returnsExpectedResult() {
+        final var inputValue = new Random().nextDouble();
+
+        assertEquals(inputValue / JOULES_PER_MEGAJOULE, EnergyConverter.jouleToMegajoule(inputValue), ERROR);
+        assertEquals(inputValue * JOULES_PER_MEGAJOULE, EnergyConverter.megajouleToJoule(inputValue), ERROR);
+        assertEquals(3.6, EnergyConverter.convert(1.0, EnergyUnit.KILOWATT_HOUR, EnergyUnit.MEGAJOULE), ERROR);
     }
 
     /**
@@ -254,6 +271,7 @@ class EnergyConverterTest {
     private static double toJoules(final double value, final EnergyUnit unit) {
         return switch (unit) {
             case KILOJOULE -> value * JOULES_PER_KILOJOULE;
+            case MEGAJOULE -> value * JOULES_PER_MEGAJOULE;
             case CALORIE -> value * JOULES_PER_CALORIE;
             case KILOCALORIE -> value * JOULES_PER_KILOCALORIE;
             case KILOWATT_HOUR -> value * JOULES_PER_KILOWATT_HOUR;
@@ -272,6 +290,7 @@ class EnergyConverterTest {
     private static double fromJoules(final double joules, final EnergyUnit unit) {
         return switch (unit) {
             case KILOJOULE -> joules / JOULES_PER_KILOJOULE;
+            case MEGAJOULE -> joules / JOULES_PER_MEGAJOULE;
             case CALORIE -> joules / JOULES_PER_CALORIE;
             case KILOCALORIE -> joules / JOULES_PER_KILOCALORIE;
             case KILOWATT_HOUR -> joules / JOULES_PER_KILOWATT_HOUR;

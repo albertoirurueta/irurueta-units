@@ -23,7 +23,7 @@ import java.math.BigDecimal;
  * before displaying angular speed measurements.
  */
 @SuppressWarnings("WeakerAccess")
-public class AngularSpeedConverter {
+public final class AngularSpeedConverter {
 
     /**
      * Constructor.

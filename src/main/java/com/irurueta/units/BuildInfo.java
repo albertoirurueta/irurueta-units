@@ -27,7 +27,7 @@ import java.util.logging.Logger;
 /**
  * Contains build data of this library.
  */
-public class BuildInfo {
+public final class BuildInfo {
 
     /**
      * This class logger.
@@ -127,7 +127,7 @@ public class BuildInfo {
      */
     private BuildInfo() {
         // loads properties file data.
-        try (final InputStream stream = BuildInfo.class.getResourceAsStream(BUILD_INFO_PROPERTIES)) {
+        try (InputStream stream = BuildInfo.class.getResourceAsStream(BUILD_INFO_PROPERTIES)) {
             final var props = new Properties();
             props.load(stream);
 
@@ -152,8 +152,8 @@ public class BuildInfo {
      * @return singleton instance.
      */
     public static synchronized BuildInfo getInstance() {
-        BuildInfo info;
-        if (sReference == null || (info = sReference.get()) == null) {
+        BuildInfo info = sReference != null ? sReference.get() : null;
+        if (info == null) {
             info = new BuildInfo();
             sReference = new SoftReference<>(info);
         }

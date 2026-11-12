@@ -121,7 +121,8 @@ public class Temperature extends Measurement<TemperatureUnit> {
      * @param unit unit of returned temperature.
      * @return a new instance containing result.
      */
-    public static Temperature addAndReturnNew(final Temperature arg1, final Temperature arg2, final TemperatureUnit unit) {
+    public static Temperature addAndReturnNew(
+            final Temperature arg1, final Temperature arg2, final TemperatureUnit unit) {
         final var result = new Temperature();
         result.setUnit(unit);
         add(arg1, arg2, result);

@@ -23,7 +23,7 @@ import java.math.BigDecimal;
  * final step before displaying acceleration measurements.
  */
 @SuppressWarnings("WeakerAccess")
-public class AccelerationConverter {
+public final class AccelerationConverter {
 
     /**
      * Standard gravity (g) on Earth. This value is equivalent to 1G

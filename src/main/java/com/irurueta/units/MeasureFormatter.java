@@ -42,7 +42,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
     /**
      * Internal string formatter.
      */
-    NumberFormat numberFormat;
+    private NumberFormat numberFormat;
 
     /**
      * Internal string formatter.
@@ -72,17 +72,39 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
     /**
      * Constructor with locale.
      *
-     * @param locale locale.
+     * @param formatLocale locale.
      * @throws IllegalArgumentException if locale is null.
      */
-    MeasureFormatter(final Locale locale) {
-        if (locale == null) {
+    MeasureFormatter(final Locale formatLocale) {
+        this(requireLocale(formatLocale), NumberFormat.getInstance(formatLocale));
+    }
+
+    /**
+     * Internal constructor with already validated locale.
+     *
+     * @param formatLocale locale (already validated to be not null).
+     * @param formatter    number format created for provided locale.
+     */
+    private MeasureFormatter(final Locale formatLocale, final NumberFormat formatter) {
+        numberFormat = formatter;
+        locale = formatLocale;
+        valueAndUnitFormatPattern = DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN;
+    }
+
+    /**
+     * Validates that provided locale is not null.
+     * Validation is performed here (instead of directly within the constructor) so that no exception
+     * is thrown from the constructor body itself.
+     *
+     * @param formatLocale locale to be checked.
+     * @return provided locale.
+     * @throws IllegalArgumentException if locale is null.
+     */
+    private static Locale requireLocale(final Locale formatLocale) {
+        if (formatLocale == null) {
             throw new IllegalArgumentException();
         }
-
-        numberFormat = NumberFormat.getInstance(locale);
-        this.locale = locale;
-        valueAndUnitFormatPattern = DEFAULT_VALUE_AND_UNIT_FORMAT_PATTERN;
+        return formatLocale;
     }
 
     /**
@@ -106,9 +128,9 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
 
         //noinspection unchecked
         final var other = (MeasureFormatter<M, U>) obj;
-        return numberFormat.equals(other.numberFormat) &&
-                locale.equals(other.locale) &&
-                valueAndUnitFormatPattern.equals(other.valueAndUnitFormatPattern);
+        return numberFormat.equals(other.numberFormat)
+                && locale.equals(other.locale)
+                && valueAndUnitFormatPattern.equals(other.valueAndUnitFormatPattern);
     }
 
     /**
@@ -258,7 +280,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @param system system unit to convert measurement to.
      * @return a string representation of measurement value and unit.
      */
-    public abstract String formatAndConvert(final Number value, final U unit, final UnitSystem system);
+    public abstract String formatAndConvert(Number value, U unit, UnitSystem system);
 
     /**
      * Formats and converts provided measurement value and unit using provided
@@ -288,6 +310,15 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      */
     public String formatAndConvert(final M measurement, final UnitSystem unitSystem) {
         return formatAndConvert(measurement.getValue(), measurement.getUnit(), unitSystem);
+    }
+
+    /**
+     * Gets internal number formatter used by this instance.
+     *
+     * @return internal number formatter.
+     */
+    final NumberFormat getNumberFormat() {
+        return numberFormat;
     }
 
     /**
@@ -450,15 +481,14 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * Sets pattern to format values and unit together into a single string.
      * {0} corresponds to the value, {1} corresponds to the unit part.
      *
-     * @param valueAndUnitFormatPattern pattern to format values and unit
-     *                                  together.
+     * @param pattern pattern to format values and unit together.
      * @throws IllegalArgumentException if provided pattern is null.
      */
-    public void setValueAndUnitFormatPattern(final String valueAndUnitFormatPattern) {
-        if (valueAndUnitFormatPattern == null) {
+    public void setValueAndUnitFormatPattern(final String pattern) {
+        if (pattern == null) {
             throw new IllegalArgumentException();
         }
-        this.valueAndUnitFormatPattern = valueAndUnitFormatPattern;
+        valueAndUnitFormatPattern = pattern;
     }
 
     /**
@@ -533,7 +563,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @return a unit system (either metric or imperial) or null if unit
      * cannot be determined.
      */
-    public abstract UnitSystem getUnitSystem(final String source);
+    public abstract UnitSystem getUnitSystem(String source);
 
     /**
      * Parses a string into a measure.
@@ -544,7 +574,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @throws ParseException       if parsing failed.
      * @throws UnknownUnitException if unit cannot be determined.
      */
-    public abstract M parse(final String source) throws ParseException, UnknownUnitException;
+    public abstract M parse(String source) throws ParseException, UnknownUnitException;
 
     /**
      * Finds measure unit from within a measurement string representation.
@@ -552,7 +582,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @param source a measurement string representation.
      * @return a measure unit or null if none can be determined.
      */
-    public abstract U findUnit(final String source);
+    public abstract U findUnit(String source);
 
     /**
      * Obtains measure unit symbol.
@@ -560,7 +590,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @param unit a measure unit.
      * @return measure unit symbol.
      */
-    public abstract String getUnitSymbol(final U unit);
+    public abstract String getUnitSymbol(U unit);
 
     /**
      * Internal method to parse a string into a measure.
@@ -611,7 +641,7 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
      * @param copy an instantiated copy of a measure formatter that needs to be initialized.
      * @return provided copy.
      */
-    MeasureFormatter<M, U> internalClone(final MeasureFormatter<M, U> copy) {
+    final MeasureFormatter<M, U> internalClone(final MeasureFormatter<M, U> copy) {
         copy.numberFormat = (NumberFormat) numberFormat.clone();
         if (format != null) {
             copy.format = (MessageFormat) format.clone();
@@ -622,9 +652,15 @@ public abstract class MeasureFormatter<M extends Measurement<U>, U extends Enum<
         return copy;
     }
 
+    /**
+     * Creates a copy of this measure formatter.
+     *
+     * @return a copy of this instance.
+     * @throws CloneNotSupportedException if cloning is not supported.
+     */
     @Override
-    protected MeasureFormatter<M , U> clone() throws CloneNotSupportedException {
+    protected MeasureFormatter<M, U> clone() throws CloneNotSupportedException {
         //noinspection unchecked
-        return internalClone((MeasureFormatter<M , U>) super.clone());
+        return internalClone((MeasureFormatter<M, U>) super.clone());
     }
 }

@@ -23,7 +23,7 @@ import java.math.BigDecimal;
  * before displaying surface measurements.
  */
 @SuppressWarnings("WeakerAccess")
-public class SurfaceConverter {
+public final class SurfaceConverter {
 
     /**
      * Number of square meters in 1 square millimeter.

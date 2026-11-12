@@ -22,7 +22,7 @@ import java.math.BigDecimal;
  * To prevent loss of accuracy, conversion should only be done as a final step
  * before displaying magnetic flux density measurements.
  */
-public class MagneticFluxDensityConverter {
+public final class MagneticFluxDensityConverter {
 
     /**
      * Number of Teslas in one nanotesla.

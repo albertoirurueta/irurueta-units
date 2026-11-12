@@ -23,7 +23,7 @@ import java.math.BigDecimal;
  * before displaying power measurements.
  */
 @SuppressWarnings("WeakerAccess")
-public class PowerConverter {
+public final class PowerConverter {
 
     /**
      * Number of watts in 1 kilowatt.

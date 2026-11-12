@@ -50,49 +50,49 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> {
      * Flag indicating whether seconds must be included when formatting a time
      * instance.
      */
-    public static final int FORMAT_SECONDS = 1 << 3;
+    public static final int FORMAT_SECONDS = FORMAT_MILLISECONDS << 1;
 
     /**
      * Flag indicating whether minutes must be included when formatting a time
      * instance.
      */
-    public static final int FORMAT_MINUTES = 1 << 4;
+    public static final int FORMAT_MINUTES = FORMAT_SECONDS << 1;
 
     /**
      * Flag indicating whether hours must be included when formatting a time
      * instance.
      */
-    public static final int FORMAT_HOURS = 1 << 5;
+    public static final int FORMAT_HOURS = FORMAT_MINUTES << 1;
 
     /**
      * Flag indicating whether days must be included when formatting a time
      * instance.
      */
-    public static final int FORMAT_DAYS = 1 << 6;
+    public static final int FORMAT_DAYS = FORMAT_HOURS << 1;
 
     /**
      * Flag indicating whether weeks must be included when formatting a time
      * instance.
      */
-    public static final int FORMAT_WEEKS = 1 << 7;
+    public static final int FORMAT_WEEKS = FORMAT_DAYS << 1;
 
     /**
      * Flag indicating whether months must be included when formatting a time
      * instance.
      */
-    public static final int FORMAT_MONTHS = 1 << 8;
+    public static final int FORMAT_MONTHS = FORMAT_WEEKS << 1;
 
     /**
      * Flag indicating whether years must be included when formatting a time
      * instance.
      */
-    public static final int FORMAT_YEARS = 1 << 9;
+    public static final int FORMAT_YEARS = FORMAT_MONTHS << 1;
 
     /**
      * Flag indicating whether centuries must be included when formatting a time
      * instance.
      */
-    public static final int FORMAT_CENTURIES = 1 << 10;
+    public static final int FORMAT_CENTURIES = FORMAT_YEARS << 1;
 
     /**
      * Flag indicating that all units must be included when formatting a time
@@ -296,6 +296,31 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> {
     private static final String SPACE = " ";
 
     /**
+     * Colon separator used in hour, minute and second formats.
+     */
+    private static final String COLON = ":";
+
+    /**
+     * Maximum absolute value of centuries that is still formatted using the third century symbol.
+     */
+    private static final double THIRD_CENTURY_LIMIT = 3.0;
+
+    /**
+     * Index of the regular expression group containing the numeric value when parsing a unit.
+     */
+    private static final int VALUE_GROUP = 3;
+
+    /**
+     * Index of the amount to be shown for a given unit within the array returned when splitting units.
+     */
+    private static final int VALUE_INDEX = 0;
+
+    /**
+     * Index of the remainder to be expressed using smaller units within the array returned when splitting units.
+     */
+    private static final int DIFF_INDEX = 1;
+
+    /**
      * Pattern to parse time in hour and minute format (hh:mm.s).
      */
     private Pattern hourMinutePattern;
@@ -482,12 +507,12 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> {
                 symbol = FIRST_CENTURY_SYMBOL;
             } else if (Math.abs(v) <= 2.0) {
                 symbol = SECOND_CENTURY_SYMBOL;
-            } else if (Math.abs(v) <= 3.0) {
+            } else if (Math.abs(v) <= THIRD_CENTURY_LIMIT) {
                 symbol = THIRD_CENTURY_SIMBOL;
             } else {
                 symbol = CENTURY_SYMBOL;
             }
-            return MessageFormat.format(CENTURY_FORMAT_PATTERN, numberFormat.format(value), symbol);
+            return MessageFormat.format(CENTURY_FORMAT_PATTERN, getNumberFormat().format(value), symbol);
         } else {
             return super.format(value, unit);
         }
@@ -514,14 +539,14 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> {
                 symbol = FIRST_CENTURY_SYMBOL;
             } else if (Math.abs(v) <= 2.0) {
                 symbol = SECOND_CENTURY_SYMBOL;
-            } else if (Math.abs(v) <= 3.0) {
+            } else if (Math.abs(v) <= THIRD_CENTURY_LIMIT) {
                 symbol = THIRD_CENTURY_SIMBOL;
             } else {
                 symbol = CENTURY_SYMBOL;
             }
 
             final var format = new MessageFormat(CENTURY_FORMAT_PATTERN);
-            return format.format(new Object[]{numberFormat.format(value), symbol}, toAppendTo, pos);
+            return format.format(new Object[]{getNumberFormat().format(value), symbol}, toAppendTo, pos);
         } else {
             return super.format(value, unit, toAppendTo, pos);
         }
@@ -716,17 +741,17 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> {
         minuteFormat.setMinimumIntegerDigits(INTEGER_DIGITS);
         minuteFormat.setMaximumIntegerDigits(INTEGER_DIGITS);
 
-        if (numberFormat != null) {
-            hourFormat.setMaximumIntegerDigits(numberFormat.getMaximumIntegerDigits());
-            hourFormat.setRoundingMode(numberFormat.getRoundingMode());
-            hourFormat.setGroupingUsed(numberFormat.isGroupingUsed());
+        if (getNumberFormat() != null) {
+            hourFormat.setMaximumIntegerDigits(getNumberFormat().getMaximumIntegerDigits());
+            hourFormat.setRoundingMode(getNumberFormat().getRoundingMode());
+            hourFormat.setGroupingUsed(getNumberFormat().isGroupingUsed());
 
-            minuteFormat.setMinimumFractionDigits(numberFormat.getMinimumFractionDigits());
-            minuteFormat.setMaximumFractionDigits(numberFormat.getMaximumFractionDigits());
-            minuteFormat.setRoundingMode(numberFormat.getRoundingMode());
-            minuteFormat.setGroupingUsed(numberFormat.isGroupingUsed());
+            minuteFormat.setMinimumFractionDigits(getNumberFormat().getMinimumFractionDigits());
+            minuteFormat.setMaximumFractionDigits(getNumberFormat().getMaximumFractionDigits());
+            minuteFormat.setRoundingMode(getNumberFormat().getRoundingMode());
+            minuteFormat.setGroupingUsed(getNumberFormat().isGroupingUsed());
         }
-        return hourFormat.format(hours) + ":" + minuteFormat.format(minutes);
+        return hourFormat.format(hours) + COLON + minuteFormat.format(minutes);
     }
 
     /**
@@ -752,8 +777,8 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> {
         final var hourString = matcher.group(1);
         final var minuteString = matcher.group(2);
 
-        final var hour = numberFormat.parse(hourString);
-        final var minute = numberFormat.parse(minuteString);
+        final var hour = getNumberFormat().parse(hourString);
+        final var minute = getNumberFormat().parse(minuteString);
 
         final var result = new Time(hour, TimeUnit.HOUR);
         TimeConverter.convert(result, TimeUnit.MINUTE);
@@ -793,21 +818,21 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> {
         secondFormat.setMinimumIntegerDigits(INTEGER_DIGITS);
         secondFormat.setMaximumIntegerDigits(INTEGER_DIGITS);
 
-        if (numberFormat != null) {
-            hourFormat.setMaximumIntegerDigits(numberFormat.getMaximumIntegerDigits());
-            hourFormat.setRoundingMode(numberFormat.getRoundingMode());
-            hourFormat.setGroupingUsed(numberFormat.isGroupingUsed());
+        if (getNumberFormat() != null) {
+            hourFormat.setMaximumIntegerDigits(getNumberFormat().getMaximumIntegerDigits());
+            hourFormat.setRoundingMode(getNumberFormat().getRoundingMode());
+            hourFormat.setGroupingUsed(getNumberFormat().isGroupingUsed());
 
-            minuteFormat.setMaximumIntegerDigits(numberFormat.getMaximumIntegerDigits());
-            minuteFormat.setRoundingMode(numberFormat.getRoundingMode());
-            minuteFormat.setGroupingUsed(numberFormat.isGroupingUsed());
+            minuteFormat.setMaximumIntegerDigits(getNumberFormat().getMaximumIntegerDigits());
+            minuteFormat.setRoundingMode(getNumberFormat().getRoundingMode());
+            minuteFormat.setGroupingUsed(getNumberFormat().isGroupingUsed());
 
-            secondFormat.setMinimumFractionDigits(numberFormat.getMinimumFractionDigits());
-            secondFormat.setMaximumFractionDigits(numberFormat.getMaximumFractionDigits());
-            secondFormat.setRoundingMode(numberFormat.getRoundingMode());
-            secondFormat.setGroupingUsed(numberFormat.isGroupingUsed());
+            secondFormat.setMinimumFractionDigits(getNumberFormat().getMinimumFractionDigits());
+            secondFormat.setMaximumFractionDigits(getNumberFormat().getMaximumFractionDigits());
+            secondFormat.setRoundingMode(getNumberFormat().getRoundingMode());
+            secondFormat.setGroupingUsed(getNumberFormat().isGroupingUsed());
         }
-        return hourFormat.format(hours) + ":" + minuteFormat.format(minutes) + ":" + secondFormat.format(seconds);
+        return hourFormat.format(hours) + COLON + minuteFormat.format(minutes) + COLON + secondFormat.format(seconds);
     }
 
     /**
@@ -833,9 +858,9 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> {
         final var minuteString = matcher.group(2);
         final var secondString = matcher.group(3);
 
-        final var hour = numberFormat.parse(hourString);
-        final var minute = numberFormat.parse(minuteString);
-        final var second = numberFormat.parse(secondString);
+        final var hour = getNumberFormat().parse(hourString);
+        final var minute = getNumberFormat().parse(minuteString);
+        final var second = getNumberFormat().parse(secondString);
 
         final var result = new Time(hour, TimeUnit.HOUR);
         TimeConverter.convert(result, TimeUnit.MINUTE);
@@ -873,174 +898,75 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> {
         // centuries
         final var exactCenturies = TimeConverter.convert(time.getValue().doubleValue(), time.getUnit(),
                 TimeUnit.CENTURY);
-        var centuries = 0.0;
-        double diffCenturies;
-        if ((flags & FORMAT_CENTURIES) != 0) {
-            if ((flags & (FORMAT_YEARS | FORMAT_MONTHS | FORMAT_WEEKS | FORMAT_DAYS | FORMAT_HOURS | FORMAT_MINUTES
-                    | FORMAT_SECONDS | FORMAT_MILLISECONDS | FORMAT_MICROSECONDS | FORMAT_NANOSECONDS)) != 0) {
-                // there are smaller units
-                centuries = Math.floor(exactCenturies);
-            } else {
-                centuries = exactCenturies;
-            }
-            diffCenturies = exactCenturies - centuries;
-        } else {
-            diffCenturies = exactCenturies;
-        }
+        final var centuriesSplit = splitUnit(exactCenturies, flags, FORMAT_CENTURIES,
+                FORMAT_YEARS | FORMAT_MONTHS | FORMAT_WEEKS | FORMAT_DAYS | FORMAT_HOURS | FORMAT_MINUTES
+                        | FORMAT_SECONDS | FORMAT_MILLISECONDS | FORMAT_MICROSECONDS | FORMAT_NANOSECONDS);
+        final var centuries = centuriesSplit[VALUE_INDEX];
 
         // years
-        final var exactYears = TimeConverter.convert(diffCenturies, TimeUnit.CENTURY, TimeUnit.YEAR);
-        var years = 0.0;
-        double diffYears;
-        if ((flags & FORMAT_YEARS) != 0) {
-            if ((flags & (FORMAT_MONTHS | FORMAT_WEEKS | FORMAT_DAYS | FORMAT_HOURS | FORMAT_MINUTES | FORMAT_SECONDS
-                    | FORMAT_MILLISECONDS | FORMAT_MICROSECONDS | FORMAT_NANOSECONDS)) != 0) {
-                // there are smaller units
-                years = Math.floor(exactYears);
-            } else {
-                years = exactYears;
-            }
-            diffYears = exactYears - years;
-        } else {
-            diffYears = exactYears;
-        }
+        final var exactYears = TimeConverter.convert(centuriesSplit[DIFF_INDEX], TimeUnit.CENTURY, TimeUnit.YEAR);
+        final var yearsSplit = splitUnit(exactYears, flags, FORMAT_YEARS,
+                FORMAT_MONTHS | FORMAT_WEEKS | FORMAT_DAYS | FORMAT_HOURS | FORMAT_MINUTES | FORMAT_SECONDS
+                        | FORMAT_MILLISECONDS | FORMAT_MICROSECONDS | FORMAT_NANOSECONDS);
+        final var years = yearsSplit[VALUE_INDEX];
 
         // months
-        final var exactMonths = TimeConverter.convert(diffYears, TimeUnit.YEAR, TimeUnit.MONTH);
-        var months = 0.0;
-        double diffMonths;
-        if ((flags & FORMAT_MONTHS) != 0) {
-            if ((flags & (FORMAT_WEEKS | FORMAT_DAYS | FORMAT_HOURS | FORMAT_MINUTES | FORMAT_SECONDS
-                    | FORMAT_MILLISECONDS | FORMAT_MICROSECONDS | FORMAT_NANOSECONDS)) != 0) {
-                // there are smaller units
-                months = Math.floor(exactMonths);
-            } else {
-                months = exactMonths;
-            }
-            diffMonths = exactMonths - months;
-        } else {
-            diffMonths = exactMonths;
-        }
+        final var exactMonths = TimeConverter.convert(yearsSplit[DIFF_INDEX], TimeUnit.YEAR, TimeUnit.MONTH);
+        final var monthsSplit = splitUnit(exactMonths, flags, FORMAT_MONTHS,
+                FORMAT_WEEKS | FORMAT_DAYS | FORMAT_HOURS | FORMAT_MINUTES | FORMAT_SECONDS
+                        | FORMAT_MILLISECONDS | FORMAT_MICROSECONDS | FORMAT_NANOSECONDS);
+        final var months = monthsSplit[VALUE_INDEX];
 
         // weeks
-        final var exactWeeks = TimeConverter.convert(diffMonths, TimeUnit.MONTH, TimeUnit.WEEK);
-        var weeks = 0.0;
-        double diffWeeks;
-        if ((flags & FORMAT_WEEKS) != 0) {
-            if ((flags & (FORMAT_DAYS | FORMAT_HOURS | FORMAT_MINUTES | FORMAT_SECONDS | FORMAT_MILLISECONDS
-                    | FORMAT_MICROSECONDS | FORMAT_NANOSECONDS)) != 0) {
-                // there are smaller units
-                weeks = Math.floor(exactWeeks);
-            } else {
-                weeks = exactWeeks;
-            }
-            diffWeeks = exactWeeks - weeks;
-        } else {
-            diffWeeks = exactWeeks;
-        }
+        final var exactWeeks = TimeConverter.convert(monthsSplit[DIFF_INDEX], TimeUnit.MONTH, TimeUnit.WEEK);
+        final var weeksSplit = splitUnit(exactWeeks, flags, FORMAT_WEEKS,
+                FORMAT_DAYS | FORMAT_HOURS | FORMAT_MINUTES | FORMAT_SECONDS | FORMAT_MILLISECONDS
+                        | FORMAT_MICROSECONDS | FORMAT_NANOSECONDS);
+        final var weeks = weeksSplit[VALUE_INDEX];
 
         // days
-        final var exactDays = TimeConverter.convert(diffWeeks, TimeUnit.WEEK, TimeUnit.DAY);
-        var days = 0.0;
-        double diffDays;
-        if ((flags & FORMAT_DAYS) != 0) {
-            if ((flags & (FORMAT_HOURS | FORMAT_MINUTES | FORMAT_SECONDS | FORMAT_MILLISECONDS | FORMAT_MICROSECONDS
-                    | FORMAT_NANOSECONDS)) != 0) {
-                // there are smaller units
-                days = Math.floor(exactDays);
-            } else {
-                days = exactDays;
-            }
-            diffDays = exactDays - days;
-        } else {
-            diffDays = exactDays;
-        }
+        final var exactDays = TimeConverter.convert(weeksSplit[DIFF_INDEX], TimeUnit.WEEK, TimeUnit.DAY);
+        final var daysSplit = splitUnit(exactDays, flags, FORMAT_DAYS,
+                FORMAT_HOURS | FORMAT_MINUTES | FORMAT_SECONDS | FORMAT_MILLISECONDS | FORMAT_MICROSECONDS
+                        | FORMAT_NANOSECONDS);
+        final var days = daysSplit[VALUE_INDEX];
 
         // hours
-        final var exactHours = TimeConverter.convert(diffDays, TimeUnit.DAY, TimeUnit.HOUR);
-        var hours = 0.0;
-        double diffHours;
-        if ((flags & FORMAT_HOURS) != 0) {
-            if ((flags & (FORMAT_MINUTES | FORMAT_SECONDS | FORMAT_MILLISECONDS | FORMAT_MICROSECONDS
-                    | FORMAT_NANOSECONDS)) != 0) {
-                // there are smaller units
-                hours = Math.floor(exactHours);
-            } else {
-                hours = exactHours;
-            }
-            diffHours = exactHours - hours;
-        } else {
-            diffHours = exactHours;
-        }
+        final var exactHours = TimeConverter.convert(daysSplit[DIFF_INDEX], TimeUnit.DAY, TimeUnit.HOUR);
+        final var hoursSplit = splitUnit(exactHours, flags, FORMAT_HOURS,
+                FORMAT_MINUTES | FORMAT_SECONDS | FORMAT_MILLISECONDS | FORMAT_MICROSECONDS | FORMAT_NANOSECONDS);
+        final var hours = hoursSplit[VALUE_INDEX];
 
         // minutes
-        final var exactMinutes = TimeConverter.convert(diffHours, TimeUnit.HOUR, TimeUnit.MINUTE);
-        var minutes = 0.0;
-        double diffMinutes;
-        if ((flags & FORMAT_MINUTES) != 0) {
-            if ((flags & (FORMAT_SECONDS | FORMAT_MILLISECONDS | FORMAT_MICROSECONDS | FORMAT_NANOSECONDS)) != 0) {
-                // there are smaller units
-                minutes = Math.floor(exactMinutes);
-            } else {
-                minutes = exactMinutes;
-            }
-            diffMinutes = exactMinutes - minutes;
-        } else {
-            diffMinutes = exactMinutes;
-        }
+        final var exactMinutes = TimeConverter.convert(hoursSplit[DIFF_INDEX], TimeUnit.HOUR, TimeUnit.MINUTE);
+        final var minutesSplit = splitUnit(exactMinutes, flags, FORMAT_MINUTES,
+                FORMAT_SECONDS | FORMAT_MILLISECONDS | FORMAT_MICROSECONDS | FORMAT_NANOSECONDS);
+        final var minutes = minutesSplit[VALUE_INDEX];
 
         // seconds
-        final var exactSeconds = TimeConverter.convert(diffMinutes, TimeUnit.MINUTE, TimeUnit.SECOND);
-        var seconds = 0.0;
-        double diffSeconds;
-        if ((flags & FORMAT_SECONDS) != 0) {
-            if ((flags & (FORMAT_MILLISECONDS | FORMAT_MICROSECONDS | FORMAT_NANOSECONDS)) != 0) {
-                // there are smaller units
-                seconds = Math.floor(exactSeconds);
-            } else {
-                seconds = exactSeconds;
-            }
-            diffSeconds = exactSeconds - seconds;
-        } else {
-            diffSeconds = exactSeconds;
-        }
+        final var exactSeconds = TimeConverter.convert(minutesSplit[DIFF_INDEX], TimeUnit.MINUTE, TimeUnit.SECOND);
+        final var secondsSplit = splitUnit(exactSeconds, flags, FORMAT_SECONDS,
+                FORMAT_MILLISECONDS | FORMAT_MICROSECONDS | FORMAT_NANOSECONDS);
+        final var seconds = secondsSplit[VALUE_INDEX];
 
         // milliseconds
-        final var exactMilliseconds = TimeConverter.convert(diffSeconds, TimeUnit.SECOND, TimeUnit.MILLISECOND);
-        var milliseconds = 0.0;
-        double diffMilliseconds;
-        if ((flags & FORMAT_MILLISECONDS) != 0) {
-            if ((flags & (FORMAT_MICROSECONDS | FORMAT_NANOSECONDS)) != 0) {
-                // there are smaller units
-                milliseconds = Math.floor(exactMilliseconds);
-            } else {
-                milliseconds = exactMilliseconds;
-            }
-            diffMilliseconds = exactMilliseconds - milliseconds;
-        } else {
-            diffMilliseconds = exactMilliseconds;
-        }
+        final var exactMilliseconds = TimeConverter.convert(secondsSplit[DIFF_INDEX], TimeUnit.SECOND,
+                TimeUnit.MILLISECOND);
+        final var millisecondsSplit = splitUnit(exactMilliseconds, flags, FORMAT_MILLISECONDS,
+                FORMAT_MICROSECONDS | FORMAT_NANOSECONDS);
+        final var milliseconds = millisecondsSplit[VALUE_INDEX];
 
         // microseconds
-        final var exactMicroseconds = TimeConverter.convert(diffMilliseconds, TimeUnit.MILLISECOND,
+        final var exactMicroseconds = TimeConverter.convert(millisecondsSplit[DIFF_INDEX], TimeUnit.MILLISECOND,
                 TimeUnit.MICROSECOND);
-        var microseconds = 0.0;
-        double diffMicroseconds;
-        if ((flags & FORMAT_MICROSECONDS) != 0) {
-            if ((flags & (FORMAT_NANOSECONDS)) != 0) {
-                microseconds = Math.floor(exactMicroseconds);
-            } else {
-                microseconds = exactMicroseconds;
-            }
-            diffMicroseconds = exactMicroseconds - microseconds;
-        } else {
-            diffMicroseconds = exactMicroseconds;
-        }
+        final var microsecondsSplit = splitUnit(exactMicroseconds, flags, FORMAT_MICROSECONDS, FORMAT_NANOSECONDS);
+        final var microseconds = microsecondsSplit[VALUE_INDEX];
 
         // nanoseconds
         var nanoseconds = 0.0;
         if ((flags & FORMAT_NANOSECONDS) != 0) {
-            nanoseconds = TimeConverter.convert(diffMicroseconds, TimeUnit.MICROSECOND, TimeUnit.NANOSECOND);
+            nanoseconds = TimeConverter.convert(microsecondsSplit[DIFF_INDEX], TimeUnit.MICROSECOND,
+                    TimeUnit.NANOSECOND);
         }
 
         // format result
@@ -1080,6 +1006,35 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> {
             appendSpaceIfNeeded(builder).append(format(nanoseconds, TimeUnit.NANOSECOND));
         }
         return builder.toString();
+    }
+
+    /**
+     * Splits an exact amount of a given unit into the part to be shown using that unit and the remainder
+     * to be expressed using smaller units.
+     *
+     * @param exact        exact amount expressed in the unit being processed.
+     * @param flags        flags indicating units to include.
+     * @param unitFlag     flag of the unit being processed.
+     * @param smallerFlags flags of all units smaller than the unit being processed.
+     * @return array containing the amount to be shown using this unit (at {@link #VALUE_INDEX}) and the
+     * remainder to be expressed using smaller units (at {@link #DIFF_INDEX}).
+     */
+    private static double[] splitUnit(
+            final double exact, final int flags, final int unitFlag, final int smallerFlags) {
+        var value = 0.0;
+        final double diff;
+        if ((flags & unitFlag) != 0) {
+            if ((flags & smallerFlags) != 0) {
+                // there are smaller units
+                value = Math.floor(exact);
+            } else {
+                value = exact;
+            }
+            diff = exact - value;
+        } else {
+            diff = exact;
+        }
+        return new double[]{value, diff};
     }
 
     /**
@@ -1243,7 +1198,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> {
             return null;
         }
 
-        return new Time(numberFormat.parse(matcher.group(3)), TimeUnit.CENTURY);
+        return new Time(getNumberFormat().parse(matcher.group(VALUE_GROUP)), TimeUnit.CENTURY);
     }
 
     /**
@@ -1265,7 +1220,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> {
             return null;
         }
 
-        return new Time(numberFormat.parse(matcher.group(3)), TimeUnit.CENTURY);
+        return new Time(getNumberFormat().parse(matcher.group(VALUE_GROUP)), TimeUnit.CENTURY);
     }
 
     /**
@@ -1287,7 +1242,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> {
             return null;
         }
 
-        return new Time(numberFormat.parse(matcher.group(3)), TimeUnit.CENTURY);
+        return new Time(getNumberFormat().parse(matcher.group(VALUE_GROUP)), TimeUnit.CENTURY);
     }
 
     /**
@@ -1309,7 +1264,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> {
             return null;
         }
 
-        return new Time(numberFormat.parse(matcher.group(3)), TimeUnit.CENTURY);
+        return new Time(getNumberFormat().parse(matcher.group(VALUE_GROUP)), TimeUnit.CENTURY);
     }
 
     /**
@@ -1331,7 +1286,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> {
             return null;
         }
 
-        return new Time(numberFormat.parse(matcher.group(3)), TimeUnit.YEAR);
+        return new Time(getNumberFormat().parse(matcher.group(VALUE_GROUP)), TimeUnit.YEAR);
     }
 
     /**
@@ -1353,7 +1308,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> {
             return null;
         }
 
-        return new Time(numberFormat.parse(matcher.group(3)), TimeUnit.MONTH);
+        return new Time(getNumberFormat().parse(matcher.group(VALUE_GROUP)), TimeUnit.MONTH);
     }
 
     /**
@@ -1375,7 +1330,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> {
             return null;
         }
 
-        return new Time(numberFormat.parse(matcher.group(3)), TimeUnit.WEEK);
+        return new Time(getNumberFormat().parse(matcher.group(VALUE_GROUP)), TimeUnit.WEEK);
     }
 
     /**
@@ -1397,7 +1352,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> {
             return null;
         }
 
-        return new Time(numberFormat.parse(matcher.group(3)), TimeUnit.DAY);
+        return new Time(getNumberFormat().parse(matcher.group(VALUE_GROUP)), TimeUnit.DAY);
     }
 
     /**
@@ -1419,7 +1374,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> {
             return null;
         }
 
-        return new Time(numberFormat.parse(matcher.group(3)), TimeUnit.HOUR);
+        return new Time(getNumberFormat().parse(matcher.group(VALUE_GROUP)), TimeUnit.HOUR);
     }
 
     /**
@@ -1441,7 +1396,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> {
             return null;
         }
 
-        return new Time(numberFormat.parse(matcher.group(3)), TimeUnit.MINUTE);
+        return new Time(getNumberFormat().parse(matcher.group(VALUE_GROUP)), TimeUnit.MINUTE);
     }
 
     /**
@@ -1463,7 +1418,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> {
             return null;
         }
 
-        return new Time(numberFormat.parse(matcher.group(3)), TimeUnit.SECOND);
+        return new Time(getNumberFormat().parse(matcher.group(VALUE_GROUP)), TimeUnit.SECOND);
     }
 
     /**
@@ -1485,7 +1440,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> {
             return null;
         }
 
-        return new Time(numberFormat.parse(matcher.group(3)), TimeUnit.MILLISECOND);
+        return new Time(getNumberFormat().parse(matcher.group(VALUE_GROUP)), TimeUnit.MILLISECOND);
     }
 
     /**
@@ -1507,7 +1462,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> {
             return null;
         }
 
-        return new Time(numberFormat.parse(matcher.group(3)), TimeUnit.MICROSECOND);
+        return new Time(getNumberFormat().parse(matcher.group(VALUE_GROUP)), TimeUnit.MICROSECOND);
     }
 
     /**
@@ -1529,7 +1484,7 @@ public class TimeFormatter extends MeasureFormatter<Time, TimeUnit> {
             return null;
         }
 
-        return new Time(numberFormat.parse(matcher.group(3)), TimeUnit.NANOSECOND);
+        return new Time(getNumberFormat().parse(matcher.group(VALUE_GROUP)), TimeUnit.NANOSECOND);
     }
 
     /**

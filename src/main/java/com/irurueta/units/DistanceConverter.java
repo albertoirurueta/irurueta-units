@@ -23,7 +23,7 @@ import java.math.BigDecimal;
  * before displaying distance measurements.
  */
 @SuppressWarnings("WeakerAccess")
-public class DistanceConverter {
+public final class DistanceConverter {
 
     /**
      * Number of meters in 1 millimeter.

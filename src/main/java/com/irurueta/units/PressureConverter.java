@@ -23,7 +23,7 @@ import java.math.BigDecimal;
  * before displaying pressure measurements.
  */
 @SuppressWarnings("WeakerAccess")
-public class PressureConverter {
+public final class PressureConverter {
 
     /**
      * Number of pascals in 1 kilopascal.

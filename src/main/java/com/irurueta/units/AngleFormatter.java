@@ -201,8 +201,8 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> {
     public String formatDegreesAndMinutes(final Angle angle) {
         final var degreesAndMinutes = AngleConverter.toDegreesAndMinutes(angle);
         return MessageFormat.format(DEGREES_AND_MINUTES_MESSAGE_PATTERN,
-                numberFormat.format(degreesAndMinutes[0]),
-                numberFormat.format(degreesAndMinutes[1]));
+                getNumberFormat().format(degreesAndMinutes[0]),
+                getNumberFormat().format(degreesAndMinutes[1]));
     }
 
     /**
@@ -214,9 +214,9 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> {
     public String formatDegreesMinutesAndSeconds(final Angle angle) {
         final var degreesMinutesAndSeconds = AngleConverter.toDegreesMinutesAndSeconds(angle);
         return MessageFormat.format(DEGREES_MINUTES_AND_SECONDS_MESSAGE_PATTERN,
-                numberFormat.format(degreesMinutesAndSeconds[0]),
-                numberFormat.format(degreesMinutesAndSeconds[1]),
-                numberFormat.format(degreesMinutesAndSeconds[2]));
+                getNumberFormat().format(degreesMinutesAndSeconds[0]),
+                getNumberFormat().format(degreesMinutesAndSeconds[1]),
+                getNumberFormat().format(degreesMinutesAndSeconds[2]));
     }
 
     /**
@@ -242,8 +242,8 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> {
         final var degreeString = matcher.group(1);
         final var minuteString = matcher.group(3);
 
-        final var degree = numberFormat.parse(degreeString);
-        final var minute = numberFormat.parse(minuteString);
+        final var degree = getNumberFormat().parse(degreeString);
+        final var minute = getNumberFormat().parse(minuteString);
 
         final var angle = AngleConverter.fromDegreesAndMinutes(
                 degree.intValue(), minute.doubleValue(), AngleUnit.DEGREES);
@@ -273,9 +273,9 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> {
         final var minuteString = matcher.group(3);
         final var secondString = matcher.group(5);
 
-        final var degree = numberFormat.parse(degreeString);
-        final var minute = numberFormat.parse(minuteString);
-        final var second = numberFormat.parse(secondString);
+        final var degree = getNumberFormat().parse(degreeString);
+        final var minute = getNumberFormat().parse(minuteString);
+        final var second = getNumberFormat().parse(secondString);
 
         final var angle = AngleConverter.fromDegreesMinutesAndSeconds(
                 degree.intValue(), minute.intValue(), second.doubleValue(), AngleUnit.DEGREES);

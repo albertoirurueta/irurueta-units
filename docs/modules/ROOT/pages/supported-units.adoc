@@ -32,6 +32,14 @@ The following table lists the concrete measurement classes and their unit enums.
 | `DistanceUnit`
 | `MILLIMETER`, `CENTIMETER`, `METER`, `KILOMETER`, `INCH`, `FOOT`, `YARD`, `MILE`
 
+| `Energy`
+| `EnergyUnit`
+| `JOULE`, `KILOJOULE`, `MEGAJOULE`, `CALORIE`, `KILOCALORIE`, `KILOWATT_HOUR`, `BTU`
+
+| `Force`
+| `ForceUnit`
+| `NEWTON`, `KILONEWTON`, `POUND_FORCE`, `DYNE`, `KILOGRAM_FORCE`
+
 | `Frequency`
 | `FrequencyUnit`
 | `HERTZ`, `KILOHERTZ`, `MEGAHERTZ`, `GIGAHERTZ`
@@ -39,6 +47,14 @@ The following table lists the concrete measurement classes and their unit enums.
 | `MagneticFluxDensity`
 | `MagneticFluxDensityUnit`
 | `NANOTESLA`, `MICROTESLA`, `MILLITESLA`, `TESLA`, `KILOTESLA`, `MEGATESLA`
+
+| `Power`
+| `PowerUnit`
+| `WATT`, `KILOWATT`, `MEGAWATT`, `GIGAWATT`, `HORSEPOWER`
+
+| `Pressure`
+| `PressureUnit`
+| `PASCAL`, `KILOPASCAL`, `BAR`, `ATMOSPHERE`, `PSI`
 
 | `Speed`
 | `SpeedUnit`
@@ -85,4 +101,4 @@ DistanceUnit[] imperialDistanceUnits = DistanceUnit.getImperialUnits();
 *Classes used:* link:{repo-base}/DistanceUnit.java[DistanceUnit] (link:{javadoc-base}/DistanceUnit.html[Javadoc]) ·
 link:{repo-base}/UnitSystem.java[UnitSystem] (link:{javadoc-base}/UnitSystem.html[Javadoc])
 
-These helpers are available on families where the distinction applies, such as distance, speed, surface, volume, weight, acceleration, and temperature.
+These helpers are available on families where the distinction applies, such as distance, speed, surface, volume, weight, acceleration, temperature, force, pressure, energy, and power.

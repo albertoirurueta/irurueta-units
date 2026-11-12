@@ -122,10 +122,13 @@ public class VolumeFormatter extends MeasureFormatter<Volume, VolumeUnit> {
      * Hash code generated for this instance.
      * Hash codes can be internally used by some collections to coarsely compare objects.
      * This implementation only calls parent implementation to avoid static analyzer warning.
+     * It is kept because {@link #equals(Object)} is overridden, so both
+     * methods remain consistent.
      *
      * @return hash code.
      */
     @Override
+    @SuppressWarnings("PMD.UselessOverridingMethod")
     public int hashCode() {
         return super.hashCode();
     }
@@ -164,37 +167,37 @@ public class VolumeFormatter extends MeasureFormatter<Volume, VolumeUnit> {
      */
     @Override
     public VolumeUnit findUnit(final String source) {
-        if (source.contains(CUBIC_CENTIMETER + " ") || source.endsWith(CUBIC_CENTIMETER)) {
+        if (containsSymbol(source, CUBIC_CENTIMETER)) {
             return VolumeUnit.CUBIC_CENTIMETER;
         }
-        if (source.contains(MILLILITER + " ") || source.endsWith(MILLILITER)) {
+        if (containsSymbol(source, MILLILITER)) {
             return VolumeUnit.MILLILITER;
         }
-        if (source.contains(CUBIC_DECIMETER + " ") || source.endsWith(CUBIC_DECIMETER)) {
+        if (containsSymbol(source, CUBIC_DECIMETER)) {
             return VolumeUnit.CUBIC_DECIMETER;
         }
-        if (source.contains(HECTOLITER + " ") || source.endsWith(HECTOLITER)) {
+        if (containsSymbol(source, HECTOLITER)) {
             return VolumeUnit.HECTOLITER;
         }
-        if (source.contains(LITER + " ") || source.endsWith(LITER)) {
+        if (containsSymbol(source, LITER)) {
             return VolumeUnit.LITER;
         }
-        if (source.contains(CUBIC_METER + " ") || source.endsWith(CUBIC_METER)) {
+        if (containsSymbol(source, CUBIC_METER)) {
             return VolumeUnit.CUBIC_METER;
         }
-        if (source.contains(CUBIC_INCH + " ") || source.endsWith(CUBIC_INCH)) {
+        if (containsSymbol(source, CUBIC_INCH)) {
             return VolumeUnit.CUBIC_INCH;
         }
-        if (source.contains(PINT + " ") || source.endsWith(PINT)) {
+        if (containsSymbol(source, PINT)) {
             return VolumeUnit.PINT;
         }
-        if (source.contains(GALLON + " ") || source.endsWith(GALLON)) {
+        if (containsSymbol(source, GALLON)) {
             return VolumeUnit.GALLON;
         }
-        if (source.contains(CUBIC_FOOT + " ") || source.endsWith(CUBIC_FOOT)) {
+        if (containsSymbol(source, CUBIC_FOOT)) {
             return VolumeUnit.CUBIC_FOOT;
         }
-        if (source.contains(BARREL + " ") || source.endsWith(BARREL)) {
+        if (containsSymbol(source, BARREL)) {
             return VolumeUnit.BARREL;
         }
 

@@ -122,10 +122,13 @@ public class WeightFormatter extends MeasureFormatter<Weight, WeightUnit> {
      * Hash code generated for this instance.
      * Hash codes can be internally used by some collections to coarsely compare objects.
      * This implementation only calls parent implementation to avoid static analyzer warning.
+     * It is kept because {@link #equals(Object)} is overridden, so both
+     * methods remain consistent.
      *
      * @return hash code.
      */
     @Override
+    @SuppressWarnings("PMD.UselessOverridingMethod")
     public int hashCode() {
         return super.hashCode();
     }
@@ -166,32 +169,32 @@ public class WeightFormatter extends MeasureFormatter<Weight, WeightUnit> {
      */
     @Override
     public WeightUnit findUnit(final String source) {
-        if (source.contains(PICOGRAM + " ") || source.endsWith(PICOGRAM)) {
+        if (containsSymbol(source, PICOGRAM)) {
             return WeightUnit.PICOGRAM;
         }
-        if (source.contains(NANOGRAM + " ") || source.endsWith(NANOGRAM)) {
+        if (containsSymbol(source, NANOGRAM)) {
             return WeightUnit.NANOGRAM;
         }
-        if (source.contains(MICROGRAM + " ") || source.endsWith(MICROGRAM)) {
+        if (containsSymbol(source, MICROGRAM)) {
             return WeightUnit.MICROGRAM;
         }
-        if (source.contains(MILLIGRAM + " ") || source.endsWith(MILLIGRAM)) {
+        if (containsSymbol(source, MILLIGRAM)) {
             return WeightUnit.MILLIGRAM;
         }
-        if (source.contains(KILOGRAM + " ") || source.endsWith(KILOGRAM)) {
+        if (containsSymbol(source, KILOGRAM)) {
             return WeightUnit.KILOGRAM;
         }
-        if (source.contains(MEGATONNE + " ") || source.endsWith(MEGATONNE)) {
+        if (containsSymbol(source, MEGATONNE)) {
             return WeightUnit.MEGATONNE;
         }
-        if (source.contains(POUND + " ") || source.endsWith(POUND)) {
+        if (containsSymbol(source, POUND)) {
             return WeightUnit.POUND;
         }
-        if (source.contains(OUNCE + " ") || source.endsWith(OUNCE)) {
+        if (containsSymbol(source, OUNCE)) {
             return WeightUnit.OUNCE;
         }
 
-        if (source.contains(US_UK_TON + " ") || source.endsWith(US_UK_TON)) {
+        if (containsSymbol(source, US_UK_TON)) {
             final var locale = getLocale();
             if (Locale.UK.getCountry().equals(locale.getCountry())) {
                 // UK
@@ -202,10 +205,10 @@ public class WeightFormatter extends MeasureFormatter<Weight, WeightUnit> {
             }
         }
 
-        if (source.contains(TONNE + " ") || source.endsWith(TONNE)) {
+        if (containsSymbol(source, TONNE)) {
             return WeightUnit.TONNE;
         }
-        if (source.contains(GRAM + " ") || source.endsWith(GRAM)) {
+        if (containsSymbol(source, GRAM)) {
             return WeightUnit.GRAM;
         }
 

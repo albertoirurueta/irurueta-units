@@ -925,8 +925,12 @@ class WeightFormatterTest {
         text = "5,5 ton";
         assertTrue(formatter.isValidMeasurement(text));
 
-        text = "5,5 lg";
+        text = "5,5 lb";
         assertTrue(formatter.isValidMeasurement(text));
+
+        // a symbol must match as a whole token, so "lg" is not taken as grams
+        text = "5,5 lg";
+        assertFalse(formatter.isValidMeasurement(text));
 
         text = "5,5 oz";
         assertTrue(formatter.isValidMeasurement(text));

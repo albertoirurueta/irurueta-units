@@ -133,10 +133,13 @@ public class SurfaceFormatter extends MeasureFormatter<Surface, SurfaceUnit> {
      * Hash code generated for this instance.
      * Hash codes can be internally used by some collections to coarsely compare objects.
      * This implementation only calls parent implementation to avoid static analyzer warning.
+     * It is kept because {@link #equals(Object)} is overridden, so both
+     * methods remain consistent.
      *
      * @return hash code.
      */
     @Override
+    @SuppressWarnings("PMD.UselessOverridingMethod")
     public int hashCode() {
         return super.hashCode();
     }
@@ -177,44 +180,44 @@ public class SurfaceFormatter extends MeasureFormatter<Surface, SurfaceUnit> {
      */
     @Override
     public SurfaceUnit findUnit(final String source) {
-        if (source.contains(SQUARE_MILLIMETER + " ") || source.endsWith(SQUARE_MILLIMETER)) {
+        if (containsSymbol(source, SQUARE_MILLIMETER)) {
             return SurfaceUnit.SQUARE_MILLIMETER;
         }
-        if (source.contains(SQUARE_CENTIMETER + " ") || source.endsWith(SQUARE_CENTIMETER)) {
+        if (containsSymbol(source, SQUARE_CENTIMETER)) {
             return SurfaceUnit.SQUARE_CENTIMETER;
         }
-        if (source.contains(SQUARE_KILOMETER + " ") || source.endsWith(SQUARE_KILOMETER)) {
+        if (containsSymbol(source, SQUARE_KILOMETER)) {
             return SurfaceUnit.SQUARE_KILOMETER;
         }
-        if (source.contains(SQUARE_INCH + " ") || source.endsWith(SQUARE_INCH)) {
+        if (containsSymbol(source, SQUARE_INCH)) {
             return SurfaceUnit.SQUARE_INCH;
         }
-        if (source.contains(SQUARE_FOOT + " ") || source.endsWith(SQUARE_FOOT)) {
+        if (containsSymbol(source, SQUARE_FOOT)) {
             return SurfaceUnit.SQUARE_FOOT;
         }
-        if (source.contains(SQUARE_YARD + " ") || source.endsWith(SQUARE_YARD)) {
+        if (containsSymbol(source, SQUARE_YARD)) {
             return SurfaceUnit.SQUARE_YARD;
         }
-        if (source.contains(SQUARE_MILE + " ") || source.endsWith(SQUARE_MILE)) {
+        if (containsSymbol(source, SQUARE_MILE)) {
             return SurfaceUnit.SQUARE_MILE;
         }
-        if (source.contains(CENTIARE + " ") || source.endsWith(CENTIARE)) {
+        if (containsSymbol(source, CENTIARE)) {
             return SurfaceUnit.CENTIARE;
         }
-        if (source.contains(DECARE + " ") || source.endsWith(DECARE)) {
+        if (containsSymbol(source, DECARE)) {
             return SurfaceUnit.DECARE;
         }
-        if (source.contains(HECTARE + " ") || source.endsWith(HECTARE)) {
+        if (containsSymbol(source, HECTARE)) {
             return SurfaceUnit.HECTARE;
         }
-        if (source.contains(ACRE + " ") || source.endsWith(ACRE)) {
+        if (containsSymbol(source, ACRE)) {
             return SurfaceUnit.ACRE;
         }
 
-        if (source.contains(ARE + " ") || source.endsWith(ARE)) {
+        if (containsSymbol(source, ARE)) {
             return SurfaceUnit.ARE;
         }
-        if (source.contains(SQUARE_METER + " ") || source.endsWith(SQUARE_METER)) {
+        if (containsSymbol(source, SQUARE_METER)) {
             return SurfaceUnit.SQUARE_METER;
         }
         return null;

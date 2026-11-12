@@ -130,7 +130,7 @@ public enum WeightUnit {
     }
 
     /**
-     * Indicates whether provided unit belongs to the metric unit system
+     * Indicates whether provided unit belongs to the metric unit system.
      *
      * @param unit weight unit to be checked.
      * @return true if unit belongs to metric unit system.

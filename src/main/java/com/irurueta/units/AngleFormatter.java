@@ -110,10 +110,13 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> {
     /**
      * Hash code generated for this instance. Hash codes can be internally used by some collections to coarsely
      * compare objects. This implementation only calls parent implementation to avoid static analyzer warning.
+     * It is kept because {@link #equals(Object)} is overridden, so both
+     * methods remain consistent.
      *
      * @return hash code.
      */
     @Override
+    @SuppressWarnings("PMD.UselessOverridingMethod")
     public int hashCode() {
         return super.hashCode();
     }
@@ -151,10 +154,10 @@ public class AngleFormatter extends MeasureFormatter<Angle, AngleUnit> {
      */
     @Override
     public AngleUnit findUnit(final String source) {
-        if (source.contains(DEGREE + " ") || source.endsWith(DEGREE)) {
+        if (containsSymbol(source, DEGREE)) {
             return AngleUnit.DEGREES;
         }
-        if (source.contains(RADIAN + " ") || source.endsWith(RADIAN)) {
+        if (containsSymbol(source, RADIAN)) {
             return AngleUnit.RADIANS;
         }
         return null;
